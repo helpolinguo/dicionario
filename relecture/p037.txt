@@ -1,0 +1,42 @@
+== p037b0.png
+000|    3O
+002|anodo. (elektro).Elektrodo pozitiva di elektro-baterio.
+003|   di ampulo radiografala. - DEFIRS.
+005|anomala.  Qua aspektas stranje, baroke. - DEFIRS.
+006|
+007|anonima. I. Qua ne esas provizita ye la nomo di la autoro.
+008|   - II. Qua ne konocigas sua nomo. - DEFIRS.
+010|anso. Parto salianta, ringa od arko, ye qua esas provizita
+011|   utensilo od implemento, por plufaciligar la sizo di olca.
+014|-ant-  Sufixo di la participo aktiva prezenta.
+016|antagonismo.  Stando di interluktado. - DEFIRS.
+018|antagonisto. Ta qua luktas kontre altra. - DEFIRS.
+020|antarktika. latero qua ne direktesas vers la Urso-stelaro,
+== p037b1.png
+021|   ma vers la sudo-polo di la Terglobo. - DEFIRS.
+023|ante.  En epoko qua pre-iras la evento quan onu mencionas.
+024|   - DEFIRS.
+026|antecedento. I. antea agi di persono. - II. Termino di pro-
+027|   pozioiono qua pre-iras logikale to quo relative "konse-
+028|   quas". - III. Termino unesma di relato aritmetikala o
+029|   geometriala. - DEFIS.
+031|anteno.  I. (zool.) Apendico kornatra, artikoza e movebla,
+032|   situita sur la kapo di la maxim multa ek la insekti.
+033|   - II. (elektro, radio e televiziono) Longa vergo, fixig-
+034|   ita vertikale relate sulo. - DEFIS.
+036|antero. (bot.) Mikra posho qua situesas sur la extremajo
+037|   di la stamino e qua kontenas la poleno. - DEFIS.
+== p037b2.png
+039|anteridio.  (biol.)Organo riproduktala maskulala di la
+040|  .maxim multa kriptogami, en qua naskas la anterozoidi.-DRF
+041|rLLotd-
+042|anterozoido.(bot.)Korpi riproduktala maskulala di ula krip-
+043|   togami. - DEFIS.
+045|antezo. (biol.) Desklozo di la floro, qua liberigas la po-
+046|   leno. - DEFIS.
+048|anti-   Prefixo (rezervita a la terminaro ciencala e teknik-
+049|   ala) qua signifikas "kontre". - DEFIRS.
+051|anticipar  (trans.)   I. Prenar, proprigar a su ante la dato
+052|   - II. Facar, agar, exekutar ante la dato. - DEFIS.
+054|antidoto. Substanco quan onu absorbigas da ulu, por kombatar
+055|   en lu la efiko di veneno, di viruso. - DEFIRS.

@@ -1,0 +1,49 @@
+== p403b0.png
+000|   396
+002|noktuo. (zool.)  Speco di strigo, rapt-ucelo noktala.
+003|   - L. noctua.
+005|nokturno. I. (muziko). Sorti di romanco du-voco, kun la
+006|   karaktero di serenado. - II. (liturgio katol.) Parto
+007|   di la nokt-oficio, qua kontenas ula quanto de psalmi.
+008|   -DEFIRS.
+010|nomar.  (trans.) Dicar la nomo qua distingas (persono) ed
+011|   iodikas lu individuale. - DEFIS.
+013|nomado. Qua ne havas rezideyo fixa en teritorio determini-
+014|   ta. - DEFIRS.
+016|nombro. (matem.) Vorto qua indikas quanta-foye la unajo
+017|   kootenesas en quanto. - EFIS.
+019|nomenklaturo. Ensemblo ek la termini, ek la nomi specala,
+020|   qui uzesas da ca o ta cienco, arto, libro teknikala.
+021|   - DEFIS.
+== p403b1.png
+023|nominar. (trans.)Grantar titulo,ofico. - EFIS.
+024|
+025|nominativo.  (gram.)  I. Deklino-kazo qua indikas, ke la
+026|   nomo esas la subjekto di la verbo. - II. La ipsa nomo
+027|   qua esas la subjekto di la verbo. - DEFIS.
+029|nomografio. (matem.) Ensemblo ek la metodi qui havas kom
+030|   skopo remplasar la kalkuli numerala per simpla lekto
+031|   sur tabelo grafika di qua la nomo esas dabako". -
+033|non. (matem )  La cifro "9".
+034|
+035|nona-. - Prefixo ciencala * non-....
+036|                       s,
+037|noniliono. (matem.)  lO  , od oktiliono x l.OOO.OOO.
+038|
+039|nopalo.  (bot.)   Arboro sur qua vivas la kochenilo, varie-
+040|   tato di kaktuso. - L. opuntia cocoinillifera. DEFIRS.
+== p403b2.png
+042|nordo.  I. Un ek la quar punti kardinala, punto di horizonto
+043|   situita en la direciono di la polo-stelo. - II. Parto
+044|   di la Terglobo, regiono situita vicine a nordo. - DEFIRS.
+046|norio.  (teknol.)  Mashino hidraulikala, qua konsistas ye
+047|   siteli ligita alonge kateno senfina, qua spulas sur tam-
+048|   buro, per rotaco, e per qua 1a siteli plheskas ed acensas,
+049|   ca-latere - vakueskas e decensas, ta-latere. - DEF.
+051|normo. I. Regulo, principo di konduto. - II. (industrio).
+052|   segulo qua fixigas la cirkonstanci di la faco di objekto
+053|   o di la elaboro di produkturo di qua onu volas uniformigar
+054|   la uzo o certigar la inter-idanteso perfekta, do la inter-
+055|   remplasableso sen desfacileso. III. Tipo legala di la
+056|   mezurili e ponderili lego-permisata. - DEFIRS.
+057|

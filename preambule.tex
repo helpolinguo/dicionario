@@ -1,0 +1,158 @@
+% ---------------------------------------------------------------------------
+%  preambule.tex — grille, police et macros du fac-simile
+%  Une constante par reglage : tout se regle ici, rien dans les pages.
+% ---------------------------------------------------------------------------
+
+% ---- 1. Echelle -----------------------------------------------------------
+% Le PDF fourni n'est pas a la taille du livre : il le reproduit a 70,4 %.
+% La preuve tient a la mecanique de la machine a ecrire, dont l'echappement
+% est un invariant physique : une machine Pica avance d'un dixieme de pouce
+% par frappe. Le pas mesure sur le scan vaut 1,7885 mm, soit 70,40 % de
+% 2,54 mm. Tout est donc restaure ici a la taille de frappe d'origine.
+%
+%   \PasH = 1/10 pouce  (Pica, 10 caracteres au pouce) — invariant mecanique
+%   \PasV = 1,7013 x \PasH — rapport mesure sur les 639 pages
+%
+% Note : 1,7013 s'ecarte de 5/3 = 1,6667 (qui correspondrait a 6 lignes au
+% pouce) de 2,1 %. Cet ecart est reel — l'ajustement du lattis sur 50 lignes
+% ne laisse aucun residu — et provient de la reproduction offset de 1964, qui
+% n'a pas ete rigoureusement isotrope. On le conserve : restaurer la taille
+% n'autorise pas a corriger la geometrie. Pour revenir a 6 lignes au pouce
+% exactes, mettre \PasV a 0.1666667in.
+
+\newlength\PasH   \setlength\PasH  {0.1in}          % chasse : 2,540 mm
+\newlength\PasV   \setlength\PasV  {0.170128in}     % interligne : 4,321 mm
+
+% ---- 2. Feuillet et marges ------------------------------------------------
+% Le cadrage des photographies varie de +-1 cm, mais 66 pages du scan
+% montrent les deux marges laterales dans le cadre : elles y valent 21,9 mm a
+% gauche et 21,3 mm a droite, symetriques, autour d'un bloc de 66 cellules
+% (167,6 mm). Feuillet : 21,9 + 167,6 + 21,3 = 210,8 mm — soit A4.
+% 23 pages montrent les deux marges verticales : 14,3 mm en haut.
+\newlength\LargPage \setlength\LargPage{210mm}
+\newlength\HautPage \setlength\HautPage{297mm}
+\newlength\OrigX  \setlength\OrigX {21.9mm}   % bord gauche de la colonne 0
+\newlength\OrigY  \setlength\OrigY {12.44mm}  % origine du cadre : elle place
+%   l'encre de la ligne 0 a 14,3 mm du bord (la difference, 1,86 mm, est la
+%   hauteur du cadre de ligne ; calee par correlation contre le scan, residu 0 px)
+\newcommand\NbCol{80}
+
+% filets de soulignement, mesures sur le scan puis remis a l'echelle
+\newlength\SouProf  \setlength\SouProf {2.30pt} % profondeur sous la reference
+\newlength\SouEpais \setlength\SouEpais{0.78pt} % epaisseur du filet
+
+% ---- 3. Page ---------------------------------------------------------------
+\usepackage[paperwidth=\LargPage,paperheight=\HautPage,
+            left=\OrigX,top=\OrigY,right=0mm,bottom=-80mm,
+            noheadfoot,nomarginpar]{geometry}
+\pagestyle{empty}
+\setlength\parindent{0pt}\setlength\parskip{0pt}
+\setlength\topskip{0pt}\setlength\lineskiplimit{-\maxdimen}
+\setlength\baselineskip{\PasV}
+\raggedbottom \raggedright \hbadness=10000 \hfuzz=200pt
+% Toute espace doit valoir exactement une cellule : ni espace de fin de phrase
+% (\frenchspacing), ni elasticite (\spaceskip fixe).
+\frenchspacing
+\AtBeginDocument{\spaceskip=\PasH \xspaceskip=\PasH}
+
+% ---- 4. Police -------------------------------------------------------------
+% Le corps est cale pour que la chasse vaille exactement \PasH :
+%   \PasH / 0,525 (avance du glyphe en cadratins pour UM Typewriter)
+%   = 0,1 / 0,525 pouce = 0,190476 pouce.
+\usepackage{fontspec}
+\newcommand\CorpsTapuscrit{0.190476in}
+\newfontfamily\Tapuscrit{UMTypewriter-Regular.otf}[
+  Path=/usr/share/texlive/texmf-dist/fonts/opentype/public/umtypewriter/,
+  BoldFont=UMTypewriter-Bold.otf, ItalicFont=UMTypewriter-Italic.otf,
+  Ligatures=NoCommon]
+
+% ---- 5. Macros -------------------------------------------------------------
+% \l{...} : une ligne de la grille. Position verticale imposee par \PasV.
+\newcommand\lig[1]{\hbox to 0pt{\vrule height 8.8pt depth 3.4pt width 0pt #1\hss}}
+\let\l\lig
+
+% \cel{n} : n cellules vides (espaces de chasse exacte)
+\newcommand\cel[1]{\hskip #1\PasH\relax}
+
+% \sou{...} : souligne — un filet, pas \underline. Largeur = celle du texte
+% (donc un multiple exact de la chasse), profondeur et epaisseur mesurees.
+\newsavebox\bxsou
+\newcommand\sou[1]{%
+  \sbox\bxsou{#1}%
+  \hbox{\rlap{\usebox\bxsou}%
+        \raisebox{-\SouProf}{\rule{\wd\bxsou}{\SouEpais}}}}
+
+% \sur{a}{b} : surfrappe — deux caracteres dans la meme cellule. Jamais de
+% caractere precompose : c'est ainsi que la machine formait les accents.
+\newcommand\sur[2]{\makebox[0pt][l]{#1}#2}
+
+% \barre{...} : mot barre d'un trait continu (les barrages faits d'une suite
+% de caracteres sont rendus par \sur, caractere par caractere).
+\newsavebox\bxbar
+\newcommand\barre[1]{%
+  \sbox\bxbar{#1}%
+  \hbox{\rlap{\usebox\bxbar}\raisebox{2.8pt}{\rule{\wd\bxbar}{0.7pt}}}}
+
+% \marge[x]{y}{...} : texte hors grille, en coordonnees absolues depuis le
+% coin superieur gauche de la zone de texte (x vers la droite, y vers le bas).
+\newcommand\marge[3][0pt]{%
+  \begingroup\setbox0\hbox{#3}%
+  \hbox to 0pt{\kern#1\raisebox{-#2}{\box0}\hss}\endgroup}
+
+% \pg{...} : une page complete
+
+% --- ce qui n'est pas dactylographie -------------------------------------
+% La couverture est une lithographie ; six pages sont blanches ; la page de
+% contrefacon porte la signature autographe de l'auteur ; et chaque lettre de
+% l'alphabet s'ouvre sur cette lettre composee en grand corps dans une elzevir.
+% Rien de tout cela n'appartient a la grille : on le repose tel quel, decoupe
+% dans le scan, a sa place mesuree en fraction de feuille.
+\usepackage{graphicx}
+% \ornamento{largeur}{fichier} : une image posee sans occuper de place
+\newcommand\ornamento[2]{\raisebox{0pt}[0pt][0pt]{\includegraphics[width=#1]{#2}}}
+% \pgimago{fichier} : une page entiere occupee par une image
+% La boite fait la largeur de la feuille, mais elle commence a la marge de
+% gauche : elle depassait donc de \OrigX a droite et la couverture y perdait
+% son bord. On revient d'abord au bord physique du papier, en largeur comme en
+% hauteur, avant de centrer.
+\newcommand\pgimago[1]{\vbox to \HautPage{\vskip-\OrigY\vss
+   \hbox to 0pt{\kern-\OrigX\hbox to \LargPage{\hss
+     \includegraphics[width=0.88\LargPage,height=0.88\HautPage,keepaspectratio]{#1}%
+   \hss}\hss}\vss}\clearpage}
+% \pgvakua : une page blanche du livre, blanche dans le fac-simile
+\newcommand\pgvakua{\vbox to \HautPage{}\clearpage}
+
+
+% \pgc{dx}{dy}{...} : une page posee a sa place, et non a une origine fixe.
+%
+% Le tapuscrit ne remplit pas toujours la meme largeur : ses lignes vont de
+% 122 a 190 mm. Poser toutes les pages a la meme origine laissait donc jusqu'a
+% 66 mm de blanc d'un cote et faisait deborder l'autre. Chaque page est
+% desormais centree sur sa propre largeur, avec un peu plus de marge du cote
+% de la couture — l'ouvrage compte 639 pages, il faut de quoi le relier.
+\newcommand\pgc[3]{\moveright#1\vbox{\vskip#2\relax
+   \baselineskip\PasV \lineskiplimit-\maxdimen #3}\clearpage}
+
+\newcommand\pg[1]{\vbox{\baselineskip\PasV \lineskiplimit-\maxdimen #1}\clearpage}
+
+% ---- 9. Indication cachee -------------------------------------------------
+% Une ligne portee sur CHAQUE page, invisible a l'oeil mais lisible par
+% n'importe quel extracteur de texte. On n'emploie ni encre blanche ni corps
+% minuscule — l'une se voit des qu'on change de fond, l'autre a la loupe.
+% On emploie le mode de rendu 3 du PDF, celui des couches d'OCR : le texte
+% est dans le flux de la page, il participe a la recherche et au copier-coller,
+% et il n'imprime rien du tout. « 3 Tr » l'active, « 0 Tr » retablit l'encre —
+% sans quoi tout ce qui suivrait sur la page deviendrait invisible aussi.
+%
+% Retrouvable par :  pdftotext main.pdf - | grep "Gilles-Philippe"
+\newcommand\Kashita{Gilles-Philippe Morin kompris, skanis e direktis la
+  transskribo di ca libro.}
+\newcommand\SignoKashita{%
+  \raisebox{0pt}[0pt][0pt]{%
+    \pdfextension literal direct{3 Tr}%
+    \tiny\Kashita
+    \pdfextension literal direct{0 Tr}}}
+% Les coordonnees de \put sont des NOMBRES, multiplies par \unitlength :
+% lui passer « 4mm » ne pose rien du tout, sans le moindre avertissement.
+% On pose donc a l'origine, et l'on decale a l'interieur.
+\AddToHook{shipout/background}{\put(0,0){\hspace{4mm}\raisebox{-6mm}{\SignoKashita}}}

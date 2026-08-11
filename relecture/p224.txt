@@ -1,0 +1,45 @@
+== p224b0.png
+000|                                                        2l7
+002|higrometro.  Aparato per qua onu mezuras la quanto de aquo-
+003|   vaporo qua existas en atmosfero, per korpo quan humideso
+004|   igas modifikesar pezale, voluminale. - DEFIRS.
+006|higrometrio. Parto di fiziko, qua mezuras la quanto de aouo-
+007|   vaporo quan kontenas atmosfero. - DEFIR8.
+009|higroskopo. Aparato per qua onu konstatas la humideso-grado di
+010|   atmosfero. - DEF.
+012|hike. I. En la loko ube esas la persono qua pronuncas ca vorto.
+013|   - II. En ica loko di la dico. - L.
+015|hilo.  I. (bot,) Marko di la ligo-punto di la grano sur la fu-
+016|   nikulo. - II. (anat.) Ligo-punto ube vaskulo juntesas a vicero.
+017|   - EFIS.
+019|hiloto. I. (epoki antiqua)  Sklavo, che la Spartani. - II. La
+== p224b1.png
+020|   viro, en socio, qua esas sur la grado maxim infra di la abjekt-
+021|   eso-skalo. - DEFlRS.
+023|himeno. I. (anat.) Membrano qua klozas parte la vaglno, che la
+024|   virgini. a II. (bot.) Pelikulo dl la korolo qua laceresas lor
+025|   la desklozeso. - DEFlS.
+026|
+027|himeneo. Kanto mariajala, cbe la Sreki antiqua, e one la Romani
+028|   lora. - DEFlRS.
+029|
+030|himenio. (bot,) Che la fungo, la mikra membrano en qua esas la
+031|   spori.
+033|himenoptero. (zool.) Insekto di qua la ali esas membrana (abeli,
+034|   vesti, formiki, e c.) - dEFIRS.
+036|himno. I. Poemo religiala, honore di la dei, di la heroi. - II.
+== p224b2.png
+037|   Poemo lirika, honore di la deajo. - III. Kantiko Latina quan
+038|   onu kantas o recitas en kirko. - DEFIRS.
+040|hioido. (anat.) (Osto) qua esas horizontale inter la bazo di la
+041|   lango e la laringo. - EFIS.
+043|hipar. (netrans.)Sentar ta kontrakto intervalopa qua sukusas
+044|   la diafragmo ed akompanesas da bruiso ne-artikulata partiku-
+045|   lara. - S.
+047|hipalago. (retor,) Stilo-figuro qua atribuas a vorto to quo
+048|   konvenas ad altra vorto. (kom ex.: retrodonar ulu a vivo,
+049|   vice : retrodonar vivo ad ulu). - DEFIS.
+051|hiper-. Prefixo qua signifikas "super, trans, ecese".
+052|
+053|biperbato. (retor.) Figuro qua konsistas ye permutar la ordino
+054|   naturala di ula vorti en propoziciono. - DEFIS.

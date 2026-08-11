@@ -1,0 +1,45 @@
+== p099b0.png
+000|      92
+002|cinika. I. Qua apartenas a la skolo filozofiala quan fondis
+003|   Antistenes, tale nomizita pro ke olu esis establisita
+004|   komence en Cinosargos, pre-urbo di la urbo Athinai. -
+005|   II. Qua su lokizas super deco, la konveno-reguli, e pudo-
+006|   ro. - DEFIS.
+008|cinocefalo. (zool.) Genero de simio, di qua la muzelo esas
+009|   longa quale che la hundo. - L. cynocephalus. - EFIS.
+011|ointilo. Peceto flama, lumoza, qua su separas de korpo
+012|   kombustata. - EFIS.
+014|cipo. (arkitekt.) Mi-kolono sen kapitelo, qua simulas kolono
+015|   ruptita, quan la antiqui erektis kom monumento funeralai
+016|   quan li lokizis sur la voyi por indikar la direcioni, od
+017|   en la loki konsakrita da ta o ca eventaji memorinda. -
+== p099b1.png
+018|   DEFIRS.
+020|cipreso. (bot.)  Arboro rezinala, de la familio "koniferi",
+021|   quan lua foliaro obskura igas selektar por plantaceso
+022|   en la tombeyi, apud la tombi. - L. cypressus. - DEFIRS.
+023|
+024|ciprino. (zool.)  Genero de fisho qua vivas en aquo sen-sala,
+025|   di qua la tipo esas la karpo, e di qua la koloro esas
+026|   pasable oranjea o redatra. - L. cyprinus. - EFIS.
+028|cirajo. Kompozajo nigra, quan onu extensas sur la ledro di
+029|   la pedovesti, di la harnesi, e quan onu frotas per bros-
+030|   ilo por igar lu brilanta. - FIS.
+032|circinata. (dermatologio). (Lezuri di pelo), grupigita cir-
+033|   klatre o cirklo-fragmentatre, di qua la centro esas sen-
+034|   domaja. - EFS.
+== p099b2.png
+036|cirko. I. Klozajo cirkla ube onu celebris (che la antiqui)
+037|   la ludi publika. - II. Sorto di teatro, cirkoforma, ube
+038|   la spektajo konsistas ye prodalaji di kavalko, di voltijo.
+039|   - DEFIRS.
+041|cirklo. fgeom.) Parto de plano, di qua la limito esas kurvo
+042|   klozita di qua omna punti distas egale de punto interna
+043|   (centro). - EFIRS.
+045|cirkoncizar.  (trans.)Distranchar la prepuco. - EFIS.
+046|
+047|cirkondar. (trans.) Esar cirkum. - II. Garnisar cirkume.
+048|
+049|cirkonflexo. En la linguo Franca, Portugalana, e c. : signo
+050|   ortografiala(  )  quan onu lokizas super ula vokali longa
+051|   (\sur{\textasciicircum{}}{a}, \sur{\textasciicircum{}}{e}, \sur{\textasciicircum{}}{i}, \sur{\textasciicircum{}}{o}).  - DEFIRS.

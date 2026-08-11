@@ -1,0 +1,48 @@
+== p341b0.png
+000|   334
+003|lektoro. I. Sorto di profesoro adyunta en ula universitati.
+004|   - II. (liturgio katolika). Kleriko kun la duesma ek la
+005|   qua ordeni minora, qua havis olim kom tasko lektar, kun-
+006|   tar la lecioni, epistoli, e c., en la ceremonii kultala.
+007|   - DEFIS.
+009|temo.  (matem.)  Propoziciono preliminara quan onu establisas
+010|   por preparar la demonstro di altra propoziciono. - DEFIRS.
+012|lemniskato. (geos.) Kurvo ek la grado quaresma, qua havas
+013|   la formo di la cifro "8", e qua esas la ligilo di omna
+014|   punti tale ke la produto di lia disti a du punti fixa
+015|   esas konstanta. - DEFI.
+017|lemuriano. (zool.) Familio de simii, di qui la tipo esas
+018|   la makio. - DEFIS.
+020|lengo. (eool.) Speco di gado, di qua la korpo esas oblonga.
+== p341b1.png
+021|   - L. Eadog molEg.
+023|lenio. Peco di kalorizoaligno, segita o tranchita tale ke
+024|   onu povas pozar lu aden kameno, aden furnelo. - LS.
+026|lenso.- I. (bot.) Grano di leguminoso quan onu manjas kom
+027|   legumo pos lua sikigeso. - II. (fiziko).Vitro-bloko,
+028|   taliita lenso-forme, finanta sive per du surfaci sferala,
+029|   sive per surfaco plana, qua produktas deviaco regulala
+030|   di la lumo-radii. - EF.
+032|lenta. I. Qua ne iras rapide. - II. Qua trodurigas to quon
+033|   Iu esas aganta o facanta. - FIS.
+035|lentigino   (ohe ula personi). Altereso naturala, grano-
+036|   forma, di la koloro di lia pelo. - EFIS.
+038|lentisko. (bote)  Arboreto qua kreskas en la Franca provinco
+039|   Frovence ed en Italia, e di qua un speco donas la suko
+040|   rezinoza de qua onu facas liquoro e mastico. L. Pistacia
+== p341b2.png
+041|   lentisous. - EFIS.
+042|
+043|leono. I(zool.) Mamifero karnivora, ek la familio "felini",
+044|   kun pilkoloro flava, kun la shultri kovrata (che la masku-
+045|   lo) da dika krinaro. - II. (astrcl.) Signo di zodiako,
+046|   reprezentata da leono." III. (metaf.) (l) viro brava,
+047|   audacoz  quale leon(in)o. (2) Personego tre segun-moda, e
+048|   tre admirata, che la mondumani. - RFIS.
+050|leopardo.  (zool,)  Animalo karnavida, ek la genero "kato",
+051|   kun pelo makuletoza. - L. felis leopardus. - DEFIRS.
+052|
+053|lepidoptero. (zool.) Familio ek insekti kun ali squamoza, no-
+054|   mata vulgare "papilioni", qui subisas metamorfosi kompleta,
+055|   e di qui onu nomizas la larvo "raupo", e la nimfo "kriza-
+056|   lido . - DEFIS.

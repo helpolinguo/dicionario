@@ -1,0 +1,43 @@
+== p100b0.png
+000|                                                    93
+002|cirkonspekta. Qua surveyas prudente, e desfideme, to quon
+003|   lu dicas od agas, o to quon dicas od agas la kunhomi.
+004|   - EFIS
+006|oirkonstanco. I. Singla de la fakti di eventajo o di situeso.
+007|   - II. Fakto acesora, qua akompanas eventajo precipua. - EFIS.
+009|cirkonvalaciono. (milit.) Trancheo kun palisadi, parapeti, for-
+010|   tifikajo tempala per qua armeo envelopas la placo +asiejata,
+011|   por cesigar la relati di olca kun la mondo extera, o per qua
+012|   lu su protektas kontre la ataki de la trupi qui venas por
+013|   sokursar la placo +asiejata. - EFIRS.
+015|cirkonvoluciono.  Envolveso - sinui cirkloforma. -  EFIS.
+017|cirkuito. I. Spaco parkurenda por cirkumirar komplete loko.
+018|   - II. Iro cirkuma, vice iro tra la voyo rekta. - EFIS.
+== p100b1.png
+020|oirkular. (netrans.) I. Irar e retroirar omna-direcione sinue.
+021|   II. (pri moneto).  Aceptesar da omna homi di la regiono a
+022|   qua lu esas destinita, kom valoroza. - DEFIRS.
+024|cirkulero. Letro de qua un kopiuro uniforma sendesas sama-
+025|   instante a plura (e, generale : a tre multa) personi. -
+026|   DEFIRS.
+028|cirkum. En la loko, tempo o quanto qua esas vicina, apuda
+029|   - kompare a la objekto, quaze ringe exter lu. - DL.
+031|oirkumnutaciono. (bot.) Parkuro helicoida da la extremajo di
+032|   la radiko, o di la stipo, di vejetanto.
+034|\textquotedbl{}cis" . (Muziko).fDo"-noto, diezoza.
+035|
+036|cis.   Ca-latere di - ne trans lu. - L.
+037|
+== p100b2.png
+038|cisipara. (biol.) Qua su riproduktas per sua divideso a du
+039|   parti, generale segun la mikra axo di la korpo. - DEFIRS.
+041|cisoido. (geom.) Kurvo di la grado triesma, konsistanta ye du
+042|   branchi simetra qui departas de un punto e tendencas a ten-
+043|   gento komuna, sen atingar lu ul-instante. - DEF.
+045|cisterciano. (religio kristana).  Reguliero qua resortias a
+046|   la ordeno religiala qua kreesis en la Franca urbo Citeaux.
+047|   DEFIRS.
+049|cisterno. Granda tanko a qua duktesas e rekoliesas la aquo
+050|   pluvala. - DEFIRS.
+052|citar. (trans.) Adportar voce o skribe extraktaji de texto
+053|   por sekondar to quon onu asertas. - DEFIRS.

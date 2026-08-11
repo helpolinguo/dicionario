@@ -1,0 +1,43 @@
+== p218b0.png
+000|                                                      2ll
+002|helixo. (anat.) La rebordo di la orel-funelo. - EFIS.
+003|
+004|"heller". (ante la milito universala di l9l4-l8). Moneto-peco
+005|   ek bronzo e nlkelo. adoptita da Austria-Hungaria, centima
+006|   parto di la "krono".
+008|helmo. I. (olim). Kasko pintoza qua kovras la kapo e la vizajo,
+009|   kun aperturo por la okuli. -II. (blazon-arto). Peco qua in-
+010|   dicas, per sua situeso, la gradi diversa di nobeleso,  DEFIS.
+012|bmlpar. (trans.) Partoprenar lo facata od agata da ulu qua ne
+013|   povas facar od agar lo sole. - DE.
+015|hem !  Interjeciono qua expresas dubito, hezito.
+017|hemo  (* loko intima ube onu vivas (kontraste kun loko ube onu
+018|   vivas, en hotelo o lojeyo). a DEF.
+== p218b1.png
+020|hematito. (mineral.) Sanguino, erco reda brunatre.-  DEFl-S.
+021|
+022|hemerokalo.  (bot.) Flanto llliacea, dl qua  a speco preolpua
+023|   esas la konvolvulo. - L. nemerocallis. - EFlS.
+024|
+025|hemiopa. (patol.)  Malade de ta perturbeso vidala, pro qua onu di-
+026|   cernas nur la duimo sinistra o dextra di la objekto. - EF.
+028|hemiplegio. (patol.) Paralizeso di duimo laterala di la homo-
+029|   korpo. - DEF.
+031|hemiptero. (zool.) Insekto karakterizata da mi-elitri qui kovras
+032|   la parto avana di la ali. - DEFIS.
+034|hemistiko. (prosodio). Duimo de verso, separita de la altra duimo
+035|   per silenoeto (cezuro). - DEFIS.
+037|hemoglobino. (kemio biol.). Pigmento nitroza e feroza, reda,quan
+== p218b2.png
+038|   onu renkontras en la hematii di la vertebrozi ed en la hemo-
+039|   limfo di ula senvertebri. - DEF.
+041|homelizo. (biol.) Destrukto di la sango-globuli reda.
+042|
+043|)meuptizio. (patol.) Sputado di sango. - DEF.
+045|hcmoragio. (patol.) Fluo di sango ek la vaskuli, kun o sen rupt-
+046|   eso di la parieti. - DEF.
+048|hmmoroido. (patol.)  Tumoro di la veini di la anuso, de qua sango
+049|   eskapas intervalope. - DEFIRS.
+051| kanryd.  (elektrotekniko). Gnajo di indukto reciproka o di auto-
+052|   indukto, di qua la valoro egalesas lOe g unaji elektromagnet-
+053|   ala C.G.S.

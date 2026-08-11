@@ -1,0 +1,48 @@
+== p229b0.png
+000|  222.
+003|homilio. I. (liturgio katolika). Instruktado familiara di la
+004|   populo pri evaogelio e pri la materii religiala. - II.
+005|   Breviario-leciono extraktita de la homilii di la patri
+006|   ekleziala. - III. (desprizoze). Etiko-prediko, leciono
+007|   enoyiganta. - DEFIS.
+009|homocentro   (matem.) Centro komuna di plura centri.
+010|
+011|homogena  Di qua la elementi konstitucanta esas sama-natira.
+012|   - DnFIRS.
+014|homografio. (geom.)  Interdependo partikulara di du figuri
+015|   geometriala.
+017|homologio. (geome)  Karaktero di la figuri tala (segun Ponce-
+018|   let) ke la punti interkorespondanta di ica e di ita esas
+019|   ducpe sur la rekti qui kunkuras ad un punto (centro di smmo-
+== p229b1.png
+020|   logio) e ke la rekti qui juntas du punti mk ica e la ml
+021|   korespondanti di la altra iras krucumar sur rekto una (ako
+022|   di homologio) se la figuri esas plana, o sur un plano (plano
+023|   di homologio) se la figuri esas irgequala en spaco.
+024|
+025|bomologa.  (aludante un o plura termini). Qui interkorespondas.
+026|   DEFIRS.
+028|homonima  (gram.) "arti qui esas intersama ortografiale ed
+029|   pronmnoale, ma interdiferas pri la senoo. - Romonimo : per-
+030|   sono di qua la nomo esas sama kam olta di altra persono. -
+031|   DEFIRS.
+033|homoteta. (geom.) Donita un punto fixa E  ed un konstante k,
+034|   se, ad un punto k ek la spaco onu korespondantigas un pisto
+035|   M . tala ke 0M;/0M egalesas k, onu dicas ke la punti   e R)
+036|   eeas "homoteta" pri la punto E.
+== p229b2.png
+038|homotipa  (arat.) Di qua la organi, en un individuo, esas  la
+039|   analogi di altra organi. (kom ex.: la pedo-fingri kompare
+040|   kun la manuo-fingri).
+042|honesta. Qua esas konforma a la devo, a vertuo. -  FIS.
+043|
+044|honoro. I. Digneso etikala qua naskas de la bezono di estimeso
+045|   da la kunhomi e da ni ipsa. - II. Distingo-manifesto por
+046|   ulu, flatema. - EFIS.
+048|honorario. Pago-pekunio po la servi da persono qua havas pro-
+049|   fesiono honorizanta (advokato, mediko, sacerioto, e c.)
+050|   - DEFIRS.
+052|hop !  Interjeciono uzata por stimular, ecitar a kuresko, o
+053|   saltigar trans obstakli.
+055|hoplito. (en la epoki antiqua)  Infantriano di oua la armi esis
+056|   tre pezoza. - DEFInS.

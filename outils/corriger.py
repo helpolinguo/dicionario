@@ -1,0 +1,169 @@
+"""Correction des lectures douteuses par le lexique du livre lui-meme.
+
+Principe : le dictionnaire repete son vocabulaire des milliers de fois. Une
+forme lue une seule fois, alors qu'une variante obtenue en remplacant une
+cellule ambigue par l'une de ses voisines de groupe est attestee des dizaines
+de fois, est une faute de lecture, pas une coquille du tapuscrit.
+
+Une cellule n'est declaree ambigue que si son groupe a, parmi ses plus proches
+voisins dans l'espace des formes, un groupe d'etiquette differente a une
+correlation superieure a 0,86. C'est donc le decodage qui doute, pas nous.
+
+Toute substitution est journalisee dans travail/journal_corrections.txt et
+inscrite dans travail/exceptions.txt : elle reste inspectable et reversible.
+"""
+import numpy as np, pickle, collections, glob, os, sys, itertools
+sys.path.insert(0,'/root/dicionario/outils')
+T="/root/dicionario/travail"
+LETTRES=set("abcdefghijklmnopqrstuvwxyz")
+MAJ=set("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+TOUTES=LETTRES|MAJ
+
+def decoder_livre(lab, M, tab, bav, exc=None):
+    """Retourne {page: [(k, [(colonne, caractere, indice_cellule), ...])]}"""
+    pages={}
+    ordre=np.argsort(M[:,0], kind='stable')
+    bornes=np.searchsorted(M[ordre,0], np.arange(M[:,0].max()+2))
+    for pg in range(M[:,0].max()+1):
+        idx=ordre[bornes[pg]:bornes[pg+1]]
+        if not len(idx): continue
+        par=collections.defaultdict(list)
+        for i in idx:
+            if bav[i]: continue
+            k,c=int(M[i,1]),int(M[i,2])
+            ch=exc.get((pg,k,c), str(tab[lab[i]])) if exc else str(tab[lab[i]])
+            par[k].append((c, ch, int(i)))
+        for k in par: par[k].sort()
+        pages[pg]=sorted(par.items())
+    return pages
+
+def mots(ligne):
+    """Decoupe une ligne (liste de (col, car, idx)) en mots contigus."""
+    out=[]; cur=[]
+    prev=None
+    for col,ch,i in ligne:
+        if prev is not None and col!=prev+1 and cur:
+            out.append(cur); cur=[]
+        cur.append((col,ch,i)); prev=col
+    if cur: out.append(cur)
+    # on isole le noyau alphabetique de chaque groupe
+    res=[]
+    for g in out:
+        j=0
+        while j < len(g):
+            while j<len(g) and g[j][1] not in TOUTES: j+=1
+            d=j
+            while j<len(g) and g[j][1] in TOUTES: j+=1
+            if j>d: res.append(g[d:j])
+    return res
+
+def executer(mini_atteste=8, maxi_fautif=5, max_pos=3, marge=8, marge_ngram=6.0):
+    lab=np.load(f"{T}/km_lab.npy"); M=np.load(f"{T}/meta_all.npy")
+    tab=np.load(f"{T}/cls_lab.npy", allow_pickle=True)
+    from decoder import bavures
+    from generer import exceptions
+    bav=bavures(); exc=dict(exceptions())
+    alt=pickle.load(open(f"{T}/cls_alternatives.pkl","rb"))
+    pages=decoder_livre(lab, M, tab, bav, exc)
+    # 1. lexique du livre
+    freq=collections.Counter()
+    tous=[]
+    for pg,lignes in pages.items():
+        for k,ligne in lignes:
+            for mo in mots(ligne):
+                f="".join(c for _,c,_ in mo)
+                if len(f)>=3: freq[f]+=1; tous.append((pg,k,mo,f))
+    print(f"{len(freq)} formes distinctes, {sum(freq.values())} occurrences", flush=True)
+    # 2. correction
+    journal=[]; exc={}
+    for pg,k,mo,f in tous:
+        if freq[f] > maxi_fautif: continue
+        # on ne touche pas aux noms propres ni aux sigles : une forme qui porte
+        # une majuscule ailleurs qu'a l'initiale, ou dont l'initiale est une
+        # majuscule, n'a pas a etre ramenee au lexique commun.
+        if any(c in MAJ for c in f[1:]): continue   # sigles : on ne touche pas
+        cle = f[0].lower()+f[1:] if f[0] in MAJ else f
+        pos=[j for j,(c0,_,i) in enumerate(mo) if alt[lab[i]] and (pg,k,c0) not in exc]
+        if not pos or len(pos)>max_pos: continue
+        cands=[]
+        choix=[[mo[j][1]]+alt[lab[mo[j][2]]] for j in pos]
+        for combi in itertools.product(*choix):
+            if all(a==mo[j][1] for a,j in zip(combi,pos)): continue
+            l=list(f)
+            for a,j in zip(combi,pos): l[j]=a
+            v="".join(l)
+            vv = v[0].lower()+v[1:] if v[0] in MAJ else v
+            n = freq.get(v,0)+ (freq.get(vv,0) if vv!=v else 0)
+            if n >= mini_atteste: cands.append((n, v, combi))
+        if not cands: continue
+        cands.sort(reverse=True)
+        n1,v1,c1=cands[0]
+        if len(cands)>1 and cands[1][0]*3 > n1: continue   # ambigu : on s'abstient
+        if n1 < marge*max(freq[f],1): continue            # l'ecart doit etre net
+        for a,j in zip(c1,pos):
+            if a!=mo[j][1]:
+                col,ancien,i=mo[j]
+                exc[(pg,k,col)]=a
+                journal.append((pg,k,col,ancien,a,f,v1,freq[f],n1))
+    # --- deuxieme etage : modele de n-grammes de caracteres -----------------
+    # Certaines formes n'ont aucune attestation : une vedette n'apparait souvent
+    # qu'une fois. On leur applique alors un modele d'ordre 4 appris sur le
+    # vocabulaire du livre (formes vues au moins trois fois), et on ne substitue
+    # que si l'ecart de vraisemblance est net.
+    import math
+    ngr=collections.Counter(); ctx=collections.Counter()
+    for f,n in freq.items():
+        if n<3: continue
+        s2="^^^"+f.lower()+"$"
+        for i in range(3,len(s2)):
+            ngr[s2[i-3:i+1]]+=n; ctx[s2[i-3:i]]+=n
+    V=len(set(c for g in ngr for c in g))+1
+    def score(w):
+        s2="^^^"+w.lower()+"$"; t=0.0
+        for i in range(3,len(s2)):
+            t+=math.log10((ngr.get(s2[i-3:i+1],0)+0.2)/(ctx.get(s2[i-3:i],0)+0.2*V))
+        return t
+    n2=0
+    for pg,k,mo,f in tous:
+        if freq[f] > 1: continue
+        if any(c in MAJ for c in f[1:]): continue
+        if any((pg,k,c0) in exc for c0,_,_ in mo): continue
+        pos=[j for j,(c0,_,i) in enumerate(mo) if alt[lab[i]] and (pg,k,c0) not in exc]
+        if not pos or len(pos)>2: continue
+        base=score(f); best=(base+marge_ngram, None)
+        for combi in itertools.product(*[[mo[j][1]]+alt[lab[mo[j][2]]] for j in pos]):
+            l=list(f)
+            for a,j in zip(combi,pos): l[j]=a
+            v="".join(l)
+            if v==f: continue
+            sc=score(v)
+            if sc>best[0]: best=(sc,(v,combi))
+        if best[1] is None: continue
+        v,combi=best[1]
+        for a,j in zip(combi,pos):
+            if a!=mo[j][1]:
+                col,anc,i=mo[j]
+                exc[(pg,k,col)]=a
+                journal.append((pg,k,col,anc,a,f,v,freq[f],-1))
+                n2+=1
+    print(f"{len(journal)} cellules corrigees dans {len(set((j[0],j[1]) for j in journal))} lignes "
+          f"(dont {n2} par le modele de n-grammes)", flush=True)
+    return exc, journal, freq
+
+if __name__=="__main__":
+    exc, journal, freq = executer()
+    with open(f"{T}/journal_corrections.txt","w",encoding='utf-8') as f:
+        f.write("page\tligne\tcol\tlu\tcorrige\tforme lue\tforme retenue\tfreq lue\tfreq retenue\n")
+        for j in journal: f.write("\t".join(map(str,j))+"\n")
+    # fusion dans exceptions.txt en preservant les entrees manuelles
+    manuel=[]
+    p=f"{T}/exceptions.txt"
+    if os.path.exists(p):
+        for l in open(p,encoding='utf-8'):
+            if l.startswith("#") or not l.strip(): manuel.append(l.rstrip("\n")); continue
+            a,b,c,d=l.rstrip("\n").split("\t")
+            if (int(a),int(b),int(c)) not in exc: manuel.append(l.rstrip("\n"))
+    with open(p,"w",encoding='utf-8') as f:
+        f.write("\n".join(manuel)+"\n")
+        for (pg,k,c),v in sorted(exc.items()): f.write(f"{pg}\t{k}\t{c}\t{v}\n")
+    print("exceptions.txt :", len(exc), "entrees automatiques")

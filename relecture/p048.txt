@@ -1,0 +1,45 @@
+== p048b0.png
+000|                                                      .l
+002|armeo. Trupo de armieri diversa-sorta, destinita a milito
+003|   - DEFIRS.
+005|armistico. Gaso provizora di milito. - DEFIS.
+006|
+007|armoro. alta moblo, klozebla per klapi, destinita a kontenar
+008|   objekti kelka-valora. - FIS.
+010|armoracio. Speco di krucifero di la genero "koklearia". -
+011|   L. cochlearia armoracia. - FIS.
+013|arniko. I. Planto aromata di la familio "kompozajib, qua havas
+014|   povo stimulala e tonizala. - L. arnica montana. - DEFIS.
+015|   II. Medikamento liquida, ek ta planto.
+017|arogar.  (trans.. ad)  Atribuar(a su)sen havar yuro ye olu
+018|   (titulo, povo). - DEFIS.
+== p048b1.png
+020|aromo. Emanajo  de substanci odoranta, precipue de olti qui
+021|   efikas a flarado. - DEFIRS.
+023|aromata. Substanco odoranta, quan onu uzas kom parfumo, medika-
+024|   mento, kondimento, e c. - DEFIRS.
+026|aroruto.  Farino manjebla quan onu extraktas de la radiko di L.
+027|   "maranta iniica"  - DEFIRS.
+029|arozar.  (trans.)Humidigar per varsar liquido gutope, imitante
+030|   roso. - F.
+032|arpejar. (netrans.) (muziko). Plear muzikajo-parto tre rapide,
+033|   igante audeblan intersucedante la son-uni di akordo. - DEFIRS.
+035|arseno. (kemio)  Korpo simpla, metaloida, stalo-griza, facile
+036|   ruptebIa, di qui la kompozaji (la aloyuri eceptate) esas
+037|   venenoza. - Simbolo kemiala : As. - DEFIRS.
+038|
+== p048b2.png
+039|arsenalo.  Loko ube onu fabrikas o depozas la armi, la municioni,
+040|   la milit-instrumenti quin onu uzas tere,maro od aero. -DEFIRS.
+042|arto.  Singla de la generi en qui la homo o la animalo produktas
+043|   verki segun ula reguli. - Aplikado di la savi por realigar
+044|   koncepto.- DEFIRS.
+046|artemizio. (bot.) Planto di la familio "kompozaji", toniziva.
+047|   L. artemisia. - FL.
+048|
+049|arterio. (anat.)  Vaskulc qua portas la sango de la kordio ad
+050|   omna parti di la korpo. - DEFIRS.
+052|arterito. (patol.) Inflamuro di arterio. - DEF.
+053|
+054|arteriologio.  Ta parto di anatomio, qua traktas la arterii.
+055|   - DEFIRS.
