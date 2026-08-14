@@ -84,7 +84,14 @@ RE_LATINA = re.compile(
 # Les sens se separent par « - II. », mais le tiret manque souvent : « ...
 # komenco-punto e fino-parto. II. (gram.) ... ». On coupe donc aussi sur un
 # point suivi du numero de sens, ce qui vaut pour 107 articles.
-RE_SENCO  = re.compile(r'\s*(?:[-–]\s*|(?<=\.)\s+)(?=(?:I{1,3}|IV|V|VI)\.\s?)')
+# Six articles numerotent leurs sens en chiffres ARABES — « grapino »,
+# « kapelo », « koliaro », « kondamnar », « konfliktar » — et « iambo » melange
+# les deux niveaux. Sans cette branche, tout leur contenu restait dans un seul
+# sens. On exige la majuscule ou la parenthese apres le numero, ce qui ecarte
+# « 1.000 » et les formules chimiques. Le « l » lu pour « 1 » est admis : la
+# confusion est constante dans ce tapuscrit.
+RE_SENCO  = re.compile(r'\s*(?:[-–]\s*|(?<=\.)\s*)'
+                       r'(?=(?:I{1,3}|IV|V|VI)[.,]\s?|[l\d]\d?\.\s*[A-ZÀ-Ý(])')
 FINALES_OK = ("o","a","e","i","ar","ir","or")
 
 def charger_texte():
@@ -149,7 +156,11 @@ def decouper(pages, corrigees):
         # entre le signe et le mot. Sans cette tolerance, « -oz- » et « -as »
         # n'etaient pas des vedettes du tout et tombaient dans l'article
         # precedent.
-        RE_VED=re.compile(r'^[+-]?\s?[A-Za-z][A-Za-z\'’"-]{0,30}\s?-?\s?\.')
+        # « .heliko », « .hipofizo » : la dactylo a frappe un point avant le
+        # mot. Sans cette tolerance, ces deux articles n'etaient pas des
+        # vedettes du tout et tombaient dans le precedent — « hipofizo » se
+        # lisait a la fin de « hipodromo ».
+        RE_VED=re.compile(r'^\.?[+-]?\s?[A-Za-z][A-Za-z\'’"-]{0,30}\s?-?\s?\.')
         # La ligne blanche ne se lit pas dans le texte : elle N'EST PAS dans la
         # grille. page_texte() ne rend que les lignes detectees, et leurs
         # numeros sautent — 2, 3, puis 5. C'est ce SAUT qui marque le blanc.
@@ -228,7 +239,7 @@ def recoller(lignes, lexique=None):
 # neuf. On exige un vrai code — « L. » (nom latin) et « Simb. » (symbole
 # chimique) n'en sont pas — pour ne pas couper « - L. saponaria. » en deux.
 RE_DIVIDO = re.compile(r'[-–]\s*([A-Za-z]{1,12})\.\s+'
-                       r'(?=[+*]?[a-zà-ÿ][a-zà-ÿ\'\u2019-]{1,25}\s*[:.]\s)')
+                       r'(?=[+*]?[a-zà-ÿ][a-zà-ÿ\'\u2019-]{1,25}\s*[:.!]\s)')
 
 def dividar(brut, lexique=None):
     """Scinde les entrees qui en contiennent deux. Rend la liste elargie."""
@@ -237,6 +248,11 @@ def dividar(brut, lexique=None):
         t = e.get('teksto_brut')
         if t is None:
             t = re.sub(r'\s+',' ',recoller([s for _,s in e['lineoj']], lexique)).strip()
+            # La couche de correction du texte brut doit s'appliquer AVANT le
+            # decoupage : c'est elle qui retablit le point du code de langues,
+            # sur lequel la coupure s'appuie (« - DEFIR. shut! »).
+            for a,b in _texti().items():
+                if a in t: t=t.replace(a,b)
         while True:
             coupe=None
             for m in RE_DIVIDO.finditer(t):
@@ -261,11 +277,35 @@ def dividar(brut, lexique=None):
         out.append(f)
     return out
 
+_TEXTI=None
+def _texti(fichier=f"{T}/texti.txt"):
+    """Corrections du TEXTE BRUT, avant toute analyse.
+
+    Certaines fautes doivent se reparer avant que le code de langues, le
+    domaine et les sens soient lus — sinon la reparation arrive trop tard.
+    Ainsi « autoritato » : l'auteur a ajoute « pensala. » en marge, tres a
+    droite, pour completer « verko » a la ligne suivante ; le mot s'est
+    retrouve APRES le « - DEFIRS. » de l'article precedent, dont le code ne
+    s'ancrait donc plus en fin de chaine.
+    """
+    global _TEXTI
+    if _TEXTI is None:
+        _TEXTI={}
+        if os.path.exists(fichier):
+            for l in open(fichier,encoding='utf-8'):
+                l=l.rstrip("\n")
+                if not l.strip() or l.startswith("#"): continue
+                p=l.split("\t")
+                if len(p)>=2 and p[0].strip(): _TEXTI[p[0].strip()]=p[1].strip()
+    return _TEXTI
+
 def analizar(e, lexique=None):
     t=e.get('teksto_brut')
     if t is None:
         t=recoller([s for _,s in e['lineoj']], lexique)
     t=re.sub(r'\s+',' ',t).strip()
+    for a,b in _texti().items():
+        if a in t: t=t.replace(a,b)
     # Le fac-simile garde l'espace que la dactylo a laissee autour du tiret
     # d'affixe ; l'edition de lecture recolle. « - as. » est « -as », « - at
     # - . » est « -at- », « bo - . » est « bo- ». Sans quoi la vedette etait
@@ -282,7 +322,7 @@ def analizar(e, lexique=None):
     # lettre ni chiffre ne dit rien — mais laisse la, cette queue empechait le
     # code de s'ancrer en fin de chaine, et « exotera » passait pour
     # « sen-lingua », son DEFIRS reste au milieu de la definition.
-    t=re.sub(r'[\s"\u00ab\u00bb\u2019\'.,;:_\-\u2013\u2014]{6,}$', '', t)
+    t=re.sub(r'[\s"\u00ab\u00bb\u2019\'.,;:_+*=/|\-\u2013\u2014]{6,}$', '', t)
     e['teksto']=t
     # Le tapuscrit marque les mots non officiels d'un « + » en exposant ; la
     # tradition ido ecrit une asterisque. On la restitue ici — le fac-simile,
@@ -440,6 +480,11 @@ def konstrui():
     import relire as _rel
     n,r=_rel.appliquer(ent)
     if n or r: print("relecture des definitions : %d corrections posees, %d refusees"%(n,r))
+    # La relecture pose des chaines relevees avant la typographie : on repasse
+    # l'espacement derriere elle. espacar() est idempotente.
+    for e in ent:
+        S=e.get('senci') or []
+        for k,t in enumerate(S): S[k]=cifri(espacar(t))
     n0=len(ent); ent=[e for e in ent if e_ok(e)]
     if len(ent)<n0: print("renvois d'errata ecartes : %d"%(n0-len(ent)))
     # Definition coupee net en bas de page : le scan a rogne la derniere ligne.
@@ -454,6 +499,46 @@ def konstrui():
         t=" ".join(e['senci']).rstrip()
         if t and not e['kodo'] and RE_OUTIL.search(t):
             e['drapeli'].append('tranchita-che-pagino-fino')
+    # Numerotation des sens. L'edition de lecture les numerote elle-meme, 1, 2,
+    # 3 : garder « I. », « II. » dans le texte ferait double emploi, et
+    # l'original est irregulier — « iambo » melange deux niveaux, « tribono »
+    # melange chiffres romains et arabes. On retire donc le numero de tete.
+    # Trois sens ne contiennent QUE leur etiquette de domaine, sans definition
+    # (« (metriko antiqua) ») : elle se rattache au sens suivant, qu'elle
+    # qualifie, plutot que de rester seule.
+    # La virgule remplace parfois le point apres le numero — « I, (olim). ».
+    # Elle n'est admise QU'APRES un chiffre romain suivi d'une majuscule ou
+    # d'une parenthese : « l, OOO, OOO » (biliono) et « 10 , od oktiliono »
+    # (noniliono) sont des nombres, non des numeros de sens.
+    # « 1.000 » n'est pas un sens numerote mais le nombre mille : sans cette
+    # garde, « mil » perdait son « 1. » et se definissait par « 000 ».
+    RE_NUM=re.compile(r'^(?:(?:I{1,3}|IV|VI{0,3}|IX|X|[l\d]\d?)[.)](?!\d)\s*'
+                      r'|(?:I{1,3}|IV|VI{0,3}|IX|X),\s*(?=[A-ZÀ-Ý(]))')
+    RE_ETIQ=re.compile(r'^\([^()]{1,40}\)\.?$')
+    n_num=0
+    for e in ent:
+        S=[]
+        for t in e.get('senci') or []:
+            # Numerotation IMBRIQUEE : « III. 1. Deklarar... ». Un seul retrait
+            # n'ote que le niveau superieur. On boucle, borne a trois tours.
+            u=t
+            for _ in range(3):
+                w=RE_NUM.sub('', u).strip()
+                if w == u: break
+                u = w
+            if u != t: n_num += 1
+            # « I » ou « II » seuls, sans definition : un numero orphelin que le
+            # decoupage a pris pour un sens. Il ne dit rien.
+            if re.fullmatch(r'(?:I{1,3}|IV|VI{0,3}|IX|X)', u): u=''
+            S.append(u)
+        fus=[]
+        for i,t in enumerate(S):
+            if RE_ETIQ.match(t) and i+1 < len(S):
+                S[i+1] = t.rstrip('.') + ' ' + S[i+1]
+                continue
+            if t: fus.append(t)
+        e['senci']=fus
+    if n_num: print("numeros de sens retires : %d"%n_num)
     v=[e['vedetto'].lower() for e in ent]
     for i in range(1,len(v)):
         if v[i] and v[i-1] and v[i] < v[i-1]:
@@ -470,6 +555,92 @@ def konstrui():
 # le fac-simile. Une correction posee une fois est ainsi acquise.
 JUGEMENTS = [(f"{T}/juger/fiches.json",  f"{T}/juger/reponses"),
              (f"{T}/sens/fiches.json",   f"{T}/sens/reponses")]
+
+def cifri(t):
+    """Chiffres lus comme des lettres : « lOO » pour « 100 », « 2O » pour 20.
+
+    La machine n'avait pas de touche 1 ni de touche 0 distinctes du « l » et du
+    « O » — usage courant des dactylos de l'epoque. Mais on ne peut pas
+    convertir a l'aveugle : dans « Al2O3 », « Fe2 O3 », « C6 H10 O5 », le O est
+    l'OXYGENE, et dans « De punto fixa O » c'est le nom d'un point. On ne
+    convertit donc que dans un contexte sans ambiguite : jeton commencant par
+    « l », chiffre suivi de « O » ou de « l » sans espace, et suite d'au moins
+    trois « O » — que nulle formule ne porte.
+    """
+    def _jeton(m):
+        return m.group(0).replace('l', '1').replace('O', '0')
+    t = re.sub(r'(?<![A-Za-zÀ-ÿ0-9])l[lO0-9]+(?![A-Za-zÀ-ÿ])', _jeton, t)
+    t = re.sub(r'(?<=\d)[lO](?![A-Za-zÀ-ÿ0-9])', _jeton, t)
+    t = re.sub(r'O{3,}', lambda m: '0' * len(m.group(0)), t)
+    # Numero d'enumeration isole : « ... indikar : l. objekto plu proxima ».
+    # Le « l » y tient lieu de 1. On exige le deux-points qui ouvre la liste.
+    t = re.sub(r'(?<=[:;]\s)l(?=[.)]\s)', '1', t)
+    # « (l) » ouvre une enumeration entre parentheses : c'est le chiffre 1.
+    t = re.sub(r'\(l\)', '(1)', t)
+    # « lOOOmetri » : la dactylo a soude le nombre a son unite. On exige trois
+    # chiffres et trois minuscules, ce qui epargne les formules — « C6H4 » n'a
+    # qu'une lettre, et elle est capitale.
+    t = re.sub(r'(?<![A-Za-zÀ-ÿ])(\d{3,})(?=[a-zà-ÿ]{3,})', r'\1 ', t)
+    return t
+
+
+def espacar(t):
+    """Espacement de la ponctuation, usage franco-canadien.
+
+    Isolee pour etre rejouable : la couche de relecture pose des chaines
+    relevees AVANT la typographie, et les reposer telles quelles mangeait
+    les espaces insecables — « familio«labiacei» ». On repasse donc ici
+    apres elle. La fonction est idempotente.
+    """
+    t = re.sub(r',(?=[A-Za-zÀ-ÿ])', ', ', t)
+    t = re.sub(r'\)(?=[A-Za-zÀ-ÿ])', ') ', t)
+    # « (olim).Vaporo-mashino » : le point qui suit la parenthese
+    # fermante colle au mot suivant. 88 cas. On ne touche qu'apres une
+    # parenthese : ailleurs, « CH3CO.CH3 » est une formule chimique.
+    t = re.sub(r'\)\.(?=[A-ZÀ-Ý])', '). ', t)
+    # Espace parasite CONTRE la parenthese : « ( fig.) » pour
+    # « (fig.) », « hundo-herbo )» pour « hundo-herbo) ». La dactylo
+    # espacait pour caler sa ligne. 15 ouvrantes et 33 fermantes.
+    # « Igar(ulo) » : le mot colle a la parenthese ouvrante. Mais toutes ne se
+    # detachent pas — « il(u) », « dea(la) », « a(ta) » notent une finale
+    # facultative qui fait corps avec le mot, et « F(z) » est une fonction.
+    # On separe donc seulement quand le contenu compte trois lettres ou plus,
+    # ou porte autre chose que des lettres : c'est alors un complement ou un
+    # domaine, non une desinence.
+    t = re.sub(r'(?<=[A-Za-zÀ-ÿ])\((?=([^()]*)\))',
+               lambda m: ' (' if (len(m.group(1)) >= 3
+                                  or not m.group(1).isalpha()) else '(', t)
+    t = re.sub(r'\(\s+', '(', t)
+    t = re.sub(r'\s+\)', ')', t)
+    # Espacement des ponctuations doubles, usage FRANCO-CANADIEN :
+    # le point-virgule, le point d'exclamation et le point
+    # d'interrogation ne prennent PAS d'espace devant — c'est la
+    # difference d'avec l'usage de France, qui y met une espace fine.
+    # Le deux-points, lui, en prend une, et elle est insecable pour
+    # qu'il ne parte pas seul en tete de ligne. Idem dans les
+    # chevrons. On recolle d'abord le deux-points a son mot suivant,
+    # sinon la regle d'espace insecable le laisserait colle.
+    t = re.sub(r':(?=[A-Za-zÀ-ÿ])', ': ', t)
+    t = re.sub(r';(?=[A-Za-zÀ-ÿ])', '; ', t)
+    t = re.sub(r'[\s\u00a0]*([;!?])', r'\1', t)
+    t = re.sub(r'[\s\u00a0]*:', '\u00a0:', t)
+    # Le chevron colle au mot voisin par le DEHORS : « familio«labiacei» ».
+    # La regle suivante traite l'interieur ; celle-ci, l'exterieur.
+    t = re.sub(r'(?<=[A-Za-zÀ-ÿ.,;:])(?=«)', ' ', t)
+    t = re.sub(r'(?<=»)(?=[A-Za-zÀ-ÿ])', ' ', t)
+    t = re.sub(r'«[\s\u00a0]*', '«\u00a0', t)
+    t = re.sub(r'[\s\u00a0]*»', '\u00a0»', t)
+    # Le numero de sens colle a son premier mot — « I.Tereno »,
+    # « II.Alveolo ». On ne touche qu'aux chiffres romains : un point
+    # suivi d'une majuscule est ailleurs une abreviation legitime.
+    t = re.sub(r'(?<![A-Za-zÀ-ÿ])(I{1,3}|IV|VI{0,3}|IX|XI{0,2})\.'
+    r'(?=[A-Za-zÀ-ÿ])', r'\1. ', t)
+    # Ligne de bruit en fin de definition : la dactylo a barre une
+    # ligne entiere a coups de guillemets et de tirets. Ce qui n'a
+    # aucune lettre ni aucun chiffre ne dit rien.
+    t = re.sub(r'(?:[\s"\u00ab\u00bb\u2019\'.,;:_+*=/|\-\u2013\u2014]{6,})$', '', t).rstrip(' .,;:-\u2013\u2014')
+    return t
+
 
 def typographio(ent):
     """Typographie de l'edition de lecture.
@@ -501,12 +672,7 @@ def typographio(ent):
             t=re.sub(r'"([^"]{1,120})"', r'«\1»', t)
             # Espaces manquantes apres la ponctuation : la dactylo serrait pour
             # tenir la ligne. 258 virgules et 136 parentheses fermantes.
-            t=re.sub(r',(?=[A-Za-zÀ-ÿ])', ', ', t)
-            t=re.sub(r'\)(?=[A-Za-zÀ-ÿ])', ') ', t)
-            # Ligne de bruit en fin de definition : la dactylo a barre une
-            # ligne entiere a coups de guillemets et de tirets. Ce qui n'a
-            # aucune lettre ni aucun chiffre ne dit rien.
-            t=re.sub(r'(?:[\s"\u00ab\u00bb\u2019\'.,;:_\-\u2013\u2014]{6,})$', '', t).rstrip(' .,;:-\u2013\u2014')
+            t=cifri(espacar(t))
             if t!=o: s[k]=t; n+=1
     return n
 

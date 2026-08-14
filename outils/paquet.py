@@ -11,7 +11,7 @@ SORTIE="/root/dicionario-source.zip"
 
 FICHIERS = ["main.tex", "preambule.tex", "LISEZ-MOI.md", "main.pdf",
             "dicionario.html", "dicionario.tsv", "dicionario.jsonl"]
-DOSSIERS = ["outils", "contenu", "ornements"]
+DOSSIERS = ["outils", "contenu", "ornements", "posho"]
 CORRECTIONS = ["exceptions.txt", "exceptions_manuel.txt", "exceptions_fins.txt",
                "exceptions_paires.txt", "exceptions_relecture.txt",
                "exceptions_ornements.txt", "sou_relus.txt",

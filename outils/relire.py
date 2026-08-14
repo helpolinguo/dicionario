@@ -43,6 +43,29 @@ def lire(dossier=DOSSIER):
     return out
 
 
+_ESP = r"[\s\u00a0]*"
+
+def _motif(a):
+    """Regex de la chaine fautive, indifferente a l'espacement."""
+    out = []
+    n = len(a)
+    for i, c in enumerate(a):
+        bord = (i == 0 or i == n - 1)
+        if c.isspace():
+            if out and out[-1] == _ESP + "+":
+                continue
+            out.append(_ESP + "+")
+        elif c in "\u00ab\u00bb:;!?()":
+            # Aux BORDS de la chaine, ne pas absorber l'espace voisin : il ne
+            # serait pas rendu par le remplacement, et deux mots se colleraient.
+            g = "" if i == 0 else _ESP
+            d = "" if i == n - 1 else _ESP
+            out.append(g + re.escape(c) + d)
+        else:
+            out.append(re.escape(c))
+    return re.compile("".join(out))
+
+
 def appliquer(ent, dossier=DOSSIER):
     """Pose les corrections de relecture. Rend (posees, refusees)."""
     cor = lire(dossier)
@@ -50,10 +73,16 @@ def appliquer(ent, dossier=DOSSIER):
         return 0, 0
     pose = 0; refus = 0
     for a, b, lot in cor:
+        # La chaine fautive a ete relevee AVANT que la typographie soit posee :
+        # les chevrons et le deux-points ont depuis gagne une espace insecable,
+        # « grande » s'ecrit « \u00ab\u00a0grande\u00a0\u00bb ». Cherchee au
+        # caractere pres, la correction ne se retrouvait plus. On rend donc la
+        # recherche indifferente a l'espacement autour de la ponctuation.
+        mot = _motif(a)
         vus = []
         for e in ent:
             for k, t in enumerate(e.get('senci') or []):
-                if a in t:
+                if mot.search(t):
                     vus.append((e, k))
             # Le domaine est un champ a part : « (ariktekt) » n'est dans aucun
             # sens, et la correction etait refusee faute de le chercher la.
@@ -73,6 +102,6 @@ def appliquer(ent, dossier=DOSSIER):
             if k == 'fako':
                 e['fako'] = e['fako'].replace(a.strip('()'), b.strip('()'))
             else:
-                e['senci'][k] = e['senci'][k].replace(a, b)
+                e['senci'][k] = mot.sub(lambda _m: b, e['senci'][k], count=1)
             pose += 1
     return pose, refus

@@ -18,7 +18,7 @@ def tsv(ent):
                 ",".join(e['drapeli'])]).replace("\n"," ")+"\n")
 
 GABARITO = """<!DOCTYPE html><html lang="io"><meta charset="utf-8">
-<title>Dicionario de la 10.000 radiki di la linguo internaciona Ido</title>
+<title>Dicionario de la 10.000 radiki di la linguo universala Ido</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <style>
 :root{--enk:#1a1a1a;--pap:#fbfaf7;--sub:#6b6560;--acc:#7a4b2a;--lin:#e2ddd5;--flag:#b4552d}
@@ -48,30 +48,16 @@ article{padding:11px 0;border-bottom:1px solid var(--lin)}
  display:flex;gap:9px;flex-wrap:wrap}
 .dr{color:var(--flag)}
 mark{background:rgba(214,154,106,.34);color:inherit;border-radius:2px}
-footer{max-width:820px;margin:0 auto;padding:0 20px 60px;color:var(--sub);font-size:12.5px;
- font-family:system-ui,sans-serif;line-height:1.6}
 </style>
 <header>
-<h1>Dicionario de la 10.000 radiki di la linguo internaciona Ido</h1>
+<h1>Dicionario de la 10.000 radiki di la linguo universala Ido</h1>
 <div class="sub">Marcelo Persiko (Marcel Pesch) · editio princeps, 2 di agosto 1964 · __N__ artikli</div>
 <div class="bar">
  <input type="search" id="q" placeholder="Serchez radiko o vorto en la defino…" autocomplete="off">
 </div>
 </header>
 <div id="kont"><p id="nombro"></p><div id="lst"></div></div>
-<footer>
-<p><b>Origino.</b> Omna artiklo portas la pagino di la libro e la lineo di la skanuro di la
-mashinskriburo, por ke on povez retrovar lu en la faksimilo.</p>
-<p><b>Flagi.</b> <i>sen-lingua</i> : nula kodexo di lingui fine — ofte normala.
-<i>ordino-ruptita</i> : la radiko ruptas l'ordino alfabetala. <i>finalo-nekustumala</i> :
-finalo stranjera a la morfologio di Ido. Ta tri flagi deskriptas la originalo ipsa, e ne
-dubito pri la transskribo.</p>
-<p><b>Omna defino esis relektita.</b> La texto di ica edituro esis lektita artiklo pos
-artiklo, e ne nur deskodexigita automatale : la korekti esas registrita, singla kun sua
-motivo, en la dosieri <i>vedetti.txt</i>, <i>vorti.txt</i> e <i>relire/</i> di la fonto.
-La faksimilo, ipsa, konservas la originalo tale quale la mashino frapis lu — kun sua
-propra erori.</p>
-</footer>
+
 <script>
 const D=__DATA__;
 const lst=document.getElementById('lst'),q=document.getElementById('q'),

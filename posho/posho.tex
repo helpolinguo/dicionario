@@ -1,0 +1,85 @@
+% Dicionario de posho — edituro moderna du texto epurita.
+% Genita da outils/posho.py de travail/edicioni/dicionario.jsonl, la sama
+% fonto kam la pagino HTML : la du edituri ne povas divergar.
+\documentclass[9pt]{extarticle}
+\usepackage[paperwidth=110mm,paperheight=180mm,
+            top=9mm,bottom=11mm,inner=11mm,outer=8mm,
+            twoside,includehead,headsep=3mm]{geometry}
+\usepackage{fontspec}
+\usepackage{multicol}
+\usepackage{fancyhdr}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{needspace}
+% Cesure : voir idopatterns.tex. Ni le francais ni l'esperanto ne conviennent
+% a l'ido ; les motifs sont ecrits pour lui, et charges a l'execution — ce que
+% LuaTeX permet, contrairement a pdfTeX.
+\newlanguage\idolingvo
+\language=\idolingvo
+\lefthyphenmin=2 \righthyphenmin=3
+\input{idopatterns}
+
+\setmainfont{Charis SIL}[Ligatures=TeX, Numbers=OldStyle]
+\newfontfamily\titra{Inter}[Ligatures=TeX]
+
+\definecolor{grize}{gray}{0.45}
+\definecolor{akcento}{HTML}{8A4B2A}
+
+\setlength{\columnsep}{4.2mm}
+\setlength{\columnseprule}{0.2pt}
+\renewcommand{\columnseprulecolor}{\color{grize!45}}
+\setlength{\parindent}{0pt}
+\setlength{\emergencystretch}{3em}
+\hyphenpenalty=200
+\tolerance=3000
+
+% --- Titri kurante -------------------------------------------------------
+% \markboth pozas la sama marko duople. Konseque \rightmark rendas la marko
+% UNESMA di la pagino, e \leftmark la LASTA. Do : sur la pagino sinistra
+% (para) la vorto unesma, sur la dextra (nepara) la vorto lasta — la
+% kustumo di la dicionarii.
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE]{\titra\footnotesize\bfseries\rightmark}
+\fancyhead[RO]{\titra\footnotesize\bfseries\leftmark}
+\fancyhead[RE,LO]{\titra\footnotesize\color{grize}\thepage}
+\renewcommand{\headrulewidth}{0.3pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{grize!50}\leaders\hrule height \headrulewidth\hfill}}
+
+% --- Elementi di artiklo -------------------------------------------------
+\newcommand{\artiklo}[1]{\par\needspace{2\baselineskip}%
+  \markboth{#1}{#1}\hangindent=2.6mm\hangafter=1\relax}
+\newcommand{\vorto}[1]{{\titra\bfseries\color{akcento}#1}}
+\newcommand{\fako}[1]{\enspace\textit{(#1)}}
+\newcommand{\senco}[2]{\enspace{\titra\bfseries\footnotesize #1.}~#2}
+\newcommand{\latina}[1]{\enspace\textit{L. #1}}
+\newcommand{\lingui}[1]{\enspace{\titra\scriptsize\color{grize}#1}}
+
+\newcommand{\sekciono}[1]{\par\penalty-200\vspace{2.2mm}%
+  {\centering\titra\bfseries\large\color{akcento}#1\par}%
+  \vspace{0.6mm}\hrule height0.4pt\vspace{1.8mm}\penalty200 }
+
+\begin{document}
+\thispagestyle{empty}
+\null\vfill
+{\centering\titra
+ {\bfseries\Large Dicionario\par}
+ \vspace{2mm}
+ {\large de la 10.000 radiki\par}
+ {\large di la linguo universala\par}
+ {\bfseries\LARGE Ido\par}
+ \vspace{9mm}
+ {\footnotesize Marcelo Persiko\par}
+ {\footnotesize (Marcel Pesch)\par}
+ \par}
+\vfill\vfill
+\clearpage
+
+\begin{multicols}{2}
+\small
+\input{enhavo}
+\end{multicols}
+\cleardoublepage
+\thispagestyle{empty}
+\null
+\end{document}
