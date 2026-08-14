@@ -55,26 +55,27 @@ footer{max-width:820px;margin:0 auto;padding:0 20px 60px;color:var(--sub);font-s
 <h1>Dicionario de la 10.000 radiki di la linguo internaciona Ido</h1>
 <div class="sub">Marcelo Persiko (Marcel Pesch) · editio princeps, 2 di agosto 1964 · __N__ artikli</div>
 <div class="bar">
- <input type="search" id="q" placeholder="Serchez chefvorto od vorto en la defino…" autocomplete="off">
- <label class="f"><input type="checkbox" id="fl"> nur la artikli verifikenda</label>
+ <input type="search" id="q" placeholder="Serchez radiko o vorto en la defino…" autocomplete="off">
 </div>
 </header>
 <div id="kont"><p id="nombro"></p><div id="lst"></div></div>
 <footer>
-<p><b>Origino.</b> Omna artiklo portas la pagino dil libro e la lineo dil rastro dil
-tapuskripto, por ke on povez retrovar lu en la faksimilo.</p>
-<p><b>Flagi.</b> <i>sen-lingui</i> : nula kodexo di lingui fine — ofte normala.
-<i>ordino-rompita</i> : la chefvorto ruptas l'ordino alfabetala, indico preske certa di
-misleguro. <i>finalo-nekustumala</i> : finalo stranjera a la morfologio di Ido.
-<i>korektita</i> : adminime un celulo korektita automate ; la jurnalo indikas lu.</p>
-<p><b>To ne esas edituro definitiva.</b> La deskodifo esas exakta ye cirkume 98,7 % po signo,
-mezurita sur pagino tenata ekstere di omna lernado. La artikli flagizita esas la laboro-listo :
-korektar li esas kompletigar la libro.</p>
+<p><b>Origino.</b> Omna artiklo portas la pagino di la libro e la lineo di la skanuro di la
+mashinskriburo, por ke on povez retrovar lu en la faksimilo.</p>
+<p><b>Flagi.</b> <i>sen-lingua</i> : nula kodexo di lingui fine — ofte normala.
+<i>ordino-ruptita</i> : la radiko ruptas l'ordino alfabetala. <i>finalo-nekustumala</i> :
+finalo stranjera a la morfologio di Ido. Ta tri flagi deskriptas la originalo ipsa, e ne
+dubito pri la transskribo.</p>
+<p><b>Omna defino esis relektita.</b> La texto di ica edituro esis lektita artiklo pos
+artiklo, e ne nur deskodexigita automatale : la korekti esas registrita, singla kun sua
+motivo, en la dosieri <i>vedetti.txt</i>, <i>vorti.txt</i> e <i>relire/</i> di la fonto.
+La faksimilo, ipsa, konservas la originalo tale quale la mashino frapis lu — kun sua
+propra erori.</p>
 </footer>
 <script>
 const D=__DATA__;
 const lst=document.getElementById('lst'),q=document.getElementById('q'),
-      fl=document.getElementById('fl'),nb=document.getElementById('nombro');
+      nb=document.getElementById('nombro');
 const esc=s=>s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
 function surl(t,r){if(!r)return esc(t);return esc(t).replace(new RegExp('('+r.replace(/[.*+?^${}()|[\\]\\\\]/g,'\\\\$&')+')','gi'),'<mark>$1</mark>');}
 function rendi(e,r){
@@ -107,8 +108,22 @@ function lev(a,b,max){
 // de ce mot en tete, non en dixieme position.
 //   0 vedette exacte · 1 vedette commencant par · 2 vedette contenant
 //   3 vedette a une faute pres · 4 vedette a deux fautes pres · 5 definition
+// Formes comparables d'une vedette. Le « * » des mots non officiels n'en fait
+// pas partie. Et une elision — « ka(d) », « on(u) » — se cherche des deux
+// manieres : la lettre entre parentheses ne s'ajoute que devant une voyelle,
+// mais qui tape « kad » ou « onu » doit tomber sur l'article.
+function formi(v){
+ v=v.toLowerCase().replace(/^[*+]/,'');
+ const m=v.match(/^([^()]+)\(([^()]+)\)$/);
+ return m ? [m[1], m[1]+m[2]] : [v];
+}
 function rango(e,r){
- const v=e.v.toLowerCase();
+ const fs=formi(e.v);
+ let best=-1;
+ for(const v of fs){const g=rang1(e,v,r); if(g>=0&&(best<0||g<best))best=g;}
+ return best;
+}
+function rang1(e,v,r){
  if(v===r)return 0;
  if(v.startsWith(r))return 1;
  if(v.includes(r))return 2;
@@ -119,10 +134,9 @@ function rango(e,r){
  if(e.s.join(' ').toLowerCase().includes(r))return 5;
  return -1;}
 function montri(){
- const r=q.value.trim().toLowerCase(), sf=fl.checked;
+ const r=q.value.trim().toLowerCase();
  let sel=[];
  for(const e of D){
-  if(sf&&!(e.d&&e.d.length))continue;
   if(!r){sel.push([0,e]);continue;}
   const g=rango(e,r);
   if(g>=0)sel.push([g,e]);}
@@ -130,7 +144,7 @@ function montri(){
  const n=sel.length;
  nb.textContent=n+' artikl'+(n>1?'i':'o')+(n>400?' — la 400 unesma montresas':'');
  lst.innerHTML=sel.slice(0,400).map(x=>rendi(x[1],r)).join('');}
-q.addEventListener('input',montri); fl.addEventListener('change',montri); montri();
+q.addEventListener('input',montri); montri();
 </script></html>"""
 
 def html_edition(ent):

@@ -14,18 +14,32 @@ import numpy as np, pickle, collections, sys
 sys.path.insert(0,'/root/dicionario/outils')
 T="/root/dicionario/travail"
 
+def marge(occ, mini=3):
+    """Colonne de marge de la page : la premiere qui serve sur plusieurs lignes.
+
+    La colonne 0 etait supposee etre la marge. Elle ne l'est pas toujours :
+    quarante-cinq pages commencent plus a droite — la 380 commence en 5 — et
+    aucune de leurs entrees n'etait alors reconnue comme vedette. Elles
+    disparaissaient entierement de l'edition structuree.
+    """
+    n=occ.sum(axis=0)
+    for c in range(occ.shape[1]):
+        if n[c] >= mini: return c
+    return 0
+
 def vedettes(pg):
-    """Lignes de vedette : colonne 0 encree et filet commencant a la colonne 0."""
+    """Lignes de vedette : marge de la page encree et filet commencant la."""
     z=np.load(f"{T}/cellules/p-{pg:03d}.npz", allow_pickle=True)
     occ=z['occ']; lg=z['lignes']; sou=pickle.loads(z['sou'].item())
+    c0=marge(occ)
     out=[]
     for i,k in enumerate(lg[:,0]):
         k=int(k)
-        if not occ[i,0]: continue
+        if not occ[i,c0]: continue
         r=sou.get(k)
         if not r: continue
         plages=r[1]
-        if any(a<=0<=b for a,b in plages): out.append((k,i))
+        if any(a<=c0<=b for a,b in plages): out.append((k,i))
     return out
 
 def consolider(lab, M, tab, pages=None, seuil=0.6, mini=3):

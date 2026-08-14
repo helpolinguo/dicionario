@@ -1079,6 +1079,72 @@ mot » le jetait. « +quoniam » perdait ainsi un soulignement pourtant
 correctement mesure. Le « + » est desormais une frontiere de mot, au meme
 titre que l'espace et la parenthese ouvrante.
 
+### Le jugement lexical de l'edition de lecture
+
+Le fac-simile garde la moindre coquille ; l'edition HTML doit donner le
+contenu de l'oeuvre. Deux passes automatiques ont echoue avant qu'on trouve la
+bonne methode, et leurs echecs sont instructifs — ils sont conserves dans
+l'en-tete de `netigar.py`. La correction par frequence rendait « papuli »
+(papules) par « populi » (peuples) ; la correction par les racines du livre
+rendait « falko » par « talko ». Un dictionnaire de 10 000 racines n'est pas la
+liste de tous les mots de la langue : son lexique interne ne peut pas arbitrer.
+
+Ce qui marche : soumettre au jugement les seuls mots dont la racine n'est
+attestee nulle part, avec leur contexte, en texte seul. 493 candidats juges en
+neuf lots, **47 corrections retenues**, 52 occurrences. Rendement 9,5 %.
+
+**Les transformations testees et ECARTEES.** Au-dela de la substitution, on a
+essaye la lettre en trop (930 candidats), la lettre manquante (91) et
+l'interversion (11) : toutes fabriquent de faux voisins a partir de mots
+corrects — « abonar » vers « bonar », « abortar » vers « aortar », « roketo »
+vers « kroketo ». La raison est physique : une machine a ecrire et un decodeur
+CONFONDENT des formes, ils n'ajoutent ni ne suppriment de lettres. Seule la
+substitution a un fondement materiel.
+
+**Les trois infinitifs.** L'ido en a trois — `-ar` present, `-ir` passe, `-or`
+futur. J'ai refuse une correction vers `preparor` en croyant qu'un verbe finit
+en `-ar` : le motif etait faux, meme si le refus restait bon pour une autre
+raison (apres « devas », le sens demandait le present). Le livre compte 46
+formes en `-or`, toutes intactes ; la consigne de jugement porte desormais la
+regle, dans `travail/juger/CONSIGNE.md`.
+
+**La couche des jugements est durable.** Les corrections etaient d'abord
+ecrites dans le JSONL — et `edition.py`, qui le reconstruit depuis le
+fac-simile, les effacait toutes en silence a la reconstruction suivante. Elles
+sont maintenant appliquees en fin de chaine a partir des fichiers de reponses,
+comme `filets.pkl` et `debuts.pkl` le sont pour le fac-simile.
+
+### La recherche de l'edition HTML
+
+Elle filtrait sans classer : un mot qui figure aussi dans dix definitions
+donnait son propre article noye au milieu. Chaque article recoit desormais un
+rang — vedette exacte, vedette commencant par, vedette contenant, vedette a une
+faute pres, a deux fautes pres, definition — et la liste est triee dessus. La
+vedette exacte est donc toujours en tete.
+
+La tolerance aux fautes emploie une distance de Levenshtein **bornee** : on
+abandonne le calcul des que toute la ligne courante depasse le maximum tolere,
+ce qui la rend assez rapide pour 8 309 articles a chaque frappe. Elle rattrape
+les coquilles de qui cherche autant que celles de l'original. Verifie sous
+node : `libbro` rend `libro`, `kavallo` rend `kavalo`, `amiku` rend `amiko`.
+
+### L'indication portee sur chaque page
+
+Chaque page porte, invisible, la mention de qui a concu, numerise et dirige la
+transcription. Ni encre blanche — elle se voit des qu'on change de fond — ni
+corps minuscule, qui se lit a la loupe : on emploie le **mode de rendu 3** du
+PDF, celui des couches d'OCR. Le texte appartient au flux de la page, il
+participe a la recherche et au copier-coller, et il n'imprime rien.
+
+    pdftotext main.pdf - | grep "Gilles-Philippe"
+
+Deux pieges y attendaient. Les coordonnees de `\put` sont des NOMBRES multiplies
+par `\unitlength` : lui passer « 4mm » ne pose rien du tout, sans le moindre
+avertissement — la premiere version ne portait aucune indication et rien ne le
+signalait. Et le controle de colonne, qui mesure chaque mot du PDF, comptait
+cette ligne hors grille : il echouait sur 5 760 mots. Elle en est ecartee par
+sa position, six millimetres au-dessus du bloc de texte.
+
 ### Les marges : calees sur la tranche, et non sur la couture
 
 Premiere version : centrage page par page. Chaque page etait equilibree
