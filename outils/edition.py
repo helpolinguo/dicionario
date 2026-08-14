@@ -484,7 +484,10 @@ def konstrui():
     # l'espacement derriere elle. espacar() est idempotente.
     for e in ent:
         S=e.get('senci') or []
-        for k,t in enumerate(S): S[k]=formuli(cifri(espacar(t)))
+        for k,t in enumerate(S):
+            # Ponctuation orpheline en tete de sens : elle vient d'une coupure
+            # de l'original, non du texte. « titrar » commencait par un point.
+            S[k]=formuli(cifri(espacar(t))).lstrip('.,;:) ').strip()
     # (cifri et formuli n'interviennent qu'ici, une fois la relecture posee)
     n0=len(ent); ent=[e for e in ent if e_ok(e)]
     if len(ent)<n0: print("renvois d'errata ecartes : %d"%(n0-len(ent)))
@@ -531,6 +534,10 @@ def konstrui():
             # « I » ou « II » seuls, sans definition : un numero orphelin que le
             # decoupage a pris pour un sens. Il ne dit rien.
             if re.fullmatch(r'(?:I{1,3}|IV|VI{0,3}|IX|X)', u): u=''
+            # Point double apres le numero — « titrar. I..(teknol.) ». Le
+            # retrait du numero laisse le second, orphelin en tete de sens.
+            u = re.sub(r'^[.,;:)\s]+', '', u)
+            u = espacar(u)
             S.append(u)
         fus=[]
         for i,t in enumerate(S):
@@ -667,6 +674,17 @@ def espacar(t):
     t = re.sub(r'(?<=[A-Za-zÀ-ÿ])\((?=([^()]*)\))',
                lambda m: ' (' if (len(m.group(1)) >= 3
                                   or not m.group(1).isalpha()) else '(', t)
+    # Ponctuation collee a une parenthese ouvrante : « Patrino homa.(Equivalanto
+    # sentimentala... » chez matro. 30 cas. On epargne les formules : chez
+    # stearino, « CH3.(CH2)16 » est une chaine carbonee, et l'espace y serait
+    # fautive. Le signe distinctif d'une formule est le chiffre qui termine le
+    # symbole precedent.
+    def _pt(m):
+        avan = t[:m.start()]
+        if re.search(r'[A-Z][A-Za-z]?[0-9\u2080-\u2089]+$', avan):
+            return m.group(0)
+        return m.group(1) + ' ('
+    t = re.sub(r'([.,;:!?])\(', _pt, t)
     t = re.sub(r'\(\s+', '(', t)
     t = re.sub(r'\s+\)', ')', t)
     # Espacement des ponctuations doubles, usage FRANCO-CANADIEN :
