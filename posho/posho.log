@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.17.0 (TeX Live 2023/Debian)  (format=lualatex 2026.8.11)  14 AUG 2026 15:13
+This is LuaHBTeX, Version 1.17.0 (TeX Live 2023/Debian)  (format=lualatex 2026.8.11)  14 AUG 2026 15:58
  restricted system commands enabled.
 **posho.tex
 (./posho.tex
@@ -942,7 +942,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 707--708
 
 Underfull \hbox (badness 10000) in paragraph at lines 711--712
 []\TU/Inter(0)/b/n/8 amilo[]\TU/CharisSIL(0)/m/it/8 (kemio) \TU/CharisSIL(0)/m/
-n/8 (CH₃)2. CH.
+n/8 (CH₃)₂. CH.
  []
 
 
@@ -4127,12 +4127,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 6706--6707
 
 Underfull \hbox (badness 10000) in paragraph at lines 6708--6709
 []\TU/Inter(0)/b/n/8 hi-dro-man-cio[] \TU/CharisSIL(0)/m/n/8 Di-vi-nado per
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 6720--6721
-[]\TU/Inter(0)/b/n/8 hi-dro-qu-i-nono[]\TU/CharisSIL(0)/m/it/8 (kemio) \TU/Char
-isSIL(0)/m/n/8 C₆H₄
  []
 
 
@@ -11459,7 +11453,7 @@ Here is how much of LuaTeX's memory you used:
 f></usr/share/texlive/texmf-dist/fonts/truetype/SIL/charissil/CharisSIL-Italic.t
 tf></usr/share/texlive/texmf-dist/fonts/opentype/public/inter/Inter-Regular.otf>
 </usr/share/texlive/texmf-dist/fonts/opentype/public/inter/Inter-Bold.otf>
-Output written on posho.pdf (413 pages, 2005829 bytes).
+Output written on posho.pdf (413 pages, 2005934 bytes).
 
 PDF statistics: 1327 PDF objects out of 1440 (max. 8388607)
  891 compressed objects within 9 object streams

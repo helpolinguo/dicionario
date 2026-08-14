@@ -586,6 +586,11 @@ def cifri(t):
 
 
 _SUB = str.maketrans('0123456789', '\u2080\u2081\u2082\u2083\u2084\u2085\u2086\u2087\u2088\u2089')
+# L'algebre s'annonce par son enonce, non par ses signes : « M' = aluminio »
+# chez aluno est une legende, pas une equation.
+_SUP = str.maketrans('0123456789', '\u2070\u00b9\u00b2\u00b3\u2074\u2075\u2076\u2077\u2078\u2079')
+_ALGEBRO = re.compile(r'\bequaciono\b|\bkoeficient|\bgrado\b.{0,20}\bduesma\b'
+                       r'|\brelato\b|\bkubo\b|kalorizala')
 _FORMULO = re.compile(r'(?<![A-Za-zÀ-ÿ])((?:[A-Z][a-z]?\d*[\s.]{0,2}){2,})(?![a-zà-ÿ])')
 
 
@@ -613,7 +618,27 @@ def formuli(t):
         c = re.sub(r'(?<=[A-Za-z0-9])\s+(?=[A-Z])', '', c)
         c = re.sub(r'(?<=[A-Za-z])(\d+)', lambda x: x.group(1).translate(_SUB), c)
         return tete + c + q
-    return _FORMULO.sub(_un, t)
+    t = _FORMULO.sub(_un, t)
+    # Cas que le motif principal ne prend pas, faute de deux symboles voisins :
+    # le chiffre qui suit une parenthese — « (CH\u2083)2 », « (OH)3 » — celui
+    # qui suit un symbole amorce — « M'2 » — et le symbole isole precede d'un
+    # coefficient — « 24 H2 ». On epargne l'algebre, ou le chiffre est un
+    # EXPOSANT et non un indice : « ax2 + bx + c = 0 » chez diskriminanto,
+    # « Ax2 + 2 Bxy » chez koniko. Les deux se reconnaissent a leur enonce.
+    if _ALGEBRO.search(t):
+        # En algebre le chiffre est un EXPOSANT : « ax2 + bx + c = 0 » se lit
+        # ax\u00b2. Meme chose pour l'unite elevee a une puissance, « metro3 ».
+        return re.sub(r'(?<=[A-Za-z])([23])(?![\d.,])',
+                      lambda m: m.group(1).translate(_SUP), t)
+    t = re.sub(r'\((\[A-Z][a-z]?)(\d+)\)',
+               lambda m: '(' + m.group(1) + m.group(2).translate(_SUB) + ')', t)
+    t = re.sub(r'\(([A-Z][a-z]?)(\d+)\)',
+               lambda m: '(' + m.group(1) + m.group(2).translate(_SUB) + ')', t)
+    t = re.sub(r'(?<=\))(\d+)', lambda m: m.group(1).translate(_SUB), t)
+    t = re.sub(r"(?<=')(\d+)", lambda m: m.group(1).translate(_SUB), t)
+    t = re.sub(r'(?<=\s)([A-Z][a-z]?)(\d+)(?!\d)',
+               lambda m: m.group(1) + m.group(2).translate(_SUB), t)
+    return t
 
 
 def espacar(t):
