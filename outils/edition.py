@@ -694,7 +694,12 @@ def corriger_vedettes(ent, fichier=f"{T}/vedetti.txt"):
     n=0
     for e in ent:
         v=e.get('vedetto')
-        if v in corr: e['vedetto']=corr[v]; n+=1
+        # Cible precise : « tri@600:23 » ne touche que l'article de la page 600
+        # ligne 23. Le livre porte DEUX « tri » — le chiffre 3 et le prefixe —
+        # et seul le second prend le trait d'union.
+        c = corr.get("%s@%d:%d" % (v, e['image'], e['ligno']))
+        if c is None: c = corr.get(v)
+        if c is not None: e['vedetto']=c; n+=1
     return n
 
 def corriger_vorti(ent, fichier=f"{T}/vorti.txt"):
