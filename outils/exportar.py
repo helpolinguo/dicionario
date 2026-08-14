@@ -32,7 +32,11 @@ h1{margin:0 0 2px;font-size:17px;font-weight:600;letter-spacing:.01em}
 .sub{color:var(--sub);font-size:12.5px;margin-bottom:10px}
 .bar{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
 input[type=search]{flex:1 1 260px;min-width:200px;padding:8px 11px;border:1px solid var(--lin);
- border-radius:7px;background:var(--pap);color:var(--enk);font:inherit;font-size:15px}
+ border-radius:7px;background:var(--pap);color:var(--enk);font:inherit;font-size:16px}
+/* 16px exacte, e ne min: Safari sur iPhone zomas automate sur irga kampo di
+   qua la litero-grandeso esas sub 16px, kande onu tushas lu. La altra
+   solvuro — maximum-scale=1 en la meta viewport — impedus anke la zomo per
+   la fingri, do la lekteblesa por qui bezonas lu. */
 input[type=search]:focus{outline:2px solid var(--acc);outline-offset:-1px}
 label.f{font-size:12.5px;color:var(--sub);display:flex;gap:5px;align-items:center;cursor:pointer;
  font-family:system-ui,sans-serif}
