@@ -484,7 +484,8 @@ def konstrui():
     # l'espacement derriere elle. espacar() est idempotente.
     for e in ent:
         S=e.get('senci') or []
-        for k,t in enumerate(S): S[k]=cifri(espacar(t))
+        for k,t in enumerate(S): S[k]=formuli(cifri(espacar(t)))
+    # (cifri et formuli n'interviennent qu'ici, une fois la relecture posee)
     n0=len(ent); ent=[e for e in ent if e_ok(e)]
     if len(ent)<n0: print("renvois d'errata ecartes : %d"%(n0-len(ent)))
     # Definition coupee net en bas de page : le scan a rogne la derniere ligne.
@@ -584,6 +585,37 @@ def cifri(t):
     return t
 
 
+_SUB = str.maketrans('0123456789', '\u2080\u2081\u2082\u2083\u2084\u2085\u2086\u2087\u2088\u2089')
+_FORMULO = re.compile(r'(?<![A-Za-zÀ-ÿ])((?:[A-Z][a-z]?\d*[\s.]{0,2}){2,})(?![a-zà-ÿ])')
+
+
+def formuli(t):
+    """Indices des formules chimiques : « H2 O » devient « H\u2082O ».
+
+    La machine ne descendait pas les chiffres : elle les frappait sur la ligne,
+    et separait souvent les symboles d'une espace pour la lisibilite. On rend
+    l'indice et on recolle. Deux garde-fous : il faut au moins deux symboles et
+    un chiffre — sans quoi « DEFIRS » ou « I. La » passeraient pour une
+    formule — et un « La » initial suivi d'une espace est l'article ido, non
+    le lanthane : « La C5 H4 N4 O2 quan kontenas... ».
+    """
+    def _un(m):
+        c = m.group(1)
+        if not re.search(r'\d', c) or len(re.findall(r'[A-Z]', c)) < 2:
+            return c
+        tete = ''
+        ml = re.match(r'La\s+(?=[A-Z])', c)
+        if ml:
+            tete = ml.group(0); c = c[ml.end():]
+            if len(re.findall(r'[A-Z]', c)) < 2 or not re.search(r'\d', c):
+                return m.group(1)
+        q = c[len(c.rstrip()):]; c = c.rstrip()
+        c = re.sub(r'(?<=[A-Za-z0-9])\s+(?=[A-Z])', '', c)
+        c = re.sub(r'(?<=[A-Za-z])(\d+)', lambda x: x.group(1).translate(_SUB), c)
+        return tete + c + q
+    return _FORMULO.sub(_un, t)
+
+
 def espacar(t):
     """Espacement de la ponctuation, usage franco-canadien.
 
@@ -672,7 +704,11 @@ def typographio(ent):
             t=re.sub(r'"([^"]{1,120})"', r'«\1»', t)
             # Espaces manquantes apres la ponctuation : la dactylo serrait pour
             # tenir la ligne. 258 virgules et 136 parentheses fermantes.
-            t=cifri(espacar(t))
+            # cifri() et formuli() ne sont PAS ici : ce sont des transformations
+            # de rendu, et la couche de relecture cherche des chaines relevees
+            # sur le texte brut. « H2 Hg3 Si4 O12 » ne se retrouve plus une fois
+            # les indices poses ; on les pose donc APRES elle.
+            t=espacar(t)
             if t!=o: s[k]=t; n+=1
     return n
 

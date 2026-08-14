@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.17.0 (TeX Live 2023/Debian)  (format=lualatex 2026.8.11)  14 AUG 2026 14:19
+This is LuaHBTeX, Version 1.17.0 (TeX Live 2023/Debian)  (format=lualatex 2026.8.11)  14 AUG 2026 15:13
  restricted system commands enabled.
 **posho.tex
 (./posho.tex
@@ -942,7 +942,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 707--708
 
 Underfull \hbox (badness 10000) in paragraph at lines 711--712
 []\TU/Inter(0)/b/n/8 amilo[]\TU/CharisSIL(0)/m/it/8 (kemio) \TU/CharisSIL(0)/m/
-n/8 (CH3)2. CH.
+n/8 (CH₃)2. CH.
  []
 
 
@@ -1286,6 +1286,17 @@ Underfull \hbox (badness 5771) in paragraph at lines 1397--1398
 Underfull \hbox (badness 6842) in paragraph at lines 1399--1400
 []\TU/Inter(0)/b/n/8 asor-tar[]\TU/CharisSIL(0)/m/it/8 (trans., kun) \TU/Charis
 SIL(0)/m/n/8 Kun-po-zar
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1421--1422
+[]\TU/Inter(0)/b/n/8 aspi-rino[] \TU/CharisSIL(0)/m/n/8 Acido acetil-salicila
+ :
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1421--1422
+\TU/CharisSIL(0)/m/n/8 CH₃COOC₆H₄COOH. Korpo
  []
 
 
@@ -3777,6 +3788,11 @@ Underfull \hbox (badness 10000) in paragraph at lines 6029--6030
  []
 
 
+Underfull \hbox (badness 10000) in paragraph at lines 6029--6030
+\TU/CharisSIL(0)/m/n/8 Sim-bolo ke-mi-ala : SO₄Ca
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 6069--6070
 []\TU/Inter(0)/b/n/8 gla-u-komo[]\TU/CharisSIL(0)/m/it/8 (patol) \TU/CharisSIL(
 0)/m/n/8 Okulo-morbo,
@@ -4116,7 +4132,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 6708--6709
 
 Underfull \hbox (badness 10000) in paragraph at lines 6720--6721
 []\TU/Inter(0)/b/n/8 hi-dro-qu-i-nono[]\TU/CharisSIL(0)/m/it/8 (kemio) \TU/Char
-isSIL(0)/m/n/8 C6 H4
+isSIL(0)/m/n/8 C₆H₄
  []
 
 
@@ -6913,8 +6929,8 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
 
 [238]
-Underfull \hbox (badness 5771) in paragraph at lines 11141--11142
-\TU/CharisSIL(0)/m/n/8 CH4 ek la hi-do-kar-bidi sa-tu-
+Underfull \hbox (badness 7451) in paragraph at lines 11141--11142
+\TU/CharisSIL(0)/m/n/8 CH₄ ek la hi-do-kar-bidi sa-tu-
  []
 
 
@@ -8312,12 +8328,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 13332--13333
  []
 
 
-Underfull \hbox (badness 6268) in paragraph at lines 13336--13337
-[]\TU/Inter(0)/b/n/8 pi-ro-galo[]\TU/CharisSIL(0)/m/it/8 (kemio) \TU/CharisSIL(
-0)/m/n/8 1-2-3 C6 H3
- []
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 16.54997pt, for example:
 (fancyhdr)                \setlength{\headheight}{16.54997pt}.
@@ -9006,6 +9016,10 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
 
 [309]
+Underfull \hbox (badness 5288) in paragraph at lines 14512--14513
+\TU/CharisSIL(0)/m/n/8 cianuro di ba-rio o di tung-
+ []
+
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 16.54997pt, for example:
@@ -9015,10 +9029,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
 
 [310]
-Underfull \hbox (badness 5288) in paragraph at lines 14512--14513
-\TU/CharisSIL(0)/m/n/8 cianuro di ba-rio o di tung-
- []
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 16.54997pt, for example:
@@ -9491,6 +9501,12 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 Underfull \hbox (badness 10000) in paragraph at lines 15333--15334
 []\TU/Inter(0)/b/n/8 sa-kri-fi-kar[]\TU/Inter(0)/b/n/7 1. \TU/CharisSIL(0)/m/n/
 8 (trans.) (re-li-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 15353--15354
+[]\TU/Inter(0)/b/n/8 sa-li-cino[]\TU/CharisSIL(0)/m/it/8 (kemio) \TU/CharisSIL(
+0)/m/n/8 Glu-ko-sido
  []
 
 
@@ -10808,6 +10824,12 @@ Underfull \hbox (badness 6016) in paragraph at lines 17646--17647
  []
 
 
+Underfull \hbox (badness 10000) in paragraph at lines 17658--17659
+[]\TU/Inter(0)/b/n/8 tra-kar[]\TU/CharisSIL(0)/m/it/8 (trans)\TU/Inter(0)/b/n/7
+ 1. \TU/CharisSIL(0)/m/n/8 Per-se-quar (la
+ []
+
+
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 16.54997pt, for example:
 (fancyhdr)                \setlength{\headheight}{16.54997pt}.
@@ -10816,12 +10838,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
 
 [384]
-Underfull \hbox (badness 10000) in paragraph at lines 17658--17659
-[]\TU/Inter(0)/b/n/8 tra-kar[]\TU/CharisSIL(0)/m/it/8 (trans)\TU/Inter(0)/b/n/7
- 1. \TU/CharisSIL(0)/m/n/8 Per-se-quar (la
- []
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 17686--17687
 \TU/CharisSIL(0)/m/n/8 epi-le-psio, dum hi-pnoto, e
  []
@@ -11292,6 +11308,11 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
 
 [404]
+Underfull \hbox (badness 10000) in paragraph at lines 18596--18597
+[]\TU/Inter(0)/b/n/8 vi-tri-olo[] \TU/CharisSIL(0)/m/n/8 Nomo vul-gara di
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 18626--18627
 []\TU/Inter(0)/b/n/8 vo-ka-li-zar[]\TU/CharisSIL(0)/m/it/8 (netrans) (mu-
  []
@@ -11438,7 +11459,7 @@ Here is how much of LuaTeX's memory you used:
 f></usr/share/texlive/texmf-dist/fonts/truetype/SIL/charissil/CharisSIL-Italic.t
 tf></usr/share/texlive/texmf-dist/fonts/opentype/public/inter/Inter-Regular.otf>
 </usr/share/texlive/texmf-dist/fonts/opentype/public/inter/Inter-Bold.otf>
-Output written on posho.pdf (413 pages, 2004362 bytes).
+Output written on posho.pdf (413 pages, 2005829 bytes).
 
 PDF statistics: 1327 PDF objects out of 1440 (max. 8388607)
  891 compressed objects within 9 object streams
