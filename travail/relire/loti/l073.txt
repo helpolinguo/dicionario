@@ -1,0 +1,53 @@
+9360	zibelino	I. (zool.) Martro di Siberia, kun pili tenua | II. La felo di ta animalo, uzata kom furo
+9361	zigomato	(anat) Osto di la saliajo di la vango, sub la angulo extera di la okulo
+9362	zigomorfa	(bot) Dicesas pri la flori qui havas plano di simetreso (kom ex.: la violi, la muzelflori)
+9363	zigosporo	(bot) Organo genitala sexuoza qua rezultas de la fuzo di du gameti izogama o heterogama
+9364	zigzago	Lineo ruptita, qua formacas anguli alterne salianta e konkava
+9365	zimazo	(biol) Substanco fermenta, azotoza, nesulfuroza, pasable parenta ye la albuminoidi, egardenda kom la reziduo di funcionado
+9366	zimogeno	(biol) Substanco quan sekrecas la celuli glandala e qua, mixite kun la aquo di la vakuoli, genitas fermento
+9367	zimologio	(biol) La parto di kemio qua traktas fermentaco
+9368	zimosimetro	(fiziko) Instrumento uzata pri mezurar la grado di fermentaco di liquido
+9369	zimotekniko	La arto genitar e direktar la fermentaco
+9370	zinko	(kemio) Korpo simpla, metala, blue-blanka, kompozajo lameloza, duktila, fuzebla, e qua, pos lamino, uzesas por facar kovrili di tekti, pluvo-kanali tektala, tubi, balnokuvi, siteli, e c. – Simbolo kemiala : Zn
+9371	zinkografio	Procedo analoga a litografado, ma en qua la petroplako litografala remplasesas da zinkoplako
+9372	zirkono	(kemio) Korpo simpla, metala, kelke simila a titano. Atom-pezo : 90,6. – Simbolo kemiala : Zr
+9373	zodiako	(astron) Zono cielala qua kovras 8 o 9 gradi ye singla latero di ekliptiko, ed embracas omna situeso di la planeti til nun deskovrita – e dividita aden 12 parti qui nomizesis segun la stelaro maxim vicina a li, e quin onu nomas la 12 signi di zodiako
+9374	zono	I. (geom.) Parto de la areo di sfero qua formacas quaza bendo kurva inter du plani interparalela | II. (geog.) Singla de la granda regioni di la Terglobo, quin separas cirkli imaginala, paralela ye equatoro, e di qui la klimato dependas de lia situeso kompare a Suno | III. Bendo de stofo, de ledro, e c., destinata a klemar la vesti an la tayo | IV. To quo cirkondas quale vesto-zono
+9375	zoocecidio	Deformuro genitata da animalo o planto vivanta
+9376	zoofito	Nomo di la animali inferiora, vicina ye la planti, qui formacas la brancho quaresma di la animal-regno (de qua onu deprenis nia-epoke la protozoi por formacar kinesma)
+9377	zoografio	Deskripto di la animali
+9378	zoologio	Parto di la historio naturala qua traktas la animali
+9379	zoospermo	(sinonimo di «spermatozoido»
+9380	zoosporo	(zool) Sporo (korpuskulo genitala) quan karakterizas cilii vibranta, che ula algi
+9381	zuavo	(armeo) En Francia, soldato ek korpo de infantrio lejera, uzata en la armeo di Afrika
+9382	zumar	(netrans) I. Genitar bruiso kontinua, grava e matida, aludante insekto, o la murmuro konfuza ek la voci di plura personi asemblita | II. Resonigar klosho per igar la frapilo shokar alterne dextre e sinistre, ma sen ociligar ta klosho | III. (medic.) Audar en sua oreli la sono quan genitas ibe la palpitado tro forta da la arterii, la stretesko di la tubo audala
+9383	cereala	(bot) Di qua la grani, farinoza, uzesas por la nutro di la homo
+9384	cerebelo	(anat) Parto dopa ed infra di la encefalo, qua unionas la cerebro a la spino
+9385	cerebro	(anat) La encefalo, amaso nervoza, ye qua esas plena la kranio-kavajo, e precipue la parti avana e supra di la encefalo
+9386	deletera	(vorto ciencala) Qua endanjerigas la vivo
+9387	delto	(geogr) Extensajo de tero ferma, maxim-multa-kaze triangulo-forma, formacita da aluvioni qui, per amaseskar meze la boko di fluvio, partigis ica aden du o plura boki
+9388	*chevaliero	I. (En Roma, antique) Civitano di un ek la tri stato-klasi, inter la patrico e la plebeyo | II. (mezepoko). Membro di ta insticururo milito-tendencema, kun karaktero religiala, establisita che la nobelaro feudala, qua impozis a sua membri la desegardo di danjero, loyaleso, la protekto gratuita di la febli, e politegeso a la dami | III. (nun) Membro di ordeno honorumala, institucita da suvereno | IV. (nun) En ordeno honorumala plura-klasa, membro di la klaso minim-alta
+9389	*doblar	(trans) (Cinemo-enrejistro). (pri parol-filmo) Tradukar lo dicata, preske vortope (remplase di la pronuncatajo originala ye altra linguo), sorgante selektar vorti qui korespondas ne nur a la senco e sentimentonuanci, ma anke(same-longa) a la formo lor-pronunca di la boko di la aktoro
+9390	*dublar	(trans) Preter-vehar (generale per automobilo) altra duktanto, pasante latere di ica lineo-dop qua onu avancis
+9391	*frendo	Kun-partoprenanto di *muvmento
+9392	*frua	Nemulta tempo pos la komenco di la periodo aludato
+9393	*grandoro	(matem) Quanto kontinua, qua eventuale kreskas o deskreskas
+9394	*identifikar	(trans) Komparar persono kun la deskripto o fotografuro donata da lua pasporto od altra dokumento, por divenar certena ke lu esas ya la persono quan lu afirmas esar
+9395	*kruzar	(trans) Pasar apud (ulu), irante inversa-sinse, quaze por atingar la loko de ube la altra persono departis
+9396	*mashelo	(anat) Ensemblo ek la du parti osta di la boko (maxilo e mandibulo) qua esas garnisita ye denti che la vertebrozi
+9397	*naturele	(adverbo) Pro la naturo di la kozi
+9398	*nexta	Qua venas nemediate – spacale, tempale o rangale
+9399	*pompiero	La persono (uniformoza), ek soldato-korporaciono, di qua la mestiero konsistas ye (precipue) extingar la incendii, salvar la personi quin minacas la inund-aquo, od irga vivodanjero acidentala, e c
+9400	*publicitear	(trans) (aludante konsuminto od uzinto). audar, a komprero o konsumero eventuala, varo o servo da qua onu esas tre satisfacita – laudo absolute gratuita e generale spontana. (Antonimo : reklamo)
+9401	*puntuar	(trans) Lor-skribe, insertar, en la frazi, la signi , ; . : ? !
+9402	*relektar	(trans) Rilektar (nur per regardo, se por su ; laute, se por la jus-diktinto) to quon onu skribis, por korektigar olu
+9403	*rekonocar	(trans) Renkontrar inter sua memoraji, kom ja konocita (persono, kozo)
+9404	*reproduktar	(trans) Igar quaze ri-existar, forme di produkturo nova per kopio, per imito
+9405	*retarda	Qua eventas pos la instanto (1) stipulita o konvencionita – (2) ye qua lu eventas normale
+9406	*seifo	Kofro ek metalo, kun sekureso-seruro, en qua onu klefe inkluzas pekunio o kozi altra (dokumenti, juveli) tre precoza, tre valoroza
+9407	*serviar	(trans) Prokurar (ad ulu), generale gratuite, avantajo per sua interveno propra e privata
+9408	*smokar	(trans) Konsumar tabako forme di sigaro, sigareto, o per kombusto en pipo
+9409	*stejo	Ta parto di teatro ube pleas la aktori
+9410	*stencilo	Folio de papero impregnita ye vaxo, sur qua onu skribas (generale per skribo-mashino) tale ke la tipi perforas la folio ; la inko imprimala pasas tra ta perforuri
+9411	*tarda	Preske ya la fino di la periodo aludata
+9412	*yulo	Festo-dio pri la vintro-solstico, konvencione situita ye la 25. di decembro – e qua tale koincidas kun la festo-dio Kristo-naskala di la kristani. ------------ F I N O

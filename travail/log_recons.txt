@@ -1,0 +1,6 @@
+meta identique : True
+pages 0-160 : masque haut allege sur 28 pages (max 183 px)
+pages 160-320 : masque haut allege sur 4 pages (max 166 px)
+pages 320-480 : masque haut allege sur 10 pages (max 173 px)
+pages 480-640 : masque haut allege sur 6 pages (max 161 px)
+FINI

@@ -1,0 +1,4 @@
+8309 enregistrements
+drapeaux : [('korektita', 5397), ('sen-lingui', 1470), ('ordino-rompita', 957), ('finalo-nekutima', 140), ('sen-vedetto', 92), ('pagino-nekonfidebla', 19)]
+sans aucun drapeau : 2147
+avec fako : 4472 | avec nom latin : 594 | plusieurs sens : 1421

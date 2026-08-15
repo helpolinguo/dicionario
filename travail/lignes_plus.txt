@@ -1,0 +1,111 @@
+# Lignes rendues a une page dont la RE-COUPE ulterieure a raccourci le bloc.
+# Le fac-simile, compose avant la re-coupe, les porte encore ; c'est de lui
+# qu'elles viennent, mot pour mot. Voir _lignes_plus() dans edition.py.
+# page<TAB>ligne<TAB>texte de la grille (espaces de tete comprises)
+290	52	   infanti. - FR.
+290	54	kokono. Rnvelopilo quan facas, ek sua fili, la maxim multa
+290	55	    larvi (raupiI  di la lepidoptari, ed en qua eventas lia last
+290	56	    metamorfoso. - DgFR.
+282	56	   addope sua membri dopa,apogante su sur la membri avana. - E.
+# Lignes perdues EN HAUT de page : le masque des ombres de bord les avait
+# effacees. Indice negatif = au-dessus de la premiere ligne stockee, ce qui
+# laisse intacte la numerotation de toutes les autres.
+402	-5	                                                       395
+402	-3	nitro. (kemio). Nitrato naturala di kalio, NO3K.
+402	-1	nivar. (netrans.) (aludante la aquo qua konjelesis en la supra
+412	-3	                                                        405
+412	-1	oleo.  Substanco grasa, liquida, obtenita de vejetanto, animalo,
+# Pages photographiees de biais : le bloc les rogne a DROITE, et la fin de
+# chaque ligne tombait dehors. Le texte ci-dessous est celui du scan, releve
+# ligne a ligne. La ligne remplace celle qui etait lue ; ses soulignements,
+# qui portent sur le debut, sont conserves.
+545	3	   ganglioni limfala (precipue olti di la kolo), formacante
+545	4	   tumoro qua divenas ulcero. - DEFIS.
+545	7	   glionala ed ostala, che la pueri. -
+545	9	skroto. (anat.) Envelopilo pela di la du testikli. - DEFIS.
+545	26	skunero. (navig.) Mikra navo du-masta, rigizita quale goeleto.
+545	30	   la slamo, sordidaji, rezidui, sedimenta, lasita da liquido
+545	31	   qua sejornis en olu, - generale per froto pumicage. - DEFS.
+545	33	skurelo. (zool.) Mikra animalo, ek la familio "roderi", gra-
+545	34	   cila, gracioza, di qua la kaudo, tufatra, povas su erektar
+545	37	slamo. Sedimento densa sur la fundo di aquo-quanto, precipue
+545	40	slango. Linguo specala, konvencionala, e plu o min sekreta,
+545	44	slingo. To quo su volvas cirkum su, forme di ringi. (ex.:
+545	47	slipo. La retro-iro di heliko. DE.
+545	49	slupo. (navig.)Mikra navo, kun un masto vertikala, top-
+545	50	   masto, un seglo trapezoida ed un granda seglo quadrata
+545	53	sluzo. Quaza lageto quan formacas inkluzili movebla quin onu
+545	56	   a la nivelo suba per retenar lu ye un ek lua extremaji e
+546	1	smalto. (tekn.)  Vitro blua, obtenata per la fuzo di materio
+546	4	smeraldo. Lapido diafana, verda. - DEFIRS.
+546	7	smerilo. Petro harda, ek alumino, silico e fer-oxido, pulverigita
+546	8	   por polisar la lapidi, la petri, la metali, kristalo. - FIS.
+546	10	snapar. (trans.) Sizar bruske, per un maxil-ago. DE.
+546	13	   aquo, la humoro qua stagnas en la naztrui). - E.
+546	15	snortar. (netrans.) (Dicesas precipue pri kavalo). Sniflar tre
+546	16	   bruisoze por manifestar sua repugneso ; ekpulsar aero per sua
+546	17	   naztrui tre bruisoze por manifestar sua pavoro, nepacienteso,
+546	18	   e c. - E.
+546	20	sobra. I. Qua su moderas pri manjo e drinko. - II. (metaf.)
+546	21	   Qua esas moderata pri sua agi, ne exajerema. (Ex.: Lu esas
+546	22	   sobra pri komplimentar). - EFIS.
+546	24	socio. Ensemblo,duroza, ek homi qui vivas obedie di legi komuna.
+546	25	   (anke aludante ula sorti de animali qui vivas ensemble : abeli,
+546	26	   formiki, e c.) - DEFIRS.
+546	28	sociologo. Ciencisto qua su okupas pri sociologio.  DEFIRS
+546	30	sociologio. Cienco di qua la studiajo esas la cirkonstanci ed
+546	31	   existo-kondicioni di la socio homara. - DEFIRS.
+546	33	sociso. Peco de la intestino di porko, di mutono, quan onu plen-
+546	34	   igis ye karno de porko, o de bovo, tre spicizita, triturita e
+546	35	   pistita, e tre presita. - EFIR.
+546	37	sodo. (bot.)   Planto ek la familio "kenopodiacei", propra ye la
+546	38	   regioni klimato-moderata e subtropika ; un-yar-dura ; di qua
+546	39	   la folii esas quaze pulpoza, lineala, e la flori mikra e ver-
+546	40	   datra ; de qui onu extraktis olim natroxo. - L. salsola soda
+546	41	   e salsola kali. - (kemio) Salo alkalioza quan onu extraktas
+546	42	   de ta planto ed anke ek la fuki. Simbolo kemiala : CO3 Na2 .
+546	44	   DEFIR.
+546	46	sodomiar. (netrans.) Agar koito anusala, inter-vira, od inter
+546	47	   viro e muliero, o kun bestio. - DEFIS.
+546	49	sofao. Sorto di repozo-lito, kun tri dors-apogili, uzata kom
+546	50	   sidilo.- DEFIS.
+546	52	sofismo. Argumento trompera, seduktera. - DEFIRS.
+546	55	   di filozofio, di retoriko, qua instruktis pri quale pledar "por"
+546	57	   II. (nun) Persono qua argumentas trompere, seduktera. - DEFIRS.
+498	2	    remonto. (armeo). Segmento di la armei di qua la rolo esas fur-
+498	6	    remoro. (zool.)    Ekeneido, fisho a qua la Romani e Greki anti-
+498	17	     remparo.  (militarto).Cirkuito-murego, reliefajo de tero, e c.,
+498	32	    rendimento. (tekn.)   Efekto utila di mashino, di laboro homala.
+498	36	       (ne-exakte) ke onu ne konocas (ulu, ulo). - DFIRS.
+498	42	    renet-pomo. (bot.)  Pomo di qua la shelo, makul-buntita, aspek-
+498	45	    renkontrar. (trans.)   Trovar dum sua voy-iro - o pro hazardo, o
+498	48	    rento. (financo).Revenuo (yarala), ordinare personala, obtenata
+498	52	    rentiro. (zool.) Quadripedo di la polo-regioni, ek la genero
+498	53	       "cervo", kun korni plata e quaze dentoza. - L. cervus taran-
+498	56	    renuncar.(trans.) Abandonar definitive, cesar sua pretendo, sua
+66	31	   - FI.
+66	52	   de dimensioni pasable granda,quale gabari, e c. - DFIS.
+160	53	exotika. I. (natur-historio).Qua ne esas produkturo naturala di
+160	54	   nia klimati. - II. (metaf.) Qua ne apartenas a la lando ipsa,
+160	55	   nek a la landi relative vicina (pri la mori, la kustumi, e c.)
+160	56	   - DEFIS.
+162	-9	                                                          153
+162	-6	exponento. (matem.) Mikra cifro dextre e kelke super nombro, por
+162	-5	     indikar ye qua potenco lu egardesas. - DEFIRS.
+162	-3	exportacar. (trans.)  Transportar a lando stranjera ed ibe vendar
+162	-2	     (la produkturi da la sulo o da la laboro nacionala).-DEFIRS.
+162	44	     ye krimino, refujinta sur olua teritorio, a guvernerio stran-
+162	45	     jera qua demandas lu. - DEFIS.
+302	50	   isti, e c.) +Seancar por la diskuto di temi ciencala, litera-
+302	51	   turala,politikala, e c. - II. (aludante ministri de nacioni
+302	52	   diversa, plenipotenciera). +Seancar por diskutar ula temi
+302	53	   internaciona. - DEFIRS.
+302	55	kongruar. (trans.) I. Qua fitas remarkinde-bone ta o ca cirkons-
+302	56	   tanco, ta o ca kazo. - II. (matem.) Nombri kongruanta : di qui
+302	57	   la interdifero esas multoplo di altra nombro (modulo). DEFIS.
+378	49	mikologio. Ta parto di botaniko qua studias la fungi (champi-
+378	50	   nioni).
+378	52	mikorizo. Fungo quan onu renkontras generale asociita kun radi-
+378	53	   ki di vejetanti (precipue la radiki di la vejetanti montala:
+378	54	   kastanieri, avelanieri, fagi, morusieri, monto-pini, e c.) -
+378	55	   DEFIS.

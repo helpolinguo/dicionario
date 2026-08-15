@@ -1,0 +1,4 @@
+sans groupe : 0
+cellules : 1015234
+pages preparees : 1  bandes : 3
+FINI

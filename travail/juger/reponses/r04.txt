@@ -1,0 +1,5 @@
+184	agar
+196	instruktar
+200	jeleo
+201	lojeyo
+205	arkaika

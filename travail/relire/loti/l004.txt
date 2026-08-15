@@ -1,0 +1,130 @@
+390	analo	Singla de la naracuri pri la eventaji di la yaro koncernata
+391	analgeziar	(trans) Produktar anestezio partala di la pelo o di la mukozi
+392	analitika	I. Qua procedas per analizado | II. Geometrio analitika : Apliko di algebro a geometrio, qua, retroduktante la nociono «figuro» ad olta di «situeso», ed olta di «situeso» ad olta di «dimensiono», reprezentas la loki geometriala per equacioni, o deduktas, de la analizo di la equacioni, la karakterizivi di la figuri | III. Linguo analitika : Qua tendencas deskompozar la moyeni per qui onu expresas la pensaji
+393	analizar	(trans) Dividar ensemblo ad olua parti
+394	analoga	Qua havas kelka karakteri komuna kun altra kozo
+395	anamorfoso	(Mat) Fenomeno fizikala qua eventas kande la desegnuro deformita de objekto, pozate perpendikle ye la axo di spegulo cilindra o kona, donas, per reflekto, imajo de la objekto sen deformo
+396	ananaso	(bot) Frukto saporoza e parfumoza, di planto dornoza, ek la familio «bromeliacei», di qua la formo esas ovatra
+397	anapesto	Verso en qua la silabi alternas yene : 2 kurta, l longa
+398	anarkio	Stando sociala qua karakterizesas da la ne-existo di guvernanto
+399	anastigmata	(Opt) Vitro, od okulo, sen astigmateso
+400	anastomoso	(Anat) Junturo di du vaskuli
+401	anatemar	(trans) (religio kristana) Frapar per la malediko per qua la Eklezio katolika forpulsas ulu de sua medio
+402	anatomio	Cienco qua traktas la strukturo di la organi di nia korpo per dissekar li
+403	ancestro	Un persono ek la serio de patri, avi, preavi, e c., retroire til epoko nedefinita
+404	anchovo	(zool) Mikra maro-fisho qua, konservate en salo, manjesas kom acesorajo repastala
+405	anciena	Qua esis tala ja multa tempo ante la instanto konsiderata
+406	andrinoplo	Sorto di stofo kotona, tintita rede
+407	androceo	(bot) Ensemblo de la stamini, de la organi maskula di floro
+408	androdioika	(bot) Qualeso di planto che qua la flori esas : ici, maskulo – iti, hermafrodita, la du sorti esante sur stipiti diversa
+409	androgina	(bot) Qua posedas e la organi maskulala e la organi feminala, ma en du flori separita
+410	andromonoika	(bot) Qualeso di planto che qua la flori maskula e la flori hermafrodita esas sur la sama stipito
+411	anekdoto	Kurta naracuro pri mikra eventajo savinda
+412	anemio	(patol) Deperiso produktata da la povresko di sango
+413	anemofila	(biol) Dicesas pri la planti che qui la dissemo di poleno eventas per vento
+414	anemometro	Instrumento per qua onu povas mezurar la rapidesogrado di vento
+415	anemono	(bot) Planto de la familio «ranunkulei», grupo de la «anemonei»
+416	aneroido	Barometro sen liquido
+417	anestezio	(trans) (kirurgio) Igar ne-sentanta, per igar la malado absorbar ula substanci (kloroformo, etero, e c.)
+418	aneto	(bot) Planto umbelifera di qua la semini esas toniziva ed ecitiva
+419	anevrismo	(patol) Tumoro produktita sur vaskulo arteria o sur kordio-parieto, da la distenseso di la tuniki
+420	anexar	(trans) Juntar ad ensemblo ulo qua divenas dependanta de ta ensemblo
+421	angelo	Fera hoko, kun pinti, quan onu muntas ye la extremajo di pesko-filo e quan onu provizas ye lurivo por kaptar fishi
+422	angeliko	(bot) Planto aromata, umbelifera, di qua onu konfitas la kosti verda
+423	angelus	(liturg. katol) Prego quan onu agas en la matino, ye dimezo ed en la vespero, memore di la anjelo-saluto
+424	angino	(patol) Inflamo-morbo di la guturo, kun o sen produkto di membrani acesora
+425	angiosperma	(bot) Dicesas pri la planti di qui la grani kontenesas interne di la frukto
+426	anglikana	(religio kristana) Qua apartenas a ta formi di protestantismo qua esas la Stato-religio di Britania
+427	angorar	(netrans., pri, pro) Esar la objekto di ta sento fiziologiala di fauco-konstrikto e di quaza sufoko qua akompanas desquieteso od expekto pasionoza
+428	angora	Nomo di raso di kato e di kapro, di qui la pili esas longa e silkatra
+429	anguilo	(zool) Genero de fisho reptera, di qua la korpo esas tenua, la pelo eskapanta, e quin onu trovas en la aqui sen-sala
+430	angulo	(geom) Inter-eskarto-grado di du rekta linei qui inter-sekas sur plano
+431	anhelar	(netrans, pro) Respirar en maniero penoza, hastoza. (Ex.: Me anheligis me, pro acensir ta eskalero tante rapide.)
+432	anhidra	(kemio) Qua ne kontenas aquo. – DEFIRS. 6 5
+433	anilino	(kemio) C H NH2
+434	animar	(trans) Igar plu vivoza en lua agado, en lua afecioni
+435	animalo	Ento organizita qua povas sentar e movar su
+436	animismo	(biol) Doktrino qua konsideras la anmo kom la kauzo di la fenomeni psikala e fiziologiala
+437	aniono	(elektr) Iono qua portas elektro negativa, e qua, en dissolvuro elektrolitika, movas su ad la anodo di la fluo
+438	aniversario	Dato qua korespondas a la dio kande ulo eventis, un o plura yari antee
+439	anizo	(bot) Planto umbelifera di qua la semini esas aromata
+440	anizotropa	(biol) Dicesas pri la korpi organika quan karakterizas bi-refraktiveso. (Ex.: la fragmento obskura di la muskulo-fibro strioza
+441	anjelo	(religio krist) Pura spirito qua mediacas Deo e la homo
+442	anke	Simile, egale, same – aludante ago o stando qua riproduktesas
+443	ankilosar	(trans) (patol) Paralizar per la weldo di artiko movebla
+444	ankore	Expresas la ne-ceso di la ago o di la stando (quin indikas la verbo)
+445	ankro	Peco de fero, provizita ye du pintegi, quan onu imersas til la fundo di maro ube olu akroche fixigas su tale ke la navo, sur la korpo di qua lu esas muntita, retenesas
+446	anmo	(religio o filoz) Ento metafizikala, principo di vivo e di penso
+447	anobio	(zool) Genero de insekto koleoptera, familio de la «anobiidi»
+448	anodo	(elektro) Elektrodo pozitiva di elektro-baterio, di ampulo radiografala
+449	anomala	Qua aspektas stranje, baroke
+450	anonima	I. Qua ne esas provizita ye la nomo di la autoro | II. Qua ne konocigas sua nomo
+451	anso	Parto salianta, ringa od arko, ye qua esas provizita utensilo od implemento, por plufaciligar la sizo di olca
+452	-ant-	Sufixo di la participo aktiva prezenta
+453	antagonismo	Stando di interluktado
+454	antagonisto	Ta qua luktas kontre altra
+455	antarktika	Latero qua ne direktesas vers la Urso-stelaro, ma vers la sudo-polo di la Terglobo
+456	ante	En epoko qua pre-iras la evento quan onu mencionas
+457	antecedento	I. Antea agi di persono | II. Termino di propoziciono qua pre-iras logikale to quo relative «konsequas» | III. Termino unesma di relato aritmetikala o geometriala
+458	anteno	I. (zool.) Apendico kornatra, artikoza e movebla, situita sur la kapo di la maxim multa ek la insekti | II. (elektro, radio e televiziono) Longa vergo, fixigita vertikale relate sulo
+459	antero	(bot) Mikra posho qua situesas sur la extremajo di la stamino e qua kontenas la poleno
+460	anteridio	(biol) Organo riproduktala maskulala di la maxim multa kriptogami, en qua naskas la anterozoidi
+461	anterozoido	(bot) Korpi riproduktala maskulala di ula kriptogami
+462	antezo	(biol) Desklozo di la floro, qua liberigas la poleno
+463	anti-	Prefixo (rezervita a la terminaro ciencala e teknikala) qua signifikas «kontre»
+464	anticipar	(trans) I. Prenar, proprigar a su ante la dato | II. Facar, agar, exekutar ante la dato
+465	antidoto	Substanco quan onu absorbigas da ulu, por kombatar en lu la efiko di veneno, di viruso
+466	antifermento	(kemio, biol) Korpo qua su opozas a la efiko di fermento
+467	antifono	(liturgio katol) Versaro quan onu kantas, tote o parte, ante psalmo o kantiko, e quan onu repetas tote, pose
+468	antifrazo	Frazeto uzata – eufemisme od ironie – por expresar la kontreajo di la senco vera
+469	antiklina	(geol) Dicesas pri la plisuro di strato en qua la parto konkava regardas adinfre
+470	antilogio	Des-kohero di la idei, di la dico-maniero
+471	antilopo	(zool) Ruminero di formo gracila, gracoza, kun korni ne-kaduka, kava, cirkondanta, nukleo ostoza, bloka
+472	antimonio	(kemio) Korpo simpla, metala, qua uzesas por kompozar emetiko, e qua pulverigite uzesas nomo di «kohl»
+473	antinomio	Des-kohero, reala o semblanta, di du legi naturala (*leyi) o yurala
+474	antipatiar	(trans) Instinte eskartar su de (ulo o de ulu)
+475	antipirino	Medikamento obtenita de un ek la kompozanti di karbono, e qua kombatas febro, nevralgii
+476	antipodo	I. Persono qua okupas sur la Terglobo loko diametre opozata | II. Sur la Terglobo, loko diametre opozata ad altra
+477	antiqua	Qua apartenas a la vivo-maniero, a la kustumi di epoki tre antea (partikulare, qua apartenas a la civilizeso-sistemo di la Greki e di la Romani lor la quaresma e lor la unesma yarcenti rispektive ante nia ero)
+478	antisepsiar	(trans) Uzar produkturo apta kombatar la putro morbala
+479	antitezo	Kontrasto qua produktesas da la apudigo di du idei, di du expresuri, qui inter-opozesas
+480	antitoxino	Substanco apta nihiligar la efiko di toxino
+481	antologio	Kolektajo de mikra versari
+482	antonimo	Vorto qua, konsiderate relate ad altra vorto, havas senco absolute opozata
+483	antonomazio	Metaforo qua indikas persono per la karakterizivo di qua lu esas la tipo ; od individuo qua posedas ula karakterizivi per la persono qua esas lua tipo
+484	antracito	(mineral) Karbono fosila, qua brulas nur desfacile, kun flamo kurta, sen odoro nek fumo
+485	antraxo	(patol) Inflamo-tumoro di la tisuo celulara subpela
+486	antropoida	Qua similesas la homo, di qua la vizajo esas formo-vicina a la vizajo homala
+487	antropologio	Ta parto di la naturo-historio qua traktas la homo-speco
+488	antropometrio	I. Studio di la proporcioni di la parti di la homo-korpo | II. Ta studio aplikata a la krimininti por rikonocar li
+489	antropomorfa	Qua atribuas a la deajo la vizajo, la sentimenti, la pasioni di la homo
+490	anuncar	(trans., ad) Konocigar da publiko per avizo vocala o skribura
+491	anuso	(anat) Orifico extera di la rektumo, per qua ekiras feko
+492	anxiar	(netrans., pri, pro, de) Esar tale desquieta ke la kordio quaze konstriktesas
+493	aoristo	(gram) Tempo di la konjugado Greka, qua expresas la ago pasinta en maniero nepreciza (same kam «-is» che Ido)
+494	aorto	(anat) Arterio precipua qua departas de la kordio e qua esas la fundamento di omna vaskuli arteria di la «grande cirkulo-kanalaro»
+495	aortito	(patol) Inflamuro di la tuniko extera di arto
+496	apanajo	Domeno quan la reji di Francia grantis a sua filiuli juniora, a sua fratuli, e qua retrovenis a la trono kande omna decendanti di la grantarii mortis
+497	aparar	Videbleskar subite
+498	aparato	Ensemblo de la objekti, instrumenti, qui uzesas por exekutar o facar ulo
+499	aparta	Quaze separita, izolita, sola, quankam permananta kom parto di ensemblo
+500	apartamento	Parto de domo, qua konsistas ye ula quanto de chambri e qua esas habiteyo komfortoza
+501	apartenar	(netrans, ad) Esar la proprietajo di ulu. (Anke metaf.)
+502	apatio	Stando di anmo o di mento o di psiko quin nulo povas emocigar
+503	apelar	(netrans., ad ulu, pri ulo) Rekursar a la judiciistaro kompetenta di la grado superiora, por igar reformar verdikto qua enuncesis da tribunalo inferiora
+504	apendico	Parto qua servas kom parto di bloko precipua
+505	apendicito	(patol) Inflamuro di la apendico cekala vermoforma
+506	apene	Preske ne
+507	aperceptar	(trans) (filoz) Intuico, fakultato od ago quakonsistas ye intelektar quik, per koncio, ta o ca ideo o verajo. (En la filozofio da Leibniz, ta vorto signifikis la percepto juntata a reflekto)
+508	apertar	(trans, por) Igar acesebla per deprenar to quo kluzigas
+509	apetitar	(trans) Tendencar a to quo satisfacos sua bezoni. (Anke metaf.)
+510	apikala	Dicesas pri la parto qua esas la somito di organo
+511	apie	(botaniko) Planto umbelifera, di qua un speco divenis, per kultivado, celerio
+512	api-pomo	(bot) Mikra pomo krakanta, di qua un latero esas blankatra, e la altra, reda
+513	aplanatika	(Opt) En qua ne eventas aberaco sferesala
+514	aplanata	(fotogr) Tipo di objektali rektalinea e simetra
+515	aplastar	(trans) I. Platigar e deformar (korpo) per sinkar ula parto per shoko violentoza o per granda preso | II. (Metaf.) Igar sukombar ad pezozajo tro grava, a kargajo tro grava ; igar sukombar en lukto per efikigar forco a qua ne esas posibla rezistar
+516	aplaudar	(trans) Intershokigar la parto interna di la manui kom manifesto di sua granda admiro
+517	aplikar	(trans., ad) I. Pozar ulo sur ulo, tale ke la pozajo kovras la pozario komplete, adherante a lu | II. Igar efikar (ad ulu, ad ulo) agado od esforco | III. (Metaf.) Uzar procedo, igar efikar regulo, ad ulo, ad ulu
+518	aplombo	I. Equilibro stabila di korpo kande vertikalo, quan indikas aplombo-filo, koincidas kun olua baricentro ed abutas a la fundamento qua subtenas lu | II. (Metaf.) Audaco neperturbebla
+519	apodiktika	(filoz) Qua enuncas verajo necesa. (Ex.: Omna cirkl havas centro)

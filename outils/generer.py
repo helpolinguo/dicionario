@@ -272,9 +272,52 @@ def texifier(cells, plages):
             i=j
     return "".join(res)
 
+_LP=None
+def lignes_plus(fichier=f"{T}/lignes_plus.txt"):
+    """Lignes qu'une RE-COUPE ulterieure de la page a laissees hors du bloc.
+
+    Vingt-et-une pages ont ete decoupees par une version de bloc_texte() qui
+    arretait le bloc trop haut ; leur .npz ne porte donc plus les dernieres
+    lignes de la page, alors que le scan, lui, les porte. Ce fichier les rend,
+    telles que le scan les donne, et il sert AUX DEUX editions : le fac-simile
+    les recompose, l'edition de lecture les lit. Une seule source, donc pas de
+    divergence possible.
+
+    Une ligne du fichier : page<TAB>numero de ligne<TAB>texte de la grille.
+    """
+    global _LP
+    if _LP is None:
+        _LP={}
+        if os.path.exists(fichier):
+            for l in open(fichier,encoding='utf-8'):
+                l=l.rstrip("\n")
+                if not l.strip() or l.startswith("#"): continue
+                a,b,v=l.split("\t")
+                _LP.setdefault(int(a),{})[int(b)]=v
+    return _LP
+
+
 def ecrire(pg, lab, M, tab, rep=f"{RAC}/contenu"):
     os.makedirs(rep, exist_ok=True)
     lignes, ncol = lignes_page(pg, lab, M, tab)
+    sup=lignes_plus().get(pg)
+    if sup:
+        par={t[0]:t for t in lignes}
+        for k,txt in sorted(sup.items()):
+            # Ligne deja lue mais TRONQUEE a droite : on garde ses filets de
+            # soulignement, qui portent sur le debut, et on rend le texte
+            # entier. Ligne absente : on la cree, sans filet.
+            plages = par[k][2] if k in par else []
+            cells=list(txt) + [" "]*max(0, ncol-len(txt))
+            par[k]=(k, cells, plages)
+        # Le lattis est DENSE : une entree par interligne, blanche ou non.
+        # Les lignes rendues peuvent laisser un trou — l'interligne vide qui
+        # separe deux articles —, qu'il faut recreer, sinon les articles se
+        # touchent et la page se decale d'une ligne. Un indice NEGATIF rend une
+        # ligne perdue au-dessus de la premiere : le lattis s'etend vers le
+        # haut, et la numerotation des lignes deja lues ne bouge pas.
+        lignes=[par.get(k, (k, [" "]*ncol, []))
+                for k in range(min(par), max(par)+1)]
     # Le lattis de lignes couvre toute la hauteur de l'image pour attraper les
     # folios ; en bas de page il produit donc des lignes fantomes, vides. Une
     # ligne vide APRES la derniere ligne encree ne porte aucune information et

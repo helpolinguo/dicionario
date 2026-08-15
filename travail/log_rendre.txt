@@ -1,0 +1,7 @@
+0-110 : 174 caracteres rendus ; 3 pages refusees
+110-220 : 167 caracteres rendus ; 5 pages refusees
+220-330 : 159 caracteres rendus ; 5 pages refusees
+330-440 : 181 caracteres rendus ; 6 pages refusees
+440-550 : 124 caracteres rendus ; 1 pages refusees
+550-660 : 98 caracteres rendus ; 0 pages refusees
+FINI

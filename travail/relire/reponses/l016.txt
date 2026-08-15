@@ -1,0 +1,9 @@
+1951	precipue'lua	precipue lua
+1957	Fermigar pri lua pieso	Firmigar pri lua pieso
+1958	Esablisar per dekreto	Establisar per dekreto
+1963	quo trasesis	quo tracesis
+1986	prenar altrai	prenar altri
+2000	per-di di materio	perdi di materio
+2011	Quaza letro	Quaza lepro
+2013	di kataktero	di karaktero
+2039	pos lia orto	pos lia morto

@@ -1,0 +1,4 @@
+7578	Simbolo kemiala:Rh	Simbolo kemiala:Rb
+7580	rubrikin esas	rubriki esas
+7606	ulo seg1s ta	ulo segun ta
+7627	SO2/ MH	SO2/ NH

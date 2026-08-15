@@ -1,0 +1,13 @@
+apprentissage : 74097 cellules, 79 classes (verite 60768, amorce 7006, planches 8132)
+traits calcules : 18s, 218480 cellules de vote
+/usr/local/lib/python3.11/dist-packages/sklearn/neural_network/_multilayer_perceptron.py:785: ConvergenceWarning: Stochastic Optimizer: Maximum iterations (40) reached and the optimization hasn't converged yet.
+  warnings.warn(
+  tour 0: 6710 groupes surs (>0.98), conf mediane 0.986  (120s)
+/usr/local/lib/python3.11/dist-packages/sklearn/neural_network/_multilayer_perceptron.py:785: ConvergenceWarning: Stochastic Optimizer: Maximum iterations (40) reached and the optimization hasn't converged yet.
+  warnings.warn(
+  tour 1: 7765 groupes surs (>0.98), conf mediane 0.994  (359s)
+/usr/local/lib/python3.11/dist-packages/sklearn/neural_network/_multilayer_perceptron.py:785: ConvergenceWarning: Stochastic Optimizer: Maximum iterations (40) reached and the optimization hasn't converged yet.
+  warnings.warn(
+  tour 2: 7947 groupes surs (>0.98), conf mediane 0.995  (574s)
+exactitude du modele sur les cellules connues : 96.201%
+FINI

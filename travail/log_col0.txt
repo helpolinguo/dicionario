@@ -1,0 +1,5 @@
+0-160 : 24 pages changent
+160-320 : 7 pages changent
+320-480 : 11 pages changent
+480-640 : 14 pages changent
+FINI

@@ -1,0 +1,56 @@
+# Corrections de vedettes, relevees a l'oeil sur l'edition de lecture.
+# Le fac-simile garde la graphie de l'original ; c'est ici qu'on la redresse.
+# ancienne	nouvelle	motif
+*seancan	*seancar	verbe : finale -ar, non -an
+celluloido	celuloido	l redouble absent de l'orthographe ido
+milieto	milyeto	graphie ido : y et non i devant voyelle
+-eyo-	-eyo	trait final parasite : le suffixe se note -eyo
+-ez-	-ez	trait final parasite : la desinence se note -ez
+# --- Vedettes amputees a gauche : le bord du bloc a coupe une ou deux
+# cellules. Le mot se retrouve par sa definition et par sa place dans l'ordre
+# alphabetique, sans recours au scan. La page 256 en compte neuf : la dactylo
+# y a commence ces lignes-la deux cellules plus a gauche que les autres.
+rmlar	jonglar	p256 : lansar adciele plura buli — entre jokeo et jonquilo
+rko	jonko	p256 : navo chiniana a pruo alta — entre jonglar et jonquilo
+uno	jorno	p256 : klareso di la Suno, FI (F. jour, I. giorno) — entre jonquilo et jovdio
+vdio	jovdio	p256 : la dio kinesma di la semano, FIS (F. jeudi, I. giovedi, S. jueves)
+ar	juar	p256 : havar plezuro granda de la posedo — apres joyar
+tilear	jubilear	p256 : celebrar la kinadek yari di ofico — apres jubeo
+diciar	judiciar	p256 : enuncar decido, aplikante la legi
+oikar	judikar	p256 : enuncar opiniono qua aprobas o blamas
+aulara	jugulara	p256 : veini qui apartenas a la fauco
+mbriogenio	embriogenio	p141 : developeso di la embriono — entre embrazuro et embriologio
+centrika	ecentrika	p133 : di qua la centro eskartesas — le sens II dit lui-meme « Ecentriko »
+ongitudo	longitudo	p351 : koordinato geografiala — entre longa et lor
+olarimetro	polarimetro	p456 : mezurar la lumo polarigita — entre polo et polemikar
+guglar	gluglar	p204 : bruisar quale la vino ek la botelo — entre gluo et glumo
+huibar	imbibar	p236 : humidigar per absorbo — entre imbecila et imbrikar
+unre	infre	p242 : maxim apud-sule, code L (latin infra) — entre informar et infuzar
+sendro	sandro	p518 : fisho di la familio «perkidei» — entre sandarako et sandwich
+galolo	salolo	p516 : salicilato di fenolo — entre salmono et salono
+meledikar	maledikar	p358 : advokar mala chanco kontre ulu — entre malear et maleolo
+ube@256:41	jujubo	p256 : frukto ek la familio «ramnei», L. zizyphus — entre jugulara et julepo
+# --- Vedettes fautives relevees par les regles internes de l'ido :
+# consonne doublee (l'ido n'en a pas) et finale impossible.
+makrosppro	makrosporo	p357 : gameto femina opoze a la mikrosporo — p redouble
+tekenllogio	teknologio	p579 : expliko di la procedi di arto o cienco — l redouble
+timmono	timono	p588 : longa stango an la parto avana di veturo — m redouble
+borc	boro	p077 : korpo simpla, simbolo kemiala B — finale -c impossible
+fenikulc	fenikulo	p170 : planto ek la familio «umbeliferi», L. foeniculum — finale -c impossible
+impregnan	impregnar	p237 : igar penetrar en omna parti — verbe : finale -ar
+ruaDe	rusho	p513 : bendo de stofo plisita forme di kupeti — entre ruro et rusko
+dioiplinar	diciplinar	p116 : ligne retrouvee, c lu comme o — kustumigar a la regulo di subordino
+niuzo	*niuzo	p402 : vorto ne oficala — asterisko mankanta en la tapuskripto
+pliz	*pliz	p454 : vorto ne oficala, citata «*pliz» en la artiklo *prei
+sesiono	*sesiono	vorto ne oficala, citata «*sesiono» en prorogar
+siejo	*siejo	vorto ne oficala, citata «*siejo» en rezidar
+ultima	*ultima	vorto ne oficala, citata «*ultima» en lasta
+horario	*horario	vorto ne oficala
+humanismo	*humanismo	vorto ne oficala
+humanisto	*humanisto	vorto ne oficala
+lifto	*lifto	vorto ne oficala
+quadri	quadri-	prefixo : la originalo skribas « quadri... », do la streketo sequas
+poli	poli-	prefixo : la originalo skribas « poli... », do la streketo sequas
+tri@600:23	tri-	prefixo ciencala ; la altra « tri » (p600 l21) esas la cifro 3, sen streketo
+intelektuelo	*intelektuelo	vorto ne oficala
+brokoli"-kaulo	«brokoli»-kaulo	p081 : la guillemeti di la originalo, en la formo ido

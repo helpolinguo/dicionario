@@ -1,0 +1,5114 @@
+{
+"0": {
+"stocke": 1164,
+"neuf": 1647,
+"pasv": 16.770297034135908,
+"lignes": 48,
+"derniere": 1170.661290233785,
+"lignes_perdues": 28.8
+},
+"1": {
+"stocke": 1628,
+"neuf": 1123,
+"pasv": 16.780380652260668,
+"lignes": 37,
+"derniere": 1629.4892305941655,
+"lignes_perdues": -30.09
+},
+"2": {
+"stocke": 655,
+"neuf": 655,
+"pasv": 17.818937188612573,
+"lignes": 13,
+"derniere": 729.9861750048664,
+"lignes_perdues": 0.0
+},
+"3": {
+"stocke": 1514,
+"neuf": 1043,
+"pasv": 18.469862406619036,
+"lignes": 35,
+"derniere": 1517.9048382810936,
+"lignes_perdues": -25.5
+},
+"4": {
+"stocke": 933,
+"neuf": 933,
+"pasv": 17.676333813404856,
+"lignes": 40,
+"derniere": 942.8474045496617,
+"lignes_perdues": 0.0
+},
+"5": {
+"stocke": 864,
+"neuf": 864,
+"pasv": 17.57234095759259,
+"lignes": 28,
+"derniere": 858.6541563926114,
+"lignes_perdues": 0.0
+},
+"6": {
+"stocke": 948,
+"neuf": 948,
+"pasv": 17.735893807308404,
+"lignes": 34,
+"derniere": 944.1913667001319,
+"lignes_perdues": 0.0
+},
+"7": {
+"stocke": 1074,
+"neuf": 1039,
+"pasv": 18.27118049182577,
+"lignes": 7,
+"derniere": 1070.095843779223,
+"lignes_perdues": -1.92
+},
+"8": {
+"stocke": 946,
+"neuf": 946,
+"pasv": 17.78587952882628,
+"lignes": 36,
+"derniere": 953.6586234107674,
+"lignes_perdues": 0.0
+},
+"9": {
+"stocke": 1002,
+"neuf": 1002,
+"pasv": 17.741173814628745,
+"lignes": 41,
+"derniere": 995.9687340349332,
+"lignes_perdues": 0.0
+},
+"10": {
+"stocke": 987,
+"neuf": 987,
+"pasv": 17.775435555143478,
+"lignes": 42,
+"derniere": 982.0922384268717,
+"lignes_perdues": 0.0
+},
+"11": {
+"stocke": 997,
+"neuf": 997,
+"pasv": 17.72910125668646,
+"lignes": 41,
+"derniere": 991.0736172616421,
+"lignes_perdues": 0.0
+},
+"12": {
+"stocke": 1000,
+"neuf": 1000,
+"pasv": 17.74333357360509,
+"lignes": 46,
+"derniere": 995.5948095229401,
+"lignes_perdues": 0.0
+},
+"13": {
+"stocke": 1022,
+"neuf": 1022,
+"pasv": 17.83981104028251,
+"lignes": 42,
+"derniere": 1030.040480700593,
+"lignes_perdues": 0.0
+},
+"14": {
+"stocke": 1000,
+"neuf": 1000,
+"pasv": 17.748026581400964,
+"lignes": 42,
+"derniere": 995.22821644443,
+"lignes_perdues": 0.0
+},
+"15": {
+"stocke": 973,
+"neuf": 973,
+"pasv": 17.784633208119207,
+"lignes": 39,
+"derniere": 981.3971886195714,
+"lignes_perdues": 0.0
+},
+"16": {
+"stocke": 952,
+"neuf": 952,
+"pasv": 17.789443412359503,
+"lignes": 36,
+"derniere": 946.2211882335514,
+"lignes_perdues": 0.0
+},
+"17": {
+"stocke": 995,
+"neuf": 995,
+"pasv": 17.76680503193618,
+"lignes": 42,
+"derniere": 1001.4009107387853,
+"lignes_perdues": 0.0
+},
+"18": {
+"stocke": 955,
+"neuf": 955,
+"pasv": 17.8336801219052,
+"lignes": 41,
+"derniere": 963.415635177206,
+"lignes_perdues": 0.0
+},
+"19": {
+"stocke": 966,
+"neuf": 966,
+"pasv": 17.80048567819423,
+"lignes": 42,
+"derniere": 959.4942936567754,
+"lignes_perdues": 0.0
+},
+"20": {
+"stocke": 1039,
+"neuf": 1039,
+"pasv": 17.81994236296126,
+"lignes": 42,
+"derniere": 1032.057775167564,
+"lignes_perdues": 0.0
+},
+"21": {
+"stocke": 958,
+"neuf": 958,
+"pasv": 17.78542796090857,
+"lignes": 38,
+"derniere": 952.621898245902,
+"lignes_perdues": 0.0
+},
+"22": {
+"stocke": 1018,
+"neuf": 1018,
+"pasv": 17.816267155926855,
+"lignes": 43,
+"derniere": 1012.809896881865,
+"lignes_perdues": 0.0
+},
+"23": {
+"stocke": 1001,
+"neuf": 1001,
+"pasv": 17.751546645163483,
+"lignes": 43,
+"derniere": 1009.5812783376265,
+"lignes_perdues": 0.0
+},
+"24": {
+"stocke": 1037,
+"neuf": 1037,
+"pasv": 17.81633761596033,
+"lignes": 41,
+"derniere": 1028.93856249993,
+"lignes_perdues": 0.0
+},
+"25": {
+"stocke": 936,
+"neuf": 936,
+"pasv": 17.73971953813164,
+"lignes": 39,
+"derniere": 930.5104969241994,
+"lignes_perdues": 0.0
+},
+"26": {
+"stocke": 1025,
+"neuf": 1025,
+"pasv": 17.848458012962567,
+"lignes": 41,
+"derniere": 1033.4455455436732,
+"lignes_perdues": 0.0
+},
+"27": {
+"stocke": 969,
+"neuf": 969,
+"pasv": 17.73656742324705,
+"lignes": 41,
+"derniere": 962.86279687994,
+"lignes_perdues": 0.0
+},
+"28": {
+"stocke": 997,
+"neuf": 997,
+"pasv": 17.728746674395182,
+"lignes": 41,
+"derniere": 1006.5026908879591,
+"lignes_perdues": 0.0
+},
+"29": {
+"stocke": 977,
+"neuf": 977,
+"pasv": 17.782872821296447,
+"lignes": 40,
+"derniere": 970.9551845799115,
+"lignes_perdues": 0.0
+},
+"30": {
+"stocke": 1014,
+"neuf": 1014,
+"pasv": 17.755439317957986,
+"lignes": 41,
+"derniere": 1008.8791345314618,
+"lignes_perdues": 0.0
+},
+"31": {
+"stocke": 1056,
+"neuf": 1056,
+"pasv": 17.771405143132952,
+"lignes": 43,
+"derniere": 1051.0307917795767,
+"lignes_perdues": 0.0
+},
+"32": {
+"stocke": 1035,
+"neuf": 1035,
+"pasv": 17.768177403574416,
+"lignes": 44,
+"derniere": 1041.887068087096,
+"lignes_perdues": 0.0
+},
+"33": {
+"stocke": 993,
+"neuf": 993,
+"pasv": 17.755662074184702,
+"lignes": 43,
+"derniere": 999.4726061649023,
+"lignes_perdues": 0.0
+},
+"34": {
+"stocke": 991,
+"neuf": 991,
+"pasv": 17.77020353863379,
+"lignes": 37,
+"derniere": 984.7246046801739,
+"lignes_perdues": 0.0
+},
+"35": {
+"stocke": 987,
+"neuf": 987,
+"pasv": 17.74600864725277,
+"lignes": 41,
+"derniere": 981.7089658367624,
+"lignes_perdues": 0.0
+},
+"36": {
+"stocke": 1010,
+"neuf": 1010,
+"pasv": 17.769685960767855,
+"lignes": 39,
+"derniere": 1016.522017269144,
+"lignes_perdues": 0.0
+},
+"37": {
+"stocke": 1033,
+"neuf": 1033,
+"pasv": 17.76908257427048,
+"lignes": 39,
+"derniere": 1027.004107281153,
+"lignes_perdues": 0.0
+},
+"38": {
+"stocke": 1018,
+"neuf": 1018,
+"pasv": 17.750920998654642,
+"lignes": 43,
+"derniere": 1011.7632477354816,
+"lignes_perdues": 0.0
+},
+"39": {
+"stocke": 990,
+"neuf": 990,
+"pasv": 17.73618446513926,
+"lignes": 40,
+"derniere": 984.1609183726113,
+"lignes_perdues": 0.0
+},
+"40": {
+"stocke": 1043,
+"neuf": 1043,
+"pasv": 17.843306768329438,
+"lignes": 44,
+"derniere": 1037.3014641331104,
+"lignes_perdues": 0.0
+},
+"41": {
+"stocke": 1035,
+"neuf": 1035,
+"pasv": 17.776514641029948,
+"lignes": 42,
+"derniere": 1041.74200456977,
+"lignes_perdues": 0.0
+},
+"42": {
+"stocke": 1001,
+"neuf": 1001,
+"pasv": 17.791882736006684,
+"lignes": 41,
+"derniere": 995.1397754204695,
+"lignes_perdues": 0.0
+},
+"43": {
+"stocke": 1042,
+"neuf": 1042,
+"pasv": 17.79610020916605,
+"lignes": 40,
+"derniere": 1037.4093905716672,
+"lignes_perdues": 0.0
+},
+"44": {
+"stocke": 1016,
+"neuf": 1016,
+"pasv": 17.754092926874534,
+"lignes": 43,
+"derniere": 1009.5050378050428,
+"lignes_perdues": 0.0
+},
+"45": {
+"stocke": 1070,
+"neuf": 1070,
+"pasv": 17.81104618433844,
+"lignes": 44,
+"derniere": 1064.8651058080954,
+"lignes_perdues": 0.0
+},
+"46": {
+"stocke": 1029,
+"neuf": 1029,
+"pasv": 17.763380101264964,
+"lignes": 45,
+"derniere": 1022.3919401731538,
+"lignes_perdues": 0.0
+},
+"47": {
+"stocke": 1032,
+"neuf": 1032,
+"pasv": 17.784809280848346,
+"lignes": 42,
+"derniere": 1026.3020837044185,
+"lignes_perdues": 0.0
+},
+"48": {
+"stocke": 1045,
+"neuf": 1045,
+"pasv": 17.811037014458602,
+"lignes": 42,
+"derniere": 1039.9490607761072,
+"lignes_perdues": 0.0
+},
+"49": {
+"stocke": 1038,
+"neuf": 1038,
+"pasv": 17.955321237552972,
+"lignes": 42,
+"derniere": 1044.6540662825046,
+"lignes_perdues": 0.0
+},
+"50": {
+"stocke": 1034,
+"neuf": 1034,
+"pasv": 17.98767235257964,
+"lignes": 47,
+"derniere": 1116.9909060000057,
+"lignes_perdues": 0.0
+},
+"51": {
+"stocke": 1072,
+"neuf": 1072,
+"pasv": 17.91523205125748,
+"lignes": 43,
+"derniere": 1078.8108285224994,
+"lignes_perdues": 0.0
+},
+"52": {
+"stocke": 1085,
+"neuf": 1085,
+"pasv": 18.011462287728264,
+"lignes": 48,
+"derniere": 1077.807714891932,
+"lignes_perdues": 0.0
+},
+"53": {
+"stocke": 1019,
+"neuf": 1019,
+"pasv": 17.94898147568376,
+"lignes": 41,
+"derniere": 1026.1544605027993,
+"lignes_perdues": 0.0
+},
+"54": {
+"stocke": 1015,
+"neuf": 1015,
+"pasv": 17.99609951864222,
+"lignes": 43,
+"derniere": 1134.1700227530928,
+"lignes_perdues": 0.0
+},
+"55": {
+"stocke": 989,
+"neuf": 989,
+"pasv": 17.945279362300575,
+"lignes": 40,
+"derniere": 982.9056379785604,
+"lignes_perdues": 0.0
+},
+"56": {
+"stocke": 1085,
+"neuf": 1085,
+"pasv": 18.040788048709555,
+"lignes": 45,
+"derniere": 1118.3065268887322,
+"lignes_perdues": 0.0
+},
+"57": {
+"stocke": 1065,
+"neuf": 1065,
+"pasv": 17.98620460579924,
+"lignes": 41,
+"derniere": 1071.9362080741928,
+"lignes_perdues": 0.0
+},
+"58": {
+"stocke": 1130,
+"neuf": 1130,
+"pasv": 18.040903954812332,
+"lignes": 42,
+"derniere": 1136.510727628357,
+"lignes_perdues": 0.0
+},
+"59": {
+"stocke": 787,
+"neuf": 1158,
+"pasv": 17.856659606889767,
+"lignes": 30,
+"derniere": 785.7230910086128,
+"lignes_perdues": 20.78
+},
+"60": {
+"stocke": 997,
+"neuf": 997,
+"pasv": 17.99125442042275,
+"lignes": 40,
+"derniere": 1133.9319418557775,
+"lignes_perdues": 0.0
+},
+"61": {
+"stocke": 1028,
+"neuf": 1028,
+"pasv": 17.926265856120725,
+"lignes": 43,
+"derniere": 1038.1396138614286,
+"lignes_perdues": 0.0
+},
+"62": {
+"stocke": 996,
+"neuf": 996,
+"pasv": 17.960064153322882,
+"lignes": 42,
+"derniere": 1004.0786913996652,
+"lignes_perdues": 0.0
+},
+"63": {
+"stocke": 1009,
+"neuf": 1009,
+"pasv": 17.8956761736009,
+"lignes": 42,
+"derniere": 1002.8053323966565,
+"lignes_perdues": 0.0
+},
+"64": {
+"stocke": 1026,
+"neuf": 1026,
+"pasv": 17.97941275306156,
+"lignes": 44,
+"derniere": 1033.7707767968077,
+"lignes_perdues": 0.0
+},
+"65": {
+"stocke": 1016,
+"neuf": 1016,
+"pasv": 17.878793142969872,
+"lignes": 39,
+"derniere": 1009.0115568362422,
+"lignes_perdues": 0.0
+},
+"66": {
+"stocke": 980,
+"neuf": 1007,
+"pasv": 17.91356923371826,
+"lignes": 36,
+"derniere": 980.0023280196871,
+"lignes_perdues": 1.51
+},
+"67": {
+"stocke": 1021,
+"neuf": 1021,
+"pasv": 17.901915998861785,
+"lignes": 44,
+"derniere": 1014.7925308635595,
+"lignes_perdues": 0.0
+},
+"68": {
+"stocke": 976,
+"neuf": 976,
+"pasv": 17.962801696559644,
+"lignes": 39,
+"derniere": 969.9469356578899,
+"lignes_perdues": 0.0
+},
+"69": {
+"stocke": 999,
+"neuf": 999,
+"pasv": 17.923451609103697,
+"lignes": 43,
+"derniere": 992.661801168081,
+"lignes_perdues": 0.0
+},
+"70": {
+"stocke": 990,
+"neuf": 990,
+"pasv": 17.928421628384328,
+"lignes": 40,
+"derniere": 984.1909349762722,
+"lignes_perdues": 0.0
+},
+"71": {
+"stocke": 1087,
+"neuf": 1087,
+"pasv": 17.930988933664956,
+"lignes": 46,
+"derniere": 1091.15868514951,
+"lignes_perdues": 0.0
+},
+"72": {
+"stocke": 1062,
+"neuf": 1062,
+"pasv": 17.929669970432847,
+"lignes": 43,
+"derniere": 1072.50838687613,
+"lignes_perdues": 0.0
+},
+"73": {
+"stocke": 1022,
+"neuf": 1022,
+"pasv": 17.93566193818274,
+"lignes": 41,
+"derniere": 1032.7211491051485,
+"lignes_perdues": 0.0
+},
+"74": {
+"stocke": 992,
+"neuf": 992,
+"pasv": 17.95849708445199,
+"lignes": 40,
+"derniere": 984.3814008164267,
+"lignes_perdues": 0.0
+},
+"75": {
+"stocke": 1027,
+"neuf": 1027,
+"pasv": 17.93303083658836,
+"lignes": 43,
+"derniere": 1021.5101875369537,
+"lignes_perdues": 0.0
+},
+"76": {
+"stocke": 1009,
+"neuf": 1009,
+"pasv": 17.874354230477056,
+"lignes": 42,
+"derniere": 1002.4292379220485,
+"lignes_perdues": 0.0
+},
+"77": {
+"stocke": 994,
+"neuf": 994,
+"pasv": 17.75744801832427,
+"lignes": 41,
+"derniere": 1004.9170477741827,
+"lignes_perdues": 0.0
+},
+"78": {
+"stocke": 967,
+"neuf": 967,
+"pasv": 17.762666805524002,
+"lignes": 41,
+"derniere": 973.9511114791774,
+"lignes_perdues": 0.0
+},
+"79": {
+"stocke": 969,
+"neuf": 969,
+"pasv": 17.700733838749596,
+"lignes": 40,
+"derniere": 962.2819114051117,
+"lignes_perdues": 0.0
+},
+"80": {
+"stocke": 1010,
+"neuf": 1010,
+"pasv": 17.81179233747283,
+"lignes": 39,
+"derniere": 1004.5849450228043,
+"lignes_perdues": 0.0
+},
+"81": {
+"stocke": 1045,
+"neuf": 1045,
+"pasv": 17.755097015961976,
+"lignes": 44,
+"derniere": 1039.6577445137293,
+"lignes_perdues": 0.0
+},
+"82": {
+"stocke": 974,
+"neuf": 974,
+"pasv": 17.691124055597218,
+"lignes": 41,
+"derniere": 968.731973516682,
+"lignes_perdues": 0.0
+},
+"83": {
+"stocke": 984,
+"neuf": 984,
+"pasv": 17.693432533830624,
+"lignes": 39,
+"derniere": 977.9998206435208,
+"lignes_perdues": 0.0
+},
+"84": {
+"stocke": 984,
+"neuf": 984,
+"pasv": 17.700835872893965,
+"lignes": 38,
+"derniere": 978.0660227182079,
+"lignes_perdues": 0.0
+},
+"85": {
+"stocke": 993,
+"neuf": 993,
+"pasv": 17.69771216687213,
+"lignes": 41,
+"derniere": 986.9737957528345,
+"lignes_perdues": 0.0
+},
+"86": {
+"stocke": 713,
+"neuf": 713,
+"pasv": 17.650667911394734,
+"lignes": 30,
+"derniere": 711.1590905605863,
+"lignes_perdues": 0.0
+},
+"87": {
+"stocke": 971,
+"neuf": 1109,
+"pasv": 16.821245300331896,
+"lignes": 34,
+"derniere": 965.7402543562712,
+"lignes_perdues": 8.2
+},
+"88": {
+"stocke": 1066,
+"neuf": 1066,
+"pasv": 17.744552861664804,
+"lignes": 46,
+"derniere": 1074.646680310746,
+"lignes_perdues": 0.0
+},
+"89": {
+"stocke": 969,
+"neuf": 969,
+"pasv": 17.73961318857921,
+"lignes": 39,
+"derniere": 964.3609210431014,
+"lignes_perdues": 0.0
+},
+"90": {
+"stocke": 1018,
+"neuf": 1018,
+"pasv": 17.811252443320463,
+"lignes": 43,
+"derniere": 1084.0472364085508,
+"lignes_perdues": 0.0
+},
+"91": {
+"stocke": 997,
+"neuf": 997,
+"pasv": 17.770535101829932,
+"lignes": 43,
+"derniere": 992.9265902880953,
+"lignes_perdues": 0.0
+},
+"92": {
+"stocke": 982,
+"neuf": 982,
+"pasv": 17.76337819151593,
+"lignes": 41,
+"derniere": 976.5383634934394,
+"lignes_perdues": 0.0
+},
+"93": {
+"stocke": 993,
+"neuf": 993,
+"pasv": 17.743101225910547,
+"lignes": 40,
+"derniere": 1003.2179588681146,
+"lignes_perdues": 0.0
+},
+"94": {
+"stocke": 967,
+"neuf": 967,
+"pasv": 17.777336801021843,
+"lignes": 40,
+"derniere": 976.2312521083123,
+"lignes_perdues": 0.0
+},
+"95": {
+"stocke": 994,
+"neuf": 994,
+"pasv": 17.736269219825513,
+"lignes": 41,
+"derniere": 988.1963277838137,
+"lignes_perdues": 0.0
+},
+"96": {
+"stocke": 1045,
+"neuf": 1045,
+"pasv": 17.755591553436453,
+"lignes": 46,
+"derniere": 1038.803390983017,
+"lignes_perdues": 0.0
+},
+"97": {
+"stocke": 1024,
+"neuf": 1024,
+"pasv": 17.690842318169132,
+"lignes": 43,
+"derniere": 1018.917848930239,
+"lignes_perdues": 0.0
+},
+"98": {
+"stocke": 1008,
+"neuf": 1008,
+"pasv": 17.71677045076722,
+"lignes": 42,
+"derniere": 1002.5292586165281,
+"lignes_perdues": 0.0
+},
+"99": {
+"stocke": 964,
+"neuf": 964,
+"pasv": 17.682172663612505,
+"lignes": 42,
+"derniere": 958.5353130141665,
+"lignes_perdues": 0.0
+},
+"100": {
+"stocke": 1010,
+"neuf": 1010,
+"pasv": 17.71502071098803,
+"lignes": 40,
+"derniere": 1004.4483420369131,
+"lignes_perdues": 0.0
+},
+"101": {
+"stocke": 1217,
+"neuf": 1217,
+"pasv": 17.702420424734484,
+"lignes": 47,
+"derniere": 1216.6664619176136,
+"lignes_perdues": 0.0
+},
+"102": {
+"stocke": 1214,
+"neuf": 1214,
+"pasv": 17.801279327366633,
+"lignes": 44,
+"derniere": 1219.6003817468497,
+"lignes_perdues": 0.0
+},
+"103": {
+"stocke": 979,
+"neuf": 979,
+"pasv": 17.801293230227333,
+"lignes": 45,
+"derniere": 972.842180382079,
+"lignes_perdues": 0.0
+},
+"104": {
+"stocke": 1002,
+"neuf": 1002,
+"pasv": 17.805239941691486,
+"lignes": 40,
+"derniere": 1114.1483933071638,
+"lignes_perdues": 0.0
+},
+"105": {
+"stocke": 1072,
+"neuf": 1072,
+"pasv": 17.81604772347012,
+"lignes": 42,
+"derniere": 1066.7010211794393,
+"lignes_perdues": 0.0
+},
+"106": {
+"stocke": 1005,
+"neuf": 1005,
+"pasv": 17.835527826365084,
+"lignes": 44,
+"derniere": 1012.2926907867815,
+"lignes_perdues": 0.0
+},
+"107": {
+"stocke": 989,
+"neuf": 989,
+"pasv": 17.825276400587406,
+"lignes": 39,
+"derniere": 996.5518078960718,
+"lignes_perdues": 0.0
+},
+"108": {
+"stocke": 1027,
+"neuf": 1027,
+"pasv": 17.86348817757358,
+"lignes": 48,
+"derniere": 1109.365393621796,
+"lignes_perdues": 0.0
+},
+"109": {
+"stocke": 1028,
+"neuf": 1028,
+"pasv": 17.838741438926718,
+"lignes": 41,
+"derniere": 1021.3834208871,
+"lignes_perdues": 0.0
+},
+"110": {
+"stocke": 982,
+"neuf": 982,
+"pasv": 17.83169763643681,
+"lignes": 40,
+"derniere": 976.3946743644052,
+"lignes_perdues": 0.0
+},
+"111": {
+"stocke": 1089,
+"neuf": 1102,
+"pasv": 17.725050000000003,
+"lignes": 17,
+"derniere": 1086.654647293458,
+"lignes_perdues": 0.73
+},
+"112": {
+"stocke": 1029,
+"neuf": 1029,
+"pasv": 17.84485672440089,
+"lignes": 40,
+"derniere": 1024.5444673701645,
+"lignes_perdues": 0.0
+},
+"113": {
+"stocke": 1003,
+"neuf": 1003,
+"pasv": 17.755418684545084,
+"lignes": 40,
+"derniere": 1012.1306423617842,
+"lignes_perdues": 0.0
+},
+"114": {
+"stocke": 1038,
+"neuf": 1038,
+"pasv": 17.8250213011228,
+"lignes": 41,
+"derniere": 1032.1747472403845,
+"lignes_perdues": 0.0
+},
+"115": {
+"stocke": 1022,
+"neuf": 1022,
+"pasv": 17.815026068330095,
+"lignes": 41,
+"derniere": 1017.349234783148,
+"lignes_perdues": 0.0
+},
+"116": {
+"stocke": 994,
+"neuf": 1071,
+"pasv": 17.79402934178667,
+"lignes": 42,
+"derniere": 995.2341035103217,
+"lignes_perdues": 4.33
+},
+"117": {
+"stocke": 997,
+"neuf": 997,
+"pasv": 17.681577356781737,
+"lignes": 43,
+"derniere": 1004.8921487367722,
+"lignes_perdues": 0.0
+},
+"118": {
+"stocke": 1013,
+"neuf": 1013,
+"pasv": 17.787967264739866,
+"lignes": 42,
+"derniere": 1006.4410683052652,
+"lignes_perdues": 0.0
+},
+"119": {
+"stocke": 993,
+"neuf": 993,
+"pasv": 17.80166204558264,
+"lignes": 43,
+"derniere": 987.9013014640994,
+"lignes_perdues": 0.0
+},
+"120": {
+"stocke": 1064,
+"neuf": 1064,
+"pasv": 17.86216124098173,
+"lignes": 42,
+"derniere": 1058.8282370107895,
+"lignes_perdues": 0.0
+},
+"121": {
+"stocke": 1073,
+"neuf": 1073,
+"pasv": 17.799480002753093,
+"lignes": 47,
+"derniere": 1070.9188365020648,
+"lignes_perdues": 0.0
+},
+"122": {
+"stocke": 982,
+"neuf": 982,
+"pasv": 17.812252948473116,
+"lignes": 43,
+"derniere": 975.9339716913621,
+"lignes_perdues": 0.0
+},
+"123": {
+"stocke": 1020,
+"neuf": 1020,
+"pasv": 17.828191136556406,
+"lignes": 40,
+"derniere": 1013.4673121884177,
+"lignes_perdues": 0.0
+},
+"124": {
+"stocke": 968,
+"neuf": 968,
+"pasv": 17.846880979010397,
+"lignes": 39,
+"derniere": 974.8926201581609,
+"lignes_perdues": 0.0
+},
+"125": {
+"stocke": 1024,
+"neuf": 1024,
+"pasv": 17.788418576266782,
+"lignes": 43,
+"derniere": 1019.364311606009,
+"lignes_perdues": 0.0
+},
+"126": {
+"stocke": 1031,
+"neuf": 1031,
+"pasv": 17.861452677115917,
+"lignes": 40,
+"derniere": 1026.0543890030697,
+"lignes_perdues": 0.0
+},
+"127": {
+"stocke": 966,
+"neuf": 966,
+"pasv": 17.831965571707755,
+"lignes": 39,
+"derniere": 960.960854510745,
+"lignes_perdues": 0.0
+},
+"128": {
+"stocke": 1033,
+"neuf": 1033,
+"pasv": 17.85394748184321,
+"lignes": 43,
+"derniere": 1028.1796778576806,
+"lignes_perdues": 0.0
+},
+"129": {
+"stocke": 1025,
+"neuf": 1025,
+"pasv": 17.786111740707756,
+"lignes": 45,
+"derniere": 1090.9917111715301,
+"lignes_perdues": 0.0
+},
+"130": {
+"stocke": 1028,
+"neuf": 1028,
+"pasv": 17.79121975079549,
+"lignes": 41,
+"derniere": 1022.9506264701964,
+"lignes_perdues": 0.0
+},
+"131": {
+"stocke": 1039,
+"neuf": 1039,
+"pasv": 17.791837530773194,
+"lignes": 40,
+"derniere": 1035.2244590921582,
+"lignes_perdues": 0.0
+},
+"132": {
+"stocke": 485,
+"neuf": 485,
+"pasv": 17.861567036558622,
+"lignes": 12,
+"derniere": 487.2713820739568,
+"lignes_perdues": 0.0
+},
+"133": {
+"stocke": 1048,
+"neuf": 1048,
+"pasv": 17.772639159438246,
+"lignes": 42,
+"derniere": 1044.2948362539125,
+"lignes_perdues": 0.0
+},
+"134": {
+"stocke": 987,
+"neuf": 987,
+"pasv": 17.76887191457252,
+"lignes": 40,
+"derniere": 993.4523013441616,
+"lignes_perdues": 0.0
+},
+"135": {
+"stocke": 1003,
+"neuf": 1003,
+"pasv": 17.756100539065738,
+"lignes": 43,
+"derniere": 997.2220223505531,
+"lignes_perdues": 0.0
+},
+"136": {
+"stocke": 1043,
+"neuf": 1043,
+"pasv": 17.812188377076016,
+"lignes": 46,
+"derniere": 1037.6347062432158,
+"lignes_perdues": 0.0
+},
+"137": {
+"stocke": 1024,
+"neuf": 1024,
+"pasv": 17.73615158433686,
+"lignes": 42,
+"derniere": 1019.1298912739065,
+"lignes_perdues": 0.0
+},
+"138": {
+"stocke": 1011,
+"neuf": 1011,
+"pasv": 17.76302530374861,
+"lignes": 42,
+"derniere": 1021.7326748034899,
+"lignes_perdues": 0.0
+},
+"139": {
+"stocke": 999,
+"neuf": 999,
+"pasv": 17.803956356243322,
+"lignes": 41,
+"derniere": 994.0481123949633,
+"lignes_perdues": 0.0
+},
+"140": {
+"stocke": 995,
+"neuf": 995,
+"pasv": 17.86718738238116,
+"lignes": 44,
+"derniere": 990.8066835459392,
+"lignes_perdues": 0.0
+},
+"141": {
+"stocke": 1075,
+"neuf": 1075,
+"pasv": 17.77020142580591,
+"lignes": 46,
+"derniere": 1068.4488268293583,
+"lignes_perdues": 0.0
+},
+"142": {
+"stocke": 1050,
+"neuf": 1050,
+"pasv": 17.86355406798525,
+"lignes": 43,
+"derniere": 1044.8893998368562,
+"lignes_perdues": 0.0
+},
+"143": {
+"stocke": 1001,
+"neuf": 1001,
+"pasv": 17.805024083027227,
+"lignes": 39,
+"derniere": 996.7208740641984,
+"lignes_perdues": 0.0
+},
+"144": {
+"stocke": 1014,
+"neuf": 1014,
+"pasv": 17.861780377279885,
+"lignes": 43,
+"derniere": 1010.744695074115,
+"lignes_perdues": 0.0
+},
+"145": {
+"stocke": 1008,
+"neuf": 1008,
+"pasv": 17.728862756392875,
+"lignes": 38,
+"derniere": 1003.952398571316,
+"lignes_perdues": 0.0
+},
+"146": {
+"stocke": 1048,
+"neuf": 1048,
+"pasv": 17.777637127128042,
+"lignes": 40,
+"derniere": 1041.6842570307026,
+"lignes_perdues": 0.0
+},
+"147": {
+"stocke": 1010,
+"neuf": 1010,
+"pasv": 17.756142737077106,
+"lignes": 41,
+"derniere": 1005.3878027482856,
+"lignes_perdues": 0.0
+},
+"148": {
+"stocke": 995,
+"neuf": 995,
+"pasv": 17.80547312477571,
+"lignes": 43,
+"derniere": 989.468855442095,
+"lignes_perdues": 0.0
+},
+"149": {
+"stocke": 1034,
+"neuf": 1034,
+"pasv": 17.775864621766086,
+"lignes": 44,
+"derniere": 1030.2734069303926,
+"lignes_perdues": 0.0
+},
+"150": {
+"stocke": 1030,
+"neuf": 1030,
+"pasv": 17.817689522091218,
+"lignes": 44,
+"derniere": 1037.750410956923,
+"lignes_perdues": 0.0
+},
+"151": {
+"stocke": 995,
+"neuf": 995,
+"pasv": 17.75009826656561,
+"lignes": 39,
+"derniere": 989.6749830740301,
+"lignes_perdues": 0.0
+},
+"152": {
+"stocke": 996,
+"neuf": 996,
+"pasv": 17.82774520477753,
+"lignes": 43,
+"derniere": 1003.6450717402683,
+"lignes_perdues": 0.0
+},
+"153": {
+"stocke": 988,
+"neuf": 988,
+"pasv": 17.718424636601444,
+"lignes": 39,
+"derniere": 982.8835540464758,
+"lignes_perdues": 0.0
+},
+"154": {
+"stocke": 1061,
+"neuf": 1061,
+"pasv": 17.806239064776946,
+"lignes": 47,
+"derniere": 1072.4953219045944,
+"lignes_perdues": 0.0
+},
+"155": {
+"stocke": 977,
+"neuf": 977,
+"pasv": 17.82794191674836,
+"lignes": 39,
+"derniere": 971.9684528267869,
+"lignes_perdues": 0.0
+},
+"156": {
+"stocke": 1033,
+"neuf": 1033,
+"pasv": 17.85639925809769,
+"lignes": 40,
+"derniere": 1028.2159367832357,
+"lignes_perdues": 0.0
+},
+"157": {
+"stocke": 1017,
+"neuf": 1017,
+"pasv": 17.786608087861243,
+"lignes": 41,
+"derniere": 1011.6208989597933,
+"lignes_perdues": 0.0
+},
+"158": {
+"stocke": 951,
+"neuf": 951,
+"pasv": 17.83602333869865,
+"lignes": 39,
+"derniere": 945.1567331727077,
+"lignes_perdues": 0.0
+},
+"159": {
+"stocke": 1027,
+"neuf": 1027,
+"pasv": 17.89311368121138,
+"lignes": 43,
+"derniere": 1022.3407417325315,
+"lignes_perdues": 0.0
+},
+"160": {
+"stocke": 943,
+"neuf": 1005,
+"pasv": 17.904796923053606,
+"lignes": 38,
+"derniere": 945.7159106027484,
+"lignes_perdues": 3.46
+},
+"161": {
+"stocke": 1041,
+"neuf": 1041,
+"pasv": 17.78091666612307,
+"lignes": 44,
+"derniere": 1050.67575943237,
+"lignes_perdues": 0.0
+},
+"162": {
+"stocke": 955,
+"neuf": 999,
+"pasv": 17.830345910756463,
+"lignes": 33,
+"derniere": 957.9650701907302,
+"lignes_perdues": 2.47
+},
+"163": {
+"stocke": 1073,
+"neuf": 1073,
+"pasv": 17.839156345190265,
+"lignes": 40,
+"derniere": 1073.6997381308445,
+"lignes_perdues": 0.0
+},
+"164": {
+"stocke": 958,
+"neuf": 982,
+"pasv": 16.956051550266462,
+"lignes": 42,
+"derniere": 1072.7591182552067,
+"lignes_perdues": 1.42
+},
+"165": {
+"stocke": 1133,
+"neuf": 1133,
+"pasv": 17.937056692709792,
+"lignes": 40,
+"derniere": 1126.6599477457248,
+"lignes_perdues": 0.0
+},
+"166": {
+"stocke": 1078,
+"neuf": 1078,
+"pasv": 17.967881430714993,
+"lignes": 45,
+"derniere": 1069.9632496999957,
+"lignes_perdues": 0.0
+},
+"167": {
+"stocke": 1056,
+"neuf": 1056,
+"pasv": 17.956475218571693,
+"lignes": 41,
+"derniere": 1049.9191866285216,
+"lignes_perdues": 0.0
+},
+"168": {
+"stocke": 1012,
+"neuf": 1024,
+"pasv": 17.959171457855852,
+"lignes": 40,
+"derniere": 1012.9881349490572,
+"lignes_perdues": 0.67
+},
+"169": {
+"stocke": 1057,
+"neuf": 1057,
+"pasv": 17.921760812891993,
+"lignes": 45,
+"derniere": 1063.9715307862016,
+"lignes_perdues": 0.0
+},
+"170": {
+"stocke": 1005,
+"neuf": 1005,
+"pasv": 17.924801861987174,
+"lignes": 41,
+"derniere": 1012.447676203488,
+"lignes_perdues": 0.0
+},
+"171": {
+"stocke": 1053,
+"neuf": 1053,
+"pasv": 17.961320316908775,
+"lignes": 46,
+"derniere": 1046.6944484960084,
+"lignes_perdues": 0.0
+},
+"172": {
+"stocke": 1036,
+"neuf": 1036,
+"pasv": 17.960317263158846,
+"lignes": 42,
+"derniere": 1029.2296733419112,
+"lignes_perdues": 0.0
+},
+"173": {
+"stocke": 1041,
+"neuf": 1041,
+"pasv": 17.908548000385306,
+"lignes": 41,
+"derniere": 1050.2662677737685,
+"lignes_perdues": 0.0
+},
+"174": {
+"stocke": 1070,
+"neuf": 1070,
+"pasv": 17.918016833068606,
+"lignes": 41,
+"derniere": 1065.0290427012212,
+"lignes_perdues": 0.0
+},
+"175": {
+"stocke": 986,
+"neuf": 986,
+"pasv": 17.937618142874808,
+"lignes": 40,
+"derniere": 979.4791447110065,
+"lignes_perdues": 0.0
+},
+"176": {
+"stocke": 1001,
+"neuf": 1001,
+"pasv": 17.92082144723355,
+"lignes": 38,
+"derniere": 1012.203848031228,
+"lignes_perdues": 0.0
+},
+"177": {
+"stocke": 1032,
+"neuf": 1032,
+"pasv": 17.9273936202661,
+"lignes": 41,
+"derniere": 1027.0668034171038,
+"lignes_perdues": 0.0
+},
+"178": {
+"stocke": 1039,
+"neuf": 1039,
+"pasv": 17.959701828764995,
+"lignes": 41,
+"derniere": 1047.3259410123194,
+"lignes_perdues": 0.0
+},
+"179": {
+"stocke": 1033,
+"neuf": 1033,
+"pasv": 17.94073727803279,
+"lignes": 41,
+"derniere": 1027.0546542834313,
+"lignes_perdues": 0.0
+},
+"180": {
+"stocke": 1032,
+"neuf": 1032,
+"pasv": 17.96278251453552,
+"lignes": 41,
+"derniere": 1025.6369724875108,
+"lignes_perdues": 0.0
+},
+"181": {
+"stocke": 1029,
+"neuf": 1029,
+"pasv": 17.95448083355422,
+"lignes": 39,
+"derniere": 1037.8916383777052,
+"lignes_perdues": 0.0
+},
+"182": {
+"stocke": 1045,
+"neuf": 1045,
+"pasv": 17.954341063117738,
+"lignes": 42,
+"derniere": 1037.2614890998511,
+"lignes_perdues": 0.0
+},
+"183": {
+"stocke": 1020,
+"neuf": 1020,
+"pasv": 18.003215963272158,
+"lignes": 38,
+"derniere": 1027.2419353286577,
+"lignes_perdues": 0.0
+},
+"184": {
+"stocke": 991,
+"neuf": 991,
+"pasv": 17.959981336920247,
+"lignes": 41,
+"derniere": 1000.0274135983095,
+"lignes_perdues": 0.0
+},
+"185": {
+"stocke": 1040,
+"neuf": 1040,
+"pasv": 17.991181712021692,
+"lignes": 46,
+"derniere": 1034.2057483863096,
+"lignes_perdues": 0.0
+},
+"186": {
+"stocke": 1028,
+"neuf": 1028,
+"pasv": 17.99748124064303,
+"lignes": 41,
+"derniere": 1021.2380223255625,
+"lignes_perdues": 0.0
+},
+"187": {
+"stocke": 1027,
+"neuf": 1027,
+"pasv": 17.97307727825271,
+"lignes": 42,
+"derniere": 1021.9212476672819,
+"lignes_perdues": 0.0
+},
+"188": {
+"stocke": 1014,
+"neuf": 1014,
+"pasv": 17.948247141722806,
+"lignes": 45,
+"derniere": 1020.6808323209218,
+"lignes_perdues": 0.0
+},
+"189": {
+"stocke": 1016,
+"neuf": 1016,
+"pasv": 17.943313693417963,
+"lignes": 42,
+"derniere": 1009.3703147847433,
+"lignes_perdues": 0.0
+},
+"190": {
+"stocke": 1068,
+"neuf": 1068,
+"pasv": 17.943541341230702,
+"lignes": 45,
+"derniere": 1060.492630333873,
+"lignes_perdues": 0.0
+},
+"191": {
+"stocke": 1073,
+"neuf": 1073,
+"pasv": 17.97181049814279,
+"lignes": 44,
+"derniere": 1066.924270730821,
+"lignes_perdues": 0.0
+},
+"192": {
+"stocke": 1090,
+"neuf": 1090,
+"pasv": 17.98678570020606,
+"lignes": 39,
+"derniere": 1083.0556155452548,
+"lignes_perdues": 0.0
+},
+"193": {
+"stocke": 1051,
+"neuf": 1051,
+"pasv": 17.981860531310197,
+"lignes": 42,
+"derniere": 1045.4540671839009,
+"lignes_perdues": 0.0
+},
+"194": {
+"stocke": 1000,
+"neuf": 1081,
+"pasv": 17.95013124237216,
+"lignes": 39,
+"derniere": 997.4866872319419,
+"lignes_perdues": 4.51
+},
+"195": {
+"stocke": 1026,
+"neuf": 1026,
+"pasv": 17.94366166057543,
+"lignes": 42,
+"derniere": 1020.602150379338,
+"lignes_perdues": 0.0
+},
+"196": {
+"stocke": 1053,
+"neuf": 1053,
+"pasv": 17.97398119285484,
+"lignes": 43,
+"derniere": 1059.1490843935035,
+"lignes_perdues": 0.0
+},
+"197": {
+"stocke": 1068,
+"neuf": 1068,
+"pasv": 17.956148915850328,
+"lignes": 42,
+"derniere": 1061.2686875898044,
+"lignes_perdues": 0.0
+},
+"198": {
+"stocke": 1066,
+"neuf": 1066,
+"pasv": 17.98161405530345,
+"lignes": 42,
+"derniere": 1059.0096497763593,
+"lignes_perdues": 0.0
+},
+"199": {
+"stocke": 1027,
+"neuf": 1027,
+"pasv": 17.99007160612932,
+"lignes": 47,
+"derniere": 1034.2145582604978,
+"lignes_perdues": 0.0
+},
+"200": {
+"stocke": 1008,
+"neuf": 1008,
+"pasv": 17.910701000424265,
+"lignes": 43,
+"derniere": 1016.1779854900135,
+"lignes_perdues": 0.0
+},
+"201": {
+"stocke": 1126,
+"neuf": 1126,
+"pasv": 17.944827509872777,
+"lignes": 45,
+"derniere": 1121.0209525743564,
+"lignes_perdues": 0.0
+},
+"202": {
+"stocke": 1046,
+"neuf": 1046,
+"pasv": 17.968467822718736,
+"lignes": 42,
+"derniere": 1039.6401921292183,
+"lignes_perdues": 0.0
+},
+"203": {
+"stocke": 1083,
+"neuf": 1083,
+"pasv": 17.9643637853974,
+"lignes": 43,
+"derniere": 1077.0219948366603,
+"lignes_perdues": 0.0
+},
+"204": {
+"stocke": 1084,
+"neuf": 1084,
+"pasv": 17.994843409501318,
+"lignes": 44,
+"derniere": 1077.18409558559,
+"lignes_perdues": 0.0
+},
+"205": {
+"stocke": 1076,
+"neuf": 1076,
+"pasv": 17.998308844024045,
+"lignes": 44,
+"derniere": 1070.0371954950913,
+"lignes_perdues": 0.0
+},
+"206": {
+"stocke": 1007,
+"neuf": 1007,
+"pasv": 17.958571921079177,
+"lignes": 42,
+"derniere": 1014.0724745673508,
+"lignes_perdues": 0.0
+},
+"207": {
+"stocke": 1045,
+"neuf": 1045,
+"pasv": 17.966608179020305,
+"lignes": 45,
+"derniere": 1038.793267237064,
+"lignes_perdues": 0.0
+},
+"208": {
+"stocke": 1039,
+"neuf": 1039,
+"pasv": 17.961533020805163,
+"lignes": 44,
+"derniere": 1047.8807757871014,
+"lignes_perdues": 0.0
+},
+"209": {
+"stocke": 1081,
+"neuf": 1081,
+"pasv": 17.943501617733805,
+"lignes": 46,
+"derniere": 1088.6195182928673,
+"lignes_perdues": 0.0
+},
+"210": {
+"stocke": 987,
+"neuf": 987,
+"pasv": 17.989056582144013,
+"lignes": 41,
+"derniere": 982.1413785988519,
+"lignes_perdues": 0.0
+},
+"211": {
+"stocke": 1005,
+"neuf": 1005,
+"pasv": 17.98134817689191,
+"lignes": 40,
+"derniere": 999.7113993940054,
+"lignes_perdues": 0.0
+},
+"212": {
+"stocke": 311,
+"neuf": 311,
+"pasv": 17.97999229276997,
+"lignes": 12,
+"derniere": 319.34860891343305,
+"lignes_perdues": 0.0
+},
+"213": {
+"stocke": 976,
+"neuf": 976,
+"pasv": 17.914542776194736,
+"lignes": 38,
+"derniere": 969.6762847356634,
+"lignes_perdues": 0.0
+},
+"214": {
+"stocke": 1063,
+"neuf": 1063,
+"pasv": 17.93078824675643,
+"lignes": 45,
+"derniere": 1071.032850461525,
+"lignes_perdues": 0.0
+},
+"215": {
+"stocke": 1029,
+"neuf": 1029,
+"pasv": 17.8657892049981,
+"lignes": 43,
+"derniere": 1038.6868084638716,
+"lignes_perdues": 0.0
+},
+"216": {
+"stocke": 1082,
+"neuf": 1082,
+"pasv": 17.963133533625417,
+"lignes": 45,
+"derniere": 1124.0817245744047,
+"lignes_perdues": 0.0
+},
+"217": {
+"stocke": 1089,
+"neuf": 1089,
+"pasv": 17.878006703933856,
+"lignes": 46,
+"derniere": 1116.0813780267592,
+"lignes_perdues": 0.0
+},
+"218": {
+"stocke": 1020,
+"neuf": 1020,
+"pasv": 17.967955447676065,
+"lignes": 40,
+"derniere": 1012.948994678235,
+"lignes_perdues": 0.0
+},
+"219": {
+"stocke": 1004,
+"neuf": 1004,
+"pasv": 17.858301945754324,
+"lignes": 43,
+"derniere": 1011.1562971783833,
+"lignes_perdues": 0.0
+},
+"220": {
+"stocke": 1087,
+"neuf": 1087,
+"pasv": 17.940838495207867,
+"lignes": 47,
+"derniere": 1097.1352499089953,
+"lignes_perdues": 0.0
+},
+"221": {
+"stocke": 1217,
+"neuf": 1217,
+"pasv": 17.92841130811895,
+"lignes": 47,
+"derniere": 1216.2467605378731,
+"lignes_perdues": 0.0
+},
+"222": {
+"stocke": 1059,
+"neuf": 1059,
+"pasv": 17.98869751108166,
+"lignes": 45,
+"derniere": 1118.8145475625495,
+"lignes_perdues": 0.0
+},
+"223": {
+"stocke": 998,
+"neuf": 998,
+"pasv": 17.858211051004957,
+"lignes": 41,
+"derniere": 991.5419114010402,
+"lignes_perdues": 0.0
+},
+"224": {
+"stocke": 1036,
+"neuf": 1036,
+"pasv": 17.933525339008362,
+"lignes": 42,
+"derniere": 1027.9490645229203,
+"lignes_perdues": 0.0
+},
+"225": {
+"stocke": 1036,
+"neuf": 1036,
+"pasv": 17.907250139328767,
+"lignes": 42,
+"derniere": 1029.9074628420215,
+"lignes_perdues": 0.0
+},
+"226": {
+"stocke": 1022,
+"neuf": 1022,
+"pasv": 17.98671472635227,
+"lignes": 42,
+"derniere": 1015.4341911534939,
+"lignes_perdues": 0.0
+},
+"227": {
+"stocke": 1035,
+"neuf": 1035,
+"pasv": 17.87375952647962,
+"lignes": 43,
+"derniere": 1029.1743597069235,
+"lignes_perdues": 0.0
+},
+"228": {
+"stocke": 1021,
+"neuf": 1021,
+"pasv": 17.929341958572074,
+"lignes": 45,
+"derniere": 1028.7816755572321,
+"lignes_perdues": 0.0
+},
+"229": {
+"stocke": 1036,
+"neuf": 1036,
+"pasv": 17.930166794868526,
+"lignes": 45,
+"derniere": 1029.348393334064,
+"lignes_perdues": 0.0
+},
+"230": {
+"stocke": 1079,
+"neuf": 1079,
+"pasv": 17.994734301034896,
+"lignes": 47,
+"derniere": 1086.1787062765188,
+"lignes_perdues": 0.0
+},
+"231": {
+"stocke": 1033,
+"neuf": 1033,
+"pasv": 17.886156181986202,
+"lignes": 43,
+"derniere": 1038.9167098670682,
+"lignes_perdues": 0.0
+},
+"232": {
+"stocke": 394,
+"neuf": 394,
+"pasv": 17.704481586786407,
+"lignes": 14,
+"derniere": 386.02871723192715,
+"lignes_perdues": 0.0
+},
+"233": {
+"stocke": 985,
+"neuf": 985,
+"pasv": 17.90421493306759,
+"lignes": 31,
+"derniere": 978.6367203383928,
+"lignes_perdues": 0.0
+},
+"234": {
+"stocke": 1048,
+"neuf": 1048,
+"pasv": 17.890381226652313,
+"lignes": 43,
+"derniere": 1041.853898892,
+"lignes_perdues": 0.0
+},
+"235": {
+"stocke": 1037,
+"neuf": 1037,
+"pasv": 17.937071201544434,
+"lignes": 39,
+"derniere": 1030.9054689618015,
+"lignes_perdues": 0.0
+},
+"236": {
+"stocke": 988,
+"neuf": 988,
+"pasv": 17.923069427675962,
+"lignes": 38,
+"derniere": 981.8810887808963,
+"lignes_perdues": 0.0
+},
+"237": {
+"stocke": 1002,
+"neuf": 1002,
+"pasv": 17.950388221577676,
+"lignes": 39,
+"derniere": 1010.0827810378222,
+"lignes_perdues": 0.0
+},
+"238": {
+"stocke": 1083,
+"neuf": 1083,
+"pasv": 17.947695956468557,
+"lignes": 41,
+"derniere": 1077.1185569939257,
+"lignes_perdues": 0.0
+},
+"239": {
+"stocke": 1019,
+"neuf": 1019,
+"pasv": 17.926787491514364,
+"lignes": 43,
+"derniere": 1012.7711707098824,
+"lignes_perdues": 0.0
+},
+"240": {
+"stocke": 1035,
+"neuf": 1035,
+"pasv": 17.958734139382788,
+"lignes": 41,
+"derniere": 1042.4794851101553,
+"lignes_perdues": 0.0
+},
+"241": {
+"stocke": 1052,
+"neuf": 1052,
+"pasv": 17.95997596462861,
+"lignes": 43,
+"derniere": 1046.4028816327655,
+"lignes_perdues": 0.0
+},
+"242": {
+"stocke": 1066,
+"neuf": 1066,
+"pasv": 17.979548577723723,
+"lignes": 42,
+"derniere": 1073.2091859573454,
+"lignes_perdues": 0.0
+},
+"243": {
+"stocke": 1108,
+"neuf": 1108,
+"pasv": 17.935711572582274,
+"lignes": 41,
+"derniere": 1107.6515168713204,
+"lignes_perdues": 0.0
+},
+"244": {
+"stocke": 1099,
+"neuf": 1099,
+"pasv": 17.968999533561224,
+"lignes": 44,
+"derniere": 1091.8282070331836,
+"lignes_perdues": 0.0
+},
+"245": {
+"stocke": 1047,
+"neuf": 1047,
+"pasv": 17.972915584846795,
+"lignes": 44,
+"derniere": 1039.877529076025,
+"lignes_perdues": 0.0
+},
+"246": {
+"stocke": 1030,
+"neuf": 1030,
+"pasv": 17.927521715177402,
+"lignes": 39,
+"derniere": 1024.6163308538369,
+"lignes_perdues": 0.0
+},
+"247": {
+"stocke": 1031,
+"neuf": 1031,
+"pasv": 17.96383964453652,
+"lignes": 44,
+"derniere": 1024.0783297482965,
+"lignes_perdues": 0.0
+},
+"248": {
+"stocke": 1078,
+"neuf": 1078,
+"pasv": 17.983352641640664,
+"lignes": 42,
+"derniere": 1070.7878702393318,
+"lignes_perdues": 0.0
+},
+"249": {
+"stocke": 1116,
+"neuf": 1116,
+"pasv": 18.001401666152017,
+"lignes": 44,
+"derniere": 1126.2014323419078,
+"lignes_perdues": 0.0
+},
+"250": {
+"stocke": 1136,
+"neuf": 1136,
+"pasv": 18.00377585889948,
+"lignes": 45,
+"derniere": 1142.9404578056688,
+"lignes_perdues": 0.0
+},
+"251": {
+"stocke": 1052,
+"neuf": 1052,
+"pasv": 17.978635702167054,
+"lignes": 43,
+"derniere": 1058.0394400937075,
+"lignes_perdues": 0.0
+},
+"252": {
+"stocke": 1154,
+"neuf": 1154,
+"pasv": 17.97608257957079,
+"lignes": 28,
+"derniere": 1148.62103371991,
+"lignes_perdues": 0.0
+},
+"253": {
+"stocke": 949,
+"neuf": 949,
+"pasv": 17.88696510561875,
+"lignes": 35,
+"derniere": 944.0060337853253,
+"lignes_perdues": 0.0
+},
+"254": {
+"stocke": 1065,
+"neuf": 1065,
+"pasv": 17.93526278705031,
+"lignes": 44,
+"derniere": 1071.5757950339712,
+"lignes_perdues": 0.0
+},
+"255": {
+"stocke": 1025,
+"neuf": 1025,
+"pasv": 17.887780931133396,
+"lignes": 45,
+"derniere": 1032.7079864977277,
+"lignes_perdues": 0.0
+},
+"256": {
+"stocke": 1067,
+"neuf": 1067,
+"pasv": 17.977424489575217,
+"lignes": 42,
+"derniere": 1060.4505428886382,
+"lignes_perdues": 0.0
+},
+"257": {
+"stocke": 966,
+"neuf": 966,
+"pasv": 17.972451047695742,
+"lignes": 40,
+"derniere": 959.5212496329907,
+"lignes_perdues": 0.0
+},
+"258": {
+"stocke": 993,
+"neuf": 993,
+"pasv": 17.989622002997443,
+"lignes": 33,
+"derniere": 986.364749245367,
+"lignes_perdues": 0.0
+},
+"259": {
+"stocke": 1013,
+"neuf": 1013,
+"pasv": 18.022926325306845,
+"lignes": 43,
+"derniere": 1005.9874886711027,
+"lignes_perdues": 0.0
+},
+"260": {
+"stocke": 1054,
+"neuf": 1054,
+"pasv": 17.985310458505847,
+"lignes": 44,
+"derniere": 1064.972546089128,
+"lignes_perdues": 0.0
+},
+"261": {
+"stocke": 1032,
+"neuf": 1032,
+"pasv": 18.011443785407153,
+"lignes": 43,
+"derniere": 1039.7702843645368,
+"lignes_perdues": 0.0
+},
+"262": {
+"stocke": 1033,
+"neuf": 1033,
+"pasv": 17.974514166281402,
+"lignes": 44,
+"derniere": 1040.1149769344934,
+"lignes_perdues": 0.0
+},
+"263": {
+"stocke": 1069,
+"neuf": 1069,
+"pasv": 18.038283333689684,
+"lignes": 48,
+"derniere": 1079.5573538389701,
+"lignes_perdues": 0.0
+},
+"264": {
+"stocke": 1098,
+"neuf": 1098,
+"pasv": 18.052956384682073,
+"lignes": 48,
+"derniere": 1105.1224091333554,
+"lignes_perdues": 0.0
+},
+"265": {
+"stocke": 1067,
+"neuf": 1067,
+"pasv": 18.045951020454652,
+"lignes": 49,
+"derniere": 1060.1650694830269,
+"lignes_perdues": 0.0
+},
+"266": {
+"stocke": 1058,
+"neuf": 1058,
+"pasv": 18.07265690704363,
+"lignes": 46,
+"derniere": 1051.1977105636656,
+"lignes_perdues": 0.0
+},
+"267": {
+"stocke": 1068,
+"neuf": 1068,
+"pasv": 18.040340114658868,
+"lignes": 44,
+"derniere": 1078.3061587357877,
+"lignes_perdues": 0.0
+},
+"268": {
+"stocke": 1059,
+"neuf": 1059,
+"pasv": 18.046011035434045,
+"lignes": 44,
+"derniere": 1051.7231728382014,
+"lignes_perdues": 0.0
+},
+"269": {
+"stocke": 1093,
+"neuf": 1093,
+"pasv": 18.055638095398855,
+"lignes": 47,
+"derniere": 1087.3408876301924,
+"lignes_perdues": 0.0
+},
+"270": {
+"stocke": 1114,
+"neuf": 1114,
+"pasv": 18.04590734870119,
+"lignes": 45,
+"derniere": 1108.4309551590702,
+"lignes_perdues": 0.0
+},
+"271": {
+"stocke": 1034,
+"neuf": 1034,
+"pasv": 18.00928940575478,
+"lignes": 44,
+"derniere": 1044.5010749150533,
+"lignes_perdues": 0.0
+},
+"272": {
+"stocke": 1007,
+"neuf": 1007,
+"pasv": 17.984271696078192,
+"lignes": 46,
+"derniere": 1000.2011448512206,
+"lignes_perdues": 0.0
+},
+"273": {
+"stocke": 1047,
+"neuf": 1047,
+"pasv": 18.02129905703556,
+"lignes": 40,
+"derniere": 1040.577997402741,
+"lignes_perdues": 0.0
+},
+"274": {
+"stocke": 1031,
+"neuf": 1031,
+"pasv": 18.017931888863906,
+"lignes": 43,
+"derniere": 1026.026714997462,
+"lignes_perdues": 0.0
+},
+"275": {
+"stocke": 858,
+"neuf": 858,
+"pasv": 17.981882185996863,
+"lignes": 36,
+"derniere": 853.12836851571,
+"lignes_perdues": 0.0
+},
+"276": {
+"stocke": 1062,
+"neuf": 1062,
+"pasv": 18.01971625147583,
+"lignes": 46,
+"derniere": 1055.0640869949948,
+"lignes_perdues": 0.0
+},
+"277": {
+"stocke": 1073,
+"neuf": 1073,
+"pasv": 18.000955210696976,
+"lignes": 46,
+"derniere": 1066.663306434453,
+"lignes_perdues": 0.0
+},
+"278": {
+"stocke": 1078,
+"neuf": 1078,
+"pasv": 18.03991324392505,
+"lignes": 42,
+"derniere": 1071.4536223488421,
+"lignes_perdues": 0.0
+},
+"279": {
+"stocke": 1071,
+"neuf": 1071,
+"pasv": 17.99501607762086,
+"lignes": 43,
+"derniere": 1076.257283246394,
+"lignes_perdues": 0.0
+},
+"280": {
+"stocke": 1100,
+"neuf": 1100,
+"pasv": 17.997538901577244,
+"lignes": 49,
+"derniere": 1111.0114943518715,
+"lignes_perdues": 0.0
+},
+"281": {
+"stocke": 1063,
+"neuf": 1063,
+"pasv": 18.04049369503866,
+"lignes": 43,
+"derniere": 1056.0703715750099,
+"lignes_perdues": 0.0
+},
+"282": {
+"stocke": 994,
+"neuf": 1016,
+"pasv": 17.977851012766255,
+"lignes": 40,
+"derniere": 991.0937679142704,
+"lignes_perdues": 1.22
+},
+"283": {
+"stocke": 1045,
+"neuf": 1045,
+"pasv": 17.99620032855958,
+"lignes": 42,
+"derniere": 1055.0850407537368,
+"lignes_perdues": 0.0
+},
+"284": {
+"stocke": 1014,
+"neuf": 1014,
+"pasv": 18.003229982272018,
+"lignes": 41,
+"derniere": 1006.4257946872979,
+"lignes_perdues": 0.0
+},
+"285": {
+"stocke": 1024,
+"neuf": 1024,
+"pasv": 18.04496632237213,
+"lignes": 41,
+"derniere": 1017.4366095578232,
+"lignes_perdues": 0.0
+},
+"286": {
+"stocke": 1156,
+"neuf": 1156,
+"pasv": 17.95184834735874,
+"lignes": 43,
+"derniere": 1169.1706985942183,
+"lignes_perdues": 0.0
+},
+"287": {
+"stocke": 1028,
+"neuf": 1028,
+"pasv": 17.93189071157451,
+"lignes": 42,
+"derniere": 1035.0437656109075,
+"lignes_perdues": 0.0
+},
+"288": {
+"stocke": 993,
+"neuf": 993,
+"pasv": 17.926240388890115,
+"lignes": 40,
+"derniere": 986.480772424929,
+"lignes_perdues": 0.0
+},
+"289": {
+"stocke": 1006,
+"neuf": 1006,
+"pasv": 17.973492651867804,
+"lignes": 42,
+"derniere": 1017.1977147111465,
+"lignes_perdues": 0.0
+},
+"290": {
+"stocke": 953,
+"neuf": 1051,
+"pasv": 17.94805878621579,
+"lignes": 37,
+"derniere": 954.1643335435626,
+"lignes_perdues": 5.46
+},
+"291": {
+"stocke": 960,
+"neuf": 960,
+"pasv": 17.94452288435197,
+"lignes": 42,
+"derniere": 971.5245560712974,
+"lignes_perdues": 0.0
+},
+"292": {
+"stocke": 998,
+"neuf": 998,
+"pasv": 17.953835155106315,
+"lignes": 42,
+"derniere": 1003.8431540518473,
+"lignes_perdues": 0.0
+},
+"293": {
+"stocke": 1009,
+"neuf": 1009,
+"pasv": 17.967989388056655,
+"lignes": 44,
+"derniere": 1002.1204234641709,
+"lignes_perdues": 0.0
+},
+"294": {
+"stocke": 1013,
+"neuf": 1013,
+"pasv": 17.998893249557405,
+"lignes": 42,
+"derniere": 1006.2279815550637,
+"lignes_perdues": 0.0
+},
+"295": {
+"stocke": 1061,
+"neuf": 1061,
+"pasv": 17.94155090600809,
+"lignes": 42,
+"derniere": 1066.8208261425955,
+"lignes_perdues": 0.0
+},
+"296": {
+"stocke": 999,
+"neuf": 999,
+"pasv": 17.938696077992596,
+"lignes": 40,
+"derniere": 992.3301989406237,
+"lignes_perdues": 0.0
+},
+"297": {
+"stocke": 1047,
+"neuf": 1047,
+"pasv": 17.951551557246376,
+"lignes": 43,
+"derniere": 1094.9139834877665,
+"lignes_perdues": 0.0
+},
+"298": {
+"stocke": 1095,
+"neuf": 1095,
+"pasv": 17.988794384024583,
+"lignes": 44,
+"derniere": 1105.4689995626593,
+"lignes_perdues": 0.0
+},
+"299": {
+"stocke": 986,
+"neuf": 986,
+"pasv": 17.937009394635318,
+"lignes": 41,
+"derniere": 979.5376867239115,
+"lignes_perdues": 0.0
+},
+"300": {
+"stocke": 1023,
+"neuf": 1023,
+"pasv": 17.990275526630132,
+"lignes": 40,
+"derniere": 1017.8473070030055,
+"lignes_perdues": 0.0
+},
+"301": {
+"stocke": 1045,
+"neuf": 1045,
+"pasv": 18.01800815766015,
+"lignes": 43,
+"derniere": 1056.2721719010608,
+"lignes_perdues": 0.0
+},
+"302": {
+"stocke": 948,
+"neuf": 1098,
+"pasv": 17.95533274405339,
+"lignes": 45,
+"derniere": 946.3820056716972,
+"lignes_perdues": 8.35
+},
+"303": {
+"stocke": 1053,
+"neuf": 1053,
+"pasv": 18.000998595604614,
+"lignes": 43,
+"derniere": 1046.0122295128465,
+"lignes_perdues": 0.0
+},
+"304": {
+"stocke": 934,
+"neuf": 1030,
+"pasv": 17.9376210677373,
+"lignes": 37,
+"derniere": 933.2391017959576,
+"lignes_perdues": 5.35
+},
+"305": {
+"stocke": 997,
+"neuf": 997,
+"pasv": 18.008049225720324,
+"lignes": 39,
+"derniere": 991.5229316843258,
+"lignes_perdues": 0.0
+},
+"306": {
+"stocke": 1054,
+"neuf": 1054,
+"pasv": 17.977088367428937,
+"lignes": 46,
+"derniere": 1048.2045012419246,
+"lignes_perdues": 0.0
+},
+"307": {
+"stocke": 1032,
+"neuf": 1032,
+"pasv": 18.02868404283112,
+"lignes": 41,
+"derniere": 1025.261420562681,
+"lignes_perdues": 0.0
+},
+"308": {
+"stocke": 1038,
+"neuf": 1038,
+"pasv": 17.95009412503891,
+"lignes": 43,
+"derniere": 1029.9585993878068,
+"lignes_perdues": 0.0
+},
+"309": {
+"stocke": 1082,
+"neuf": 1082,
+"pasv": 17.940458977390946,
+"lignes": 42,
+"derniere": 1077.8193385980112,
+"lignes_perdues": 0.0
+},
+"310": {
+"stocke": 1077,
+"neuf": 1077,
+"pasv": 17.964892118600844,
+"lignes": 45,
+"derniere": 1072.1358277404067,
+"lignes_perdues": 0.0
+},
+"311": {
+"stocke": 1053,
+"neuf": 1053,
+"pasv": 18.00830669864329,
+"lignes": 47,
+"derniere": 1045.8412621284222,
+"lignes_perdues": 0.0
+},
+"312": {
+"stocke": 1080,
+"neuf": 1080,
+"pasv": 18.001261238415847,
+"lignes": 46,
+"derniere": 1090.219743528249,
+"lignes_perdues": 0.0
+},
+"313": {
+"stocke": 1061,
+"neuf": 1061,
+"pasv": 17.99706704394795,
+"lignes": 46,
+"derniere": 1055.13110980389,
+"lignes_perdues": 0.0
+},
+"314": {
+"stocke": 1065,
+"neuf": 1065,
+"pasv": 18.039752479941754,
+"lignes": 47,
+"derniere": 1058.262619373694,
+"lignes_perdues": 0.0
+},
+"315": {
+"stocke": 1027,
+"neuf": 1027,
+"pasv": 17.95615146160991,
+"lignes": 43,
+"derniere": 1038.3132191439258,
+"lignes_perdues": 0.0
+},
+"316": {
+"stocke": 1054,
+"neuf": 1054,
+"pasv": 17.96224030604065,
+"lignes": 46,
+"derniere": 1060.2630432207238,
+"lignes_perdues": 0.0
+},
+"317": {
+"stocke": 1037,
+"neuf": 1037,
+"pasv": 18.00898669843485,
+"lignes": 41,
+"derniere": 1031.076705540267,
+"lignes_perdues": 0.0
+},
+"318": {
+"stocke": 1098,
+"neuf": 1098,
+"pasv": 17.881700645220775,
+"lignes": 47,
+"derniere": 1106.763265247014,
+"lignes_perdues": 0.0
+},
+"319": {
+"stocke": 1062,
+"neuf": 1062,
+"pasv": 17.999839037733555,
+"lignes": 46,
+"derniere": 1071.221343971463,
+"lignes_perdues": 0.0
+},
+"320": {
+"stocke": 1044,
+"neuf": 1044,
+"pasv": 18.005967816230196,
+"lignes": 43,
+"derniere": 1052.8728080562432,
+"lignes_perdues": 0.0
+},
+"321": {
+"stocke": 1009,
+"neuf": 1009,
+"pasv": 17.972114498007507,
+"lignes": 41,
+"derniere": 1002.665828294927,
+"lignes_perdues": 0.0
+},
+"322": {
+"stocke": 1047,
+"neuf": 1047,
+"pasv": 18.000084065170995,
+"lignes": 43,
+"derniere": 1058.175945373239,
+"lignes_perdues": 0.0
+},
+"323": {
+"stocke": 1093,
+"neuf": 1093,
+"pasv": 17.98203845517053,
+"lignes": 48,
+"derniere": 1088.4462907761017,
+"lignes_perdues": 0.0
+},
+"324": {
+"stocke": 1069,
+"neuf": 1069,
+"pasv": 17.978239201615303,
+"lignes": 44,
+"derniere": 1078.9897607634118,
+"lignes_perdues": 0.0
+},
+"325": {
+"stocke": 1014,
+"neuf": 1014,
+"pasv": 17.962808551476897,
+"lignes": 43,
+"derniere": 1009.0100783225148,
+"lignes_perdues": 0.0
+},
+"326": {
+"stocke": 1086,
+"neuf": 1086,
+"pasv": 17.935894379677524,
+"lignes": 44,
+"derniere": 1080.1365468596896,
+"lignes_perdues": 0.0
+},
+"327": {
+"stocke": 1071,
+"neuf": 1071,
+"pasv": 17.932535369923535,
+"lignes": 47,
+"derniere": 1065.4829818517073,
+"lignes_perdues": 0.0
+},
+"328": {
+"stocke": 1038,
+"neuf": 1038,
+"pasv": 17.95350628585242,
+"lignes": 43,
+"derniere": 1030.9175926473158,
+"lignes_perdues": 0.0
+},
+"329": {
+"stocke": 1046,
+"neuf": 1046,
+"pasv": 17.978323626405295,
+"lignes": 43,
+"derniere": 1039.9943909123372,
+"lignes_perdues": 0.0
+},
+"330": {
+"stocke": 1038,
+"neuf": 1038,
+"pasv": 18.03979982439206,
+"lignes": 41,
+"derniere": 1032.4865780184255,
+"lignes_perdues": 0.0
+},
+"331": {
+"stocke": 996,
+"neuf": 996,
+"pasv": 17.979989021303954,
+"lignes": 40,
+"derniere": 990.1373593097702,
+"lignes_perdues": 0.0
+},
+"332": {
+"stocke": 632,
+"neuf": 632,
+"pasv": 17.97092626263099,
+"lignes": 21,
+"derniere": 630.7321784292328,
+"lignes_perdues": 0.0
+},
+"333": {
+"stocke": 1014,
+"neuf": 1014,
+"pasv": 17.953019973400124,
+"lignes": 44,
+"derniere": 1024.4599107262025,
+"lignes_perdues": 0.0
+},
+"334": {
+"stocke": 1051,
+"neuf": 1051,
+"pasv": 18.012339443162933,
+"lignes": 46,
+"derniere": 1132.0872887981661,
+"lignes_perdues": 0.0
+},
+"335": {
+"stocke": 992,
+"neuf": 992,
+"pasv": 17.994614196597688,
+"lignes": 42,
+"derniere": 986.9350576166471,
+"lignes_perdues": 0.0
+},
+"336": {
+"stocke": 982,
+"neuf": 982,
+"pasv": 17.987309106134887,
+"lignes": 41,
+"derniere": 976.1951942343587,
+"lignes_perdues": 0.0
+},
+"337": {
+"stocke": 993,
+"neuf": 993,
+"pasv": 17.994862703572657,
+"lignes": 42,
+"derniere": 988.0604077721923,
+"lignes_perdues": 0.0
+},
+"338": {
+"stocke": 989,
+"neuf": 1070,
+"pasv": 17.98591940672513,
+"lignes": 42,
+"derniere": 991.1885847304343,
+"lignes_perdues": 4.5
+},
+"339": {
+"stocke": 1051,
+"neuf": 1051,
+"pasv": 17.986892173177864,
+"lignes": 41,
+"derniere": 1044.5727358984107,
+"lignes_perdues": 0.0
+},
+"340": {
+"stocke": 1105,
+"neuf": 1105,
+"pasv": 18.018869011383646,
+"lignes": 47,
+"derniere": 1098.918915432053,
+"lignes_perdues": 0.0
+},
+"341": {
+"stocke": 1050,
+"neuf": 1050,
+"pasv": 18.035333367500197,
+"lignes": 45,
+"derniere": 1043.6243159228386,
+"lignes_perdues": 0.0
+},
+"342": {
+"stocke": 1042,
+"neuf": 1042,
+"pasv": 18.0107060074924,
+"lignes": 43,
+"derniere": 1035.5538677249133,
+"lignes_perdues": 0.0
+},
+"343": {
+"stocke": 1032,
+"neuf": 1032,
+"pasv": 17.991659453677247,
+"lignes": 43,
+"derniere": 1026.0848417370908,
+"lignes_perdues": 0.0
+},
+"344": {
+"stocke": 1038,
+"neuf": 1038,
+"pasv": 18.104573862645445,
+"lignes": 40,
+"derniere": 1031.472643997423,
+"lignes_perdues": 0.0
+},
+"345": {
+"stocke": 1015,
+"neuf": 1015,
+"pasv": 17.909455482812128,
+"lignes": 44,
+"derniere": 1007.2578124099513,
+"lignes_perdues": 0.0
+},
+"346": {
+"stocke": 1053,
+"neuf": 1053,
+"pasv": 18.02259197393098,
+"lignes": 43,
+"derniere": 1062.5409301493928,
+"lignes_perdues": 0.0
+},
+"347": {
+"stocke": 1028,
+"neuf": 1028,
+"pasv": 17.919914900189752,
+"lignes": 41,
+"derniere": 1022.3978720232794,
+"lignes_perdues": 0.0
+},
+"348": {
+"stocke": 1037,
+"neuf": 1037,
+"pasv": 17.985613506261558,
+"lignes": 42,
+"derniere": 1046.4154935775678,
+"lignes_perdues": 0.0
+},
+"349": {
+"stocke": 1008,
+"neuf": 1008,
+"pasv": 17.948139491973286,
+"lignes": 42,
+"derniere": 1015.7037838121381,
+"lignes_perdues": 0.0
+},
+"350": {
+"stocke": 1052,
+"neuf": 1052,
+"pasv": 17.963636895374062,
+"lignes": 47,
+"derniere": 1058.3849904011777,
+"lignes_perdues": 0.0
+},
+"351": {
+"stocke": 1050,
+"neuf": 1050,
+"pasv": 17.975161171896723,
+"lignes": 42,
+"derniere": 1043.1653250669651,
+"lignes_perdues": 0.0
+},
+"352": {
+"stocke": 1013,
+"neuf": 1013,
+"pasv": 17.960869229830127,
+"lignes": 43,
+"derniere": 1018.9086681936828,
+"lignes_perdues": 0.0
+},
+"353": {
+"stocke": 1002,
+"neuf": 1002,
+"pasv": 17.946522489163407,
+"lignes": 41,
+"derniere": 1009.6917021457095,
+"lignes_perdues": 0.0
+},
+"354": {
+"stocke": 820,
+"neuf": 820,
+"pasv": 18.03136631028372,
+"lignes": 34,
+"derniere": 821.9072166253173,
+"lignes_perdues": 0.0
+},
+"355": {
+"stocke": 1043,
+"neuf": 1043,
+"pasv": 17.993436619616105,
+"lignes": 42,
+"derniere": 1037.1968070078851,
+"lignes_perdues": 0.0
+},
+"356": {
+"stocke": 1046,
+"neuf": 1046,
+"pasv": 17.972417742495153,
+"lignes": 45,
+"derniere": 1052.388823340588,
+"lignes_perdues": 0.0
+},
+"357": {
+"stocke": 999,
+"neuf": 999,
+"pasv": 17.98638577713739,
+"lignes": 40,
+"derniere": 1118.4594030864025,
+"lignes_perdues": 0.0
+},
+"358": {
+"stocke": 1045,
+"neuf": 1045,
+"pasv": 17.982749542267605,
+"lignes": 43,
+"derniere": 1054.994654485698,
+"lignes_perdues": 0.0
+},
+"359": {
+"stocke": 1021,
+"neuf": 1021,
+"pasv": 17.967662385062283,
+"lignes": 43,
+"derniere": 1028.7740305997856,
+"lignes_perdues": 0.0
+},
+"360": {
+"stocke": 1050,
+"neuf": 1050,
+"pasv": 17.996370060082914,
+"lignes": 46,
+"derniere": 1056.37844959251,
+"lignes_perdues": 0.0
+},
+"361": {
+"stocke": 1009,
+"neuf": 1009,
+"pasv": 17.973406869317962,
+"lignes": 45,
+"derniere": 1001.86581428186,
+"lignes_perdues": 0.0
+},
+"362": {
+"stocke": 1028,
+"neuf": 1028,
+"pasv": 17.944757161585557,
+"lignes": 41,
+"derniere": 1020.904026039194,
+"lignes_perdues": 0.0
+},
+"363": {
+"stocke": 982,
+"neuf": 982,
+"pasv": 17.982840443625026,
+"lignes": 41,
+"derniere": 977.3780542536974,
+"lignes_perdues": 0.0
+},
+"364": {
+"stocke": 1063,
+"neuf": 1063,
+"pasv": 17.942209344323597,
+"lignes": 45,
+"derniere": 1070.058137108373,
+"lignes_perdues": 0.0
+},
+"365": {
+"stocke": 944,
+"neuf": 944,
+"pasv": 17.993176955124397,
+"lignes": 42,
+"derniere": 951.8688154021662,
+"lignes_perdues": 0.0
+},
+"366": {
+"stocke": 988,
+"neuf": 1046,
+"pasv": 17.985017750466376,
+"lignes": 41,
+"derniere": 985.736025961893,
+"lignes_perdues": 3.22
+},
+"367": {
+"stocke": 1004,
+"neuf": 1004,
+"pasv": 17.94940309034093,
+"lignes": 42,
+"derniere": 998.2599835670242,
+"lignes_perdues": 0.0
+},
+"368": {
+"stocke": 1030,
+"neuf": 1030,
+"pasv": 17.931842578301687,
+"lignes": 41,
+"derniere": 1024.716981629906,
+"lignes_perdues": 0.0
+},
+"369": {
+"stocke": 1008,
+"neuf": 1008,
+"pasv": 18.014968093205713,
+"lignes": 41,
+"derniere": 1002.0166175365595,
+"lignes_perdues": 0.0
+},
+"370": {
+"stocke": 1074,
+"neuf": 1074,
+"pasv": 18.036306658159788,
+"lignes": 43,
+"derniere": 1068.1361695525052,
+"lignes_perdues": 0.0
+},
+"371": {
+"stocke": 991,
+"neuf": 991,
+"pasv": 17.989883463450596,
+"lignes": 41,
+"derniere": 985.4761436181025,
+"lignes_perdues": 0.0
+},
+"372": {
+"stocke": 1041,
+"neuf": 1041,
+"pasv": 17.981502422673902,
+"lignes": 40,
+"derniere": 1035.0546822826232,
+"lignes_perdues": 0.0
+},
+"373": {
+"stocke": 1028,
+"neuf": 1028,
+"pasv": 17.9698742408556,
+"lignes": 40,
+"derniere": 1020.8687444090936,
+"lignes_perdues": 0.0
+},
+"374": {
+"stocke": 987,
+"neuf": 987,
+"pasv": 17.985043146375485,
+"lignes": 39,
+"derniere": 981.6872210696156,
+"lignes_perdues": 0.0
+},
+"375": {
+"stocke": 980,
+"neuf": 980,
+"pasv": 18.01870053007598,
+"lignes": 41,
+"derniere": 973.8715282358276,
+"lignes_perdues": 0.0
+},
+"376": {
+"stocke": 1077,
+"neuf": 1077,
+"pasv": 17.99478340585683,
+"lignes": 43,
+"derniere": 1083.7450813973016,
+"lignes_perdues": 0.0
+},
+"377": {
+"stocke": 1094,
+"neuf": 1094,
+"pasv": 17.970173788365578,
+"lignes": 45,
+"derniere": 1086.6640336808778,
+"lignes_perdues": 0.0
+},
+"378": {
+"stocke": 953,
+"neuf": 1070,
+"pasv": 18.012999631618666,
+"lignes": 39,
+"derniere": 953.506805343921,
+"lignes_perdues": 6.5
+},
+"379": {
+"stocke": 1106,
+"neuf": 1106,
+"pasv": 17.924638958100136,
+"lignes": 43,
+"derniere": 1110.276203758706,
+"lignes_perdues": 0.0
+},
+"380": {
+"stocke": 1044,
+"neuf": 1044,
+"pasv": 17.982313271898764,
+"lignes": 46,
+"derniere": 1088.7359452192145,
+"lignes_perdues": 0.0
+},
+"381": {
+"stocke": 918,
+"neuf": 918,
+"pasv": 17.90959852045578,
+"lignes": 40,
+"derniere": 910.7925918759165,
+"lignes_perdues": 0.0
+},
+"382": {
+"stocke": 1035,
+"neuf": 1035,
+"pasv": 18.000689336705552,
+"lignes": 44,
+"derniere": 1027.8647934257237,
+"lignes_perdues": 0.0
+},
+"383": {
+"stocke": 1029,
+"neuf": 1029,
+"pasv": 17.95698005621155,
+"lignes": 45,
+"derniere": 1022.7938183863102,
+"lignes_perdues": 0.0
+},
+"384": {
+"stocke": 1063,
+"neuf": 1063,
+"pasv": 18.0465305693193,
+"lignes": 43,
+"derniere": 1057.213666226339,
+"lignes_perdues": 0.0
+},
+"385": {
+"stocke": 934,
+"neuf": 934,
+"pasv": 17.887632910923745,
+"lignes": 44,
+"derniere": 976.8201483572302,
+"lignes_perdues": 0.0
+},
+"386": {
+"stocke": 1096,
+"neuf": 1096,
+"pasv": 18.05135174269022,
+"lignes": 52,
+"derniere": 1105.8443065739018,
+"lignes_perdues": 0.0
+},
+"387": {
+"stocke": 1038,
+"neuf": 1038,
+"pasv": 17.93869366293617,
+"lignes": 45,
+"derniere": 1044.9123165379003,
+"lignes_perdues": 0.0
+},
+"388": {
+"stocke": 1049,
+"neuf": 1049,
+"pasv": 18.054532413615693,
+"lignes": 42,
+"derniere": 1059.5038658365067,
+"lignes_perdues": 0.0
+},
+"389": {
+"stocke": 997,
+"neuf": 997,
+"pasv": 17.943167822807606,
+"lignes": 43,
+"derniere": 990.6000078550533,
+"lignes_perdues": 0.0
+},
+"390": {
+"stocke": 1052,
+"neuf": 1052,
+"pasv": 18.05029086947416,
+"lignes": 43,
+"derniere": 1046.6078915998303,
+"lignes_perdues": 0.0
+},
+"391": {
+"stocke": 1024,
+"neuf": 1024,
+"pasv": 17.945487028387323,
+"lignes": 42,
+"derniere": 1017.9332083463332,
+"lignes_perdues": 0.0
+},
+"392": {
+"stocke": 1027,
+"neuf": 1027,
+"pasv": 18.050570315076154,
+"lignes": 43,
+"derniere": 1021.1832731039373,
+"lignes_perdues": 0.0
+},
+"393": {
+"stocke": 1061,
+"neuf": 1061,
+"pasv": 17.946513613676387,
+"lignes": 45,
+"derniere": 1068.2228097919565,
+"lignes_perdues": 0.0
+},
+"394": {
+"stocke": 1063,
+"neuf": 1063,
+"pasv": 18.07092314741557,
+"lignes": 45,
+"derniere": 1055.9465992530515,
+"lignes_perdues": 0.0
+},
+"395": {
+"stocke": 1168,
+"neuf": 1168,
+"pasv": 17.929620252967798,
+"lignes": 29,
+"derniere": 1195.835033783232,
+"lignes_perdues": 0.0
+},
+"396": {
+"stocke": 1108,
+"neuf": 1108,
+"pasv": 17.988475639290748,
+"lignes": 41,
+"derniere": 1115.5222651119595,
+"lignes_perdues": 0.0
+},
+"397": {
+"stocke": 1039,
+"neuf": 1039,
+"pasv": 17.98091332036707,
+"lignes": 43,
+"derniere": 1122.8668279722858,
+"lignes_perdues": 0.0
+},
+"398": {
+"stocke": 1046,
+"neuf": 1046,
+"pasv": 17.995511635105157,
+"lignes": 41,
+"derniere": 1040.0507379758299,
+"lignes_perdues": 0.0
+},
+"399": {
+"stocke": 1038,
+"neuf": 1038,
+"pasv": 17.98140279388735,
+"lignes": 45,
+"derniere": 1048.9241006324642,
+"lignes_perdues": 0.0
+},
+"400": {
+"stocke": 1035,
+"neuf": 1035,
+"pasv": 17.979776304100753,
+"lignes": 43,
+"derniere": 1046.5721915489046,
+"lignes_perdues": 0.0
+},
+"401": {
+"stocke": 1006,
+"neuf": 1006,
+"pasv": 17.970677765802776,
+"lignes": 39,
+"derniere": 1126.1096589577037,
+"lignes_perdues": 0.0
+},
+"402": {
+"stocke": 1042,
+"neuf": 1042,
+"pasv": 18.016435456505878,
+"lignes": 40,
+"derniere": 1049.4838707901326,
+"lignes_perdues": 0.0
+},
+"403": {
+"stocke": 1076,
+"neuf": 1076,
+"pasv": 17.97743301461039,
+"lignes": 46,
+"derniere": 1086.34990482791,
+"lignes_perdues": 0.0
+},
+"404": {
+"stocke": 1022,
+"neuf": 1022,
+"pasv": 17.97686883488768,
+"lignes": 40,
+"derniere": 1032.987014292031,
+"lignes_perdues": 0.0
+},
+"405": {
+"stocke": 1038,
+"neuf": 1038,
+"pasv": 17.987656365986723,
+"lignes": 45,
+"derniere": 1046.0439250571985,
+"lignes_perdues": 0.0
+},
+"406": {
+"stocke": 151,
+"neuf": 151,
+"pasv": 17.676936248738816,
+"lignes": 53,
+"derniere": 1118.2889037462132,
+"lignes_perdues": 0.0
+},
+"407": {
+"stocke": 1011,
+"neuf": 1011,
+"pasv": 18.0274713496674,
+"lignes": 41,
+"derniere": 1004.4624118732474,
+"lignes_perdues": 0.0
+},
+"408": {
+"stocke": 1041,
+"neuf": 1041,
+"pasv": 18.019691769829862,
+"lignes": 43,
+"derniere": 1033.8872137503508,
+"lignes_perdues": 0.0
+},
+"409": {
+"stocke": 1013,
+"neuf": 1013,
+"pasv": 18.033084660868305,
+"lignes": 41,
+"derniere": 1019.1804091299045,
+"lignes_perdues": 0.0
+},
+"410": {
+"stocke": 1064,
+"neuf": 1064,
+"pasv": 18.040018946766317,
+"lignes": 40,
+"derniere": 1057.3483211825603,
+"lignes_perdues": 0.0
+},
+"411": {
+"stocke": 1034,
+"neuf": 1034,
+"pasv": 18.003399283427346,
+"lignes": 44,
+"derniere": 1039.2800787564313,
+"lignes_perdues": 0.0
+},
+"412": {
+"stocke": 1062,
+"neuf": 1062,
+"pasv": 18.03371421799724,
+"lignes": 40,
+"derniere": 1073.4888644069922,
+"lignes_perdues": 0.0
+},
+"413": {
+"stocke": 1013,
+"neuf": 1013,
+"pasv": 18.020890159607372,
+"lignes": 41,
+"derniere": 1023.5105025599295,
+"lignes_perdues": 0.0
+},
+"414": {
+"stocke": 1064,
+"neuf": 1064,
+"pasv": 18.035178598586587,
+"lignes": 46,
+"derniere": 1058.3261307453254,
+"lignes_perdues": 0.0
+},
+"415": {
+"stocke": 1063,
+"neuf": 1063,
+"pasv": 18.0356570026223,
+"lignes": 45,
+"derniere": 1056.9628900897746,
+"lignes_perdues": 0.0
+},
+"416": {
+"stocke": 1035,
+"neuf": 1035,
+"pasv": 18.038979537985885,
+"lignes": 43,
+"derniere": 1030.4246618420743,
+"lignes_perdues": 0.0
+},
+"417": {
+"stocke": 1008,
+"neuf": 1008,
+"pasv": 18.014113738087246,
+"lignes": 43,
+"derniere": 1001.8603858957572,
+"lignes_perdues": 0.0
+},
+"418": {
+"stocke": 1029,
+"neuf": 1029,
+"pasv": 18.070434160048073,
+"lignes": 41,
+"derniere": 1023.2115513431731,
+"lignes_perdues": 0.0
+},
+"419": {
+"stocke": 995,
+"neuf": 995,
+"pasv": 18.01941486318421,
+"lignes": 44,
+"derniere": 1002.3144432378732,
+"lignes_perdues": 0.0
+},
+"420": {
+"stocke": 1063,
+"neuf": 1063,
+"pasv": 18.02601736426263,
+"lignes": 45,
+"derniere": 1055.3628439324325,
+"lignes_perdues": 0.0
+},
+"421": {
+"stocke": 1159,
+"neuf": 1159,
+"pasv": 18.002542838584933,
+"lignes": 31,
+"derniere": 1165.3026559309096,
+"lignes_perdues": 0.0
+},
+"422": {
+"stocke": 1062,
+"neuf": 1062,
+"pasv": 18.054176029615245,
+"lignes": 38,
+"derniere": 1055.3217648907762,
+"lignes_perdues": 0.0
+},
+"423": {
+"stocke": 1017,
+"neuf": 1017,
+"pasv": 18.02090035019858,
+"lignes": 46,
+"derniere": 1099.6588906955346,
+"lignes_perdues": 0.0
+},
+"424": {
+"stocke": 1005,
+"neuf": 1005,
+"pasv": 18.012065017049196,
+"lignes": 42,
+"derniere": 1010.1800742419817,
+"lignes_perdues": 0.0
+},
+"425": {
+"stocke": 1042,
+"neuf": 1042,
+"pasv": 18.037886719160316,
+"lignes": 44,
+"derniere": 1035.8531872011245,
+"lignes_perdues": 0.0
+},
+"426": {
+"stocke": 1048,
+"neuf": 1060,
+"pasv": 18.008251613596354,
+"lignes": 41,
+"derniere": 1048.3124239470624,
+"lignes_perdues": 0.67
+},
+"427": {
+"stocke": 1071,
+"neuf": 1071,
+"pasv": 18.0426292847947,
+"lignes": 48,
+"derniere": 1064.115681894876,
+"lignes_perdues": 0.0
+},
+"428": {
+"stocke": 1044,
+"neuf": 1044,
+"pasv": 18.016459637646474,
+"lignes": 39,
+"derniere": 1037.7851145138543,
+"lignes_perdues": 0.0
+},
+"429": {
+"stocke": 1057,
+"neuf": 1057,
+"pasv": 18.029572863217428,
+"lignes": 46,
+"derniere": 1067.5366624529477,
+"lignes_perdues": 0.0
+},
+"430": {
+"stocke": 1036,
+"neuf": 1036,
+"pasv": 18.00495199518538,
+"lignes": 44,
+"derniere": 1030.360345121263,
+"lignes_perdues": 0.0
+},
+"431": {
+"stocke": 1020,
+"neuf": 1020,
+"pasv": 18.042670260702412,
+"lignes": 42,
+"derniere": 1029.108297708205,
+"lignes_perdues": 0.0
+},
+"432": {
+"stocke": 1046,
+"neuf": 1046,
+"pasv": 18.044137307965997,
+"lignes": 41,
+"derniere": 1038.618992244981,
+"lignes_perdues": 0.0
+},
+"433": {
+"stocke": 1032,
+"neuf": 1017,
+"pasv": 18.6402292734199,
+"lignes": 41,
+"derniere": 1039.8934892839336,
+"lignes_perdues": -0.8
+},
+"434": {
+"stocke": 1046,
+"neuf": 1046,
+"pasv": 18.077366854978763,
+"lignes": 42,
+"derniere": 1040.0096287472404,
+"lignes_perdues": 0.0
+},
+"435": {
+"stocke": 1000,
+"neuf": 1000,
+"pasv": 18.000528627590448,
+"lignes": 41,
+"derniere": 993.4449131557591,
+"lignes_perdues": 0.0
+},
+"436": {
+"stocke": 1062,
+"neuf": 1062,
+"pasv": 18.029580922346558,
+"lignes": 43,
+"derniere": 1054.2842280158668,
+"lignes_perdues": 0.0
+},
+"437": {
+"stocke": 1048,
+"neuf": 1048,
+"pasv": 17.976662778167135,
+"lignes": 42,
+"derniere": 1058.2843647125223,
+"lignes_perdues": 0.0
+},
+"438": {
+"stocke": 1044,
+"neuf": 1044,
+"pasv": 17.980609124455196,
+"lignes": 43,
+"derniere": 1037.8771102956625,
+"lignes_perdues": 0.0
+},
+"439": {
+"stocke": 1061,
+"neuf": 1061,
+"pasv": 17.98628641187498,
+"lignes": 42,
+"derniere": 1070.273530763743,
+"lignes_perdues": 0.0
+},
+"440": {
+"stocke": 1036,
+"neuf": 1036,
+"pasv": 17.98351995753932,
+"lignes": 42,
+"derniere": 1030.0577124653862,
+"lignes_perdues": 0.0
+},
+"441": {
+"stocke": 1040,
+"neuf": 1040,
+"pasv": 18.023175488039954,
+"lignes": 40,
+"derniere": 1033.0870590339655,
+"lignes_perdues": 0.0
+},
+"442": {
+"stocke": 1057,
+"neuf": 1057,
+"pasv": 17.98794741444852,
+"lignes": 43,
+"derniere": 1066.6490152760218,
+"lignes_perdues": 0.0
+},
+"443": {
+"stocke": 1076,
+"neuf": 1076,
+"pasv": 18.02890036828713,
+"lignes": 44,
+"derniere": 1087.050505426247,
+"lignes_perdues": 0.0
+},
+"444": {
+"stocke": 1053,
+"neuf": 1053,
+"pasv": 18.01902603399196,
+"lignes": 44,
+"derniere": 1046.4614930458981,
+"lignes_perdues": 0.0
+},
+"445": {
+"stocke": 1051,
+"neuf": 1051,
+"pasv": 18.024220926602418,
+"lignes": 44,
+"derniere": 1043.6226778519133,
+"lignes_perdues": 0.0
+},
+"446": {
+"stocke": 1078,
+"neuf": 1078,
+"pasv": 18.021478987708566,
+"lignes": 42,
+"derniere": 1085.3692688099443,
+"lignes_perdues": 0.0
+},
+"447": {
+"stocke": 980,
+"neuf": 980,
+"pasv": 17.981726688719668,
+"lignes": 39,
+"derniere": 974.1397769036961,
+"lignes_perdues": 0.0
+},
+"448": {
+"stocke": 1017,
+"neuf": 1017,
+"pasv": 18.046191177216645,
+"lignes": 44,
+"derniere": 1027.010766647098,
+"lignes_perdues": 0.0
+},
+"449": {
+"stocke": 1020,
+"neuf": 1020,
+"pasv": 18.046160504307803,
+"lignes": 41,
+"derniere": 1013.058104034744,
+"lignes_perdues": 0.0
+},
+"450": {
+"stocke": 1068,
+"neuf": 1068,
+"pasv": 18.0587081711784,
+"lignes": 45,
+"derniere": 1078.5247768611111,
+"lignes_perdues": 0.0
+},
+"451": {
+"stocke": 1047,
+"neuf": 1047,
+"pasv": 18.03430145798636,
+"lignes": 43,
+"derniere": 1057.6031984077185,
+"lignes_perdues": 0.0
+},
+"452": {
+"stocke": 1025,
+"neuf": 1025,
+"pasv": 18.016673048243312,
+"lignes": 42,
+"derniere": 1019.0591444299474,
+"lignes_perdues": 0.0
+},
+"453": {
+"stocke": 1021,
+"neuf": 1021,
+"pasv": 18.059420890673184,
+"lignes": 43,
+"derniere": 1013.1208576260166,
+"lignes_perdues": 0.0
+},
+"454": {
+"stocke": 964,
+"neuf": 964,
+"pasv": 17.99562770939669,
+"lignes": 40,
+"derniere": 957.8020742057264,
+"lignes_perdues": 0.0
+},
+"455": {
+"stocke": 1067,
+"neuf": 1067,
+"pasv": 18.032199849310615,
+"lignes": 40,
+"derniere": 1060.6791880789099,
+"lignes_perdues": 0.0
+},
+"456": {
+"stocke": 1036,
+"neuf": 1036,
+"pasv": 18.02739318509801,
+"lignes": 46,
+"derniere": 1042.092223428277,
+"lignes_perdues": 0.0
+},
+"457": {
+"stocke": 1078,
+"neuf": 1078,
+"pasv": 17.986425330559477,
+"lignes": 45,
+"derniere": 1078.817515926178,
+"lignes_perdues": 0.0
+},
+"458": {
+"stocke": 1057,
+"neuf": 1057,
+"pasv": 18.031472519163486,
+"lignes": 44,
+"derniere": 1063.3890502729073,
+"lignes_perdues": 0.0
+},
+"459": {
+"stocke": 994,
+"neuf": 994,
+"pasv": 18.01804763328533,
+"lignes": 40,
+"derniere": 988.9178513782047,
+"lignes_perdues": 0.0
+},
+"460": {
+"stocke": 1042,
+"neuf": 1042,
+"pasv": 18.00472319225318,
+"lignes": 41,
+"derniere": 1036.1125894349418,
+"lignes_perdues": 0.0
+},
+"461": {
+"stocke": 1083,
+"neuf": 1083,
+"pasv": 18.066713136670867,
+"lignes": 42,
+"derniere": 1076.0141229058408,
+"lignes_perdues": 0.0
+},
+"462": {
+"stocke": 1100,
+"neuf": 1100,
+"pasv": 18.022342622450537,
+"lignes": 44,
+"derniere": 1110.5618015440355,
+"lignes_perdues": 0.0
+},
+"463": {
+"stocke": 1021,
+"neuf": 1021,
+"pasv": 18.014649113177995,
+"lignes": 40,
+"derniere": 1031.4150100730583,
+"lignes_perdues": 0.0
+},
+"464": {
+"stocke": 1053,
+"neuf": 1053,
+"pasv": 18.00737886355799,
+"lignes": 43,
+"derniere": 1059.3928280941072,
+"lignes_perdues": 0.0
+},
+"465": {
+"stocke": 1052,
+"neuf": 1052,
+"pasv": 18.021723962855535,
+"lignes": 41,
+"derniere": 1062.472444297563,
+"lignes_perdues": 0.0
+},
+"466": {
+"stocke": 1042,
+"neuf": 1042,
+"pasv": 18.024139232786798,
+"lignes": 41,
+"derniere": 1037.1700212436892,
+"lignes_perdues": 0.0
+},
+"467": {
+"stocke": 1037,
+"neuf": 1037,
+"pasv": 18.044429289394337,
+"lignes": 43,
+"derniere": 1044.3941302249552,
+"lignes_perdues": 0.0
+},
+"468": {
+"stocke": 1074,
+"neuf": 1074,
+"pasv": 17.969887258642085,
+"lignes": 42,
+"derniere": 1066.8345254914493,
+"lignes_perdues": 0.0
+},
+"469": {
+"stocke": 1070,
+"neuf": 1070,
+"pasv": 18.050386258275083,
+"lignes": 43,
+"derniere": 1080.8429793473654,
+"lignes_perdues": 0.0
+},
+"470": {
+"stocke": 1070,
+"neuf": 1070,
+"pasv": 18.040417695972433,
+"lignes": 44,
+"derniere": 1081.528005991472,
+"lignes_perdues": 0.0
+},
+"471": {
+"stocke": 1016,
+"neuf": 1016,
+"pasv": 18.035498355771782,
+"lignes": 42,
+"derniere": 1026.311756636344,
+"lignes_perdues": 0.0
+},
+"472": {
+"stocke": 1083,
+"neuf": 1083,
+"pasv": 18.01100624136145,
+"lignes": 48,
+"derniere": 1092.0652546141139,
+"lignes_perdues": 0.0
+},
+"473": {
+"stocke": 1008,
+"neuf": 1008,
+"pasv": 17.99274792232959,
+"lignes": 43,
+"derniere": 1019.0100848549364,
+"lignes_perdues": 0.0
+},
+"474": {
+"stocke": 1033,
+"neuf": 1033,
+"pasv": 17.986534587238573,
+"lignes": 41,
+"derniere": 1025.821954010089,
+"lignes_perdues": 0.0
+},
+"475": {
+"stocke": 1071,
+"neuf": 1071,
+"pasv": 18.031323206656197,
+"lignes": 45,
+"derniere": 1075.4655322807396,
+"lignes_perdues": 0.0
+},
+"476": {
+"stocke": 1024,
+"neuf": 1024,
+"pasv": 18.042521823206958,
+"lignes": 39,
+"derniere": 1017.0164044830593,
+"lignes_perdues": 0.0
+},
+"477": {
+"stocke": 1134,
+"neuf": 1134,
+"pasv": 18.034815350010334,
+"lignes": 43,
+"derniere": 1130.3686940405385,
+"lignes_perdues": 0.0
+},
+"478": {
+"stocke": 1123,
+"neuf": 1123,
+"pasv": 18.07234602046026,
+"lignes": 44,
+"derniere": 1118.2092352769162,
+"lignes_perdues": 0.0
+},
+"479": {
+"stocke": 1085,
+"neuf": 1085,
+"pasv": 18.068273453697646,
+"lignes": 46,
+"derniere": 1095.1437449066086,
+"lignes_perdues": 0.0
+},
+"480": {
+"stocke": 1075,
+"neuf": 1075,
+"pasv": 17.977560669966028,
+"lignes": 43,
+"derniere": 1070.3577628468208,
+"lignes_perdues": 0.0
+},
+"481": {
+"stocke": 1072,
+"neuf": 1072,
+"pasv": 18.053754718541363,
+"lignes": 46,
+"derniere": 1080.4256329869627,
+"lignes_perdues": 0.0
+},
+"482": {
+"stocke": 1045,
+"neuf": 1045,
+"pasv": 18.03211814102221,
+"lignes": 45,
+"derniere": 1038.1661339085617,
+"lignes_perdues": 0.0
+},
+"483": {
+"stocke": 1020,
+"neuf": 1020,
+"pasv": 18.05589183613192,
+"lignes": 44,
+"derniere": 1029.0082124697851,
+"lignes_perdues": 0.0
+},
+"484": {
+"stocke": 1046,
+"neuf": 1046,
+"pasv": 17.96411349128375,
+"lignes": 45,
+"derniere": 1039.2601025194442,
+"lignes_perdues": 0.0
+},
+"485": {
+"stocke": 1174,
+"neuf": 1174,
+"pasv": 17.98747931857148,
+"lignes": 37,
+"derniere": 1165.1385534657402,
+"lignes_perdues": 0.0
+},
+"486": {
+"stocke": 1114,
+"neuf": 1114,
+"pasv": 18.052547032682785,
+"lignes": 40,
+"derniere": 1119.747076812601,
+"lignes_perdues": 0.0
+},
+"487": {
+"stocke": 1102,
+"neuf": 1102,
+"pasv": 17.870867286158774,
+"lignes": 49,
+"derniere": 1098.105859920269,
+"lignes_perdues": 0.0
+},
+"488": {
+"stocke": 1102,
+"neuf": 1102,
+"pasv": 17.929886105586128,
+"lignes": 44,
+"derniere": 1095.9699016987217,
+"lignes_perdues": 0.0
+},
+"489": {
+"stocke": 1086,
+"neuf": 1086,
+"pasv": 18.052824650923526,
+"lignes": 43,
+"derniere": 1078.8217569288224,
+"lignes_perdues": 0.0
+},
+"490": {
+"stocke": 1043,
+"neuf": 1043,
+"pasv": 18.007415162256095,
+"lignes": 42,
+"derniere": 1048.575981118513,
+"lignes_perdues": 0.0
+},
+"491": {
+"stocke": 1087,
+"neuf": 1087,
+"pasv": 18.052346996782035,
+"lignes": 45,
+"derniere": 1080.3937781652762,
+"lignes_perdues": 0.0
+},
+"492": {
+"stocke": 1106,
+"neuf": 1106,
+"pasv": 18.030862696307246,
+"lignes": 46,
+"derniere": 1115.6553459683832,
+"lignes_perdues": 0.0
+},
+"493": {
+"stocke": 1039,
+"neuf": 1039,
+"pasv": 18.035987434056025,
+"lignes": 40,
+"derniere": 1048.357679849977,
+"lignes_perdues": 0.0
+},
+"494": {
+"stocke": 1067,
+"neuf": 1067,
+"pasv": 17.996468782183612,
+"lignes": 44,
+"derniere": 1075.9878533681601,
+"lignes_perdues": 0.0
+},
+"495": {
+"stocke": 1073,
+"neuf": 1073,
+"pasv": 18.007377525592865,
+"lignes": 47,
+"derniere": 1081.3380316899484,
+"lignes_perdues": 0.0
+},
+"496": {
+"stocke": 1040,
+"neuf": 1040,
+"pasv": 18.062746119317726,
+"lignes": 46,
+"derniere": 1049.6365129929084,
+"lignes_perdues": 0.0
+},
+"497": {
+"stocke": 1030,
+"neuf": 1030,
+"pasv": 17.950160740071755,
+"lignes": 44,
+"derniere": 1024.4841349674186,
+"lignes_perdues": 0.0
+},
+"498": {
+"stocke": 1055,
+"neuf": 1089,
+"pasv": 17.435724915524734,
+"lignes": 50,
+"derniere": 1048.5916699344687,
+"lignes_perdues": 1.95
+},
+"499": {
+"stocke": 957,
+"neuf": 957,
+"pasv": 17.91026890774043,
+"lignes": 37,
+"derniere": 950.5403016311865,
+"lignes_perdues": 0.0
+},
+"500": {
+"stocke": 1080,
+"neuf": 1080,
+"pasv": 18.037740360588252,
+"lignes": 45,
+"derniere": 1073.5682948360923,
+"lignes_perdues": 0.0
+},
+"501": {
+"stocke": 1066,
+"neuf": 1066,
+"pasv": 17.961090839301985,
+"lignes": 45,
+"derniere": 1076.3595173139051,
+"lignes_perdues": 0.0
+},
+"502": {
+"stocke": 1083,
+"neuf": 1083,
+"pasv": 18.09887930191594,
+"lignes": 44,
+"derniere": 1092.9224763942968,
+"lignes_perdues": 0.0
+},
+"503": {
+"stocke": 1023,
+"neuf": 1023,
+"pasv": 17.90809651909247,
+"lignes": 43,
+"derniere": 1016.7212804883782,
+"lignes_perdues": 0.0
+},
+"504": {
+"stocke": 1050,
+"neuf": 1050,
+"pasv": 17.998532857956835,
+"lignes": 42,
+"derniere": 1044.102762580309,
+"lignes_perdues": 0.0
+},
+"505": {
+"stocke": 997,
+"neuf": 997,
+"pasv": 17.947042200515117,
+"lignes": 47,
+"derniere": 1098.3753497129076,
+"lignes_perdues": 0.0
+},
+"506": {
+"stocke": 1046,
+"neuf": 1046,
+"pasv": 18.002111660483436,
+"lignes": 46,
+"derniere": 1054.1668472322392,
+"lignes_perdues": 0.0
+},
+"507": {
+"stocke": 1050,
+"neuf": 1050,
+"pasv": 17.9309238459648,
+"lignes": 45,
+"derniere": 1043.9462260580335,
+"lignes_perdues": 0.0
+},
+"508": {
+"stocke": 1078,
+"neuf": 1078,
+"pasv": 17.9300000881298,
+"lignes": 46,
+"derniere": 1071.7177806522793,
+"lignes_perdues": 0.0
+},
+"509": {
+"stocke": 1018,
+"neuf": 1018,
+"pasv": 17.975749981778648,
+"lignes": 43,
+"derniere": 1011.6957863938061,
+"lignes_perdues": 0.0
+},
+"510": {
+"stocke": 1017,
+"neuf": 1017,
+"pasv": 17.7810436618029,
+"lignes": 44,
+"derniere": 1023.6468480383082,
+"lignes_perdues": 0.0
+},
+"511": {
+"stocke": 1085,
+"neuf": 1085,
+"pasv": 17.92505580553094,
+"lignes": 48,
+"derniere": 1078.3590530151098,
+"lignes_perdues": 0.0
+},
+"512": {
+"stocke": 1051,
+"neuf": 1051,
+"pasv": 17.94554917450714,
+"lignes": 40,
+"derniere": 1044.3429994659423,
+"lignes_perdues": 0.0
+},
+"513": {
+"stocke": 855,
+"neuf": 855,
+"pasv": 18.06819702463067,
+"lignes": 55,
+"derniere": 1179.64173747557,
+"lignes_perdues": 0.0
+},
+"514": {
+"stocke": 1109,
+"neuf": 1109,
+"pasv": 17.987924493256518,
+"lignes": 45,
+"derniere": 1119.9844063479288,
+"lignes_perdues": 0.0
+},
+"515": {
+"stocke": 1056,
+"neuf": 1056,
+"pasv": 18.001482407865872,
+"lignes": 45,
+"derniere": 1048.1256709011627,
+"lignes_perdues": 0.0
+},
+"516": {
+"stocke": 1068,
+"neuf": 1068,
+"pasv": 17.94722615797767,
+"lignes": 43,
+"derniere": 1075.3985316572266,
+"lignes_perdues": 0.0
+},
+"517": {
+"stocke": 1065,
+"neuf": 1065,
+"pasv": 18.004742307878328,
+"lignes": 44,
+"derniere": 1058.346717177798,
+"lignes_perdues": 0.0
+},
+"518": {
+"stocke": 1087,
+"neuf": 1087,
+"pasv": 17.99364120356992,
+"lignes": 45,
+"derniere": 1081.167175478066,
+"lignes_perdues": 0.0
+},
+"519": {
+"stocke": 1051,
+"neuf": 1051,
+"pasv": 18.001825196238855,
+"lignes": 46,
+"derniere": 1058.4491397998122,
+"lignes_perdues": 0.0
+},
+"520": {
+"stocke": 1039,
+"neuf": 1039,
+"pasv": 17.978814055336134,
+"lignes": 43,
+"derniere": 1050.1356300472444,
+"lignes_perdues": 0.0
+},
+"521": {
+"stocke": 1080,
+"neuf": 1080,
+"pasv": 18.028798909666406,
+"lignes": 43,
+"derniere": 1088.9595482988561,
+"lignes_perdues": 0.0
+},
+"522": {
+"stocke": 1046,
+"neuf": 1046,
+"pasv": 17.937966077940768,
+"lignes": 41,
+"derniere": 1040.0501129213485,
+"lignes_perdues": 0.0
+},
+"523": {
+"stocke": 1045,
+"neuf": 1045,
+"pasv": 17.999140804304957,
+"lignes": 45,
+"derniere": 1039.0270346082561,
+"lignes_perdues": 0.0
+},
+"524": {
+"stocke": 1042,
+"neuf": 1042,
+"pasv": 17.9427719908807,
+"lignes": 43,
+"derniere": 1052.3509397201663,
+"lignes_perdues": 0.0
+},
+"525": {
+"stocke": 1088,
+"neuf": 1088,
+"pasv": 18.03083025379238,
+"lignes": 45,
+"derniere": 1099.428607490017,
+"lignes_perdues": 0.0
+},
+"526": {
+"stocke": 1091,
+"neuf": 1091,
+"pasv": 17.92024407313349,
+"lignes": 46,
+"derniere": 1097.7439926370687,
+"lignes_perdues": 0.0
+},
+"527": {
+"stocke": 1038,
+"neuf": 1038,
+"pasv": 17.881867008237126,
+"lignes": 42,
+"derniere": 1032.058368711504,
+"lignes_perdues": 0.0
+},
+"528": {
+"stocke": 1039,
+"neuf": 1039,
+"pasv": 17.89745228907896,
+"lignes": 44,
+"derniere": 1048.370316269533,
+"lignes_perdues": 0.0
+},
+"529": {
+"stocke": 1095,
+"neuf": 1095,
+"pasv": 17.990999452000214,
+"lignes": 46,
+"derniere": 1103.0355630890897,
+"lignes_perdues": 0.0
+},
+"530": {
+"stocke": 1067,
+"neuf": 1067,
+"pasv": 17.950760544799877,
+"lignes": 55,
+"derniere": 1067.747221549051,
+"lignes_perdues": 0.0
+},
+"531": {
+"stocke": 1032,
+"neuf": 1032,
+"pasv": 17.91701475614745,
+"lignes": 42,
+"derniere": 1026.886706100967,
+"lignes_perdues": 0.0
+},
+"532": {
+"stocke": 1084,
+"neuf": 1084,
+"pasv": 17.965164259007047,
+"lignes": 43,
+"derniere": 1094.3085438371622,
+"lignes_perdues": 0.0
+},
+"533": {
+"stocke": 1077,
+"neuf": 1077,
+"pasv": 17.982946917464464,
+"lignes": 44,
+"derniere": 1088.2507191270213,
+"lignes_perdues": 0.0
+},
+"534": {
+"stocke": 1086,
+"neuf": 1086,
+"pasv": 17.98568511625725,
+"lignes": 47,
+"derniere": 1093.6032621106715,
+"lignes_perdues": 0.0
+},
+"535": {
+"stocke": 1027,
+"neuf": 1027,
+"pasv": 17.961528580537472,
+"lignes": 44,
+"derniere": 1020.436001221291,
+"lignes_perdues": 0.0
+},
+"536": {
+"stocke": 1060,
+"neuf": 1060,
+"pasv": 17.98509609214731,
+"lignes": 43,
+"derniere": 1066.7792842353563,
+"lignes_perdues": 0.0
+},
+"537": {
+"stocke": 1075,
+"neuf": 1075,
+"pasv": 17.975308937766105,
+"lignes": 44,
+"derniere": 1082.0025028315742,
+"lignes_perdues": 0.0
+},
+"538": {
+"stocke": 1082,
+"neuf": 1082,
+"pasv": 17.989846222929145,
+"lignes": 46,
+"derniere": 1075.0175592025903,
+"lignes_perdues": 0.0
+},
+"539": {
+"stocke": 1059,
+"neuf": 1059,
+"pasv": 17.972056971174,
+"lignes": 44,
+"derniere": 1066.4664861978688,
+"lignes_perdues": 0.0
+},
+"540": {
+"stocke": 1028,
+"neuf": 1028,
+"pasv": 18.04481051348929,
+"lignes": 43,
+"derniere": 1036.2968229696023,
+"lignes_perdues": 0.0
+},
+"541": {
+"stocke": 1031,
+"neuf": 1031,
+"pasv": 18.00205534297193,
+"lignes": 41,
+"derniere": 1025.243424459609,
+"lignes_perdues": 0.0
+},
+"542": {
+"stocke": 996,
+"neuf": 1022,
+"pasv": 17.987633152900173,
+"lignes": 43,
+"derniere": 997.1188228637602,
+"lignes_perdues": 1.45
+},
+"543": {
+"stocke": 1068,
+"neuf": 1068,
+"pasv": 17.94416085355439,
+"lignes": 44,
+"derniere": 1075.4050937182215,
+"lignes_perdues": 0.0
+},
+"544": {
+"stocke": 1045,
+"neuf": 1045,
+"pasv": 17.94488672783977,
+"lignes": 46,
+"derniere": 1048.903343850476,
+"lignes_perdues": 0.0
+},
+"545": {
+"stocke": 1064,
+"neuf": 1620,
+"pasv": 17.095331348268935,
+"lignes": 56,
+"derniere": 1075.15725484432,
+"lignes_perdues": 32.52
+},
+"546": {
+"stocke": 1088,
+"neuf": 1652,
+"pasv": 17.121687723875752,
+"lignes": 57,
+"derniere": 1086.1742371182913,
+"lignes_perdues": 32.94
+},
+"547": {
+"stocke": 1052,
+"neuf": 1052,
+"pasv": 17.973350857556888,
+"lignes": 48,
+"derniere": 1063.314275769236,
+"lignes_perdues": 0.0
+},
+"548": {
+"stocke": 1059,
+"neuf": 1059,
+"pasv": 17.955426054510987,
+"lignes": 43,
+"derniere": 1052.6087119817926,
+"lignes_perdues": 0.0
+},
+"549": {
+"stocke": 1020,
+"neuf": 1020,
+"pasv": 18.016854680853726,
+"lignes": 44,
+"derniere": 1026.5967221075398,
+"lignes_perdues": 0.0
+},
+"550": {
+"stocke": 1059,
+"neuf": 1059,
+"pasv": 17.98523401809486,
+"lignes": 44,
+"derniere": 1052.1565713054297,
+"lignes_perdues": 0.0
+},
+"551": {
+"stocke": 1060,
+"neuf": 1060,
+"pasv": 17.983355034381432,
+"lignes": 43,
+"derniere": 1065.5223273117224,
+"lignes_perdues": 0.0
+},
+"552": {
+"stocke": 1055,
+"neuf": 1055,
+"pasv": 17.977074781003033,
+"lignes": 43,
+"derniere": 1048.8757850344723,
+"lignes_perdues": 0.0
+},
+"553": {
+"stocke": 1047,
+"neuf": 1047,
+"pasv": 17.977055409954875,
+"lignes": 45,
+"derniere": 1040.6266621666025,
+"lignes_perdues": 0.0
+},
+"554": {
+"stocke": 1038,
+"neuf": 1038,
+"pasv": 17.960871963458935,
+"lignes": 42,
+"derniere": 1031.1821479606378,
+"lignes_perdues": 0.0
+},
+"555": {
+"stocke": 1040,
+"neuf": 1040,
+"pasv": 17.999914662787315,
+"lignes": 43,
+"derniere": 1033.1676215873506,
+"lignes_perdues": 0.0
+},
+"556": {
+"stocke": 1082,
+"neuf": 1082,
+"pasv": 17.9454281532238,
+"lignes": 43,
+"derniere": 1077.7713366590267,
+"lignes_perdues": 0.0
+},
+"557": {
+"stocke": 1087,
+"neuf": 1087,
+"pasv": 18.050677159956045,
+"lignes": 43,
+"derniere": 1081.0532179742495,
+"lignes_perdues": 0.0
+},
+"558": {
+"stocke": 1002,
+"neuf": 1002,
+"pasv": 17.944357630666214,
+"lignes": 42,
+"derniere": 1007.7367869427852,
+"lignes_perdues": 0.0
+},
+"559": {
+"stocke": 1073,
+"neuf": 1073,
+"pasv": 18.006682685969402,
+"lignes": 44,
+"derniere": 1084.3891792715203,
+"lignes_perdues": 0.0
+},
+"560": {
+"stocke": 1059,
+"neuf": 1059,
+"pasv": 17.973974771548143,
+"lignes": 42,
+"derniere": 1051.8717822076205,
+"lignes_perdues": 0.0
+},
+"561": {
+"stocke": 1016,
+"neuf": 1016,
+"pasv": 17.98573189408276,
+"lignes": 41,
+"derniere": 1009.073039988602,
+"lignes_perdues": 0.0
+},
+"562": {
+"stocke": 1039,
+"neuf": 1039,
+"pasv": 17.95046322064723,
+"lignes": 45,
+"derniere": 1032.4643389133098,
+"lignes_perdues": 0.0
+},
+"563": {
+"stocke": 991,
+"neuf": 991,
+"pasv": 18.002645915937418,
+"lignes": 41,
+"derniere": 985.3754096920835,
+"lignes_perdues": 0.0
+},
+"564": {
+"stocke": 1032,
+"neuf": 1032,
+"pasv": 17.970362111385654,
+"lignes": 42,
+"derniere": 1038.8421421845117,
+"lignes_perdues": 0.0
+},
+"565": {
+"stocke": 1036,
+"neuf": 1036,
+"pasv": 18.02246137380414,
+"lignes": 47,
+"derniere": 1047.230884258872,
+"lignes_perdues": 0.0
+},
+"566": {
+"stocke": 1093,
+"neuf": 1093,
+"pasv": 18.03892802433429,
+"lignes": 41,
+"derniere": 1101.8764763938264,
+"lignes_perdues": 0.0
+},
+"567": {
+"stocke": 1027,
+"neuf": 1027,
+"pasv": 17.99901026637917,
+"lignes": 43,
+"derniere": 1039.0772609572523,
+"lignes_perdues": 0.0
+},
+"568": {
+"stocke": 1094,
+"neuf": 1094,
+"pasv": 17.986374199495035,
+"lignes": 48,
+"derniere": 1087.466359394776,
+"lignes_perdues": 0.0
+},
+"569": {
+"stocke": 1073,
+"neuf": 1073,
+"pasv": 18.005035713591706,
+"lignes": 44,
+"derniere": 1084.3054621451777,
+"lignes_perdues": 0.0
+},
+"570": {
+"stocke": 1070,
+"neuf": 1070,
+"pasv": 17.952906725682034,
+"lignes": 46,
+"derniere": 1080.2410126769478,
+"lignes_perdues": 0.0
+},
+"571": {
+"stocke": 1041,
+"neuf": 1041,
+"pasv": 17.986866397102037,
+"lignes": 41,
+"derniere": 1052.3488334315985,
+"lignes_perdues": 0.0
+},
+"572": {
+"stocke": 1135,
+"neuf": 1135,
+"pasv": 17.965861867276566,
+"lignes": 41,
+"derniere": 1131.284935756245,
+"lignes_perdues": 0.0
+},
+"573": {
+"stocke": 1054,
+"neuf": 1054,
+"pasv": 17.981455740520147,
+"lignes": 45,
+"derniere": 1048.3479584106294,
+"lignes_perdues": 0.0
+},
+"574": {
+"stocke": 1105,
+"neuf": 1105,
+"pasv": 18.00095478225738,
+"lignes": 51,
+"derniere": 1110.5480368445933,
+"lignes_perdues": 0.0
+},
+"575": {
+"stocke": 1053,
+"neuf": 1053,
+"pasv": 18.00587465495346,
+"lignes": 43,
+"derniere": 1061.15497690411,
+"lignes_perdues": 0.0
+},
+"576": {
+"stocke": 1095,
+"neuf": 1095,
+"pasv": 17.98201597952971,
+"lignes": 45,
+"derniere": 1106.0332057336245,
+"lignes_perdues": 0.0
+},
+"577": {
+"stocke": 1088,
+"neuf": 1135,
+"pasv": 18.395746850933712,
+"lignes": 59,
+"derniere": 1078.8814605881541,
+"lignes_perdues": 2.55
+},
+"578": {
+"stocke": 1095,
+"neuf": 1095,
+"pasv": 18.007105882044044,
+"lignes": 47,
+"derniere": 1088.4769635813943,
+"lignes_perdues": 0.0
+},
+"579": {
+"stocke": 1099,
+"neuf": 1099,
+"pasv": 18.04043790715774,
+"lignes": 44,
+"derniere": 1093.3307759389872,
+"lignes_perdues": 0.0
+},
+"580": {
+"stocke": 1110,
+"neuf": 1110,
+"pasv": 18.01500851286325,
+"lignes": 47,
+"derniere": 1103.3964556593394,
+"lignes_perdues": 0.0
+},
+"581": {
+"stocke": 1037,
+"neuf": 1037,
+"pasv": 17.88982453177775,
+"lignes": 41,
+"derniere": 1030.3180952371006,
+"lignes_perdues": 0.0
+},
+"582": {
+"stocke": 1078,
+"neuf": 1078,
+"pasv": 17.97229245722188,
+"lignes": 42,
+"derniere": 1084.8535171186518,
+"lignes_perdues": 0.0
+},
+"583": {
+"stocke": 1081,
+"neuf": 1081,
+"pasv": 17.989974529170865,
+"lignes": 46,
+"derniere": 1073.7279640881197,
+"lignes_perdues": 0.0
+},
+"584": {
+"stocke": 1042,
+"neuf": 1042,
+"pasv": 17.971883006557086,
+"lignes": 43,
+"derniere": 1050.8824013914686,
+"lignes_perdues": 0.0
+},
+"585": {
+"stocke": 1056,
+"neuf": 1056,
+"pasv": 17.935522004972544,
+"lignes": 42,
+"derniere": 1049.2257179350777,
+"lignes_perdues": 0.0
+},
+"586": {
+"stocke": 987,
+"neuf": 987,
+"pasv": 17.98691562845422,
+"lignes": 42,
+"derniere": 979.8246982898899,
+"lignes_perdues": 0.0
+},
+"587": {
+"stocke": 1075,
+"neuf": 1075,
+"pasv": 17.946221729661154,
+"lignes": 47,
+"derniere": 1138.1340305753374,
+"lignes_perdues": 0.0
+},
+"588": {
+"stocke": 1123,
+"neuf": 1123,
+"pasv": 17.971358992645506,
+"lignes": 51,
+"derniere": 1131.7159977999693,
+"lignes_perdues": 0.0
+},
+"589": {
+"stocke": 1081,
+"neuf": 1081,
+"pasv": 17.901726748568578,
+"lignes": 46,
+"derniere": 1073.8723294499798,
+"lignes_perdues": 0.0
+},
+"590": {
+"stocke": 1073,
+"neuf": 1073,
+"pasv": 17.92181415823933,
+"lignes": 45,
+"derniere": 1066.48811786385,
+"lignes_perdues": 0.0
+},
+"591": {
+"stocke": 1084,
+"neuf": 1084,
+"pasv": 17.966601319304214,
+"lignes": 47,
+"derniere": 1077.2619727331355,
+"lignes_perdues": 0.0
+},
+"592": {
+"stocke": 1075,
+"neuf": 1075,
+"pasv": 17.96734474573138,
+"lignes": 45,
+"derniere": 1082.1701567366651,
+"lignes_perdues": 0.0
+},
+"593": {
+"stocke": 1025,
+"neuf": 1025,
+"pasv": 17.98643034383482,
+"lignes": 44,
+"derniere": 1019.1514259397953,
+"lignes_perdues": 0.0
+},
+"594": {
+"stocke": 1111,
+"neuf": 1111,
+"pasv": 17.990793875466817,
+"lignes": 45,
+"derniere": 1103.9337898028605,
+"lignes_perdues": 0.0
+},
+"595": {
+"stocke": 1074,
+"neuf": 1074,
+"pasv": 17.95526099775195,
+"lignes": 44,
+"derniere": 1068.2318516587013,
+"lignes_perdues": 0.0
+},
+"596": {
+"stocke": 1076,
+"neuf": 1076,
+"pasv": 18.018207466428567,
+"lignes": 43,
+"derniere": 1070.3080911013085,
+"lignes_perdues": 0.0
+},
+"597": {
+"stocke": 1040,
+"neuf": 1040,
+"pasv": 17.988345573311594,
+"lignes": 41,
+"derniere": 1035.1683123338892,
+"lignes_perdues": 0.0
+},
+"598": {
+"stocke": 1088,
+"neuf": 1088,
+"pasv": 17.995496466070467,
+"lignes": 42,
+"derniere": 1081.915939215821,
+"lignes_perdues": 0.0
+},
+"599": {
+"stocke": 1115,
+"neuf": 1115,
+"pasv": 17.99202653365673,
+"lignes": 46,
+"derniere": 1112.9654368060224,
+"lignes_perdues": 0.0
+},
+"600": {
+"stocke": 1068,
+"neuf": 1068,
+"pasv": 17.97788631337702,
+"lignes": 44,
+"derniere": 1075.098091044016,
+"lignes_perdues": 0.0
+},
+"601": {
+"stocke": 1079,
+"neuf": 1079,
+"pasv": 18.025862769469555,
+"lignes": 45,
+"derniere": 1072.4417361824899,
+"lignes_perdues": 0.0
+},
+"602": {
+"stocke": 1045,
+"neuf": 1045,
+"pasv": 17.968567080269732,
+"lignes": 41,
+"derniere": 1053.5709596730605,
+"lignes_perdues": 0.0
+},
+"603": {
+"stocke": 1021,
+"neuf": 1021,
+"pasv": 17.961237383954877,
+"lignes": 43,
+"derniere": 1015.0148405988679,
+"lignes_perdues": 0.0
+},
+"604": {
+"stocke": 1064,
+"neuf": 1064,
+"pasv": 17.944399785767313,
+"lignes": 42,
+"derniere": 1057.949300124595,
+"lignes_perdues": 0.0
+},
+"605": {
+"stocke": 1083,
+"neuf": 1083,
+"pasv": 17.982116268207584,
+"lignes": 49,
+"derniere": 1077.364769335763,
+"lignes_perdues": 0.0
+},
+"606": {
+"stocke": 1071,
+"neuf": 1071,
+"pasv": 17.98436621643539,
+"lignes": 46,
+"derniere": 1064.2918955862856,
+"lignes_perdues": 0.0
+},
+"607": {
+"stocke": 1053,
+"neuf": 1053,
+"pasv": 17.942392284942066,
+"lignes": 47,
+"derniere": 1046.8544014314368,
+"lignes_perdues": 0.0
+},
+"608": {
+"stocke": 1178,
+"neuf": 1178,
+"pasv": 17.931543595864266,
+"lignes": 36,
+"derniere": 1185.1764024452268,
+"lignes_perdues": 0.0
+},
+"609": {
+"stocke": 1077,
+"neuf": 1077,
+"pasv": 18.010651175656996,
+"lignes": 39,
+"derniere": 1085.3479203571305,
+"lignes_perdues": 0.0
+},
+"610": {
+"stocke": 1062,
+"neuf": 1062,
+"pasv": 18.044904325751098,
+"lignes": 41,
+"derniere": 1056.8886352599745,
+"lignes_perdues": 0.0
+},
+"611": {
+"stocke": 1034,
+"neuf": 1034,
+"pasv": 17.88327157465043,
+"lignes": 45,
+"derniere": 1040.8623442107464,
+"lignes_perdues": 0.0
+},
+"612": {
+"stocke": 1074,
+"neuf": 1074,
+"pasv": 17.914689575015533,
+"lignes": 44,
+"derniere": 1066.7600372995294,
+"lignes_perdues": 0.0
+},
+"613": {
+"stocke": 1032,
+"neuf": 1032,
+"pasv": 17.922903072479013,
+"lignes": 43,
+"derniere": 1081.7121647024405,
+"lignes_perdues": 0.0
+},
+"614": {
+"stocke": 1114,
+"neuf": 1114,
+"pasv": 18.093101811459707,
+"lignes": 38,
+"derniere": 1162.5729738960727,
+"lignes_perdues": 0.0
+},
+"615": {
+"stocke": 1027,
+"neuf": 1027,
+"pasv": 17.903150659132372,
+"lignes": 44,
+"derniere": 1033.7013493468492,
+"lignes_perdues": 0.0
+},
+"616": {
+"stocke": 1093,
+"neuf": 1093,
+"pasv": 17.973275252969838,
+"lignes": 43,
+"derniere": 1100.4205971540568,
+"lignes_perdues": 0.0
+},
+"617": {
+"stocke": 1122,
+"neuf": 1122,
+"pasv": 17.94194818460815,
+"lignes": 43,
+"derniere": 1115.4397063424165,
+"lignes_perdues": 0.0
+},
+"618": {
+"stocke": 1085,
+"neuf": 1085,
+"pasv": 18.040780003211868,
+"lignes": 41,
+"derniere": 1094.0157816607216,
+"lignes_perdues": 0.0
+},
+"619": {
+"stocke": 1082,
+"neuf": 1082,
+"pasv": 17.95311352017284,
+"lignes": 47,
+"derniere": 1094.2152559161223,
+"lignes_perdues": 0.0
+},
+"620": {
+"stocke": 1065,
+"neuf": 1065,
+"pasv": 17.938771218298005,
+"lignes": 38,
+"derniere": 1058.6798881066836,
+"lignes_perdues": 0.0
+},
+"621": {
+"stocke": 1065,
+"neuf": 1065,
+"pasv": 17.94772992334702,
+"lignes": 46,
+"derniere": 1058.9109871380444,
+"lignes_perdues": 0.0
+},
+"622": {
+"stocke": 1116,
+"neuf": 1116,
+"pasv": 18.06025251266738,
+"lignes": 47,
+"derniere": 1110.6586412627241,
+"lignes_perdues": 0.0
+},
+"623": {
+"stocke": 1054,
+"neuf": 1054,
+"pasv": 17.93866088574836,
+"lignes": 44,
+"derniere": 1046.3490841561943,
+"lignes_perdues": 0.0
+},
+"624": {
+"stocke": 1105,
+"neuf": 1105,
+"pasv": 18.08431821735629,
+"lignes": 46,
+"derniere": 1115.459859541019,
+"lignes_perdues": 0.0
+},
+"625": {
+"stocke": 1091,
+"neuf": 1091,
+"pasv": 17.935157269638733,
+"lignes": 45,
+"derniere": 1101.8747776411287,
+"lignes_perdues": 0.0
+},
+"626": {
+"stocke": 1106,
+"neuf": 1106,
+"pasv": 18.08263447205311,
+"lignes": 48,
+"derniere": 1100.163023665903,
+"lignes_perdues": 0.0
+},
+"627": {
+"stocke": 1018,
+"neuf": 1018,
+"pasv": 17.95946081077663,
+"lignes": 44,
+"derniere": 1028.8554500130053,
+"lignes_perdues": 0.0
+},
+"628": {
+"stocke": 1095,
+"neuf": 1095,
+"pasv": 18.039620010652747,
+"lignes": 44,
+"derniere": 1101.8546840915528,
+"lignes_perdues": 0.0
+},
+"629": {
+"stocke": 1036,
+"neuf": 1036,
+"pasv": 17.9327280606041,
+"lignes": 44,
+"derniere": 1039.751869316113,
+"lignes_perdues": 0.0
+},
+"630": {
+"stocke": 1168,
+"neuf": 1168,
+"pasv": 18.01483697417474,
+"lignes": 45,
+"derniere": 1175.4987138811032,
+"lignes_perdues": 0.0
+},
+"631": {
+"stocke": 984,
+"neuf": 984,
+"pasv": 17.98109894930334,
+"lignes": 35,
+"derniere": 980.0264403483465,
+"lignes_perdues": 0.0
+},
+"632": {
+"stocke": 1047,
+"neuf": 1047,
+"pasv": 17.97337596162238,
+"lignes": 48,
+"derniere": 1054.8473276531997,
+"lignes_perdues": 0.0
+},
+"633": {
+"stocke": 1063,
+"neuf": 1063,
+"pasv": 17.96134529708038,
+"lignes": 41,
+"derniere": 1057.3586437377344,
+"lignes_perdues": 0.0
+},
+"634": {
+"stocke": 1058,
+"neuf": 1058,
+"pasv": 18.04425330281523,
+"lignes": 46,
+"derniere": 1065.6173115614172,
+"lignes_perdues": 0.0
+},
+"635": {
+"stocke": 1237,
+"neuf": 1237,
+"pasv": 17.97057943370305,
+"lignes": 49,
+"derniere": 1231.285914406522,
+"lignes_perdues": 0.0
+},
+"636": {
+"stocke": 768,
+"neuf": 768,
+"pasv": 18.03439694364846,
+"lignes": 23,
+"derniere": 763.3087586421184,
+"lignes_perdues": 0.0
+},
+"637": {
+"stocke": 995,
+"neuf": 995,
+"pasv": 17.98416720210771,
+"lignes": 42,
+"derniere": 1002.4121441059311,
+"lignes_perdues": 0.0
+},
+"638": {
+"stocke": 1014,
+"neuf": 1014,
+"pasv": 18.021156861647285,
+"lignes": 37,
+"derniere": 1020.3161980993507,
+"lignes_perdues": 0.0
+}
+}

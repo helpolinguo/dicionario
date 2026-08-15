@@ -1,0 +1,8 @@
+6111	uzata moderatadoze	uzata moderata-doze
+6166	kom.farbo	kom farbo
+6175	la ajunto	la adjunto
+6186	la diplacesi	la displacesi
+6204	cirkondata do liquidi	cirkondata da liquidi
+6210	pos fekindigeso	pos fekundigeso
+6211	por respiroe kombusto	por respiro e kombusto
+6226	acidento sunita	acidento subita

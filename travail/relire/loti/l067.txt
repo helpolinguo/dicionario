@@ -1,0 +1,130 @@
+8580	temperaturo	Varmeso-grado di korpo, di loko, evaluebla per la senti quin lu produktas ye nia organi, o lua efiko a termometro
+8581	tempestar	(netrans) Furiar (aludante la elementi atmosferala quaze deskatenizita : uragano, fulmino, burasko, e c.). – anke metafore
+8582	templo	Edifico quan onu konsakris a la kulto publika di la deajo
+8583	temporo	(anat) Regiono laterala di la kapo, inter la angulo di la okulo e la parto supra di la orelo
+8584	temporisar	(netrans) Ajornar, varte di tempo-punto oportuna
+8585	temprar	(trans) Indutar ye farbo triturita en aquo e midilutita en gluo liquida, qua ne esas tam solida kam oleofarbo
+8586	tenar	(trans) Havar en sua manui, inter sua brakii, e c., tale ke (lu) ne povas eskapar, forirar, falar, e c
+8587	tenaca	I. Qua adheras forte ad ulo | II. Di qua la parti inter-adheras forte
+8588	tenalio	Utensilo fera, ek du branchi morsoza qui beas e, pose, interklemas por sizar e tenar forte
+8589	tenaro	(anat) Saliajo ek la muskuli, ye la manuo-parto avana, extera, supra, apud la polexo
+8590	tencho	(zool) Fisho qua vivas en la aquo sen-sala, zoologie vicina a karpo
+8591	tendo	I. Paviliono ek stofo tensita, quan onu erektas en aero ne-enklozita, uzata kom shirmivo (precipue por kampo armeala) | II. Kovrilo ek ledro, uzata sur kabrioleto od irgaltra veturo sen-tekta, automobila o kaval-tirata
+8592	tendencar	(netrans., ad) Sentar en su ta eso-maniero naturale efike da qua ento atraktesas a skopo
+8593	tendino	(anat) En la muskularo, fasko ek fibri, distingita de la muskulo per sua fibri qui esas ne-kontraktebla e sua koloro (brilante-blanka)
+8594	tendro	(teknol) Veturo ligita a lokomotivo por transportar la aquo e la karbono ye qui ica alimentesas
+8595	tenebro	Obskureso absolute kompleta, profunda | II.(metaf.) Eroro, ne-savo, qua impedas la vido di lo exakta, di la fakti
+8596	tenera	Qua havas por ulu afeciono qua abundas ye sentemeso e dolceso
+8597	tenio	Vermo rimeno-forma, qua kreskas en la intestini di la homo e di ula animali
+8598	teniso	Sporto quan onu praktikas per raketi e baloneti, sur tereno equipita specala
+8599	tenono	(tekn) Parto salianta, situita ye la extremajo di peco de ligno, de metalo, de marmoro, e c., por ajusteso a parto, a mortezo, korespondanta en altra peco qua esas asemblenda an la unesma
+8600	tenoro	I. (muziko). Voco virala qua iras de la unesma «do» di la alto, til la «sol» duesma di la violino | II. Kantisto qua havas tala voco
+8601	tensar	(trans) I. Igar rigida (korpo plu o min elastika) per igar lu plu longa, per tiro de un ek lua extremaji a la altra | II. (pri horlojo murala). Ri-suprigar la pezo-bloki kande li ter-venis
+8602	tentar	(trans) Solicitar (ulu) ad agar ulo interdiktita, per olua atrakto
+8603	tentakulo	(zool) Apendico movebla ye qua esas provizita ula animali, e qua uzesas da li kom, precipue, organo di tushosenso
+8604	tenua	Preske neprenebla pro lua mikregeso, dinegeso, delikateso
+8605	teodiceo	(filozof) I.Traktato pri la yusteso di deo | II. Parto di filozofio, qua traktas la existo e la atributi di deo
+8606	teodolito	(astron. e geom) Instrumento di geodezio, quan onu uzas por relevar mapi, por mezurar la anguli reduktita a la horizonto, la disti zenitala e laazimuti
+8607	teogonio	Genito di la dei ; ensemblo de deaji di qui la kulto formacas la sistemo religiala di populo politeista
+8608	teokrato	Singla ek la chefi di teokratio
+8609	teokratio	Formo di guvernado segun qua la chefi di la naciono, de la kasto «sacerdoti», egardesas kom ministri di deo
+8610	teologala	Dicesas pri singla de la tri vertui di qui deo esas la objekto ed un ek lua atributi kom motivo (kredo, espero e karitato)
+8611	teologio	Doktrino religiala pri la kozi deala
+8612	teorbo	(muziko) Instrumento analoga a liuto, plu granda, kun du kapi : un por la kordi quin onu fingragas sur la mancho, la altra por la grosa kordi quin onu pinchas vakue
+8613	teoremo	Propoziciono ciencala quan demonstro igas evidenta
+8614	teorio	Ensemblo ek la legi, la reguli atribuita a serio de fakti determinita, la principi quin onu propozas kom lia existo-kauzo
+8615	teozofio	I.Sorto di iluminismo religiala | II. Doktrino fondita sur intuico kontinue plu altagrada di la deajo, e qua posibligas efikar a la forci superiora
+8616	tepalo	(bot) Singla ek la parti di la envelopilo florala
+8617	tepida	Di qua la temperaturo esas inter kolda e varma
+8618	teplico	Chambrego vitro-mura, kalorizita, en qua onu shirmas la planti qui domajesus da temperaturo kolda
+8619	tero	I. Parto solida di la globo quan ni habitas : (a) sulo qua suportas la homo, la animali, la planti, la urbi, e c.; (b) sulo qua produktas la vejetanti ; (c) sulo aden qua onu sepultas la mortinti | II. Materio solida ye qua konsistas nia globo ; substanco tirita de ta materio ed uzata diversa-skope | III. La ter-globo ipsa, kom planeto
+8620	terakoto	Argilo fasonita e pose bakita
+8621	terapio	(medic) Parto di medicino qua havas kom objekto la kuraco e risanigo de la morbi
+8622	terario	Instaluro plu o min granda, en qua onu depozas tero, petri, stoni, planti, e c., por la eduko e la entrateno di kolektajo ek repteri, batraki, insekti, e c
+8623	teraso	I. Platformo plu o min vasta, facita en gardeno, en parko, por regardar la peizajo til horizonto o por promenar – ek ter-amaso sustenata cirkonde da masonuro | II. Platformo masonura, facita por regardar la cirkondajo o por promenar, sur un ek la etaji supra o sur la tektokarpenturo di domo, di edifico
+8624	teratologio	Parto di la naturo-historio qua deskriptas la monstri
+8625	terco	I. (skermo).Poziciono di la espado kande lu engajesas en la lineo extera, kun lua pinto vers-supre, la karpo rotacante de extere ad interne | II. (muziko) Intervalo inter lasekundo e la quarto | III.(tempo). La parto sisadekima di sekundo
+8626	tercerono	Persono qua naskis de pelblanko e de mestico
+8627	terceto	Stanco de tri versi
+8628	terciana	(patol) Febro intermitanta, qua rieventas singla-tridio
+8629	terciara	I. (geol.) Dicesas pri un ek la granda faki ek la serio geologiala, qua inkluzas la strati eocena, oligocena, miocena e pliocena | II. (patol.) Di qua la simptomi aparas pos du etapi evidenta di morbo
+8630	terebinto	(bot) Speco di pistachiero
+8631	tereno	Extensajo de tero, de sulo, quan onu egardas kom apta por ta o ca uzeso
+8632	teriako	(medic) Elektuario kontre la morduro da la serpenti
+8633	teriero	(zool) Mikra hundo quan olim onu uzis por chasar la animali qui rezidas en ter-trui
+8634	terino	Vazo ek ligno, fayenco, porcelano, ceramiko vernisizita, ronda, un-peca, sen rebordo nek anso, nek mancho, kun fundo plata, uzata en la menaji
+8635	teritorio	Extensajo de lando qua formacas distrikto politikala
+8636	termi	I. (epoki antiqua). Establisuro publika por balni varm-aqua | II. (nun). Establisuro adube onu venas por kuracesar per aqui medicinala varma
+8637	termino	I. Bloko petra qua indikas la limito di agro, di stadio, la frontiero | II. (gram.) En propoziciono : o la subjekto, o la verbo, o la atributo | III. (logiko).En silogismo : o la majoro, o la minoro, o la mezo | IV. (matem.) Expresuro di quanto en raporto, en proporciono, en progresiono, e c | V. (mitol.) La deajo – reprezentita per figuro di viro di qua la parto infra finas gaino-forme, skultita en bloko de petro – qua sekurigis la egardo di la limiti inter-agra, di la frontieri, e c
+8638	termito	(zool) Nevroptero qua rodas interne la objekti ek ligno, lente e cele
+8639	termodinamiko	Parto di fiziko, qua havas kom studiajo la relati qui existas inter la fenomeni mekanikala e kalorifala
+8640	termoelektro	Ensemblo ek la fenomeni elektrala e kalorala qui naskas de la varii od elektrala o kalorala
+8641	termografo	(fiziol) Instrumento qua konsistas ye aero-termometro kun enrejistro-levero, ed uzata por mezurar la varii di temperaturo, e la duro di ta varii, en irga punto di la homo-korpo
+8642	termokemio	(kemio) Fako di la kemio-cienco, qua traktas la determino di la quanto de kaloro qua pleas rolo en la kombini
+8643	termologio	Fako di fiziko, qua traktas kaloro
+8644	termometro	Aparato por la mezuro di la temperaturi, per la dilato o la kontrakto di merkuro, di alkoholo, ec. en tubo gradoza
+8645	termometrio	(fiziko) La mezurado di kaloro
+8646	termoskopo	(fiziko) Aparato por montrar la existo e la signo di difero pri la temperaturi reciproka di du me-dii, ma qua donas unike valori relativa pri la grandesogrado di ta diferi
+8647	termostato	(teknol) Ensemblo teknikala qua posibligas la obteno, en klozajo (*kluzajo) di temperaturo konstanta
+8648	termotaktismo	(biol) Su-diplaso reaktala da protoplasmo, influe da kaloro
+8649	termoterapio	(medic) Kuraco di la morbi per kaloro
+8650	termotropismo	(biol) Influo, da kaloro, di la protoplasmo che la elementi tisua, e precipue di la direciono o la sinso di la kresko che la tisui qui kreskas
+8651	ternara	(mat) (pri sistemo di nombrifado) En qua tri unaji ek la klaso unesma formacas unajo ek la klaso duesma
+8652	terorar	(netrans., pro, pri) Fremisar, parturbesar profunde en sua organismo, pro pavoro
+8653	terpentino	(kemio) Rezino liquida quan donas la arbori ek la familio «terebintacei», e di qua un elemento esas C10 H16
+8654	terpleno	(militarto) Platformo ek tero adjuntita, sustenata da parapeti masonura
+8655	testo	Persono qua deklaras (maxim-multa-kaze : koram judiciisti) certifikar vidir od audir (ulo, ulu)
+8656	testaceo	(zool) Molusko di qua la korpo kovresas da konko
+8657	testamentar	(netrans., favore di) IRedaktar la akto per qua onu legacas sua havaji, e di qua la klauzi esas exekutenda pos la morto di la redaktanto | II. (historio religiala). Testamento : nomo di singla ek la du libri santa : che la Hebrei, la Olda Testamento ; che la Kristani :la Nova Testamento
+8658	testiero	Harneso-peco sur la kapo di kavalo, an qua ligesas la morso e la brido
+8659	testikulo	(anat) Che la mamiferuli : korpo glandatra quan kontenas singla ek la burseti, qua sekrecas spermo
+8660	tetanar	(netrans) Subisar kontrakti konvulsala di ulai ek sua muskuli – ed, en ula kazi, la rigidesko di omna sua muskuli – qui mortigas la subisanto ulakaze
+8661	tetrado	(biol) Su-divido di la celulo patra di la poleno-grani aden quar celuli qui divenas quar poleno-grani inter-unionita en la kazi maxim multa
+8662	tetraedro	(geom) Solido quar-edra
+8663	tetraedroido	Solido di qua la formo esas kelke simila a tetraedro
+8664	tetragono	(bot) Genero de «fikoidi», qua kontenas duadek speci en la regioni temperaturo-moderata, e quan onu manjas kom spinato-analoga o forme di supo
+8665	tetralogio	I. (literaturo antiqua). Ensemblo de quar peci : tri tragedii ed un dramato satirema, quan prizentis, lor la konkursi teatrala, la poeti tragediala di la Grekia antiqua | II. Grupo de quar dialogi, che Platono | III. (muziko) Ensemblo de quar operi
+8666	tetrarko	(Epoki antiqua, en Grekia) Chefo di singla ek la quar gubernii di lando
+8667	tetraso	(zool) Granda urogalo
+8668	tetrasporo	(biol) Genero de algi verda, tipo di la familio «tetrasporacei», qui konsistas ye celuli qui permanas en grupi de du o quar
+8669	teurgio	Magio fondita sur relato asertita kun la spiriti cielala. (antonimo di nekromancio, magio infernala)
+8670	texar	(trans) Transformar (substanco filigita : lano, kanabo, kotono, e c.) aden materio koheranta, flexebla e dina, per krucumar fili tensita horizontale (warpo-filo) kun fili quin onu igas pasar transverse (wefto)
+8671	texto	I. La ipsa vorti di autoro, di lego, di akto (opoze a la komenti) | II. Peci ek la libri santa quin la predikisti citas, komence di sermono, di homilio, kom aplikebla a la temo quan li intencas quik traktar
+8672	tezo	Propoziciono, asertata da ulu, e defensata da lu kontre la personi qui kontestas olua exakteso
+8673	tiaro	I. Kapovesto alta, uzata olim che la Oriento-populi | II. Kapovesto di la sacerdoto suprega, che la Hebrei | III. (che la katoliki). Kapovesto quan *weras la papo dum la ceremonii, boneto kun, kom ornivi, tri kroni, e, suprege, globo kun un krono
+8674	tibio	(anat) La plu grosa ek la du osti di la gambo, avan la peroneo
+8675	tifo	(patol) Morbo kontagiema, quan karakterizas febro sen-cesa, la stando malada di la mukozi, e c
+8676	tifoido	(patol) Morbo infektiva quan produktas mikrobo specifika (deskovrita da Eberth)
+8677	tifono	(meteorol) Tempesto-vento, qua forportas kun su – kun violento nerezistebla – to quon lu renkontras, sur-tere e sur-maro
+8678	tigmotropismo	(biol) Influo, da la kontakto, di la direciono che la tisui kreskanta
+8679	tigro	(zool) Animalo feroca, karnavida, ek la familio «felini», di qua la pilaro esas strioza e makuletoza
+8680	tikar	(netrans) I. (patol.) (aludante la muskuli, precipue olti di la vizajo).Kontraktesar konvulsatre, preske kustumale | II. (metaf.) Agar gesto kustumale
+8681	tiktakar	(netrans) (aludante, precipue, horlojo) Produktar bruiseto bruska, ek du tempi intersucedanta qui iteresas uniforme
+8682	til	Prepoziciono qua indikas la arivo (en tempo, en spaco) an termino quan onu ne transiras. (Kande la limito esas ne punto, ma intervalo, lu sequesas da «exkluzite» od «inkluzite» (segun la nociono). – E. «tilbury». Sorto di kabrioleto lejera, sen tendo
+8683	tildo	(gram) Signo diakritika, qua havas ica formo : ~ quan la Hispani lokizas sur la «n» kande li volas pronuncigar lu «nyf» – e quan la Portugalani lokizas sur «a» e «o» por pronuncigar li quale la F. «an» e «on», (t.e. la E. «ang, ong») rispektive
+8684	tilio	(bot) Arboro di qua uzesas : la floro, por facar infuzuri kalmigiva, e la kortico, por facar puteo-kordegi.- L tilia
+8685	timar	(trans) I. Tendencar evitor (ulu, ulo) (de qua onu expektas malajo) | II. Judikar ulo (regretinda, desoportuna) kom eventonta plu o min balde
+8686	timbalo	Mi-globo de kupro o latuno, kovrita per felo tensita quan onu klemas o desklemas per skrubi, por akordigar lu, e sur qua onu frapas per vergeti ek ligno harda o tegita ye felo-peco segun la sonoreso-grado quan onu deziras obtenor – muzik-instrumento qua uzesas en kavalrio ed en orkestro.-EFIS. timbro (*tembro). Kaloto de metalo qua, frapate per marteleto, produktas sonuno pasable duroza. – FS. *timbro (postmarko).Peceto de papero imprimuroza (ordinare kun konturo dentetoza pro perforesir) quan onu glutinas sur la letro-kuverti por montrar ke la afranko-preco esas pagita. – Analoge pri la «timbri» fiskala, asekurala, e c.)
+8687	timiano	(bot) Planto odoroza, ek la familio «labiei», quan onu uzas en la faco di sauci
+8688	timida	Qua indijas audaco pro desfidar su
+8689	timono	Longa stango de ligno, muntita ye la parto avana di veturo, di plugilo, ed an singla latero di qua tir-bestio (kavalo, bovo) esas jungita por apogar su ad olu por tirar, retenar, chanjar sua direciono, des-avancar
+8690	timpano	I. (anat.) Kavajo ye qua konsistas la meza parto di orelo, klozita, en la parto extera ed en la parto interna di la orelo, per membrani tensita | II. (arkitekt.) Spaco quan cirkondas la tri kornici di frontono, qua destinesas recevor basa reliefi, ornamenti | III. (muziko). Instrumento olima di muziko, garnisita ye kordi latuna, quan onu pleas per du vergeti ek ligno
+8691	timuso	(anat) Korpo glandatra, biloba, situita dop la ster ) sternumo, an la parto infra di la kolo. – DEFIS. ) tino. Earelo di qua la fundo esas plu larja kam la parto sunra uzata por la transporto di aquo, vito-beri lor la rekolto, e c
+8692	tindro	Substanco sponjatra, extraktita de la agariko di la querko (fungo kun kortico lignatra) qua acendesas kontakte di cintilo
+8693	tineo	(zool) I. Mikra insekto lepidoptera, di qua la speco maxim difuzita esas ta qua devoras la grani | II. Mikra insekto lepidoptera, noktala, di qua la larvo rodas la stofi la libri, e c
+8694	tinio	(patol) Morbo di la pelo haroza, che la homo
+8695	tinklar	(netrans) (aludante klosho quan onu frapas sur nur un latero per la frapilo). Produktar sonuni qui intersucedas lente
+8696	tinlauro	(bot) Arboreto ek la genero «viburni». L. viburnum.tinus
+8697	tintar	(trans., ye, ad) I. Impregnar (filo, lano, texuro, felo, e c.) ye substanco qua igas lu havar ta o ca koloro | II. Igar stofo ja tintita, ma di qua la koloro esas velkinta, aquirar koloro fresha
+8698	tipo	I. Peco de ligno, de metalo, e c., qua havas stampuro qua esas destinita reproduktar stampuro stmkte sama | II. Peco de gisuro di qua la stampuro formacas la literi imprimala | III. Koncepto ideala di la traiti generala segun qua formacesis kozo
+8699	tipografar	(trans) Imprimar per tipi
+8700	tipulo	(zool) Genero de insekti diptera, kun mikra korpo, ek la familio «tipulidi», kun longa gambi, tre dina e frajila
+8701	tirar	(trans., de, ek, per) I. Venigar ula-direcione, per prenar (la persono, la kozo) ye un ek lua parti quan onu adduktas ad su : (a) esante sen-mova, (b) marchante tadirecione | II. Adduktar (persono, kozo) ek la loko ube lu esas inkluzita, retenata | III. (pri kameno, furnelo, e c., alimentata per karbono o ligno). Subisar en su ta aero-fluo per qua la aero necesa por la kombusto atraktesas a la herdo por remplasar la aero varmigita qua ekiras la tubo fluala, tranante kun su la fumuro
+8702	tirado	(teatro) To quon rolo recitas quaze «bloke»
+8703	tiraliar	(netrans) (armeo) Pafar segun sua arbitrio, sen vartar la komando de sua chefi, kontre la enemiko
+8704	tirano	I. La persono qua, suprege-autoritatoza en la stato, uzas sua povo ye maniero opresanta | II. (metaf.) Persono, kozo, qua uzas opresante sua autoritato
+8705	tiritano	Sorto de drapo, mi-lana e mi-lina
+8706	tiroido	(anat) Glando an la parto infra di la laringo, sur la serio-unesma ringi di la trakeo
+8707	tirozimazo	(biol) Oxidazo, en la fungi di la genero L. russula, qua povas oxidigar tirozino
+8708	tirozino	(biol) HO. C6H4. CH2. CH(NH2) CO2 H, trovata en la hepato, en la spleno, en la pankreato
+8709	tirso	(mitol) Emblemo di Bacchus, javelino an-cirkondata da hedero, pampri, e finanta forme di pino-kono, quan portis la bacchus-pastorini

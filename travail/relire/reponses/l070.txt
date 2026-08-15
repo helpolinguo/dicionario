@@ -1,0 +1,6 @@
+8993	di ob1ekt1	di objekti
+8995	Qus preferas	Qua preferas
+9003	kardinala : l	kardinala : 1
+9016	Qua duknur un	Qua duktas nur un
+9027	Keskripto di cielo	Deskripto di cielo
+9078	per hido-atomi	per hidro-atomi

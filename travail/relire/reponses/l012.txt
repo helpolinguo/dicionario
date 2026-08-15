@@ -1,0 +1,13 @@
+1452	Kastelo fuorta	Kastelo forta
+1457	éxter la nukleo	exter la nukleo
+1465	konsistasye du lami	konsistas ye du lami
+1477	l. Muliero spozoza	I. Muliero spozoza
+1495	l.kun la substantivi	1. kun la substantivi
+1515	La parto dekimo	La parto dekima
+1526	(Bonatiko)	(Botaniko)
+1526	di sapto	di sapo
+1544	lO	10
+1548	lO grami	10 grami
+1549	lO litri	10 litri
+1552	lO metri	10 metri
+1556	lO steri	10 steri

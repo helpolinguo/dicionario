@@ -1,0 +1,130 @@
+5590	mikrocentro	(biol) Parto centra di la sfero atraktiva, konsistanta ye plura kromosomi
+5591	mikrofono	(fiziko) Aparato akustikala, destinita ad ampligar la soni
+5592	mikrogameto	(biol) Elemento genetiva, mikra e moviva, kun karakteri maskulala
+5593	mikrografo	Sorto di pantografo, qua posibligas desegnar figuri extreme mikra
+5594	mikrografio	La cienco qua traktas la preparo di la objekti por lia observado per mikroskopo, e la deskripto di olci pos lia exameneso per ta instrumento
+5595	mikrometro	(metrologio) Instrumento destinita a la mezuro di mikra objekti e mikra imaji
+5596	mikrono	(teknol) La milima parto di la milimetro – unajo di mezuro qua adoptesis por la observi mikroskopala
+5597	mikronukleo	(biol) La nukleo maxim mikra che la infuzorii, opoze a la grosa nukleo (makronukleo)
+5598	mikropilo	(biol) Mikra orifico di la membrano vitelala di la ovulo, tra qua pasas (konjektate) la spermatozoido lor la fekundigo
+5599	mikroskopo	Instrumento optikala, ek lensi dispozita tale ke li igas la mikra objekti semblar plu grosa kam se regardata per okulo nuda
+5600	mikrosomo	(biol) (histologio) Granularo tenua quan onu renkontras en la parto figurala di citoplasmo
+5601	mikrosporo	Nomo di ta spori maxim mikra di la vejetanti, qui genitas la protali maskula
+5602	mikrosporangio	Organo, che algi diversa e kriptogami vaskuloza, en qua produktesas la mikrospori
+5603	mikrozoo	Ento vivanta qua esas videbla nur per mikroskopo
+5604	mil	1.000
+5605	milano	(zool) Rapt-ucelo jornala, di qua la kaudo esas oblonga e forkatra, ye flugo rapida
+5606	milbo	(zool) Insekto sen-ala, preske mikroskopala, qua prosperas en farino, fromajo, e c
+5607	mili-	Prefixo ciencala, qua signifikas «la milimo di...»
+5608	milio	Mezurunajo parkurala, ek mil pazi. (che la Romani antiqua 1472 metri ; che la Britaniani ed Usani = 1609 metri ; pri navigado = 1852 metri)
+5609	miliara	(medic) Qua produktas, erupte, granda quanto de vezikuli tre mikra
+5610	miliardo	1000 milioni
+5611	milibaro	Mezur-unajo di la preso atmosferala, qua equivalas 1/1000 di baro (o : hektopiezo) od anke 1000 baryi
+5612	milico	Guardo nacionala, od institucuro analoga ; trupo de soldati civitana, en la landi qui ne havas armeo permananta
+5613	miligramo	La milima parto di un gramo
+5614	milimetro	La milima parto di un metro
+5615	milimikrono	La milionima parto di un milimetro. – DEFIRS. 6 miliono. 1.000.000. (10.)
+5616	militar	(netrans.,kontre) Agar lukto, per armi omnasorta (armi shokala, pafala, bombi, atomfuzei, e c.), kontre altra populo, o mem kontre la sua (milito civila)
+5617	militarismo	Prepondero exajerita da la elemento «armeani», che naciono ; doktrino di ti qui tendencas a ta prepondero
+5618	milyeto	(bot) Gramino qua produktas mikra grano, ye qua su nutras la uceli
+5619	mimar	(trans) Reprezentar per gesti, posturi, fizionomio-movi – sen uzar parolo
+5620	mimoso	(bot) Planto ek la familio «leguminosi», di qua ula speci kontraktas su kande onu tushas li
+5621	min	Adverbo qua indikas la inferioreso pri qualeso, quanteso, precozeso, extenseso, e c. = ne tam multe ....-a
+5622	minar	(trans) Exkavar truo en qua onu pozas pulvero quan onu acendas por destruktar exploze to quo esas sur o super lu
+5623	minacar	(trans., per) I. Manifestar ad (ulu) sua intenco nocar lu. Avertar (ulu) ke lu timez ulo de altru | II. (aludante kozo).Manifestar, per kelka indici, ke, de lu, esas timenda ulo kom eventonta balde
+5624	minareto	Turmo di moskeo
+5625	mineralo	Substanco qua konsistas ye materio kruda, neorganizita, neorganika
+5626	mineralogio	Ta parto di la natur-historio qua traktas la minerali, la korpi ne-organika tala qualan kande on renkonli en tero o sur la surfaco di olca. – DEFIRS. tras
+5627	minestrelo	(en la mezepoko) Poeto, muzikisto recitanta, qua kantis sua kompozuri ed olti di la poeti cetera
+5628	miniaturo	I. Litero reda, trasita per miniumo, sur la manuskripti, la meso-libri, e c. por ornar la komenco-loko di la chapitri. – Litero ye kolori diversa | II. Pikturi delikata, ek mikra temi, sur velino, pergamo, en la manuskripti, la meso-libri | III. Pikturo tre delikata, tre mikra, facita per farbi dilutita en aquo e gumo, sur ivoro, sur velino | IV. Reprezenturo tre mikra-dimensiona
+5629	minim	(gram) Superlativo absoluta di «pokeso»
+5630	miniona	Di qua la mikreso esas charmoza
+5631	ministerio	Laboreyo di ministro e di la oficieri ed komizi di lua departmenti. (EF.)
+5632	ministro	Viro (o muliero) a qua la povo leg-aplikanta konfidis un ek la taski precipua di la guverno
+5633	miniumo	I. (kemio). Deutoxido di plumbo, substanco farba, reda | II. Farbo oleoza, facita ek miniumo, uzata kom strato-unesma lor la induto di fero
+5634	minora	I. (yurocienco). Qua ne atingis ankore la evo legostipulita koncerne la yuro agar libere pri sua persono e sua havaji | II. (muziko). Intervalo ek tri noti, qua kontenas un tono ed un mi-tono, o de sis noti, qua kontenas tri toni e du mi-toni | III. (logiko). (en silogismo). La subjekto di la konkluzo (pro ke lu esas min ampla kam la atributo)
+5635	minoritato	La quanto minim granda de voci che asemblitaro qua esas votanta pri lo jus deliberita
+5636	minto	(bot) Planto aromatoza, ek la familio «labiacei»
+5637	minucio	Detalo mikrega qua ne meritas ke onu haltez por lu (pro lu)
+5638	minus	(arit., algeb) Signo qua, avan quanto, signifikas ke olca esas sustraktenda
+5639	minuskulo	(pri la literi di la alfabeto) Mikra litero (o tipo), kompare a mayuskulo, e ye qua konsistas la maxim multa literi di la vorti skribita
+5640	minuto	I. Sisadekima parto di horo | II. Sisadekima parto di un grado di cirklo
+5641	mioceno	(geol) Un ek la quar granda faki di la ero terciara (olta qua sucedas la strati oligocena, e sur qua jacas la strati pliocena)
+5642	miologio	La anatomio di la muskuli
+5643	miopa	(patol) Di qua la vido-porteo esas kurta
+5644	miozoto	(bot) Planto di qua la floro esas ciel-blua, rozea, e quan, en landi diversa diEuropa, onu nomizas poezioze «Ne-obliviez-me»
+5645	miro	(bot) Gumo-rezino aromoza
+5646	mirabelo	Mikra pruno flava
+5647	mirajo	Optik-iluziono – refrakto qua, en la landi di qui la atmosfero esas varmega, igas vidar kom proxima la imaji di objekti tre fora. – (metaf.:Iluziono seduktoza)
+5648	miraklo	Fakto supernatura, qua eventas violace di la *leyi (legi naturala)
+5649	miriado	10.000
+5650	miriametro	10.000 metri
+5651	miriapodo	(zool) Animalo artikoza (artropodo) qua konsistas ye ringi, singla de qui havas paro de gambi
+5652	mirmekofago	(zool) Mamifero ek la klaso «sen-denti», di qua la lango esas filo-forma, viskoza, e quan lu extensas sur la formikeyo por kaptar la formiki qui esas lua disho precipua
+5653	mirmekofila	(bot) Dicesas pri ula animali qui esas la gasti di la formiki – qui vivas kun ici, sive kom «invititi» (ex.: la afidii o planto-lausi), sive kom «neatenciti», sive kom vera paraziti
+5654	mirmekoleono	(zool) Insekto, analoga a libelulo, di qua la larvo jacas sur la fundo di funelo quan lu exkavis en tero e kaptas por manjar li la formiki od altra insekti qui falas aden lu
+5655	mirto	(bot) Arboreto kun flori blanka, quan la antiqui konsakrabis a Venus (Afrodito)
+5656	mirtelo	(bot) Genero de planti ek «vacinei» qua produktas beri nigratra, acideta, akreta
+5657	mis-	Prefixo qua signifikas «erore, nejuste»
+5658	misiono	Senditaro (religiala, ciencala, diplomacala) di qua la tasko konsistas ye – rispektive – predikar, instruktar o docar, studiar, explorar, negociar, e c.)
+5659	mispelo	(bot) Frukto qua havas plura kerni, qua manjesas erste kande lu oldeskis e komencas velkar
+5660	mistelo	(bot) Planto lignoza, qua vivas parazite sur ula arbori (querko, pomiero, fraxino.) L. viscum
+5661	misterio	I. Rito sekreta di la politeismo antiqua, a qua admisesis nur poka iniciiti. – To quon onu konservas, mantenas, sekreta | II. Dogmato kristana, revelita kom objekto di kredo, e qua preter-iras raciono
+5662	mistifikar	(trans) Trompar, erorigar (ulu), amuzante su de lua kredo
+5663	mistiko	Doktrino filozofiala, religiala, qua konsideras kom la perfekteso sorto di kontemplo ed extazo qua elevas la homo, ja en la vivo sur-tera, ad uniono misterioza kun deo
+5664	mito	Rakonto tradicionita qua atribuas, ad ula eventi o personegi, karaktero supernatura
+5665	miteno	Ganto qua kovras la manuo, tote o duime, kun fingruyo nur por la polexo
+5666	mitokondrio	(biol) Grani o filamenti, tre mikra, kolorizebla per alizarino e la kristalo violea, qui existas ye quanti plu o min granda en omna celuli, di animali o di vejetanti, dum lia tota vivo
+5667	mitologio	Historio fablatra di la dei, di la enti supernatura
+5668	mitomo	(biol) Parto di la citoplasmo, ek filamenti e fibreti, branchigita od anostomozigita, ma ne retikuligita, qua segun-dice konsistas ye protoplasmo vera
+5669	mitoso	(biol) Partigeso nemediata di la celulo, en qua la divido di la nukleo eventas ante olta di la korpo celula
+5670	mitro	I. (epoki antiqua). Kapo-vesto Aziana, quan pose *weris la Romanini alta-ranga | II. Kapo-vesto di la episkopi, kardinali ed ula abadi kande li oficias solene
+5671	mitralio	I. Peci de olda fero, kupro, bronzo | II. (olim). Olda ferajo per qua onu charjis la kanoni
+5672	mitralioso	(milit) Kanono ye pafado rapida ed iterata
+5673	mixar	(trans., kun) I. Unionar ensemble (kozi diversa) tale ke la diverseso cesas esar videbla | II. Enduktar aden medio (ulu od ulo stranjera)
+5674	mixamebo	(biol) Celulo qua devenas de la jermifo di la sporo che la fungi mixomiceta, qua konsistas ye amaso de protoplasmo, sen membrano celuloza, e ye movi amiboidala
+5675	mizantropo	Individuo qua odias la genero «homo»
+5676	mizerar	(netrans) Esar tante povra ke (lu) esas kompatinda
+5677	mizerikordio	Kompato qua pardonas la kulpinto
+5678	mnemoniko	Arto helpar memoro per procedi qui igas la kozi plu facile retenebla, merkebla, ritrovebla
+5679	mobilizar	(milito) Igar armeo, od armeo-fragmento, departopronta por militesko
+5680	moblo	Objekto uzata por garnisar, ornar la interna parto di domo (stuli, tabli, ed objekti diversa altra-sorta : liti, e c.)
+5681	modo	I. Maniero vidar, agar, partikulare di persono, di lando, di regiono | II. Kustumo efemera qua normizas (segun la gusto di la periodo) la maniero vivar, vestizar su, e c | III. Chapeli e kapo-vesti por la homini | IV. (filoz.) Eso-maniero variiva di la substanco finita | V. (logiko) Kondiciono specala a qua subordinesas silogismo. Dispozeso-maniero di la tri propozicioni di silogismo segun lia quanteso o qualeso | VI. (yuro-cienco) Klauzo qua subordinas la efiko da ago ad evento necerta qua dependas de la volo di ta qua profitos de olu. – VII. (muziko). 1. Singla de la toni, che la muziko antiqua, quin distingas la diapazono plu o min alta e la plaso di la mi-toni en la gamo. 2. Singla de la toni di la plan-kanto quin distingas (ultre la diapazono plu o min alta e la plaso di la mi-toni en la gamo) la divideso, en singla gamo, di la oktavo aden quarto plasizita altre. – VIII. (gram.) Formo di la verbo, qua indikas la manieri diversa ye qui onu afirmas la ago e la stando quin expresas la verbo (exter la cirkonstanci di tempo e di personi quin indikas altra formi)
+5682	modelo	I.To quo destinesas esor objekto di imito | II. Homo qua esas koram artisto (piktisto, statuifisto) en la posturo quan ica volas reproduktar | III. Reprezenturo ek argilo, vaxo, e c. di subjekto destinata a reproduktesor ek marmoro, bronzo, e c | IV. To quo destinesas esor objekto di imito, segun quo onu facas od agas ulo : (1) kompozo-maniero ; (2) vivo-maniero
+5683	moderar	(trans) Forigar de eceso
+5684	moderna	Qua apartenas a nia epoko od ad epoko kompare recenta (opoze a la epoki olima od antiqua)
+5685	modesta	I. For luxego, brilo, pompo | II. Qua opinionas sua merito kom nur mezvalora, pasableta
+5686	modifikar	(trans) Chanjar (kozo) sen alterar olua naturo esencala
+5687	modiliono	(arkitekt) Sorto di konsolo, qua havas la formo di voluto duopla, salianta, sub la pluv-gutifilo di la kornico
+5688	modlar	(trans) Fasonar ek argilo, vaxo, e c. (modelo qua exekutesos ye gipso, marmoro, bronzo, e c.). -(Anke aludante la materio quan onu fasonas)
+5689	modulo	I. (arkitekt.) Mi-diametro di la infra parto di la kolono-fusto – unajo konvencionita per qua onu determinas la proporciono di la parti en ordino arkitekturala | II. (mat.) Nombro per qua onu multiplikas la logaritmo di sistemo por obtenar la logaritmi korespondanta di altra sistemo | III. ( fiziko). Koeficiento di elastikeso, o pezo apta plulongigar per un unajo la longeso di prismo di qua la se ciono normala esas la surfaco-unajo
+5690	modulacar	(trans) I. Reproduktar per flexi diversa di la voco | II. (metaf.) Expresar per soni poezioza
+5691	mohero	Stofo ek pili di la Angora-kapro
+5692	mokar	(trans., pro, pri) Igar (ulu, ulo) la objekto di desprizo-rido
+5693	mokasino	Pedo-vesto di la Amer-indiani, ek felo ne-tanagita, ma nur mejisita
+5694	mola	I.Qua cedas facile ye preso | II. (metaf.) Qua cedas facile (aludante persono)
+5695	molara	(anat) Dento qua uzesas por triturar la manjaji
+5696	moldar	(netrans) Kovreskar ye vejetanti kriptogama qui alteras la substanco
+5697	molekulo	(kemio) Parto di korpo, konceptata kom ne-dividebla da la agenti fizikala, ma deskompozebla kemiale aden partikuli plu mikra, la «atomi»
+5698	moleskino	Telo vernisizita, qua imitas ledro
+5699	molestar	(trans) Tormentar per produktar desagreablaji
+5700	molio	Masonuro, konstruktita ye la enireyo di portuo, ye la kapo di warfo, di digo, por ruptar la impetuo di la ondegi e shirmar la navi
+5701	molibdo	(kemio) Korpo simpla, metala, blanka matide, maleebla preske ne-gisebla. – Simbolo kemiala : Mo
+5702	moloso	I. Hundo ek la lando di la Molosi (Epiro, Grekia) quan onu uzis, en la epoki antiqua, por chasar o gardar la bestio-trupi. – Nun :grosa gardo-hundo, ek la raso «dogi» | II. (prozodio).Verso-pedo Greka o Latina, ek trisilabi longa
+5703	moltono	Stofo dika, kun pili longa e dolca, qui igas lu delikata e mola
+5704	molusko	(zool) Nomo di animali sen-vertebra, ye qui kenaia. la brancho triesma di la animal-regno
+5705	momento	(mekaniko) Produto di forco per disto
+5706	monado	(filoz) I. Segun la doktrino da Pitagoro : unajo perfekta, principo nevidebla di la kozi spiritala e materiala | II.Segun Leibnitz : substanco simpla, nedividebla, esencale agema | III. (zool.) Protozoo kun organo lokomocala flogilatra, ek la klaso «monatidi», karakterizata da un o du mikra flogili acesora, ye la bazo di la flogilo precipua
+5707	monadologio	(filoz) Teorio pri la monadi
+5708	monako	(religio katol) Monakulo enklostrigita qua vivas for la socio ordinara
+5709	monarko	Suvereno di stato qua guvernesas da chefo unika
+5710	monarkio	Stato guvernata da chefo unika
+5711	monastero	(biol) Komenco-fazo di la mitoso (prefazo) dum qua la centrosomo cirkondas su per filamenti protoplasma akromata, astroforma
+5712	monato	Tempo-quanto adoptita kom un ek la dekedu dividuri di yaro, e qua kontenas lore 30, lore 31 dii (ecepte la monato februaro, qua kontenas 28 dii dum la yari ordinara, e 29 dum la yari bisextila)
+5713	mondo	Ensemblo ek lo existanta. Ensemblo ek Suno qua lumizas ni, Tero quan ni habitas, e la planeti cetera kun lia sateliti e kometi
+5714	monero	(biol) Grupo ek protozoi, kreita da Haeckel, qua igis ek li klaso aparta, karakterizata per (precipue) lia tota indijo di nukleo ; li esus do celuli nekompleta
+5715	moneto	Peco de metalo qua uzesas lor kambii, kun estampuro legala qua atestas lua pezo e titruro e determinas lua valoro nominala
+5716	monismo	(filoz) I. Sistemo filozofiala qua explikas universo per la existo di tipo unika di realajo | II. Sistemo da Haeckel qua expresas universo per (unike) la efiko di la forci fizikala e kemiala
+5717	monisto	Adepto di monismo
+5718	monitoro	Milito-navo, di tun-konteno mezvalora, basa sur la aquo-nivelo, kurasizita tre forte, e provizita ye kanoni gros-modela
+5719	mono-	Prefixo ciencala = un

@@ -1,0 +1,201 @@
+  p-200 : 39 lignes -> 39 ; decalage +0 ligne, +0 colonne ; concordance 0.996
+           cellules : 1509 avant, 1511 apres ; 1509 conservees, 2 nouvelles
+  p-201 : 40 lignes -> 40 ; decalage +0 ligne, +0 colonne ; concordance 0.986
+           cellules : 1687 avant, 1690 apres ; 1687 conservees, 3 nouvelles
+  p-202 : 38 lignes -> 37 ; decalage +0 ligne, +0 colonne ; concordance 0.996
+           cellules : 1477 avant, 1476 apres ; 1473 conservees, 3 nouvelles
+  p-203 : 42 lignes -> 40 ; decalage +0 ligne, +0 colonne ; concordance 0.990
+           cellules : 1591 avant, 1584 apres ; 1584 conservees, 0 nouvelles
+  p-204 : 39 lignes -> 39 ; decalage +0 ligne, +0 colonne ; concordance 0.995
+           cellules : 1545 avant, 1545 apres ; 1545 conservees, 0 nouvelles
+  p-205 : 42 lignes -> 42 ; decalage +0 ligne, +0 colonne ; concordance 0.992
+           cellules : 1628 avant, 1629 apres ; 1628 conservees, 1 nouvelles
+  p-206 : 39 lignes -> 39 ; decalage +0 ligne, +0 colonne ; concordance 0.992
+           cellules : 1678 avant, 1681 apres ; 1674 conservees, 7 nouvelles
+  p-207 : 41 lignes -> 41 ; decalage +0 ligne, +0 colonne ; concordance 0.993
+           cellules : 1734 avant, 1736 apres ; 1734 conservees, 2 nouvelles
+  p-208 : 41 lignes -> 41 ; decalage +0 ligne, +0 colonne ; concordance 0.993
+           cellules : 1824 avant, 1825 apres ; 1823 conservees, 2 nouvelles
+  p-209 : 44 lignes -> 40 ; decalage +0 ligne, +0 colonne ; concordance 0.990
+           cellules : 1642 avant, 1631 apres ; 1631 conservees, 0 nouvelles
+  p-210 : 37 lignes -> 37 ; decalage +0 ligne, +0 colonne ; concordance 0.986
+           cellules : 1517 avant, 1521 apres ; 1514 conservees, 7 nouvelles
+  p-211 : 39 lignes -> 37 ; decalage +0 ligne, +0 colonne ; concordance 0.993
+           cellules : 1388 avant, 1380 apres ; 1379 conservees, 1 nouvelles
+  p-212 : 12 lignes -> 12 ; decalage +0 ligne, +0 colonne ; concordance 0.984
+           cellules : 467 avant, 471 apres ; 466 conservees, 5 nouvelles
+  p-213 : 38 lignes -> 38 ; decalage +0 ligne, +0 colonne ; concordance 0.985
+           cellules : 1390 avant, 1387 apres ; 1383 conservees, 4 nouvelles
+  p-214 : 43 lignes -> 43 ; decalage +0 ligne, +0 colonne ; concordance 0.984
+           cellules : 1747 avant, 1747 apres ; 1746 conservees, 1 nouvelles
+  p-215 : 42 lignes -> 42 ; decalage +0 ligne, +0 colonne ; concordance 0.980
+           cellules : 1728 avant, 1728 apres ; 1726 conservees, 2 nouvelles
+  p-216 : 41 lignes -> 40 ; decalage +0 ligne, +0 colonne ; concordance 0.988
+           cellules : 1568 avant, 1569 apres ; 1564 conservees, 5 nouvelles
+  p-217 : 42 lignes -> 42 ; decalage +0 ligne, +0 colonne ; concordance 0.988
+           cellules : 1665 avant, 1664 apres ; 1660 conservees, 4 nouvelles
+  p-218 : 39 lignes -> 38 ; decalage +0 ligne, +0 colonne ; concordance 0.976
+           cellules : 1516 avant, 1516 apres ; 1515 conservees, 1 nouvelles
+  p-219 : 42 lignes -> 40 ; decalage +0 ligne, +0 colonne ; concordance 0.978
+           cellules : 1589 avant, 1583 apres ; 1581 conservees, 2 nouvelles
+  p-220 : 45 lignes -> 45 ; decalage +0 ligne, +0 colonne ; concordance 0.980
+           cellules : 1926 avant, 1927 apres ; 1924 conservees, 3 nouvelles
+  p-221 : 44 lignes -> 44 ; decalage +0 ligne, +0 colonne ; concordance 0.988
+           cellules : 1748 avant, 1749 apres ; 1748 conservees, 1 nouvelles
+  p-222 : 45 lignes -> 45 ; decalage +0 ligne, +0 colonne ; concordance 0.953
+           cellules : 1660 avant, 1659 apres ; 1657 conservees, 2 nouvelles
+  p-223 : 40 lignes -> 40 ; decalage +0 ligne, +0 colonne ; concordance 0.972
+           cellules : 1562 avant, 1562 apres ; 1560 conservees, 2 nouvelles
+  p-224 : 42 lignes -> 42 ; decalage +0 ligne, +0 colonne ; concordance 0.979
+           cellules : 1552 avant, 1555 apres ; 1549 conservees, 6 nouvelles
+  p-225 : 40 lignes -> 40 ; decalage +0 ligne, +0 colonne ; concordance 0.979
+           cellules : 1636 avant, 1637 apres ; 1635 conservees, 2 nouvelles
+  p-226 : 42 lignes -> 41 ; decalage +0 ligne, +0 colonne ; concordance 0.979
+           cellules : 1780 avant, 1779 apres ; 1777 conservees, 2 nouvelles
+  p-227 : 43 lignes -> 42 ; decalage +0 ligne, +0 colonne ; concordance 0.973
+           cellules : 1710 avant, 1707 apres ; 1705 conservees, 2 nouvelles
+  p-228 : 43 lignes -> 42 ; decalage +0 ligne, +0 colonne ; concordance 0.976
+           cellules : 1700 avant, 1693 apres ; 1691 conservees, 2 nouvelles
+  p-229 : 44 lignes -> 43 ; decalage +0 ligne, +0 colonne ; concordance 0.972
+           cellules : 1645 avant, 1638 apres ; 1638 conservees, 0 nouvelles
+  p-230 : 46 lignes -> 46 ; decalage +0 ligne, +0 colonne ; concordance 0.981
+           cellules : 1956 avant, 1955 apres ; 1955 conservees, 0 nouvelles
+  p-231 : 42 lignes -> 41 ; decalage +0 ligne, +0 colonne ; concordance 0.981
+           cellules : 1582 avant, 1577 apres ; 1576 conservees, 1 nouvelles
+  p-232 : 14 lignes -> 14 ; decalage +0 ligne, +0 colonne ; concordance 0.992
+           cellules : 597 avant, 597 apres ; 595 conservees, 2 nouvelles
+  p-233 : 30 lignes -> 30 ; decalage +0 ligne, +0 colonne ; concordance 0.989
+           cellules : 1085 avant, 1088 apres ; 1085 conservees, 3 nouvelles
+  p-234 : 39 lignes -> 39 ; decalage +0 ligne, +0 colonne ; concordance 0.988
+           cellules : 1752 avant, 1756 apres ; 1748 conservees, 8 nouvelles
+  p-235 : 36 lignes -> 36 ; decalage +0 ligne, +0 colonne ; concordance 0.991
+           cellules : 1438 avant, 1438 apres ; 1437 conservees, 1 nouvelles
+  p-236 : 36 lignes -> 36 ; decalage +0 ligne, +0 colonne ; concordance 0.988
+           cellules : 1417 avant, 1416 apres ; 1416 conservees, 0 nouvelles
+  p-237 : 37 lignes -> 36 ; decalage +0 ligne, +0 colonne ; concordance 0.995
+           cellules : 1364 avant, 1364 apres ; 1360 conservees, 4 nouvelles
+  p-238 : 39 lignes -> 39 ; decalage +0 ligne, +0 colonne ; concordance 0.987
+           cellules : 1546 avant, 1547 apres ; 1543 conservees, 4 nouvelles
+  p-239 : 41 lignes -> 40 ; decalage +0 ligne, +0 colonne ; concordance 0.992
+           cellules : 1660 avant, 1660 apres ; 1658 conservees, 2 nouvelles
+  p-240 : 38 lignes -> 39 ; decalage +0 ligne, +0 colonne ; concordance 0.990
+           cellules : 1488 avant, 1484 apres ; 1479 conservees, 5 nouvelles
+  p-241 : 42 lignes -> 42 ; decalage +0 ligne, +0 colonne ; concordance 0.994
+           cellules : 1590 avant, 1590 apres ; 1587 conservees, 3 nouvelles
+  p-242 : 40 lignes -> 40 ; decalage +0 ligne, +0 colonne ; concordance 0.969
+           cellules : 1543 avant, 1544 apres ; 1543 conservees, 1 nouvelles
+  p-243 : 41 lignes -> 41 ; decalage +0 ligne, +0 colonne ; concordance 0.972
+           cellules : 1538 avant, 1537 apres ; 1537 conservees, 0 nouvelles
+  p-244 : 40 lignes -> 40 ; decalage +0 ligne, +0 colonne ; concordance 0.989
+           cellules : 1661 avant, 1666 apres ; 1661 conservees, 5 nouvelles
+  p-245 : 38 lignes -> 37 ; decalage +0 ligne, +0 colonne ; concordance 0.985
+           cellules : 1419 avant, 1420 apres ; 1414 conservees, 6 nouvelles
+  p-246 : 38 lignes -> 38 ; decalage +0 ligne, +0 colonne ; concordance 0.987
+           cellules : 1436 avant, 1431 apres ; 1431 conservees, 0 nouvelles
+  p-247 : 43 lignes -> 43 ; decalage +0 ligne, +0 colonne ; concordance 0.987
+           cellules : 1697 avant, 1698 apres ; 1696 conservees, 2 nouvelles
+  p-248 : 37 lignes -> 38 ; decalage +0 ligne, +0 colonne ; concordance 0.985
+           cellules : 1442 avant, 1453 apres ; 1441 conservees, 12 nouvelles
+  p-249 : 43 lignes -> 43 ; decalage +0 ligne, +0 colonne ; concordance 0.993
+           cellules : 1765 avant, 1765 apres ; 1765 conservees, 0 nouvelles
+  p-250 : 42 lignes -> 43 ; decalage +0 ligne, +0 colonne ; concordance 0.985
+           cellules : 1722 avant, 1724 apres ; 1718 conservees, 6 nouvelles
+  p-251 : 40 lignes -> 40 ; decalage +0 ligne, +0 colonne ; concordance 0.993
+           cellules : 1503 avant, 1505 apres ; 1503 conservees, 2 nouvelles
+  p-252 : 26 lignes -> 26 ; decalage +0 ligne, +0 colonne ; concordance 0.972
+           cellules : 1028 avant, 1029 apres ; 1028 conservees, 1 nouvelles
+  p-253 : 33 lignes -> 33 ; decalage +0 ligne, +0 colonne ; concordance 0.987
+           cellules : 1141 avant, 1142 apres ; 1140 conservees, 2 nouvelles
+  p-254 : 42 lignes -> 42 ; decalage +0 ligne, +0 colonne ; concordance 0.986
+           cellules : 1628 avant, 1630 apres ; 1627 conservees, 3 nouvelles
+  p-255 : 41 lignes -> 40 ; decalage +0 ligne, +0 colonne ; concordance 0.983
+           cellules : 1565 avant, 1567 apres ; 1564 conservees, 3 nouvelles
+  p-256 : 41 lignes -> 41 ; decalage +0 ligne, +1 colonne ; concordance 0.965
+           cellules : 1593 avant, 1598 apres ; 1592 conservees, 6 nouvelles
+  p-257 : 38 lignes -> 38 ; decalage +0 ligne, +0 colonne ; concordance 0.995
+           cellules : 1552 avant, 1553 apres ; 1551 conservees, 2 nouvelles
+  p-258 : 32 lignes -> 32 ; decalage +0 ligne, +0 colonne ; concordance 0.967
+           cellules : 1301 avant, 1303 apres ; 1299 conservees, 4 nouvelles
+  p-259 : 41 lignes -> 41 ; decalage +0 ligne, +0 colonne ; concordance 0.996
+           cellules : 1768 avant, 1769 apres ; 1766 conservees, 3 nouvelles
+  p-260 : 40 lignes -> 40 ; decalage +0 ligne, +0 colonne ; concordance 0.995
+           cellules : 1714 avant, 1721 apres ; 1714 conservees, 7 nouvelles
+  p-261 : 42 lignes -> 42 ; decalage +0 ligne, +0 colonne ; concordance 0.994
+           cellules : 1642 avant, 1643 apres ; 1641 conservees, 2 nouvelles
+  p-262 : 41 lignes -> 41 ; decalage +0 ligne, +0 colonne ; concordance 0.995
+           cellules : 1562 avant, 1568 apres ; 1561 conservees, 7 nouvelles
+  p-263 : 47 lignes -> 47 ; decalage +0 ligne, +0 colonne ; concordance 0.991
+           cellules : 2037 avant, 2037 apres ; 2035 conservees, 2 nouvelles
+  p-264 : 47 lignes -> 47 ; decalage +0 ligne, +0 colonne ; concordance 0.990
+           cellules : 1918 avant, 1922 apres ; 1917 conservees, 5 nouvelles
+  p-265 : 42 lignes -> 42 ; decalage +0 ligne, +0 colonne ; concordance 0.990
+           cellules : 1621 avant, 1619 apres ; 1618 conservees, 1 nouvelles
+  p-266 : 45 lignes -> 45 ; decalage +0 ligne, +0 colonne ; concordance 0.995
+           cellules : 2044 avant, 2047 apres ; 2042 conservees, 5 nouvelles
+  p-267 : 43 lignes -> 42 ; decalage +0 ligne, +0 colonne ; concordance 0.994
+           cellules : 1824 avant, 1820 apres ; 1819 conservees, 1 nouvelles
+  p-268 : 42 lignes -> 42 ; decalage +0 ligne, +0 colonne ; concordance 0.989
+           cellules : 1796 avant, 1801 apres ; 1794 conservees, 7 nouvelles
+  p-269 : 46 lignes -> 45 ; decalage +0 ligne, +0 colonne ; concordance 0.992
+           cellules : 1737 avant, 1731 apres ; 1729 conservees, 2 nouvelles
+  p-270 : 44 lignes -> 44 ; decalage +0 ligne, +0 colonne ; concordance 0.992
+           cellules : 1930 avant, 1922 apres ; 1921 conservees, 1 nouvelles
+  p-271 : 41 lignes -> 41 ; decalage +0 ligne, +0 colonne ; concordance 0.991
+           cellules : 1624 avant, 1622 apres ; 1620 conservees, 2 nouvelles
+  p-272 : 41 lignes -> 42 ; decalage +0 ligne, +0 colonne ; concordance 0.991
+           cellules : 1752 avant, 1760 apres ; 1752 conservees, 8 nouvelles
+  p-273 : 38 lignes -> 38 ; decalage +0 ligne, +0 colonne ; concordance 0.993
+           cellules : 1557 avant, 1555 apres ; 1555 conservees, 0 nouvelles
+  p-274 : 40 lignes -> 40 ; decalage +0 ligne, +0 colonne ; concordance 0.997
+           cellules : 1556 avant, 1562 apres ; 1555 conservees, 7 nouvelles
+  p-275 : 35 lignes -> 35 ; decalage +0 ligne, +0 colonne ; concordance 0.996
+           cellules : 1369 avant, 1368 apres ; 1367 conservees, 1 nouvelles
+  p-276 : 44 lignes -> 44 ; decalage +0 ligne, +0 colonne ; concordance 0.994
+           cellules : 1877 avant, 1878 apres ; 1875 conservees, 3 nouvelles
+  p-277 : 44 lignes -> 44 ; decalage +0 ligne, +0 colonne ; concordance 0.993
+           cellules : 1840 avant, 1839 apres ; 1839 conservees, 0 nouvelles
+  p-278 : 41 lignes -> 41 ; decalage +0 ligne, +0 colonne ; concordance 0.994
+           cellules : 1700 avant, 1704 apres ; 1698 conservees, 6 nouvelles
+  p-279 : 43 lignes -> 43 ; decalage +0 ligne, +0 colonne ; concordance 0.989
+           cellules : 1654 avant, 1645 apres ; 1645 conservees, 0 nouvelles
+  p-280 : 43 lignes -> 43 ; decalage +0 ligne, +0 colonne ; concordance 0.989
+           cellules : 1625 avant, 1628 apres ; 1625 conservees, 3 nouvelles
+  p-281 : 42 lignes -> 42 ; decalage +0 ligne, +0 colonne ; concordance 0.997
+           cellules : 1619 avant, 1620 apres ; 1618 conservees, 2 nouvelles
+  p-282 : 38 lignes -> 39 ; decalage +0 ligne, +0 colonne ; concordance 0.974
+           cellules : 1524 avant, 1578 apres ; 1515 conservees, 63 nouvelles
+  p-283 : 40 lignes -> 40 ; decalage +0 ligne, +0 colonne ; concordance 0.997
+           cellules : 1470 avant, 1470 apres ; 1469 conservees, 1 nouvelles
+  p-284 : 40 lignes -> 40 ; decalage +0 ligne, +0 colonne ; concordance 0.991
+           cellules : 1564 avant, 1569 apres ; 1563 conservees, 6 nouvelles
+  p-285 : 41 lignes -> 41 ; decalage +0 ligne, +0 colonne ; concordance 0.999
+           cellules : 1666 avant, 1666 apres ; 1665 conservees, 1 nouvelles
+  p-286 : 42 lignes -> 42 ; decalage +0 ligne, +0 colonne ; concordance 0.967
+           cellules : 1620 avant, 1624 apres ; 1617 conservees, 7 nouvelles
+  p-287 : 42 lignes -> 42 ; decalage +0 ligne, +0 colonne ; concordance 0.981
+           cellules : 1600 avant, 1587 apres ; 1586 conservees, 1 nouvelles
+  p-288 : 40 lignes -> 40 ; decalage +0 ligne, +0 colonne ; concordance 0.997
+           cellules : 1626 avant, 1631 apres ; 1626 conservees, 5 nouvelles
+  p-289 : 40 lignes -> 40 ; decalage +0 ligne, +0 colonne ; concordance 0.993
+           cellules : 1546 avant, 1547 apres ; 1545 conservees, 2 nouvelles
+  p-290 : 36 lignes -> 41 ; decalage +0 ligne, +0 colonne ; concordance 0.965
+           cellules : 1321 avant, 1460 apres ; 1319 conservees, 141 nouvelles
+  p-291 : 41 lignes -> 39 ; decalage +0 ligne, +0 colonne ; concordance 0.995
+           cellules : 1577 avant, 1573 apres ; 1573 conservees, 0 nouvelles
+  p-292 : 40 lignes -> 39 ; decalage +0 ligne, +0 colonne ; concordance 0.998
+           cellules : 1514 avant, 1518 apres ; 1513 conservees, 5 nouvelles
+  p-293 : 42 lignes -> 42 ; decalage +0 ligne, +0 colonne ; concordance 0.993
+           cellules : 1641 avant, 1640 apres ; 1640 conservees, 0 nouvelles
+  p-294 : 41 lignes -> 41 ; decalage +0 ligne, +0 colonne ; concordance 0.992
+           cellules : 1698 avant, 1699 apres ; 1694 conservees, 5 nouvelles
+  p-295 : 41 lignes -> 41 ; decalage +0 ligne, +0 colonne ; concordance 0.991
+           cellules : 1502 avant, 1501 apres ; 1500 conservees, 1 nouvelles
+  p-296 : 39 lignes -> 39 ; decalage +0 ligne, +0 colonne ; concordance 0.991
+           cellules : 1505 avant, 1506 apres ; 1505 conservees, 1 nouvelles
+  p-297 : 42 lignes -> 42 ; decalage +0 ligne, +0 colonne ; concordance 0.997
+           cellules : 1583 avant, 1583 apres ; 1583 conservees, 0 nouvelles
+  p-298 : 42 lignes -> 42 ; decalage +0 ligne, +0 colonne ; concordance 0.988
+           cellules : 1728 avant, 1732 apres ; 1726 conservees, 6 nouvelles
+  p-299 : 39 lignes -> 40 ; decalage +0 ligne, +0 colonne ; concordance 0.993
+           cellules : 1572 avant, 1573 apres ; 1572 conservees, 1 nouvelles
+pages reparees : 100

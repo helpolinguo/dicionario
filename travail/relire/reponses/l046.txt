@@ -1,0 +1,12 @@
+5912	En semblo de la personi	Ensemblo de la personi
+5917	Absenteso.di eso	Absenteso di eso
+5921	Personoqua dicernas	Persono qua dicernas
+5929	horizontala, dilineo o di plano	horizontala, di lineo o di plano
+5945	la unajo kontenasas en quanto	la unajo kontenesas en quanto
+5952	l0 , od oktiliono x l.000.000	10 , od oktiliono x 1.000.000
+5955	la siteli plneskas ed acensas	la siteli pleneskas ed acensas
+5956	la inter-idanteso perfekta	la inter-identeso perfekta
+5964	ne jakomencis konsumar	ne ja komencis konsumar
+5968	(l) segun la pronunco-tono	(1) segun la pronunco-tono
+5974	ye pasto ekfarino ed ovi	ye pasto ek farino ed ovi
+5978	til 5/l00 fosforo	til 5/100 fosforo

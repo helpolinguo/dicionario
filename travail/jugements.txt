@@ -1,0 +1,4 @@
+# image	ligne	forme lue	forme retenue
+293	41	absor	absorbante
+481	46	adqua	ad qua
+242	49	adulo	ad ulo

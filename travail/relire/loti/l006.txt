@@ -1,0 +1,130 @@
+650	artemizio	(bot) Planto di la familio «kompozaji», toniziva
+651	arterio	(anat) Vaskulc qua portas la sango de la kordio ad omna parti di la korpo
+652	arterito	(patol) Inflamuro di arterio
+653	arteriologio	Ta parto di anatomio, qua traktas la arterii
+654	arteriotomio	Aperto di arterio per lanceto
+655	artezo-puteo	Puteo borita til aquo-strato subsula qua lore spriceskas
+656	artichoko	(bot) Sorto di kardono di qua la floro konsistas ye folii imbrikita, kun fundamento pulpoza
+657	artifico	To quo uzesas por travestiar naturalajo, verajo, por trompar
+658	artiko	(anat) Junturo naturala inter du parti di korpo, movebla ica sur ita
+659	artiklo	I. (gram.) Partikulo qua, en ula lingui nacionala, juntesas a substantivo quan lu determinas | II. (jurnalo, revuo, e c.) Singla de la parti di edituro kolektiva
+660	artikular	(trans) Emisar son-uni vocala, donante a li formi diversa, per ula movi da la labii, dá la lango
+661	artilrio	(milit-arto) Armeo-korpo uzata por la funcionigo di la kanoni
+662	artro	(anat) Korpo-parto movebla sur altra a qua lu esas juntita
+663	artrito	(patol) Inflamuro di la tisui fibroza e seroza di la artiki
+664	artrodio	I. (anat.) Artiko en qua esas inkastrita la extremajo di altra osto | II. (mekan.) Junturo qua su movas quale genuo
+665	artropodo	(zool) Brancho di la animalo-regno, qua inkluzas la animali chitinoza (krabi, kankri, e c.)
+666	arufar	(trans) Manuagar kontre la sinso normala la hari sur la kapo
+667	arumo	(bot) Planto herbatra di qua ula speci kontenas nutrofekulo
+668	aruspico	(che la Romani antiqua) Sacerdoto qua exploris la internaji di la viktimi por obtenar de ta internaji auguri
+669	-as	(gram) Finalo di la indikativo prezenta (e sen-epoko) di la verbi
+670	aso	Ludo-karto o ludo-kubo di nur un punto
+671	asafetido	(bot) Gumo odoranta fetide, qua venas de speco di ferulo de Persia ed uzesas medicine
+672	asaltar	(trans) (milit-arto) Atakar bruske por violentovinkar loko fortifikita. – EFIRS. asasinar, (trans.) Mortigar kun preparo, embuske o surprize
+673	asbesto	Substanco minerala amfibola, qua esas fuzebla nur ye temperaturo extreme alta-grada
+674	asekurar	(trans., kontre) Garantiar pagor ula quanto de pekunio se ta o ca risko (objekto di la asekuro) realigesos – po pekunio-quanto quan la asekurito pasas un-foye, o singla-yare (akonte)
+675	aselo	(zool) Mikra krustaceo izopoda qua prizas vivar en loki obskura e humida
+676	asemblar	I. Juntigar provizore plura personi ad un loko por ula skopo komuna | II. Kunigar plura kozi por ajustar li
+677	asentar	(trans) Adoptar la koncepto-maniero quan onu aprobas. (asento koncernas opinioni pure teoriala ; konsento relatas prefere opinioni praktikala, t.e. propozi e rezolvi)
+678	asepta	Qua ne kontenas mikrobi
+679	asesoro	La persono qua adjuntesas a judiciisto precipua
+680	asfalto	Bitumo solida, brile-nigra, renkontrebla surface di ula lagi, precipue di la lago Asphaltita
+681	asfixiar	(trans) Haltigar la arterio-pulsado ; asfixio esas la stando qua sucedas la oxigenizo neperfekta di sango, e finas per morto kande lu tro duras
+682	asfodelo	(bot) Genero de planti perena, kun bela flori, dispozita grape
+683	asidua	I. Qua esas konstante prezenta che ulu, en ula loko, por exekutar ibe sua taski
+684	asiejar	(trans) Instalar su kun armeo an-cirkum (urbo, fortifikajo) por agar lo necesa por atako sucesonta, e por sizar (lu)
+685	asignar	(trans) Sumnar ulu ke lu su prizentez, ye la dio indikata, a la judiciisto
+686	asimilar	(trans) I. (fiziol.) Transformar la nutrivi tale ke li divenas identa a sua substanco | II. (metaf.) Igar suan la idei di altru
+687	asimptoto	(geom) Lineo rekta, ligata konstanta-relate a kurvo di qua lu proximigas su sen atingar lu
+688	asinektika	(matem) (aludante anguli e figuri geometriala) Ne-homologa
+689	asistar	(trans) Esar prezenta ye... e regardar
+690	askarido	(zool) Vermo hematoida qua vivas en la intestini di la vertebrozi, precipue di la homo. : ascaris
+691	asketo	I. Persono qua, en la komenco di la Eklezio kristana, retroiris de la socio a loko ube lu esis sola, por ibe konsakrar su ad exerci di pieso ed ad auto-punisi | II. Persono qua impozas a su vivo-maniero austera
+692	asklepiado	Verso qua konsistas ye un spondeo, du koriambi ed un iambo
+693	askoltar	(trans) Atencar to quo dicesas ; esforcar por audar
+694	asno	(zool) Animalo di la genero «solipedi», kun oreli longa, spino salianta, krio desharmonioza (bramo), e quan onu uzas precipue kom kargajo-vestio
+695	asociar	(trans) Igar partoprenar to quon agas ulu. – Unionar ad ulu kom partoprenonto di ta quon lu agas
+696	asomar	(trans) Ocidar per frapo de ulo tre pezoza
+697	asonancar	(netrans., kun) I. Rivenar (aludante la sama sonuno) | II. Konsistar ye rimo nekompleta , quan karakterizas nur la identeso di la vokalo acentoza inter du finali maskula e du finali femina. (Ex. ek la Franca linguo : perte e peste)
+698	asortar	(trans., kun) Kunpozar kozi qui inter-harmonias
+699	asparago	(bot) Planto gardenala, di qua la yuna sprosi esas manjebla
+700	asparagino	(C8 H8 AZ2 O6) Substanco quan onu renkontras precipue en la yuna sprosi di asparago e qua uzesas medicine kom urinifiva
+701	aspektar	(netrans) Vidatesar kun karakterizivi qui igas judikar lu kom... (ed esas ya tala)
+702	aspera	Qua shokas desagreable la takto-senso
+703	aspersar	(trans., ye) Humidigar ye kelka guti
+704	asperulo	(bot) Genero de rubiacei de la regioni ye temperaturo meza
+705	aspiko	(zool) Varietato di vipero, serpento venenoza di Egiptia e di Libia, quan karakterizas influro remarkinda di lua kolo
+706	aspikjeleo	Karno-disho o fisho-disho kun jeleo
+707	aspirar	(trans, per, ad) I. Atraktar per inspiro di aero | II. Direktar sua deziro ad ulu od ulo
+708	aspiratoro	Nomo di aparati diversa qui havas kom rolo aspirar la fluidi (aero, gaso, vapori, liquidi, e c.) pura o qui kontenas korpi solida suspende, la polvi (segala, limala, e c.)
+709	aspirino	Acido acetil-salicila : CH3 COOC6H4COOH. Korpo blanka, solida, fuzo-punto : 133o Celsius. Uzata medicine kom kontrefebro, kontre-doloro
+710	astenopa	(patol) Dicesas pri persono di qua la vidiveso ne esas konstanta. (Komence, la malado vidas bone ; balde, lu vidas quaze tra nebulo ; fine, lu ne plus povas dicernar la objekti)
+711	astatika	(magnet) Qua permanas movebla kande deprenata de sua cirkonstanci naturala
+712	astero	(bot) Planto kompozaja di qua la flori radioza similesas steli
+713	asterio	Zoofito radiera
+714	asterismo	Fenomeno optikala : reflekto radiacanta di lumo sur ula lapidi
+715	asteroido	(astron) Mikra korpo qua cirkulas en cielo
+716	astigmata	(patol) Di qua la okulo havas kom karakterizivo kurveso-neegalaji en la medii refraktiva
+717	astmo	(patol) Sufoko intermitanta, atribuata a nevroso di la respir-organi
+718	astonar	(trans) Shokar la psiko per ulo extraordinara
+719	astragalo	I. (anat.) Osto di la tarso, di formo kuboida, inkluzita inter la maleoli di la tibio e di la peroneo | II. (arkitekt.) Muluro pozita sur kolono, inter la fusto e la kapitelo
+720	astrakano	Felo di qua la pili esas lokloza, devenanta de bovido nasko-mortinta
+721	astro	(astron) Ciel-korpo
+722	astriktar	(trans) Densigar ula tisui organika. (Aluno esas astriktiva)
+723	astrocentro	(biol) Fuzelo akromata di la nukleo
+724	astrofiziko	Studio di la astri per la metodi diversa di fiziko
+725	astroida	Astro-forma, stelo-forma
+726	astrolabo	Instrumento uzata por mezurar la alteso-grado di la astri super horizonto
+727	astrologo	La persono qua praktikas astrologio
+728	astrologio	Exploro di la astri pri lia influo asertita di la homo-fato
+729	astronomo	La persono qua konsakras su ad astronomio
+730	astronomio	Cienco pri la astri
+731	astrosfero	(biol) Sfero atraktiva
+732	asumar	(trans) Aceptar responsor pri (ulo)
+733	asunciono	(religio katolika) Festo-dio institucita da la Eklezio katolika, por honorizar la transporto mirakla di la korpo e di la anmo di la Virgino aden cielo
+734	-at-	Sufixo qua indikas la participo prezenta pasiva
+735	atakar	(trans., per, ye) Komencar la frapo (di enemiko, di adverso)
+736	ataraxio	Quieteso di la psiko quan trublas nula deziro, nula timo
+737	atasheo	(diplomaco) La persono qua, en ambasadeyo, esas, sur la skalo hierarkiala, nemediate dop la sekretario
+738	atavismo	Herediveso di ula karakteri korpala o mentala qui, en ula kazi, devenas de plura generacioni
+739	ataxio	(patol) Neregulaleso di la movi di la korpo, produktata da la perturbeso di la funcioni nervala
+740	ateismo	Opiniono di la persono qua ne kredas ke existas Deo
+741	ateisto	La persono qua profesas ateismo
+742	ateliero	Loko en qua laboras piktisto, skultisto, fotografisto, *artizano
+743	atencar	(trans) Direktar sua tota penso ad
+744	atentar	(trans) Krimino-probar
+745	ateromo	(patol) Degenero di la tuniko interna di la arterii, qua implikas lokale la existo di amasi de kolesterino e di kalko-sali
+746	atestar	(trans) Deklarar ke ulo esas exakta, reala
+747	atiko	Supera parto di edifico, ordinare ornita per pilastri, e di qua la rolo esas disimular la tekto
+748	atingar	(trans) Sucesar tushar to quo distas
+749	atipa	(biol) Qua esas plu o min fora de la tipo normala
+750	atlanto	(arkitekt) Statuo di viro, nuda e drapirita, qua subtenas entablamento o kornico
+751	atlaso	Kolekturo de mapi, de imaji anatomiala, anexita a libro
+752	atleto	La homo qua, en la ludi publika, kombatis pri luktado, e pri boxado (en Grekia antiqua)
+753	atmosfero	Aero-zono qua cirkondas la Terglobo
+754	atolo	Insulo ek koralio
+755	atomo	Ta parteto di korpo simpla, quan onu konsideris kom nepartigebla, e qua esas la elemento-quanto maxim mikra apta divenar parto de kombinuro
+756	atonio	Ne-existo di vivozeso
+757	-atr-	Sufixo qua indikas simileso
+758	atraktar	(trans) Kaptar per ruzo-stroko
+759	atribuar	(trans., ad) Donar (ulo) ad ulu kom lua parto
+760	atributo	(gram) Termino di la propoziciono, qua expresas la eso-maniero quan onu afirmas pri la subjekto
+761	atricar	(netrans) (teol) Repentar pri sua peko sive pro shamo, sive pro timo a puniseso
+762	atriumo	(che la Romani antiqua) Korto interna, generale cirkondata da portiko apertata
+763	atrofiar	(trans) Igar deperisar parto di la korpo o di organo qua, pro ne funcionar, ne plus alimentesas da la fluo sangala. – DEFIRS. 17 22 3
+764	atropino	(kemio) C H NO , Alkaloido, extraktata de beladono, qua dilatas la pupilo
+765	atuno	(zool) Mar-fisho manjebla, di la genero «scomber»
+766	aturdar	(trans) Cesir konciar o preske ne plus konciar, konseque (kom exemplo) de frapa, de granda shoko, e c
+767	aucionar	(trans) Ofrar preco plu alta kam altru
+768	audar	(trans) Perceptar per la orel-organaro
+769	audacar	(trans) Probar en maniero ne-timigebla
+770	audienco	Acepto di la viziteri, demanderi
+771	auditoro	Titulo di employato en tribunalo
+772	augias-stablo	Loko tre sordida
+773	augmentar	(trans) Igar plu granda, per adjuntar parti. *DEFIS
+774	augurar	(trans,) Igar konsiderar kom esonte bona o mala (pri la eventi)
+775	augusta	Titulo honorizala, uzata a la membri di familio suverena
+776	aula	I. En la universitati Germana, Usana, Suisa : la chambrego di la akti e di la festi skolala | II. Palaco en qua rezidas la kortanaro di rejio
+777	aureolo	I. Cirklo lumala ye qua la piktisti cirkondas la kapo di Iesu-Kristo, di la Virgino e di la santi | II. Omna cirklo lumala o koloroza quan la okulo vidas cirkum objekto. (anke metaf
+778	aurikulo	Singla de la du supra kavaji di la kordio
+779	auroro	Koloro oranjea qua venas de la radii di Suno levanta, qui frapas horizonto. – Metaf.:La komenco di ulo

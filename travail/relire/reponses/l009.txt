@@ -1,0 +1,7 @@
+1056	Bloko pozBa	Bloko pozita
+1058	liquida -nafto)	liquida (nafto)
+1062	diqua la dorso	di qua la dorso
+1084	Dina mambrano	Dina membrano
+1096	DEF1RS	DEFIRS
+1154	benda de texuro	bendo de texuro
+1166	konsistnta ye farino	konsistanta ye farino

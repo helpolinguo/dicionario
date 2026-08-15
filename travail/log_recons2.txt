@@ -1,0 +1,4 @@
+corpus reconstruit : (1015231, 22, 12)
+cellules sans groupe : 19098
+cellules : 1015231  groupes affectes : 1
+FINI

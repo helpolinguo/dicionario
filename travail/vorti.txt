@@ -1,0 +1,61 @@
+# Corrections de mots DANS LES DEFINITIONS, relevees a l'oeil ou par regle.
+# Meme principe que vedetti.txt : une ligne par cas, le motif en regard.
+# Le fac-simile garde la graphie de l'original ; c'est ici qu'on la redresse.
+# La substitution ne porte que sur le mot entier, casse comprise.
+# ancien	nouveau	motif
+oijekti	objekti	b lu comme i : « objekto » est vedette, « oijekto » n'existe pas
+memorer	memorar	p498 registro : pos «volas» l ido demandas la infinitivo prezenta ; «a» lu kom «e» esas la konfuzo maxim ordinara
+mesurer	mezurar	meme motif ; « mezurar » est la vedette du dictionnaire, « mesurar » n'existe pas
+# --- Consonne doublee : l'ido n'en a pas, hors frontiere de prefixe
+# (dis-solvar, inter-ruptar, ad-duktar) et mots etrangers cites.
+digesttala	digestala	p009 abdomino : la viceri digestala — t redouble
+bbstanci	substanci	p013 adipocero : « nomo olima di tri substanci »
+tillore	til lore	p145 entamar : « pri kozo til lore netushita » — deux mots soudes
+quarcozz	quarcoza	p208 greso : « roko ek sabl-uni quarcoza »
+ssociito	asociito	p296 kompanio : le sens dit lui-meme « o la asociiti »
+esassquamoza	esas squamoza	p425 pangolino : « di qua la korpo esas squamoza » — deux mots soudes
+frankki	franki	p468 procento : « Me kolokis 1000 franki »
+konssistas	konsistas	p531 sharado : « enigmato qua konsistas ye divinar vorto »
+tddanta	tedanta	p609 uf! : troisieme de la serie « sufriganta, peniganta, tedanta »
+eempre	sempre	p513 rusko : « rami sempre verda, simila ad la asparagi »
+fomme	forme	p513 rusho : « plisita forme di kupeti »
+# --- Lignes amputees de leur premiere lettre au bord gauche du bloc.
+# Verifiees une a une : sur 18 candidats detectes, 15 etaient de vrais mots
+# ido que le test d'attestation ignorait (hoki, teli, juro, alti, rukti...).
+ande	kande	p458 pomo : « la suko, kande fermantacinta, donas cidro »
+# --- Corrections relevees par Gilles-Philippe Morin sur l'edition de lecture.
+ii aDom	di mikra	p513 rusho : « plisita forme di mikra kupeti »
+m mo roti	arboreti	p513 rusko : « arboreti sempre verda, simila ad la asparagi »
+rmihmnna	rudimenta	p513 rusko : « kun folii rudimenta »
+decen danto	decendanto	p394 mutaco : « qua eventas en decendanto di individuo normala »
+edek	ed ek	p489 raso : « la ancestri ed ek la decendinti »
+pos-turo	posturo	trait d'union parasite : « per adoptar posturo humila »
+obhekto	objekto	j lu comme h : « la objekto di ta o ca penso »
+# --- Coquilles des lignes retrouvees par la reparation du bas de page.
+aubordino	subordino	p116 diciplinar : « la regulo di subordino e di ordino »
+korpb	korpo	p116 diciplinar : « a la membri di korpo, di organismo »
+DEFIES	DEFIRS	p116 diciplinar : aucun code ne repete une langue ; E y figure deux fois
+D5	DE	p194 ganso : code de langues, 5 lu pour E
+gipao	gipso	p366 masonar : « la induturi ek mortero, gipso »
+(nuva)	(*nuva)	p404 : la senco III di «nova» distingesas kom *nuva ; en brokantar la «+» di la originalo suficas
+segunmezuro	segunmezura	p395 muzikar : adjektivo, do finalo -a
+# --- Sous-numerotations : le « 1 » lu comme un « l » minuscule.
+kolo : l. Ornivo	kolo : 1. Ornivo	p292 koliaro : sous-enumeration
+Prepoziciono : l. Indikas	Prepoziciono : 1. Indikas	p565 sub : sous-enumeration
+(tekn.) l. Instrumento	(tekn.) 1. Instrumento	p207 grapino : sous-enumeration
+de l til 10 litri	de 1 til 10 litri	p074 bidono : «l» por la cifro 1
+l, 000, 0002	1, 000, 0002	p071 biliono : «l» por la cifro 1
+("certena	(*certena	guillemet parasite por l'asterisko di vorto ne oficala
+quan on jus komencis	quan onu jus komencis	p404 nova : la autoro skribas «onu» 1342 foyi kontre «on» 9 foyi
+kande agnoskas kom valida	kande onu agnoskas kom valida	p485 *quoniam : «onu» mankanta
+unajo fragmento	unajo, fragmento	p612 -un- : virgulo mankanta en la enumero
+ne atingesor (ulo)	ne atingesor (da ulo)	p160 evitar : la regimo esas «da», ne akuzativo
+# --- Uniformisation du pronom : l'auteur ecrit « onu » 1342 fois contre 9.
+quan on pleis	quan onu pleis	p149 espineto
+masono : on humidigas	masono : onu humidigas	p203 gipso
+to quon on volas	to quon onu volas	p247 ironio
+per qua on reduktas	per qua onu reduktas	p268 kapistro
+quan on destinas	quan onu destinas	p269 karburar
+uzata kande on parolas	uzata kande onu parolas	p605 tu
+la osto *sfenoida	la osto sfenoida	p225 hipofizo : vorto oficala, sen asterisko
+qualan kande on renkontras	qualan kande onu renkontras	p382 mineralogio

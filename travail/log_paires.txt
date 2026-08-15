@@ -1,0 +1,33 @@
+formes distinctes : 33489
+corrections proposees : 1234
+   a -> o : 216
+   e -> o : 151
+   o -> a : 111
+   o -> c : 62
+   l -> i : 61
+   I -> l : 56
+   c -> o : 53
+   o -> e : 47
+   u -> a : 47
+   8 -> s : 35
+   a -> u : 30
+   1 -> l : 30
+   t -> p : 22
+   l -> t : 20
+   p -> t : 20
+   m -> n : 19
+   e -> c : 19
+   i -> l : 17
+   t -> l : 15
+   n -> m : 14
+   l -> I : 13
+   r -> v : 13
+   f -> t : 12
+   z -> s : 11
+   a -> m : 10
+   n -> h : 10
+   s -> z : 10
+   b -> h : 10
+   u -> n : 10
+   k -> c : 10
+sosies 1234

@@ -1,0 +1,7 @@
+0-110 : 105 pages, 139 lignes touchees, 210 caracteres coupes
+110-220 : 109 pages, 142 lignes touchees, 177 caracteres coupes
+220-330 : 110 pages, 138 lignes touchees, 169 caracteres coupes
+330-440 : 110 pages, 125 lignes touchees, 198 caracteres coupes
+440-550 : 110 pages, 109 lignes touchees, 135 caracteres coupes
+550-660 : 88 pages, 75 lignes touchees, 105 caracteres coupes
+FINI

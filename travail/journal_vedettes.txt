@@ -1,0 +1,619 @@
+page	ligne	col	lu	corrige	regle	vedette lue
+11	10	0	o	a	initiale de section	otmento
+12	12	5	c	o	finale morphologique	acentc
+15	6	7	c	o	finale morphologique	advckatc
+17	29	5	c	o	finale morphologique	agendc
+18	14	3	c	o	finale morphologique	agrc
+18	18	5	c	o	finale morphologique	agrafc
+18	32	8	c	o	finale morphologique	agrisonic
+21	12	7	c	o	finale morphologique	akrobatc
+22	41	0	i	a	initiale de section	iala
+22	25	7	c	o	finale morphologique	akustikc
+23	2	0	s	a	initiale de section	slambiko
+24	35	3	c	o	finale morphologique	algc
+26	12	13	c	o	finale morphologique	alkoholometric
+26	40	5	c	o	finale morphologique	alonjc
+26	46	7	c	o	finale morphologique	alopatic
+29	20	7	I	r	finale morphologique	ambioiaI
+31	56	0	d	a	initiale de section	dampered
+31	27	6	c	o	finale morphologique	amniotc
+31	56	7	d	a	finale morphologique	dampered
+33	20	8	c	o	finale morphologique	anakoretc
+34	4	9	c	o	finale morphologique	anastomosc
+34	15	6	c	o	finale morphologique	anohovc
+35	7	8	c	o	finale morphologique	anestezic
+37	7	6	s	o	finale morphologique	ancnigs
+37	10	3	c	o	finale morphologique	ansc
+37	18	10	c	o	finale morphologique	antagonistc
+37	26	10	c	o	finale morphologique	antecedentc
+38	11	8	c	o	finale morphologique	antifrazc
+42	3	7	c	o	finale morphologique	apcstilc
+42	22	7	c	o	finale morphologique	apoteosc
+42	38	5	c	o	finale morphologique	aprilc
+42	51	5	c	o	finale morphologique	apsidc
+44	23	7	c	o	finale morphologique	arbitric
+45	18	5	c	o	finale morphologique	argalc
+46	4	10	c	o	finale morphologique	aritmmgrafc
+47	18	0	o	a	initiale de section	oIkitektc
+47	18	8	c	o	finale morphologique	oIkitektc
+48	35	5	c	o	finale morphologique	arsenc
+52	5	5	c	o	finale morphologique	aspikc
+52	36	8	c	o	finale morphologique	asterismc
+54	27	5	E	o	finale morphologique	atlasE
+56	30	0	o	a	initiale de section	outobuso
+56	38	0	o	a	initiale de section	ootogamo
+56	36	10	c	o	finale morphologique	autodidaktc
+57	23	0	s	a	initiale de section	sotere
+57	20	9	E	o	finale morphologique	autoritatE
+57	47	3	n	o	finale morphologique	avan
+58	36	0	s	a	initiale de section	svida
+58	47	0	e	a	initiale de section	eso
+58	14	6	c	o	finale morphologique	avelanc
+58	41	5	d	o	finale morphologique	aevcud
+59	19	0	o	a	initiale de section	ozigosporo
+59	22	0	o	a	initiale de section	ozilo
+61	16	9	c	o	finale morphologique	balanoierc
+61	37	8	c	o	finale morphologique	baldakinc
+61	45	5	c	o	finale morphologique	balenc
+61	50	5	c	o	finale morphologique	baletc
+62	22	5	c	o	finale morphologique	belonc
+63	19	9	c	o	finale morphologique	bandolierc
+65	25	0	o	b	initiale de section	oarometro
+66	10	4	c	o	finale morphologique	beskc
+66	22	4	c	o	finale morphologique	lmntc
+68	14	5	c	o	finale morphologique	beginc
+69	16	0	o	b	initiale de section	oenzino
+70	33	6	c	o	finale morphologique	bezoarc
+71	22	5	c	o	finale morphologique	bidcnc
+71	30	7	c	o	finale morphologique	bifstekc
+72	11	0	h	b	initiale de section	hilgo
+72	19	0	h	b	initiale de section	hllieto
+73	6	10	c	o	finale morphologique	biomekanikc
+73	21	2	s	a	finale morphologique	bis
+74	51	8	c	o	finale morphologique	blokbausc
+76	19	0	h	b	initiale de section	holeto
+76	16	7	b	i	finale morphologique	bbolerob
+77	2	0	t	b	initiale de section	toneto
+77	24	9	P	o	finale morphologique	borborigmP
+77	30	6	I	r	finale morphologique	bordeaI
+78	25	3	c	o	finale morphologique	boyc
+79	47	6	c	o	finale morphologique	brankic
+81	19	4	c	o	finale morphologique	brizc
+84	7	7	c	o	finale morphologique	buletinc
+85	4	2	u	o	finale morphologique	lmu
+85	12	8	c	o	finale morphologique	burokratc
+85	16	4	c	o	finale morphologique	bursc
+85	18	3	c	o	finale morphologique	busc
+85	21	4	c	o	finale morphologique	bushc
+85	28	4	c	o	finale morphologique	buskc
+88	35	0	o	c	initiale de section	oedrato
+88	53	0	o	c	initiale de section	oelerio
+91	11	0	o	c	initiale de section	oero
+91	39	4	z	a	finale morphologique	ceriz
+92	2	3	s	a	finale morphologique	boes
+92	6	4	c	o	finale morphologique	cesic
+92	44	6	c	o	finale morphologique	chamadc
+93	18	10	c	o	finale morphologique	chaspinicnc
+95	50	0	o	c	initiale de section	oboseo
+96	19	0	o	c	initiale de section	oicisbeo
+97	15	0	o	c	initiale de section	oiklidoo
+97	23	0	o	c	initiale de section	oikloidoo
+97	10	8	c	o	finale morphologique	ciklamenc
+97	28	6	c	o	finale morphologique	ciklonc
+97	32	6	c	o	finale morphologique	ciklcpc
+97	35	6	c	o	finale morphologique	ciklosc
+97	53	6	c	o	finale morphologique	ciliarc
+100	9	0	o	c	initiale de section	oirkonvalaciono
+101	4	0	o	c	initiale de section	oitadelo
+102	17	7	b	i	finale morphologique	bdahliab
+103	14	5	I	r	finale morphologique	dansaI
+103	25	5	I	r	finale morphologique	darnaI
+106	34	2	k	a	finale morphologique	dek
+114	2	5	c	o	finale morphologique	devocc
+115	9	0	i	d	initiale de section	iiafizo
+115	18	8	I	r	finale morphologique	diagnozaI
+120	19	5	I	r	finale morphologique	dineaI
+122	6	2	s	a	finale morphologique	dis
+125	13	6	I	r	finale morphologique	dividaI
+127	15	0	o	d	initiale de section	oolomito
+129	36	6	c	o	finale morphologique	dramatc
+133	43	0	c	e	initiale de section	centriko
+134	53	0	d	e	initiale de section	ddro
+134	20	10	b	i	finale morphologique	bedelFeissb
+135	42	0	i	e	initiale de section	iegi
+136	29	2	c	o	finale morphologique	akc
+136	32	7	b	i	finale morphologique	aekarteb
+138	35	0	s	e	initiale de section	slektrologio
+141	16	6	c	o	finale morphologique	embolic
+144	2	0	d	e	initiale de section	duookarpo
+144	25	0	s	e	initiale de section	smfilar
+148	9	0	d	e	initiale de section	deigrafio
+148	17	0	s	e	initiale de section	spilepsio
+148	30	0	o	e	initiale de section	omiskopo
+148	40	0	s	e	initiale de section	smitafo
+150	26	0	s	e	initiale de section	srektar
+151	32	0	i	e	initiale de section	iesi
+152	5	0	d	e	initiale de section	dshelono
+154	14	0	d	e	initiale de section	ddplanado
+154	24	0	s	e	initiale de section	smmruva
+154	26	0	s	e	initiale de section	smquado
+154	30	0	s	e	initiale de section	ssto
+154	57	0	d	e	initiale de section	detayo
+156	41	0	a	e	initiale de section	atsoido
+156	47	0	s	e	initiale de section	stnologio
+158	13	0	s	e	initiale de section	smajerar
+158	32	0	d	e	initiale de section	dxssperar
+158	40	0	d	e	initiale de section	dxegezo
+159	18	10	b	i	finale morphologique	bexequaturb
+159	52	4	c	o	finale morphologique	exinc
+160	17	0	d	e	initiale de section	dskoriar
+160	29	0	s	e	initiale de section	ssodo
+160	36	0	s	e	initiale de section	smorcisar
+161	32	7	I	r	finale morphologique	expiacaI
+165	47	0	i	f	initiale de section	ialansterio
+167	37	0	d	f	initiale de section	dfaradd
+167	37	6	d	a	finale morphologique	dfaradd
+168	32	0	d	f	initiale de section	dfascia
+168	7	5	c	o	finale morphologique	farinc
+168	25	4	c	o	finale morphologique	fersc
+171	42	4	d	a	finale morphologique	ffesd
+172	21	5	c	o	finale morphologique	fiakrc
+172	43	7	c	o	finale morphologique	fibroinc
+175	12	0	i	f	initiale de section	iingro
+176	16	0	d	f	initiale de section	dszicnomic
+176	3	5	c	o	finale morphologique	ldgikc
+176	16	9	c	o	finale morphologique	dszicnomic
+176	24	6	c	o	finale morphologique	flagelc
+176	46	5	I	r	finale morphologique	iusraI
+178	2	5	c	o	finale morphologique	flitrc
+178	34	4	c	o	finale morphologique	floxc
+179	9	0	i	f	initiale de section	iluoreoar
+180	2	7	c	o	finale morphologique	fklikulc
+180	45	9	c	o	finale morphologique	fenosetric
+181	21	6	c	o	finale morphologique	forestc
+181	47	6	c	o	finale morphologique	forsatc
+182	8	4	c	o	finale morphologique	vornc
+182	13	8	c	o	finale morphologique	foroncmic
+182	18	5	n	o	finale morphologique	fersan
+184	16	3	c	o	finale morphologique	fcyc
+186	31	5	m	a	finale morphologique	dkmmlm
+187	15	4	c	o	finale morphologique	friec
+190	24	4	c	o	finale morphologique	lmngc
+194	36	5	c	o	finale morphologique	gmmetc
+196	58	3	c	o	finale morphologique	aasc
+198	12	0	s	g	initiale de section	smnezo
+198	14	0	s	g	initiale de section	smnio
+199	35	4	s	e	finale morphologique	sgess
+200	6	0	s	g	initiale de section	sibelino
+200	10	0	s	g	initiale de section	sibono
+200	16	0	s	g	initiale de section	sigantc
+200	21	0	s	g	initiale de section	silochar
+200	16	6	c	o	finale morphologique	sigantc
+201	2	9	s	o	finale morphologique	ginqdioiks
+202	38	4	c	o	finale morphologique	guebc
+204	43	4	c	o	finale morphologique	gnosc
+204	46	7	c	o	finale morphologique	gnostikc
+206	19	8	c	o	finale morphologique	syadientc
+206	42	8	c	o	finale morphologique	grsmatikc
+206	44	6	c	o	finale morphologique	graminc
+208	32	0	g	s	initiale de section	gremio
+208	35	0	g	s	initiale de section	grenado
+208	53	0	g	s	initiale de section	grilar
+208	17	5	c	o	finale morphologique	sysvic
+208	44	4	c	o	finale morphologique	sretc
+208	49	6	c	o	finale morphologique	syifonc
+210	16	0	s	g	initiale de section	sumrm
+210	29	0	s	g	initiale de section	sruzo
+210	32	0	s	g	initiale de section	smacho
+210	26	4	c	o	finale morphologique	gyupc
+210	48	7	c	o	finale morphologique	gmbernic
+211	41	4	q	o	finale morphologique	gurmq
+212	2	8	c	o	finale morphologique	smtaperkc
+212	5	5	c	o	finale morphologique	gmturc
+215	10	0	b	h	initiale de section	barda
+215	18	6	c	o	finale morphologique	haringc
+217	36	0	o	h	initiale de section	oeliofilo
+219	7	0	b	h	initiale de section	bepatikcq
+219	23	0	b	h	initiale de section	berbo
+219	15	8	c	o	finale morphologique	heptagonc
+219	35	4	c	o	finale morphologique	herdc
+219	50	7	c	o	finale morphologique	heriscnc
+221	2	0	n	h	initiale de section	neterogenezo
+221	34	0	n	h	initiale de section	neaitar
+221	37	0	b	h	initiale de section	biacinto
+223	2	12	c	o	finale morphologique	hidromekanikc
+224	27	0	b	h	initiale de section	bimeneo
+224	40	0	b	h	initiale de section	bioido
+224	43	0	b	h	initiale de section	bipar
+224	47	0	b	h	initiale de section	bipalago
+224	36	4	c	o	finale morphologique	himnc
+225	9	0	b	h	initiale de section	biperbereo
+225	38	0	b	h	initiale de section	bipcdrcmo
+225	25	11	I	r	finale morphologique	hipertrofiaI
+225	28	7	I	r	finale morphologique	hipootaI
+225	47	6	c	o	finale morphologique	hipogec
+227	12	0	n	h	initiale de section	nistogenezo
+228	22	0	b	h	initiale de section	bolografEs
+228	46	0	b	h	initiale de section	bomeopatio
+228	52	0	b	h	initiale de section	bomeosexuala
+228	28	8	c	o	finale morphologique	holometrc
+228	55	7	s	a	finale morphologique	bemerals
+229	33	0	b	h	initiale de section	bcmoteta
+229	38	0	b	h	initiale de section	bmsmtipao
+229	25	7	g	e	finale morphologique	homoloEg
+229	52	2	n	o	finale morphologique	nun
+230	6	4	q	o	finale morphologique	bmreq
+230	29	9	c	o	finale morphologique	hornblendc
+232	6	0	h	b	initiale de section	hurdo
+233	29	5	c	o	finale morphologique	idantc
+236	9	4	I	r	finale morphologique	bmumI
+236	37	6	c	o	finale morphologique	gmrtelc
+241	18	11	g	e	finale morphologique	infinitezimg
+242	43	10	n	o	finale morphologique	inioiativan
+242	46	6	I	r	finale morphologique	njektaI
+245	23	10	c	o	finale morphologique	instrumehtc
+250	39	6	c	o	finale morphologique	irisitc
+251	37	2	z	a	finale morphologique	iiz
+252	22	6	s	a	finale morphologique	hmmmmfs
+252	39	6	m	a	finale morphologique	hmtnkmm
+254	26	3	E	o	finale morphologique	EogE
+254	38	4	c	o	finale morphologique	hmmuc
+256	26	3	c	o	finale morphologique	mtec
+257	37	12	c	o	finale morphologique	juriskonsultc
+262	29	0	l	k	initiale de section	lalorio
+262	35	0	l	k	initiale de section	lmlorimetro
+262	15	4	s	o	finale morphologique	kmlss
+263	12	2	m	a	finale morphologique	kom
+265	45	9	c	o	finale morphologique	kandelabrc
+266	19	0	l	k	initiale de section	lmnibalc
+266	19	7	c	o	finale morphologique	lmnibalc
+266	42	5	c	o	finale morphologique	kanohc
+267	9	6	c	o	finale morphologique	kansonc
+267	15	8	c	o	finale morphologique	kantabilc
+267	50	6	c	o	finale morphologique	kanvasc
+268	23	0	l	k	initiale de section	lapelo
+268	33	0	l	k	initiale de section	lspero
+268	6	3	c	o	finale morphologique	kmpc
+268	14	6	s	o	finale morphologique	kmpabls
+272	17	0	l	k	initiale de section	lardelo
+272	34	0	l	k	initiale de section	lsrdioido
+274	16	0	l	k	initiale de section	laroso
+274	25	0	l	k	initiale de section	larotino
+274	29	0	l	k	initiale de section	larpo
+274	49	6	c	o	finale morphologique	kartamc
+276	11	7	c	o	finale morphologique	karunklc
+276	20	3	c	o	finale morphologique	kaac
+276	27	6	I	r	finale morphologique	kasacoI
+278	39	0	l	k	initiale de section	latarakto
+278	31	9	c	o	finale morphologique	kataplasmc
+280	32	0	l	k	initiale de section	lmvalkar
+280	35	0	l	k	initiale de section	lsvalrio
+280	38	0	l	k	initiale de section	lmvatino
+281	2	5	c	o	finale morphologique	kazakc
+282	26	0	l	k	initiale de section	larlo
+282	39	0	l	k	initiale de section	ldrubo
+282	16	5	c	o	finale morphologique	kmrelc
+282	19	4	c	o	finale morphologique	kmmic
+283	19	8	c	o	finale morphologique	kilometrc
+284	40	0	k	l	initiale de section	kiapo
+286	29	0	l	k	initiale de section	liifo
+286	32	0	l	k	initiale de section	liiko
+288	28	0	l	k	initiale de section	llukar
+290	31	0	l	k	initiale de section	loko
+290	8	4	c	o	finale morphologique	lnfic
+291	24	9	s	o	finale morphologique	kolaterals
+291	41	6	c	o	finale morphologique	kolegic
+293	48	7	c	o	finale morphologique	koloritc
+295	55	5	s	a	finale morphologique	kemiks
+298	30	0	l	k	initiale de section	lompromisar
+298	15	6	c	o	finale morphologique	kmmmctc
+300	5	0	l	k	initiale de section	londamnar
+300	26	0	l	k	initiale de section	londilono
+304	2	4	c	o	finale morphologique	lmmkc
+308	16	0	l	k	initiale de section	lontenta
+309	47	0	E	k	initiale de section	Eontributar
+312	10	0	l	k	initiale de section	lopulo
+316	19	6	c	o	finale morphologique	kmrundc
+318	13	0	l	k	initiale de section	loxalgio
+320	6	0	l	k	initiale de section	lremacar
+320	9	6	c	o	finale morphologique	kremonc
+321	42	3	k	a	finale morphologique	zrbk
+322	23	0	l	k	initiale de section	lmiplo
+326	2	0	l	k	initiale de section	lruela
+326	4	4	m	o	finale morphologique	kmugm
+326	19	4	c	o	finale morphologique	krupc
+327	31	11	c	o	finale morphologique	kukurbitacec
+328	16	0	l	k	initiale de section	lmlpar
+330	18	0	l	k	initiale de section	lmrear
+330	45	5	c	o	finale morphologique	kurlic
+331	12	6	c	o	finale morphologique	kurtenc
+331	45	5	I	r	finale morphologique	kostaI
+334	15	3	c	o	finale morphologique	ladc
+334	23	5	c	o	finale morphologique	legPnc
+334	28	3	c	o	finale morphologique	lakc
+337	11	4	I	r	finale morphologique	lapaI
+338	44	6	u	o	finale morphologique	latrinu
+339	15	7	c	o	finale morphologique	laureatc
+340	13	3	c	o	finale morphologique	legc
+340	26	5	c	o	finale morphologique	qegatc
+342	5	5	c	o	finale morphologique	leporc
+342	28	6	c	o	finale morphologique	leucitc
+344	28	0	u	l	initiale de section	uietnanto
+344	21	3	c	o	finale morphologique	lidc
+344	31	4	P	o	finale morphologique	liftP
+346	30	0	u	l	initiale de section	uinchar
+346	33	4	c	o	finale morphologique	linoc
+348	27	9	E	o	finale morphologique	literatuEE
+348	37	5	c	o	finale morphologique	litijc
+356	12	6	c	o	finale morphologique	gmgnatc
+356	39	7	c	o	finale morphologique	saiflorc
+358	5	0	g	s	initiale de section	gmkulo
+358	25	6	c	o	finale morphologique	smlaric
+360	2	0	e	s	initiale de section	emndato
+360	11	0	g	s	initiale de section	gmndelo
+360	14	0	g	s	initiale de section	gmndibulo
+362	38	0	m	s	initiale de section	manuo
+362	36	6	c	o	finale morphologique	santisc
+363	19	8	c	o	finale morphologique	maraskinc
+364	2	0	g	s	initiale de section	gmrSrito
+364	9	0	v	s	initiale de section	vmIiajar
+364	17	8	c	o	finale morphologique	sarionetc
+368	17	0	g	s	initiale de section	gatutino
+368	28	4	m	a	finale morphologique	smxim
+370	2	0	g	s	initiale de section	gmdltar
+370	5	0	g	s	initiale de section	gmdiumo
+370	48	0	m	s	initiale de section	mekenisto
+370	54	0	m	s	initiale de section	melankolio
+371	9	0	s	m	initiale de section	seleo
+371	15	0	s	m	initiale de section	seliso
+371	41	2	m	a	finale morphologique	mem
+372	22	0	g	s	initiale de section	gmnajar
+372	25	0	g	s	initiale de section	gmnajerio
+372	41	0	g	s	initiale de section	geningito
+373	22	0	s	m	initiale de section	senueto
+374	2	0	u	s	initiale de section	umrizo
+374	13	0	g	s	initiale de section	gmrkurdio
+374	18	0	g	s	initiale de section	gmrlo
+374	21	0	g	s	initiale de section	gmrlano
+376	17	0	g	s	initiale de section	gmtatezo
+376	24	0	g	s	initiale de section	gmteoro
+376	28	0	g	s	initiale de section	gmteorologio
+379	25	0	s	m	initiale de section	sikIPgrafiE
+379	32	0	s	m	initiale de section	sikrono
+379	36	0	s	m	initiale de section	sikronukleo
+379	25	10	E	o	finale morphologique	sikIPgrafiE
+379	29	9	g	a	finale morphologique	mikrometrg
+383	21	0	s	m	initiale de section	sirto
+383	35	6	c	o	finale morphologique	mispelc
+387	12	0	s	m	initiale de section	sonadologio
+387	40	0	s	m	initiale de section	soneto
+387	14	5	c	o	finale morphologique	mohakc
+392	4	0	m	s	initiale de section	mozaiko
+392	13	0	m	s	initiale de section	muaro
+392	21	0	m	s	initiale de section	muelar
+392	39	0	g	s	initiale de section	guflono
+392	52	0	g	s	initiale de section	gulato
+393	23	0	E	m	initiale de section	EuElE
+393	23	4	E	o	finale morphologique	EuElE
+393	30	8	E	o	finale morphologique	muhioiEoE
+396	28	5	c	o	finale morphologique	rmdirc
+397	11	0	o	n	initiale de section	oorkotor
+397	15	0	o	n	initiale de section	oErkolo
+397	40	0	o	n	initiale de section	oauzoar
+397	47	0	o	n	initiale de section	ookigor
+398	12	0	r	n	initiale de section	rebuloso
+398	16	0	r	n	initiale de section	rmoesa
+398	21	0	p	n	initiale de section	pmgstiva
+398	25	0	r	n	initiale de section	regiijar
+399	41	0	m	n	initiale de section	meptunala
+400	20	5	s	o	finale morphologique	neutrs
+401	21	5	P	o	finale morphologique	nikeiP
+402	2	5	c	o	finale morphologique	oniuzc
+404	46	3	c	o	finale morphologique	nubc
+405	28	0	h	n	initiale de section	hukleolo
+405	52	0	o	n	initiale de section	oun
+405	52	2	n	o	finale morphologique	oun
+409	15	0	c	o	initiale de section	cceano
+409	12	6	c	o	finale morphologique	ocelotc
+410	38	0	c	o	initiale de section	cftalmio
+410	40	0	c	o	initiale de section	cftalmologio
+412	36	0	c	o	initiale de section	cmleto
+412	5	7	c	o	finale morphologique	oligerkc
+412	21	4	c	o	finale morphologique	olivc
+414	19	0	c	o	initiale de section	cperacar
+414	37	5	c	o	finale morphologique	opiumc
+416	23	6	s	a	finale morphologique	aoremus
+418	21	0	o	s	initiale de section	outcdoxa
+418	24	0	o	s	initiale de section	outogenezo
+418	28	0	o	s	initiale de section	omtogonc
+418	31	0	o	s	initiale de section	omtografio
+418	12	5	c	o	finale morphologique	suselc
+418	28	7	c	o	finale morphologique	omtogonc
+422	43	5	c	o	finale morphologique	pegayc
+422	46	5	c	o	finale morphologique	paginc
+424	11	0	g	p	initiale de section	gmliatar
+426	17	10	c	o	finale morphologique	penkreatitc
+428	2	8	c	o	finale morphologique	paradigmc
+432	25	0	o	p	initiale de section	oosmento
+432	32	7	c	o	finale morphologique	pasportc
+435	34	8	d	a	finale morphologique	dpeccavid
+436	33	6	c	o	finale morphologique	pekaric
+436	55	3	c	o	finale morphologique	pelc
+438	30	8	c	o	finale morphologique	pentaedrc
+442	18	9	c	o	finale morphologique	persikaric
+444	20	0	o	p	initiale de section	oiohpino
+448	33	8	c	o	finale morphologique	pirometrc
+452	2	9	c	o	finale morphologique	puastidulc
+454	39	3	z	o	finale morphologique	pliz
+455	22	3	s	a	finale morphologique	plus
+457	47	0	o	p	initiale de section	oolispermio
+458	47	5	E	o	finale morphologique	pomadE
+459	48	0	o	p	initiale de section	ooplino
+461	36	2	s	a	finale morphologique	pos
+465	15	0	o	p	initiale de section	oroliminaro
+465	44	0	o	p	initiale de section	orepuco
+465	2	6	s	o	finale morphologique	prekars
+465	5	6	q	o	finale morphologique	prekocq
+466	37	8	q	o	finale morphologique	preteritq
+473	2	0	o	p	initiale de section	oropulsar
+473	9	9	c	o	finale morphologique	prosektorc
+475	18	0	o	p	initiale de section	orototipo
+475	25	0	o	p	initiale de section	orotuberanco
+475	28	7	c	o	finale morphologique	prokerbc
+476	18	7	s	o	finale morphologique	prudents
+477	17	0	o	p	initiale de section	ostxrometro
+477	23	0	o	p	initiale de section	osoaso
+477	26	0	o	p	initiale de section	otorigoida
+477	28	8	c	o	finale morphologique	pteropodc
+477	45	9	c	o	finale morphologique	publicistc
+478	9	4	c	o	finale morphologique	pudrc
+478	16	4	c	o	finale morphologique	pugnc
+478	40	6	c	o	finale morphologique	pulmonc
+480	3	0	o	p	initiale de section	oupitro
+482	48	5	c	o	finale morphologique	quarcc
+483	7	12	c	o	finale morphologique	quartermastrc
+486	42	5	I	r	finale morphologique	radioI
+487	27	6	I	r	finale morphologique	radiraI
+490	10	0	n	r	initiale de section	nasteliero
+490	16	3	c	o	finale morphologique	ratc
+490	21	6	c	o	finale morphologique	ratafic
+490	54	3	c	o	finale morphologique	ravc
+500	16	9	I	r	finale morphologique	reprezalaI
+500	30	8	I	r	finale morphologique	reprochaI
+502	17	3	c	o	finale morphologique	ratc
+502	23	6	c	o	finale morphologique	rmtablc
+502	32	7	c	o	finale morphologique	retiaric
+502	50	6	c	o	finale morphologique	retortc
+503	20	8	I	i	finale morphologique	revanchaI
+503	29	9	I	r	finale morphologique	reveodlkaI
+503	32	6	E	o	finale morphologique	revenuE
+506	9	0	g	r	initiale de section	gigmmoo
+506	6	4	c	o	finale morphologique	riglc
+506	11	7	I	r	finale morphologique	rikcohaI
+510	2	0	g	r	initiale de section	gosmarc
+510	12	0	I	r	initiale de section	IostoI
+510	2	6	c	o	finale morphologique	gosmarc
+510	29	5	c	o	finale morphologique	rotanc
+510	47	5	c	o	finale morphologique	rctulc
+512	12	3	c	o	finale morphologique	rukc
+512	48	4	c	o	finale morphologique	rumpc
+515	31	0	a	s	initiale de section	aakrifikar
+516	35	5	c	o	finale morphologique	salivc
+517	15	0	a	s	initiale de section	aalvaI
+517	15	5	I	r	finale morphologique	aalvaI
+519	25	8	c	o	finale morphologique	sarabandc
+520	8	10	c	o	finale morphologique	sarkoplasmc
+524	52	2	n	o	finale morphologique	sen
+527	13	0	a	s	initiale de section	aerbatano
+527	23	0	a	s	initiale de section	aerenado
+528	2	0	e	s	initiale de section	eerpe
+528	28	5	I	r	finale morphologique	servaI
+529	29	5	E	o	finale morphologique	sezomE
+531	26	9	E	o	finale morphologique	sbarlataDE
+537	32	0	o	s	initiale de section	oinekuro
+539	13	0	o	s	initiale de section	oireno
+539	37	2	s	a	finale morphologique	sis
+542	2	7	c	o	finale morphologique	skarabec
+544	8	7	c	o	finale morphologique	skorbutc
+545	2	0	g	s	initiale de section	gmmmfulco
+545	9	5	m	o	finale morphologique	sdummm
+546	20	3	s	o	finale morphologique	smms
+546	24	3	c	o	finale morphologique	smdc
+547	7	3	c	o	finale morphologique	sckc
+547	20	3	s	o	finale morphologique	sols
+548	13	7	s	o	finale morphologique	solipeds
+549	18	0	a	s	initiale de section	aonko
+549	21	0	a	s	initiale de section	aonora
+550	33	4	c	o	finale morphologique	spacc
+550	38	4	c	o	finale morphologique	spadc
+551	2	0	a	s	initiale de section	apanyoleto
+552	19	5	c	o	finale morphologique	spermc
+553	23	0	a	s	initiale de section	apinelo
+553	39	0	o	s	initiale de section	ooireo
+553	52	0	a	s	initiale de section	apiso
+554	5	5	c	o	finale morphologique	splenc
+554	19	6	c	o	finale morphologique	splirtc
+554	35	6	c	o	finale morphologique	spondec
+554	50	4	c	o	finale morphologique	sporc
+555	16	0	a	s	initiale de section	aooto
+555	47	0	g	s	initiale de section	gEualE
+555	47	5	E	o	finale morphologique	gEualE
+558	15	6	c	o	finale morphologique	staturc
+558	18	6	c	o	finale morphologique	statutc
+558	21	7	E	o	finale morphologique	stesrioE
+558	48	5	c	o	finale morphologique	stelec
+560	2	0	g	s	initiale de section	gterleto
+563	9	4	c	o	finale morphologique	stric
+565	19	2	b	o	finale morphologique	sub
+565	33	7	c	o	finale morphologique	subjektc
+565	40	6	s	o	finale morphologique	subliss
+565	44	8	E	i	finale morphologique	sobserssE
+566	7	0	d	s	initiale de section	dubmisionar
+566	19	0	g	s	initiale de section	gubreto
+568	7	4	I	r	finale morphologique	sugaI
+570	43	0	a	s	initiale de section	aurmuleto
+572	7	5	c	o	finale morphologique	suabrc
+572	14	5	c	o	finale morphologique	esuobc
+573	11	4	I	r	finale morphologique	tacaI
+573	19	3	c	o	finale morphologique	takc
+574	12	6	c	o	finale morphologique	talentc
+574	44	5	c	o	finale morphologique	talusc
+574	54	8	c	o	finale morphologique	tamarindc
+576	16	7	c	o	finale morphologique	tapiokac
+576	53	4	c	o	finale morphologique	tarjc
+578	12	6	c	o	finale morphologique	tartanc
+582	48	8	c	o	finale morphologique	teckratic
+584	23	6	c	o	finale morphologique	terierc
+584	37	6	c	o	finale morphologique	terninc
+587	8	2	s	a	finale morphologique	tas
+587	17	4	c	o	finale morphologique	tibic
+587	23	6	c	o	finale morphologique	tifoidc
+587	45	2	l	i	finale morphologique	til
+589	52	9	s	a	finale morphologique	tirozimaas
+590	32	5	c	o	finale morphologique	tizanc
+593	11	9	c	o	finale morphologique	tormentilc
+594	0	8	c	o	finale morphologique	tontikolc
+595	9	11	c	o	finale morphologique	tragikomedic
+596	48	4	s	o	finale morphologique	trans
+600	23	3	v	e	finale morphologique	triv
+600	46	6	c	o	finale morphologique	tribunc
+602	22	7	c	o	finale morphologique	triplikc
+603	2	8	c	o	finale morphologique	triumvirc
+606	50	5	c	o	finale morphologique	tumorc
+607	14	5	c	o	finale morphologique	tunikc
+608	38	3	c	o	finale morphologique	tuyc
+609	31	5	c	o	finale morphologique	ulcerc
+610	3	0	o	u	initiale de section	oltrasdkrcskopio
+610	19	0	n	u	initiale de section	nmmmoo
+612	54	0	o	u	initiale de section	ortikario
+612	24	10	P	o	finale morphologique	uretroskopP
+614	20	6	q	o	finale morphologique	vacincq
+614	54	6	c	o	finale morphologique	vakucuc
+616	14	7	c	o	finale morphologique	vanitatc
+616	25	6	c	o	finale morphologique	varangc
+618	36	0	I	v	initiale de section	Iener
+618	18	5	c	o	finale morphologique	velinc
+619	45	4	c	o	finale morphologique	verbc
+620	4	0	k	v	initiale de section	korda
+621	21	5	c	o	finale morphologique	vertuc
+621	35	10	c	o	finale morphologique	vesnertilic
+622	12	10	q	o	finale morphologique	vaterirercq
+622	42	7	c	o	finale morphologique	viaduktc
+623	20	0	k	v	initiale de section	kidar
+623	24	0	k	v	initiale de section	kidamo
+623	28	0	k	v	initiale de section	kidva
+623	34	0	k	v	initiale de section	kigilar
+624	42	5	c	o	finale morphologique	vintrc
+625	27	0	I	v	initiale de section	Iirtuala
+625	47	0	k	v	initiale de section	kishar
+625	51	0	k	v	initiale de section	kiskomto
+626	24	4	c	o	finale morphologique	viulc
+626	42	5	c	o	finale morphologique	vizajc
+626	48	6	c	o	finale morphologique	vizierc
+627	37	0	k	v	initiale de section	kolatila
+628	29	5	E	o	finale morphologique	vclutE
+628	48	8	c	o	finale morphologique	vomitoric
+631	25	7	c	o	finale morphologique	zerofitc
+632	6	4	c	o	finale morphologique	yaktc
+632	36	2	s	a	finale morphologique	yes
+634	50	10	c	o	finale morphologique	limosimetrc

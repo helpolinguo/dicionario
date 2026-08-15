@@ -1,0 +1,130 @@
+5980	nukleoplasmo	(biol) Protoplasmo di la nukleo
+5981	nula	Ne mem nur un
+5982	numero	(aritm) Vorto qua, en serio de termini, indikas la rango di un ek la termini relate la ceteri
+5983	numeratoro	(aritm) Ta ek la du nombri di fraciono, qua indikas quanta partin inter-egala di la unajo lu kontenas
+5984	numismatiko	La cienco qua traktas la moneto-peci e medalii
+5985	numulario	(bot) Planto, vicina ye la primrozo
+5986	numulito	(paleont) Genero de foraminiferi, tipo di la familio «numilitidei», kun konki ronda, disko-forma, e dividita ye mikra lojii multega
+5987	nun	En la instanto, en la epoko, en la periodo, prezenta
+5988	nuncio	Ambasadisto di la papo
+5989	nur	Sen ulo od ulu plusa
+5990	nutacar	(netrans) (biol. ed astron) Ocilo-movo da organo vivoza o da objekto
+5991	nutrar	(trans) Entratenar (la ento vivanta) per alimentar (lu) ye la kozi necesa por lua substanco
+5992	oaziso	Loko sola, kun vejetantaro, en dezerto de sablo
+5993	obcena	Qua shokas pudoro
+5994	obediar	(trans) I. Agar konforme a to quon imperas ulo | II. (aludante kozo).Subisar la ago da ulu o da ulo
+5995	obelisko	Monumento (maxim-multa-kaze monolita) taliita forme di agulo quadrangula
+5996	obeza	Tro repleta e, konseque, di qua la ventro (che la viri) o la hanchi e la gropo (che la mulieri) salias exajere pro akumulaji di graso sub-pele
+5997	objecionar	(trans., ad ulu) I. Opozar (ulo) ad afirmo por kombatar olu | II. Opozar (ulo) a propozo, a projeto, por repulsar olu
+5998	objekto	I. To quo esas vidata, rigardata | II. To qua su prizentas en la spirito, en la penso | III. (filoz.) To quo pensesas (opoze a to qua pensas) | IV. (gram.) Termino di la propoziciono a qua agas la subjekto | V. To a quo iras la sentimenti di la anmo, di la psiko | VI. To a quo iras volo
+5999	oblato	Pano sen-hefa, tranchita ronde, uzata por siglar kuverti
+6000	obleo	Kukajo dina, (normale) volvita forme di cilindro vakua, o di korneto
+6001	obligar	(trans., ad ulo) Ligar (ulu) per lego, per konvenciono, quan lu mustas obediar
+6002	obligaciono	(financo) Akto qua reprezentas parto di la kapitalo pruntita da societo financala, industriala, e c. – qua yurizas pri interesto-procento fixa, e qua rimborsesos pos fristo determinita
+6003	obliqua	I. Qua deviacas de vertikalo | II. Qua agas per moyeni nedireta
+6004	obliterar	(trans) I. Igar nelektebla per efacar, makulizar, e c | II. (pri timbro postala od ulo analoga). Kovrar lu per makuli punta o linea, tale ke lu ne esas uzebla plusafoye | III. (fiziol.) Obstruktar (ula tubo organa) per igar adheranta lua parieto
+6005	obliviar	(trans) I. Ne konservir en sua memoro | II. Ne pensar (pri ulu, pri ulo) konseque de neglijo
+6006	oblonga	Plu longa kam larja
+6007	obolo	I. En Grekia antiqua : Monetuno, pezunajo, qua equivalis la sisimo di drakmo | II. (metaf.) Quanto tre mikra de pekunio
+6008	obsedar	(trans) I. Fatigar per demandi sencesa | II. Tormentar per tenti sencesa
+6009	observar	(trans) Regardar kun atenco kontinua
+6010	observatorio	Edifico provizita ye la kozi necesa por la observi astronomiala, meteorologiala, e c
+6011	obsidiano	(mineral) Substanco vitratra, de origino volkanala, obskure-verda, tenaca, bele-polisebla
+6012	obskurantismo	Nomo quan (en Francia) la liberisti donis, lor la Restauro (en l8l5) a la doktrini di la personi qui kombatis la idei naskinta de la agitado sociala di la yaro l789
+6013	obskura	I.Qua esas sen-luma | II. (metaf.) (l) Ube lumo mankas. Qua ne esas klara ye spirito. (2) Qua ne esas eminenta. (3) (muziko). (pri voco) Di qua la sono esas quaze veloza. (4) Dicesas pri la soni di ula vokali di la linguo Angla, qui kelke similesas la sonuno «e» di la linguo Franca
+6014	obsoleta	Qua cesis esar segun-moda
+6015	obstaklo	I. To quo su opozas a la paso | II. (metaf.) To quo su opozas a la realigo di projetajo, a la obteno di dezirajo
+6016	obstinar	(netrans., pri) Perseverar tenace en rezolvajo, mem se nerealigebla, neatingebla
+6017	obstruktar	(trans) I. Embarasar (voyo, orifico) per obstaklo | II. (metaf.) (en asemblitaro deliberala). Sistemoze opozar obstaklo kontre diskuto
+6018	obtenar	(trans., de) I. Sucesar pri grantigar a su | II. Sucesar pri haveskar, per favoro
+6019	obturar	(trans., per) (tekn) Stopar
+6020	obtuza	I. Di qua la angulo esas rondatra, senpintigita | II. (geom.) Angulo plu granda kam orto | III. (metaf.) Spirito-nesagaca
+6021	obuso	(tekniko milit) Projektilo kava, oblonga, sen anso e sen kulo, qua spliteskas per perkuteso, lansate per kanono
+6022	oceloto	(zool) Kato-tigro di Amerika
+6023	oceano	Vasta extensajo de aquo saloza, qua okupas granda parto di la Terglobo
+6024	ociar	(netrans) Agar nulo, facar nulo, pro repugneso da laboro
+6025	ocidar	(trans) Mortigar vole e violente
+6026	ocidento	(literaturo) Loko di la horizonto ube suno su kushas | II. Parto di la Terglobo, regiono situita ne for la regiono ube suno semblas kushar su
+6027	ocilar	(netrans) Deviacar de sua baricentro, e retrovenar ad ica per movado alternanta konstanta
+6028	ocipito	(anat) La infrajo di la dopa parto di la kapo
+6029	ocitar	(netrans) Apertar sua boko ye movo spasma di expiro, sequata da expiro plu longa, produktita da la bezono dormar, da hungro, da fatigeso, da enoyo, da tedeso
+6030	od	Konjunciono qua expresas alternativo
+6031	odo	I. (en la epoki antiqua). Poemo lirika, dividita aden strofo, antistrofo ed epodo, quan la koro kantis evolucionante | II. Poemo lirika, dividita aden strofi intersimila pri nombro e la mezuro di la versi
+6032	odalisko	I. Sklavino en haremo, destinita por servar la spozini di la sultano | II. Muliero ek haremo
+6033	odeono	(en epoki antiqua) Edifico en qua onu repetis la muzikaji destinita a kantesor en la teatro
+6034	odiar	(trans) I. (ulu). Malvolar profunde | II. (ulo). Repugnesar profunde.da (lu)
+6035	odiseo	Naraco di voyajo ed aventuri diversa
+6036	odontoblasto	(biol) Grosa celulo, kun nukleo tre voluminoza, quan onu renkontras en la parto periferia di la pulpo dentala, e di qua la rolo specala esas sekrecar ivoro
+6037	odorar	(netrans) (aludante ula korpi) Exhalar ulo qua impresas partikulare la olfakt-organo
+6038	ofensar	(trans) Vundar (ulu) pri lua digneso, respektindeso
+6039	ofertorio	(liturgio katol) I.Deo-ofro di pano e vino en la meso-sakrifiko | II. Prego, muziko, qui akompanas ta ofro
+6040	ofico	Funciono administrala o direktala, sive en stato, sive en societo o granda entraprezajo
+6041	oficiar	(netrans) (eklezio katol) Celebrar la deo-servo kun la ceremonii qui devas akompanar lu
+6042	oficiro	(armeo) La persono qua havas ofico komandala en armeo (terala, marala, aerala)
+6043	ofikleido	(muziko) Sufl-instrumento kupra, kun boko-peco, qua ne esas altro kam la serpento-korno, quan onu uzis en la kirki, a qua onu adjuntis klavi
+6044	ofito	(mineral) Marmoro obskur-verda, kun strii flava, quan onu renkontras en Pirenei
+6045	ofrar	(trans., ad) Igar (ulo, o, metaf., ulu) disponebla da altru, sen ke ica demandis lo
+6046	ofte	Qua eventas granda-quanta-foye, ma ne ye intertempi inter-egala – nur intermite
+6047	oftalmio	(patol) Morbo inflamurala di la okulo
+6048	oftalmologio	Cienco qua traktas la strukturo e la funciono di la okuli e la morbi qui afektas li
+6049	ogivo	I. (arkeol.) Arko ruptita quan formacas, en la arkitekturo gotika, la nervaturi di la travei di la vulto, interkrucumante diagonale ye la kolmo | II. (arkitekt.) Arkado ek du arki qui interkrucumas formacante angulo kurvo-linea, akuta
+6050	oglar	(trans) Regardar furtatre, quaze per la komisuri di singla okulo (ulo) quan onu deziregas. – E. «ohm» (elektr.) Unajo praktikala di la rezisto elektrala = l09 unaji elektromagnetala C.G
+6051	-oid	Sufixo ciencala : «qua havas la sama formo kam» (o formo analoga)
+6052	ok	(arit) La cifro «8»
+6053	okarino	(muziko) Muzik-instrumento ek terakoto, truizita, qua havas la formo di grosa ovo
+6054	okaziono	I. Cirkonstanco qua eventas oportune | II. Cirkonstanco qua igas rezolvar agor ulo
+6055	okro	Farbo, argilo friabla, flava o reda, (segun lua kompozanti kemiala)
+6056	okta-	Prefixo ciencala : ok
+6057	oktaedro	(geom) Qua havas ok edri
+6058	oktanto	I. (astr.) Disto de 45 gradi (okima parto di la cirklokurvo) inter du astri | II. Instrumento ek sektoro 45-grada, uzata por mezurar la altesi e la disti
+6059	oktavo	I. (muziko). Intertempi de ok gradi | II. (liturgio katol,) Intertempo de ok dii qua sequas granda festodio ekleziala e dum qua eventas la memorigo di ta festo. – La lasta dio ek ta serio, en qua la oficio esas maxim solena
+6060	oktiliono	(arit) lO
+6061	oktobro	La monato dekesma di la yaro
+6062	oktogono	(geom) Figuro qua havas ok anguli ed ok lateri
+6063	oktopodo	(zool) Sub-klaso de moluski cefalopoda du-brankia, qua kontenas la pulpi, la argonauti, e c., opoze a la subklaso de la dekapodi (kalmari, sepii. e c.)
+6064	okulo	(anat) Organo di la vido-fakultato
+6065	okulta	Di qua la kauzo permanas celata
+6066	okultacar	(trans) (astron.) (pri astro) Celar per interpozar su
+6067	okupar	(trans) I. Posedeskar loko, instalar su en lu, establisar su en lu | II. Posedeskar (ulu) per absorbar lua spirito, lua kordio | III. Konsumar la tempo (di ulu)
+6068	ol(u)	Pronomo personala, triesma persono, singularo, que reprezentas irgo altra kam persono
+6069	olda	Qua vivas, od existas, de multa tempo
+6070	olfaktar	(trans) Perceptar la odoro di (ulo, ulu)
+6071	oligarko	Membro di guvernistaro oligarkiala
+6072	oligarkio	Formo di guvernado, en qua la autoritato imperala praktikesas da mikra quanto de civitani privilejiera
+6073	olibano	(farmacio) Rezino qua donas incenso
+6074	oligocena	(geol) Dicesas pri grupo di tereno-strati terciara (sur eoceno, sub-an mioceno)
+6075	olim	En epoko qua forfluis de longe ante nun (quankam ne antiqua
+6076	olimpiado	(antique, en Grekia) Periodo de quar yari, de celebro di la Olimpio-ludi til la celebro *nexta
+6077	olivo	(bot) Frukto kernoza, elipsoida, verdatra, quan produktas arboro ye foliaro nevelkebla, e de qua onu extraktas oleo manjebla
+6078	ombro	I. Parto di surfaco lumizita, ube la lumo-radii interceptesas da korpo opaka | II. La parto nelumizita qua, en surfaco lumizata, reproduktas la formo di korpo opaka qua interceptas la lumo-radii
+6079	omento	(kirurgio) Granda rifalduro di la peritonio, qua fluktuas avan la intestino tenua
+6080	omisar	(trans) Ne inkluzar, sive vole, sive pro oblivio, (ulo quon onu devas dicar od agar)
+6081	omleto	(koquarto) Disho ek ovi plaudita e koquita en padelo, kun butro e kondimenti o spici
+6082	omna	I. (avan substantivo plurala). Ici ed iti, sen ecepto | II. (avan substantivo singulara). Ica samagrade kam ita, sen dicerno nek distingo
+6083	omnibuso	Veturo publika, qua cirkulas en la quarteri diversa di urbo, e haltas dum sua parkuro por lasar enirar (embarkar) od ekirar (desembarkar) la voyajanti quin lu transportas bloke po preco mikra
+6084	omnivora	Qua su nutras ye nutrivi irgaspeca – devenanta de animali o de vejetanti
+6085	on(u)	Pronomo personala nedefinita, uzata por indikar un o plura personi ye maniero tre generala
+6086	onagro	I. (zool.) Asno sovaja | II. (militarto). *Asiejo-mashino, uzita da la Romani antiqua, qua esis quaza balisto per qua onu lansis aden la urbo *asiejata projektili diversa
+6087	onaniar	(netrans) Produktar la orgasmo venerala per manuo vice per la koito normala
+6088	ondo	Amaso de aquo qua superstaceskas e retrofalas sur la surfaco di maro, lago, fluvio, agitata da vento
+6089	onixo	Agato delikata, kun strati interparalela diversakolora
+6090	onklo	Frato di onua patro
+6091	onomatopeo	(gram) Vorto formacita per imito-harmonio. (ex.: gluglo, zumo)
+6092	-ont-	(gram) Dezinenco di la participo futura aktiva
+6093	ontogenezo	(biol) Developo di la individuo, opoze a «filogenezo», o developo di la speco
+6094	ontologio	I. (biol.) Parto di biologio, qua traktas la fenomeni individuala quin prizentas organismo dum lua developo, lua adulteso e lua oldeso | II. (filoz.) Cienco metafizikala qua retroiras til la esenco, la kauzo prima di la ento
+6095	onyono	(bot) Planto leguma, di qua la radiko bulba – qua odoras e saporas forte – uzesas en la preparaji nutrala
+6096	oocito	(biol) Ovulo nematura nek fekundigebla, qua produktas (per du dupartigi) la ovulo matura e fekundigebla, e la globuli polala
+6097	oogenezo	(biol) Formaco di la ovulo matura e fekundigebla
+6098	oogonio	(biol) Formaco di la celulo en qua aparas la elementi feminala, o oosferi, che multa vejetanti
+6099	oolito	(geol) Kalkajo ek mikra grani ovoida qui kelke similesas fish-ovi
+6100	oosfero	(biol) Elemento feminala qua, pos fekundigesir da la elemento maskulala (polinido od anterozoido) genitas la ovo – departo-punto di nova ento vejetanta
+6101	oosporo	(bot) Nomo donita ulakaze a la ovo di la algi o di la fungi, precipue kande la organo feminala (oosfero) liberigesas ante fekundigeso, nam lore la ovo kelke similesas sporo
+6102	-op-	Sufixo distributala, kun nomi di nombro o di quanto
+6103	opaka	Qua ne lasas la lumo-radii pasar tra su
+6104	opalo	(geol) Lapido volkanala, lakto-blanka e bluatra, kun reflekti koloro-chanjanta
+6105	opalecar	(netrans) Qua aquiras nuanco opalea
+6106	opero	Verko teatrala e muzikala, qua konsistas ye recitativi, kanti helpata da orkestro, ed ulakaze kun dansi
+6107	operacar	I. (trans.) (kirurgio) Submisar ad interveno kirurgiala | II. (netrans.) (1) (matem.) Agar la kalkuli quin onu efektigas departante de quanti konocita, por renkontrar un o plura quanti nekonocita. (2) (militarto) A g a r la trupo-diplasi qui havas kom skopo sucesigar atako o defenso. – (3) (en borso financala o komercala) Manovrar por sucesigar profitoze la kompro o la vendo di la komercajo
+6108	operkulo	(tekn) Aparato destinita ad obturar ula orifici
+6109	opiato	I. Elektuario opiumoza | II. Irga elektuario, pasto ek pudro dilutita en siropo

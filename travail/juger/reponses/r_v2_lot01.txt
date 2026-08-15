@@ -1,0 +1,6 @@
+16	angulo
+18	aperturi
+24	artropodi
+36	augmentar
+43	bastono
+44	bilieto

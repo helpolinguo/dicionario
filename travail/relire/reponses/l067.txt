@@ -1,0 +1,8 @@
+8606	e laazimuti	e la azimuti
+8625	inter lasekundo	inter la sekundo
+8646	du me-dii	du medii
+8657	IRedaktar la akto	I. Redaktar la akto
+8660	di ulai ek	di uli ek
+8691	Earelo di qua	Barelo di qua
+8691	la parto sunra	la parto supra
+8698	stmkte sama	strikte sama

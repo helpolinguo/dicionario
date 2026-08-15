@@ -1,0 +1,44 @@
+# Corrections du TEXTE BRUT, appliquees avant toute analyse.
+# Une ligne : ancien<TAB>nouveau. Voir _texti() dans edition.py.
+sua merito. - DEFIRS. pensala.	sua merito. - DEFIRS.
+I.La kauzo prima di ulo. II. La persono qua kompozis verko	I. La kauzo prima di ulo. II. La persono qua kompozis verko pensala.
+- DEFIR shut ! Interjeciono	- DEFIR. shut! Interjeciono
+di la kristani. ------------ F I N O	di la kristani. - DEFIRS.
+kun-homi. - EF. Z	kun-homi. - EF.
+magnetala. (EFIS)	magnetala. - EFIS.
+certifikar. (trans:)	certifikar. (trans.)
+biliono. l,OOO,OOO2	biliono. 1.000.000².
+triliono. (aritm.) 1.000.0003	triliono. (aritm.) 1.000.000³.
+sextiliono. (matem.) 1036	sextiliono. (matem.) 10³⁶.
+septiliono. (matem.) 1042	septiliono. (matem.) 10⁴².
+Mil quadrilioni. (1030).	Mil quadrilioni. (10³⁰).
+kemio).So4 M2, (So4)3	kemio).SO4 M2, (SO4)3	p028 aluno : la libro skribas «SO4» che gipso e vitriolo ; «So» esas frap-eroro
+distilo pasas sub l7Oo C.	distilo pasas sub 170° C.	p070 benzolo : temperaturo ; «o» superskribita esas la grado-signo
+(religio. katolika)	(religio katolika)
+Kompozajo("CHI3)	Kompozajo (CHI3)
+di "sama-tempa "sam-epoka", "sam-instanta").	di "sama-tempa", "sam-epoka", "sam-instanta".
+inter gramatlko" e "retoriko"	inter "gramatiko" e "retoriko"
+la ceneyo ("stejo)	la ceneyo ("stejo")
+la familio "kompozaji), di	la familio "kompozaji", di
+Sufixo ciencala : "multa-....a.	Sufixo ciencala : "multa-..."
+signifikas la "recipiento, kontenanto	signifikas la "recipiento, kontenanto"
+"hura !" I. Klamo	hura! I. Klamo
+posto-kontoro..-	posto-kontoro.-
+di ponto, l o.), Facar	di ponto, e c.) Facar
+24 H2. (M : natro	24 H₂O. (M : natro	p028 aluno : la oxigeno mankis en l'originalo
+arjento ( M' = aluminio	arjento ; M' = aluminio	p028 aluno : parentezo ne klozita en l'originalo
+renkonli en tero o sur la surfaco di olca. - DEFIRS. tras	renkontras li en tero o sur la surfaco di olca. - DEFIRS.
+kokono. Rnvelopilo	kokono. Envelopilo
+larvi (raupiI di la lepidoptari	larvi (raupi) di la lepidoptari
+eventas lia last metamorfoso. - DgFR.	eventas lia lasta metamorfoso. - DEFR.
+# Formules chimiques dont les indices etaient frappes sur une ligne a part,
+# au-dessus du corps de la formule : la ligne d'indices ne se rattache a rien,
+# on rend ici la formule complete. Les lettres restent celles de l'auteur.
+Sukro C H O , en la lakto	Sukro C₁₂H₂₂O₁₁, en la lakto
+Glukosido C H O , kontenata	Glukosido C₃₂H₅₄O₁₈, kontenata
+opiumo, C N . NO +H O.;	opiumo, C₁₇H₁₉NO₃ + H₂O ;	p383 morfino : l'auteur a frappe N la ou la morphine porte H
+fenacetino. C H .C H .NH. DC. CH . -	fenacetino. C₂H₅O . C₆H₄ . NH . CO . CH₃. -	p163 : la fenacetino esas C₂H₅O.C₆H₄.NH.CO.CH₃ ; l'autoro frapis « DC » e obliviis la oxigeno
+miliono. 1.000.000. (10.)	miliono. 1.000.000. (10⁶).
+deciliono. lO"I	deciliono. 10⁶⁰.
+elektrala = l09 unaji	elektrala = 10⁹ unaji
+Luther, Calvin, e c.) (antonimo	Luther, Calvin, e c. (antonimo

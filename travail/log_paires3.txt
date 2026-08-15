@@ -1,0 +1,33 @@
+formes distinctes : 38569
+corrections proposees : 1336
+   a -> o : 214
+   e -> o : 158
+   o -> a : 124
+   l -> i : 61
+   u -> a : 60
+   I -> l : 57
+   c -> o : 57
+   o -> c : 54
+   o -> e : 48
+   a -> u : 28
+   8 -> s : 28
+   l -> t : 27
+   1 -> l : 27
+   t -> l : 26
+   m -> n : 21
+   p -> t : 21
+   t -> p : 21
+   i -> l : 20
+   e -> c : 19
+   z -> s : 18
+   r -> v : 17
+   f -> t : 16
+   n -> m : 16
+   u -> n : 15
+   m -> a : 14
+   d -> a : 14
+   l -> I : 13
+   v -> r : 12
+   k -> c : 12
+   s -> z : 11
+FINI

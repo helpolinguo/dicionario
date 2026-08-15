@@ -94,7 +94,67 @@ RE_SENCO  = re.compile(r'\s*(?:[-–]\s*|(?<=\.)\s*)'
                        r'(?=(?:I{1,3}|IV|V|VI)[.,]\s?|[l\d]\d?\.\s*[A-ZÀ-Ý(])')
 FINALES_OK = ("o","a","e","i","ar","ir","or")
 
-def charger_texte():
+_LP=None
+def _lignes_plus(fichier=f"{T}/lignes_plus.txt"):
+    """Lignes de bas (ou de haut) de page perdues par une RE-COUPE ulterieure.
+
+    La page 290 l'a montre : son extraction a ete refaite le 13 aout, et le
+    nouveau bloc s'arretait quatre lignes plus haut que l'ancien. Le fac-simile,
+    compose avant la re-coupe, garde ces lignes ; l'edition de lecture, batie
+    sur le .npz, les avait perdues — « koklusho » finissait sur « precipue la »
+    et « kokono » manquait au livre. Plutot que de re-couper la page, ce qui
+    deplacerait toutes les corrections indexees par (page, ligne, colonne), on
+    rend ici les lignes telles que le fac-simile les porte.
+
+    Une ligne du fichier : page<TAB>numero de ligne<TAB>texte.
+    Le texte est celui de la grille, espaces de tete comprises.
+    """
+    global _LP
+    if _LP is None:
+        _LP={}
+        if os.path.exists(fichier):
+            for l in open(fichier,encoding='utf-8'):
+                l=l.rstrip("\n")
+                if not l.strip() or l.startswith("#"): continue
+                a,b,v=l.split("\t")
+                _LP.setdefault(int(a),{})[int(b)]=v
+    return _LP
+
+
+def _signaturo():
+    """Empreinte des fichiers dont depend le texte decode."""
+    noms=["cls_lab.npy","cls_alternatives.pkl","lignes_plus.txt",
+          "exceptions_fins.txt","exceptions_ornements.txt","exceptions_paires.txt",
+          "exceptions.txt","exceptions_relecture.txt","exceptions_manuel.txt",
+          "pages_non_dactylo.txt"]
+    sig=[]
+    for n in noms:
+        p=f"{T}/{n}"
+        sig.append((n, os.path.getmtime(p) if os.path.exists(p) else 0))
+    d=f"{T}/cellules"
+    if os.path.isdir(d):
+        sig.append(("cellules", max((os.path.getmtime(os.path.join(d,f))
+                                     for f in os.listdir(d)), default=0)))
+    return sig
+
+
+def charger_texte(kash=True):
+    import pickle
+    kf=f"{T}/_pages.pkl"
+    sig=_signaturo()
+    if kash and os.path.exists(kf):
+        try:
+            with open(kf,"rb") as h: pages,corrigees,vieux=pickle.load(h)
+            if vieux==sig: return pages,corrigees
+        except Exception: pass
+    pages,corrigees=_charger_texte()
+    try:
+        with open(kf,"wb") as h: pickle.dump((pages,corrigees,sig),h)
+    except Exception: pass
+    return pages,corrigees
+
+
+def _charger_texte():
     from decoder import charger, page_texte
     from generer import exceptions
     lab,M=charger(); tab=np.load(f"{T}/cls_lab.npy",allow_pickle=True); exc=exceptions()
@@ -114,6 +174,10 @@ def charger_texte():
                     if cc>=len(l): l.extend(" "*(cc-len(l)+1))
                     l[cc]=v
             out.append((k,"".join(l).rstrip()))
+        sup=_lignes_plus().get(pg)
+        if sup:
+            par=dict(out); par.update(sup)
+            out=sorted(par.items())
         pages[pg]=out
     return pages, corrigees
 
@@ -130,8 +194,16 @@ def _non_dactylo():
                 _ND.add(int(l.split('\t')[0]))
     return _ND
 
+# Un folio, tel que le decodeur le rend : « 113 », mais aussi « lOO », « 2Ol »,
+# « ll2 » — le un et le zero de la machine a ecrire se lisent l et O. Deux
+# folios se suivent parfois, « 173/175 », quand la page porte les deux.
+RE_FOLIO=re.compile(r'^[\dlOoIi][\dlOoIi\s/.,\u2013-]{0,7}$')
+# Le folio, en fin de ligne de texte, se distingue par le blanc qui le precede :
+# « ... sen shancelar   563 ». Il n'appartient pas a la phrase.
+RE_FOLIO_FIN=re.compile(r'\s{2,}[\dlOoIi]{1,4}[.,]?$')
+
 def decouper(pages, corrigees):
-    ent=[]
+    ent=[]; tetoj={}
     for pg in sorted(pages):
         if pg < 8: continue          # liminaires : titre, preface, rezumo di gramatiko
         if pg in _non_dactylo(): continue   # pages blanches : rien a decouper
@@ -160,28 +232,100 @@ def decouper(pages, corrigees):
         # mot. Sans cette tolerance, ces deux articles n'etaient pas des
         # vedettes du tout et tombaient dans le precedent — « hipofizo » se
         # lisait a la fin de « hipodromo ».
-        RE_VED=re.compile(r'^\.?[+-]?\s?[A-Za-z][A-Za-z\'’"-]{0,30}\s?-?\s?\.')
+        # « "dis" », « "hidalgo" » : un emprunt cite est une vedette a part
+        # entiere, et l'auteur l'entoure de guillemets. « ha ! » : une
+        # interjection se termine par son point d'exclamation, non par un
+        # point. « o (d). » : la vedette porte sa variante entre parentheses,
+        # comme « a(d). », mais separee par une espace.
+        # « -- protestanto. » : l'auteur a marque d'un double tiret l'article
+        # qu'il inserait apres coup. « +intrenar (trans.) » : il a omis le
+        # point, et c'est le qualificatif entre parentheses qui clot la
+        # vedette. Sans ces deux tolerances, « protestanto » tombait dans
+        # « protestar » et « +intrenar » dans « intramolekula ».
+        RE_VED=re.compile(r'^(?:[-–]{2}\s*)?[\"«]?\.?[+-]?\s?'
+                          r'[A-Za-z][A-Za-z\'’-]{0,30}[\"»]?'
+                          r'\s?-?\s?(?:\([A-Za-z]{1,3}\)\s?)?'
+                          r'(?:[.!]|\s*\([A-Za-z]{1,12}[.,)])')
         # La ligne blanche ne se lit pas dans le texte : elle N'EST PAS dans la
         # grille. page_texte() ne rend que les lignes detectees, et leurs
         # numeros sautent — 2, 3, puis 5. C'est ce SAUT qui marque le blanc.
         # A chercher une chaine vide, la regle ne se declenchait que sur la
         # premiere ligne de chaque page : la 536 ne rendait qu'un article sur
         # quatorze, et « simpla », « utila », « granda » manquaient au livre.
+        # Le folio, et les lignes qui ne portent aucune lettre — les chiffres
+        # en exposant d'une formule, poses au-dessus de leur ligne —, ne
+        # rompent pas le blanc : ils ne sont pas du texte suivi. Sans cette
+        # transparence, « smalto » (folio colle a la vedette) et « morfino »
+        # (les indices de sa formule au-dessus) n'etaient pas des vedettes du
+        # tout, et leurs articles tombaient hors du livre.
         prec=None; ved2=set()
         for k,s in pages[pg]:
             if not s.strip(): continue
+            if RE_FOLIO.match(s.strip()) or not any(c.isalpha() for c in s):
+                continue
             blanc = (prec is None) or (k - prec > 1)
-            if blanc and RE_VED.match(s.lstrip()): ved2.add(k)
+            # Un mot TOUT en capitales n'est pas une vedette : c'est le code de
+            # langues, que l'auteur a parfois rejete sur une ligne a part apres
+            # un interligne — « DEFIR. » sous « sodo ». « Direktorio », « Usa »,
+            # « Venus » gardent leur capitale initiale et restent des vedettes.
+            u=s.lstrip()
+            capitales = re.match(r'^[A-Z]{2,}\b', u) is not None
+            if blanc and not capitales and RE_VED.match(u): ved2.add(k)
             prec=k
-        cur=None
+        # Les indices d'une formule, frappes sur une ligne a part JUSTE AVANT
+        # la vedette qui les porte : « 12  22  11 » au-dessus de « laktoso ».
+        # La machine ne descend pas les chiffres ; la dactylo remonte donc la
+        # ligne. Quatre formules du livre sont dans ce cas — laktoso, morfino,
+        # saponino, fenacetino — et leur ligne d'indices se rattachait a
+        # l'article PRECEDENT, ou elle n'a rien a faire. Meme sort pour le
+        # point isole qui precede « deciliono ».
+        contenu=[(k,x) for k,x in pages[pg] if x.strip()]
+        muta=set()
+        for i,(k,x) in enumerate(contenu):
+            if any(c.isalpha() for c in x): continue
+            j=i+1
+            if j < len(contenu) and (contenu[j][0] in ved or contenu[j][0] in ved2):
+                muta.add(k)
+        cur=None; orfa=[]
         for k,s in pages[pg]:
-            if not s.strip(): continue
+            if not s.strip() or k in muta: continue
             if k in ved or k in ved2:
                 if cur: ent.append(cur)
                 cur=dict(image=pg, pagino=pg-DECALAGE_FOLIO, ligno=k, lineoj=[(k,s)])
             elif cur is not None:
                 cur['lineoj'].append((k,s))
+            elif not RE_FOLIO.match(s.strip()):
+                orfa.append((k, RE_FOLIO_FIN.sub('', s)))
         if cur: ent.append(cur)
+        if orfa: tetoj[pg]=orfa
+    # Article commence en bas d'une page et poursuivi en tete de la suivante.
+    # « tamburo » (folio 567) s'arretait sur « kovrita ye » : ses deux dernieres
+    # lignes ouvrent la page 568, avant « tamburino », et le decoupage, qui
+    # repart de zero a chaque page, les jetait. On ne les rattache que si
+    # l'article precedent est reste EN SUSPENS — sans code de langues finale —,
+    # ce qui est la marque meme de la coupure.
+    RE_KODO=re.compile(r'[-–]\s*[A-Za-z]{1,12}\.?\s*$')
+    der={}
+    for i,e in enumerate(ent):
+        if e['ligno'] >= der.get(e['image'], (-1,-1))[0]: der[e['image']]=(e['ligno'], i)
+    n_suite=0
+    for pg,lignes in sorted(tetoj.items()):
+        d=der.get(pg-1)
+        if d is None: continue
+        e=ent[d[1]]
+        t=" ".join(x for _,x in e['lineoj']).strip()
+        # L'article precedent porte deja son code : il est clos, la tete de
+        # page ne le prolonge pas.
+        if RE_KODO.search(t): continue
+        # Il se termine sur un tiret seul : ce n'est pas la phrase qui manque,
+        # c'est le code de langues. « "nirvana" » finit ainsi, et la tete de la
+        # page suivante appartient a « nivar », article que le livre a perdu.
+        if re.search(r'[-–]\s*$', t): continue
+        u=" ".join(x.strip() for _,x in lignes).strip()
+        # Une lettre esseulee, un signe : un accident de frappe, non un texte.
+        if len(u) < 8 or len(u.split()) < 2: continue
+        e['lineoj'].extend(lignes); n_suite+=1
+    if n_suite: print("articles poursuivis en tete de page : %d"%n_suite)
     for e in ent:
         e['korektita'] = sum(1 for (k,_) in e['lineoj']
                              for c in range(120) if (e['image'],k,c) in corrigees)
@@ -239,7 +383,11 @@ def recoller(lignes, lexique=None):
 # neuf. On exige un vrai code — « L. » (nom latin) et « Simb. » (symbole
 # chimique) n'en sont pas — pour ne pas couper « - L. saponaria. » en deux.
 RE_DIVIDO = re.compile(r'[-–]\s*([A-Za-z]{1,12})\.\s+'
-                       r'(?=[+*]?[a-zà-ÿ][a-zà-ÿ\'\u2019-]{1,25}\s*[:.!]\s)')
+                       r'(?=(?:[+*]?[a-zà-ÿ][a-zà-ÿ\'\u2019-]{1,25}'
+                       r'(?:\s*[:.!]\s|\s+\()'
+                       # Emprunt cite pris pour vedette : « "argus" », « "inch" ».
+                       # Onze articles se trouvaient ainsi noyes dans leur voisin.
+                       r'|["\u00ab]\s*[+*]?[a-zà-ÿ]))')
 
 def dividar(brut, lexique=None):
     """Scinde les entrees qui en contiennent deux. Rend la liste elargie."""
@@ -263,7 +411,10 @@ def dividar(brut, lexique=None):
                 if j=='L' or len(set(j.upper()))!=len(j): continue
                 # « - S. stachys. » : ce qui suit le code est le nom latin de la
                 # plante, pas un article. Un article a une definition.
-                if len(t)-m.end() < 25: continue
+                # Un article peut etre tres bref : « "kilowatt". 1000 "watt" »
+                # tient en vingt-trois signes. Le seuil ecarte surtout le nom
+                # latin isole, plus court encore.
+                if len(t)-m.end() < 18: continue
                 if _lire_code(j):
                     coupe=m; break
             if not coupe: break
@@ -360,6 +511,11 @@ def minuskligi(f):
     if not f or not f[0].isupper():
         return f
     unua = f.split()[0].rstrip('.,)')
+    # Un symbole chimique — « M », « M' », « Na » — n'est pas un domaine :
+    # « (M : natro, o kalio...) », dans la formule de l'alun, dit ce que la
+    # lettre M represente. Un domaine du livre est un mot, non une lettre.
+    if len(unua.rstrip("'")) <= 2 and unua.rstrip("'").isupper():
+        return f
     if unua in PROPRA or re.search(r'[\d\u2080-\u2089]', unua):
         return f
     return f[0].lower() + f[1:]
@@ -389,6 +545,10 @@ def analizar(e, lexique=None):
     # d'affixe ; l'edition de lecture recolle. « - as. » est « -as », « - at
     # - . » est « -at- », « bo - . » est « bo- ». Sans quoi la vedette etait
     # vide et l'article introuvable.
+    # « -- protestanto. » : le double tiret annonce un article insere apres
+    # coup, il n'appartient pas a la vedette. Un tiret SEUL, lui, est l'affixe
+    # (« -a », « -oz- ») et reste.
+    t=re.sub(r'^[-–]{2,}\s+(?=[A-Za-z+"«])', '', t)
     t=re.sub(r'^([-+])\s+(?=[A-Za-zÀ-ÿ])', r'\1', t)
     t=re.sub(r'^([-+]?[A-Za-zÀ-ÿ][A-Za-zÀ-ÿ\'’-]{0,20})\s+-\s*(?=\.)', r'\1-', t)
     t=re.sub(r'^([-+]?[A-Za-zÀ-ÿ][A-Za-zÀ-ÿ\'’-]{0,20})\s+-\s*\.', r'\1-.', t)
@@ -590,7 +750,7 @@ def konstrui():
         for k,t in enumerate(S):
             # Ponctuation orpheline en tete de sens : elle vient d'une coupure
             # de l'original, non du texte. « titrar » commencait par un point.
-            S[k]=formuli(cifri(pointi_sencoj(surcharge(espacar(t))))).lstrip('.,;:) ').strip()
+            S[k]=orfa_parentezo(formuli(cifri(pointi_sencoj(surcharge(espacar(t)))))).lstrip('.,;:) ').strip()
     # (cifri et formuli n'interviennent qu'ici, une fois la relecture posee)
     # Article commence en bas de page, abandonne, puis RECOMMENCE en tete de la
     # page suivante. « ampère » est le seul cas du livre : la premiere version
@@ -784,6 +944,25 @@ def surcharge(t):
     return re.sub(r'\\sur\{\\textasciicircum\{\}\}\{([A-Za-z])\}', _un, t)
 
 
+def orfa_parentezo(t):
+    """Retire la parenthese fermante orpheline en fin de definition.
+
+    L'original en compte trente : l'ouvrante a ete perdue a la frappe, ou bien
+    consommee par l'extraction du domaine. Fermer ce qui n'a jamais ete ouvert
+    n'apporte rien. On ne touche QUE la derniere, et seulement si le compte des
+    autres est equilibre — sinon on ignore ou serait la faute.
+    """
+    if not t.endswith(')'):
+        return t
+    p = 0
+    for c in t[:-1]:
+        if c == '(':
+            p += 1
+        elif c == ')':
+            p = max(0, p - 1)
+    return _kupar(t[:-1]) if p == 0 else t
+
+
 def espacar(t):
     """Espacement de la ponctuation, usage franco-canadien.
 
@@ -829,6 +1008,10 @@ def espacar(t):
     # Point superflu apres la parenthese de tete — « (komerco). Inter-egalesi ».
     # La parenthese ferme deja le qualificatif ; le point fait double emploi.
     t = re.sub(r'^(\([^()]{1,120}\))\s*\.+(?=\s|$)', r'\1', t)
+    # Deux qualificatifs de suite — « (netrans.) (aludante vari). » chez
+    # transitar : le point tombe apres le SECOND, et la regle ci-dessus ne
+    # voyait que le premier.
+    t = re.sub(r'^((?:\([^()]{1,80}\)\s*){2,})\.+(?=\s|$)', r'\1', t)
     # Deux-points superflu apres le qualificatif de tete — « (bruiso) : Poke
     # sonora ». La parenthese suffit ; le deux-points annoncerait une liste.
     t = re.sub(r'^(\([^()]{1,60}\))[\s\u00a0]*:[\s\u00a0]*', r'\1 ', t)
@@ -895,7 +1078,10 @@ def typographio(ent):
             t=re.sub(r'(?<=\S) - (?=\S)', ' – ', t)
             # Le « + » du tapuscrit marque les mots non officiels ; la
             # tradition ido ecrit une asterisque. 214 occurrences.
-            t=re.sub(r'\+\s*(?=[A-Za-zÀ-ÿ])', '*', t)
+            # Un mot non officiel est un mot ido, donc en minuscule : « +H₂O »,
+            # dans la formule de la morphine, est le plus de la chimie et non
+            # la marque de l'auteur.
+            t=re.sub(r'\+\s*(?=[a-zà-ÿ])', '*', t)
             # Guillemets : la machine n'avait que la double apostrophe droite.
             # On ne convertit que les PAIRES — 834 sur 1 690 apostrophes ; les
             # orphelines restent droites plutot que d'ouvrir un chevron qui ne
