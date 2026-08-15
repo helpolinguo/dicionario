@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.17.0 (TeX Live 2023/Debian)  (format=lualatex 2026.8.11)  14 AUG 2026 17:10
+This is LuaHBTeX, Version 1.17.0 (TeX Live 2023/Debian)  (format=lualatex 2026.8.11)  14 AUG 2026 20:02
  restricted system commands enabled.
 **posho.tex
 (./posho.tex
@@ -855,6 +855,11 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
 
 [13]
+Underfull \hbox (badness 5077) in paragraph at lines 589--590
+\TU/CharisSIL(0)/m/n/8 ne-tala pri du mer-kati fi-nan-
+ []
+
+
 Underfull \hbox (badness 6542) in paragraph at lines 597--598
 \TU/CharisSIL(0)/m/n/8 la fa-mi-lio « mal-va-cei »\TU/CharisSIL(0)/m/it/8 L.
  al-
@@ -897,11 +902,6 @@ Underfull \hbox (badness 6063) in paragraph at lines 669--670
 
 Underfull \hbox (badness 10000) in paragraph at lines 669--670
 \TU/CharisSIL(0)/m/n/8 quo de-lek-te-sis la ne-mor-tivi.
- []
-
-
-Underfull \hbox (badness 6348) in paragraph at lines 679--680
-[]\TU/Inter(0)/b/n/8 amen[] \TU/CharisSIL(0)/m/n/8 « Tale even-tez ». For-
  []
 
 
@@ -972,6 +972,18 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
 
 [16]
+Underfull \hbox (badness 10000) in paragraph at lines 743--744
+[]\TU/Inter(0)/b/n/8 « ampère »[]\TU/CharisSIL(0)/m/it/8 (elektr) \TU/Char
+isSIL(0)/m/n/8 Intenseso-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 745--746
+[]\TU/Inter(0)/b/n/8 « ampère »[]\TU/CharisSIL(0)/m/it/8 (elektr) \TU/Char
+isSIL(0)/m/n/8 Intenseso-
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 747--748
 []\TU/Inter(0)/b/n/8 ampè-re-me-tro[]\TU/CharisSIL(0)/m/it/8 (elektro) \TU/Cha
 risSIL(0)/m/n/8 In-stru-
@@ -1743,12 +1755,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 2330--2331
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2346--2347
-[]\TU/Inter(0)/b/n/8 bro-dar[]\TU/CharisSIL(0)/m/it/8 (trans) \TU/CharisSIL(0)/
-m/n/8 Plu-be-li-gar (te-
- []
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 16.54997pt, for example:
 (fancyhdr)                \setlength{\headheight}{16.54997pt}.
@@ -1757,6 +1763,17 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
 
 [47]
+Underfull \hbox (badness 10000) in paragraph at lines 2346--2347
+[]\TU/Inter(0)/b/n/8 bro-dar[]\TU/CharisSIL(0)/m/it/8 (trans) \TU/CharisSIL(0)/
+m/n/8 Plu-be-li-gar (te-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2352--2353
+[]\TU/Inter(0)/b/n/8 « bro-koli”-kaulo »[]\TU/CharisSIL(0)/m/it/8 (bot) \
+TU/CharisSIL(0)/m/n/8 Italia-
+ []
+
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 16.54997pt, for example:
@@ -3135,7 +3152,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 4695--4696
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 4707--4708
-\TU/CharisSIL(0)/m/n/8 miso le-gala ne-cesa por ke
+[]\TU/Inter(0)/b/n/8 « exe-qu-a-tur »[]\TU/Inter(0)/b/n/7 1. \TU/CharisSIL(
+0)/m/n/8 (Yuro-cienco).
  []
 
 
@@ -3299,6 +3317,12 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
 
 [101]
+Underfull \hbox (badness 10000) in paragraph at lines 4946--4947
+[]\TU/Inter(0)/b/n/8 « fa-rad »[]\TU/CharisSIL(0)/m/it/8 (elektrotekniko) \
+TU/CharisSIL(0)/m/n/8 Ka-pa-
+ []
+
+
 Underfull \hbox (badness 7925) in paragraph at lines 4970--4971
 \TU/CharisSIL(0)/m/n/8 la arto pre-pa-rar la me-di-ka-
  []
@@ -3318,12 +3342,6 @@ m/n/8 Planto le-gu-mi-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 5048--5049
-[]\TU/Inter(0)/b/n/8 fe-muro[]\TU/CharisSIL(0)/m/it/8 (anat) \TU/CharisSIL(0)/m
-/n/8 Osto di la
- []
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 16.54997pt, for example:
 (fancyhdr)                \setlength{\headheight}{16.54997pt}.
@@ -3332,6 +3350,12 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
 
 [103]
+Underfull \hbox (badness 10000) in paragraph at lines 5048--5049
+[]\TU/Inter(0)/b/n/8 fe-muro[]\TU/CharisSIL(0)/m/it/8 (anat) \TU/CharisSIL(0)/m
+/n/8 Osto di la
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 5098--5099
 []\TU/Inter(0)/b/n/8 fe-tida[] \TU/CharisSIL(0)/m/n/8 Mal-odoranta re-pu-
  []
@@ -4310,12 +4334,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 6960--6961
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 6964--6965
-[]\TU/Inter(0)/b/n/8 ho-zanna[]\TU/Inter(0)/b/n/7 1. \TU/CharisSIL(0)/m/n/8 (li-
-tur-gio He-brea).
- []
-
-
 Underfull \hbox (badness 7963) in paragraph at lines 6964--6965
 \TU/CharisSIL(0)/m/n/8 Re-freno di himno di la si-
  []
@@ -4344,11 +4362,6 @@ SIL(0)/m/n/8 Be-zo-nar
 Underfull \hbox (badness 10000) in paragraph at lines 6994--6995
 []\TU/Inter(0)/b/n/8 huo[]\TU/CharisSIL(0)/m/it/8 (zool) \TU/CharisSIL(0)/m/n/8
  Rapt-ucelo nok-tala
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 6996--6997
-\TU/CharisSIL(0)/m/n/8 di per-so-nego qua eni-ras la
  []
 
 
@@ -4729,6 +4742,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 7505--7506
 Underfull \hbox (badness 6708) in paragraph at lines 7511--7512
 []\TU/Inter(0)/b/n/8 in-tri-kar[]\TU/CharisSIL(0)/m/it/8 (trans) \TU/CharisSIL(
 0)/m/n/8 In-ter-mi-xar kozi
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 7517--7518
+[]\TU/Inter(0)/b/n/8 « in-tro-i-tus »[]\TU/CharisSIL(0)/m/it/8 (liturgio ka-
+to-lika)
  []
 
 
@@ -6311,11 +6330,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
 
 [212]
-Underfull \hbox (badness 7362) in paragraph at lines 10018--10019
-[]\TU/Inter(0)/b/n/8 lan-dau[] \TU/CharisSIL(0)/m/n/8 Ve-turo quar-rota, kun
- []
-
-
 Underfull \hbox (badness 5022) in paragraph at lines 10024--10025
 \TU/CharisSIL(0)/m/n/8 di di-versa in-stru-menti lan-go-
  []
@@ -6581,11 +6595,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 10534--10535
 
 Underfull \hbox (badness 10000) in paragraph at lines 10540--10541
 \TU/CharisSIL(0)/m/n/8 eki-rar de lua ka-vajo nor-
- []
-
-
-Underfull \hbox (badness 8056) in paragraph at lines 10557--10558
-[]\TU/Inter(0)/b/n/8 mac-kin-tosh[] \TU/CharisSIL(0)/m/n/8 Sorto di muliero-
  []
 
 
@@ -6883,11 +6892,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
 
 [236]
-Underfull \hbox (badness 10000) in paragraph at lines 11087--11088
-[]\TU/Inter(0)/b/n/8 mer-kato[]\TU/Inter(0)/b/n/7 1. \TU/CharisSIL(0)/m/n/8 Loko
- pu-blika ube
- []
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 16.54997pt, for example:
@@ -6897,6 +6901,12 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
 
 [237]
+Underfull \hbox (badness 10000) in paragraph at lines 11087--11088
+[]\TU/Inter(0)/b/n/8 mer-kato[]\TU/Inter(0)/b/n/7 1. \TU/CharisSIL(0)/m/n/8 Loko
+ pu-blika ube
+ []
+
+
 Underfull \hbox (badness 7613) in paragraph at lines 11103--11104
 []\TU/Inter(0)/b/n/8 me-ro-to-mio[]\TU/CharisSIL(0)/m/it/8 (biol) \TU/CharisSIL
 (0)/m/n/8 Ope-raco qua
@@ -6983,6 +6993,14 @@ arisSIL(0)/m/n/8 In-stru-
  []
 
 
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 16.54997pt, for example:
+(fancyhdr)                \setlength{\headheight}{16.54997pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
+
+[241]
 Underfull \hbox (badness 7504) in paragraph at lines 11265--11266
 []\TU/Inter(0)/b/n/8 mi-li-ara[]\TU/CharisSIL(0)/m/it/8 (medic) \TU/CharisSIL(0
 )/m/n/8 Qua pro-duk-tas,
@@ -6996,20 +7014,12 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
 
-[241]
+[242]
 Underfull \hbox (badness 10000) in paragraph at lines 11315--11316
 \TU/CharisSIL(0)/m/n/8 di plumbo, sub-stanco farba,
  []
 
 
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 16.54997pt, for example:
-(fancyhdr)                \setlength{\headheight}{16.54997pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-
-(fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
-
-[242]
 Underfull \hbox (badness 10000) in paragraph at lines 11319--11320
 []\TU/Inter(0)/b/n/8 mi-no-ri-tato[] \TU/CharisSIL(0)/m/n/8 La qu-anto mi-nim
  []
@@ -7039,12 +7049,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 11357--11358
  []
 
 
-Underfull \hbox (badness 5667) in paragraph at lines 11361--11362
-[]\TU/Inter(0)/b/n/8 mirto[]\TU/CharisSIL(0)/m/it/8 (bot) \TU/CharisSIL(0)/m/n/
-8 Ar-bo-reto kun flori
- []
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 16.54997pt, for example:
 (fancyhdr)                \setlength{\headheight}{16.54997pt}.
@@ -7053,6 +7057,11 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
 
 [243]
+Underfull \hbox (badness 5667) in paragraph at lines 11361--11362
+[]\TU/Inter(0)/b/n/8 mirto[]\TU/CharisSIL(0)/m/it/8 (bot) \TU/CharisSIL(0)/m/n/
+8 Ar-bo-reto kun flori
+ []
+
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 16.54997pt, for example:
@@ -7074,6 +7083,14 @@ Underfull \hbox (badness 8113) in paragraph at lines 11417--11418
  []
 
 
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 16.54997pt, for example:
+(fancyhdr)                \setlength{\headheight}{16.54997pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
+
+[245]
 Underfull \hbox (badness 7704) in paragraph at lines 11433--11434
 \TU/CharisSIL(0)/m/n/8 ulo) la ob-jekto di desprizo-
  []
@@ -7085,14 +7102,6 @@ as fa-cile ye
  []
 
 
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 16.54997pt, for example:
-(fancyhdr)                \setlength{\headheight}{16.54997pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-
-(fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
-
-[245]
 Underfull \hbox (badness 6268) in paragraph at lines 11449--11450
 []\TU/Inter(0)/b/n/8 mo-libdo[]\TU/CharisSIL(0)/m/it/8 (kemio) \TU/CharisSIL(0)
 /m/n/8 Korpo sim-pla,
@@ -7165,12 +7174,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 11523--11524
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 11529--11530
-[]\TU/Inter(0)/b/n/8 mon-trar[]\TU/CharisSIL(0)/m/it/8 (trans., ad)\TU/Inter(0)
-/b/n/7 1. \TU/CharisSIL(0)/m/n/8 Vi-di-
- []
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 16.54997pt, for example:
 (fancyhdr)                \setlength{\headheight}{16.54997pt}.
@@ -7179,6 +7182,12 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
 
 [247]
+Underfull \hbox (badness 10000) in paragraph at lines 11529--11530
+[]\TU/Inter(0)/b/n/8 mon-trar[]\TU/CharisSIL(0)/m/it/8 (trans., ad)\TU/Inter(0)
+/b/n/7 1. \TU/CharisSIL(0)/m/n/8 Vi-di-
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 11541--11542
 []\TU/Inter(0)/b/n/8 mor-dar[]\TU/CharisSIL(0)/m/it/8 (trans)\TU/Inter(0)/b/n/7
  1. \TU/CharisSIL(0)/m/n/8 En-ta-mar per
@@ -7196,12 +7205,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 11569--11570
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 11573--11574
-[]\TU/Inter(0)/b/n/8 mor-tezo[]\TU/CharisSIL(0)/m/it/8 (teknol) \TU/CharisSIL(0
-)/m/n/8 En-ta-li-uro en
- []
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 16.54997pt, for example:
 (fancyhdr)                \setlength{\headheight}{16.54997pt}.
@@ -7210,6 +7213,12 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
 
 [248]
+Underfull \hbox (badness 10000) in paragraph at lines 11573--11574
+[]\TU/Inter(0)/b/n/8 mor-tezo[]\TU/CharisSIL(0)/m/it/8 (teknol) \TU/CharisSIL(0
+)/m/n/8 En-ta-li-uro en
+ []
+
+
 Underfull \hbox (badness 6876) in paragraph at lines 11587--11588
 []\TU/Inter(0)/b/n/8 mo-skito[]\TU/CharisSIL(0)/m/it/8 (zool) \TU/CharisSIL(0)/
 m/n/8 In-sekto dip-tera,
@@ -7321,12 +7330,6 @@ m/n/8 Ce-ta-ceo di qua
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 11770--11771
-[]\TU/Inter(0)/b/n/8 na-u-fra-jar[]\TU/CharisSIL(0)/m/it/8 (netrans) \TU/Charis
-SIL(0)/m/n/8 Di-ce-sas pri
- []
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 16.54997pt, for example:
 (fancyhdr)                \setlength{\headheight}{16.54997pt}.
@@ -7335,6 +7338,12 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
 
 [252]
+Underfull \hbox (badness 10000) in paragraph at lines 11770--11771
+[]\TU/Inter(0)/b/n/8 na-u-fra-jar[]\TU/CharisSIL(0)/m/it/8 (netrans) \TU/Charis
+SIL(0)/m/n/8 Di-ce-sas pri
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 11800--11801
 []\TU/Inter(0)/b/n/8 ne-go-ciar[]\TU/CharisSIL(0)/m/it/8 (trans) \TU/CharisSIL(
 0)/m/n/8 Me-di-a-car por
@@ -7353,12 +7362,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 11812--11813
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 11826--11827
-[]\TU/Inter(0)/b/n/8 ne-o-la-marc-ki-smo[]\TU/CharisSIL(0)/m/it/8 (biol) \TU/Ch
-arisSIL(0)/m/n/8 Te-o-rio
- []
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 16.54997pt, for example:
 (fancyhdr)                \setlength{\headheight}{16.54997pt}.
@@ -7367,6 +7370,12 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
 
 [253]
+Underfull \hbox (badness 10000) in paragraph at lines 11826--11827
+[]\TU/Inter(0)/b/n/8 ne-o-la-marc-ki-smo[]\TU/CharisSIL(0)/m/it/8 (biol) \TU/Ch
+arisSIL(0)/m/n/8 Te-o-rio
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 11842--11843
 []\TU/Inter(0)/b/n/8 ne-re-ido[]\TU/CharisSIL(0)/m/it/8 (mitol) \TU/CharisSIL(0
 )/m/n/8 Nimfo di
@@ -7509,6 +7518,14 @@ Underfull \hbox (badness 10000) in paragraph at lines 12053--12054
  []
 
 
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 16.54997pt, for example:
+(fancyhdr)                \setlength{\headheight}{16.54997pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
+
+[258]
 Underfull \hbox (badness 6001) in paragraph at lines 12073--12074
 []\TU/Inter(0)/b/n/8 ob-ser-var[]\TU/CharisSIL(0)/m/it/8 (trans) \TU/CharisSIL(
 0)/m/n/8 Re-gar-dar kun
@@ -7526,14 +7543,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 12077--12078
  []
 
 
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 16.54997pt, for example:
-(fancyhdr)                \setlength{\headheight}{16.54997pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-
-(fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
-
-[258]
 Underfull \hbox (badness 10000) in paragraph at lines 12079--12080
 []\TU/Inter(0)/b/n/8 ob-skura[]\TU/Inter(0)/b/n/7 1. \TU/CharisSIL(0)/m/n/8 Qua esas sen-
  []
@@ -7606,6 +7615,14 @@ Underfull \hbox (badness 5681) in paragraph at lines 12213--12214
  []
 
 
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 16.54997pt, for example:
+(fancyhdr)                \setlength{\headheight}{16.54997pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
+
+[261]
 Underfull \hbox (badness 10000) in paragraph at lines 12227--12228
 []\TU/Inter(0)/b/n/8 ona-gro[]\TU/Inter(0)/b/n/7 1. \TU/CharisSIL(0)/m/n/8 (zool
 .) Asno so-
@@ -7618,14 +7635,6 @@ arto). *Asiejo-
  []
 
 
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 16.54997pt, for example:
-(fancyhdr)                \setlength{\headheight}{16.54997pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-
-(fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
-
-[261]
 Underfull \hbox (badness 10000) in paragraph at lines 12249--12250
 []\TU/Inter(0)/b/n/8 oo-ge-nezo[]\TU/CharisSIL(0)/m/it/8 (biol) \TU/CharisSIL(0
 )/m/n/8 For-maco di
@@ -7644,6 +7653,14 @@ Underfull \hbox (badness 10000) in paragraph at lines 12265--12266
  []
 
 
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 16.54997pt, for example:
+(fancyhdr)                \setlength{\headheight}{16.54997pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
+
+[262]
 Underfull \hbox (badness 10000) in paragraph at lines 12273--12274
 []\TU/Inter(0)/b/n/8 opi-ato[]\TU/Inter(0)/b/n/7 1. \TU/CharisSIL(0)/m/n/8 Elek-
 tu-a-rio opi-u-
@@ -7656,14 +7673,6 @@ SIL(0)/m/n/8 Enun-car to
  []
 
 
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 16.54997pt, for example:
-(fancyhdr)                \setlength{\headheight}{16.54997pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-
-(fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
-
-[262]
 Underfull \hbox (badness 10000) in paragraph at lines 12281--12282
 []\TU/Inter(0)/b/n/8 opo-del-doko[]\TU/CharisSIL(0)/m/it/8 (farmacio) \TU/Chari
 sSIL(0)/m/n/8 Me-di-ka-
@@ -7675,12 +7684,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 12311--12312
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 12323--12324
-[]\TU/Inter(0)/b/n/8 or-do-nanco[]\TU/CharisSIL(0)/m/it/8 (armeo)\TU/Inter(0)/b
-/n/7 1. \TU/CharisSIL(0)/m/n/8 Ser-vi-sto
- []
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 16.54997pt, for example:
 (fancyhdr)                \setlength{\headheight}{16.54997pt}.
@@ -7689,6 +7692,12 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
 
 [263]
+Underfull \hbox (badness 10000) in paragraph at lines 12323--12324
+[]\TU/Inter(0)/b/n/8 or-do-nanco[]\TU/CharisSIL(0)/m/it/8 (armeo)\TU/Inter(0)/b
+/n/7 1. \TU/CharisSIL(0)/m/n/8 Ser-vi-sto
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 12327--12328
 []\TU/Inter(0)/b/n/8 ore-li-ono[]\TU/CharisSIL(0)/m/it/8 (patol) \TU/CharisSIL(
 0)/m/n/8 In-fluro di la
@@ -7763,9 +7772,22 @@ Underfull \hbox (badness 10000) in paragraph at lines 12496--12497
  []
 
 
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 16.54997pt, for example:
+(fancyhdr)                \setlength{\headheight}{16.54997pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
+
+[267]
 Underfull \hbox (badness 10000) in paragraph at lines 12502--12503
 []\TU/Inter(0)/b/n/8 pa-delo[] \TU/CharisSIL(0)/m/n/8 Im-ple-mento ko-qu-e-yala,
 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 12528--12529
+\TU/CharisSIL(0)/m/n/8 in-ter-li-gita, en-vol-vita ad-
  []
 
 
@@ -7776,12 +7798,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
 
-[267]
-Underfull \hbox (badness 10000) in paragraph at lines 12528--12529
-\TU/CharisSIL(0)/m/n/8 in-ter-li-gita, en-vol-vita ad-
- []
-
-
+[268]
 Underfull \hbox (badness 10000) in paragraph at lines 12558--12559
 []\TU/Inter(0)/b/n/8 pa-le-stro[]\TU/CharisSIL(0)/m/it/8 (en la epoki an-ti-qua)
 
@@ -7800,14 +7817,6 @@ isSIL(0)/m/n/8 Ma-nu-
  []
 
 
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 16.54997pt, for example:
-(fancyhdr)                \setlength{\headheight}{16.54997pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-
-(fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
-
-[268]
 Underfull \hbox (badness 10000) in paragraph at lines 12570--12571
 []\TU/Inter(0)/b/n/8 pa-li-sado[]\TU/Inter(0)/b/n/7 1. \TU/CharisSIL(0)/m/n/8 Kl
 o-zilo ek planki,
@@ -7883,11 +7892,6 @@ arisSIL(0)/m/n/8 So-lido
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 12716--12717
-[]\TU/Inter(0)/b/n/8 pa-ra-lo-gi-smo[] \TU/CharisSIL(0)/m/n/8 Re-zono ne-ko-
- []
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 16.54997pt, for example:
 (fancyhdr)                \setlength{\headheight}{16.54997pt}.
@@ -7896,6 +7900,11 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
 
 [271]
+Underfull \hbox (badness 10000) in paragraph at lines 12716--12717
+[]\TU/Inter(0)/b/n/8 pa-ra-lo-gi-smo[] \TU/CharisSIL(0)/m/n/8 Re-zono ne-ko-
+ []
+
+
 Underfull \hbox (badness 6157) in paragraph at lines 12724--12725
 []\TU/Inter(0)/b/n/8 pa-ra-nu-kle-ino[]\TU/CharisSIL(0)/m/it/8 (kemio biol) \TU
 /CharisSIL(0)/m/n/8 Sub-
@@ -7914,12 +7923,6 @@ Underfull \hbox (badness 5161) in paragraph at lines 12746--12747
  []
 
 
-Underfull \hbox (badness 6526) in paragraph at lines 12760--12761
-[]\TU/Inter(0)/b/n/8 par-le-men-tar[]\TU/CharisSIL(0)/m/it/8 (netrans) \TU/Char
-isSIL(0)/m/n/8 Kon-fe-rar,
- []
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 16.54997pt, for example:
 (fancyhdr)                \setlength{\headheight}{16.54997pt}.
@@ -7928,6 +7931,12 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
 
 [272]
+Underfull \hbox (badness 6526) in paragraph at lines 12760--12761
+[]\TU/Inter(0)/b/n/8 par-le-men-tar[]\TU/CharisSIL(0)/m/it/8 (netrans) \TU/Char
+isSIL(0)/m/n/8 Kon-fe-rar,
+ []
+
+
 Underfull \hbox (badness 7433) in paragraph at lines 12762--12763
 []\TU/Inter(0)/b/n/8 paro[]\TU/Inter(0)/b/n/7 1. \TU/CharisSIL(0)/m/n/8 Duo de 
 kozi od ani-
@@ -7996,11 +8005,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 12842--12843
  []
 
 
-Underfull \hbox (badness 5667) in paragraph at lines 12852--12853
-\TU/CharisSIL(0)/m/n/8 qua edu-kas e gar-das be-sti-o-
- []
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 16.54997pt, for example:
 (fancyhdr)                \setlength{\headheight}{16.54997pt}.
@@ -8009,6 +8013,11 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
 
 [274]
+Underfull \hbox (badness 5667) in paragraph at lines 12852--12853
+\TU/CharisSIL(0)/m/n/8 qua edu-kas e gar-das be-sti-o-
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 12876--12877
 []\TU/Inter(0)/b/n/8 pa-to-gena[]\TU/CharisSIL(0)/m/it/8 (patol) \TU/CharisSIL(
 0)/m/n/8 Qua ge-ni-tas
@@ -8121,11 +8130,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 13034--13035
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 13050--13051
-[]\TU/Inter(0)/b/n/8 per-char[]\TU/CharisSIL(0)/m/it/8 (netrans) (alu-dante la
- []
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 16.54997pt, for example:
 (fancyhdr)                \setlength{\headheight}{16.54997pt}.
@@ -8134,20 +8138,14 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
 
 [278]
+Underfull \hbox (badness 10000) in paragraph at lines 13050--13051
+[]\TU/Inter(0)/b/n/8 per-char[]\TU/CharisSIL(0)/m/it/8 (netrans) (alu-dante la
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 13104--13105
 \TU/CharisSIL(0)/m/n/8 juro\TU/Inter(0)/b/n/7 2. \TU/CharisSIL(0)/m/n/8 Vi-o-la-
 car sua juro-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 13106--13107
-[]\TU/Inter(0)/b/n/8 per-ka-lino[] \TU/CharisSIL(0)/m/n/8 Per-kalo tin-tita e
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 13112--13113
-[]\TU/Inter(0)/b/n/8 per-ku-tar[]\TU/CharisSIL(0)/m/it/8 (trans)\TU/Inter(0)/b/
-n/7 1. \TU/CharisSIL(0)/m/n/8 (me-di-cino).
  []
 
 
@@ -8159,6 +8157,17 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
 
 [279]
+Underfull \hbox (badness 10000) in paragraph at lines 13106--13107
+[]\TU/Inter(0)/b/n/8 per-ka-lino[] \TU/CharisSIL(0)/m/n/8 Per-kalo tin-tita e
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 13112--13113
+[]\TU/Inter(0)/b/n/8 per-ku-tar[]\TU/CharisSIL(0)/m/it/8 (trans)\TU/Inter(0)/b/
+n/7 1. \TU/CharisSIL(0)/m/n/8 (me-di-cino).
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 13126--13127
 \TU/CharisSIL(0)/m/n/8 bro di la judicio-korto re-
  []
@@ -8188,12 +8197,6 @@ sSIL(0)/m/n/8 Per-ma-nar
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 13158--13159
-[]\TU/Inter(0)/b/n/8 per-si-star[]\TU/CharisSIL(0)/m/it/8 (netrans) \TU/CharisS
-IL(0)/m/n/8 Per-ma-nar
- []
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 16.54997pt, for example:
 (fancyhdr)                \setlength{\headheight}{16.54997pt}.
@@ -8202,6 +8205,12 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
 
 [280]
+Underfull \hbox (badness 10000) in paragraph at lines 13158--13159
+[]\TU/Inter(0)/b/n/8 per-si-star[]\TU/CharisSIL(0)/m/it/8 (netrans) \TU/CharisS
+IL(0)/m/n/8 Per-ma-nar
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 13164--13165
 []\TU/Inter(0)/b/n/8 per-su-a-dar[]\TU/CharisSIL(0)/m/it/8 (trans) (ulu,
  []
@@ -8240,6 +8249,14 @@ Underfull \hbox (badness 10000) in paragraph at lines 13204--13205
  []
 
 
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 16.54997pt, for example:
+(fancyhdr)                \setlength{\headheight}{16.54997pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
+
+[281]
 Underfull \hbox (badness 10000) in paragraph at lines 13206--13207
 \TU/CharisSIL(0)/m/n/8 vi-va-ceso per agito bru-i-soza;
  []
@@ -8251,14 +8268,6 @@ m/n/8 Or-na-men-tala
  []
 
 
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 16.54997pt, for example:
-(fancyhdr)                \setlength{\headheight}{16.54997pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-
-(fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
-
-[281]
 Underfull \hbox (badness 5345) in paragraph at lines 13232--13233
 \TU/CharisSIL(0)/m/n/8 celi, ek la fa-mi-lio « fal-ko-ni-
  []
@@ -8290,12 +8299,6 @@ L(0)/m/n/8 Tekto-
  []
 
 
-Underfull \hbox (badness 5548) in paragraph at lines 13294--13295
-[]\TU/Inter(0)/b/n/8 pi-nio[]\TU/CharisSIL(0)/m/it/8 (bot) \TU/CharisSIL(0)/m/n
-/8 Sorto di pino qua
- []
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 16.54997pt, for example:
 (fancyhdr)                \setlength{\headheight}{16.54997pt}.
@@ -8304,15 +8307,15 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
 
 [283]
-Underfull \hbox (badness 10000) in paragraph at lines 13330--13331
-[]\TU/Inter(0)/b/n/8 pi-riko[]\TU/CharisSIL(0)/m/it/8 (prozodio an-ti-qua) \TU/
-CharisSIL(0)/m/n/8 Pedo
+Underfull \hbox (badness 5548) in paragraph at lines 13294--13295
+[]\TU/Inter(0)/b/n/8 pi-nio[]\TU/CharisSIL(0)/m/it/8 (bot) \TU/CharisSIL(0)/m/n
+/8 Sorto di pino qua
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 13332--13333
-[]\TU/Inter(0)/b/n/8 pi-rito[]\TU/CharisSIL(0)/m/it/8 (mineral) \TU/CharisSIL(0
-)/m/n/8 Sul-furo me-tala
+Underfull \hbox (badness 10000) in paragraph at lines 13330--13331
+[]\TU/Inter(0)/b/n/8 pi-riko[]\TU/CharisSIL(0)/m/it/8 (prozodio an-ti-qua) \TU/
+CharisSIL(0)/m/n/8 Pedo
  []
 
 
@@ -8324,6 +8327,12 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
 
 [284]
+Underfull \hbox (badness 10000) in paragraph at lines 13332--13333
+[]\TU/Inter(0)/b/n/8 pi-rito[]\TU/CharisSIL(0)/m/it/8 (mineral) \TU/CharisSIL(0
+)/m/n/8 Sul-furo me-tala
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 13346--13347
 []\TU/Inter(0)/b/n/8 pi-ro-ni-smo[]\TU/CharisSIL(0)/m/it/8 (filoz) \TU/CharisSI
 L(0)/m/n/8 Dok-trino da
@@ -8439,6 +8448,11 @@ Underfull \hbox (badness 10000) in paragraph at lines 13510--13511
  []
 
 
+Underfull \hbox (badness 5260) in paragraph at lines 13516--13517
+\TU/CharisSIL(0)/m/n/8 de-man-dar po-lite ad ulu, ke
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 13524--13525
 []\TU/Inter(0)/b/n/8 plu-gar[]\TU/CharisSIL(0)/m/it/8 (trans) \TU/CharisSIL(0)/
 m/n/8 Aper-tar kultivo-
@@ -8480,11 +8494,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 13602--13603
  []
 
 
-Underfull \hbox (badness 6708) in paragraph at lines 13612--13613
-\TU/CharisSIL(0)/m/n/8 la kapo ha-vas pe-ri-fe-rie pal-
- []
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 16.54997pt, for example:
 (fancyhdr)                \setlength{\headheight}{16.54997pt}.
@@ -8493,6 +8502,11 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
 
 [290]
+Underfull \hbox (badness 6708) in paragraph at lines 13612--13613
+\TU/CharisSIL(0)/m/n/8 la kapo ha-vas pe-ri-fe-rie pal-
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 13628--13629
 []\TU/Inter(0)/b/n/8 po-li-tiko[]\TU/Inter(0)/b/n/7 1. \TU/CharisSIL(0)/m/n/8 La
  arto gu-ver-nar
@@ -8721,6 +8735,10 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
 
 [297]
+Underfull \hbox (badness 5403) in paragraph at lines 13968--13969
+\TU/CharisSIL(0)/m/n/8 ve-bla. (Onu pri-zen-tas pro-
+ []
+
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 16.54997pt, for example:
@@ -8746,12 +8764,6 @@ Underfull \hbox (badness 5288) in paragraph at lines 14022--14023
  []
 
 
-Underfull \hbox (badness 8075) in paragraph at lines 14032--14033
-[]\TU/Inter(0)/b/n/8 pro-kla-mar[]\TU/CharisSIL(0)/m/it/8 (trans) \TU/CharisSIL
-(0)/m/n/8 Anun-car pu-
- []
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 16.54997pt, for example:
 (fancyhdr)                \setlength{\headheight}{16.54997pt}.
@@ -8760,6 +8772,12 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
 
 [299]
+Underfull \hbox (badness 8075) in paragraph at lines 14032--14033
+[]\TU/Inter(0)/b/n/8 pro-kla-mar[]\TU/CharisSIL(0)/m/it/8 (trans) \TU/CharisSIL
+(0)/m/n/8 Anun-car pu-
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 14046--14047
 []\TU/Inter(0)/b/n/8 pro-le-pso[]\TU/CharisSIL(0)/m/it/8 (retoriko) \TU/CharisS
 IL(0)/m/n/8 Fi-guro qua
@@ -8809,12 +8827,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 14114--14115
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 14120--14121
-[]\TU/Inter(0)/b/n/8 pro-sti-tu-car[]\TU/CharisSIL(0)/m/it/8 (trans)\TU/Inter(0
-)/b/n/7 1. \TU/CharisSIL(0)/m/n/8 (alu-dante
- []
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 16.54997pt, for example:
 (fancyhdr)                \setlength{\headheight}{16.54997pt}.
@@ -8823,6 +8835,12 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
 
 [301]
+Underfull \hbox (badness 10000) in paragraph at lines 14120--14121
+[]\TU/Inter(0)/b/n/8 pro-sti-tu-car[]\TU/CharisSIL(0)/m/it/8 (trans)\TU/Inter(0
+)/b/n/7 1. \TU/CharisSIL(0)/m/n/8 (alu-dante
+ []
+
+
 Underfull \hbox (badness 6493) in paragraph at lines 14132--14133
 []\TU/Inter(0)/b/n/8 pro-te-ci-o-nar[]\TU/CharisSIL(0)/m/it/8 (trans) (eko-no-mi
 ko)
@@ -8835,12 +8853,6 @@ arisSIL(0)/m/n/8 De-pendo
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 14154--14155
-[]\TU/Inter(0)/b/n/8 pro-to-pla-smo[]\TU/CharisSIL(0)/m/it/8 (biol) \TU/CharisS
-IL(0)/m/n/8 Sub-stanco
- []
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 16.54997pt, for example:
 (fancyhdr)                \setlength{\headheight}{16.54997pt}.
@@ -8849,6 +8861,12 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
 
 [302]
+Underfull \hbox (badness 10000) in paragraph at lines 14154--14155
+[]\TU/Inter(0)/b/n/8 pro-to-pla-smo[]\TU/CharisSIL(0)/m/it/8 (biol) \TU/CharisS
+IL(0)/m/n/8 Sub-stanco
+ []
+
+
 Underfull \hbox (badness 5490) in paragraph at lines 14162--14163
 \TU/CharisSIL(0)/m/n/8 jeso prak-ti-kala, uzata da la
  []
@@ -8866,12 +8884,6 @@ L(0)/m/n/8 Tale pri-klar
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 14206--14207
-[]\TU/Inter(0)/b/n/8 psal-mo-diar[]\TU/CharisSIL(0)/m/it/8 (trans)\TU/Inter(0)/
-b/n/7 1. \TU/CharisSIL(0)/m/n/8 (kirko).
- []
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 16.54997pt, for example:
 (fancyhdr)                \setlength{\headheight}{16.54997pt}.
@@ -8880,6 +8892,11 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
 
 [303]
+Underfull \hbox (badness 10000) in paragraph at lines 14206--14207
+[]\TU/Inter(0)/b/n/8 psal-mo-diar[]\TU/CharisSIL(0)/m/it/8 (trans)\TU/Inter(0)/
+b/n/7 1. \TU/CharisSIL(0)/m/n/8 (kirko).
+ []
+
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 16.54997pt, for example:
@@ -8941,6 +8958,14 @@ IL(0)/m/n/8 Navo kun
  []
 
 
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 16.54997pt, for example:
+(fancyhdr)                \setlength{\headheight}{16.54997pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
+
+[307]
 Underfull \hbox (badness 10000) in paragraph at lines 14385--14386
 []\TU/Inter(0)/b/n/8 qu-anta[] \TU/CharisSIL(0)/m/n/8 Vorto qua in-di-kas la
  []
@@ -8951,14 +8976,6 @@ Underfull \hbox (badness 5274) in paragraph at lines 14385--14386
  []
 
 
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 16.54997pt, for example:
-(fancyhdr)                \setlength{\headheight}{16.54997pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-
-(fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
-
-[307]
 Underfull \hbox (badness 10000) in paragraph at lines 14397--14398
 []\TU/Inter(0)/b/n/8 qu-ar-tebo[]\TU/CharisSIL(0)/m/it/8 (muziko)\TU/Inter(0)/b
 /n/7 1. \TU/CharisSIL(0)/m/n/8 Mu-zi-kajo
@@ -9004,10 +9021,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
 
 [309]
-Underfull \hbox (badness 5288) in paragraph at lines 14512--14513
-\TU/CharisSIL(0)/m/n/8 cianuro di ba-rio o di tung-
- []
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 16.54997pt, for example:
@@ -9017,6 +9030,10 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
 
 [310]
+Underfull \hbox (badness 5288) in paragraph at lines 14512--14513
+\TU/CharisSIL(0)/m/n/8 cianuro di ba-rio o di tung-
+ []
+
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 16.54997pt, for example:
@@ -9077,6 +9094,14 @@ Underfull \hbox (badness 10000) in paragraph at lines 14680--14681
  []
 
 
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 16.54997pt, for example:
+(fancyhdr)                \setlength{\headheight}{16.54997pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
+
+[314]
 Underfull \hbox (badness 10000) in paragraph at lines 14684--14685
 []\TU/Inter(0)/b/n/8 re-duto[]\TU/CharisSIL(0)/m/it/8 (milit-arto) \TU/CharisSI
 L(0)/m/n/8 For-ti-fi-kajo
@@ -9088,14 +9113,6 @@ Underfull \hbox (badness 5726) in paragraph at lines 14684--14685
  []
 
 
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 16.54997pt, for example:
-(fancyhdr)                \setlength{\headheight}{16.54997pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-
-(fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
-
-[314]
 Underfull \hbox (badness 10000) in paragraph at lines 14702--14703
 []\TU/Inter(0)/b/n/8 re-frak-tar[]\TU/CharisSIL(0)/m/it/8 (trans) (fi-ziko) \TU
 /CharisSIL(0)/m/n/8 Igar
@@ -9240,11 +9257,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 14898--14899
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 14902--14903
-[]\TU/Inter(0)/b/n/8 re-pre-za-lar[]\TU/CharisSIL(0)/m/it/8 (netrans) (kon-
- []
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 16.54997pt, for example:
 (fancyhdr)                \setlength{\headheight}{16.54997pt}.
@@ -9253,6 +9265,11 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
 
 [319]
+Underfull \hbox (badness 10000) in paragraph at lines 14902--14903
+[]\TU/Inter(0)/b/n/8 re-pre-za-lar[]\TU/CharisSIL(0)/m/it/8 (netrans) (kon-
+ []
+
+
 Underfull \hbox (badness 6380) in paragraph at lines 14908--14909
 []\TU/Inter(0)/b/n/8 re-pro-char[]\TU/CharisSIL(0)/m/it/8 (trans., ad) \TU/Char
 isSIL(0)/m/n/8 Im-pu-tar
@@ -9277,7 +9294,8 @@ n/7 1. \TU/CharisSIL(0)/m/n/8 Pul-sar ad-
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 14926--14927
-[]\TU/Inter(0)/b/n/8 re-qu-iem[]\TU/CharisSIL(0)/m/it/8 (Liturgio ka-to-
+[]\TU/Inter(0)/b/n/8 « re-qu-iem »[]\TU/CharisSIL(0)/m/it/8 (Liturgio ka-to-
+
  []
 
 
@@ -9375,12 +9393,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 15104--15105
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 15106--15107
-[]\TU/Inter(0)/b/n/8 ritmo[]\TU/CharisSIL(0)/m/it/8 (muziko) \TU/CharisSIL(0)/m
-/n/8 Aparo inter-
- []
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 16.54997pt, for example:
 (fancyhdr)                \setlength{\headheight}{16.54997pt}.
@@ -9389,6 +9401,12 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
 
 [324]
+Underfull \hbox (badness 10000) in paragraph at lines 15106--15107
+[]\TU/Inter(0)/b/n/8 ritmo[]\TU/CharisSIL(0)/m/it/8 (muziko) \TU/CharisSIL(0)/m
+/n/8 Aparo inter-
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 15140--15141
 []\TU/Inter(0)/b/n/8 ro-do-den-dro[]\TU/CharisSIL(0)/m/it/8 (bot) \TU/CharisSIL
 (0)/m/n/8 Ge-nero de
@@ -9514,6 +9532,11 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
 
 [331]
+Underfull \hbox (badness 7116) in paragraph at lines 15409--15410
+[]\TU/Inter(0)/b/n/8 « sand-wich »[] \TU/CharisSIL(0)/m/n/8 Lon-cho dina de
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 15425--15426
 \TU/CharisSIL(0)/m/n/8 ek la fa-mi-lio « kom-po-zaji »,
  []
@@ -9675,6 +9698,14 @@ Underfull \hbox (badness 6428) in paragraph at lines 15709--15710
  []
 
 
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 16.54997pt, for example:
+(fancyhdr)                \setlength{\headheight}{16.54997pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
+
+[338]
 Underfull \hbox (badness 10000) in paragraph at lines 15713--15714
 []\TU/Inter(0)/b/n/8 ser-pen-tino[]\TU/CharisSIL(0)/m/it/8 (mineral) \TU/Charis
 SIL(0)/m/n/8 Si-li-kato
@@ -9686,14 +9717,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 15713--15714
  []
 
 
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 16.54997pt, for example:
-(fancyhdr)                \setlength{\headheight}{16.54997pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-
-(fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
-
-[338]
 Underfull \hbox (badness 10000) in paragraph at lines 15725--15726
 []\TU/Inter(0)/b/n/8 ser-valo[]\TU/CharisSIL(0)/m/it/8 (zool) \TU/CharisSIL(0)/
 m/n/8 Tigro-kato di
@@ -9789,12 +9812,6 @@ m/n/8 Frukto longa, bi-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 15915--15916
-[]\TU/Inter(0)/b/n/8 si-lo-gi-smo[]\TU/CharisSIL(0)/m/it/8 (logiko) \TU/CharisS
-IL(0)/m/n/8 Re-zono for-
- []
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 16.54997pt, for example:
 (fancyhdr)                \setlength{\headheight}{16.54997pt}.
@@ -9803,15 +9820,15 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
 
 [343]
-Underfull \hbox (badness 7558) in paragraph at lines 15925--15926
-[]\TU/Inter(0)/b/n/8 sil-vio[]\TU/CharisSIL(0)/m/it/8 (zool) \TU/CharisSIL(0)/m
-/n/8 Nomo vul-gara di
+Underfull \hbox (badness 10000) in paragraph at lines 15915--15916
+[]\TU/Inter(0)/b/n/8 si-lo-gi-smo[]\TU/CharisSIL(0)/m/it/8 (logiko) \TU/CharisS
+IL(0)/m/n/8 Re-zono for-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 15949--15950
-[]\TU/Inter(0)/b/n/8 sim-pa-tiar[]\TU/CharisSIL(0)/m/it/8 (trans)\TU/Inter(0)/b
-/n/7 1. \TU/CharisSIL(0)/m/n/8 Sen-tar su
+Underfull \hbox (badness 7558) in paragraph at lines 15925--15926
+[]\TU/Inter(0)/b/n/8 sil-vio[]\TU/CharisSIL(0)/m/it/8 (zool) \TU/CharisSIL(0)/m
+/n/8 Nomo vul-gara di
  []
 
 
@@ -9823,6 +9840,12 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
 
 [344]
+Underfull \hbox (badness 10000) in paragraph at lines 15949--15950
+[]\TU/Inter(0)/b/n/8 sim-pa-tiar[]\TU/CharisSIL(0)/m/it/8 (trans)\TU/Inter(0)/b
+/n/7 1. \TU/CharisSIL(0)/m/n/8 Sen-tar su
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 15953--15954
 []\TU/Inter(0)/b/n/8 sim-pla[] \TU/CharisSIL(0)/m/n/8 Qua ne kon-si-stas ek
  []
@@ -9876,12 +9899,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 16057--16058
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 16067--16068
-[]\TU/Inter(0)/b/n/8 si-zar[]\TU/CharisSIL(0)/m/it/8 (trans) \TU/CharisSIL(0)/m
-/n/8 Pre-nar, manuo-
- []
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 16.54997pt, for example:
 (fancyhdr)                \setlength{\headheight}{16.54997pt}.
@@ -9890,6 +9907,12 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
 
 [347]
+Underfull \hbox (badness 10000) in paragraph at lines 16067--16068
+[]\TU/Inter(0)/b/n/8 si-zar[]\TU/CharisSIL(0)/m/it/8 (trans) \TU/CharisSIL(0)/m
+/n/8 Pre-nar, manuo-
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 16071--16072
 \TU/CharisSIL(0)/m/n/8 alta, sen bra-kii nek dors-
  []
@@ -9944,12 +9967,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 16127--16128
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 16143--16144
-[]\TU/Inter(0)/b/n/8 skle-ro-tika[]\TU/CharisSIL(0)/m/it/8 (anat) \TU/CharisSIL
-(0)/m/n/8 Mem-brano
- []
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 16.54997pt, for example:
 (fancyhdr)                \setlength{\headheight}{16.54997pt}.
@@ -9958,6 +9975,12 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
 
 [349]
+Underfull \hbox (badness 10000) in paragraph at lines 16143--16144
+[]\TU/Inter(0)/b/n/8 skle-ro-tika[]\TU/CharisSIL(0)/m/it/8 (anat) \TU/CharisSIL
+(0)/m/n/8 Mem-brano
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 16153--16154
 []\TU/Inter(0)/b/n/8 sko-lo-pen-dro[]\TU/CharisSIL(0)/m/it/8 (zool) \TU/CharisS
 IL(0)/m/n/8 Ge-nero de
@@ -10067,11 +10090,6 @@ m/n/8 Asu-mar vo-lunte
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 16351--16352
-\TU/CharisSIL(0)/m/n/8 punto, va-kua ye korpi so-
- []
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 16.54997pt, for example:
 (fancyhdr)                \setlength{\headheight}{16.54997pt}.
@@ -10080,6 +10098,11 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
 
 [354]
+Underfull \hbox (badness 10000) in paragraph at lines 16351--16352
+\TU/CharisSIL(0)/m/n/8 punto, va-kua ye korpi so-
+ []
+
+
 Underfull \hbox (badness 8170) in paragraph at lines 16375--16376
 []\TU/Inter(0)/b/n/8 spa-tulo[] \TU/CharisSIL(0)/m/n/8 In-stru-mento de li-gno,
  []
@@ -10097,12 +10120,6 @@ sSIL(0)/m/n/8 Apa-rato
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 16399--16400
-[]\TU/Inter(0)/b/n/8 spen-cero[]\TU/Inter(0)/b/n/7 1. \TU/CharisSIL(0)/m/n/8 Fra
-ko sen ba-
- []
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 16.54997pt, for example:
 (fancyhdr)                \setlength{\headheight}{16.54997pt}.
@@ -10111,6 +10128,12 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
 
 [355]
+Underfull \hbox (badness 10000) in paragraph at lines 16399--16400
+[]\TU/Inter(0)/b/n/8 spen-cero[]\TU/Inter(0)/b/n/7 1. \TU/CharisSIL(0)/m/n/8 Fra
+ko sen ba-
+ []
+
+
 Underfull \hbox (badness 5288) in paragraph at lines 16401--16402
 []\TU/Inter(0)/b/n/8 spen-sar[]\TU/CharisSIL(0)/m/it/8 (trans)\TU/Inter(0)/b/n/
 7 1. \TU/CharisSIL(0)/m/n/8 Do-nar, uzar
@@ -10142,12 +10165,6 @@ Underfull \hbox (badness 5726) in paragraph at lines 16455--16456
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 16479--16480
-[]\TU/Inter(0)/b/n/8 spo-ra-dika[]\TU/Inter(0)/b/n/7 1. \TU/CharisSIL(0)/m/n/8 
-(geol.) Di-sper-
- []
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 16.54997pt, for example:
 (fancyhdr)                \setlength{\headheight}{16.54997pt}.
@@ -10156,15 +10173,15 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
 
 [357]
-Underfull \hbox (badness 10000) in paragraph at lines 16513--16514
-[]\TU/Inter(0)/b/n/8 squ-a-tar[]\TU/CharisSIL(0)/m/it/8 (netrans)\TU/Inter(0)/b
-/n/7 1. \TU/CharisSIL(0)/m/n/8 (alu-dante
+Underfull \hbox (badness 10000) in paragraph at lines 16479--16480
+[]\TU/Inter(0)/b/n/8 spo-ra-dika[]\TU/Inter(0)/b/n/7 1. \TU/CharisSIL(0)/m/n/8 
+(geol.) Di-sper-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 16529--16530
-[]\TU/Inter(0)/b/n/8 sta-dio[]\TU/CharisSIL(0)/m/it/8 (antique) \TU/CharisSIL(0
-)/m/n/8 Areo klo-zita,
+Underfull \hbox (badness 10000) in paragraph at lines 16513--16514
+[]\TU/Inter(0)/b/n/8 squ-a-tar[]\TU/CharisSIL(0)/m/it/8 (netrans)\TU/Inter(0)/b
+/n/7 1. \TU/CharisSIL(0)/m/n/8 (alu-dante
  []
 
 
@@ -10176,6 +10193,12 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
 
 [358]
+Underfull \hbox (badness 10000) in paragraph at lines 16529--16530
+[]\TU/Inter(0)/b/n/8 sta-dio[]\TU/CharisSIL(0)/m/it/8 (antique) \TU/CharisSIL(0
+)/m/n/8 Areo klo-zita,
+ []
+
+
 Underfull \hbox (badness 7326) in paragraph at lines 16563--16564
 []\TU/Inter(0)/b/n/8 star-char[]\TU/CharisSIL(0)/m/it/8 (trans)\TU/Inter(0)/b/n
 /7 1. \TU/CharisSIL(0)/m/n/8 Apre-tar per
@@ -10217,6 +10240,14 @@ Underfull \hbox (badness 10000) in paragraph at lines 16611--16612
  []
 
 
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 16.54997pt, for example:
+(fancyhdr)                \setlength{\headheight}{16.54997pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
+
+[360]
 Underfull \hbox (badness 10000) in paragraph at lines 16613--16614
 []\TU/Inter(0)/b/n/8 ste-no-ti-par[]\TU/CharisSIL(0)/m/it/8 (trans) \TU/CharisS
 IL(0)/m/n/8 Ste-no-gra-far
@@ -10228,14 +10259,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 16615--16616
  []
 
 
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 16.54997pt, for example:
-(fancyhdr)                \setlength{\headheight}{16.54997pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-
-(fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
-
-[360]
 Underfull \hbox (badness 10000) in paragraph at lines 16623--16624
 []\TU/Inter(0)/b/n/8 ste-re-o-me-trio[] \TU/CharisSIL(0)/m/n/8 Apliko-geometrio
  []
@@ -10279,6 +10302,14 @@ L(0)/m/n/8 Pa-ro-lar he-zi-
  []
 
 
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 16.54997pt, for example:
+(fancyhdr)                \setlength{\headheight}{16.54997pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
+
+[362]
 Underfull \hbox (badness 10000) in paragraph at lines 16703--16704
 []\TU/Inter(0)/b/n/8 stran-dar[]\TU/CharisSIL(0)/m/it/8 (netrans)\TU/Inter(0)/b
 /n/7 1. \TU/CharisSIL(0)/m/n/8 (alu-dante
@@ -10290,14 +10321,6 @@ Underfull \hbox (badness 5446) in paragraph at lines 16705--16706
  []
 
 
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 16.54997pt, for example:
-(fancyhdr)                \setlength{\headheight}{16.54997pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-
-(fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
-
-[362]
 Underfull \hbox (badness 10000) in paragraph at lines 16725--16726
 []\TU/Inter(0)/b/n/8 strep-to-koko[]\TU/CharisSIL(0)/m/it/8 (patol) \TU/CharisS
 IL(0)/m/n/8 Mi-krobo,
@@ -10477,11 +10500,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 17013--17014
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 17026--17027
-\TU/CharisSIL(0)/m/n/8 rak-te-ri-zas pre-ci-pue la ne-
- []
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 16.54997pt, for example:
 (fancyhdr)                \setlength{\headheight}{16.54997pt}.
@@ -10490,6 +10508,10 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
 
 [369]
+Underfull \hbox (badness 10000) in paragraph at lines 17026--17027
+\TU/CharisSIL(0)/m/n/8 rak-te-ri-zas pre-ci-pue la ne-
+ []
+
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 16.54997pt, for example:
@@ -10504,12 +10526,6 @@ Underfull \hbox (badness 8170) in paragraph at lines 17076--17077
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 17108--17109
-[]\TU/Inter(0)/b/n/8 tan-genta[]\TU/CharisSIL(0)/m/it/8 (geometrio) \TU/CharisS
-IL(0)/m/n/8 Qua tu-
- []
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 16.54997pt, for example:
 (fancyhdr)                \setlength{\headheight}{16.54997pt}.
@@ -10518,6 +10534,12 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
 
 [371]
+Underfull \hbox (badness 10000) in paragraph at lines 17108--17109
+[]\TU/Inter(0)/b/n/8 tan-genta[]\TU/CharisSIL(0)/m/it/8 (geometrio) \TU/CharisS
+IL(0)/m/n/8 Qua tu-
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 17132--17133
 []\TU/Inter(0)/b/n/8 ta-ran-telo[]\TU/CharisSIL(0)/m/it/8 (muziko) \TU/CharisSI
 L(0)/m/n/8 Dans-ario,
@@ -10529,6 +10551,14 @@ Underfull \hbox (badness 6032) in paragraph at lines 17140--17141
  []
 
 
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 16.54997pt, for example:
+(fancyhdr)                \setlength{\headheight}{16.54997pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
+
+[372]
 Underfull \hbox (badness 10000) in paragraph at lines 17148--17149
 []\TU/Inter(0)/b/n/8 tar-la-tano[] \TU/CharisSIL(0)/m/n/8 Mu-slino kun te-xuro
  []
@@ -10539,14 +10569,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 17148--17149
  []
 
 
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 16.54997pt, for example:
-(fancyhdr)                \setlength{\headheight}{16.54997pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-
-(fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
-
-[372]
 Underfull \hbox (badness 10000) in paragraph at lines 17180--17181
 []\TU/Inter(0)/b/n/8 ta-xi-me-tro[]\TU/CharisSIL(0)/m/it/8 (automobilo) \TU/Cha
 risSIL(0)/m/n/8 Kon-tilo
@@ -10578,6 +10600,14 @@ L(0)/m/n/8 Di-ce-sas pri la
  []
 
 
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 16.54997pt, for example:
+(fancyhdr)                \setlength{\headheight}{16.54997pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
+
+[374]
 Underfull \hbox (badness 5008) in paragraph at lines 17244--17245
 []\TU/Inter(0)/b/n/8 tem-pe-ra-turo[] \TU/CharisSIL(0)/m/n/8 Varmeso-grado di
  []
@@ -10599,22 +10629,9 @@ Underfull \hbox (badness 10000) in paragraph at lines 17252--17253
  []
 
 
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 16.54997pt, for example:
-(fancyhdr)                \setlength{\headheight}{16.54997pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-
-(fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
-
-[374]
 Underfull \hbox (badness 10000) in paragraph at lines 17276--17277
 []\TU/Inter(0)/b/n/8 te-ne-bro[]\TU/Inter(0)/b/n/7 1. \TU/CharisSIL(0)/m/n/8 Ob-
 sku-reso ab-so-lute
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 17294--17295
-\TU/CharisSIL(0)/m/n/8 mi-kre-geso, di-ne-geso, de-li-ka-
  []
 
 
@@ -10626,19 +10643,13 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
 
 [375]
+Underfull \hbox (badness 10000) in paragraph at lines 17294--17295
+\TU/CharisSIL(0)/m/n/8 mi-kre-geso, di-ne-geso, de-li-ka-
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 17314--17315
 []\TU/Inter(0)/b/n/8 te-o-remo[] \TU/CharisSIL(0)/m/n/8 Pro-po-zi-ci-ono ci-en-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 17340--17341
-[]\TU/Inter(0)/b/n/8 ter-ci-ana[]\TU/CharisSIL(0)/m/it/8 (patol) \TU/CharisSIL(
-0)/m/n/8 Fe-bro in-ter-mi-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 17340--17341
-\TU/CharisSIL(0)/m/n/8 tanta, qua ri-e-ven-tas singla-
  []
 
 
@@ -10650,6 +10661,17 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
 
 [376]
+Underfull \hbox (badness 10000) in paragraph at lines 17340--17341
+[]\TU/Inter(0)/b/n/8 ter-ci-ana[]\TU/CharisSIL(0)/m/it/8 (patol) \TU/CharisSIL(
+0)/m/n/8 Fe-bro in-ter-mi-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 17340--17341
+\TU/CharisSIL(0)/m/n/8 tanta, qua ri-e-ven-tas singla-
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 17356--17357
 []\TU/Inter(0)/b/n/8 te-ri-to-rio[] \TU/CharisSIL(0)/m/n/8 Ex-ten-sajo de lando
  []
@@ -10680,12 +10702,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 17412--17413
  []
 
 
-Underfull \hbox (badness 6428) in paragraph at lines 17428--17429
-[]\TU/Inter(0)/b/n/8 te-xar[]\TU/CharisSIL(0)/m/it/8 (trans) \TU/CharisSIL(0)/m
-/n/8 Trans-for-mar (sub-
- []
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 16.54997pt, for example:
 (fancyhdr)                \setlength{\headheight}{16.54997pt}.
@@ -10694,6 +10710,12 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
 
 [378]
+Underfull \hbox (badness 6428) in paragraph at lines 17428--17429
+[]\TU/Inter(0)/b/n/8 te-xar[]\TU/CharisSIL(0)/m/it/8 (trans) \TU/CharisSIL(0)/m
+/n/8 Trans-for-mar (sub-
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 17438--17439
 []\TU/Inter(0)/b/n/8 tifo[]\TU/CharisSIL(0)/m/it/8 (patol) \TU/CharisSIL(0)/m/n
 /8 Morbo kon-ta-gi-ema,
@@ -10714,10 +10736,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
 
 [379]
-Underfull \hbox (badness 10000) in paragraph at lines 17494--17495
-\TU/CharisSIL(0)/m/n/8 sua povo ye ma-ni-ero opre-
- []
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 16.54997pt, for example:
@@ -10727,6 +10745,11 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
 
 [380]
+Underfull \hbox (badness 10000) in paragraph at lines 17494--17495
+\TU/CharisSIL(0)/m/n/8 sua povo ye ma-ni-ero opre-
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 17516--17517
 []\TU/Inter(0)/b/n/8 ti-tulo[]\TU/Inter(0)/b/n/7 1. \TU/CharisSIL(0)/m/n/8 Nomo qua ex-pre-sas
  []
@@ -10743,11 +10766,6 @@ a ex-pre-sas
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 17532--17533
-\TU/CharisSIL(0)/m/n/8 mi-lio « so-la-nei », kun frukti
- []
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 16.54997pt, for example:
 (fancyhdr)                \setlength{\headheight}{16.54997pt}.
@@ -10756,6 +10774,11 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
 
 [381]
+Underfull \hbox (badness 10000) in paragraph at lines 17532--17533
+\TU/CharisSIL(0)/m/n/8 mi-lio « so-la-nei », kun frukti
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 17548--17549
 []\TU/Inter(0)/b/n/8 to-no-pla-sto[]\TU/CharisSIL(0)/m/it/8 (biol) \TU/CharisSI
 L(0)/m/n/8 Parto per-ma-
@@ -10768,12 +10791,6 @@ m/n/8 Korpo glan-da-tra,
  []
 
 
-Underfull \hbox (badness 6775) in paragraph at lines 17570--17571
-[]\TU/Inter(0)/b/n/8 to-rako[]\TU/CharisSIL(0)/m/it/8 (anat)\TU/Inter(0)/b/n/7 
-1. \TU/CharisSIL(0)/m/n/8 (che la ver-te-
- []
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 16.54997pt, for example:
 (fancyhdr)                \setlength{\headheight}{16.54997pt}.
@@ -10782,6 +10799,12 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
 
 [382]
+Underfull \hbox (badness 6775) in paragraph at lines 17570--17571
+[]\TU/Inter(0)/b/n/8 to-rako[]\TU/CharisSIL(0)/m/it/8 (anat)\TU/Inter(0)/b/n/7 
+1. \TU/CharisSIL(0)/m/n/8 (che la ver-te-
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 17588--17589
 []\TU/Inter(0)/b/n/8 tor-men-tar[]\TU/CharisSIL(0)/m/it/8 (trans)\TU/Inter(0)/b
 /n/7 1. \TU/CharisSIL(0)/m/n/8 Sub-mi-sar
@@ -10802,6 +10825,14 @@ IL(0)/m/n/8 Ge-nero de
  []
 
 
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 16.54997pt, for example:
+(fancyhdr)                \setlength{\headheight}{16.54997pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
+
+[384]
 Underfull \hbox (badness 6016) in paragraph at lines 17646--17647
 \TU/CharisSIL(0)/m/n/8 quin mi-na-cas e fra-pas ka-ta-
  []
@@ -10820,7 +10851,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
 
-[384]
+[385]
 Underfull \hbox (badness 10000) in paragraph at lines 17686--17687
 \TU/CharisSIL(0)/m/n/8 epi-le-psio, dum hi-pnoto, e
  []
@@ -10832,14 +10863,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 17690--17691
  []
 
 
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 16.54997pt, for example:
-(fancyhdr)                \setlength{\headheight}{16.54997pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-
-(fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
-
-[385]
 Underfull \hbox (badness 10000) in paragraph at lines 17710--17711
 []\TU/Inter(0)/b/n/8 trans-for-mar[]\TU/CharisSIL(0)/m/it/8 (trans., ulo, ulu,
  []
@@ -10880,11 +10903,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 17724--17725
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 17732--17733
-[]\TU/Inter(0)/b/n/8 tran-sub-stan-ciar[]\TU/CharisSIL(0)/m/it/8 (teol. ka-tol)
- []
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 16.54997pt, for example:
 (fancyhdr)                \setlength{\headheight}{16.54997pt}.
@@ -10893,6 +10911,11 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
 
 [386]
+Underfull \hbox (badness 10000) in paragraph at lines 17732--17733
+[]\TU/Inter(0)/b/n/8 tran-sub-stan-ciar[]\TU/CharisSIL(0)/m/it/8 (teol. ka-tol)
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 17748--17749
 []\TU/Inter(0)/b/n/8 tra-u-mato[]\TU/CharisSIL(0)/m/it/8 (patol) \TU/CharisSIL(
 0)/m/n/8 En-sem-blo de
@@ -11004,12 +11027,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 18014--18015
  []
 
 
-Underfull \hbox (badness 5802) in paragraph at lines 18038--18039
-[]\TU/Inter(0)/b/n/8 tu-var[]\TU/CharisSIL(0)/m/it/8 (trans) (na-vig) \TU/Chari
-sSIL(0)/m/n/8 Avan-ci-gar
- []
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 16.54997pt, for example:
 (fancyhdr)                \setlength{\headheight}{16.54997pt}.
@@ -11018,6 +11035,12 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
 
 [393]
+Underfull \hbox (badness 5802) in paragraph at lines 18038--18039
+[]\TU/Inter(0)/b/n/8 tu-var[]\TU/CharisSIL(0)/m/it/8 (trans) (na-vig) \TU/Chari
+sSIL(0)/m/n/8 Avan-ci-gar
+ []
+
+
 Underfull \hbox (badness 7540) in paragraph at lines 18069--18070
 []\TU/Inter(0)/b/n/8 ul-ti-mato[]\TU/CharisSIL(0)/m/it/8 (diplomac) \TU/CharisS
 IL(0)/m/n/8 Dico serio-
@@ -11029,12 +11052,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 18071--18072
  []
 
 
-Underfull \hbox (badness 5077) in paragraph at lines 18085--18086
-[]\TU/Inter(0)/b/n/8 um-belo[]\TU/CharisSIL(0)/m/it/8 (bot) \TU/CharisSIL(0)/m/
-n/8 Modo di in-flo-re-
- []
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 16.54997pt, for example:
 (fancyhdr)                \setlength{\headheight}{16.54997pt}.
@@ -11043,6 +11060,12 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
 
 [394]
+Underfull \hbox (badness 5077) in paragraph at lines 18085--18086
+[]\TU/Inter(0)/b/n/8 um-belo[]\TU/CharisSIL(0)/m/it/8 (bot) \TU/CharisSIL(0)/m/
+n/8 Modo di in-flo-re-
+ []
+
+
 Underfull \hbox (badness 7814) in paragraph at lines 18099--18100
 []\TU/Inter(0)/b/n/8 un-ci-ala[]\TU/CharisSIL(0)/m/it/8 (paleogr) \TU/CharisSIL
 (0)/m/n/8 Granda li-teri,
@@ -11071,11 +11094,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 18117--18118
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 18139--18140
-[]\TU/Inter(0)/b/n/8 ura-no-gra-fio[] \TU/CharisSIL(0)/m/n/8 De-skripto di ci-
- []
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 16.54997pt, for example:
 (fancyhdr)                \setlength{\headheight}{16.54997pt}.
@@ -11084,15 +11102,14 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
 
 [395]
-Underfull \hbox (badness 10000) in paragraph at lines 18189--18190
-[]\TU/Inter(0)/b/n/8 uten-silo[]\TU/Inter(0)/b/n/7 1. \TU/CharisSIL(0)/m/n/8 Lab
-or-instrumento
+Underfull \hbox (badness 10000) in paragraph at lines 18139--18140
+[]\TU/Inter(0)/b/n/8 ura-no-gra-fio[] \TU/CharisSIL(0)/m/n/8 De-skripto di ci-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 18195--18196
-[]\TU/Inter(0)/b/n/8 uto-pio[]\TU/Inter(0)/b/n/7 1. \TU/CharisSIL(0)/m/n/8 Kon-c
-ep-tajo ima-gi-
+Underfull \hbox (badness 10000) in paragraph at lines 18189--18190
+[]\TU/Inter(0)/b/n/8 uten-silo[]\TU/Inter(0)/b/n/7 1. \TU/CharisSIL(0)/m/n/8 Lab
+or-instrumento
  []
 
 
@@ -11104,6 +11121,12 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
 
 [396]
+Underfull \hbox (badness 10000) in paragraph at lines 18195--18196
+[]\TU/Inter(0)/b/n/8 uto-pio[]\TU/Inter(0)/b/n/7 1. \TU/CharisSIL(0)/m/n/8 Kon-c
+ep-tajo ima-gi-
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 18207--18208
 []\TU/Inter(0)/b/n/8 uzu-fruk-tar[]\TU/CharisSIL(0)/m/it/8 (trans) (yu-ro-ci-enc
 o)
@@ -11126,12 +11149,6 @@ m/n/8 Morbo erup-tala,
  []
 
 
-Underfull \hbox (badness 7740) in paragraph at lines 18254--18255
-[]\TU/Inter(0)/b/n/8 va-lo-rar[]\TU/CharisSIL(0)/m/it/8 (trans)\TU/Inter(0)/b/n
-/7 1. \TU/CharisSIL(0)/m/n/8 Esar eva-lu-ita
- []
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 16.54997pt, for example:
 (fancyhdr)                \setlength{\headheight}{16.54997pt}.
@@ -11140,6 +11157,12 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
 
 [397]
+Underfull \hbox (badness 7740) in paragraph at lines 18254--18255
+[]\TU/Inter(0)/b/n/8 va-lo-rar[]\TU/CharisSIL(0)/m/it/8 (trans)\TU/Inter(0)/b/n
+/7 1. \TU/CharisSIL(0)/m/n/8 Esar eva-lu-ita
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 18264--18265
 \TU/CharisSIL(0)/m/n/8 ma nula re-a-leso nek va-
  []
@@ -11147,12 +11170,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 18264--18265
 
 Underfull \hbox (badness 5817) in paragraph at lines 18272--18273
 \TU/CharisSIL(0)/m/n/8 de-sub la okulo til la men-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 18290--18291
-[]\TU/Inter(0)/b/n/8 va-riko[]\TU/CharisSIL(0)/m/it/8 (patol) \TU/CharisSIL(0)/
-m/n/8 Di-la-turo per-ma-
  []
 
 
@@ -11164,19 +11181,14 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
 
 [398]
+Underfull \hbox (badness 10000) in paragraph at lines 18290--18291
+[]\TU/Inter(0)/b/n/8 va-riko[]\TU/CharisSIL(0)/m/it/8 (patol) \TU/CharisSIL(0)/
+m/n/8 Di-la-turo per-ma-
+ []
+
+
 Underfull \hbox (badness 6910) in paragraph at lines 18302--18303
 \TU/CharisSIL(0)/m/n/8 de-pen-das de si-ni-oro pro fe-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 18332--18333
-\TU/CharisSIL(0)/m/n/8 se-gun qua su-pre-se-sas omna
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 18334--18335
-[]\TU/Inter(0)/b/n/8 ve-kar[]\TU/CharisSIL(0)/m/it/8 (netrans) \TU/CharisSIL(0)
-/m/n/8 Ce-sar sua
  []
 
 
@@ -11188,6 +11200,17 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
 
 [399]
+Underfull \hbox (badness 10000) in paragraph at lines 18332--18333
+\TU/CharisSIL(0)/m/n/8 se-gun qua su-pre-se-sas omna
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 18334--18335
+[]\TU/Inter(0)/b/n/8 ve-kar[]\TU/CharisSIL(0)/m/it/8 (netrans) \TU/CharisSIL(0)
+/m/n/8 Ce-sar sua
+ []
+
+
 Underfull \hbox (badness 6825) in paragraph at lines 18348--18349
 \TU/CharisSIL(0)/m/n/8 onu mo-vi-gas per pre-sar pe-
  []
@@ -11199,12 +11222,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 18380--18381
  []
 
 
-Underfull \hbox (badness 7326) in paragraph at lines 18388--18389
-[]\TU/Inter(0)/b/n/8 ve-rando[]\TU/CharisSIL(0)/m/it/8 (arkit) \TU/CharisSIL(0)
-/m/n/8 Te-raso tek-toza
- []
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 16.54997pt, for example:
 (fancyhdr)                \setlength{\headheight}{16.54997pt}.
@@ -11213,6 +11230,12 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
 
 [400]
+Underfull \hbox (badness 7326) in paragraph at lines 18388--18389
+[]\TU/Inter(0)/b/n/8 ve-rando[]\TU/CharisSIL(0)/m/it/8 (arkit) \TU/CharisSIL(0)
+/m/n/8 Te-raso tek-toza
+ []
+
+
 Underfull \hbox (badness 6412) in paragraph at lines 18410--18411
 \TU/CharisSIL(0)/m/n/8 ne-ma-tura, uzata kom kon-di-
  []
@@ -11257,12 +11280,6 @@ harisSIL(0)/m/n/8 Hi-ero di
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 18530--18531
-[]\TU/Inter(0)/b/n/8 vi-la-nelo[] \TU/CharisSIL(0)/m/n/8 Kan-sono di vi-la-jani,
-
- []
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 16.54997pt, for example:
 (fancyhdr)                \setlength{\headheight}{16.54997pt}.
@@ -11271,6 +11288,12 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
 
 [403]
+Underfull \hbox (badness 10000) in paragraph at lines 18530--18531
+[]\TU/Inter(0)/b/n/8 vi-la-nelo[] \TU/CharisSIL(0)/m/n/8 Kan-sono di vi-la-jani,
+
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 18544--18545
 []\TU/Inter(0)/b/n/8 vin-dar[]\TU/CharisSIL(0)/m/it/8 (trans) \TU/CharisSIL(0)/
 m/n/8 Ele-var grand-
@@ -11283,12 +11306,6 @@ L(0)/m/n/8 Ko-ak-tar so-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 18578--18579
-[]\TU/Inter(0)/b/n/8 vi-sar[]\TU/CharisSIL(0)/m/it/8 (trans) (tekn) \TU/CharisS
-IL(0)/m/n/8 Ro-ta-ci-gar
- []
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 16.54997pt, for example:
 (fancyhdr)                \setlength{\headheight}{16.54997pt}.
@@ -11297,13 +11314,14 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
 
 [404]
-Underfull \hbox (badness 10000) in paragraph at lines 18596--18597
-[]\TU/Inter(0)/b/n/8 vi-tri-olo[] \TU/CharisSIL(0)/m/n/8 Nomo vul-gara di
+Underfull \hbox (badness 10000) in paragraph at lines 18578--18579
+[]\TU/Inter(0)/b/n/8 vi-sar[]\TU/CharisSIL(0)/m/it/8 (trans) (tekn) \TU/CharisS
+IL(0)/m/n/8 Ro-ta-ci-gar
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 18626--18627
-[]\TU/Inter(0)/b/n/8 vo-ka-li-zar[]\TU/CharisSIL(0)/m/it/8 (netrans) (mu-
+Underfull \hbox (badness 10000) in paragraph at lines 18596--18597
+[]\TU/Inter(0)/b/n/8 vi-tri-olo[] \TU/CharisSIL(0)/m/n/8 Nomo vul-gara di
  []
 
 
@@ -11315,15 +11333,14 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
 
 [405]
-Underfull \hbox (badness 10000) in paragraph at lines 18644--18645
-[]\TU/Inter(0)/b/n/8 vol-tar[]\TU/CharisSIL(0)/m/it/8 (netrans)\TU/Inter(0)/b/n
-/7 1. \TU/CharisSIL(0)/m/n/8 (ma-nejo).
+Underfull \hbox (badness 10000) in paragraph at lines 18626--18627
+[]\TU/Inter(0)/b/n/8 vo-ka-li-zar[]\TU/CharisSIL(0)/m/it/8 (netrans) (mu-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 18654--18655
-[]\TU/Inter(0)/b/n/8 vo-lun-tar[]\TU/CharisSIL(0)/m/it/8 (trans) \TU/CharisSIL(
-0)/m/n/8 Esar be-ni-gna,
+Underfull \hbox (badness 10000) in paragraph at lines 18644--18645
+[]\TU/Inter(0)/b/n/8 vol-tar[]\TU/CharisSIL(0)/m/it/8 (netrans)\TU/Inter(0)/b/n
+/7 1. \TU/CharisSIL(0)/m/n/8 (ma-nejo).
  []
 
 
@@ -11335,6 +11352,11 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-4.54997pt}.
 
 [406]
+Underfull \hbox (badness 10000) in paragraph at lines 18654--18655
+[]\TU/Inter(0)/b/n/8 vo-lun-tar[]\TU/CharisSIL(0)/m/it/8 (trans) \TU/CharisSIL(
+0)/m/n/8 Esar be-ni-gna,
+ []
+
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 16.54997pt, for example:
@@ -11440,7 +11462,7 @@ Here is how much of LuaTeX's memory you used:
  439 words of node memory still in use:
    4 hlist, 1 vlist, 1 rule, 2 glue, 3 kern, 1 glyph, 5 attribute, 52 glue_spec,
  5 attribute_list, 1 write nodes
-   avail lists: 1:1,2:896,3:609,4:376,5:417,6:81,7:8212,9:366,10:14,11:738
+   avail lists: 1:2,2:896,3:692,4:417,5:419,6:81,7:11511,9:391,10:14,11:1066
  28904 multiletter control sequences out of 65536+600000
  50 fonts using 18764447 bytes
  79i,12n,114p,1736b,497s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -11448,7 +11470,7 @@ Here is how much of LuaTeX's memory you used:
 f></usr/share/texlive/texmf-dist/fonts/truetype/SIL/charissil/CharisSIL-Italic.t
 tf></usr/share/texlive/texmf-dist/fonts/opentype/public/inter/Inter-Regular.otf>
 </usr/share/texlive/texmf-dist/fonts/opentype/public/inter/Inter-Bold.otf>
-Output written on posho.pdf (413 pages, 2005935 bytes).
+Output written on posho.pdf (413 pages, 2007569 bytes).
 
 PDF statistics: 1327 PDF objects out of 1440 (max. 8388607)
  891 compressed objects within 9 object streams

@@ -69,7 +69,9 @@ const lst=document.getElementById('lst'),q=document.getElementById('q'),
 const esc=s=>s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
 function surl(t,r){if(!r)return esc(t);return esc(t).replace(new RegExp('('+r.replace(/[.*+?^${}()|[\\]\\\\]/g,'\\\\$&')+')','gi'),'<mark>$1</mark>');}
 function rendi(e,r){
- let h='<article><span class="ved">'+surl(e.v,r)+'</span>';
+ // Emprunt cite : chevrons a l'affichage seulement. La recherche porte sur
+ // le mot nu, sinon « amen » ne se trouverait plus.
+ let h='<article><span class="ved">'+(e.c?'\u00ab\u00a0':'')+surl(e.v,r)+(e.c?'\u00a0\u00bb':'')+'</span>';
  if(e.f)h+='<span class="fako">('+esc(e.f)+')</span>';
  e.s.forEach((s,i)=>{h+='<p class="senco">'+(e.s.length>1?'<b>'+(i+1)+'.</b>':'')+surl(s,r)+'</p>';});
  if(e.l&&e.l.length)h+='<p class="senco lat">L. '+esc(e.l.join('; '))+'</p>';
@@ -139,7 +141,8 @@ q.addEventListener('input',montri); montri();
 
 def html_edition(ent):
     D=[{"v":e['vedetto'],"f":e['fako'],"s":e['senci'],"l":e['latina'],
-        "n":e['lingui'],"p":e['pagino'],"g":e['ligno'],"d":e['drapeli']} for e in ent]
+        "n":e['lingui'],"p":e['pagino'],"g":e['ligno'],"d":e['drapeli'],
+        **({"c":1} if e.get('citita') else {})} for e in ent]
     s=GABARITO.replace("__DATA__", json.dumps(D, ensure_ascii=False, separators=(',',':')))
     s=s.replace("__N__", f"{len(ent)} ")
     open(f"{SORT}/dicionario.html","w",encoding='utf-8').write(s)

@@ -48,7 +48,9 @@ def cle(v):
 def artiklo(e):
     """Un article, en LaTeX."""
     v = e['vedetto']
-    L = ["\\vorto{%s}" % esc(v)]
+    # Emprunt cite : le tapuscrit l'encadre de guillemets. On les rend.
+    aff = "\u00ab\u00a0%s\u00a0\u00bb" % v if e.get('citita') else v
+    L = ["\\vorto{%s}" % esc(aff)]
     if e.get('fako'):
         L.append("\\fako{%s}" % esc(e['fako']))
     S = e.get('senci') or []

@@ -330,6 +330,11 @@ def analizar(e, lexique=None):
     # La vedette peut etre entre guillemets — « "alpari" », « "amen" » — ou
     # precedee d'un point parasite. On les admet, puis on les retire du mot.
     t = t.lstrip('. ')
+    # Emprunt cite : le tapuscrit encadre de guillemets les mots pris tels
+    # quels a une autre langue — « amen », « alpari », « angelus », « avoue ».
+    # On retient le fait, sans le mettre dans la vedette : la recherche doit
+    # continuer de trouver « amen » frappe sans guillemets.
+    e['citita'] = bool(re.match(r'^["\u00ab\u201c]', t))
     # Les lettres accentuees appartiennent au mot : sans elles « ampere » se
     # coupait en « amp » et le reste tombait dans la definition.
     # Locution latine ou anglaise prise pour vedette : le tapuscrit l'encadre de
@@ -364,12 +369,26 @@ def analizar(e, lexique=None):
     # au milieu de la definition et passaient pour « sen-lingua ». La casse
     # protege : _lire_code exige un jeton majoritairement haut de casse, et le
     # dernier mot d'une definition ne l'est jamais.
+    # L'auteur ajoute parfois une remarque APRES le code : « ... - DEFIS. (Ta
+    # vorto ne esas sinonimo di mariajar... ) ». Le code n'etant plus en fin de
+    # chaine, il n'etait pas lu, et l'article passait pour « sen-lingua ». On
+    # met donc la remarque de cote le temps de lire le code, puis on la remet.
+    remarko = ''
+    if not e['kodo']:
+        mr = re.match(r'^(.*?[-–]\s*[A-Za-z]{1,12}\s*\.)\s*(\(.{6,}\))\s*$',
+                      resto, re.S)
+        if mr and _lire_code(re.search(r'([A-Za-z]{1,12})\s*\.$', mr.group(1)).group(1)):
+            # Le point final doit tomber : la recherche du code exige des
+            # lettres en toute fin de chaine.
+            resto, remarko = mr.group(1).rstrip(' .'), mr.group(2)
     mj = None if e['kodo'] else re.search(r'(?:[-–.,()*]|\s|^)\s*([A-Za-z]{1,12})$', resto)
     if mj:
         li=_lire_code(mj.group(1))
         if li:
             e['lingui']=li; e['kodo']=mj.group(1)
             resto = resto[:mj.start()].rstrip(' -–.')
+    if remarko:
+        resto = (resto.rstrip(' -–.') + '. ' + remarko) if resto else remarko
     resto = resto.lstrip(' -–.,;:')
     # « ed. (Videz "e"). » : la parenthese porte un RENVOI, pas un domaine. Prise
     # pour un domaine, elle laissait l'article sans definition du tout.
