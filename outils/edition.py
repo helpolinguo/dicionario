@@ -299,6 +299,25 @@ def _texti(fichier=f"{T}/texti.txt"):
                 if len(p)>=2 and p[0].strip(): _TEXTI[p[0].strip()]=p[1].strip()
     return _TEXTI
 
+def _kupar(x):
+    """Coupe la queue d'un segment, SANS toucher a l'ellipse finale.
+
+    L'auteur marque d'un « ... » la place du complement que le mot regit :
+    « de la instanto kande onu agnoskas kom valida ke... » pour quoniam, et de
+    meme pour for, jus, kande, kovrar, pasar, proxim. Le rognage ordinaire des
+    points la faisait disparaitre, alors qu'elle porte du sens — le livre en
+    garde cinquante-cinq autres ailleurs.
+    """
+    x = re.sub(r'[\s\-\u2013]+$', '', x)
+    # Le code de langues se colle parfois a l'ellipse — « ... gradale) de...EFIRS »
+    # chez proxim — et la recherche du code en emporte un point. Deux points
+    # suffisent donc a la reconnaitre ; on la retablit a trois.
+    if re.search(r'\.\.+$', x):
+        return re.sub(r'\.\.+$', '...', x)
+    x = re.sub(r'[\s\-\u2013.,;:]+$', '', x)
+    return x
+
+
 def analizar(e, lexique=None):
     t=e.get('teksto_brut')
     if t is None:
@@ -360,7 +379,7 @@ def analizar(e, lexique=None):
         noms=[EPELE.get(x.strip(' .')) for x in me.group(1).split(',')]
         if all(noms):
             e['lingui']=noms; e['kodo']=me.group(1).strip()
-            resto = resto[:me.start()].rstrip(' -–.')
+            resto = _kupar(resto[:me.start()])
     # Le code n'est pas toujours precede d'un tiret. Il se colle au point
     # (« agar lo.DEFIS. »), a la parenthese fermante (« (anke metaf.)DEFIRS »),
     # mais aussi a une parenthese OUVRANTE restee ouverte (« ...alambiko.
@@ -386,7 +405,7 @@ def analizar(e, lexique=None):
         li=_lire_code(mj.group(1))
         if li:
             e['lingui']=li; e['kodo']=mj.group(1)
-            resto = resto[:mj.start()].rstrip(' -–.')
+            resto = _kupar(resto[:mj.start()])
     if remarko:
         resto = (resto.rstrip(' -–.') + '. ' + remarko) if resto else remarko
     resto = resto.lstrip(' -–.,;:')
@@ -426,7 +445,8 @@ def analizar(e, lexique=None):
         e['fako'] = None
     e['latina']= [x.strip(' .') for x in RE_LATINA.findall(resto)]
     resto = RE_LATINA.sub('', resto).strip(' -–')
-    senci=[s.strip(' -–.,;:') for s in RE_SENCO.split(resto) if s.strip(' -–.,;:')]
+    senci=[_kupar(s.lstrip(' -–.,;:')) for s in RE_SENCO.split(resto)
+           if s.strip(' -–.,;:')]
     e['senci']= senci if senci else ([resto] if resto else [])
     # Rattrapage : le code peut rester au bout du DERNIER sens quand une note
     # le suivait dans l'original et que le decoupage en sens l'a isole. On le
@@ -508,6 +528,23 @@ def konstrui():
             # de l'original, non du texte. « titrar » commencait par un point.
             S[k]=formuli(cifri(espacar(t))).lstrip('.,;:) ').strip()
     # (cifri et formuli n'interviennent qu'ici, une fois la relecture posee)
+    # Article commence en bas de page, abandonne, puis RECOMMENCE en tete de la
+    # page suivante. « ampère » est le seul cas du livre : la premiere version
+    # s'arrete net, sans code de langues ; la seconde est complete. L'edition de
+    # lecture ne garde que celle-ci — le fac-simile, lui, conserve les deux,
+    # puisqu'il rend la page telle qu'elle fut frappee.
+    der={}; unua={}
+    for e in ent:
+        if e['ligno'] >= der.get(e['image'], (-1,))[0]: der[e['image']]=(e['ligno'], e)
+        if e['ligno'] <= unua.get(e['image'], (10**6,))[0]: unua[e['image']]=(e['ligno'], e)
+    fals=set()
+    for pg,(_, a) in der.items():
+        b = unua.get(pg+1, (None,None))[1]
+        if b is not None and a['vedetto'] == b['vedetto'] and not a['kodo'] and b['kodo']:
+            fals.add(id(a))
+    if fals:
+        ent=[e for e in ent if id(e) not in fals]
+        print("faux departs de bas de page ecartes : %d"%len(fals))
     n0=len(ent); ent=[e for e in ent if e_ok(e)]
     if len(ent)<n0: print("renvois d'errata ecartes : %d"%(n0-len(ent)))
     # Definition coupee net en bas de page : le scan a rogne la derniere ligne.
@@ -732,7 +769,9 @@ def espacar(t):
     # Ligne de bruit en fin de definition : la dactylo a barre une
     # ligne entiere a coups de guillemets et de tirets. Ce qui n'a
     # aucune lettre ni aucun chiffre ne dit rien.
-    t = re.sub(r'(?:[\s"\u00ab\u00bb\u2019\'.,;:_+*=/|\-\u2013\u2014]{6,})$', '', t).rstrip(' .,;:-\u2013\u2014')
+    # _kupar plutot qu'un rstrip nu : l'ellipse finale qui marque le complement
+    # regi — « ...kom valida ke... » — doit survivre au rognage du bruit.
+    t = _kupar(re.sub(r'(?:[\s"\u00ab\u00bb\u2019\'.,;:_+*=/|\-\u2013\u2014]{6,})$', '', t))
     return t
 
 

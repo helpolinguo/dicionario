@@ -8318,7 +8318,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
  446 words of node memory still in use:
    4 hlist, 1 vlist, 1 rule, 2 glue, 3 kern, 1 glyph, 6 attribute, 52 glue_spec
 , 6 attribute_list, 2 write nodes
-   avail lists: 1:2,2:916,3:691,4:417,5:427,6:82,7:11511,9:391,10:14,11:1066
+   avail lists: 1:1,2:700,3:482,4:417,5:427,6:82,7:11511,9:391,10:14,11:1066
 </usr/share/texlive/texmf-dist/fonts/truetype/SIL/charissil/CharisSIL-Regular.t
 tf></usr/share/texlive/texmf-dist/fonts/truetype/SIL/charissil/CharisSIL-Italic
 .ttf></usr/share/texlive/texmf-dist/fonts/opentype/public/inter/Inter-Regular.o

@@ -85,7 +85,8 @@ Package fontspec Warning: OpenType feature 'Numbers=Lowercase' (onum) not
 (fontspec)                available for font 'CharisSIL/BI' with script
 (fontspec)                'CustomDefault' and language 'Default'.
 
-(./posho.aux) (/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmr.fd)
+No file posho.aux.
+(/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmr.fd)
 *geometry* driver: auto-detecting
 *geometry* detected driver: luatex
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-CharisSIL.cfg)
@@ -8318,10 +8319,10 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
  446 words of node memory still in use:
    4 hlist, 1 vlist, 1 rule, 2 glue, 3 kern, 1 glyph, 6 attribute, 52 glue_spec
 , 6 attribute_list, 2 write nodes
-   avail lists: 1:2,2:916,3:691,4:417,5:427,6:82,7:11511,9:391,10:14,11:1066
+   avail lists: 1:1,2:700,3:482,4:417,5:415,6:82,7:11511,9:391,10:14,11:1066
 </usr/share/texlive/texmf-dist/fonts/truetype/SIL/charissil/CharisSIL-Regular.t
 tf></usr/share/texlive/texmf-dist/fonts/truetype/SIL/charissil/CharisSIL-Italic
 .ttf></usr/share/texlive/texmf-dist/fonts/opentype/public/inter/Inter-Regular.o
 tf></usr/share/texlive/texmf-dist/fonts/opentype/public/inter/Inter-Bold.otf>
-Output written on posho.pdf (414 pages, 2007349 bytes).
+Output written on posho.pdf (414 pages, 2003548 bytes).
 Transcript written on posho.log.
