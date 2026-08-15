@@ -35,9 +35,12 @@ def executer(baz=True):
     for _ in range(2):
         _kurar(["lualatex", "-interaction=nonstopmode", "-halt-on-error",
                 "posho.tex"], dosiero=f"{RAC}/posho")
-    for f in ("dicionario.html", "dicionario.tsv", "dicionario.jsonl"):
+    for f in ("index.html", "dicionario.tsv", "dicionario.jsonl"):
         _kurar(["cp", f"{RAC}/travail/edicioni/{f}", f"{RAC}/{f}"])
-    print("kompleta : dicionario.html e posho/posho.pdf venas de la sama fonto")
+    # Le PDF de poche prend a la racine le nom vers lequel pointe le bouton de
+    # la pagino : index.html e dicionario.pdf voyajas kune.
+    _kurar(["cp", f"{RAC}/posho/posho.pdf", f"{RAC}/dicionario.pdf"])
+    print("kompleta : index.html e posho/posho.pdf venas de la sama fonto")
 
 
 if __name__ == "__main__":

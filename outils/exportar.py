@@ -28,6 +28,18 @@ body{margin:0;background:var(--pap);color:var(--enk);
  font:16px/1.55 "Iowan Old Style",Palatino,"Palatino Linotype",Georgia,serif}
 header{position:sticky;top:0;background:var(--pap);border-bottom:1px solid var(--lin);
  padding:14px 20px 12px;z-index:9}
+/* Le bouton de telechargement s'ancre en haut a droite du titre. Sur ecran
+   etroit il perd son texte et ne garde que l'icone : la barre de recherche a
+   besoin de toute la largeur. */
+.tito{display:flex;align-items:flex-start;gap:12px;justify-content:space-between}
+.dl{flex:none;display:inline-flex;align-items:center;gap:6px;text-decoration:none;
+ border:1px solid var(--lin);border-radius:7px;padding:6px 11px;color:var(--acc);
+ background:var(--pap);font-size:13px;font-weight:600;white-space:nowrap;
+ transition:background .12s,border-color .12s}
+.dl:hover{background:var(--lin);border-color:var(--acc)}
+.dl svg{display:block;width:15px;height:15px;stroke:currentColor;fill:none;
+ stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+@media (max-width:560px){.dl span{display:none}.dl{padding:7px 9px}}
 h1{margin:0 0 2px;font-size:17px;font-weight:600;letter-spacing:.01em}
 .sub{color:var(--sub);font-size:12.5px;margin-bottom:10px}
 .bar{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
@@ -54,7 +66,11 @@ article{padding:11px 0;border-bottom:1px solid var(--lin)}
 mark{background:rgba(214,154,106,.34);color:inherit;border-radius:2px}
 </style>
 <header>
+<div class="tito">
 <h1>Dicionario de la 10.000 radiki di la linguo universala Ido</h1>
+<a class="dl" href="dicionario.pdf" download title="Deskargar la dicionario (PDF)">
+<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12"/><path d="M7 11l5 5 5-5"/><path d="M4 20h16"/></svg><span>Deskargar</span></a>
+</div>
 <div class="sub">Marcelo Persiko (Marcel Pesch) · editio princeps, 2 di agosto 1964 · __N__ artikli</div>
 <div class="bar">
  <input type="search" id="q" placeholder="Serchez radiko o vorto en la defino…" autocomplete="off">
@@ -73,7 +89,16 @@ function rendi(e,r){
  // le mot nu, sinon « amen » ne se trouverait plus.
  let h='<article><span class="ved">'+(e.c?'\u00ab\u00a0':'')+surl(e.v,r)+(e.c?'\u00a0\u00bb':'')+'</span>';
  if(e.f)h+='<span class="fako">('+esc(e.f)+')</span>';
- e.s.forEach((s,i)=>{h+='<p class="senco">'+(e.s.length>1?'<b>'+(i+1)+'.</b>':'')+surl(s,r)+'</p>';});
+ // La parenthese de tete d'un sens est un qualificatif, de meme nature que le
+ // domaine de l'article : elle prend l'italique comme lui.
+ e.s.forEach((s,i)=>{// Une parenthese de tete d'une seule lettre ou d'un seul chiffre est un
+  // numero d'enumeration — « (a) », « (1) » — non un qualificatif : elle reste
+  // droite et arrete la serie.
+  const m=s.match(/^((?:\((?![a-zA-Z0-9]\))[^()]{1,120}\)\s*)+)/);
+  // Formule chimique : l'italique la couperait de son indice.
+  const kem=m&&(/[0-9\u2080-\u2089]/.test(m[1])||/^[\u2080-\u2089]/.test(s.slice(m[0].length)));
+  const c=(m&&!kem)?'<i>'+surl(m[1].trim(),r)+'</i> '+surl(s.slice(m[0].length),r):surl(s,r);
+  h+='<p class="senco">'+(e.s.length>1?'<b>'+(i+1)+'.</b>':'')+c+'</p>';});
  if(e.l&&e.l.length)h+='<p class="senco lat">L. '+esc(e.l.join('; '))+'</p>';
  h+='<div class="meta"><span>p. '+e.p+', l. '+e.g+'</span>';
  if(e.n&&e.n.length)h+='<span>'+esc(e.n.join(', '))+'</span>';
@@ -145,8 +170,10 @@ def html_edition(ent):
         **({"c":1} if e.get('citita') else {})} for e in ent]
     s=GABARITO.replace("__DATA__", json.dumps(D, ensure_ascii=False, separators=(',',':')))
     s=s.replace("__N__", f"{len(ent)} ")
-    open(f"{SORT}/dicionario.html","w",encoding='utf-8').write(s)
-    return os.path.getsize(f"{SORT}/dicionario.html")
+    # index.html, e ne dicionario.html : la pagino publikigesas tale quale sur
+    # GitHub Pages, ube « index.html » esas la nomo qua sequesas automate.
+    open(f"{SORT}/index.html","w",encoding='utf-8').write(s)
+    return os.path.getsize(f"{SORT}/index.html")
 
 if __name__=="__main__":
     ent=charger(); tsv(ent); n=html_edition(ent)

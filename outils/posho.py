@@ -45,6 +45,32 @@ def cle(v):
     return v.lower()
 
 
+# Une parenthese de tete qui ne contient qu'UNE lettre ou UN chiffre n'est pas
+# un qualificatif mais un numero d'enumeration — « (a) », « (b) », « (1) ». Elle
+# reste droite, et arrete la serie : dans « (metaf.)(a) Profundegajo... », seul
+# « (metaf.) » prend l'italique.
+RE_TETO = re.compile(r'^((?:\((?![a-zA-Z0-9]\))[^()]{1,120}\)\s*)+)')
+
+
+def _kursiva(t):
+    """Applique APRES esc() : sinon la contre-oblique de \\textit serait elle-meme
+    echappee, et la commande s'imprimerait en toutes lettres.
+
+    La parenthese de TETE d'un sens est un qualificatif — domaine, epoque,
+    regime : « (aludante la hari...) », « (olim) », « (muziko) ». Le domaine de
+    l'article est deja en italique ; celle-ci doit l'etre aussi, sinon deux
+    marques de meme nature s'ecrivent de deux facons dans la meme colonne."""
+    m = RE_TETO.match(t)
+    if not m:
+        return t
+    # Formule chimique : « (CH\u2083)\u2082. CH... ». L'italique la couperait de son
+    # indice, et l'espace que la commande introduit ouvrirait un blanc entre la
+    # parenthese et le chiffre. On la laisse droite et entiere.
+    if re.search(r'[\d\u2080-\u2089]', m.group(1)) or t[m.end():m.end()+1] in '\u2080\u2081\u2082\u2083\u2084\u2085\u2086\u2087\u2088\u2089':
+        return t
+    return "\\textit{%s} %s" % (m.group(1).rstrip(), t[m.end():].lstrip())
+
+
 def artiklo(e):
     """Un article, en LaTeX."""
     v = e['vedetto']
@@ -56,9 +82,9 @@ def artiklo(e):
     S = e.get('senci') or []
     if len(S) > 1:
         for i, s in enumerate(S):
-            L.append("\\senco{%d}{%s}" % (i + 1, esc(s)))
+            L.append("\\senco{%d}{%s}" % (i + 1, _kursiva(esc(s))))
     elif S:
-        L.append(" " + esc(S[0]))
+        L.append(" " + _kursiva(esc(S[0])))
     if e.get('latina'):
         L.append("\\latina{%s}" % esc('; '.join(e['latina'])))
     if e.get('lingui'):
@@ -78,9 +104,14 @@ def ecrire(source=SOURCE, dossier=OUT):
         k = cle(e['vedetto'])
         c = k[0].upper() if k else '?'
         if c != lettre and c.isalpha():
+            if lettre is not None:
+                lignes.append("\\end{multicols}")
             lettre = c
             lignes.append("\\sekciono{%s}" % c)
+            lignes.append("\\begin{multicols}{2}")
         lignes.append(artiklo(e))
+    if lettre is not None:
+        lignes.append("\\end{multicols}")
     with open(f"{dossier}/enhavo.tex", "w", encoding='utf-8') as f:
         f.write("\n".join(lignes) + "\n")
     print("posho/enhavo.tex : %d artikli, %d sekcioni"

@@ -65,7 +65,7 @@
 \fancyhf{}
 \fancyhead[LE]{\titra\footnotesize\bfseries\pgunesma}
 \fancyhead[RO]{\titra\footnotesize\bfseries\pglasta}
-\fancyhead[RE,LO]{\titra\footnotesize\color{grize}\thepage}
+\fancyhead[C]{\titra\footnotesize\color{grize}\thepage}
 \renewcommand{\headrulewidth}{0.3pt}
 \renewcommand{\headrule}{\hbox to\headwidth{\color{grize!50}\leaders\hrule height \headrulewidth\hfill}}
 
@@ -81,9 +81,14 @@
 \newcommand{\latina}[1]{\enspace\textit{L. #1}}
 \newcommand{\lingui}[1]{\enspace{\titra\scriptsize\color{grize}#1}}
 
-\newcommand{\sekciono}[1]{\par\penalty-200\vspace{2.2mm}%
-  {\centering\titra\bfseries\large\color{akcento}#1\par}%
-  \vspace{0.6mm}\hrule height0.4pt\vspace{1.8mm}\penalty200 }
+% Chaque lettre ouvre sur un RECTO, comme dans les dictionnaires relies : on
+% trouve la section au feuilletage, sans lire. La lettre est composee en grand,
+% seule sur sa ligne, avec un filet dessous.
+\newcommand{\sekciono}[1]{%
+  \cleardoublepage
+  \vspace*{2mm}%
+  {\centering\titra\bfseries\fontsize{34}{38}\selectfont\color{akcento}#1\par}%
+  \vspace{1.5mm}\hrule height0.5pt\vspace{4mm}}
 
 \begin{document}
 \thispagestyle{empty}
@@ -103,10 +108,8 @@
 % la libri imprimita. \cleardoublepage pozas la pagino sequanta sur nepara.
 \cleardoublepage
 
-\begin{multicols}{2}
 \small
 \input{enhavo}
-\end{multicols}
 % Page de garde finale, posee sur un recto par \cleardoublepage.
 \cleardoublepage
 \thispagestyle{empty}

@@ -10,7 +10,11 @@ RAC="/root/dicionario"; T=f"{RAC}/travail"
 SORTIE="/root/dicionario-source.zip"
 
 FICHIERS = ["main.tex", "preambule.tex", "LISEZ-MOI.md", "main.pdf",
-            "dicionario.html", "dicionario.tsv", "dicionario.jsonl"]
+            "index.html", "dicionario.tsv", "dicionario.jsonl",
+            # Le PDF de poche voyage A COTE de la page : le bouton de
+            # telechargement pointe vers lui par un lien relatif, et le site
+            # se publie en copiant les deux fichiers dans le meme dossier.
+            "dicionario.pdf"]
 DOSSIERS = ["outils", "contenu", "ornements", "posho"]
 CORRECTIONS = ["exceptions.txt", "exceptions_manuel.txt", "exceptions_fins.txt",
                "exceptions_paires.txt", "exceptions_relecture.txt",

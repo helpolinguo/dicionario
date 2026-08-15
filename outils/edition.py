@@ -314,8 +314,64 @@ def _kupar(x):
     # suffisent donc a la reconnaitre ; on la retablit a trois.
     if re.search(r'\.\.+$', x):
         return re.sub(r'\.\.+$', '...', x)
+    # « e c. » abrege « e cetere » : ce point appartient au mot, non a la
+    # phrase, et ne doit pas tomber avec la ponctuation finale.
+    if re.search(r'(?<![A-Za-zÀ-ÿ])e c\.$', x):
+        return x
     x = re.sub(r'[\s\-\u2013.,;:]+$', '', x)
     return x
+
+
+# Abreviations employees dans le champ du domaine. L'original les pointe
+# irregulierement — « (ajuro) » ecrit « bot. », d'autres « bot » tout court.
+# On uniformise en les pointant toutes. La liste est EXPLICITE, et non deduite
+# d'une regle sur la finale : le meme champ contient des prepositions qui
+# finissent aussi par une consonne (« trans., ad », « netrans., pri »), des
+# verbes (« qua agas »), des numeraux (« un »), et jusqu'a une formule chimique
+# — une regle generale y mettait « C.8 H.8 » et « Natur.-historio ».
+MALLONGIGI = set("""
+trans netrans netr tran anat anatom arit aritm algeb akust arkeol arkit arkitekt
+astr astron biol bot diplomac elektr embriol farmak filoz filozof financ fiz
+fizik fiziol fortifik fotogr geogr geol geom gram gramat histol imprim katol kem
+kemi kirurg kosmol krist kristan liturg literat magnet mat matem med medic mekan
+metaf metapsik meteor meteorol mikrobiol milit mineral mitol muz muzik nav navig
+oftalm opt paleogr paleont paleontol pat patol pikt psik retor skerm stat tek
+tekn teknol teol teratol versif zool zoolog
+""".split())
+
+
+def pointi(f):
+    """Ajoute le point aux abreviations du domaine, et a elles seules."""
+    if not f:
+        return f
+    return re.sub(r'(?<![A-Za-zÀ-ÿ.])([A-Za-zÀ-ÿ]+)(?![A-Za-zÀ-ÿ.-])',
+                  lambda m: m.group(1) + '.' if m.group(1).lower() in MALLONGIGI
+                  else m.group(1), f)
+
+
+# Les seuls noms propres qui ouvrent un domaine dans tout le livre.
+PROPRA = ('Roma', 'Vatikano')
+
+
+def minuskligi(f):
+    """La majuscule initiale d'un domaine n'a pas lieu d'etre : « (Muziko) »
+    s'ecrit « (muziko) ». L'auteur ne s'est pas uniformise. On epargne les noms
+    propres et les formules chimiques, reconnues a leur chiffre."""
+    if not f or not f[0].isupper():
+        return f
+    unua = f.split()[0].rstrip('.,)')
+    if unua in PROPRA or re.search(r'[\d\u2080-\u2089]', unua):
+        return f
+    return f[0].lower() + f[1:]
+
+
+def pointi_sencoj(t):
+    """Meme regle DANS les parentheses d'un sens : tous les qualificatifs ne
+    sont pas dans le champ du domaine — « ajuro » porte les siens dans ses deux
+    sens, « (arkitekt.) » pointe et « (stofo) » non, ce dernier etant un mot
+    entier et non une abreviation."""
+    return re.sub(r'\(([^()]{1,120})\)',
+                  lambda m: '(' + minuskligi(pointi(m.group(1)).rstrip(' ,')) + ')', t)
 
 
 def analizar(e, lexique=None):
@@ -324,7 +380,11 @@ def analizar(e, lexique=None):
         t=recoller([s for _,s in e['lineoj']], lexique)
     t=re.sub(r'\s+',' ',t).strip()
     for a,b in _texti().items():
-        if a in t: t=t.replace(a,b)
+        # Idempotence : la couche passe une fois au decoupage et une fois a
+        # l'analyse. Quand la cle est un prefixe de son remplacement — ajouter
+        # un guillemet fermant, par exemple — la seconde passe l'ajoutait une
+        # seconde fois. On s'abstient si le remplacement est deja pose.
+        if a in t and b not in t: t=t.replace(a,b)
     # Le fac-simile garde l'espace que la dactylo a laissee autour du tiret
     # d'affixe ; l'edition de lecture recolle. « - as. » est « -as », « - at
     # - . » est « -at- », « bo - . » est « bo- ». Sans quoi la vedette etait
@@ -413,7 +473,11 @@ def analizar(e, lexique=None):
     # pour un domaine, elle laissait l'article sans definition du tout.
     mf=None if re.match(r'^\(\s*(?:Videz|videz|Vid\.)\b', resto) else (
         RE_FAKO.match(resto) or RE_FAKO2.match(resto))
-    e['fako']= mf.group(1).rstrip('.').strip() if mf else None
+    # Le domaine porte souvent une ponctuation parasite, heritee de la frappe :
+    # « zool, », « .trans », « patol, ». Et il peut contenir une date, dont les
+    # chiffres sont a redresser comme ailleurs — « olim, ante l9l5 ».
+    e['fako']= minuskligi(pointi(cifri(mf.group(1).strip(' .,;:')))) if mf else None
+    if e['fako']: e['fako']=formuli(e['fako'])
     if mf: resto = resto[mf.end():]
     # Deux parentheses de suite : la seconde precise la premiere et non le
     # sens. « pensar. (trans. e netrans.) (ulo, ad ulo, pri ulu od ulo) » —
@@ -526,7 +590,7 @@ def konstrui():
         for k,t in enumerate(S):
             # Ponctuation orpheline en tete de sens : elle vient d'une coupure
             # de l'original, non du texte. « titrar » commencait par un point.
-            S[k]=formuli(cifri(espacar(t))).lstrip('.,;:) ').strip()
+            S[k]=formuli(cifri(pointi_sencoj(surcharge(espacar(t))))).lstrip('.,;:) ').strip()
     # (cifri et formuli n'interviennent qu'ici, une fois la relecture posee)
     # Article commence en bas de page, abandonne, puis RECOMMENCE en tete de la
     # page suivante. « ampère » est le seul cas du livre : la premiere version
@@ -641,6 +705,8 @@ def cifri(t):
     t = re.sub(r'(?<=[:;]\s)l(?=[.)]\s)', '1', t)
     # « (l) » ouvre une enumeration entre parentheses : c'est le chiffre 1.
     t = re.sub(r'\(l\)', '(1)', t)
+    # Le degre : la machine n'avait pas le signe et frappait un « o ».
+    t = re.sub(r'(?<=\d)o(?=\s*(?:C\b|Celsius))', '\u00b0', t)
     # « lOOOmetri » : la dactylo a soude le nombre a son unite. On exige trois
     # chiffres et trois minuscules, ce qui epargne les formules — « C6H4 » n'a
     # qu'une lettre, et elle est capitale.
@@ -704,6 +770,20 @@ def formuli(t):
     return t
 
 
+_SUR = {'a': '\u00e2', 'e': '\u00ea', 'i': '\u00ee', 'o': '\u00f4', 'u': '\u00fb',
+        'A': '\u00c2', 'E': '\u00ca', 'I': '\u00ce', 'O': '\u00d4', 'U': '\u00db'}
+
+
+def surcharge(t):
+    """Le fac-simile note la surcharge par \\sur{signo}{litero} — la dactylo
+    frappait l'accent PAR-DESSUS la voyelle, faute de touche accentuee. Ce
+    balisage n'a rien a faire dans l'edition de lecture, ou la lettre accentuee
+    existe : « \\sur{\\textasciicircum{}}{a} » se lit « \u00e2 »."""
+    def _un(m):
+        return _SUR.get(m.group(1), m.group(1))
+    return re.sub(r'\\sur\{\\textasciicircum\{\}\}\{([A-Za-z])\}', _un, t)
+
+
 def espacar(t):
     """Espacement de la ponctuation, usage franco-canadien.
 
@@ -743,6 +823,18 @@ def espacar(t):
     t = re.sub(r'([.,;:!?])\(', _pt, t)
     t = re.sub(r'\(\s+', '(', t)
     t = re.sub(r'\s+\)', ')', t)
+    # Point orphelin apres la parenthese fermante — « (aludante la hari...) .
+    # Di qua la koloro... ». Justifie, il ouvre un blanc dans la ligne.
+    t = re.sub(r'\)\s+\.(?=\s|$)', ')', t)
+    # Point superflu apres la parenthese de tete — « (komerco). Inter-egalesi ».
+    # La parenthese ferme deja le qualificatif ; le point fait double emploi.
+    t = re.sub(r'^(\([^()]{1,120}\))\s*\.+(?=\s|$)', r'\1', t)
+    # Deux-points superflu apres le qualificatif de tete — « (bruiso) : Poke
+    # sonora ». La parenthese suffit ; le deux-points annoncerait une liste.
+    t = re.sub(r'^(\([^()]{1,60}\))[\s\u00a0]*:[\s\u00a0]*', r'\1 ', t)
+    # « e c » abrege « e cetere » : il prend le point. 325 occurrences le
+    # perdaient, 455 l'avaient deja.
+    t = re.sub(r'(?<![A-Za-zÀ-ÿ])e c(?![A-Za-zÀ-ÿ.])', 'e c.', t)
     # Espacement des ponctuations doubles, usage FRANCO-CANADIEN :
     # le point-virgule, le point d'exclamation et le point
     # d'interrogation ne prennent PAS d'espace devant — c'est la
@@ -771,7 +863,13 @@ def espacar(t):
     # aucune lettre ni aucun chiffre ne dit rien.
     # _kupar plutot qu'un rstrip nu : l'ellipse finale qui marque le complement
     # regi — « ...kom valida ke... » — doit survivre au rognage du bruit.
-    t = _kupar(re.sub(r'(?:[\s"\u00ab\u00bb\u2019\'.,;:_+*=/|\-\u2013\u2014]{6,})$', '', t))
+    # La queue de bruit ne doit pas engloutir une ellipse suivie de sa
+    # fermeture : « multa-... » compte six signes tous membres de la classe,
+    # et y passait entierement. On l'epargne explicitement.
+    t = re.sub(r'(?:[\s"\u00ab\u00bb\u2019\'.,;:_+*=/|\-\u2013\u2014]{6,})$',
+               lambda m: m.group(0) if re.fullmatch(
+                   r'[\s\u00a0-]*\.{2,}[\s\u00a0]*[\u00bb"\')\]]*', m.group(0)) else '', t)
+    t = _kupar(t)
     return t
 
 
@@ -797,7 +895,7 @@ def typographio(ent):
             t=re.sub(r'(?<=\S) - (?=\S)', ' – ', t)
             # Le « + » du tapuscrit marque les mots non officiels ; la
             # tradition ido ecrit une asterisque. 214 occurrences.
-            t=re.sub(r'\+(?=[A-Za-zÀ-ÿ])', '*', t)
+            t=re.sub(r'\+\s*(?=[A-Za-zÀ-ÿ])', '*', t)
             # Guillemets : la machine n'avait que la double apostrophe droite.
             # On ne convertit que les PAIRES — 834 sur 1 690 apostrophes ; les
             # orphelines restent droites plutot que d'ouvrir un chevron qui ne
@@ -809,7 +907,7 @@ def typographio(ent):
             # de rendu, et la couche de relecture cherche des chaines relevees
             # sur le texte brut. « H2 Hg3 Si4 O12 » ne se retrouve plus une fois
             # les indices poses ; on les pose donc APRES elle.
-            t=espacar(t)
+            t=pointi_sencoj(surcharge(espacar(t)))
             if t!=o: s[k]=t; n+=1
     return n
 
