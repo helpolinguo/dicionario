@@ -170,9 +170,10 @@ souvent une cause connue : elle fermait le **nom latin**, et l'extraction de
 aurantium* dans son champ, et n'avait plus qu'une parenthèse fermante devant
 rien. Le contenu n'a pas disparu, il a changé de champ.
 
-**Deux sens restent déséquilibrés, et c'est voulu** : chez `inflexar` et
-`sn-atra`, la parenthèse ouvre une **locution**. La retirer ferait disparaître
-une sous-entrée ; on laisse alors le sens entier, fût-il boiteux.
+**Un sens reste déséquilibré, et c'est voulu** : chez `inflexar`, la
+parenthèse ouvre une **locution** — « (arko inflexita : … » — que la page,
+tronquée, n'a jamais close. La retirer ferait disparaître une sous-entrée ; on
+laisse le sens entier, fût-il boiteux.
 
 ### Les soulignements de l'auteur (`sublineita`, `kursiva`, `dubinda`)
 
@@ -218,7 +219,7 @@ dictionnaire. Plutôt que de masquer ce qui reste, la base le **signale** :
 
 | drapeau | entrées | ce qu'il veut dire |
 |---|---|---|
-| `ordino-ruptita` | 1 156 | **la vedette rompt l'ordre alphabétique** |
+| `ordino-ruptita` | 1 155 | **la vedette rompt l'ordre alphabétique** |
 | `sen-lingua` | 1 039 | pas de code de langues final — souvent normal, le livre n'en donne pas toujours |
 | `finalo-nekustumala` | 237 | finale étrangère à la morphologie d'Ido (-o, -a, -e, -i, -ar, -ir, -or) |
 | `pagino-nefidinda` | 32 | pages 539-540, photographiées à une autre échelle, décodage nettement moins sûr |
@@ -236,7 +237,7 @@ en portent au moins une.
 `ordino-ruptita` est le plus utile des drapeaux. Un dictionnaire est trié : une
 vedette qui rompt l'ordre désigne presque toujours une mauvaise lecture, dans
 l'une des deux vedettes voisines — *aoendar* pour *acendar*, *a)rotano* pour
-*abrotano*, *aacho* pour le suffixe *-acho*. **Corriger ces 1 156 cas, c'est
+*abrotano*, *aacho* pour le suffixe *-acho*. **Corriger ces 1 155 cas, c'est
 achever le livre**, et le travail est divisible : chacun peut en prendre cent.
 
 **2 125 entrées portent au moins un drapeau.** L'édition HTML ne les filtre plus

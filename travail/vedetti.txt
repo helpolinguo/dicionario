@@ -55,3 +55,4 @@ tri@600:23	tri-	prefixo ciencala ; la altra « tri » (p600 l21) esas la cifro 3
 intelektuelo	*intelektuelo	vorto ne oficala
 brokoli"-kaulo	«brokoli»-kaulo	p081 : la guillemeti di la originalo, en la formo ido
 burgo@85:16	burso	p078 : « Saketo por portar moneto-peci en la posho » est la bourse, non le bourg — que la vedette burgo@84:49 definit deja. La lecture g pour s ; « burso » remet la vedette dans l ordre alphabetique, entre burokrato et buso, et le drapeau ordino-ruptita tombe.
+sn-atra@530:2	sh-atra	p523 : le digramme sh, « pronuncar : she-atra » — n lu pour h. La vedette reprend sa place entre sfinxo et sha, et le drapeau d ordre de sha tombe.
