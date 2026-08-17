@@ -1340,8 +1340,9 @@ def konstrui():
         for k,t in enumerate(S):
             # Ponctuation orpheline en tete de sens : elle vient d'une coupure
             # de l'original, non du texte. « titrar » commencait par un point.
-            S[k]=pointi_abrevo(fermi_parentezon(orfa_parentezo(formuli(cifri(
-                pointi_sencoj(surcharge(espacar(t)))))))).lstrip('.,;:) ').strip()
+            S[k]=ekvilibrigi_parentezojn(pointi_abrevo(fermi_parentezon(
+                orfa_parentezo(formuli(cifri(pointi_sencoj(surcharge(
+                    espacar(t)))))))).lstrip('.,;:) ').strip())
     # (cifri et formuli n'interviennent qu'ici, une fois la relecture posee)
     # Second passage des corrections a l'oeil. Une ligne de vorti.txt ecrite
     # d'apres le texte RENDU ne pouvait pas s'appliquer plus haut : « de l til
@@ -1616,6 +1617,51 @@ RE_ABREVO = re.compile(r'\((anke\s+metaf)\)', re.I)
 def pointi_abrevo(t):
     """Rend son point a l'abreviation que la coupure de ligne a ecourtee."""
     return RE_ABREVO.sub(lambda m: '(%s.)' % m.group(1), t)
+
+
+# Un qualificatif de tete dont la fermante s'est perdue : « (trans. Kustumigar
+# animalo... », « (anat. Saliajo mi-sferatra... ». Le livre ferme celle-la des
+# centaines de fois ; sa place ne fait aucun doute, juste apres l'abreviation.
+RE_KVAL_MANKA = re.compile(r'^\(([A-Za-zÀ-ÿ][A-Za-zà-ÿ]{1,11}\.)(?=\s)')
+
+
+def ekvilibrigi_parentezojn(t):
+    """Retire les parentheses orphelines, faute de savoir ou serait leur paire.
+
+    Le tapuscrit en laisse cinquante-cinq : « Gumo ek arboro) di India »,
+    « Deprenar (per violento, koakto, de ulu to quon lu retenas. » Le
+    fac-simile ne les rendra pas — l'original ne les a pas non plus. Il faut
+    donc trancher, et la regle est celle qu'orfa_parentezo posait deja pour la
+    fermante de fin : ON RETIRE LE SIGNE ORPHELIN. Le retirer ne fabrique aucun
+    groupement que l'auteur n'a pas fait ; en inventer un le ferait.
+
+    Deux exceptions, ou la place du conjoint ne fait aucun doute :
+
+      * le qualificatif de tete — « (trans. » se ferme apres l'abreviation ;
+      * la locution entre parentheses — « (arko inflexita : ... » chez
+        « inflexar », que la page tronquee n'a jamais close. Elle ouvre une
+        sous-entree ; oter sa parenthese la ferait disparaitre. On laisse alors
+        le sens tel quel, desequilibre mais entier.
+    """
+    m = RE_KVAL_MANKA.match(t)
+    if m and t.count('(') > t.count(')'):
+        t = '(%s)%s' % (m.group(1), t[m.end():])
+    pile = []
+    orfaj = set()
+    for i, c in enumerate(t):
+        if c == '(':
+            pile.append(i)
+        elif c == ')':
+            if pile:
+                pile.pop()
+            else:
+                orfaj.add(i)
+    if any(RE_LOKUCO_KRAMPA.match(t, i) for i in pile):
+        return t
+    orfaj.update(pile)
+    if not orfaj:
+        return t
+    return _kupar("".join(c for i, c in enumerate(t) if i not in orfaj))
 
 
 def espacar(t):

@@ -143,6 +143,37 @@ fondu au lieu de le signaler.
 **`iridio`** avait son étiquette en incise au milieu d'une phrase ; elle est
 extraite comme les autres, et la phrase se referme sur elle-même.
 
+### Les parenthèses orphelines
+
+Le tapuscrit laisse cent vingt parenthèses sans leur paire. Elles ne sont pas
+décoratives : le rendu du domaine de tête et celui de l'italique s'appuient
+dessus, et une incise laissée ouverte pend dans la page comme dans le PDF. Le
+fac-similé ne les rend pas — **l'original ne les a pas non plus**. Il faut donc
+trancher, et la règle est celle qu'`orfa_parentezo` posait déjà :
+
+> Quand la paire est **déterminée**, on la fournit. Sinon, **on retire le signe
+> orphelin** — le retirer n'invente aucun groupement que l'auteur n'a pas fait ;
+> en ajouter un, si.
+
+Trois cas où la paire est déterminée, donc fournie :
+
+- le sens s'achève **dans** la dernière parenthèse ouverte, tout ce qui précède
+  étant équilibré — la fermante s'est perdue en fin de ligne (65 sens,
+  `fermi_parentezon`) ;
+- le **qualificatif de tête** — `(trans. Kustumigar…`, `(anat. Saliajo…` — que
+  le livre ferme des centaines de fois juste après l'abréviation ;
+- le **signe doublé**, `((anke metaf.)` ou `Dekart'))`, une double frappe.
+
+Pour le reste, le signe orphelin part. La fermante seule a d'ailleurs le plus
+souvent une cause connue : elle fermait le **nom latin**, et l'extraction de
+`latina` a emporté l'ouvrante avec son contenu — `oranjo` garde *citrus
+aurantium* dans son champ, et n'avait plus qu'une parenthèse fermante devant
+rien. Le contenu n'a pas disparu, il a changé de champ.
+
+**Deux sens restent déséquilibrés, et c'est voulu** : chez `inflexar` et
+`sn-atra`, la parenthèse ouvre une **locution**. La retirer ferait disparaître
+une sous-entrée ; on laisse alors le sens entier, fût-il boiteux.
+
 ### Les soulignements de l'auteur (`sublineita`, `kursiva`, `dubinda`)
 
 Le tapuscrit n'a pas d'italique : **la dactylo souligne**. Elle souligne ce
