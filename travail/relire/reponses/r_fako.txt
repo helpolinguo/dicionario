@@ -1,0 +1,4 @@
+# Corrections portant sur le champ `fako`, relevees a l'oeil.
+# Meme format que les lots de relecture : id<TAB>forme lue<TAB>forme retenue.
+# Ce fichier est tenu a part des lots rendus par les relecteurs.
+9001	ikkemio	kemio

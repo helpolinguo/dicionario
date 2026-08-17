@@ -768,6 +768,21 @@ def analizar(e, lexique=None):
     if _man:
         e['latina'] = [x.strip() for x in _man.split(';') if x.strip()]
     e['simbolo']= None
+    # Un NUMERO de sens entre parentheses n'est pas un domaine : « romano. (I)
+    # Verko literaturala... », « vice. (l) qua pre-nominesis... » — le « l »
+    # etant le 1 de la dactylo. Les editions renumerotent les sens elles-memes ;
+    # garde comme domaine, le numero s'affichait a la place du domaine.
+    if e['fako'] and re.fullmatch(r'(?:[IVX]{1,4}|[a-z]|[0-9]|l)', e['fako'].strip()):
+        e['fako'] = None
+    # Une FORMULE chimique posee juste apres la vedette — « asparagino. (C8 H8
+    # AZ2 O6). Substanco... » — n'est pas un domaine non plus : c'est le meme
+    # renseignement que « Simbolo kemiala : ... » ailleurs dans le livre, et il
+    # va au meme champ, pour se rendre de la meme facon.
+    if (e['fako'] and e['simbolo'] is None
+            and re.fullmatch(r"[A-Z][A-Za-z0-9\u2080-\u2089\s.'()/-]*", e['fako'].strip())
+            and re.search(r'[0-9\u2080-\u2089]', e['fako'])):
+        e['simbolo'] = e['fako'].strip()
+        e['fako'] = None
     senci=[_kupar(s.lstrip(' -–.,;:')) for s in RE_SENCO.split(resto)
            if s.strip(' -–.,;:')]
     e['senci']= senci if senci else ([resto] if resto else [])

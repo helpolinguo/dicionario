@@ -20,7 +20,7 @@ Transcription établie à partir du fac-similé fourni (639 pages photographiée
 | `outils/` | la chaîne complète, de l'image au JSON |
 
 **9 467 entrées** extraites de 632 pages de corps d'ouvrage.
-5 273 portent une marque de domaine (*bot.*, *zool.*, *arkitekt.*…),
+5 270 portent une marque de domaine (*bot.*, *zool.*, *arkitekt.*…),
 813 un nom scientifique latin, 1 665 plusieurs sens numérotés,
 8 427 un code de langues final.
 
@@ -140,7 +140,7 @@ recherche.
 Or ce n'est pas un mot de la langue mais une étiquette, de même nature que le
 nom latin. Elle a donc son champ, `simbolo`, et les deux éditions la rendent
 d'une seule façon — l'étiquette en italique, le symbole **droit**, une formule
-penchée se lisant mal. **Les 89 articles** le portent.
+penchée se lisant mal. **90 articles** le portent — les 89 que le livre annonce par l'étiquette, plus `asparagino`, qui pose sa formule entre parenthèses juste après la vedette.
 
 Onze articles portaient l'étiquette sans son symbole : le décodage l'avait
 perdue. Ces onze-là, plus un douzième que le décodage n'avait lu qu'à moitié
