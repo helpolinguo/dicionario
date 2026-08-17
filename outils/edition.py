@@ -784,8 +784,14 @@ def e_ok(e):
 # par une capitale et que suit un deux-points. Le soulignement de l'auteur la
 # confirme ; la forme la trouve, meme la ou la relecture a corrige une coquille
 # et ou la chaine relevee sur la grille ne se retrouve plus telle quelle.
+# La VIRGULE fait partie de la locution : l'auteur empile parfois des locutions
+# paralleles qui partagent une definition — « Extraktar radiko, quadrata,
+# kubala, di nombro : ... », c'est-a-dire la racine carree et la racine cubique
+# en une seule fois ; « La matematiki pura, la mekaniko pura : ... ». Sans elle,
+# la definition qui suit grossissait le corps de la locution PRECEDENTE, qui
+# n'en pouvait mais.
 RE_LOKUCO=re.compile(r'(?:^|(?<=[.;:]\s)|(?<=\)\s)|(?<=[-\u2013]\s))'
-                     r'([A-ZÀ-Ý][A-Za-zà-ÿ]+(?:[- ][A-Za-zà-ÿ]+){0,4})\s*:\s')
+                     r'([A-ZÀ-Ý][A-Za-zà-ÿ]+(?:[-, ]+[A-Za-zà-ÿ]+){0,6})\s*:\s')
 # Un qualificatif de tete : « (matem.) », « (kemio) ». Une lettre ou un chiffre
 # seul entre parentheses est un numero d'enumeration, non un domaine.
 RE_KVAL=re.compile(r'(?:[-\u2013\s]*\((?![A-Za-z0-9]\))[^()]{1,60}\)\s*)+$')
@@ -858,11 +864,28 @@ def _fermo(t, i):
     return None
 
 
+def _enhavas(tuto, parto):
+    """`parto` est-il un morceau de `tuto`, aux mots entiers ?
+
+    La comparaison se fait mot a mot, ponctuation otee : le filet releve
+    « quadrata » la ou la locution ecrit « quadrata, ».
+    """
+    def _mots(s): return [w.strip('.,;:') for w in s.lower().split() if w.strip('.,;:')]
+    A, B = _mots(tuto), _mots(parto)
+    if not A or not B or len(B) > len(A): return False
+    return any(A[i:i+len(B)] == B for i in range(len(A)-len(B)+1))
+
+
 def _kongruas(a, b):
     """Deux chaines designent-elles la meme locution ?"""
     a=a.lower().strip(' .:'); b=b.lower().strip(' .:')
     if a == b: return True
-    pa=a.split(); pb=b.split()
+    # Mot a mot, la ponctuation de fin otee : le filet de « radiko » s'arrete
+    # sur « Extraktar radiko, quadrata » quand la locution ecrit « quadrata, ».
+    # Sans cela la virgule, presente d'un cote et pas de l'autre, faisait
+    # echouer la comparaison des debuts.
+    pa=[w.strip('.,;:') for w in a.split()]
+    pb=[w.strip('.,;:') for w in b.split()]
     if not pa or not pb: return False
     # Le premier mot suffit s'il est long : « Prpporciono » relu
     # « Proporciono » reste reconnaissable, et la suite est identique.
@@ -1003,7 +1026,10 @@ def strukturizar(e):
         b['teksto']=majuskla_komenco(b['teksto'])
         for x in b['sub']:
             x['loko']=minuskla_lokuco(x['loko'])
-            x['teksto']=majuskla_komenco(x['teksto'])
+            # Le tiret qui introduisait la locution SUIVANTE reste au bout du
+            # corps de la precedente — « ... relate Suno. – ». Il n'annonce
+            # plus rien, la locution ayant pris son alinea.
+            x['teksto']=majuskla_komenco(x['teksto'].rstrip(" -–,;"))
             # Le qualificatif est garde NU, comme le champ `fako` de l'article :
             # ce sont les editions qui posent les parentheses. Sans cela le
             # domaine d'une locution — pris entre parentheses dans le texte —
@@ -1039,7 +1065,11 @@ def strukturizar(e):
         for x in b['sub']:
             x['teksto_k']=marki(x['teksto'], kur)
     # Un fragment absent du corps n'est pas douteux s'il a trouve sa place
-    # ailleurs : domaine, nom latin, locution.
+    # ailleurs : domaine, nom latin, locution — fut-ce une PART de locution.
+    # Le filet de « radiko » se rompt en fin de ligne et rend « Extraktar
+    # radiko, quadrata » puis « kubala, di nombro » : la seconde moitie ne se
+    # retrouve nulle part telle quelle, et pourtant elle est placee, la
+    # locution ayant pris son alinea.
     fakoj={(e.get('fako') or '').lower()} | {x['fako'].lower() for b in strukt for x in b['sub']}
     fakoj={f.strip(' ().') for f in fakoj if f}
     lat={x.lower() for x in (e.get('latina') or [])}
@@ -1048,7 +1078,7 @@ def strukturizar(e):
                   if u.lower().rstrip('.') not in fakoj
                   and not any(u.lower().rstrip('.') in f for f in fakoj)
                   and u.lower() not in lat
-                  and not any(_kongruas(u, L) for L in lokoj)]
+                  and not any(_kongruas(u, L) or _enhavas(L, u) for L in lokoj)]
     return n_sub
 
 
@@ -1156,6 +1186,14 @@ def konstrui():
             # de l'original, non du texte. « titrar » commencait par un point.
             S[k]=orfa_parentezo(formuli(cifri(pointi_sencoj(surcharge(espacar(t)))))).lstrip('.,;:) ').strip()
     # (cifri et formuli n'interviennent qu'ici, une fois la relecture posee)
+    # Second passage des corrections a l'oeil. Une ligne de vorti.txt ecrite
+    # d'apres le texte RENDU ne pouvait pas s'appliquer plus haut : « de l til
+    # 10 litri » (bidono) porte un 10 que cifri n'avait pas encore tire du
+    # « lO » de la dactylo, et la correction ne prenait jamais — en silence.
+    # La fonction est idempotente : une correction deja posee ne trouve plus sa
+    # forme fautive et ne fait rien.
+    n=corriger_vorti(ent)
+    if n: print("mots corriges apres la mise en chiffres : %d"%n)
     # Article commence en bas de page, abandonne, puis RECOMMENCE en tete de la
     # page suivante. « ampère » est le seul cas du livre : la premiere version
     # s'arrete net, sans code de langues ; la seconde est complete. L'edition de

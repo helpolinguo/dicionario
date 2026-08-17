@@ -6,7 +6,7 @@ scientifique. L'edition epuree lit ces filets et les rend. Voici ceux
 qu'elle n'a pas su placer : le fragment releve ne se retrouve pas tel
 quel dans le texte, ou ne couvre que des mots-outils.
 
-**1769 fragments**, sur 9466 articles. La premiere famille est
+**1764 fragments**, sur 9466 articles. La premiere famille est
 la seule qui demande un arbitrage : les autres sont des artefacts du
 releve des filets, ou le trait deborde ou s'arrete trop tot.
 
@@ -599,7 +599,7 @@ releve des filets, ou le trait deborde ou s'arrete trop tot.
 | 523 | shagrino | `quan` |
 | 523 | shalmo | `quan` |
 
-## Coupe au milieu d'un mot, ou reste du mot-vedette — 1195
+## Coupe au milieu d'un mot, ou reste du mot-vedette — 1190
 
 | page | mot-vedette | fragment souligne |
 |---:|---|---|
@@ -745,7 +745,6 @@ releve des filets, ou le trait deborde ou s'arrete trop tot.
 | 84 | ceptro | `mpero-` |
 | 84 | ceriz-lauro | `cerasus (prunus) laurocerasus` |
 | 85 | ceruzo | `to e` |
-| 85 | cesio | `kemiala` |
 | 85 | chamado | `a en` |
 | 88 | chimo | `s, e` |
 | 89 | cibolo | `allium fistu-` |
@@ -907,7 +906,6 @@ releve des filets, ou le trait deborde ou s'arrete trop tot.
 | 169 | flanelo | `lanelo` |
 | 169 | flanjo | `lanjo` |
 | 171 | fluktuar | `luktuar` |
-| 172 | fluorino | `kemiala` |
 | 173 | fomentar | `fomenta` |
 | 174 | forcato | `forc` |
 | 175 | formulo | `dete` |
@@ -934,7 +932,6 @@ releve des filets, ou le trait deborde ou s'arrete trop tot.
 | 184 | furnazo | `furna` |
 | 184 | fusto | `artilrio` |
 | 184 | fuxino | `fuxi` |
-| 184 | fuxino | `kemiala` |
 | 187 | gangliono | `angliono` |
 | 187 | gangrenar | `angrenar` |
 | 187 | ganso | `anso` |
@@ -960,7 +957,6 @@ releve des filets, ou le trait deborde ou s'arrete trop tot.
 | 202 | grosiera | `pri person` |
 | 203 | guardo | `a la r` |
 | 203 | guardo | `uardo` |
-| 203 | guayakolo | `kemiala` |
 | 204 | guindo | `juliana` |
 | 205 | guvernar | `guvern` |
 | 205 | guyavo | `guyaba` |
@@ -1648,7 +1644,6 @@ releve des filets, ou le trait deborde ou s'arrete trop tot.
 | 526 | sibarito | `rito` |
 | 527 | signifikar | `gnifikar` |
 | 527 | sika | `s ko` |
-| 527 | silico | `kemiala` |
 | 529 | simular | `yurocienco` |
 | 531 | sinoptika | `fio pozitivista` |
 | 532 | siringo | `lo k` |
