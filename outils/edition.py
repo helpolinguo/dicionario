@@ -622,6 +622,13 @@ def analizar(e, lexique=None):
     # code de s'ancrer en fin de chaine, et « exotera » passait pour
     # « sen-lingua », son DEFIRS reste au milieu de la definition.
     t=re.sub(r'[\s"\u00ab\u00bb\u2019\'.,;:_+*=/|\-\u2013\u2014]{6,}$', '', t)
+    # La rature porte parfois des LETTRES — « myelito. ... - DEFIS. vm-----m- ».
+    # La regle ci-dessus, qui exige une queue sans lettre ni chiffre, la
+    # laissait passer : la definition gardait le barbouillage, et le code, qui
+    # ne s'ancrait plus en fin de chaine, etait perdu — l'article passait pour
+    # « sen-lingua ». Un jeton qui porte trois tirets de suite n'est aucun mot
+    # de la langue ; le livre n'en compte que cinq, tous des ratures.
+    t=re.sub(r'[\s.,;:\-\u2013]*\S*-{3,}\S*[\s.,;:\-\u2013]*$', '', t)
     e['teksto']=t
     # Le tapuscrit marque les mots non officiels d'un « + » en exposant ; la
     # tradition ido ecrit une asterisque. On la restitue ici — le fac-simile,
@@ -1019,6 +1026,21 @@ def simboli_manuala(fichier=f"{T}/simboli.txt"):
     return _SIMBOLI
 
 
+def _kodo_ne_simbolo(e):
+    """Un code de langues qui EGALE le symbole chimique n'est pas un code.
+
+    Le symbole ferme parfois l'article, sans rien derriere lui : « palado. ...
+    Simbolo kemiala : Pd. » Le decodage a lu ce « Pd. » comme un code de
+    langues et en a tire « portugalana, germana ». L'article n'en porte aucun.
+    """
+    k = (e.get('kodo') or '').strip('.').lower()
+    if k and k == (e.get('simbolo') or '').strip('.').lower():
+        e['kodo'] = None
+        e['lingui'] = []
+        if 'sen-lingua' not in e.get('drapeli', []):
+            e.setdefault('drapeli', []).append('sen-lingua')
+
+
 def apartigar_simbolon(e):
     """Sort le symbole chimique du texte et le met dans son champ.
 
@@ -1056,6 +1078,7 @@ def apartigar_simbolon(e):
             continue
         e['simbolo'] = man or sim
         S[k] = espacar((t[:m.start()] + ' ' + suite).strip(' .,;:–-'))
+        _kodo_ne_simbolo(e)
         return 1
     # L'etiquette n'est plus dans le texte : ou bien la dactylo ne l'a pas
     # frappee, ou bien un passage precedent l'en a deja sortie. Une lecture
@@ -1063,7 +1086,9 @@ def apartigar_simbolon(e):
     # que le decodage n'avait lu qu'a moitie — « Ca » pour « Ca F² ».
     if man and e.get('simbolo') != man:
         e['simbolo'] = man
+        _kodo_ne_simbolo(e)
         return 1
+    _kodo_ne_simbolo(e)
     return 0
 
 

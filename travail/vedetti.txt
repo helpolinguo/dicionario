@@ -54,3 +54,4 @@ poli	poli-	prefixo : la originalo skribas « poli... », do la streketo sequas
 tri@600:23	tri-	prefixo ciencala ; la altra « tri » (p600 l21) esas la cifro 3, sen streketo
 intelektuelo	*intelektuelo	vorto ne oficala
 brokoli"-kaulo	«brokoli»-kaulo	p081 : la guillemeti di la originalo, en la formo ido
+burgo@85:16	burso	p078 : « Saketo por portar moneto-peci en la posho » est la bourse, non le bourg — que la vedette burgo@84:49 definit deja. La lecture g pour s ; « burso » remet la vedette dans l ordre alphabetique, entre burokrato et buso, et le drapeau ordino-ruptita tombe.

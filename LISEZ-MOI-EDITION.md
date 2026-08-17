@@ -187,14 +187,14 @@ dictionnaire. Plutôt que de masquer ce qui reste, la base le **signale** :
 
 | drapeau | entrées | ce qu'il veut dire |
 |---|---|---|
-| `ordino-ruptita` | 1 157 | **la vedette rompt l'ordre alphabétique** |
+| `ordino-ruptita` | 1 156 | **la vedette rompt l'ordre alphabétique** |
 | `sen-lingua` | 1 039 | pas de code de langues final — souvent normal, le livre n'en donne pas toujours |
 | `finalo-nekustumala` | 237 | finale étrangère à la morphologie d'Ido (-o, -a, -e, -i, -ar, -ir, -or) |
 | `pagino-nefidinda` | 32 | pages 539-540, photographiées à une autre échelle, décodage nettement moins sûr |
 | `artiklo-dividita` | 11 | l'article était coupé par un saut de page ; les deux moitiés ont été recollées |
 | `sen-chefvorto` | 0 | l'entrée n'a pas de vedette lisible — plus aucun cas |
 
-**7 340 entrées ne portent aucun drapeau.**
+**7 341 entrées ne portent aucun drapeau.**
 
 `korektita` a cessé d'être un drapeau : il disait « au moins une cellule
 corrigée automatiquement », une provenance et non un doute, et toutes les
@@ -205,10 +205,10 @@ en portent au moins une.
 `ordino-ruptita` est le plus utile des drapeaux. Un dictionnaire est trié : une
 vedette qui rompt l'ordre désigne presque toujours une mauvaise lecture, dans
 l'une des deux vedettes voisines — *aoendar* pour *acendar*, *a)rotano* pour
-*abrotano*, *aacho* pour le suffixe *-acho*. **Corriger ces 1 157 cas, c'est
+*abrotano*, *aacho* pour le suffixe *-acho*. **Corriger ces 1 156 cas, c'est
 achever le livre**, et le travail est divisible : chacun peut en prendre cent.
 
-**2 126 entrées portent au moins un drapeau.** L'édition HTML ne les filtre plus
+**2 125 entrées portent au moins un drapeau.** L'édition HTML ne les filtre plus
 — elle n'offre que la recherche ; le tri se fait sur `drapeli`, dans le JSONL ou
 dans la colonne du même nom du TSV.
 

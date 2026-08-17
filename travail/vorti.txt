@@ -60,3 +60,4 @@ uzata kande on parolas	uzata kande onu parolas	p605 tu
 la osto *sfenoida	la osto sfenoida	p225 hipofizo : vorto oficala, sen asterisko
 qualan kande on renkontras	qualan kande onu renkontras	p382 mineralogio
 senteblano	senteblan o	p061 bela : « per igar senteblan o per manifestar » — deux mots soudes
+e .c	e c.	p613 verda : « di herbo, e c. » — le point de l abreviation a saute avant le c
