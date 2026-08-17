@@ -1,0 +1,27 @@
+# Symboles chimiques releves A L'OEIL sur le fac-simile.
+#
+# Le livre donne le symbole de quatre-vingt-neuf corps. Pour onze d'entre eux
+# le decodage a bien lu l'etiquette — « Simbolo kemiala » — mais a perdu le
+# symbole qui la suit ; pour un douzieme il ne l'a lu qu'a moitie. On ne devine
+# pas un symbole : ceux-ci ont ete lus un par un sur la page, et le folio
+# imprime est donne en regard pour qu'on puisse y retourner.
+#
+# La cle est celle de subvorti.txt : vedetto@image:ligno. Elle designe UNE
+# ligne de la grille, donc un article et un seul — deux articles peuvent porter
+# la meme vedette.
+#
+# Une valeur posee ici l'emporte sur ce que le decodage aurait lu.
+#
+# cle	symbole	folio imprime et lecture
+fero@171:14	Fe	f.162 « Metalo blanka, grizatra... - Simbolo kemiala : Fe. - EFIS. »
+fluoro@179:5	F	f.170 « Korpo simpla, metaloida... - Simbolo kemiala : F. - DEFIRS. »
+fluorino@179:13	CaF₂	f.170 « Kombinuro de fluoro e kalcio. - Simbolo kemiala : Ca F² » — le decodage n'avait retenu que « Ca », le « F² » etant rejete a la ligne suivante
+fosfo@182:50	P	f.173/175 « Korpo simpla, tre inflamebla, venena... Simb. kem.: P. DEFIRS »
+germanio@199:32	Ge	f.192 « Metalo griza, metal-briloza... Simbolo kemiala : Ge. - DEF. »
+litio@348:31	Li	f.341 « Korpo simpla, la maxim lejera ek omna metali konocata. - Simb. kemiala : Li. - DEFIRS. »
+neono@399:22	Ne	f.392 « Elemento qua esas gasa ye la temperaturo ordinara... - Simbolo kemiala : Ne. - DEFIRS. »
+nikelo@401:21	Ni	f.394 « Korpo simpla, metala, griza-blanka... - Simbolo kemiala : Ni. - DE. »
+palado@423:24	Pd	f.416 « Metalo blanka, tre maleebla, poke gisebla. - Simbolo kemiala : Pd. »
+selenio@524:7	Se	f.517 « Korpo simpla, metaloido vicina ye sulfo... - Simb. kemiala : Se. - DEFIRS. »
+stano@557:8	Sn	f.550 « Korpo simpla, metalo grizatra... - Simbolo kemiala : Sn. - EFIS. »
+stroncio@563:47	Sr	f.556 « Korpo simpla, metala, di qua la atom-pezo esas 87,6. Simbolo kemiala : Sr. - DEFIRS. »

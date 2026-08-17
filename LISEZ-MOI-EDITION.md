@@ -48,6 +48,14 @@ fourni ; `ligno` la ligne de la grille du tapuscrit. **Chaque entrée peut donc
 être ramenée au fac-similé**, ligne par ligne. C'est la condition pour que ce
 travail reste vérifiable dans vingt ans.
 
+Une réserve sur `pagino`, vérifiée sur le fac-similé : il vaut `image - 7` pour
+les 9 466 entrées, sans exception — c'est un calcul, non une lecture. Or **le
+livre saute deux numéros** : la page qui porte `fosfo` est numérotée
+« 173/175 », doublement, et l'écart change de part et d'autre. Après elle,
+`pagino` est bien le folio imprimé ; **avant elle, le folio imprimé vaut
+`pagino - 2`**. `image` et `ligno`, eux, restent exacts de bout en bout : c'est
+sur eux que reposent les clés de `subvorti.txt` et de `simboli.txt`.
+
 `teksto_brut` est la ligne telle que le décodage l'a lue ; `teksto` la même
 après correction et typographie ; `senci` le découpage en sens numérotés, débarrassé
 des numéros de l'original. `citita` marque l'emprunt que l'auteur cite entre
@@ -117,19 +125,23 @@ recherche.
 Or ce n'est pas un mot de la langue mais une étiquette, de même nature que le
 nom latin. Elle a donc son champ, `simbolo`, et les deux éditions la rendent
 d'une seule façon — l'étiquette en italique, le symbole **droit**, une formule
-penchée se lisant mal. **77 articles** le portent.
+penchée se lisant mal. **88 articles** le portent — tous sauf un.
 
-Trois cas y échappent, et c'est voulu :
+Onze articles portaient l'étiquette sans son symbole : le décodage l'avait
+perdue. Ces onze-là, plus un douzième que le décodage n'avait lu qu'à moitié
+(`fluorino` : `Ca` pour `Ca F²`), ont été **relevés à l'œil sur le fac-similé**
+et posés dans `travail/simboli.txt`, avec le folio imprimé en regard pour qu'on
+puisse y retourner. La clé y est celle de `subvorti.txt` — `vedetto@image:ligno`
+—, et une valeur posée là l'emporte sur ce que le décodage aurait lu.
 
-- **onze articles** — `fero`, `fluoro`, `fosfo`, `germanio`, `litio`,
-  `neono`, `nikelo`, `palado`, `selenio`, `stano`, `stroncio` — portent
-  l'étiquette, mais le symbole ne s'est pas décodé. On ne l'invente pas : leur
-  texte reste tel quel, et le manque reste visible ;
-- **`ruteno`** : l'article suivant, `rutino`, s'est fondu dans son texte au
-  décodage. Ce qui suit l'étiquette n'y est pas un symbole mais un article
-  entier — au-delà de quarante signes, on n'extrait rien ;
-- **`iridio`** : l'étiquette y était en incise au milieu d'une phrase. Elle est
-  extraite comme les autres, et la phrase se referme sur elle-même.
+Un seul cas reste à l'écart, et c'est voulu : **`ruteno`**, dans le texte duquel
+l'article suivant, `rutino`, s'est fondu au décodage. Ce qui suit l'étiquette
+n'y est pas un symbole mais des lignes entières ; au-delà de quarante signes on
+n'extrait rien, et on n'y pose rien non plus — couper là détruirait l'article
+fondu au lieu de le signaler.
+
+**`iridio`** avait son étiquette en incise au milieu d'une phrase ; elle est
+extraite comme les autres, et la phrase se referme sur elle-même.
 
 ### Les soulignements de l'auteur (`sublineita`, `kursiva`, `dubinda`)
 

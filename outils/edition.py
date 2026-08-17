@@ -999,14 +999,38 @@ RE_SIMBOLO = re.compile(r'[\s.,;:–-]*(\()?\s*simb(?:olo|\.)\s*kem(?:iala|\.)?'
 LONGO_SIMBOLO = 40
 
 
+_SIMBOLI = None
+
+
+def simboli_manuala(fichier=f"{T}/simboli.txt"):
+    """Les symboles releves a l'oeil sur le fac-simile, la ou le decodage les
+    a perdus. Meme cle que subvorti.txt : vedetto@image:ligno."""
+    global _SIMBOLI
+    if _SIMBOLI is None:
+        _SIMBOLI = {}
+        if os.path.exists(fichier):
+            for l in open(fichier, encoding='utf-8'):
+                l = l.rstrip("\n")
+                if not l.strip() or l.startswith('#'):
+                    continue
+                p = l.split("\t")
+                if len(p) >= 2 and p[0].strip() and p[1].strip():
+                    _SIMBOLI[p[0].strip()] = p[1].strip()
+    return _SIMBOLI
+
+
 def apartigar_simbolon(e):
     """Sort le symbole chimique du texte et le met dans son champ.
 
-    Rend 1 si un symbole a ete pose. Les articles ou la dactylo a bien frappe
-    l'etiquette mais ou le symbole ne s'est pas decode — « fero », « neono »,
-    six autres — gardent leur texte tel quel : l'etiquette sans symbole ne dit
-    rien, mais l'effacer effacerait aussi la trace du manque.
+    Rend 1 si un symbole a ete pose. La ou la dactylo a bien frappe l'etiquette
+    mais ou le symbole ne s'est pas decode, on va le chercher dans simboli.txt,
+    releve a l'oeil sur la page ; faute de l'y trouver, l'article garde son
+    texte tel quel — l'etiquette sans symbole ne dit rien, mais l'effacer
+    effacerait aussi la trace du manque.
     """
+    man = simboli_manuala().get("%s@%d:%d" % (e.get('vedetto'),
+                                              e.get('image', -1),
+                                              e.get('ligno', -1)))
     S = e.get('senci') or []
     for k, t in enumerate(S):
         m = RE_SIMBOLO.search(t)
@@ -1022,10 +1046,23 @@ def apartigar_simbolon(e):
         else:
             sim, suite = resto, ''
         sim = sim.strip(' .,;:')
-        if not sim or len(sim) > LONGO_SIMBOLO:
+        # Un texte contamine ne se laisse pas couper : chez « ruteno »
+        # l'article suivant s'est fondu dans le sien, et ce qui suit
+        # l'etiquette n'est pas un symbole mais des lignes entieres. On n'y
+        # touche pas, meme pour y poser une lecture faite a l'oeil.
+        if len(sim) > LONGO_SIMBOLO:
             continue
-        e['simbolo'] = sim
+        if not sim and not man:
+            continue
+        e['simbolo'] = man or sim
         S[k] = espacar((t[:m.start()] + ' ' + suite).strip(' .,;:–-'))
+        return 1
+    # L'etiquette n'est plus dans le texte : ou bien la dactylo ne l'a pas
+    # frappee, ou bien un passage precedent l'en a deja sortie. Une lecture
+    # faite a l'oeil s'y pose tout de meme, et corrige au besoin un symbole
+    # que le decodage n'avait lu qu'a moitie — « Ca » pour « Ca F² ».
+    if man and e.get('simbolo') != man:
+        e['simbolo'] = man
         return 1
     return 0
 
