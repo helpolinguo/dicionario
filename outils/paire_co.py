@@ -19,7 +19,7 @@ MAXI_FAUTIF  = 2      # occurrences maximales de la forme fautive
 
 def executer():
     from edition import charger_texte
-    pages,_=charger_texte()
+    pages,_,_=charger_texte()
     lignes=[]
     for pg in sorted(pages):
         for k,s in pages[pg]:

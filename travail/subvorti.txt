@@ -1,0 +1,16 @@
+# Articles que l'auteur a rattaches a celui qui les precede.
+#
+# Il l'a marque d'un double tiret dans la marge, avant le mot-vedette :
+#
+#     protestar.  (netrans.) I. Agar reklamaco formala kontre ago, ...
+#     -- protestanto. (religio kristana).Persono qua apartenas a la ...
+#
+# Ce double tiret devant une vedette est UNIQUE dans les six cent quarante
+# pages du livre : c'est donc un signe, et le seul sens qu'il puisse avoir est
+# la dependance envers l'article du dessus. L'article rattache garde tout ce
+# qui lui appartient — son domaine, son code de langues, sa page — mais il se
+# compose en sous-entree, et la recherche continue de le trouver par son nom.
+#
+# Une ligne : enfant@image:ligne <TAB> parent@image:ligne
+# La cible est nommee page et ligne : deux articles peuvent porter le meme mot.
+protestanto@474:46	protestar@474:40

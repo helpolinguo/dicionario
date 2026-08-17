@@ -60,6 +60,10 @@ article{padding:11px 0;border-bottom:1px solid var(--lin)}
 .senco{margin:4px 0 0}
 .senco b{color:var(--sub);font-weight:600;font-size:13px;margin-right:4px}
 .lat{font-style:italic;color:var(--sub)}
+.subvorto{margin:3px 0 3px 16px;text-indent:-10px;line-height:1.45}
+.subvorto>b{color:var(--acc)}
+.subvorto .lin{color:var(--sub);font-size:11.5px;margin-left:6px;letter-spacing:.03em}
+.subvorto::before{content:"\u25b8";color:var(--acc);margin-right:5px}
 .meta{margin-top:5px;font-size:11.5px;color:var(--sub);font-family:system-ui,sans-serif;
  display:flex;gap:9px;flex-wrap:wrap}
 .dr{color:var(--flag)}
@@ -84,6 +88,30 @@ const lst=document.getElementById('lst'),q=document.getElementById('q'),
       nb=document.getElementById('nombro');
 const esc=s=>s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
 function surl(t,r){if(!r)return esc(t);return esc(t).replace(new RegExp('('+r.replace(/[.*+?^${}()|[\\]\\\\]/g,'\\\\$&')+')','gi'),'<mark>$1</mark>');}
+// L'edition depose deux bornes invisibles autour de ce que l'auteur avait
+// souligne — domaine, mot cite, nom scientifique. On les rend en italique.
+// Le surlignage de la recherche s'applique morceau par morceau, sinon il
+// couperait une balise en deux.
+// Tout le texte d'un article, bornes otees : c'est la-dessus que porte la
+// recherche dans les definitions. On le calcule une fois par article.
+function texto(e){
+ if(e._t===undefined) e._t=(e.b||[]).map(b=>b.t+' '+(b.u||[]).map(
+   x=>x.k+' '+x.q+' '+x.t).join(' ')).join(' ').replace(/[\ue000\ue001]/g,'').toLowerCase();
+ return e._t;}
+function korpo(t,r){
+ if(t.indexOf('\ue000')<0){
+  // Aucune borne : la parenthese de tete reste un qualificatif a marquer.
+  // Une parenthese d'une seule lettre ou d'un seul chiffre est un numero
+  // d'enumeration — « (a) », « (1) » —, non un qualificatif.
+  const m=t.match(/^((?:\((?![a-zA-Z0-9]\))[^()]{1,120}\)\s*)+)/);
+  // Formule chimique : l'italique la couperait de son indice.
+  const kem=m&&(/[0-9\u2080-\u2089]/.test(m[1])||/^[\u2080-\u2089]/.test(t.slice(m[0].length)));
+  return (m&&!kem)?'<i>'+surl(m[1].trim(),r)+'</i> '+surl(t.slice(m[0].length),r):surl(t,r);}
+ let h='',dedans=false;
+ t.split(/[\ue000\ue001]/).forEach((p,i)=>{
+  if(!p){dedans=!dedans;return;}
+  h+=dedans?'<i>'+surl(p,r)+'</i>':surl(p,r); dedans=!dedans;});
+ return h;}
 function rendi(e,r){
  // Emprunt cite : chevrons a l'affichage seulement. La recherche porte sur
  // le mot nu, sinon « amen » ne se trouverait plus.
@@ -91,14 +119,17 @@ function rendi(e,r){
  if(e.f)h+='<span class="fako">('+esc(e.f)+')</span>';
  // La parenthese de tete d'un sens est un qualificatif, de meme nature que le
  // domaine de l'article : elle prend l'italique comme lui.
- e.s.forEach((s,i)=>{// Une parenthese de tete d'une seule lettre ou d'un seul chiffre est un
-  // numero d'enumeration — « (a) », « (1) » — non un qualificatif : elle reste
-  // droite et arrete la serie.
-  const m=s.match(/^((?:\((?![a-zA-Z0-9]\))[^()]{1,120}\)\s*)+)/);
-  // Formule chimique : l'italique la couperait de son indice.
-  const kem=m&&(/[0-9\u2080-\u2089]/.test(m[1])||/^[\u2080-\u2089]/.test(s.slice(m[0].length)));
-  const c=(m&&!kem)?'<i>'+surl(m[1].trim(),r)+'</i> '+surl(s.slice(m[0].length),r):surl(s,r);
-  h+='<p class="senco">'+(e.s.length>1?'<b>'+(i+1)+'.</b>':'')+c+'</p>';});
+ const B=e.b||[];
+ B.forEach((b,i)=>{
+  // Un sens sans corps propre porte son numero sur sa premiere sous-entree,
+  // plutot que seul sur une ligne vide.
+  let num=(B.length>1)?(i+1):0;
+  if(b.t||!(b.u&&b.u.length)){
+   h+='<p class="senco">'+(num?'<b>'+num+'.</b>':'')+korpo(b.t,r)+'</p>'; num=0;}
+  (b.u||[]).forEach(x=>{h+='<p class="subvorto">'+(num?'<b>'+num+'.</b> ':'')
+   +'<b>'+surl(x.k,r)+'</b>'+(x.q?' <i>('+esc(x.q)+')</i>':'')+' '+korpo(x.t,r)
+   +(x.n&&x.n.length?'<span class="lin">'+esc(x.n.join(', '))+'</span>':'')+'</p>';
+   num=0;});});
  if(e.l&&e.l.length)h+='<p class="senco lat">L. '+esc(e.l.join('; '))+'</p>';
  h+='<div class="meta"><span>p. '+e.p+', l. '+e.g+'</span>';
  if(e.n&&e.n.length)h+='<span>'+esc(e.n.join(', '))+'</span>';
@@ -135,7 +166,10 @@ function formi(v){
  return m ? [m[1], m[1]+m[2]] : [v];
 }
 function rango(e,r){
- const fs=formi(e.v);
+ // Les locutions sont des mots qu'on cherche, au meme titre que la vedette :
+ // « voco aktiva », « protestanto ». Sans cela elles ne se trouvaient qu'au
+ // rang des definitions, tout en bas de la liste.
+ const fs=formi(e.v).concat((e.b||[]).flatMap(b=>(b.u||[]).map(x=>x.k.toLowerCase())));
  let best=-1;
  for(const v of fs){const g=rang1(e,v,r); if(g>=0&&(best<0||g<best))best=g;}
  return best;
@@ -148,7 +182,7 @@ function rang1(e,v,r){
   const d=lev(v,r,2);
   if(d<=1)return 3;
   if(d<=2)return 4;}
- if(e.s.join(' ').toLowerCase().includes(r))return 5;
+ if(texto(e).includes(r))return 5;
  return -1;}
 function montri(){
  const r=q.value.trim().toLowerCase();
@@ -165,7 +199,13 @@ q.addEventListener('input',montri); montri();
 </script></html>"""
 
 def html_edition(ent):
-    D=[{"v":e['vedetto'],"f":e['fako'],"s":e['senci'],"l":e['latina'],
+    D=[{"v":e['vedetto'],"f":e['fako'],"l":e['latina'],
+        "b":[{"t":b.get('teksto_k') or b.get('teksto') or '',
+              "u":[{"q":x.get('fako') or '',"k":x['loko'],
+                    "t":x.get('teksto_k') or x.get('teksto') or '',
+                    **({"n":x['lingui']} if x.get('lingui') else {})}
+                   for x in (b.get('sub') or [])]}
+             for b in (e.get('strukt') or [])],
         "n":e['lingui'],"p":e['pagino'],"g":e['ligno'],"d":e['drapeli'],
         **({"c":1} if e.get('citita') else {})} for e in ent]
     s=GABARITO.replace("__DATA__", json.dumps(D, ensure_ascii=False, separators=(',',':')))

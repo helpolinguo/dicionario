@@ -141,17 +141,17 @@ def _signaturo():
 def charger_texte(kash=True):
     import pickle
     kf=f"{T}/_pages.pkl"
-    sig=_signaturo()
+    sig=("v2", _signaturo())
     if kash and os.path.exists(kf):
         try:
-            with open(kf,"rb") as h: pages,corrigees,vieux=pickle.load(h)
-            if vieux==sig: return pages,corrigees
+            with open(kf,"rb") as h: pages,corrigees,filetoj,vieux=pickle.load(h)
+            if vieux==sig: return pages,corrigees,filetoj
         except Exception: pass
-    pages,corrigees=_charger_texte()
+    pages,corrigees,filetoj=_charger_texte()
     try:
-        with open(kf,"wb") as h: pickle.dump((pages,corrigees,sig),h)
+        with open(kf,"wb") as h: pickle.dump((pages,corrigees,filetoj,sig),h)
     except Exception: pass
-    return pages,corrigees
+    return pages,corrigees,filetoj
 
 
 def _charger_texte():
@@ -159,7 +159,7 @@ def _charger_texte():
     from generer import exceptions
     lab,M=charger(); tab=np.load(f"{T}/cls_lab.npy",allow_pickle=True); exc=exceptions()
     corrigees=set((p,k,c) for (p,k,c) in exc)
-    pages={}
+    pages={}; filetoj={}
     for pg in range(int(M[:,0].max())+1):
         try: lignes=page_texte(pg,lab,M,tab)
         except Exception: continue
@@ -179,7 +179,20 @@ def _charger_texte():
             par=dict(out); par.update(sup)
             out=sorted(par.items())
         pages[pg]=out
-    return pages, corrigees
+        # Les filets de soulignement de la page, tels que le decoupage des
+        # cellules les a releves : une liste de plages de COLONNES par ligne,
+        # dans la meme numerotation que le texte rendu ci-dessus. C'est la
+        # marque que l'auteur a portee lui-meme sur son tapuscrit ; elle
+        # designe le domaine, la locution, le nom latin, le mot cite.
+        try:
+            z=np.load(f"{T}/cellules/p-{pg:03d}.npz", allow_pickle=True)
+            import pickle as _pk
+            sou=_pk.loads(z['sou'].item())
+            filetoj[pg]={int(k): [(int(a),int(b)) for a,b in v[1]]
+                         for k,v in sou.items() if v[1]}
+        except Exception:
+            filetoj[pg]={}
+    return pages, corrigees, filetoj
 
 
 _ND=None
@@ -202,7 +215,8 @@ RE_FOLIO=re.compile(r'^[\dlOoIi][\dlOoIi\s/.,\u2013-]{0,7}$')
 # « ... sen shancelar   563 ». Il n'appartient pas a la phrase.
 RE_FOLIO_FIN=re.compile(r'\s{2,}[\dlOoIi]{1,4}[.,]?$')
 
-def decouper(pages, corrigees):
+def decouper(pages, corrigees, filetoj=None):
+    filetoj = filetoj or {}
     ent=[]; tetoj={}
     for pg in sorted(pages):
         if pg < 8: continue          # liminaires : titre, preface, rezumo di gramatiko
@@ -329,7 +343,53 @@ def decouper(pages, corrigees):
     for e in ent:
         e['korektita'] = sum(1 for (k,_) in e['lineoj']
                              for c in range(120) if (e['image'],k,c) in corrigees)
+        e['filetoj'] = filetoj.get(e['image'], {})
     return ent
+
+
+def sublineajoj(e):
+    """Ce que l'auteur a SOULIGNE dans l'article, remis bout a bout.
+
+    Le tapuscrit n'a pas d'italique : la dactylo souligne. Elle souligne le
+    mot-vedette, le nom latin, le domaine — « (matem.) » — et la locution qui
+    porte sa propre definition — « Proporciono geometriala : ... ». Le releve
+    des filets donne, ligne par ligne, des plages de colonnes ; il suffit d'y
+    lire le texte.
+
+    Une locution coupee en fin de ligne se recolle : « Proporciono geome- »
+    puis « triala ». Le trait d'union est celui de la coupure, non du mot.
+    """
+    fil=e.get('filetoj') or {}
+    par={k:s for k,s in e['lineoj']}
+    morceaux=[]                       # (texte, coupe_a_la_fin)
+    for k,s in e['lineoj']:
+        fin=len(s.rstrip())
+        for a,b in sorted(fil.get(k, [])):
+            if a >= len(s): continue
+            t=s[a:b+1]
+            # Le filet mord parfois sur la ponctuation voisine.
+            t=t.strip(" .,;:)(\u00ab\u00bb\"'")
+            if not t: continue
+            # Coupure de fin de ligne : le trait d'union suit immediatement.
+            coupe = s[b+1:fin].strip() == '-'
+            morceaux.append((t, coupe))
+    out=[]; i=0
+    while i < len(morceaux):
+        t,coupe = morceaux[i]
+        while coupe and i+1 < len(morceaux):
+            i += 1
+            t = t + morceaux[i][0]
+            coupe = morceaux[i][1]
+        out.append(t); i += 1
+    # Le mot-vedette est souligne comme le reste : il n'apprend rien ici.
+    v=(e.get('vedetto') or '').lower().lstrip('*+')
+    vu=set(); res=[]
+    for t in out:
+        u=re.sub(r'\s+',' ',t).strip()
+        if len(u) < 3 or u.lower().rstrip('.') == v: continue
+        if u.lower() in vu: continue
+        vu.add(u.lower()); res.append(u)
+    return res
 
 _FIN=("ar","ir","or","as","is","os","us","o","a","e","i")
 def _atteste(w, lexique):
@@ -720,9 +780,263 @@ def e_ok(e):
     if not (e.get('senci') or []) and re.fullmatch(r'[lI1O0]{2,4}', v): return False
     return True
 
+# La locution se presente toujours de la meme maniere : un groupe qui commence
+# par une capitale et que suit un deux-points. Le soulignement de l'auteur la
+# confirme ; la forme la trouve, meme la ou la relecture a corrige une coquille
+# et ou la chaine relevee sur la grille ne se retrouve plus telle quelle.
+RE_LOKUCO=re.compile(r'(?:^|(?<=[.;:]\s)|(?<=\)\s)|(?<=[-\u2013]\s))'
+                     r'([A-ZÀ-Ý][A-Za-zà-ÿ]+(?:[- ][A-Za-zà-ÿ]+){0,4})\s*:\s')
+# Un qualificatif de tete : « (matem.) », « (kemio) ». Une lettre ou un chiffre
+# seul entre parentheses est un numero d'enumeration, non un domaine.
+RE_KVAL=re.compile(r'(?:[-\u2013\s]*\((?![A-Za-z0-9]\))[^()]{1,60}\)\s*)+$')
+RE_NUMERO=re.compile(r'\(([A-Za-z0-9])\)\s*$')
+
+
+def _kongruas(a, b):
+    """Deux chaines designent-elles la meme locution ?"""
+    a=a.lower().strip(' .:'); b=b.lower().strip(' .:')
+    if a == b: return True
+    pa=a.split(); pb=b.split()
+    if not pa or not pb: return False
+    # Le premier mot suffit s'il est long : « Prpporciono » relu
+    # « Proporciono » reste reconnaissable, et la suite est identique.
+    import difflib
+    if len(pa) == len(pb):
+        return difflib.SequenceMatcher(None, a, b).ratio() >= 0.85
+    # Le filet s'arrete parfois avant la fin de la locution — « Elektro » pour
+    # « Elektro pozitiva ». Un debut assez long vaut identification.
+    court, long = (pa, pb) if len(pa) < len(pb) else (pb, pa)
+    if long[:len(court)] == court and len(" ".join(court)) >= 5: return True
+    return False
+
+
+KOMENCO="\ue000"; FINO="\ue001"     # bornes de l'italique, invisibles au texte
+
+
+def marki(t, motifs):
+    """Encadre de bornes chaque passage a mettre en italique.
+
+    On pose les plus longs d'abord : « (aludante persono) » contient
+    « persono », et l'ordre inverse aurait coupe la parenthese en deux.
+    """
+    if not t or not motifs: return t
+    spans=[]
+    for u in sorted(motifs, key=len, reverse=True):
+        for m in _tuti(u, t):
+            if any(not (m.end() <= a or m.start() >= b) for a,b in spans): continue
+            spans.append((m.start(), m.end()))
+    if not spans: return t
+    out=[]; prec=0
+    for a,b in sorted(spans):
+        out.append(t[prec:a]); out.append(KOMENCO+t[a:b]+FINO); prec=b
+    out.append(t[prec:])
+    return "".join(out)
+
+
+def _tuti(u, t):
+    if not u.strip(): return []
+    mo=re.compile(r'(?<![A-Za-z\u00c0-\u00ff])'
+                  + r'\s+'.join(re.escape(w) for w in u.split())
+                  + r'(?![A-Za-z\u00c0-\u00ff])', re.I)
+    return list(mo.finditer(t))
+
+
+# Une locution qui est un NOM PROPRE garde sa capitale. Le livre n'en compte
+# qu'une : le Grand Orient de la franc-maconnerie.
+LOKUCI_PROPRA = ('Granda Oriento',)
+
+
+def minuskla_lokuco(l):
+    """La locution s'ecrit comme une vedette : en minuscule."""
+    if not l or l in LOKUCI_PROPRA or not l[0].isupper(): return l
+    return l[0].lower() + l[1:]
+
+
+def majuskla_komenco(t):
+    """Initiale capitale, comme les dix mille autres definitions du livre.
+
+    On ne touche qu'a une definition qui COMMENCE par une lettre minuscule :
+    celle qui s'ouvre sur une parenthese — « (bot.) ... » — porte un domaine,
+    et le domaine s'ecrit en minuscule. Un renvoi d'un seul mot tres court —
+    « ica : ca » — n'est pas une phrase et garde le sien.
+    """
+    if not t: return t
+    i=0
+    while i < len(t) and t[i] in ' \ue000\ue001': i += 1
+    if i >= len(t) or not t[i].isalpha() or not t[i].islower(): return t
+    u=t.strip()
+    if len(u) <= 3 and ' ' not in u: return t
+    return t[:i] + t[i].upper() + t[i+1:]
+
+
+def strukturizar(e):
+    """Decoupe chaque sens en un corps et, s'il y a lieu, ses sous-entrees.
+
+    « proporciono » porte quatre locutions dans son second sens, chacune avec
+    sa propre definition. Les couler dans un seul paragraphe les rendait
+    introuvables ; on les detache, avec leur qualificatif de domaine.
+    """
+    subl=sublineajoj(e)
+    e['sublineita']=subl
+    strukt=[]; n_sub=0
+    for t in (e.get('senci') or []):
+        trov=[]
+        for m in RE_LOKUCO.finditer(t):
+            if any(_kongruas(m.group(1), u) for u in subl):
+                trov.append((m.start(1), m.end(1), m.end(), m.group(1)))
+        if not trov:
+            strukt.append({"teksto": t, "sub": []}); continue
+        sub=[]; bornes=[x[0] for x in trov]+[len(t)]
+        for i,(a,b,apres,loko) in enumerate(trov):
+            korpo=t[apres:bornes[i+1]].strip()
+            sub.append({"loko": loko, "fako": "", "teksto": korpo})
+        tete=t[:trov[0][0]]
+        # Le qualificatif colle a la locution qui suit, non au sens precedent.
+        for i in range(len(sub)):
+            src = tete if i == 0 else sub[i-1]["teksto"]
+            m=RE_KVAL.search(src)
+            if m:
+                q=m.group(0).strip(" -\u2013")
+                src=src[:m.start()]
+                sub[i]["fako"]=q
+                if i == 0: tete=src
+                else: sub[i-1]["teksto"]=src.rstrip(" -\u2013,;")
+        # Un numero d'enumeration reste seul en tete : il ouvre la premiere
+        # sous-entree plutot que de faire un sens vide.
+        tete=tete.strip(" -\u2013;,")
+        m=RE_NUMERO.match(tete.strip()) if tete else None
+        if m and len(tete.strip()) <= 3:
+            sub[0]["fako"]=(tete.strip()+" "+sub[0]["fako"]).strip(); tete=""
+        n_sub += len(sub)
+        strukt.append({"teksto": tete, "sub": sub})
+    for b in strukt:
+        b['teksto']=majuskla_komenco(b['teksto'])
+        for x in b['sub']:
+            x['loko']=minuskla_lokuco(x['loko'])
+            x['teksto']=majuskla_komenco(x['teksto'])
+            # Le qualificatif est garde NU, comme le champ `fako` de l'article :
+            # ce sont les editions qui posent les parentheses. Sans cela le
+            # domaine d'une locution — pris entre parentheses dans le texte —
+            # et celui d'un article rattache — pris dans le champ — ne
+            # s'ecrivaient pas de la meme facon.
+            x['fako']=x['fako'].strip().strip('()').strip()
+    e['strukt']=strukt
+    # Ce qui reste souligne sans etre une locution : le domaine, le nom latin,
+    # le mot cite. L'edition le rend en italique, la ou il se retrouve.
+    lok={x["loko"].lower() for b in strukt for x in b["sub"]}
+    textoj=[b["teksto"] for b in strukt] + [x["teksto"] for b in strukt for x in b["sub"]]
+    kur=[]; dub=[]; vu=set()
+    for u in subl:
+        if u.lower() in lok: continue
+        pose=False
+        for t in textoj:
+            m=_trovar(u, t)
+            if not m: continue
+            # Le filet ne couvre souvent qu'une PARTIE de la parenthese : la
+            # dactylo souligne « aludante persono » mais coupe son trait au
+            # bout de la ligne. On met en italique la parenthese entiere —
+            # c'est elle, le qualificatif — et les deux moities se recollent.
+            g=_parentezo(t, m.start(), m.end())
+            if g is None and (len(u) < 3 or u.lower() in MALGRANDA):
+                dub.append(u); continue
+            v=g if g else u
+            if v.lower() not in vu: vu.add(v.lower()); kur.append(v)
+            pose=True
+        if not pose and u not in dub: dub.append(u)
+    e['kursiva']=kur
+    for b in strukt:
+        b['teksto_k']=marki(b['teksto'], kur)
+        for x in b['sub']:
+            x['teksto_k']=marki(x['teksto'], kur)
+    # Un fragment absent du corps n'est pas douteux s'il a trouve sa place
+    # ailleurs : domaine, nom latin, locution.
+    fakoj={(e.get('fako') or '').lower()} | {x['fako'].lower() for b in strukt for x in b['sub']}
+    fakoj={f.strip(' ().') for f in fakoj if f}
+    lat={x.lower() for x in (e.get('latina') or [])}
+    lokoj=[x['loko'] for b in strukt for x in b['sub']]
+    e['dubinda']=[u for u in dub
+                  if u.lower().rstrip('.') not in fakoj
+                  and not any(u.lower().rstrip('.') in f for f in fakoj)
+                  and u.lower() not in lat
+                  and not any(_kongruas(u, L) for L in lokoj)]
+    return n_sub
+
+
+# Mots-outils : un filet qui ne couvre qu eux est un artefact du releve des
+# soulignements, non une intention de l auteur.
+MALGRANDA={'la','de','di','en','per','sur','qua','quan','quo','quon','ulo','ulu',
+           'lu','li','ol','olu','ed','od','ad','kun','pri','pro','po','ne','nek',
+           'kom','esas','esis','ma','se','ke','anke','tre','plu','min','sen',
+           'ica','ita','ta','ca','nun','olim','sua','lia','e c','por','ye'}
+
+
+def _trovar(u, t):
+    """L occurrence du fragment souligne dans le texte, l espacement libre."""
+    if not u.strip(): return None
+    # Sans egard a la casse : l'auteur ecrit « (Anke metaf.) », l'edition
+    # abaisse l'initiale des domaines, et le fragment releve sur la grille ne
+    # se retrouverait plus dans le texte.
+    mo=re.compile(r'(?<![A-Za-z\u00c0-\u00ff])'
+                  + r'\s+'.join(re.escape(w) for w in u.split())
+                  + r'(?![A-Za-z\u00c0-\u00ff])', re.I)
+    return mo.search(t)
+
+
+def _parentezo(t, a, b):
+    """Si le fragment est dans une parenthese, cette parenthese entiere."""
+    i=t.rfind('(', 0, a)
+    if i < 0: return None
+    j=t.find(')', b-1)
+    if j < 0: return None
+    if '(' in t[i+1:j] or ')' in t[i+1:a]: return None
+    if j-i > 70: return None
+    return t[i:j+1]
+
+def rataching_subvortoj(ent, fichier=f"{T}/subvorti.txt"):
+    """Rattache un article a celui dont l'auteur l'a fait dependre.
+
+    Le rattachement ne DEGRADE pas l'article : il garde son domaine, son code
+    de langues et sa page. Il change seulement de place — au lieu d'ouvrir sa
+    propre entree, il se range sous celle dont il derive, comme les locutions.
+    Il reste trouvable par son nom : les exportations rangent les locutions
+    parmi les formes cherchables, au meme rang qu'une vedette.
+    """
+    if not os.path.exists(fichier): return 0
+    couples=[]
+    for l in open(fichier,encoding='utf-8'):
+        l=l.rstrip("\n")
+        if not l.strip() or l.startswith('#'): continue
+        a,_,b=l.partition("\t")
+        couples.append((a.strip(), b.strip()))
+    if not couples: return 0
+    par={}
+    for e in ent: par["%s@%d:%d" % (e['vedetto'], e['image'], e['ligno'])]=e
+    otar=set(); n=0
+    for cle, clep in couples:
+        f=par.get(cle); m=par.get(clep)
+        if f is None or m is None:
+            print("  rattachement sans cible : %s -> %s" % (cle, clep)); continue
+        blocs=f.get('strukt') or []
+        korpo=" ".join(b['teksto'] for b in blocs if b['teksto']).strip()
+        korpo_k=" ".join(b.get('teksto_k') or b['teksto'] for b in blocs
+                         if b['teksto']).strip()
+        if not korpo: continue
+        cible=(m.get('strukt') or [None])[-1]
+        if cible is None: continue
+        cible['sub'].append({"loko": f['vedetto'], "fako": f['fako'] or "",
+                             "teksto": korpo, "teksto_k": korpo_k,
+                             "kodo": f.get('kodo') or "",
+                             "lingui": f.get('lingui') or []})
+        m['sublineita']=(m.get('sublineita') or []) + (f.get('sublineita') or [])
+        otar.add(id(f)); n+=1
+    if otar:
+        ent[:]=[e for e in ent if id(e) not in otar]
+    return n
+
+
 def konstrui():
-    pages,corr = charger_texte()
-    brut=decouper(pages,corr)
+    pages,corr,filetoj = charger_texte()
+    brut=decouper(pages,corr,filetoj)
     # Deux passes : la premiere donne le lexique des vedettes, la seconde s'en
     # sert pour trancher les traits d'union tombes sur une fin de ligne.
     # Le lexique sert a trancher les traits d'union de fin de ligne : une
@@ -827,6 +1141,21 @@ def konstrui():
             if t: fus.append(t)
         e['senci']=fus
     if n_num: print("numeros de sens retires : %d"%n_num)
+    # Les soulignements de l'auteur, releves sur la grille : ils donnent les
+    # locutions — sous-entrees a part entiere — et ce qui va en italique.
+    n_maj=0
+    for e in ent:
+        S=e.get('senci') or []
+        for k,t in enumerate(S):
+            u=majuskla_komenco(t)
+            if u != t: S[k]=u; n_maj += 1
+    if n_maj: print("sens rendus a la capitale initiale : %d"%n_maj)
+    n_sub=sum(strukturizar(e) for e in ent)
+    n_kur=sum(1 for e in ent if e.get('kursiva'))
+    print("locutions detachees : %d ; articles avec un souligne : %d"%(n_sub, n_kur))
+    for e in ent: e.pop('filetoj', None)
+    n_rat=rataching_subvortoj(ent)
+    if n_rat: print("articles rattaches en sous-entree : %d"%n_rat)
     v=[e['vedetto'].lower() for e in ent]
     for i in range(1,len(v)):
         if v[i] and v[i-1] and v[i] < v[i-1]:

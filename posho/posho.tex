@@ -81,6 +81,36 @@
 \newcommand{\latina}[1]{\enspace\textit{L. #1}}
 \newcommand{\lingui}[1]{\enspace{\titra\scriptsize\color{grize}#1}}
 
+% Sous-entree : une locution que l'auteur a soulignee et qui porte sa propre
+% definition — « Proporciono geometriala : ... ». Noyee dans le paragraphe,
+% elle etait introuvable ; elle ouvre donc son propre alinea, en retrait, la
+% locution en gras et son qualificatif en italique, comme le domaine.
+% #1 qualificatif (peut etre vide) · #2 locution · #3 definition
+% Une \parbox ne se coupe pas : dans une colonne de 45 mm, la moindre
+% definition un peu longue debordait. On compose donc un paragraphe ordinaire,
+% simplement decale, que LuaTeX peut couper et justifier comme les autres.
+\newcommand{\subvorto}[5]{\par\nopagebreak
+  {\leftskip=2.2mm\relax\hangindent=2.2mm\hangafter=1\relax\noindent
+   % Un petit carre plein, trace au filet : il ne depend d'aucune police ni
+   % d'aucun paquet de symboles, donc il ne peut pas manquer.
+   % Un sens sans corps propre — « analitika » n'a que ses locutions — porte
+   % son numero ici plutot que seul sur une ligne vide.
+   \if\relax\detokenize{#4}\relax\else{\titra\bfseries\footnotesize #4.}~\fi
+   \textcolor{akcento}{\rule[0.18ex]{0.9mm}{0.9mm}}\,%
+   % Espaces SECABLES : avec \enspace, la locution, son qualificatif et le
+   % debut de la definition formaient un bloc insecable, et la ligne debordait
+   % de la colonne — 45 mm ne pardonnent pas.
+   % La locution prend la couleur d'accent, comme le mot-vedette : la couleur
+   % dit « ceci se cherche », le retrait dit « ceci depend de l'article ». Le
+   % noir gras, lui, avait plus de contraste que l'accent : la sous-entree
+   % pesait plus lourd que la vedette dont elle depend, ce qui renversait la
+   % hierarchie. Aucune tete d'article n'est plus en noir gras.
+   {\titra\bfseries\color{akcento}#2}%
+   \if\relax\detokenize{#1}\relax\else\ \textit{(#1)}\fi
+   % Un article rattache — « protestanto » sous « protestar » — garde son
+   % code de langues : le rattachement ne le degrade pas.
+   \ #3\if\relax\detokenize{#5}\relax\else\lingui{#5}\fi\par}}
+
 % Chaque lettre ouvre sur un RECTO, comme dans les dictionnaires relies : on
 % trouve la section au feuilletage, sans lire. La lettre est composee en grand,
 % seule sur sa ligne, avec un filet dessous.

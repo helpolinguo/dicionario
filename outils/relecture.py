@@ -20,7 +20,7 @@ ZOOM=1.7; BANDES=3; CHEV=2      # chevauchement, en lignes
 def texte_page(pg, pages=None):
     if pages is None:
         from edition import charger_texte
-        pages,_=charger_texte()
+        pages,_,_=charger_texte()
     return pages.get(pg, [])
 
 def bandes(pg, rep, lignes):
@@ -47,7 +47,7 @@ def bandes(pg, rep, lignes):
 def preparer(pgs, rep=f"{T}/relecture"):
     os.makedirs(rep, exist_ok=True)
     from edition import charger_texte
-    pages,_=charger_texte()
+    pages,_,_=charger_texte()
     fiches=[]
     for pg in pgs:
         lignes=dict(texte_page(pg, pages))
