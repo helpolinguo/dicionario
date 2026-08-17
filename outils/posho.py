@@ -52,6 +52,18 @@ def cle(v):
 RE_TETO = re.compile(r'^((?:\((?![a-zA-Z0-9]\))[^()]{1,120}\)\s*)+)')
 
 
+KOMENCO = "\ue000"; FINO = "\ue001"
+
+
+def _borni(t):
+    """Les bornes que l'edition a posees deviennent l'italique de LaTeX.
+
+    A appliquer APRES esc() : la contre-oblique de \\textit serait sinon
+    echappee a son tour, et la commande s'imprimerait en toutes lettres.
+    """
+    return t.replace(KOMENCO, "\\textit{").replace(FINO, "}")
+
+
 def _kursiva(t):
     """Applique APRES esc() : sinon la contre-oblique de \\textit serait elle-meme
     echappee, et la commande s'imprimerait en toutes lettres.
@@ -60,6 +72,8 @@ def _kursiva(t):
     regime : « (aludante la hari...) », « (olim) », « (muziko) ». Le domaine de
     l'article est deja en italique ; celle-ci doit l'etre aussi, sinon deux
     marques de meme nature s'ecrivent de deux facons dans la meme colonne."""
+    if t.startswith("\\textit{"):
+        return t
     m = RE_TETO.match(t)
     if not m:
         return t
@@ -79,18 +93,39 @@ def artiklo(e):
     L = ["\\vorto{%s}" % esc(aff)]
     if e.get('fako'):
         L.append("\\fako{%s}" % esc(e['fako']))
-    S = e.get('senci') or []
-    if len(S) > 1:
-        for i, s in enumerate(S):
-            L.append("\\senco{%d}{%s}" % (i + 1, _kursiva(esc(s))))
-    elif S:
-        L.append(" " + _kursiva(esc(S[0])))
+    B = e.get('strukt') or [{"teksto": t, "teksto_k": t, "sub": []}
+                            for t in (e.get('senci') or [])]
+    for i, b in enumerate(B):
+        t = _borni(esc(b.get('teksto_k') or b.get('teksto') or ''))
+        sub = b.get('sub') or []
+        num = ""
+        if len(B) > 1:
+            if t: L.append("\\senco{%d}{%s}" % (i + 1, _kursiva(t)))
+            else: num = str(i + 1)     # le numero ira sur la sous-entree
+        elif t:
+            L.append(" " + _kursiva(t))
+        for j, x in enumerate(sub):
+            kod = ''.join(ABREGE.get(y, '') for y in (x.get('lingui') or []))
+            L.append("\\subvorto{%s}{%s}{%s}{%s}{%s}" % (
+                esc(x.get('fako') or ''), esc(x['loko']),
+                _borni(esc(x.get('teksto_k') or x.get('teksto') or '')),
+                num if j == 0 else "", esc(kod)))
     if e.get('latina'):
         L.append("\\latina{%s}" % esc('; '.join(e['latina'])))
     if e.get('lingui'):
         code = ''.join(ABREGE.get(x, '') for x in e['lingui'])
         if code:
             L.append("\\lingui{%s}" % esc(code))
+    # Le code de langues clot la definition de l'article, non ses sous-entrees :
+    # rejete apres elles, il pendait seul sous un bloc en retrait et semblait
+    # leur appartenir. On le remonte au dernier morceau qui soit de l'article.
+    if any(x.startswith("\\subvorto") for x in L):
+        queue = [x for x in L if x.startswith(("\\latina", "\\lingui"))]
+        if queue:
+            L = [x for x in L if not x.startswith(("\\latina", "\\lingui"))]
+            j = max((i for i, x in enumerate(L)
+                     if not x.startswith("\\subvorto")), default=-1)
+            L = L[:j+1] + queue + L[j+1:]
     return "\\artiklo{%s}%%\n" % esc(v) + "".join(L)
 
 

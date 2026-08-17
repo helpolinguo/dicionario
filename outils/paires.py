@@ -29,7 +29,7 @@ MINI_ATTESTE=6; MAXI_FAUTIF=2; RAPPORT=8
 
 def executer(sortie=f"{T}/paires.json"):
     from edition import charger_texte
-    pages,_=charger_texte()
+    pages,_,_=charger_texte()
     lignes=[]
     for pg in sorted(pages):
         for k,s in pages[pg]:
