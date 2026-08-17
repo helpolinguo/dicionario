@@ -6,7 +6,7 @@ scientifique. L'edition epuree lit ces filets et les rend. Voici ceux
 qu'elle n'a pas su placer : le fragment releve ne se retrouve pas tel
 quel dans le texte, ou ne couvre que des mots-outils.
 
-**1763 fragments**, sur 9466 articles. La premiere famille est
+**1761 fragments**, sur 9466 articles. La premiere famille est
 la seule qui demande un arbitrage : les autres sont des artefacts du
 releve des filets, ou le trait deborde ou s'arrete trop tot.
 
@@ -42,7 +42,7 @@ releve des filets, ou le trait deborde ou s'arrete trop tot.
 | 527 | signifikar | `Progres` |
 | 531 | sinoptika | `Kurso di la filozo-` |
 
-## Fragment de trois lettres ou moins — 544
+## Fragment de trois lettres ou moins — 543
 
 | page | mot-vedette | fragment souligne |
 |---:|---|---|
@@ -137,7 +137,6 @@ releve des filets, ou le trait deborde ou s'arrete trop tot.
 | 132 | eliminar | `eli` |
 | 132 | eliminar | `nar` |
 | 136 | emulsar | `ext` |
-| 137 | enklitiko | `que` |
 | 140 | epiciklo | `aji` |
 | 140 | epigloto | `ped` |
 | 142 | epoleto | `o d` |
@@ -598,7 +597,7 @@ releve des filets, ou le trait deborde ou s'arrete trop tot.
 | 523 | shagrino | `quan` |
 | 523 | shalmo | `quan` |
 
-## Coupe au milieu d'un mot, ou reste du mot-vedette — 1190
+## Coupe au milieu d'un mot, ou reste du mot-vedette — 1189
 
 | page | mot-vedette | fragment souligne |
 |---:|---|---|
@@ -839,7 +838,6 @@ releve des filets, ou le trait deborde ou s'arrete trop tot.
 | 136 | endemika | `a es` |
 | 137 | engajar | `ngajar` |
 | 137 | enkilemo | `nkilemo` |
-| 137 | enklitiko | `neque` |
 | 137 | enklitiko | `nklitiko` |
 | 137 | enluminar | `nluminar` |
 | 138 | entamar | `pri kozo tillore netushita` |

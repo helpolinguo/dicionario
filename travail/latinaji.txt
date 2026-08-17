@@ -1,0 +1,14 @@
+# Noms scientifiques redresses A L'OEIL.
+#
+# Le « L. » du tapuscrit annonce le nom latin, que l'edition met dans le champ
+# `latina`. La dactylo coupe parfois un mot en deux, ou la ligne le brise :
+# « capparia spi nosa » pour « capparia spinosa ». Ni « spi » ni « nosa » ne
+# sont des mots latins, mais la machine ne peut pas le savoir.
+#
+# La cle est celle de simboli.txt : vedetto@image:ligno — une ligne de la
+# grille, donc un article et un seul.
+#
+# Plusieurs noms se separent par un point-virgule, comme dans le champ.
+#
+# cle	nom(s)	motif
+kapero@268:33	capparia spinosa	p416 : le livre porte « capparia spi nosa » — une espace parasite au milieu de « spinosa »

@@ -21,7 +21,7 @@ Transcription établie à partir du fac-similé fourni (639 pages photographiée
 
 **9 466 entrées** extraites de 632 pages de corps d'ouvrage.
 5 273 portent une marque de domaine (*bot.*, *zool.*, *arkitekt.*…),
-814 un nom scientifique latin, 1 665 plusieurs sens numérotés,
+813 un nom scientifique latin, 1 665 plusieurs sens numérotés,
 8 427 un code de langues final.
 
 ---
@@ -109,6 +109,21 @@ qu'il fait dépendre du précédent — *protestanto* sous *protestar*. Ce signe
 unique dans les six cent quarante pages du livre. `travail/subvorti.txt` porte
 ce rattachement ; l'article rattaché devient une sous-entrée de son voisin, sans
 rien perdre — ni domaine, ni code de langues, ni page.
+
+### Le nom scientifique (`latina`)
+
+Le tapuscrit l'annonce par un `L.` — *L. cynocephalus*. Deux pièges, tous deux
+rencontrés :
+
+- un `L.` peut introduire un **exemple**, non le nom de l'article :
+  *enklitiko … Kom ex.: L. que en neque ; ne en venisne ; F. ce en est-ce*.
+  Pris pour un binôme, il quittait la définition — qui restait sur « Kom ex.; »
+  — pour aller s'afficher en nom latin. Un `L.` précédé de `ex.` est désormais
+  laissé au texte ;
+- la dactylo coupe parfois un mot en deux : *capparia spi nosa* pour *capparia
+  spinosa*. Ni `spi` ni `nosa` n'étant des mots latins, la machine ne peut pas
+  le savoir. `travail/latinaji.txt` porte les noms redressés à l'œil, avec la
+  clé de `simboli.txt` — `vedetto@image:ligno` — et l'emporte sur le décodage.
 
 ### Le symbole chimique (`simbolo`)
 

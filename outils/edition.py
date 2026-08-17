@@ -76,8 +76,13 @@ RE_FAKO2  = re.compile(r'^([^()]{1,25})\)\s*\.?\s*')
 # soixante-sept articles. On borne donc le nom par sa FORME — quatre mots
 # latins au plus, plus une seconde forme apres virgule pour « anas, anatis » —
 # au lieu de le borner par ce qui le suit.
+# Un « L. » qui introduit un EXEMPLE n'annonce pas le nom scientifique de
+# l'article : « enklitiko. ... Kom ex.: L. que en neque ; ne en venisne ; F. ce
+# en est-ce ». Pris pour un binome, il quittait la definition — qui restait sur
+# « Kom ex.; » — pour aller s'afficher en nom latin de l'article. Le « F. » qui
+# suit, lui, n'a jamais ete pris : seul le « L. » preteait a confusion.
 RE_LATINA = re.compile(
-    r'(?:[-–.(,;:]|^)\s*L\.\s*'
+    r'(?:(?<!ex\.)[-–.(,;:]|^)\s*L\.\s*'
     r'([A-Za-z][A-Za-z-]*(?:\s+[A-Za-z][A-Za-z-]*){0,3}'
     r'(?:\s*,\s*[A-Za-z][A-Za-z-]*)?)'
     r'\s*(?=[-–)(:;,]|\.\s|\.?$|\s(?:I{1,3}|IV|V|VI)\.)')
@@ -736,6 +741,13 @@ def analizar(e, lexique=None):
         e['fako'] = None
     e['latina']= [x.strip(' .') for x in RE_LATINA.findall(resto)]
     resto = RE_LATINA.sub('', resto).strip(' -–')
+    # Un nom releve a l'oeil l'emporte : la machine ne peut pas savoir que
+    # « capparia spi nosa » est « capparia spinosa », aucun des deux morceaux
+    # n'etant un mot latin.
+    _man = latinaji_manuala().get("%s@%d:%d" % (e.get('vedetto'), e.get('image', -1),
+                                                e.get('ligno', -1)))
+    if _man:
+        e['latina'] = [x.strip() for x in _man.split(';') if x.strip()]
     e['simbolo']= None
     senci=[_kupar(s.lstrip(' -–.,;:')) for s in RE_SENCO.split(resto)
            if s.strip(' -–.,;:')]
@@ -1024,6 +1036,25 @@ def simboli_manuala(fichier=f"{T}/simboli.txt"):
                 if len(p) >= 2 and p[0].strip() and p[1].strip():
                     _SIMBOLI[p[0].strip()] = p[1].strip()
     return _SIMBOLI
+
+
+_LATINAJI = None
+
+
+def latinaji_manuala(fichier=f"{T}/latinaji.txt"):
+    """Les noms scientifiques redresses a l'oeil. Meme cle que simboli.txt."""
+    global _LATINAJI
+    if _LATINAJI is None:
+        _LATINAJI = {}
+        if os.path.exists(fichier):
+            for l in open(fichier, encoding='utf-8'):
+                l = l.rstrip("\n")
+                if not l.strip() or l.startswith('#'):
+                    continue
+                p = l.split("\t")
+                if len(p) >= 2 and p[0].strip() and p[1].strip():
+                    _LATINAJI[p[0].strip()] = p[1].strip()
+    return _LATINAJI
 
 
 def _kodo_ne_simbolo(e):
