@@ -95,7 +95,13 @@ RE_LATINA = re.compile(
 # sens. On exige la majuscule ou la parenthese apres le numero, ce qui ecarte
 # « 1.000 » et les formules chimiques. Le « l » lu pour « 1 » est admis : la
 # confusion est constante dans ce tapuscrit.
-RE_SENCO  = re.compile(r'\s*(?:[-–]\s*|(?<=\.)\s*)'
+# La parenthese FERMANTE vaut le point : « elaborar. ... per laborado. (anke
+# metaf.) II. (fiziol.) Igar absorbebla... ». Le numero suit alors une
+# parenthese, non un point, et le sens ne se coupait pas — onze articles
+# gardaient deux sens en un. Le garde-fou tient : « pos I. K. » chez « hejiro »
+# et « rejo Francisko I. » chez « legiono » ne suivent ni point ni parenthese,
+# et ne se coupent pas.
+RE_SENCO  = re.compile(r'\s*(?:[-–]\s*|(?<=[.)])\s*)'
                        r'(?=(?:I{1,3}|IV|V|VI)[.,]\s?|[l\d]\d?\.\s*[A-ZÀ-Ý(])')
 FINALES_OK = ("o","a","e","i","ar","ir","or")
 
