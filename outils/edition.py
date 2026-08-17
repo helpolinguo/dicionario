@@ -110,6 +110,22 @@ RE_SENCO  = re.compile(r'\s*(?:[-–]\s*|(?<=[.)])\s*)'
                        r'(?=(?:I{1,3}|IV|V|VI)[.,]\s?'
                        r'|(?:I{1,3}|IV|V|VI)\s+[A-Za-zÀ-ÿ]'
                        r'|[l\d]\d?\.\s*[A-ZÀ-Ý(])')
+# L'auteur numerote parfois ses sens ENTRE PARENTHESES : « (1) ... (2) ... ».
+# Ecrits ainsi, ils tiennent le plus souvent en une seule phrase — les morceaux
+# se suivent apres un point-virgule ou deux-points, « (1) Garnisar ye ulo...;
+# (2) Garnisar per esar pozita sur... » chez « kovrar » — et le livre les rend
+# tels quels : on les laisse.
+#
+# Mais le PREMIER de ces numeros suit la vedette, la ou l'analyse cherche le
+# domaine : il partait au champ `fako`, d'ou il etait ecarte comme numero.
+# L'article perdait alors son « (1) » en gardant son « (2) » — « ramo », «
+# romano », « vice », les trois seuls du livre. La numerotation orpheline ne
+# renseigne plus personne ; on coupe le sens a sa place, et les editions
+# renumerotent comme elles le font des autres. La coupure ne se fait qu'apres
+# une phrase CLOSE, pour ne pas defaire les enumerations d'un seul souffle.
+RE_ORFA_NUM = re.compile(r'(?<=[.!])\s*[-–]?\s*\((?:I{2,3}|IV|[2-9])\)\s*'
+                         r'(?=[A-Za-zÀ-Ý«(])')
+RE_NUM_UNESMA = re.compile(r'\(\s*(?:1|l|I)\s*\)')
 FINALES_OK = ("o","a","e","i","ar","ir","or")
 
 _LP=None
@@ -750,7 +766,13 @@ def analizar(e, lexique=None):
     if e['fako']:
         m2 = re.match(r'^[\s.,;:\u2013-]*\(([^()]{1,40})\)\s*\.?\s*(?=[-\u2013]?\s*(?:[IVX]{1,3}\.|[A-Z\u00c0-\u00dd]))', resto)
         if m2:
-            e['fako'] = "%s) (%s" % (e['fako'], m2.group(1).rstrip('.').strip())
+            # La seconde parenthese est un renseignement de meme nature que la
+            # premiere, et lui revient le meme traitement : minuscule initiale,
+            # chiffres redresses, POINT rendu a l'abreviation. Recollee telle
+            # quelle, elle ressortait nue quand ses voisines etaient pointees —
+            # « (trans.) (tekn) », « (netrans.) (patol) », « (netrans.) (Kemio) ».
+            dua = minuskligi(pointi(cifri(m2.group(1).strip(' .,;:'))))
+            e['fako'] = "%s) (%s" % (e['fako'], dua)
             resto = resto[m2.end():]
     resto = resto.lstrip(' -–.,;:')
     # Elision : « ka(d) », « on(u) », « a(d) ». La lettre entre parentheses
@@ -787,6 +809,12 @@ def analizar(e, lexique=None):
     # garde comme domaine, le numero s'affichait a la place du domaine.
     if e['fako'] and re.fullmatch(r'(?:[IVX]{1,4}|[a-z]|[0-9]|l)', e['fako'].strip()):
         e['fako'] = None
+    # Le numero peut PRECEDER un vrai domaine : « ramo. (l) (bot.) Mikra
+    # brancho... ». La fusion des deux parentheses gardait alors les deux, et
+    # l'article s'annoncait « (1) (bot.) ». On ne jette que le numero.
+    if e['fako']:
+        m1 = re.fullmatch(r'(?:[IVX]{1,4}|[a-z]|[0-9]|l)\)\s*\((.+)', e['fako'].strip())
+        if m1: e['fako'] = m1.group(1)
     # Une FORMULE chimique posee juste apres la vedette — « asparagino. (C8 H8
     # AZ2 O6). Substanco... » — n'est pas un domaine non plus : c'est le meme
     # renseignement que « Simbolo kemiala : ... » ailleurs dans le livre, et il
@@ -799,6 +827,16 @@ def analizar(e, lexique=None):
     senci=[_kupar(s.lstrip(' -–.,;:')) for s in RE_SENCO.split(resto)
            if s.strip(' -–.,;:')]
     e['senci']= senci if senci else ([resto] if resto else [])
+    # La numerotation entre parentheses dont le « (1) » est parti au domaine :
+    # on coupe a la place des numeros restes (voir RE_ORFA_NUM).
+    S=[]
+    for s in e['senci']:
+        if RE_ORFA_NUM.search(s) and not RE_NUM_UNESMA.search(s):
+            S.extend(x for x in (_kupar(y.lstrip(' -–.,;:'))
+                                 for y in RE_ORFA_NUM.split(s)) if x)
+        else:
+            S.append(s)
+    e['senci']=S
     # Rattrapage : le code peut rester au bout du DERNIER sens quand une note
     # le suivait dans l'original et que le decoupage en sens l'a isole. On le
     # releve la aussi — et s'il double celui deja lu, on le retire du texte.
@@ -1495,6 +1533,14 @@ def konstrui():
     import relire as _rel
     n,r=_rel.appliquer(ent)
     if n or r: print("relecture des definitions : %d corrections posees, %d refusees"%(n,r))
+    # La relecture rend le domaine tel qu'il se LIT sur la page — avec sa
+    # majuscule, et sans le point que le tapuscrit n'a pas frappe. Le champ, lui,
+    # est mis en minuscules et son abreviation pointee bien plus haut, AVANT
+    # cette correction : « (ariktekt.) » corrige en « arkitekt » ressortait donc
+    # nu quand ses trente voisins etaient pointes. On repasse les deux
+    # normalisations derriere la correction ; elles sont idempotentes.
+    for e in ent:
+        if e.get('fako'): e['fako']=minuskligi(pointi(e['fako']))
     # La relecture pose des chaines relevees avant la typographie : on repasse
     # l'espacement derriere elle. espacar() est idempotente.
     for e in ent:

@@ -86,8 +86,14 @@ def appliquer(ent, dossier=DOSSIER):
                     vus.append((e, k))
             # Le domaine est un champ a part : « (ariktekt) » n'est dans aucun
             # sens, et la correction etait refusee faute de le chercher la.
+            #
+            # Le champ est rendu en MINUSCULES (edition.minuskligi) alors que la
+            # relecture recopie la page : « Yorocienco » chez « prekara » ne se
+            # retrouvait pas dans « yorocienco », et la correction — la seule qui
+            # portait sur ce mot — etait refusee en silence. La comparaison
+            # ignore donc la casse, de part et d'autre.
             f = e.get('fako')
-            if f and a.strip('()') in f:
+            if f and re.search(re.escape(a.strip('()')), f, re.I):
                 vus.append((e, 'fako'))
         # Une meme coquille se repete parfois a l'identique — « pseupodi » deux
         # fois, « di sapto » deux fois. La refuser serait perdre une correction
@@ -100,7 +106,8 @@ def appliquer(ent, dossier=DOSSIER):
             continue
         for e, k in vus:
             if k == 'fako':
-                e['fako'] = e['fako'].replace(a.strip('()'), b.strip('()'))
+                e['fako'] = re.sub(re.escape(a.strip('()')),
+                                   lambda _m: b.strip('()'), e['fako'], flags=re.I)
             else:
                 e['senci'][k] = mot.sub(lambda _m: b, e['senci'][k], count=1)
             pose += 1

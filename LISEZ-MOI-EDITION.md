@@ -21,8 +21,8 @@ Transcription établie à partir du fac-similé fourni (639 pages photographiée
 
 **9 467 entrées** extraites de 632 pages de corps d'ouvrage.
 5 270 portent une marque de domaine (*bot.*, *zool.*, *arkitekt.*…),
-813 un nom scientifique latin, 1 672 plusieurs sens numérotés,
-8 427 un code de langues final.
+813 un nom scientifique latin, 1 675 plusieurs sens numérotés,
+8 431 un code de langues final.
 
 ---
 
@@ -49,7 +49,7 @@ fourni ; `ligno` la ligne de la grille du tapuscrit. **Chaque entrée peut donc
 travail reste vérifiable dans vingt ans.
 
 Une réserve sur `pagino`, vérifiée sur le fac-similé : il vaut `image - 7` pour
-les 9 466 entrées, sans exception — c'est un calcul, non une lecture. Or **le
+les 9 467 entrées, sans exception — c'est un calcul, non une lecture. Or **le
 livre saute deux numéros** : la page qui porte `fosfo` est numérotée
 « 173/175 », doublement, et l'écart change de part et d'autre. Après elle,
 `pagino` est bien le folio imprimé ; **avant elle, le folio imprimé vaut
@@ -67,6 +67,16 @@ l'entrée : une provenance, non un doute.
 
 `senci` donne le texte d'un sens tel qu'il se lit. `strukt` donne le même texte
 **découpé** : un corps, et les locutions qui portent leur propre définition.
+
+L'auteur numérote ses sens de trois façons — *1.*, *I.*, et parfois entre
+parenthèses, *(1) … (2) …*. Cette dernière forme tient le plus souvent en une
+seule phrase, les morceaux séparés d'un point-virgule ou d'un deux-points ; on
+la laisse telle quelle, comme l'a écrite l'auteur. Mais le **premier** de ces
+numéros suit la vedette, là où l'analyse cherche le domaine : il y partait, et
+en était écarté comme numéro. L'entrée perdait alors son *(1)* en gardant son
+*(2)* — *ramo*, *romano*, *vice*, les trois seuls du livre. La numérotation
+restée seule ne renseignait plus personne : le sens est maintenant coupé à sa
+place, et les éditions le renumérotent comme les autres.
 
 L'auteur en pose de plusieurs façons. Le plus souvent la locution ouvre la
 phrase, capitale et deux-points — *Proporciono geometriala : …* Parfois elle
@@ -109,6 +119,38 @@ qu'il fait dépendre du précédent — *protestanto* sous *protestar*. Ce signe
 unique dans les six cent quarante pages du livre. `travail/subvorti.txt` porte
 ce rattachement ; l'article rattaché devient une sous-entrée de son voisin, sans
 rien perdre — ni domaine, ni code de langues, ni page.
+
+### Le domaine (`fako`)
+
+C'est la parenthèse qui suit la vedette — *(bot.)*, *(trans.)*, *(en la epoki
+antiqua)*. Le champ la porte **nue**, sans ses parenthèses ; les deux éditions
+les remettent. L'auteur ne s'étant uniformisé ni sur la majuscule ni sur le
+point, l'édition le fait pour lui : minuscule initiale — sauf *Roma* et
+*Vatikano* —, et point rendu à l'abréviation d'après une liste explicite
+(`MALLONGIGI` dans `outils/edition.py`), non d'après une règle sur la finale,
+car le même champ contient des prépositions, des verbes et jusqu'à une formule
+chimique.
+
+Deux parenthèses de suite — *pensar. (trans. e netrans.) (ulo, ad ulo, pri ulu
+od ulo)* — sont deux moitiés du même renseignement : le régime appartient au
+marqueur de transitivité, non à la définition, qui commençait sinon par une
+parenthèse orpheline. Le champ les garde toutes deux, séparées par `) (`. La
+seconde reçoit **le même traitement que la première** : *(trans.) (tekn)* et
+*(netrans.) (Kemio)* s'écrivent désormais *(trans.) (tekn.)* et *(netrans.)
+(kemio)*, comme leurs quatre-vingt-douze voisines.
+
+Ce qui se trouve à cette place n'est pas toujours un domaine, et l'édition écarte
+trois intrus : le **numéro de sens** — *romano. (I) Verko literaturala…* —, y
+compris quand il précède un vrai domaine, *ramo. (1) (bot.)* ; la **formule
+chimique**, qui va au champ du symbole ; et la **lettre élidée** de *ka(d)*, qui
+appartient au mot.
+
+Restent les variantes de l'auteur lui-même, qui ne sont pas des erreurs de
+lecture et ne sont donc pas touchées : *anatom.* une fois contre *anat.* 226
+fois, *zoolog.* contre *zool.*, *gramat.* contre *gram.*, *filozof.* contre
+*filoz.*, *astr.* contre *astron.*, *tek.* contre *tekn.*, *muzik.* contre
+*muziko* ; et *yuro-cienco*, écrit onze fois contre treize *yurocienco*, trop
+souvent pour être un accident.
 
 ### Le nom scientifique (`latina`)
 

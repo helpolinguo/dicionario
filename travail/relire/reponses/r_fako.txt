@@ -1,4 +1,10 @@
 # Corrections portant sur le champ `fako`, relevees a l'oeil.
 # Meme format que les lots de relecture : id<TAB>forme lue<TAB>forme retenue.
 # Ce fichier est tenu a part des lots rendus par les relecteurs.
+#
+# La forme est ecrite AVEC ses parentheses quand c'est ainsi qu'elle se lit sur
+# la page, et que la chaine nue serait ambigue : « tran. » se retrouverait dans
+# les neuf cent quatre-vingt-sept « trans. » du livre, « (tran.) » dans le seul
+# « sokursar », le point fermant la chaine.
 9001	ikkemio	kemio
+9002	(tran.)	(trans.)
