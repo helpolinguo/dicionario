@@ -236,14 +236,14 @@ dictionnaire. Plutôt que de masquer ce qui reste, la base le **signale** :
 
 | drapeau | entrées | ce qu'il veut dire |
 |---|---|---|
-| `ordino-ruptita` | 1 155 | **la vedette rompt l'ordre alphabétique** |
-| `sen-lingua` | 1 039 | pas de code de langues final — souvent normal, le livre n'en donne pas toujours |
-| `finalo-nekustumala` | 155 | finale étrangère à la morphologie d'Ido (-o, -a, -e, -i, -ar, -ir, -or). **Les affixes en sont exemptés** : `-eyo`, `poli-`, `bo-` ne sont pas des mots et n'ont pas de finale grammaticale — le tiret le dit. Restent surtout les mots grammaticaux — `per`, `dum`, `mem`, `olim`, `cent` —, corrects eux aussi : le drapeau est peu sûr dans cette famille |
+| `ordino-ruptita` | 1 082 | **la vedette rompt l'ordre alphabétique** |
+| `sen-lingua` | 1 036 | pas de code de langues final — souvent normal, le livre n'en donne pas toujours |
+| `finalo-nekustumala` | 54 | finale étrangère à la morphologie d'Ido (-o, -a, -e, -i, -ar, -ir, -or). Trois familles en sont **exemptées**, la question n'ayant de sens que pour un mot de la langue : l'affixe (`-eyo`, `poli-`), le mot que le livre déclare lui-même grammatical (*« an. Prepoziciono qua… »*), et l'emprunt cité (`amen`, `cambium`). Ce qui reste — numéraux `cent` et `dek`, noms de notes `b`, `c`, `d` — est légitime aussi, mais rien dans le texte ne permet de le dire |
 | `pagino-nefidinda` | 32 | pages 539-540, photographiées à une autre échelle, décodage nettement moins sûr |
 | `artiklo-dividita` | 11 | l'article était coupé par un saut de page ; les deux moitiés ont été recollées |
 | `sen-chefvorto` | 0 | l'entrée n'a pas de vedette lisible — plus aucun cas |
 
-**7 352 entrées ne portent aucun drapeau.**
+**7 403 entrées ne portent aucun drapeau.**
 
 `korektita` a cessé d'être un drapeau : il disait « au moins une cellule
 corrigée automatiquement », une provenance et non un doute, et toutes les
@@ -251,13 +251,19 @@ définitions ayant été relues une à une il ne désignait plus de travail rest
 Le compte reste dans le champ `korektita`, pour qui veut mesurer : 6 289 entrées
 en portent au moins une.
 
+Le drapeau d'ordre se lit sur la vedette **rangée**, sa marque de tête ôtée :
+l'astérisque du mot non officiel et le tiret de l'affixe ne sont pas des
+lettres, et le livre ne les range pas — `-acho` est entre `acetono` et
+`aciano`. Comparés tels quels, ils passaient avant toute lettre, et chacun des
+126 affixes et mots non officiels rompait l'ordre par sa seule marque.
+
 `ordino-ruptita` est le plus utile des drapeaux. Un dictionnaire est trié : une
 vedette qui rompt l'ordre désigne presque toujours une mauvaise lecture, dans
 l'une des deux vedettes voisines — *aoendar* pour *acendar*, *a)rotano* pour
-*abrotano*, *aacho* pour le suffixe *-acho*. **Corriger ces 1 155 cas, c'est
+*abrotano*, *aacho* pour le suffixe *-acho*. **Corriger ces 1 082 cas, c'est
 achever le livre**, et le travail est divisible : chacun peut en prendre cent.
 
-**2 115 entrées portent au moins un drapeau.** L'édition HTML ne les filtre plus
+**2 064 entrées portent au moins un drapeau.** L'édition HTML ne les filtre plus
 — elle n'offre que la recherche ; le tri se fait sur `drapeli`, dans le JSONL ou
 dans la colonne du même nom du TSV.
 

@@ -788,7 +788,7 @@ def analizar(e, lexique=None):
     v=e['vedetto']
     e['drapeli']=list(e.get('drapeli_pre',[]))
     if not v: e['drapeli'].append('sen-chefvorto')
-    elif not _finalo_ok(v): e['drapeli'].append('finalo-nekustumala')
+    elif not _finalo_ok(e): e['drapeli'].append('finalo-nekustumala')
     if not e['kodo']: e['drapeli'].append('sen-lingua')
     # Le drapeau « korektigita » disait « au moins une cellule corrigee
     # automatiquement » — une information de provenance, non un doute. Toutes
@@ -806,16 +806,54 @@ def analizar(e, lexique=None):
 # la dactylo ne l'a pas frappee, le titre valant pour toute la liste.
 PAGINI_NEOFICALA = (637, 638)
 
-def _finalo_ok(v):
+def _klavo_ordino(v):
+    """La vedette telle qu'elle se RANGE, sa marque de tete otee.
+
+    L'asterisque du mot non officiel et le tiret de l'affixe ne sont pas des
+    lettres, et le livre ne les range pas : « -acho » est entre « acetono » et
+    « aciano », « -eyo » entre « exutorio » et « ez ». Compares tels quels, ils
+    passaient avant toute lettre — chacun des 126 affixes et mots non officiels
+    rompait donc l'ordre par sa seule marque, et entrainait son voisin avec
+    lui. Quatre-vingt-cinq drapeaux ne disaient que cela.
+
+    Le point d'exclamation de l'interjection ne se range pas davantage :
+    « ah! » se cherche a « ah ».
+    """
+    return v.lower().lstrip('*+"«.-').rstrip('!')
+
+
+# La nature grammaticale, telle que le livre l'annonce lui-meme en tete de
+# definition : « Prepoziciono qua indikas... », « Interjeciono qua expresas... »
+RE_GRAMATIKA = re.compile(
+    r'^\(?\s*(?:prepoziciono|konjunciono|pronomo|adverbo|interjeciono'
+    r'|sufixo|prefixo|artiklo|partikulo|des?inenco)', re.I)
+
+
+def _finalo_ok(e):
     """La finale de la vedette est-elle celle d'un mot ido ?
 
-    Un AFFIXE n'est pas un mot : « -eyo », « poli- », « bo- » n'ont pas de
-    finale grammaticale, et le tiret est precisement ce qui le dit. Les
-    signaler comme d'une finale etrangere etait une erreur de categorie, et
-    soixante-dix-huit d'entre eux encombraient la liste de travail.
+    La question n'a de sens que pour un MOT DE LA LANGUE. Trois familles y
+    echappent, et les signaler etait une erreur de categorie :
+
+      * l'AFFIXE — « -eyo », « poli- », « bo- » —, dont le tiret dit
+        precisement qu'il n'est pas un mot. 78 cas ;
+      * le mot que le livre declare lui-meme GRAMMATICAL : « an.
+        Prepoziciono qua indikas relato di kontigueso », « fi! Interjeciono
+        qua expresas la desprizo di ulo ». L'ido ne donne pas de finale en
+        -o/-a/-e/-i a ses prepositions, pronoms et interjections. 51 cas ;
+      * l'EMPRUNT CITE — « amen », « angelus », « cambium » —, que l'auteur
+        entoure de guillemets parce qu'il n'est pas ido. 50 cas.
+
+    Ce qui reste — les numeraux « cent », « dek », les noms de notes « b »,
+    « c », « d », et les prepositions que le livre ne qualifie pas — est
+    legitime aussi, mais rien dans le texte ne permet de le dire.
     """
+    v = e.get('vedetto') or ''
     if not v: return True
     if v.startswith('-') or v.rstrip('!').endswith('-'): return True
+    if e.get('citita'): return True
+    S = e.get('senci') or []
+    if S and RE_GRAMATIKA.match(S[0].lstrip('( ')): return True
     return any(v.lower().endswith(f) for f in FINALES_OK)
 
 
@@ -1399,7 +1437,7 @@ def konstrui():
     n=0
     for e in ent:
         v=e.get('vedetto') or ''
-        ok=_finalo_ok(v)
+        ok=_finalo_ok(e)
         if ok and 'finalo-nekustumala' in e['drapeli']:
             e['drapeli'].remove('finalo-nekustumala'); n+=1
         elif v and not ok and 'finalo-nekustumala' not in e['drapeli']:
@@ -1429,6 +1467,24 @@ def konstrui():
     # forme fautive et ne fait rien.
     n=corriger_vorti(ent)
     if n: print("mots corriges apres la mise en chiffres : %d"%n)
+    # Second rattrapage du code de langues. Celui de l'analyse passe AVANT la
+    # typographie ; quand la fin de ligne portait encore une scorie — un point
+    # isole chez « ganso », une ponctuation manquante chez « rodar » — le code
+    # ne s'ancrait pas, et l'article passait pour « sen-lingua » en gardant son
+    # code dans le texte. Repasse ici, il s'ancre.
+    n=0
+    for e in ent:
+        if e.get('kodo') or not e.get('senci'): continue
+        mk=re.search(r'(?:[-–.,()*]|\s)\s*([A-Za-z]{1,12})\s*\.?\s*$', e['senci'][-1])
+        li=_lire_code(mk.group(1)) if mk else None
+        if not li: continue
+        e['lingui']=li; e['kodo']=mk.group(1)
+        q=e['senci'][-1][:mk.start()].rstrip(' -–.,;:')
+        if q: e['senci'][-1]=q
+        else: e['senci'].pop()
+        if 'sen-lingua' in e['drapeli']: e['drapeli'].remove('sen-lingua')
+        n+=1
+    if n: print("codes de langues rattrapes apres la typographie : %d"%n)
     # Article commence en bas de page, abandonne, puis RECOMMENCE en tete de la
     # page suivante. « ampère » est le seul cas du livre : la premiere version
     # s'arrete net, sans code de langues ; la seconde est complete. L'edition de
@@ -1526,7 +1582,7 @@ def konstrui():
     for e in ent: e.pop('filetoj', None)
     n_rat=rataching_subvortoj(ent)
     if n_rat: print("articles rattaches en sous-entree : %d"%n_rat)
-    v=[e['vedetto'].lower() for e in ent]
+    v=[_klavo_ordino(e['vedetto']) for e in ent]
     for i in range(1,len(v)):
         if v[i] and v[i-1] and v[i] < v[i-1]:
             ent[i]['drapeli'].append('ordino-ruptita')
