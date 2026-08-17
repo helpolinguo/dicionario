@@ -101,8 +101,15 @@ RE_LATINA = re.compile(
 # gardaient deux sens en un. Le garde-fou tient : « pos I. K. » chez « hejiro »
 # et « rejo Francisko I. » chez « legiono » ne suivent ni point ni parenthese,
 # et ne se coupent pas.
+# Le point du numero manque parfois : « ...di elektro-lampo. III veziketo
+# produktata... » chez « ampulo », « ...kontenar aquo. – II Mar-baseno... »
+# chez « baseno ». Le livre n'en compte que deux, et les deux sont de vrais
+# sens ; on admet donc le numero suivi d'une simple espace, a condition qu'une
+# lettre suive.
 RE_SENCO  = re.compile(r'\s*(?:[-–]\s*|(?<=[.)])\s*)'
-                       r'(?=(?:I{1,3}|IV|V|VI)[.,]\s?|[l\d]\d?\.\s*[A-ZÀ-Ý(])')
+                       r'(?=(?:I{1,3}|IV|V|VI)[.,]\s?'
+                       r'|(?:I{1,3}|IV|V|VI)\s+[A-Za-zÀ-ÿ]'
+                       r'|[l\d]\d?\.\s*[A-ZÀ-Ý(])')
 FINALES_OK = ("o","a","e","i","ar","ir","or")
 
 _LP=None
@@ -1550,8 +1557,11 @@ def konstrui():
     # (noniliono) sont des nombres, non des numeros de sens.
     # « 1.000 » n'est pas un sens numerote mais le nombre mille : sans cette
     # garde, « mil » perdait son « 1. » et se definissait par « 000 ».
+    # Le numero sans son point — « III veziketo » — se retire aussi, sinon il
+    # ouvrirait le sens que la coupure vient d'isoler.
     RE_NUM=re.compile(r'^(?:(?:I{1,3}|IV|VI{0,3}|IX|X|[l\d]\d?)[.)](?!\d)\s*'
-                      r'|(?:I{1,3}|IV|VI{0,3}|IX|X),\s*(?=[A-ZÀ-Ý(]))')
+                      r'|(?:I{1,3}|IV|VI{0,3}|IX|X),\s*(?=[A-ZÀ-Ý(])'
+                      r'|(?:I{1,3}|IV|VI{0,3}|IX|X)\s+(?=[A-Za-zÀ-ÿ]))')
     RE_ETIQ=re.compile(r'^\([^()]{1,40}\)\.?$')
     n_num=0
     for e in ent:
