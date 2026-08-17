@@ -19,7 +19,7 @@ Transcription établie à partir du fac-similé fourni (639 pages photographiée
 | `travail/journal_complet.txt` | **toutes** les corrections : ce qui a été lu, ce qui a été retenu, et si c'est un correcteur ou l'œil qui a tranché |
 | `outils/` | la chaîne complète, de l'image au JSON |
 
-**9 466 entrées** extraites de 632 pages de corps d'ouvrage.
+**9 467 entrées** extraites de 632 pages de corps d'ouvrage.
 5 273 portent une marque de domaine (*bot.*, *zool.*, *arkitekt.*…),
 813 un nom scientifique latin, 1 665 plusieurs sens numérotés,
 8 427 un code de langues final.
@@ -140,7 +140,7 @@ recherche.
 Or ce n'est pas un mot de la langue mais une étiquette, de même nature que le
 nom latin. Elle a donc son champ, `simbolo`, et les deux éditions la rendent
 d'une seule façon — l'étiquette en italique, le symbole **droit**, une formule
-penchée se lisant mal. **88 articles** le portent — tous sauf un.
+penchée se lisant mal. **Les 89 articles** le portent.
 
 Onze articles portaient l'étiquette sans son symbole : le décodage l'avait
 perdue. Ces onze-là, plus un douzième que le décodage n'avait lu qu'à moitié
@@ -149,11 +149,13 @@ et posés dans `travail/simboli.txt`, avec le folio imprimé en regard pour qu'o
 puisse y retourner. La clé y est celle de `subvorti.txt` — `vedetto@image:ligno`
 —, et une valeur posée là l'emporte sur ce que le décodage aurait lu.
 
-Un seul cas reste à l'écart, et c'est voulu : **`ruteno`**, dans le texte duquel
-l'article suivant, `rutino`, s'est fondu au décodage. Ce qui suit l'étiquette
-n'y est pas un symbole mais des lignes entières ; au-delà de quarante signes on
-n'extrait rien, et on n'y pose rien non plus — couper là détruirait l'article
-fondu au lieu de le signaler.
+`ruteno` faisait exception : l'article suivant, `rutino`, s'était fondu dans
+son texte, et l'étiquette y ouvrait un faux alinéa de sous-entrée. La cause
+était en amont — la dactylo avait fermé la vedette `rutino,` d'une **virgule**
+au lieu d'un point, si bien que le découpage n'y voyait pas un article. Le
+filet était pourtant là, et la ligne blanche aussi. `RE_VED` admet désormais la
+virgule : sur les 639 pages, une seule ligne suit une ligne blanche en se
+présentant « mot, », celle-là — la tolérance ne coûte aucun faux positif.
 
 **`iridio`** avait son étiquette en incise au milieu d'une phrase ; elle est
 extraite comme les autres, et la phrase se referme sur elle-même.
@@ -241,7 +243,7 @@ dictionnaire. Plutôt que de masquer ce qui reste, la base le **signale** :
 | `artiklo-dividita` | 11 | l'article était coupé par un saut de page ; les deux moitiés ont été recollées |
 | `sen-chefvorto` | 0 | l'entrée n'a pas de vedette lisible — plus aucun cas |
 
-**7 341 entrées ne portent aucun drapeau.**
+**7 342 entrées ne portent aucun drapeau.**
 
 `korektita` a cessé d'être un drapeau : il disait « au moins une cellule
 corrigée automatiquement », une provenance et non un doute, et toutes les

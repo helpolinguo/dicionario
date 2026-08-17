@@ -256,6 +256,12 @@ def decouper(pages, corrigees, filetoj=None):
         # interjection se termine par son point d'exclamation, non par un
         # point. « o (d). » : la vedette porte sa variante entre parentheses,
         # comme « a(d). », mais separee par une espace.
+        # « rutino, » : la dactylo a frappe la VIRGULE au lieu du point. Le
+        # filet est bien la, la ligne blanche aussi ; seule la ponctuation
+        # manquait, et l'article entier tombait dans « ruteno », dont il
+        # avalait le symbole chimique. Sur les six cent trente-neuf pages, une
+        # seule ligne suit une ligne blanche en se presentant « mot, » : celle-
+        # la. Admettre la virgule ne coute donc aucun faux positif.
         # « -- protestanto. » : l'auteur a marque d'un double tiret l'article
         # qu'il inserait apres coup. « +intrenar (trans.) » : il a omis le
         # point, et c'est le qualificatif entre parentheses qui clot la
@@ -264,7 +270,7 @@ def decouper(pages, corrigees, filetoj=None):
         RE_VED=re.compile(r'^(?:[-–]{2}\s*)?[\"«]?\.?[+-]?\s?'
                           r'[A-Za-z][A-Za-z\'’-]{0,30}[\"»]?'
                           r'\s?-?\s?(?:\([A-Za-z]{1,3}\)\s?)?'
-                          r'(?:[.!]|\s*\([A-Za-z]{1,12}[.,)])')
+                          r'(?:[.!,]|\s*\([A-Za-z]{1,12}[.,)])')
         # La ligne blanche ne se lit pas dans le texte : elle N'EST PAS dans la
         # grille. page_texte() ne rend que les lignes detectees, et leurs
         # numeros sautent — 2, 3, puis 5. C'est ce SAUT qui marque le blanc.
