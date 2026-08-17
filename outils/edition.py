@@ -790,6 +790,72 @@ RE_LOKUCO=re.compile(r'(?:^|(?<=[.;:]\s)|(?<=\)\s)|(?<=[-\u2013]\s))'
 # seul entre parentheses est un numero d'enumeration, non un domaine.
 RE_KVAL=re.compile(r'(?:[-\u2013\s]*\((?![A-Za-z0-9]\))[^()]{1,60}\)\s*)+$')
 RE_NUMERO=re.compile(r'\(([A-Za-z0-9])\)\s*$')
+# La locution ouvre parfois une PARENTHESE : « estado. Eso mentala... (estado
+# civila : la situeso di persono kom filio legitima o ne-legitima...) ». C'est
+# la meme chose qu'ailleurs — soulignee, suivie du deux-points, portant sa
+# propre definition —, et la parenthese ne la degrade pas : « estado civila » se
+# cherche comme « estado ». Elle s'y ecrit souvent en minuscule, la parenthese
+# tenant lieu d'ouverture ; on n'exige donc pas la capitale ici.
+RE_LOKUCO_KRAMPA=re.compile(r'\(\s*([A-Za-z\u00c0-\u00ff][A-Za-z\u00e0-\u00ff]*'
+                            r'(?:[- ][A-Za-z\u00e0-\u00ff]+){0,4})\s*:\s')
+# Les desinences grammaticales de l'Ido : participes, verbe, substantif,
+# adjectif, adverbe, pluriel. On les ote pour comparer deux mots par leur
+# RACINE — « inflexar » et « arko inflexita » n'ont pas la meme fin, mais le
+# meme mot. De la PLUS LONGUE a la plus courte : « inflexita » doit rendre
+# « inflex », non « inflexit », faute de quoi le verbe ne s'y reconnait pas.
+FINAJI=('anta','inta','onta','ata','ita','ota',
+        'ar','as','is','os','us','o','a','e','i')
+
+
+def _radiko(m):
+    """La racine du mot, sa desinence otee.
+
+    On n'ote rien qui laisserait moins de quatre lettres : sur un radical si
+    court, deux mots sans rapport se ressemblent trop — « bear » n'est pas
+    « be- », et « arko » n'est pas « ark- ».
+    """
+    m=m.lower().strip(' .,;:\u00ab\u00bb"\'')
+    for d in FINAJI:
+        if m.endswith(d) and len(m) - len(d) >= 4:
+            return m[:-len(d)]
+    return m
+
+
+def _citas_vedeton(loko, vedetto):
+    """La locution reprend-elle le mot de l'article ?
+
+    Dans une parenthese, le deux-points introduit aussi la GLOSE, qui n'est pas
+    une locution : « (antonimo : inflaco) », « (analogie : sur la kapo di ula
+    repteri) », « (simbolo kemiala : Ir) ». L'auteur les souligne comme les
+    locutions — le soulignement ne les separe donc pas. Ce qui les separe, c'est
+    que la locution CITE le mot de l'article, sous une forme ou une autre :
+    « estado civila » sous « estado », « arko inflexita » sous « inflexar »,
+    « relate » sous « relatar ». La glose, elle, parle d'autre chose.
+
+    Hors parenthese, la capitale distinguait les deux ; entre parentheses la
+    locution perd sa capitale, et cette citation en tient lieu.
+    """
+    r=_radiko(vedetto)
+    if len(r) < 4: return False
+    return any(_radiko(w) == r for w in loko.split())
+
+
+def _fermo(t, i):
+    """L'index de la parenthese qui ferme celle ouverte en `i`, ou None.
+
+    Le tapuscrit ne ferme pas toujours : « inflexar » ouvre une parenthese que
+    la ligne suivante, tronquee, n'a jamais close. Compter les niveaux le dit
+    sans se tromper, et ne prend pas la fermeture d'une parenthese INTERIEURE —
+    « ... tangenta per olia somiti (quale la embracilo tipografiala) » — pour
+    celle de la locution.
+    """
+    n=0
+    for j in range(i, len(t)):
+        if t[j] == '(': n += 1
+        elif t[j] == ')':
+            n -= 1
+            if n == 0: return j
+    return None
 
 
 def _kongruas(a, b):
@@ -883,14 +949,31 @@ def strukturizar(e):
         trov=[]
         for m in RE_LOKUCO.finditer(t):
             if any(_kongruas(m.group(1), u) for u in subl):
-                trov.append((m.start(1), m.end(1), m.end(), m.group(1)))
+                trov.append((m.start(1), m.end(), m.group(1), None))
+        pris={x[0] for x in trov}
+        for m in RE_LOKUCO_KRAMPA.finditer(t):
+            loko=m.group(1)
+            if m.start(1) in pris: continue
+            if not any(_kongruas(loko, u) for u in subl): continue
+            if not (loko[:1].isupper()
+                    or _citas_vedeton(loko, e.get('vedetto') or '')): continue
+            trov.append((m.start(1), m.end(), loko, (m.start(), _fermo(t, m.start()))))
+        trov.sort()
         if not trov:
             strukt.append({"teksto": t, "sub": []}); continue
-        sub=[]; bornes=[x[0] for x in trov]+[len(t)]
-        for i,(a,b,apres,loko) in enumerate(trov):
-            korpo=t[apres:bornes[i+1]].strip()
-            sub.append({"loko": loko, "fako": "", "teksto": korpo})
-        tete=t[:trov[0][0]]
+        # Une locution entre parentheses commence a sa parenthese OUVRANTE : le
+        # signe appartient a la locution, non au texte qui la precede.
+        deb=[x[3][0] if x[3] else x[0] for x in trov]
+        sub=[]; suite=[]
+        for i,(a,apres,loko,kr) in enumerate(trov):
+            fin=deb[i+1] if i+1 < len(trov) else len(t)
+            if kr and kr[1] is not None and kr[1] < fin:
+                # La sous-entree s'arrete a la parenthese qui la ferme. Ce qui
+                # suit reprend la phrase du sens — « (en vehilo publika : ...)
+                # La komizo di qua la rolo... » — et retourne donc au corps.
+                suite.append(t[kr[1]+1:fin]); fin=kr[1]
+            sub.append({"loko": loko, "fako": "", "teksto": t[apres:fin].strip()})
+        tete=t[:deb[0]]
         # Le qualificatif colle a la locution qui suit, non au sens precedent.
         for i in range(len(sub)):
             src = tete if i == 0 else sub[i-1]["teksto"]
@@ -907,6 +990,13 @@ def strukturizar(e):
         m=RE_NUMERO.match(tete.strip()) if tete else None
         if m and len(tete.strip()) <= 3:
             sub[0]["fako"]=(tete.strip()+" "+sub[0]["fako"]).strip(); tete=""
+        # Le texte qui suivait la parenthese se recolle au corps du sens, la
+        # parenthese otee. On le fait EN DERNIER : le qualificatif de tete et le
+        # numero d'enumeration se lisent a la fin du texte qui PRECEDE, et une
+        # reprise collee avant les aurait caches.
+        if suite:
+            tete=espacar(re.sub(r'\s+', ' ',
+                                (tete + " " + " ".join(suite))).strip())
         n_sub += len(sub)
         strukt.append({"teksto": tete, "sub": sub})
     for b in strukt:
