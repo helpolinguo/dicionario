@@ -237,13 +237,13 @@ dictionnaire. Plutôt que de masquer ce qui reste, la base le **signale** :
 | drapeau | entrées | ce qu'il veut dire |
 |---|---|---|
 | `ordino-ruptita` | 1 155 | **la vedette rompt l'ordre alphabétique** |
-| `sen-lingua` | 1 039 | pas de code de langues final — souvent normal, le livre n'en donne pas toujours |
-| `finalo-nekustumala` | 237 | finale étrangère à la morphologie d'Ido (-o, -a, -e, -i, -ar, -ir, -or) |
+| `sen-lingua` | 1 040 | pas de code de langues final — souvent normal, le livre n'en donne pas toujours |
+| `finalo-nekustumala` | 155 | finale étrangère à la morphologie d'Ido (-o, -a, -e, -i, -ar, -ir, -or). **Les affixes en sont exemptés** : `-eyo`, `poli-`, `bo-` ne sont pas des mots et n'ont pas de finale grammaticale — le tiret le dit. Restent surtout les mots grammaticaux — `per`, `dum`, `mem`, `olim`, `cent` —, corrects eux aussi : le drapeau est peu sûr dans cette famille |
 | `pagino-nefidinda` | 32 | pages 539-540, photographiées à une autre échelle, décodage nettement moins sûr |
 | `artiklo-dividita` | 11 | l'article était coupé par un saut de page ; les deux moitiés ont été recollées |
 | `sen-chefvorto` | 0 | l'entrée n'a pas de vedette lisible — plus aucun cas |
 
-**7 342 entrées ne portent aucun drapeau.**
+**7 351 entrées ne portent aucun drapeau.**
 
 `korektita` a cessé d'être un drapeau : il disait « au moins une cellule
 corrigée automatiquement », une provenance et non un doute, et toutes les
@@ -257,7 +257,7 @@ l'une des deux vedettes voisines — *aoendar* pour *acendar*, *a)rotano* pour
 *abrotano*, *aacho* pour le suffixe *-acho*. **Corriger ces 1 155 cas, c'est
 achever le livre**, et le travail est divisible : chacun peut en prendre cent.
 
-**2 125 entrées portent au moins un drapeau.** L'édition HTML ne les filtre plus
+**2 116 entrées portent au moins un drapeau.** L'édition HTML ne les filtre plus
 — elle n'offre que la recherche ; le tri se fait sur `drapeli`, dans le JSONL ou
 dans la colonne du même nom du TSV.
 

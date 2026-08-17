@@ -775,7 +775,7 @@ def analizar(e, lexique=None):
     v=e['vedetto']
     e['drapeli']=list(e.get('drapeli_pre',[]))
     if not v: e['drapeli'].append('sen-chefvorto')
-    elif not any(v.lower().endswith(f) for f in FINALES_OK): e['drapeli'].append('finalo-nekustumala')
+    elif not _finalo_ok(v): e['drapeli'].append('finalo-nekustumala')
     if not e['kodo']: e['drapeli'].append('sen-lingua')
     # Le drapeau « korektigita » disait « au moins une cellule corrigee
     # automatiquement » — une information de provenance, non un doute. Toutes
@@ -792,6 +792,19 @@ def analizar(e, lexique=None):
 # definition, des mots non encore officiels — l'asterisque leur revient, mais
 # la dactylo ne l'a pas frappee, le titre valant pour toute la liste.
 PAGINI_NEOFICALA = (637, 638)
+
+def _finalo_ok(v):
+    """La finale de la vedette est-elle celle d'un mot ido ?
+
+    Un AFFIXE n'est pas un mot : « -eyo », « poli- », « bo- » n'ont pas de
+    finale grammaticale, et le tiret est precisement ce qui le dit. Les
+    signaler comme d'une finale etrangere etait une erreur de categorie, et
+    soixante-dix-huit d'entre eux encombraient la liste de travail.
+    """
+    if not v: return True
+    if v.startswith('-') or v.rstrip('!').endswith('-'): return True
+    return any(v.lower().endswith(f) for f in FINALES_OK)
+
 
 def e_ok(e):
     v=e.get('vedetto') or ""
@@ -1365,6 +1378,20 @@ def konstrui():
     if n: print("sens retouches typographiquement : %d"%n)
     n=corriger_vedettes(ent)
     if n: print("vedettes corrigees a la main : %d"%n)
+    # Le drapeau de finale se lit SUR LA VEDETTE : corrigee ici, il doit se
+    # relire. « borc » devenu « boro », « fenikulc » devenu « fenikulo », la
+    # finale impossible a disparu — mais le drapeau qui la signalait restait,
+    # et la liste de travail designait un travail deja fait. Le drapeau d'ordre,
+    # lui, se recalcule deja en fin de chaine, pour la meme raison.
+    n=0
+    for e in ent:
+        v=e.get('vedetto') or ''
+        ok=_finalo_ok(v)
+        if ok and 'finalo-nekustumala' in e['drapeli']:
+            e['drapeli'].remove('finalo-nekustumala'); n+=1
+        elif v and not ok and 'finalo-nekustumala' not in e['drapeli']:
+            e['drapeli'].append('finalo-nekustumala'); n+=1
+    if n: print("drapeaux de finale relus apres correction : %d"%n)
     n=corriger_vorti(ent)
     if n: print("mots corriges dans les definitions : %d"%n)
     import relire as _rel
