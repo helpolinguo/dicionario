@@ -13,24 +13,32 @@ Transcription établie à partir du fac-similé fourni (639 pages photographiée
 | `dicionario.jsonl` | **la base** : un enregistrement JSON par entrée, un par ligne |
 | `dicionario.tsv` | la même chose en tableur, pour qui n'écrit pas de code |
 | `index.html` | l'**édition consultable**, un seul fichier, hors ligne, avec recherche |
-| `dicionario.pdf` | le **dictionnaire de poche**, vers lequel pointe le bouton « Deskargar » |
-| `dicionario-facsimile.pdf` | le fac-similé LaTeX, page à page, grille à grille |
-| `journal_complet.txt` | **toutes** les corrections : ce qui a été lu, ce qui a été retenu, et si c'est un correcteur ou l'œil qui a tranché |
+| `dicionario.pdf` | le **dictionnaire de poche**, vers lequel pointe le bouton « Deskargar » ; copie de `posho/posho.pdf` |
+| `main.pdf` | le fac-similé LaTeX, page à page, grille à grille (`main.tex` + `contenu/`) |
+| `filets-dubinda.md` | les soulignements de l'auteur que l'édition n'a pas su placer |
+| `travail/journal_complet.txt` | **toutes** les corrections : ce qui a été lu, ce qui a été retenu, et si c'est un correcteur ou l'œil qui a tranché |
 | `outils/` | la chaîne complète, de l'image au JSON |
 
-**8 241 entrées** extraites de 632 pages de corps d'ouvrage.
-4 302 portent une marque de domaine (*bot.*, *zool.*, *arkitekt.*…),
-544 un nom scientifique latin, 1 271 plusieurs sens numérotés.
+**9 466 entrées** extraites de 632 pages de corps d'ouvrage.
+5 273 portent une marque de domaine (*bot.*, *zool.*, *arkitekt.*…),
+814 un nom scientifique latin, 1 665 plusieurs sens numérotés,
+8 427 un code de langues final.
 
 ---
 
 ## Le champ d'un enregistrement
 
 ```json
-{"vedetto":"cinocefalo", "fako":"zool",
- "senci":["Genero de simio, di qua la muzelo esas longa quale che la hundo."],
- "latina":["cynocephalus"], "lingui":["angla","franca","italiana","hispana"],
- "kodo":"EFIS", "pagino":92, "ligno":8, "image":99,
+{"vedetto":"cinocefalo", "fako":"zool.",
+ "senci":["Genero de simio, di qua la muzelo esas longa quale che la hundo"],
+ "strukt":[{"teksto":"Genero de simio, di qua la muzelo esas longa quale che la hundo",
+            "teksto_k":"Genero de simio, di qua la muzelo esas longa quale che la hundo",
+            "sub":[]}],
+ "sublineita":["zool","cynocephalus"], "kursiva":[], "dubinda":[],
+ "latina":["cynocephalus"], "lingui":["Angla","Franca","Italiana","Hispana"],
+ "kodo":"EFIS", "pagino":92, "ligno":8, "image":99, "citita":false,
+ "teksto":"cinocefalo. (zool.) Genero de simio, di qua la muzelo esas longa quale che la hundo. - L. cynocephalus. - EFIS.",
+ "teksto_brut":"cinocefalo. (zool.) …",
  "korektita":0, "drapeli":[]}
 ```
 
@@ -38,6 +46,86 @@ Transcription établie à partir du fac-similé fourni (639 pages photographiée
 fourni ; `ligno` la ligne de la grille du tapuscrit. **Chaque entrée peut donc
 être ramenée au fac-similé**, ligne par ligne. C'est la condition pour que ce
 travail reste vérifiable dans vingt ans.
+
+`teksto_brut` est la ligne telle que le décodage l'a lue ; `teksto` la même
+après correction et typographie ; `senci` le découpage en sens numérotés, débarrassé
+des numéros de l'original. `citita` marque l'emprunt que l'auteur cite entre
+guillemets — *« amen »* —, que les éditions rendent en chevrons sans que la
+recherche ait à les taper. `korektita` compte les cellules redressées dans
+l'entrée : une provenance, non un doute.
+
+### Les sens et leurs sous-entrées (`strukt`)
+
+`senci` donne le texte d'un sens tel qu'il se lit. `strukt` donne le même texte
+**découpé** : un corps, et les locutions qui portent leur propre définition.
+
+L'auteur en pose de deux façons. Le plus souvent la locution ouvre la phrase,
+capitale et deux-points — *Proporciono geometriala : …* Parfois elle s'écrit
+entre parenthèses, et alors en minuscule — *estado. … (estado civila : la
+situeso di persono kom filio legitima o ne-legitima…)*. Les deux cas donnent la
+même chose : coulées dans le paragraphe, ces locutions étaient introuvables ;
+détachées, elles s'ouvrent leur propre alinéa et **se cherchent comme une
+vedette**.
+
+```json
+"strukt":[{"teksto":"Eso mentala, anmala, psikala, od aferala di la individuo koncernata",
+           "sub":[{"loko":"estado civila", "fako":"",
+                   "teksto":"La situeso di persono kom filio legitima o ne-legitima, mariajita o celiba"}]}]
+```
+
+| clé | ce que c'est |
+|---|---|
+| `teksto` | le corps du sens, la locution ôtée. Vide quand le sens n'a que ses locutions : son numéro passe alors sur la première |
+| `sub[].loko` | la locution, écrite en minuscule comme une vedette |
+| `sub[].fako` | son domaine propre, nu, sans les parenthèses — *geom.* |
+| `sub[].teksto` | sa définition |
+| `sub[].kodo`, `sub[].lingui` | présents sur la seule sous-entrée qui vient d'un **rattachement** (voir plus bas) : l'article rattaché garde son code de langues |
+
+157 sous-entrées dans 139 entrées, dont 40 portent un domaine propre.
+
+Une même locution peut relever de **deux** entrées, chacune avec sa
+définition : *estado civila* se range sous `civila`, qui la définit au long,
+comme sous `estado`, qui la mentionne. Les deux sont conservées telles quelles.
+
+Un cas particulier : l'auteur a marqué d'un double tiret marginal un article
+qu'il fait dépendre du précédent — *protestanto* sous *protestar*. Ce signe est
+unique dans les six cent quarante pages du livre. `travail/subvorti.txt` porte
+ce rattachement ; l'article rattaché devient une sous-entrée de son voisin, sans
+rien perdre — ni domaine, ni code de langues, ni page.
+
+### Les soulignements de l'auteur (`sublineita`, `kursiva`, `dubinda`)
+
+Le tapuscrit n'a pas d'italique : **la dactylo souligne**. Elle souligne ce
+qu'une imprimerie aurait mis en italique — le domaine, le nom scientifique, le
+mot cité, la locution. Le relevé des filets donne, ligne par ligne, des plages
+de colonnes ; il suffit d'y lire le texte.
+
+| champ | ce que c'est |
+|---|---|
+| `sublineita` | tout ce qui est souligné dans l'entrée, remis bout à bout, les coupures de fin de ligne recollées. 6 540 entrées |
+| `kursiva` | ceux que l'édition a **su placer** dans le texte, et qu'elle rend en italique. 1 277 entrées |
+| `dubinda` | ceux qu'elle **n'a pas su placer** : le fragment ne se retrouve pas tel quel, ou ne couvre que des mots-outils. 1 521 entrées, 1 769 fragments |
+
+Un souligné n'est ni `kursiva` ni `dubinda` quand il a trouvé sa place ailleurs
+— dans `fako`, dans `latina`, ou comme locution. C'est le cas de *cinocefalo*
+ci-dessus : ses deux soulignés sont devenus son domaine et son nom latin.
+
+`strukt` porte, à côté de chaque `teksto`, un `teksto_k` : le même texte avec
+deux bornes invisibles, `U+E000` et `U+E001`, autour de ce qui va en italique.
+Les éditions les traduisent, `<i>` pour le HTML et `\textit` pour le PDF ; qui
+lit la base peut les ignorer ou les ôter.
+
+```
+teksto   : Pikanta ed atakema (metaf.)
+teksto_k : Pikanta ed atakema \ue000(metaf.)\ue001
+```
+
+`filets-dubinda.md` classe les 1 769 fragments non placés par famille, la plus
+douteuse en tête, avec la page et la vedette pour aller voir le fac-similé. Une
+seule famille demande un arbitrage — 27 fragments qui ressemblent à un
+qualificatif ou à une locution ; les autres sont des artefacts du relevé, où le
+trait déborde ou s'arrête trop tôt. `python3 outils/releve_filets.py` le
+reconstruit.
 
 ---
 
@@ -49,35 +137,44 @@ dictionnaire. Plutôt que de masquer ce qui reste, la base le **signale** :
 
 | drapeau | entrées | ce qu'il veut dire |
 |---|---|---|
-| `sen-lingua` | 2 350 | pas de code de langues final — souvent normal, le livre n'en donne pas toujours |
-| `ordino-rompita` | 1 688 | **la vedette rompt l'ordre alphabétique** |
-| `korektita` | 1 674 | au moins une cellule corrigée automatiquement ; le journal la donne |
-| `finalo-nekutima` | 224 | finale étrangère à la morphologie d'Ido (-o, -a, -e, -i, -ar, -ir, -or) |
-| `sen-vedetto` | 114 | l'entrée n'a pas de vedette lisible |
-| `pagino-nekonfidebla` | 19 | pages 538-539, photographiées à une autre échelle, décodage nettement moins sûr |
+| `ordino-ruptita` | 1 157 | **la vedette rompt l'ordre alphabétique** |
+| `sen-lingua` | 1 039 | pas de code de langues final — souvent normal, le livre n'en donne pas toujours |
+| `finalo-nekustumala` | 237 | finale étrangère à la morphologie d'Ido (-o, -a, -e, -i, -ar, -ir, -or) |
+| `pagino-nefidinda` | 32 | pages 539-540, photographiées à une autre échelle, décodage nettement moins sûr |
+| `artiklo-dividita` | 11 | l'article était coupé par un saut de page ; les deux moitiés ont été recollées |
+| `sen-chefvorto` | 0 | l'entrée n'a pas de vedette lisible — plus aucun cas |
 
-**3 746 entrées ne portent aucun drapeau.**
+**7 340 entrées ne portent aucun drapeau.**
 
-`ordino-rompita` est le plus utile des six. Un dictionnaire est trié : une
+`korektita` a cessé d'être un drapeau : il disait « au moins une cellule
+corrigée automatiquement », une provenance et non un doute, et toutes les
+définitions ayant été relues une à une il ne désignait plus de travail restant.
+Le compte reste dans le champ `korektita`, pour qui veut mesurer : 6 289 entrées
+en portent au moins une.
+
+`ordino-ruptita` est le plus utile des drapeaux. Un dictionnaire est trié : une
 vedette qui rompt l'ordre désigne presque toujours une mauvaise lecture, dans
 l'une des deux vedettes voisines — *aoendar* pour *acendar*, *a)rotano* pour
-*abrotano*, *aacho* pour le suffixe *-acho*. **Corriger ces 1 688 cas, c'est
+*abrotano*, *aacho* pour le suffixe *-acho*. **Corriger ces 1 157 cas, c'est
 achever le livre**, et le travail est divisible : chacun peut en prendre cent.
 
-L'édition HTML a une case à cocher qui ne montre que les entrées drapelées.
+**2 126 entrées portent au moins un drapeau.** L'édition HTML ne les filtre plus
+— elle n'offre que la recherche ; le tri se fait sur `drapeli`, dans le JSONL ou
+dans la colonne du même nom du TSV.
 
 ---
 
 ## Ce qui a été corrigé, et comment
 
-Rien n'est corrigé en silence. **2 330 cellules** ont été redressées, chacune
-journalisée avec la forme lue, la forme retenue et la raison :
+Rien n'est corrigé en silence. **2 333 cellules** ont été redressées — 2 319 par
+un correcteur, 14 à l'œil —, chacune journalisée dans
+`travail/journal_complet.txt` avec la forme lue, la forme retenue et la raison :
 
-- **le lexique du livre** (`journal_corrections.txt`) — 137 758 occurrences pour
+- **le lexique du livre** (`travail/journal_corrections.txt`) — 137 758 occurrences pour
   34 620 formes : une forme lue une fois, quand une variante obtenue en changeant
   une cellule *ambiguë* est attestée huit fois et huit fois plus souvent, est une
   faute de lecture. Ainsi `zobl.` → `zool.` : une occurrence contre 334 ;
-- **la morphologie des vedettes** (`journal_vedettes.txt`) — la finale d'une
+- **la morphologie des vedettes** (`travail/journal_vedettes.txt`) — la finale d'une
   vedette est `o`, `r`, `a`, `e` ou `i` ; la quatrième valeur observée, `c`,
   n'existe pas en Ido : c'est la confusion `c`/`o` ;
 - **la section alphabétique de la page** — sur une page, les vedettes commencent
@@ -94,24 +191,52 @@ touchée.**
 
 Une piste a été essayée puis abandonnée — corriger les vedettes par l'ordre
 alphabétique global : sans contrainte de langue elle produit *adiar* → *adiao*.
-Son journal est conservé sous `journal_vedettes_DP_ABANDONNE.txt`.
+Son journal est conservé sous `travail/journal_vedettes_DP_ABANDONNE.txt`.
 
 ---
 
 ## Reprendre le travail
 
 ```
-python3 outils/edition.py     # image decodee  -> enregistrements structures
-python3 outils/exportar.py    # enregistrements -> JSONL, TSV, HTML
+python3 outils/tout_edituri.py            # toute la chaîne, dans l'ordre
+python3 outils/tout_edituri.py --sen-baz  # sans recalculer la base
 ```
+
+C'est l'entrée normale. Elle enchaîne les quatre étapes, qui se lancent aussi
+une à une :
+
+```
+python3 outils/edition.py     # image decodee   -> enregistrements structures
+python3 outils/exportar.py    # enregistrements -> JSONL, TSV, HTML
+python3 outils/posho.py       # enregistrements -> posho/enhavo.tex
+lualatex posho.tex            # dans posho/, deux passes -> posho.pdf
+```
+
+La page HTML et le dictionnaire de poche sortent du **même fichier**,
+`travail/edicioni/dicionario.jsonl` : les reconstruire ensemble est la seule
+façon qu'ils ne divergent pas. La dernière étape recopie à la racine
+`index.html`, `dicionario.tsv`, `dicionario.jsonl` et `dicionario.pdf`.
+
+`lualatex` demande les polices **Charis SIL** et **Inter**.
+
+Les outils écrivent leur racine en dur, `/root/dicionario`. Pour reprendre le
+travail ailleurs, le plus court est de l'y rendre :
+`ln -s /chemin/vers/le/depot /root/dicionario`.
 
 Pour corriger une lecture : ajouter une ligne
 `page<TAB>ligne<TAB>colonne<TAB>caractère` à `travail/exceptions_manuel.txt`,
-puis relancer les deux commandes. La correction se propage au fac-similé, à la
-base et à l'édition.
+puis relancer la chaîne. La correction se propage au fac-similé, à la base et
+aux deux éditions.
 
 Le fac-similé et l'édition sortent de la **même source** : les cellules décodées.
 Le fac-similé reste la pièce à conviction ; l'édition est ce qui s'utilise.
+
+Les corrections posées à la relecture ne vivent pas dans le JSONL — `edition.py`
+le reconstruit depuis le fac-similé et les effacerait sans bruit. Elles sont
+gardées dans leurs couches de réponses, aujourd'hui `travail/juger/`, et
+rejouées en fin de chaîne ; la liste des couches est la constante `JUGEMENTS`
+d'`edition.py`, et une couche absente est simplement sautée. **Une correction
+posée une fois est acquise.**
 
 ---
 
