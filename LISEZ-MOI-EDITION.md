@@ -21,7 +21,7 @@ Transcription établie à partir du fac-similé fourni (639 pages photographiée
 
 **9 467 entrées** extraites de 632 pages de corps d'ouvrage.
 5 270 portent une marque de domaine (*bot.*, *zool.*, *arkitekt.*…),
-813 un nom scientifique latin, 1 665 plusieurs sens numérotés,
+813 un nom scientifique latin, 1 672 plusieurs sens numérotés,
 8 427 un code de langues final.
 
 ---
