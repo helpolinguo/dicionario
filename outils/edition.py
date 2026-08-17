@@ -1484,8 +1484,8 @@ def konstrui():
             # Ponctuation orpheline en tete de sens : elle vient d'une coupure
             # de l'original, non du texte. « titrar » commencait par un point.
             S[k]=ekvilibrigi_parentezojn(pointi_abrevo(fermi_parentezon(
-                orfa_parentezo(formuli(cifri(pointi_sencoj(surcharge(
-                    espacar(t)))))))).lstrip('.,;:) ').strip())
+                fermi_kvalifikilon(orfa_parentezo(formuli(cifri(pointi_sencoj(
+                    surcharge(espacar(t))))))))).lstrip('.,;:) ').strip())
     # (cifri et formuli n'interviennent qu'ici, une fois la relecture posee)
     # Second passage des corrections a l'oeil. Une ligne de vorti.txt ecrite
     # d'apres le texte RENDU ne pouvait pas s'appliquer plus haut : « de l til
@@ -1747,6 +1747,24 @@ def orfa_parentezo(t):
         elif c == ')':
             p = max(0, p - 1)
     return _kupar(t[:-1]) if p == 0 else t
+
+
+def fermi_kvalifikilon(t):
+    """Ferme le qualificatif de tete dont la parenthese est restee ouverte.
+
+    « transmisar. ... II. (biol. Igar pasar a la decendanti. » — la fermante
+    manque apres l'abreviation, et le livre l'ecrit « (biol.) » des centaines
+    de fois : sa place ne fait aucun doute.
+
+    Cette regle doit passer AVANT fermi_parentezon, qui fermerait au BOUT du
+    sens : « (biol. Igar pasar a la decendanti) », ou le domaine avale toute la
+    definition. C'est le meme signe, pose a deux places, et une seule est
+    juste.
+    """
+    m = RE_KVAL_MANKA.match(t)
+    if m and t.count('(') > t.count(')'):
+        return '(%s)%s' % (m.group(1), t[m.end():])
+    return t
 
 
 def fermi_parentezon(t):
