@@ -644,6 +644,19 @@ def analizar(e, lexique=None):
     # Le tapuscrit marque les mots non officiels d'un « + » en exposant ; la
     # tradition ido ecrit une asterisque. On la restitue ici — le fac-simile,
     # lui, garde le signe frappe.
+    #
+    # PARTOUT, non a la seule vedette : le signe marque aussi la variante qui
+    # la suit — « timbro (+tembro) », « tarda (+retarda) » — et les mots cites
+    # dans les definitions — « +Seancar », « +Kluzajo », « +Asiejo-mashino ».
+    # Deux contextes en sont exclus, ou le « + » est le signe de l'addition et
+    # non une marque : « 6 +1, o 4 +3 » chez « sep », et les points d'une
+    # figure « AA'+BB'+CC' » chez « involuciono ». On exige donc une LETTRE
+    # apres le signe, et rien d'alphanumerique avant lui.
+    #
+    # Effet de bord voulu : « augmentar » finissait sur « +DEFIS », et son code
+    # de langues ne s'ancrait pas — l'article passait pour « sen-lingua ». Avec
+    # l'asterisque, que la lecture du code admet deja, il s'ancre.
+    t = re.sub(r"(?<![A-Za-zÀ-ÿ0-9'’])\+(?=[A-Za-zÀ-ÿ])", '*', t)
     # La vedette peut etre entre guillemets — « "alpari" », « "amen" » — ou
     # precedee d'un point parasite. On les admet, puis on les retire du mot.
     t = t.lstrip('. ')
