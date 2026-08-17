@@ -1315,7 +1315,8 @@ def konstrui():
         for k,t in enumerate(S):
             # Ponctuation orpheline en tete de sens : elle vient d'une coupure
             # de l'original, non du texte. « titrar » commencait par un point.
-            S[k]=orfa_parentezo(formuli(cifri(pointi_sencoj(surcharge(espacar(t)))))).lstrip('.,;:) ').strip()
+            S[k]=pointi_abrevo(fermi_parentezon(orfa_parentezo(formuli(cifri(
+                pointi_sencoj(surcharge(espacar(t)))))))).lstrip('.,;:) ').strip()
     # (cifri et formuli n'interviennent qu'ici, une fois la relecture posee)
     # Second passage des corrections a l'oeil. Une ligne de vorti.txt ecrite
     # d'apres le texte RENDU ne pouvait pas s'appliquer plus haut : « de l til
@@ -1556,6 +1557,40 @@ def orfa_parentezo(t):
         elif c == ')':
             p = max(0, p - 1)
     return _kupar(t[:-1]) if p == 0 else t
+
+
+def fermi_parentezon(t):
+    """Ferme la parenthese restee ouverte en fin de definition.
+
+    Le pendant exact d'orfa_parentezo. La fermante s'est perdue a la frappe et
+    le sens s'acheve au milieu d'une incise — « ... (anke metaf », « ...
+    (aludante penso, cienco, e c. », « ... (Ex. : la fragmento obskura ». Le
+    livre en compte soixante-cinq. Laissee ouverte, la parenthese pend dans les
+    deux editions, et la regle qui reconnait le domaine de tete s'y egare.
+
+    On ne ferme QUE si la derniere ouvrante n'a aucune fermante apres elle et
+    si tout ce qui la precede est equilibre. Ailleurs — chez « arachar », ou
+    c'est la PREMIERE parenthese qui est restee ouverte — on ignore ou serait
+    la faute, et fermer au bout deplacerait l'incise au lieu de la reparer.
+    """
+    i = t.rfind('(')
+    if i < 0 or t.rfind(')') > i:
+        return t
+    av = t[:i]
+    if av.count('(') != av.count(')'):
+        return t
+    return t.rstrip() + ')'
+
+
+# « (anke metaf) » : le point de l'abreviation s'est perdu avec la parenthese
+# fermante, en bout de ligne. Le livre ecrit « (anke metaf.) » cinquante fois
+# contre dix-huit sans point — la forme n'est pas douteuse.
+RE_ABREVO = re.compile(r'\((anke\s+metaf)\)', re.I)
+
+
+def pointi_abrevo(t):
+    """Rend son point a l'abreviation que la coupure de ligne a ecourtee."""
+    return RE_ABREVO.sub(lambda m: '(%s.)' % m.group(1), t)
 
 
 def espacar(t):
