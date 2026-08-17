@@ -104,26 +104,27 @@ rien perdre — ni domaine, ni code de langues, ni page.
 
 ### Le symbole chimique (`simbolo`)
 
-Soixante-quinze articles donnent le symbole ou la formule d'un corps. Le livre
-l'écrivait de **dix façons** : avec ou sans tiret, `Simbolo kemiala` ou
-`Simbolo kem.`, capitale ou minuscule, deux-points ou point, parfois en incise
-entre parenthèses. Pire que l'inégalité : là où l'auteur avait souligné
+Quatre-vingt-neuf articles donnent le symbole ou la formule d'un corps. Le
+livre l'écrivait de **onze façons** : avec ou sans tiret, capitale ou
+minuscule, deux-points ou point, parfois en incise entre parenthèses, et
+l'étiquette elle-même sous quatre graphies — `Simbolo kemiala`, `Simb.
+kemiala`, `Simbolo kem.`, `Simb. kem.` Pire que l'inégalité : là où l'auteur avait souligné
 l'étiquette, `Simbolo kemiala :` a exactement la forme d'une locution —
 capitale, deux-points, définition — et s'en allait **ouvrir un alinéa de
-sous-entrée dans soixante articles sur soixante-quinze**, encombrant d'autant
-l'index de recherche.
+sous-entrée dans soixante articles**, encombrant d'autant l'index de
+recherche.
 
 Or ce n'est pas un mot de la langue mais une étiquette, de même nature que le
 nom latin. Elle a donc son champ, `simbolo`, et les deux éditions la rendent
 d'une seule façon — l'étiquette en italique, le symbole **droit**, une formule
-penchée se lisant mal. **66 articles** le portent.
+penchée se lisant mal. **77 articles** le portent.
 
 Trois cas y échappent, et c'est voulu :
 
-- **huit articles** — `fero`, `fluoro`, `germanio`, `neono`, `nikelo`,
-  `palado`, `stano`, `stroncio` — portent l'étiquette, mais le symbole ne s'est
-  pas décodé. On ne l'invente pas : leur texte reste tel quel, et le manque
-  reste visible ;
+- **onze articles** — `fero`, `fluoro`, `fosfo`, `germanio`, `litio`,
+  `neono`, `nikelo`, `palado`, `selenio`, `stano`, `stroncio` — portent
+  l'étiquette, mais le symbole ne s'est pas décodé. On ne l'invente pas : leur
+  texte reste tel quel, et le manque reste visible ;
 - **`ruteno`** : l'article suivant, `rutino`, s'est fondu dans son texte au
   décodage. Ce qui suit l'étiquette n'y est pas un symbole mais un article
   entier — au-delà de quarante signes, on n'extrait rien ;
@@ -140,7 +141,7 @@ de colonnes ; il suffit d'y lire le texte.
 | champ | ce que c'est |
 |---|---|
 | `sublineita` | tout ce qui est souligné dans l'entrée, remis bout à bout, les coupures de fin de ligne recollées. 6 540 entrées |
-| `kursiva` | ceux que l'édition a **su placer** dans le texte, et qu'elle rend en italique. 1 268 entrées |
+| `kursiva` | ceux que l'édition a **su placer** dans le texte, et qu'elle rend en italique. 1 259 entrées |
 | `dubinda` | ceux qu'elle **n'a pas su placer** : le fragment ne se retrouve pas tel quel, ou ne couvre que des mots-outils. 1 517 entrées, 1 764 fragments |
 
 Un souligné n'est ni `kursiva` ni `dubinda` quand il a trouvé sa place ailleurs

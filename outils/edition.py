@@ -983,8 +983,15 @@ def majuskla_komenco(t):
 # latin. On la sort donc du texte, dans son propre champ, et les deux editions
 # la rendent d'une seule facon.
 ETIKEDO_SIMBOLO = "simbolo kemiala"
-RE_SIMBOLO = re.compile(r'[\s.,;:–-]*(\()?\s*simbolo\s+kem(?:\.|iala)\s*[:.]?\s*',
-                        re.I)
+# Les quatre graphies du libelle, pour reconnaitre le filet qui le couvrait :
+# le trait le coupe court — « Simb. kem », « Simbolo kemial » — aussi souvent
+# qu'il le prend en entier.
+ETIKEDOJ = ("simbolo kemiala", "simb. kemiala", "simbolo kem.", "simb. kem.")
+# « Simbolo » s'abrege lui aussi — « Simb. kem. Au » chez « oro », « Simb.
+# kemiala : Br » chez « bromo » —, et « kem » se rencontre nu. Les quatre
+# libelles se croisent librement ; le motif les prend tous.
+RE_SIMBOLO = re.compile(r'[\s.,;:–-]*(\()?\s*simb(?:olo|\.)\s*kem(?:iala|\.)?'
+                        r'\s*[:.]?\s*', re.I)
 # Un symbole ou une formule tient en peu de signes — le plus long du livre est
 # « C₁₆, H₂₆, N₂, O₁₀ ». Au-dela, ce n'est plus un symbole : chez « ruteno »
 # l'article suivant, « rutino », s'est fondu dans le texte au decodage. On
@@ -1164,7 +1171,8 @@ def strukturizar(e):
                   and not (e.get('simbolo') and
                            (_enhavas(ETIKEDO_SIMBOLO + ' ' + e['simbolo'], u)
                             or (len(u.strip()) >= 3
-                                and u.lower().strip(' .:') in ETIKEDO_SIMBOLO)))]
+                                and any(u.lower().strip(' .:') in E
+                                        for E in ETIKEDOJ))))]
     return n_sub
 
 
