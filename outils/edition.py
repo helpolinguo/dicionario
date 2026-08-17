@@ -973,7 +973,15 @@ def _citas_vedeton(loko, vedetto):
     """
     r=_radiko(vedetto)
     if len(r) < 4: return False
-    return any(_radiko(w) == r for w in loko.split())
+    # On compare par le DEBUT : « konstanta » rend « konst » — la desinence
+    # -anta y passe pour un participe qu'elle n'est pas — la ou « konstanto »
+    # rend « konstant ». Exiger l'egalite separait les deux ; le prefixe les
+    # reunit, sans rapprocher pour autant « nun » de « moloso ».
+    for w in loko.split():
+        u=_radiko(w)
+        if len(u) < 4: continue
+        if u == r or u.startswith(r) or r.startswith(u): return True
+    return False
 
 
 def _fermo(t, i):
@@ -1234,8 +1242,19 @@ def strukturizar(e):
     for t in (e.get('senci') or []):
         trov=[]
         for m in RE_LOKUCO.finditer(t):
-            if any(_kongruas(m.group(1), u) for u in subl):
-                trov.append((m.start(1), m.end(), m.group(1), None))
+            loko=m.group(1)
+            if not any(_kongruas(loko, u) for u in subl): continue
+            # Un seul mot, sans trait d'union, etranger a la vedette : ce n'est
+            # pas une locution mais une GLOSE — « moloso. ... – Nun : grosa
+            # gardo-hundo », ou « Nun » est l'adverbe « maintenant ». La
+            # capitale et le deux-points ne suffisent pas a la distinguer ; le
+            # lien avec la vedette, si. Les vraies locutions d'un seul mot sont
+            # soit des composes — « mar-baseno », « dento-krono » —, soit des
+            # derives de la vedette — « acido » sous « acida ».
+            if (len(loko.split()) == 1 and '-' not in loko
+                    and not _citas_vedeton(loko, e.get('vedetto') or '')):
+                continue
+            trov.append((m.start(1), m.end(), loko, None))
         pris={x[0] for x in trov}
         for m in RE_LOKUCO_KRAMPA.finditer(t):
             loko=m.group(1)
