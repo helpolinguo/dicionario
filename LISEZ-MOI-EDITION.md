@@ -35,7 +35,8 @@ Transcription établie à partir du fac-similé fourni (639 pages photographiée
             "teksto_k":"Genero de simio, di qua la muzelo esas longa quale che la hundo",
             "sub":[]}],
  "sublineita":["zool","cynocephalus"], "kursiva":[], "dubinda":[],
- "latina":["cynocephalus"], "lingui":["Angla","Franca","Italiana","Hispana"],
+ "latina":["cynocephalus"], "simbolo":null,
+ "lingui":["Angla","Franca","Italiana","Hispana"],
  "kodo":"EFIS", "pagino":92, "ligno":8, "image":99, "citita":false,
  "teksto":"cinocefalo. (zool.) Genero de simio, di qua la muzelo esas longa quale che la hundo. - L. cynocephalus. - EFIS.",
  "teksto_brut":"cinocefalo. (zool.) …",
@@ -59,13 +60,21 @@ l'entrée : une provenance, non un doute.
 `senci` donne le texte d'un sens tel qu'il se lit. `strukt` donne le même texte
 **découpé** : un corps, et les locutions qui portent leur propre définition.
 
-L'auteur en pose de deux façons. Le plus souvent la locution ouvre la phrase,
-capitale et deux-points — *Proporciono geometriala : …* Parfois elle s'écrit
-entre parenthèses, et alors en minuscule — *estado. … (estado civila : la
-situeso di persono kom filio legitima o ne-legitima…)*. Les deux cas donnent la
-même chose : coulées dans le paragraphe, ces locutions étaient introuvables ;
-détachées, elles s'ouvrent leur propre alinéa et **se cherchent comme une
-vedette**.
+L'auteur en pose de plusieurs façons. Le plus souvent la locution ouvre la
+phrase, capitale et deux-points — *Proporciono geometriala : …* Parfois elle
+s'écrit entre parenthèses, et alors en minuscule — *estado. … (estado civila :
+la situeso di persono kom filio legitima o ne-legitima…)*. La **virgule** en
+fait partie, l'auteur empilant parfois des locutions parallèles qui partagent
+une définition — *Extraktar radiko, quadrata, kubala, di nombro : …*,
+c'est-à-dire la racine carrée et la racine cubique en une fois. Enfin, un
+**article entier** se glisse une fois entre parenthèses dans la définition d'un
+autre — *butono. … (\*botono. (elektr.) Mikra cilindro…)* —, où l'astérisque,
+marque des mots non encore officiels, le distingue d'une abréviation de domaine
+de même forme (*trans.*, *anat.*).
+
+Tous ces cas donnent la même chose : coulées dans le paragraphe, ces locutions
+étaient introuvables ; détachées, elles s'ouvrent leur propre alinéa et **se
+cherchent comme une vedette**.
 
 ```json
 "strukt":[{"teksto":"Eso mentala, anmala, psikala, od aferala di la individuo koncernata",
@@ -81,7 +90,7 @@ vedette**.
 | `sub[].teksto` | sa définition |
 | `sub[].kodo`, `sub[].lingui` | présents sur la seule sous-entrée qui vient d'un **rattachement** (voir plus bas) : l'article rattaché garde son code de langues |
 
-157 sous-entrées dans 139 entrées, dont 40 portent un domaine propre.
+102 sous-entrées dans 83 entrées, dont 41 portent un domaine propre.
 
 Une même locution peut relever de **deux** entrées, chacune avec sa
 définition : *estado civila* se range sous `civila`, qui la définit au long,
@@ -93,6 +102,34 @@ unique dans les six cent quarante pages du livre. `travail/subvorti.txt` porte
 ce rattachement ; l'article rattaché devient une sous-entrée de son voisin, sans
 rien perdre — ni domaine, ni code de langues, ni page.
 
+### Le symbole chimique (`simbolo`)
+
+Soixante-quinze articles donnent le symbole ou la formule d'un corps. Le livre
+l'écrivait de **dix façons** : avec ou sans tiret, `Simbolo kemiala` ou
+`Simbolo kem.`, capitale ou minuscule, deux-points ou point, parfois en incise
+entre parenthèses. Pire que l'inégalité : là où l'auteur avait souligné
+l'étiquette, `Simbolo kemiala :` a exactement la forme d'une locution —
+capitale, deux-points, définition — et s'en allait **ouvrir un alinéa de
+sous-entrée dans soixante articles sur soixante-quinze**, encombrant d'autant
+l'index de recherche.
+
+Or ce n'est pas un mot de la langue mais une étiquette, de même nature que le
+nom latin. Elle a donc son champ, `simbolo`, et les deux éditions la rendent
+d'une seule façon — l'étiquette en italique, le symbole **droit**, une formule
+penchée se lisant mal. **66 articles** le portent.
+
+Trois cas y échappent, et c'est voulu :
+
+- **huit articles** — `fero`, `fluoro`, `germanio`, `neono`, `nikelo`,
+  `palado`, `stano`, `stroncio` — portent l'étiquette, mais le symbole ne s'est
+  pas décodé. On ne l'invente pas : leur texte reste tel quel, et le manque
+  reste visible ;
+- **`ruteno`** : l'article suivant, `rutino`, s'est fondu dans son texte au
+  décodage. Ce qui suit l'étiquette n'y est pas un symbole mais un article
+  entier — au-delà de quarante signes, on n'extrait rien ;
+- **`iridio`** : l'étiquette y était en incise au milieu d'une phrase. Elle est
+  extraite comme les autres, et la phrase se referme sur elle-même.
+
 ### Les soulignements de l'auteur (`sublineita`, `kursiva`, `dubinda`)
 
 Le tapuscrit n'a pas d'italique : **la dactylo souligne**. Elle souligne ce
@@ -103,11 +140,11 @@ de colonnes ; il suffit d'y lire le texte.
 | champ | ce que c'est |
 |---|---|
 | `sublineita` | tout ce qui est souligné dans l'entrée, remis bout à bout, les coupures de fin de ligne recollées. 6 540 entrées |
-| `kursiva` | ceux que l'édition a **su placer** dans le texte, et qu'elle rend en italique. 1 277 entrées |
-| `dubinda` | ceux qu'elle **n'a pas su placer** : le fragment ne se retrouve pas tel quel, ou ne couvre que des mots-outils. 1 521 entrées, 1 769 fragments |
+| `kursiva` | ceux que l'édition a **su placer** dans le texte, et qu'elle rend en italique. 1 268 entrées |
+| `dubinda` | ceux qu'elle **n'a pas su placer** : le fragment ne se retrouve pas tel quel, ou ne couvre que des mots-outils. 1 517 entrées, 1 764 fragments |
 
 Un souligné n'est ni `kursiva` ni `dubinda` quand il a trouvé sa place ailleurs
-— dans `fako`, dans `latina`, ou comme locution. C'est le cas de *cinocefalo*
+— dans `fako`, dans `latina`, dans `simbolo`, ou comme locution. C'est le cas de *cinocefalo*
 ci-dessus : ses deux soulignés sont devenus son domaine et son nom latin.
 
 `strukt` porte, à côté de chaque `teksto`, un `teksto_k` : le même texte avec
@@ -120,7 +157,7 @@ teksto   : Pikanta ed atakema (metaf.)
 teksto_k : Pikanta ed atakema \ue000(metaf.)\ue001
 ```
 
-`filets-dubinda.md` classe les 1 769 fragments non placés par famille, la plus
+`filets-dubinda.md` classe les 1 764 fragments non placés par famille, la plus
 douteuse en tête, avec la page et la vedette pour aller voir le fac-similé. Une
 seule famille demande un arbitrage — 27 fragments qui ressemblent à un
 qualificatif ou à une locution ; les autres sont des artefacts du relevé, où le

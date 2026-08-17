@@ -110,6 +110,8 @@ def artiklo(e):
                 esc(x.get('fako') or ''), esc(x['loko']),
                 _borni(esc(x.get('teksto_k') or x.get('teksto') or '')),
                 num if j == 0 else "", esc(kod)))
+    if e.get('simbolo'):
+        L.append("\\simbolo{%s}" % esc(e['simbolo']))
     if e.get('latina'):
         L.append("\\latina{%s}" % esc('; '.join(e['latina'])))
     if e.get('lingui'):
@@ -120,9 +122,10 @@ def artiklo(e):
     # rejete apres elles, il pendait seul sous un bloc en retrait et semblait
     # leur appartenir. On le remonte au dernier morceau qui soit de l'article.
     if any(x.startswith("\\subvorto") for x in L):
-        queue = [x for x in L if x.startswith(("\\latina", "\\lingui"))]
+        queue = [x for x in L if x.startswith(("\\simbolo", "\\latina", "\\lingui"))]
         if queue:
-            L = [x for x in L if not x.startswith(("\\latina", "\\lingui"))]
+            L = [x for x in L
+                 if not x.startswith(("\\simbolo", "\\latina", "\\lingui"))]
             j = max((i for i, x in enumerate(L)
                      if not x.startswith("\\subvorto")), default=-1)
             L = L[:j+1] + queue + L[j+1:]

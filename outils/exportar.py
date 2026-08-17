@@ -8,11 +8,12 @@ def charger():
 
 def tsv(ent):
     with open(f"{SORT}/dicionario.tsv","w",encoding='utf-8') as f:
-        f.write("vedetto\tfako\tsenci\tnomi_latina\tlingui\tkodo\tpagino\tligno\timago\tdrapeli\n")
+        f.write("vedetto\tfako\tsenci\tnomi_latina\tsimbolo_kemiala\tlingui\tkodo\tpagino\tligno\timago\tdrapeli\n")
         for e in ent:
             f.write("\t".join([
                 e['vedetto'], e['fako'] or "",
                 " ¶ ".join(e['senci']), "; ".join(e['latina']),
+                e.get('simbolo') or "",
                 ",".join(e['lingui']), e['kodo'] or "",
                 str(e['pagino']), str(e['ligno']), str(e['image']),
                 ",".join(e['drapeli'])]).replace("\n"," ")+"\n")
@@ -60,6 +61,9 @@ article{padding:11px 0;border-bottom:1px solid var(--lin)}
 .senco{margin:4px 0 0}
 .senco b{color:var(--sub);font-weight:600;font-size:13px;margin-right:4px}
 .lat{font-style:italic;color:var(--sub)}
+.simb{color:var(--sub)}
+.simb i{font-style:italic}
+.simb b{font-weight:600;color:var(--enk);font-size:14px}
 .subvorto{margin:3px 0 3px 16px;text-indent:-10px;line-height:1.45}
 .subvorto>b{color:var(--acc)}
 .subvorto .lin{color:var(--sub);font-size:11.5px;margin-left:6px;letter-spacing:.03em}
@@ -131,6 +135,10 @@ function rendi(e,r){
    +(x.n&&x.n.length?'<span class="lin">'+esc(x.n.join(', '))+'</span>':'')+'</p>';
    num=0;});});
  if(e.l&&e.l.length)h+='<p class="senco lat">L. '+esc(e.l.join('; '))+'</p>';
+ // Le symbole chimique : une etiquette, comme le nom latin. Le livre l'ecrivait
+ // de dix facons — avec ou sans tiret, « kemiala » ou « kem. », majuscule ou
+ // non, parfois en incise ; il ne s'ecrit plus que d'une.
+ if(e.y)h+='<p class="senco simb"><i>Simb. kem.</i> <b>'+esc(e.y)+'</b></p>';
  h+='<div class="meta"><span>p. '+e.p+', l. '+e.g+'</span>';
  if(e.n&&e.n.length)h+='<span>'+esc(e.n.join(', '))+'</span>';
  if(e.d&&e.d.length)h+='<span class="dr">'+esc(e.d.join(' · '))+'</span>';
@@ -207,6 +215,7 @@ def html_edition(ent):
                    for x in (b.get('sub') or [])]}
              for b in (e.get('strukt') or [])],
         "n":e['lingui'],"p":e['pagino'],"g":e['ligno'],"d":e['drapeli'],
+        **({"y":e['simbolo']} if e.get('simbolo') else {}),
         **({"c":1} if e.get('citita') else {})} for e in ent]
     s=GABARITO.replace("__DATA__", json.dumps(D, ensure_ascii=False, separators=(',',':')))
     s=s.replace("__N__", f"{len(ent)} ")

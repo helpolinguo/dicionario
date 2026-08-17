@@ -729,6 +729,7 @@ def analizar(e, lexique=None):
         e['fako'] = None
     e['latina']= [x.strip(' .') for x in RE_LATINA.findall(resto)]
     resto = RE_LATINA.sub('', resto).strip(' -–')
+    e['simbolo']= None
     senci=[_kupar(s.lstrip(' -–.,;:')) for s in RE_SENCO.split(resto)
            if s.strip(' -–.,;:')]
     e['senci']= senci if senci else ([resto] if resto else [])
@@ -796,12 +797,24 @@ RE_LOKUCO=re.compile(r'(?:^|(?<=[.;:]\s)|(?<=\)\s)|(?<=[-\u2013]\s))'
 # seul entre parentheses est un numero d'enumeration, non un domaine.
 RE_KVAL=re.compile(r'(?:[-\u2013\s]*\((?![A-Za-z0-9]\))[^()]{1,60}\)\s*)+$')
 RE_NUMERO=re.compile(r'\(([A-Za-z0-9])\)\s*$')
+# Le meme qualificatif, mais en TETE : « *botono. (elektr.) Mikra cilindro... »
+# porte son domaine apres la vedette, non avant elle comme « (geom.) arko
+# inflexita : ... ». Il va au champ `fako` dans les deux cas.
+RE_KVAL_KAPO=re.compile(r'^(?:\((?![A-Za-z0-9]\))[^()]{1,60}\)\s*)+')
 # La locution ouvre parfois une PARENTHESE : « estado. Eso mentala... (estado
 # civila : la situeso di persono kom filio legitima o ne-legitima...) ». C'est
 # la meme chose qu'ailleurs — soulignee, suivie du deux-points, portant sa
 # propre definition —, et la parenthese ne la degrade pas : « estado civila » se
 # cherche comme « estado ». Elle s'y ecrit souvent en minuscule, la parenthese
 # tenant lieu d'ouverture ; on n'exige donc pas la capitale ici.
+# Un ARTICLE ENTIER glisse entre parentheses dans la definition d'un autre :
+# « butono. ... (*botono. (elektr.) Mikra cilindro, ek materio elektro-ne-
+# konduktiva...) ». Ce n'est pas une locution mais un mot a part, avec son
+# domaine et sa definition — et l'asterisque, dont l'auteur marque le mot non
+# encore officiel, le distingue de l'abreviation de domaine qui a la meme
+# forme : « (trans. ... », « (anat. ... », « (metaf. ... ». Le livre n'en
+# compte qu'un ; sans lui, « botono » ne se cherchait pas.
+RE_SUBARTIKLO=re.compile(r'\(\s*(\*[A-Za-zÀ-Ý][A-Za-zà-ÿ-]{2,})\s*\.\s*')
 RE_LOKUCO_KRAMPA=re.compile(r'\(\s*([A-Za-z\u00c0-\u00ff][A-Za-z\u00e0-\u00ff]*'
                             r'(?:[- ][A-Za-z\u00e0-\u00ff]+){0,4})\s*:\s')
 # Les desinences grammaticales de l'Ido : participes, verbe, substantif,
@@ -958,6 +971,58 @@ def majuskla_komenco(t):
     return t[:i] + t[i].upper() + t[i+1:]
 
 
+# --- Le symbole chimique ----------------------------------------------------
+#
+# Le livre l'ecrit de dix facons : « . – Simbolo kemiala : Al », « . Simbolo
+# kemiala : Al » sans tiret, « . – Simbolo kem. Rh » abrege et sans deux-points,
+# en minuscule, ou en incise entre parentheses. Pire que l'inegalite : la ou
+# l'auteur a souligne l'etiquette, « Simbolo kemiala : » a exactement la forme
+# d'une locution — capitale, deux-points, definition — et s'en allait ouvrir un
+# alinea de sous-entree, dans SOIXANTE articles sur soixante-quinze. Or ce n'est
+# pas un mot de la langue : c'est une etiquette, de meme nature que le nom
+# latin. On la sort donc du texte, dans son propre champ, et les deux editions
+# la rendent d'une seule facon.
+ETIKEDO_SIMBOLO = "simbolo kemiala"
+RE_SIMBOLO = re.compile(r'[\s.,;:–-]*(\()?\s*simbolo\s+kem(?:\.|iala)\s*[:.]?\s*',
+                        re.I)
+# Un symbole ou une formule tient en peu de signes — le plus long du livre est
+# « C₁₆, H₂₆, N₂, O₁₀ ». Au-dela, ce n'est plus un symbole : chez « ruteno »
+# l'article suivant, « rutino », s'est fondu dans le texte au decodage. On
+# n'extrait alors RIEN, et le defaut reste visible plutot que d'etre maquille.
+LONGO_SIMBOLO = 40
+
+
+def apartigar_simbolon(e):
+    """Sort le symbole chimique du texte et le met dans son champ.
+
+    Rend 1 si un symbole a ete pose. Les articles ou la dactylo a bien frappe
+    l'etiquette mais ou le symbole ne s'est pas decode — « fero », « neono »,
+    six autres — gardent leur texte tel quel : l'etiquette sans symbole ne dit
+    rien, mais l'effacer effacerait aussi la trace du manque.
+    """
+    S = e.get('senci') or []
+    for k, t in enumerate(S):
+        m = RE_SIMBOLO.search(t)
+        if not m:
+            continue
+        resto = t[m.end():]
+        if m.group(1):
+            # Etiquette en incise — « ..., (simbolo kemiala : Ir) quan onu
+            # renkontras... » : elle s'arrete a sa parenthese, et la phrase
+            # reprend apres.
+            j = resto.find(')')
+            sim, suite = (resto[:j], resto[j+1:]) if j >= 0 else (resto, '')
+        else:
+            sim, suite = resto, ''
+        sim = sim.strip(' .,;:')
+        if not sim or len(sim) > LONGO_SIMBOLO:
+            continue
+        e['simbolo'] = sim
+        S[k] = espacar((t[:m.start()] + ' ' + suite).strip(' .,;:–-'))
+        return 1
+    return 0
+
+
 def strukturizar(e):
     """Decoupe chaque sens en un corps et, s'il y a lieu, ses sous-entrees.
 
@@ -980,6 +1045,11 @@ def strukturizar(e):
             if not any(_kongruas(loko, u) for u in subl): continue
             if not (loko[:1].isupper()
                     or _citas_vedeton(loko, e.get('vedetto') or '')): continue
+            trov.append((m.start(1), m.end(), loko, (m.start(), _fermo(t, m.start()))))
+        for m in RE_SUBARTIKLO.finditer(t):
+            loko=m.group(1)
+            if m.start(1) in pris or any(x[0] == m.start(1) for x in trov): continue
+            if not any(_kongruas(loko.lstrip('*'), u) for u in subl): continue
             trov.append((m.start(1), m.end(), loko, (m.start(), _fermo(t, m.start()))))
         trov.sort()
         if not trov:
@@ -1029,7 +1099,13 @@ def strukturizar(e):
             # Le tiret qui introduisait la locution SUIVANTE reste au bout du
             # corps de la precedente — « ... relate Suno. – ». Il n'annonce
             # plus rien, la locution ayant pris son alinea.
-            x['teksto']=majuskla_komenco(x['teksto'].rstrip(" -–,;"))
+            x['teksto']=x['teksto'].rstrip(" -–,;")
+            if not x['fako']:
+                mk=RE_KVAL_KAPO.match(x['teksto'])
+                if mk:
+                    x['fako']=mk.group(0).strip()
+                    x['teksto']=x['teksto'][mk.end():].lstrip(' .,;:')
+            x['teksto']=majuskla_komenco(x['teksto'])
             # Le qualificatif est garde NU, comme le champ `fako` de l'article :
             # ce sont les editions qui posent les parentheses. Sans cela le
             # domaine d'une locution — pris entre parentheses dans le texte —
@@ -1078,7 +1154,17 @@ def strukturizar(e):
                   if u.lower().rstrip('.') not in fakoj
                   and not any(u.lower().rstrip('.') in f for f in fakoj)
                   and u.lower() not in lat
-                  and not any(_kongruas(u, L) or _enhavas(L, u) for L in lokoj)]
+                  and not any(_kongruas(u, L) or _enhavas(L, u) for L in lokoj)
+                  # L'etiquette du symbole chimique a quitte le texte pour son
+                  # champ : le filet qui la couvrait est place, non douteux.
+                  # Le trait la coupe souvent court — « Simbolo kem »,
+                  # « Simbolo kemial » — ou n'en prend que la fin —
+                  # « kemiala » : on accepte donc tout morceau de l'etiquette,
+                  # a partir de trois lettres pour ne pas happer n'importe quoi.
+                  and not (e.get('simbolo') and
+                           (_enhavas(ETIKEDO_SIMBOLO + ' ' + e['simbolo'], u)
+                            or (len(u.strip()) >= 3
+                                and u.lower().strip(' .:') in ETIKEDO_SIMBOLO)))]
     return n_sub
 
 
@@ -1258,7 +1344,12 @@ def konstrui():
             if re.fullmatch(r'(?:I{1,3}|IV|VI{0,3}|IX|X)', u): u=''
             # Point double apres le numero — « titrar. I..(teknol.) ». Le
             # retrait du numero laisse le second, orphelin en tete de sens.
-            u = re.sub(r'^[.,;:)\s]+', '', u)
+            # Le tiret separait les sens dans l'original — « vunduro. II. -
+            # (religio kristana). Marko... ». Le numero ote, il reste en tete
+            # et n'annonce plus rien. Il empechait en outre les editions de
+            # reconnaitre la parenthese de tete comme un domaine, et « stigmato
+            # » perdait l'italique de « (religio kristana) ».
+            u = re.sub(r'^[.,;:)\s–-]+', '', u)
             u = espacar(u)
             S.append(u)
         fus=[]
@@ -1278,6 +1369,8 @@ def konstrui():
             u=majuskla_komenco(t)
             if u != t: S[k]=u; n_maj += 1
     if n_maj: print("sens rendus a la capitale initiale : %d"%n_maj)
+    n_sim=sum(apartigar_simbolon(e) for e in ent)
+    if n_sim: print("symboles chimiques mis en champ : %d"%n_sim)
     n_sub=sum(strukturizar(e) for e in ent)
     n_kur=sum(1 for e in ent if e.get('kursiva'))
     print("locutions detachees : %d ; articles avec un souligne : %d"%(n_sub, n_kur))
