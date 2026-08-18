@@ -179,8 +179,13 @@ def ecrire(source=SOURCE, sortie=SORTIE):
             elif avan is not None:
                 L += ["Sa place est juste avant « %s », sa voisine."
                       % ent[x-1]['vedetto'], ""]
+            # La lecture proposee ne peut pas etre celle d'une vedette voisine :
+            # le livre ne definit pas deux fois le meme mot a trois lignes de
+            # distance. « arterito » n'est pas « arterio », qui le precede.
+            proxima = {K[j] for j in range(max(0, x-3), min(len(ent), x+4))}
             var = [v for v in variantoj(K[x], konf)
-                   if (x == 0 or K[x-1] <= v) and (x+1 >= len(ent) or v <= K[x+1])]
+                   if (x == 0 or K[x-1] <= v) and (x+1 >= len(ent) or v <= K[x+1])
+                   and v not in proxima]
             if var:
                 L += ["Lectures qui tiendraient dans la place occupee : %s."
                       % ", ".join("**%s**%s" % (v, " (mot atteste ailleurs)"

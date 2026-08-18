@@ -79,8 +79,6 @@ Ecrite entre « arterio » et « arteriologio ».
 
 Sa place est apres « arteriotomio », f.42 (image 49, ligne 3) — 3 articles plus loin.
 
-Lectures qui tiendraient dans la place occupee : **arterio** (mot atteste ailleurs).
-
 ```
 arterito. (patol.) Inflamuro di arterio. - DEF.
 ```
