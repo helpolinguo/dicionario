@@ -2383,7 +2383,22 @@ def espacar(t):
     apres elle. La fonction est idempotente.
     """
     t = re.sub(r',(?=[A-Za-zÀ-ÿ])', ', ', t)
-    t = re.sub(r'\)(?=[A-Za-zÀ-ÿ])', ') ', t)
+    # La parenthese fermante collee au mot suivant prend une espace — mais pas
+    # celle qui fait CORPS avec le mot. L'auteur note ainsi l'element facultatif
+    # : « leon(in)o » dit le lion et la lionne, « formac(es)o » la formation et
+    # le fait de se former, « -(ant)ajo » le suffixe compose. Le mot continue
+    # apres la parenthese, et l'espace le couperait en deux. On la reconnait au
+    # tiret d'affixe qui la precede, ou a la lettre SEULE qui la suit — la
+    # finale du mot. Trois cas dans le livre, et aucun faux frere : « F(z) esas
+    # monodroma » porte deja son espace, « (aludante persono)Definuro » n'est
+    # pas un element mais une incise.
+    def _fermo_espaco(m):
+        tiro, dedans, sekvo = m.group(1), m.group(2), m.group(3)
+        korta = len(dedans) <= 6 and dedans.isalpha()
+        if korta and (tiro or len(sekvo) == 1):
+            return m.group(0)
+        return '%s(%s) ' % (tiro, dedans)
+    t = re.sub(r'(-?)\(([^()]*)\)(?=([A-Za-zÀ-ÿ]+))', _fermo_espaco, t)
     # « (olim).Vaporo-mashino » : le point qui suit la parenthese
     # fermante colle au mot suivant. 88 cas. On ne touche qu'apres une
     # parenthese : ailleurs, « CH3CO.CH3 » est une formule chimique.

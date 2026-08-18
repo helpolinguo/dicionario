@@ -604,7 +604,6 @@ releve des filets, ou le trait deborde ou s'arrete trop tot.
 | 10 | agento | `agento. L` |
 | 10 | aglo | `eras` |
 | 11 | agro | `ular` |
-| 12 | -ajo | `-(ant)ajo` |
 | 12 | -ajo | `a(ta)jo` |
 | 12 | akademio | `as, ge` |
 | 12 | akanto | `tile` |
@@ -917,6 +916,7 @@ releve des filets, ou le trait deborde ou s'arrete trop tot.
 | 222 | honoro | `da n` |
 | 224 | humuso | `as e` |
 | 225 | husaro | `a) k` |
+| 226 | ideologio | `filoz` |
 | 227 | ikonoklasto | `konoklasto` |
 | 228 | imaginara | `aginara` |
 | 229 | imajo | `vide` |

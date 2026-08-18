@@ -303,6 +303,16 @@ présentant « mot, », celle-là — la tolérance ne coûte aucun faux positif
 **`iridio`** avait son étiquette en incise au milieu d'une phrase ; elle est
 extraite comme les autres, et la phrase se referme sur elle-même.
 
+### La parenthèse qui fait corps avec le mot
+
+L'auteur note l'élément facultatif entre parenthèses, au milieu du mot :
+*leon(in)o* dit le lion et la lionne, *formac(es)o* la formation et le fait de
+se former, *-(ant)ajo* le suffixe composé. La règle qui détache une parenthèse
+fermante collée au mot suivant — *(aludante persono)Definuro* — coupait ces
+trois-là en deux. Elle épargne désormais celle que précède le tiret d'affixe, et
+celle que suit une lettre **seule** : la finale du mot. *F(z) esas monodroma*
+porte déjà son espace, et n'est pas touché.
+
 ### Les parenthèses orphelines
 
 Le tapuscrit laisse cent vingt parenthèses sans leur paire. Elles ne sont pas
