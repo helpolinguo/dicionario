@@ -12,3 +12,4 @@
 #
 # cle	nom(s)	motif
 kapero@268:33	capparia spinosa	p416 : le livre porte « capparia spi nosa » — une espace parasite au milieu de « spinosa »
+oktopodo@411:34	octo-	p404 : le livre porte « - L. octo- », sans suite — verifie sur l original. L auteur donne l element latin, non un binome ; le tiret final le dit, et le rognage des fins de ligne l emportait.

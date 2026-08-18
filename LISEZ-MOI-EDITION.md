@@ -257,6 +257,9 @@ rencontrés :
   l'auteur : *L. conium maculatum, e speco di cicuta*. N'en prendre qu'une
   laissait le reste dans la définition, précédé de la virgule orpheline du nom :
   *« … (rovbero). , rubus fructicosus »*. La seconde forme est admise entière ;
+- le nom n'en est pas toujours un : *oktopodo* porte « — L. octo- », sans
+  suite — l'original aussi. L'auteur y donne l'**élément** latin, non un binôme,
+  et le trait d'union final le dit ; le rognage des fins de ligne l'emportait ;
 - la dactylo coupe parfois un mot en deux : *capparia spi nosa* pour *capparia
   spinosa*. Ni `spi` ni `nosa` n'étant des mots latins, la machine ne peut pas
   le savoir. `travail/latinaji.txt` porte les noms redressés à l'œil, avec la
