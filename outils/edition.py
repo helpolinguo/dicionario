@@ -1196,6 +1196,34 @@ def _finalo_ok(e):
     return any(v.lower().endswith(f) for f in FINALES_OK)
 
 
+# L'ordre des lettres du code est celui du livre : D E F I R S, puis L — le
+# latin, que quatre-vingt-douze codes mettent en dernier —, puis les langues
+# rares. Vingt-deux codes le rompent : « DEFSR » chez alibio, « ED » chez
+# sendar, « FISDE » chez grano, « dEFIRS » ou « DEFlS » ou la capitale et le I
+# ont ete abimes a la lecture. Rien ne s'y repete — c'est l'ordre seul qui
+# differe —, et l'edition le remet, la ligne brute gardant la graphie de la
+# page. Les notations qui EPELLENT la langue en sont exemptes : « FDSued »,
+# « DERPol », « Gr », « Ned » ne sont pas des suites de lettres.
+ORDINO_KODO = 'DEFIRSLPGN'
+
+
+def ordinigi_kodojn(ent):
+    """Remet les lettres du code dans l'ordre du livre. Rend le nombre pose."""
+    n = 0
+    for e in ent:
+        k = e.get('kodo')
+        if not k or not k.isalpha(): continue
+        if k in ABREV or k in EPELE or any(k.endswith(a) for a in ABREV): continue
+        L = ['I' if c == 'l' else c.upper() for c in k]
+        if not all(c in ORDINO_KODO for c in L): continue
+        neu = ''.join(sorted(L, key=ORDINO_KODO.index))
+        if neu != k:
+            e['kodo'] = neu
+            e['lingui'] = [LANGUI[c] for c in neu]
+            n += 1
+    return n
+
+
 def drapeli_ordino(ent):
     """Pose le drapeau d'ordre sur toute la liste, et rend le nombre pose.
 
@@ -1926,6 +1954,8 @@ def konstrui():
             if 'sen-lingua' in e['drapeli']: e['drapeli'].remove('sen-lingua')
             n+=1; break
     if n: print("codes de langues releves hors du dernier sens : %d"%n)
+    n=ordinigi_kodojn(ent)
+    if n: print("codes de langues remis dans l'ordre du livre : %d"%n)
     # Article commence en bas de page, abandonne, puis RECOMMENCE en tete de la
     # page suivante. « ampère » est le seul cas du livre : la premiere version
     # s'arrete net, sans code de langues ; la seconde est complete. L'edition de

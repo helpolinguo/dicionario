@@ -128,8 +128,16 @@ les autres, dans six entrées.
 
 La dernière chose de l'article : `- DEFIRS.`, une lettre par langue —
 **D**eutsch, **E**nglish, **F**rançais, **I**taliano, **R**usse,
-e**S**pañol —, dans cet ordre, tenu par 8 153 codes sur 8 174. Quelques
-notations épellent au lieu d'abréger : `FDSued`, `Jap.,Sanskr.`
+e**S**pañol —, puis `L` pour le latin, que quatre-vingt-douze codes mettent en
+dernier. Cet ordre est celui du livre : 8 407 codes s'y tiennent, 22 le
+rompaient. L'édition les y remet — `DEFSR` chez *alibio*, `ED` chez *sendar*,
+`FISDE` chez *grano*, et `dEFIRS`, `DEFlS` où la capitale et le `I` avaient été
+abîmés à la lecture. Rien ne s'y répétait : c'était l'ordre seul qui différait,
+et la ligne brute garde la graphie de la page.
+
+Quelques notations **épellent** la langue au lieu de l'abréger — `FDSued`,
+`DERPol`, `Gr`, `Ned`, `Jap.,Sanskr.` Ce ne sont pas des suites de lettres, et
+l'ordre ne les touche pas.
 
 Aucun code ne nomme deux fois la même langue. C'est ce qui permet de le
 distinguer de ce qui lui ressemble à cette place : un **numéro de sens** que la
