@@ -66,8 +66,11 @@ le mot : *"brokoli"-kaulo* n'est pas un emprunt cité mais un mot ido dont le
 premier élément seul est emprunté, et les éditions lui mettaient une seconde
 paire de chevrons autour de la première. Une fermante suivie d'une minuscule ou
 d'un trait d'union est donc refusée — le mot continue ; suivie d'une capitale,
-elle ouvre la définition, l'espace ayant manqué à la frappe (*"madras"Kapovesto*). `korektita` compte les cellules redressées dans
-l'entrée : une provenance, non un doute.
+elle ouvre la définition, l'espace ayant manqué à la frappe
+(*"madras"Kapovesto*).
+
+`korektita` compte les cellules redressées dans l'entrée : une provenance, non
+un doute.
 
 ### Les sens et leurs sous-entrées (`strukt`)
 
