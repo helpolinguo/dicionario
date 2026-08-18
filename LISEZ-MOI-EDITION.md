@@ -23,7 +23,7 @@ Transcription établie à partir du fac-similé fourni (639 pages photographiée
 **9 472 entrées** extraites de 632 pages de corps d'ouvrage.
 5 272 portent une marque de domaine (*bot.*, *zool.*, *arkitekt.*…),
 823 un nom scientifique latin, 1 678 plusieurs sens numérotés,
-8 439 un code de langues final.
+8 440 un code de langues final.
 
 ---
 
@@ -420,7 +420,7 @@ dictionnaire. Plutôt que de masquer ce qui reste, la base le **signale** :
 | drapeau | entrées | ce qu'il veut dire |
 |---|---|---|
 | `ordino-ruptita` | 55 | **la vedette rompt l'ordre alphabétique** |
-| `sen-lingua` | 1 033 | pas de code de langues final — souvent normal, le livre n'en donne pas toujours |
+| `sen-lingua` | 1 032 | pas de code de langues final — souvent normal, le livre n'en donne pas toujours |
 | `finalo-nekustumala` | 54 | finale étrangère à la morphologie d'Ido (-o, -a, -e, -i, -ar, -ir, -or). Trois familles en sont **exemptées**, la question n'ayant de sens que pour un mot de la langue : l'affixe (`-eyo`, `poli-`), le mot que le livre déclare lui-même grammatical (*« an. Prepoziciono qua… »*), et l'emprunt cité (`amen`, `cambium`). Ce qui reste — numéraux `cent` et `dek`, noms de notes `b`, `c`, `d` — est légitime aussi, mais rien dans le texte ne permet de le dire |
 | `pagino-nefidinda` | 32 | pages 539-540, photographiées à une autre échelle, décodage nettement moins sûr |
 | `artiklo-dividita` | 21 | l'article était coupé par un saut de page ; les deux moitiés ont été recollées |

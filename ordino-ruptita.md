@@ -86,7 +86,7 @@ Ecrite entre « bilo » et « bilanco ».
 Sa place est apres « bibliofilo », f.64 (image 71, ligne 2) — 14 articles plus haut.
 
 ```
-bibliografio. Enumero di la libri publikigita pri ta o ca temo, lia imprimo-dati diversa, lia valoro, lia skarsesoo " " + r+
+bibliografio. Enumero di la libri publikigita pri ta o ca temo, lia imprimo-dati diversa, lia valoro, lia skarseso-grado e c. - DEFIRS.
 ```
 
 ### biljardo — f.65 (image 72, ligne 15)
