@@ -639,8 +639,22 @@ def pointi(f):
                   else m.group(1), f)
 
 
-# Les seuls noms propres qui ouvrent un domaine dans tout le livre.
-PROPRA = ('Roma', 'Vatikano')
+# Les noms propres qui ouvrent une parenthese dans le livre — pays, personnes,
+# divinites, peuples, et les adjectifs de langue et de nation, qui gardent leur
+# majuscule en ido. Sans cette liste la regle de minuscule les abimait :
+# « (Italia) » devenait « (italia) », « (Voltaire) » « (voltaire) », et
+# « (Diana chasera, Tetis, e c.) » chez nimfo perdait sa deesse. La liste a ete
+# relevee sur le texte brut, en cherchant toute parenthese ouverte par un mot
+# capitalise dont l'edition avait fait une minuscule.
+PROPRA = ('Roma', 'Vatikano', 'Afrodito', 'Araba', 'Aug', 'Auguste', 'Azia',
+          'Bacchus', 'Britania', 'Cicero', 'Diana', 'Dubois', 'Elizeo', 'Epiro',
+          'Francia', 'Greka', 'Grekia', 'India', 'Istanbul', 'Italia', 'Kelti',
+          'Latina', 'Louis', 'Mohamedisti', 'Noah', 'Roentgen', 'Suisia',
+          'Tartaro', 'Usa', 'Voltaire',
+          'Germana', 'Angla', 'Franca', 'Italiana', 'Rusa', 'Hispana', 'Sueda',
+          'Skandinava', 'Portugalana', 'Nederlandana', 'Polona', 'Dana',
+          'Norvegana', 'Finlandana', 'Cheka', 'Japoniana', 'Sanskrita',
+          'Hebrea', 'Turka', 'Chiniana', 'Malaya', 'Slava', 'Hindua')
 
 
 def minuskligi(f):
@@ -660,13 +674,159 @@ def minuskligi(f):
     return f[0].lower() + f[1:]
 
 
+# Le meme domaine, ecrit de deux facons par l'auteur — « (anatom.) » une fois
+# contre « (anat.) » deux cent vingt-neuf, « (kem.) » deux fois contre
+# « (kemio) » cent quatre-vingts. Ce n'est pas une mauvaise lecture : c'est
+# l'auteur qui ne s'est pas uniformise, sur quarante ans de fiches. L'edition
+# retient LA FORME QU'IL EMPLOIE LE PLUS. Quand les deux sont a moins du double
+# l'une de l'autre, c'est l'abregee qui l'emporte : le livre abrege ses domaines
+# 2 463 fois contre 746 ou il les ecrit au long, et l'abreviation est donc sa
+# maniere. Chaque ligne porte les deux comptes.
+#
+# Ce qui n'est PAS ici : les formes que rien ne dit equivalentes. « tekn. » et
+# « teknol. », « fiz. » et « fiziol. », « paleont. » et « paleogr. », « milit. »
+# et « milit-arto », « elektro » et « elektrotekniko » sont des domaines
+# distincts, et « (religio kristana) », « (armeo-chefo) » des locutions.
+DOMENI_UNIFORMA = {
+    'netr.': 'netrans.',            #   3 / 446
+    'anatom.': 'anat.',             #   1 / 229
+    'zoolog.': 'zool.',             #   1 / 424
+    'botaniko': 'bot.',             #   1 / 580
+    'pat.': 'patol.',               #   1 / 233
+    'kem.': 'kemio',                #   2 / 180
+    'tek.': 'tekn.',                #   1 / 117
+    'muz.': 'muziko',               #   1 /  84
+    'muzik.': 'muziko',             #   1 /  84
+    'gramat.': 'gram.',             #   2 /  88
+    'geometrio': 'geom.',           #   1 /  83
+    'mat.': 'matem.',               #   6 /  61
+    'astr.': 'astron.',             #   2 /  27
+    'filozof.': 'filoz.',           #   1 /  20
+    'filozofio': 'filoz.',          #   1 /  20
+    'fiz.': 'fiziko',               #   2 /  37
+    'financ.': 'financo',           #   1 /  13
+    'mineralogio': 'mineral.',      #   2 /  35
+    'mitologio': 'mitol.',          #   2 /  14
+    'arkit.': 'arkitekt.',          #   5 /  33
+    'arkitekturo': 'arkitekt.',     #   3 /  33
+    'algeb.': 'algebro',            #   1 /   9
+    'arit.': 'aritm.',              #   2 /   9
+    'med.': 'medic.',               #   1 /  32
+    'medicino': 'medic.',           #  13 /  32
+    'nav.': 'navig.',               #   3 /  38
+    'teolo': 'teol.',               #   1 /   6  (« teolo » n'est pas un mot)
+    'kristan.': 'kristanismo',      #   1 /   7
+    'kristanismo.': 'kristanismo',  #   1 /   7  (le point d'un mot entier)
+    'arkeologio': 'arkeol.',        #   1 /   4
+    'opt.': 'optiko',               #   2 /   5
+    'histologio': 'histol.',        #   7 /   5  — a moins du double : l'abrege
+    'kirurgio': 'kirurg.',          #   8 /  13
+    'retoriko': 'retor.',           #   7 /   6  — a moins du double : l'abrege
+    'mekaniko': 'mekan.',           #   3 /   4
+    'meteor.': 'meteorol.',         #   2 /   6
+    'paleontol.': 'paleont.',       #   4 /   5
+    'paleontologio': 'paleont.',    #   1 /   5
+    'elektr.': 'elektro',           #   9 /  20
+    'milito': 'milit.',             #   6 /  10
+    'imprim.': 'imprimarto',        #   1 /   3
+    'imprim-arto': 'imprimarto',    #   1 /   2
+    'militarto': 'milit-arto',      #   4 /   8
+    'shakoludo': 'shako-ludo',      #   1 /   1  — egalite : le trait d'union,
+    'skermarto': 'skerm-arto',      #   1 /   1    maniere du livre pour ses
+    'yuro-cienco': 'yurocienco',    #  15 /  24    domaines composes
+    'akustiko': 'akust.',           #   1 /   1  — egalite : l'abrege
+    'diplomaco': 'diplomac.',       #   1 /   1
+    'magnetismo': 'magnet.',        #   1 /   1
+    'fortifikuro': 'fortifik.',     #   1 /   1
+    'teratologio': 'teratol.',      #   1 /   1
+    'versifado': 'versif.',         #   1 /   1
+    'prosodio': 'prozodio',         #   1 /   1  — « prozodio » est vedette du
+                                    #             livre, « prosodio » non
+    'teol.katol': 'teol. katol.',   # l'espace perdue entre deux domaines
+    'trans.pri': 'trans., pri',
+    'meteorologio': 'meteorol.',    #   1 /   6
+    'tekniko': 'tekn.',             #   1 / 119
+    'maronavigado': 'maro-navig.',  #   1 /   1
+}
+# Le soulignement releve sur la page porte la forme QUE L'AUTEUR A ECRITE ; le
+# champ porte celle que l'edition retient. Pour reconnaitre qu'un souligne est
+# le domaine — et ne pas l'envoyer a la liste des filets non places —, il faut
+# donc connaitre les deux. Table inverse, pour cet usage seul.
+def _plata(x):
+    """La chaine reduite a ses lettres : « netrans.,an » et « netrans., an »
+    sont le meme domaine, « yuro-cienco » et « yurocienco » aussi."""
+    return re.sub(r'[^0-9a-zà-ÿ]', '', x.lower())
+
+
+DOMENI_VARIANTOJ = {}
+for _v, _r in DOMENI_UNIFORMA.items():
+    DOMENI_VARIANTOJ.setdefault(_plata(_r), set()).add(_v)
+DOMENI_PLATA = {_plata(_v): _r for _v, _r in DOMENI_UNIFORMA.items()}
+
+
+def alia_formo(u):
+    """La forme RETENUE d'un domaine que la page ecrit autrement.
+
+    Le filet de la dactylo couvre « medicino » ; le texte rendu porte
+    « medic. ». Cherche tel quel, le filet ne se retrouvait plus, et le domaine
+    perdait son italique. Le trait se rompt aussi en fin de ligne, et il ne
+    reste qu'un morceau — « cienco » pour « yuro-cienco » : on accepte donc
+    aussi le morceau, a partir de quatre lettres.
+    """
+    p=_plata(u)
+    if not p:
+        return None
+    if p in DOMENI_PLATA:
+        return DOMENI_PLATA[p]
+    w=uniformigar(u)
+    if w != u:
+        return w
+    if len(p) >= 4:
+        for v, r in DOMENI_UNIFORMA.items():
+            if p in _plata(v):
+                return r
+    return None
+# On ne remplace que la composante ENTIERE : le champ enumere parfois deux
+# domaines — « (arit., algeb.) », « (fiz. e geom.) » —, et chacun compte pour
+# une composante. Une composante de plusieurs mots est une phrase de l'auteur,
+# non un domaine : « ante la milito universala di 1914-18 », « en la filozofio
+# olima », « olima geometrio » gardent leur mot.
+RE_KOMPONO = re.compile(r'(\s*,\s*|\s+e\s+)')
+
+
+def uniformigar(f):
+    """Rend au domaine la forme que l'auteur emploie le plus souvent."""
+    if not f:
+        return f
+    out=[]
+    for part in f.split(') ('):
+        bouts=RE_KOMPONO.split(part)
+        for i in range(0, len(bouts), 2):
+            b=bouts[i].strip()
+            # La forme cherchee l'est a la ponctuation et a la casse pres :
+            # « Medicino », « kem » sans son point et « kem. » sont le meme mot.
+            r=DOMENI_UNIFORMA.get(b) or DOMENI_PLATA.get(_plata(b))
+            if r:
+                bouts[i]=bouts[i].replace(b, r)
+            # La virgule qui separe deux domaines prend son espace, comme les
+            # quatre cents autres : « (netrans.,an) » s'ecrit « (netrans., an) ».
+            # Sauf entre deux chiffres : « (en Paris = 1,18 metro) », chez
+            # « ulno », porte une decimale et non une enumeration.
+            if (i+1 < len(bouts) and not re.search(r'\d', bouts[i])
+                    and not re.search(r'\d', bouts[i+2])):
+                bouts[i+1]=', ' if ',' in bouts[i+1] else ' e '
+        out.append(''.join(bouts))
+    return ') ('.join(out)
+
+
 def pointi_sencoj(t):
     """Meme regle DANS les parentheses d'un sens : tous les qualificatifs ne
     sont pas dans le champ du domaine — « ajuro » porte les siens dans ses deux
     sens, « (arkitekt.) » pointe et « (stofo) » non, ce dernier etant un mot
     entier et non une abreviation."""
     return re.sub(r'\(([^()]{1,120})\)',
-                  lambda m: '(' + minuskligi(pointi(m.group(1)).rstrip(' ,')) + ')', t)
+                  lambda m: '(' + uniformigar(minuskligi(pointi(m.group(1)).rstrip(' ,')))
+                  + ')', t)
 
 
 def analizar(e, lexique=None):
@@ -795,7 +955,7 @@ def analizar(e, lexique=None):
     # Le domaine porte souvent une ponctuation parasite, heritee de la frappe :
     # « zool, », « .trans », « patol, ». Et il peut contenir une date, dont les
     # chiffres sont a redresser comme ailleurs — « olim, ante l9l5 ».
-    e['fako']= minuskligi(pointi(cifri(mf.group(1).strip(' .,;:')))) if mf else None
+    e['fako']= uniformigar(minuskligi(pointi(cifri(mf.group(1).strip(' .,;:'))))) if mf else None
     if e['fako']: e['fako']=formuli(e['fako'])
     if mf: resto = resto[mf.end():]
     # Deux parentheses de suite : la seconde precise la premiere et non le
@@ -810,7 +970,7 @@ def analizar(e, lexique=None):
             # chiffres redresses, POINT rendu a l'abreviation. Recollee telle
             # quelle, elle ressortait nue quand ses voisines etaient pointees —
             # « (trans.) (tekn) », « (netrans.) (patol) », « (netrans.) (Kemio) ».
-            dua = minuskligi(pointi(cifri(m2.group(1).strip(' .,;:'))))
+            dua = uniformigar(minuskligi(pointi(cifri(m2.group(1).strip(' .,;:')))))
             e['fako'] = "%s) (%s" % (e['fako'], dua)
             resto = resto[m2.end():]
     resto = resto.lstrip(' -–.,;:')
@@ -1405,7 +1565,7 @@ def strukturizar(e):
             # domaine d'une locution — pris entre parentheses dans le texte —
             # et celui d'un article rattache — pris dans le champ — ne
             # s'ecrivaient pas de la meme facon.
-            x['fako']=x['fako'].strip().strip('()').strip()
+            x['fako']=uniformigar(x['fako'].strip().strip('()').strip())
     e['strukt']=strukt
     # Ce qui reste souligne sans etre une locution : le domaine, le nom latin,
     # le mot cite. L'edition le rend en italique, la ou il se retrouve.
@@ -1415,17 +1575,20 @@ def strukturizar(e):
     for u in subl:
         if u.lower() in lok: continue
         pose=False
+        alt=alia_formo(u)
         for t in textoj:
-            m=_trovar(u, t)
+            m=_trovar(u, t); mot=u
+            if not m and alt:
+                m=_trovar(alt, t); mot=alt
             if not m: continue
             # Le filet ne couvre souvent qu'une PARTIE de la parenthese : la
             # dactylo souligne « aludante persono » mais coupe son trait au
             # bout de la ligne. On met en italique la parenthese entiere —
             # c'est elle, le qualificatif — et les deux moities se recollent.
             g=_parentezo(t, m.start(), m.end())
-            if g is None and (len(u) < 3 or u.lower() in MALGRANDA):
+            if g is None and (len(mot) < 3 or mot.lower() in MALGRANDA):
                 dub.append(u); continue
-            v=g if g else u
+            v=g if g else mot
             if v.lower() not in vu: vu.add(v.lower()); kur.append(v)
             pose=True
         if not pose and u not in dub: dub.append(u)
@@ -1440,13 +1603,32 @@ def strukturizar(e):
     # radiko, quadrata » puis « kubala, di nombro » : la seconde moitie ne se
     # retrouve nulle part telle quelle, et pourtant elle est placee, la
     # locution ayant pris son alinea.
-    fakoj={(e.get('fako') or '').lower()} | {x['fako'].lower() for b in strukt for x in b['sub']}
-    fakoj={f.strip(' ().') for f in fakoj if f}
+    # Le souligne porte la forme que l'auteur a ECRITE, le champ celle que
+    # l'edition retient : « medicino » sur la page, « medic. » dans le champ. On
+    # compare donc a la ponctuation pres, chaque moitie du champ et chaque
+    # domaine enumere comptant a part — et de part et d'autre, car le souligne
+    # peut etre plus court que le domaine (le filet s'est rompu en fin de ligne)
+    # comme plus long (l'edition a abrege). Dans ce second sens on exige quatre
+    # lettres, pour qu'un domaine bref — « per », « pri » — ne couvre pas
+    # n'importe quel fragment.
+    fakoj=set()
+    for _f in [(e.get('fako') or '')] + [x['fako'] for b in strukt for x in b['sub']]:
+        if not _f: continue
+        for _part in _f.split(') ('):
+            for _p in RE_KOMPONO.split(_part):
+                _p=_plata(_p)
+                if _p: fakoj.add(_p)
+        _p=_plata(_f)
+        if _p: fakoj.add(_p)
+    # « prosodio » et « prozodio » ne se contiennent pas l'un l'autre : la table
+    # des variantes le dit, la comparaison ne peut pas le deviner.
+    fakoj |= {_plata(v) for f in list(fakoj) for v in DOMENI_VARIANTOJ.get(f, ())}
     lat={x.lower() for x in (e.get('latina') or [])}
     lokoj=[x['loko'] for b in strukt for x in b['sub']]
     e['dubinda']=[u for u in dub
-                  if u.lower().rstrip('.') not in fakoj
-                  and not any(u.lower().rstrip('.') in f for f in fakoj)
+                  if not any(_plata(u) and (_plata(u) in f
+                                            or (len(f) >= 4 and f in _plata(u)))
+                             for f in fakoj)
                   and u.lower() not in lat
                   and not any(_kongruas(u, L) or _enhavas(L, u) for L in lokoj)
                   # L'etiquette du symbole chimique a quitte le texte pour son
@@ -1579,7 +1761,7 @@ def konstrui():
     # nu quand ses trente voisins etaient pointes. On repasse les deux
     # normalisations derriere la correction ; elles sont idempotentes.
     for e in ent:
-        if e.get('fako'): e['fako']=minuskligi(pointi(e['fako']))
+        if e.get('fako'): e['fako']=uniformigar(minuskligi(pointi(e['fako'])))
     # La relecture pose des chaines relevees avant la typographie : on repasse
     # l'espacement derriere elle. espacar() est idempotente.
     for e in ent:

@@ -128,11 +128,11 @@ les autres, dans six entrées.
 C'est la parenthèse qui suit la vedette — *(bot.)*, *(trans.)*, *(en la epoki
 antiqua)*. Le champ la porte **nue**, sans ses parenthèses ; les deux éditions
 les remettent. L'auteur ne s'étant uniformisé ni sur la majuscule ni sur le
-point, l'édition le fait pour lui : minuscule initiale — sauf *Roma* et
-*Vatikano* —, et point rendu à l'abréviation d'après une liste explicite
-(`MALLONGIGI` dans `outils/edition.py`), non d'après une règle sur la finale,
-car le même champ contient des prépositions, des verbes et jusqu'à une formule
-chimique.
+point, l'édition le fait pour lui : minuscule initiale — sauf les noms propres,
+*Italia*, *Voltaire*, *Diana*, et les adjectifs de langue, listés dans `PROPRA`
+—, et point rendu à l'abréviation d'après une liste explicite (`MALLONGIGI`
+dans `outils/edition.py`), non d'après une règle sur la finale, car le même
+champ contient des prépositions, des verbes et jusqu'à une formule chimique.
 
 Deux parenthèses de suite — *pensar. (trans. e netrans.) (ulo, ad ulo, pri ulu
 od ulo)* — sont deux moitiés du même renseignement : le régime appartient au
@@ -148,12 +148,31 @@ compris quand il précède un vrai domaine, *ramo. (1) (bot.)* ; la **formule
 chimique**, qui va au champ du symbole ; et la **lettre élidée** de *ka(d)*, qui
 appartient au mot.
 
-Restent les variantes de l'auteur lui-même, qui ne sont pas des erreurs de
-lecture et ne sont donc pas touchées : *anatom.* une fois contre *anat.* 226
-fois, *zoolog.* contre *zool.*, *gramat.* contre *gram.*, *filozof.* contre
-*filoz.*, *astr.* contre *astron.*, *tek.* contre *tekn.*, *muzik.* contre
-*muziko* ; et *yuro-cienco*, écrit onze fois contre treize *yurocienco*, trop
-souvent pour être un accident.
+Restaient les variantes de l'auteur lui-même : *anatom.* une fois contre
+*anat.* 229 fois, *medicino* quatorze fois contre *medic.* trente-deux,
+*yuro-cienco* quinze fois contre *yurocienco* vingt-quatre. Ce ne sont pas des
+erreurs de lecture — c'est l'auteur qui ne s'est pas uniformisé, sur quarante
+ans de fiches. **L'édition retient la forme qu'il emploie le plus**, et quand
+les deux sont à moins du double l'une de l'autre, l'abrégée l'emporte : le
+livre abrège ses domaines 2 463 fois contre 746 où il les écrit au long, et
+l'abréviation est donc sa manière. La table est explicite, une ligne par
+variante avec les deux comptes en regard — `DOMENI_UNIFORMA` dans
+`outils/edition.py` —, et elle vaut aussi pour les domaines écrits **dans** un
+sens, hors du champ. 158 entrées et 67 sens y ont changé de forme.
+
+Ne sont **pas** dans cette table les formes que rien ne dit équivalentes :
+*tekn.* et *teknol.*, *fiz.* et *fiziol.*, *paleont.* et *paleogr.*, *milit.*
+et *milit-arto*, *elektro* et *elektrotekniko* sont des domaines distincts. Et
+seule une composante **entière** est remplacée : le champ énumère parfois deux
+domaines — *(arit., algeb.)*, *(fiz. e geom.)* —, chacun compte pour une
+composante, mais une composante de plusieurs mots est une phrase de l'auteur —
+*ante la milito universala di 1914-18* garde son mot.
+
+Le trait de la dactylo, lui, porte la forme de la **page** : *medicino*
+souligné là où le texte rendu porte *medic.*. Cherché tel quel il ne se
+retrouvait plus, et le domaine perdait son italique ; il est donc cherché aussi
+sous la forme retenue. Le compte des soulignements non placés tombe de 1 762 à
+1 713, et 14 italiques de plus trouvent leur place.
 
 ### Le nom scientifique (`latina`)
 
@@ -246,9 +265,9 @@ de colonnes ; il suffit d'y lire le texte.
 
 | champ | ce que c'est |
 |---|---|
-| `sublineita` | tout ce qui est souligné dans l'entrée, remis bout à bout, les coupures de fin de ligne recollées. 6 540 entrées |
-| `kursiva` | ceux que l'édition a **su placer** dans le texte, et qu'elle rend en italique. 1 259 entrées |
-| `dubinda` | ceux qu'elle **n'a pas su placer** : le fragment ne se retrouve pas tel quel, ou ne couvre que des mots-outils. 1 516 entrées, 1 762 fragments |
+| `sublineita` | tout ce qui est souligné dans l'entrée, remis bout à bout, les coupures de fin de ligne recollées. 6 542 entrées |
+| `kursiva` | ceux que l'édition a **su placer** dans le texte, et qu'elle rend en italique. 1 257 entrées |
+| `dubinda` | ceux qu'elle **n'a pas su placer** : le fragment ne se retrouve pas tel quel, ou ne couvre que des mots-outils. 1 474 entrées, 1 713 fragments |
 
 Un souligné n'est ni `kursiva` ni `dubinda` quand il a trouvé sa place ailleurs
 — dans `fako`, dans `latina`, dans `simbolo`, ou comme locution. C'est le cas de *cinocefalo*
@@ -264,9 +283,9 @@ teksto   : Pikanta ed atakema (metaf.)
 teksto_k : Pikanta ed atakema \ue000(metaf.)\ue001
 ```
 
-`filets-dubinda.md` classe les 1 762 fragments non placés par famille, la plus
+`filets-dubinda.md` classe les 1 713 fragments non placés par famille, la plus
 douteuse en tête, avec la page et la vedette pour aller voir le fac-similé. Une
-seule famille demande un arbitrage — 27 fragments qui ressemblent à un
+seule famille demande un arbitrage — 26 fragments qui ressemblent à un
 qualificatif ou à une locution ; les autres sont des artefacts du relevé, où le
 trait déborde ou s'arrête trop tôt. `python3 outils/releve_filets.py` le
 reconstruit.
