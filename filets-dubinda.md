@@ -6,7 +6,7 @@ scientifique. L'edition epuree lit ces filets et les rend. Voici ceux
 qu'elle n'a pas su placer : le fragment releve ne se retrouve pas tel
 quel dans le texte, ou ne couvre que des mots-outils.
 
-**1574 fragments**, sur 9472 articles. La premiere famille est
+**1573 fragments**, sur 9472 articles. La premiere famille est
 la seule qui demande un arbitrage : les autres sont des artefacts du
 releve des filets, ou le trait deborde ou s'arrete trop tot.
 
@@ -585,7 +585,7 @@ releve des filets, ou le trait deborde ou s'arrete trop tot.
 | 523 | shagrino | `quan` |
 | 523 | shalmo | `quan` |
 
-## Coupe au milieu d'un mot, ou reste du mot-vedette — 1014
+## Coupe au milieu d'un mot, ou reste du mot-vedette — 1013
 
 | page | mot-vedette | fragment souligne |
 |---:|---|---|
@@ -766,7 +766,6 @@ releve des filets, ou le trait deborde ou s'arrete trop tot.
 | 120 | domo | `ktur` |
 | 121 | dominanto | `kristalografi` |
 | 121 | donacar | `nar a` |
-| 121 | dorado | `ryphaena hippurus` |
 | 122 | drenar | `guli` |
 | 123 | driftar | `riftar` |
 | 123 | dronar | `trand` |
@@ -1001,7 +1000,6 @@ releve des filets, ou le trait deborde ou s'arrete trop tot.
 | 246 | janicharo | `sold` |
 | 247 | jelozio | `kita` |
 | 248 | jermo | `- II` |
-| 248 | jineto | `iverra` |
 | 250 | junio | `ato s` |
 | 251 | ka(d) | `ka(d` |
 | 251 | kabrar | `abrar` |
@@ -1309,6 +1307,7 @@ releve des filets, ou le trait deborde ou s'arrete trop tot.
 | 418 | pangeno | `ilive` |
 | 419 | pankraco | `en la epoqui antiqua` |
 | 419 | panoramo | `anke meta` |
+| 419 | panseo | `viola tricolorD` |
 | 419 | panteismo | `nosk` |
 | 420 | papayo | `as e` |
 | 420 | papero | `part` |

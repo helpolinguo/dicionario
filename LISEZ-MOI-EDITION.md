@@ -22,7 +22,7 @@ Transcription établie à partir du fac-similé fourni (639 pages photographiée
 
 **9 472 entrées** extraites de 632 pages de corps d'ouvrage.
 5 272 portent une marque de domaine (*bot.*, *zool.*, *arkitekt.*…),
-814 un nom scientifique latin, 1 678 plusieurs sens numérotés,
+823 un nom scientifique latin, 1 678 plusieurs sens numérotés,
 8 439 un code de langues final.
 
 ---
@@ -61,7 +61,12 @@ sur eux que reposent les clés de `subvorti.txt` et de `simboli.txt`.
 après correction et typographie ; `senci` le découpage en sens numérotés, débarrassé
 des numéros de l'original. `citita` marque l'emprunt que l'auteur cite entre
 guillemets — *« amen »* —, que les éditions rendent en chevrons sans que la
-recherche ait à les taper. `korektita` compte les cellules redressées dans
+recherche ait à les taper. Encore faut-il que les guillemets tiennent **tout**
+le mot : *"brokoli"-kaulo* n'est pas un emprunt cité mais un mot ido dont le
+premier élément seul est emprunté, et les éditions lui mettaient une seconde
+paire de chevrons autour de la première. Une fermante suivie d'une minuscule ou
+d'un trait d'union est donc refusée — le mot continue ; suivie d'une capitale,
+elle ouvre la définition, l'espace ayant manqué à la frappe (*"madras"Kapovesto*). `korektita` compte les cellules redressées dans
 l'entrée : une provenance, non un doute.
 
 ### Les sens et leurs sous-entrées (`strukt`)
@@ -240,6 +245,13 @@ rencontrés :
   Pris pour un binôme, il quittait la définition — qui restait sur « Kom ex.; »
   — pour aller s'afficher en nom latin. Un `L.` précédé de `ex.` est désormais
   laissé au texte ;
+- le `L.` perd parfois son point — *…puteo-kordegi.- L tilia* chez *tilio*. On
+  l'admet sans lui, mais alors seulement devant une **minuscule** : *— La
+  persono qua…*, *— Longa bastono…* ouvrent une définition, et le `L` y
+  prendrait la première lettre du mot ;
+- le nom se termine souvent sur `.-` sans espace — *L. viverra genetis.- II.
+  (tekn.)…* chez *jineto*. Sans le tiret dans ce qui peut suivre le point, le
+  nom restait dans la définition de quatorze entrées ;
 - le nom donne parfois **deux formes**, séparées d'une virgule — *L. rubus
   caesius, rubus fructicosus*, *L. anas, anatis* —, et jusqu'à une glose de
   l'auteur : *L. conium maculatum, e speco di cicuta*. N'en prendre qu'une
@@ -327,8 +339,8 @@ de colonnes ; il suffit d'y lire le texte.
 | champ | ce que c'est |
 |---|---|
 | `sublineita` | tout ce qui est souligné dans l'entrée, remis bout à bout, les coupures de fin de ligne recollées. 6 542 entrées |
-| `kursiva` | ceux que l'édition a **su placer** dans le texte, et qu'elle rend en italique. 1 249 entrées |
-| `dubinda` | ceux qu'elle **n'a pas su placer** : le fragment ne se retrouve pas tel quel, ou ne couvre que des mots-outils. 1 409 entrées, 1 574 fragments |
+| `kursiva` | ceux que l'édition a **su placer** dans le texte, et qu'elle rend en italique. 1 246 entrées |
+| `dubinda` | ceux qu'elle **n'a pas su placer** : le fragment ne se retrouve pas tel quel, ou ne couvre que des mots-outils. 1 409 entrées, 1 573 fragments |
 
 Un souligné n'est ni `kursiva` ni `dubinda` quand il a trouvé sa place ailleurs
 — dans `fako`, dans `latina`, dans `simbolo`, ou comme locution. C'est le cas de *cinocefalo*
@@ -344,7 +356,7 @@ teksto   : Pikanta ed atakema (metaf.)
 teksto_k : Pikanta ed atakema \ue000(metaf.)\ue001
 ```
 
-`filets-dubinda.md` classe les 1 574 fragments non placés par famille, la plus
+`filets-dubinda.md` classe les 1 573 fragments non placés par famille, la plus
 douteuse en tête, avec la page et la vedette pour aller voir le fac-similé. Une
 seule famille demande un arbitrage — 18 fragments qui ressemblent à un
 qualificatif ou à une locution ; les autres sont des artefacts du relevé, où le

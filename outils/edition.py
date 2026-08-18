@@ -89,16 +89,23 @@ RE_FAKO2  = re.compile(r'^([^()]{1,25})\)\s*\.?\s*')
 # soixante-sept articles. On borne donc le nom par sa FORME — quatre mots
 # latins au plus, plus une seconde forme apres virgule pour « anas, anatis » —
 # au lieu de le borner par ce qui le suit.
+# Le point du « L. » manque parfois — « ...puteo-kordegi.- L tilia. - FISL. »
+# chez tilio. On l'admet sans son point, mais alors seulement devant une
+# MINUSCULE : « - La persono qua... », « - Longa bastono... » ouvrent une
+# definition, et le L y prendrait la premiere lettre du mot.
+# Le nom se termine souvent sur « .- » sans espace — « L. viverra genetis.- II.
+# (tekn.) ... » chez jineto. Sans le tiret dans la classe qui suit le point, le
+# nom restait dans la definition de soixante-huit articles.
 # Un « L. » qui introduit un EXEMPLE n'annonce pas le nom scientifique de
 # l'article : « enklitiko. ... Kom ex.: L. que en neque ; ne en venisne ; F. ce
 # en est-ce ». Pris pour un binome, il quittait la definition — qui restait sur
 # « Kom ex.; » — pour aller s'afficher en nom latin de l'article. Le « F. » qui
 # suit, lui, n'a jamais ete pris : seul le « L. » preteait a confusion.
 RE_LATINA = re.compile(
-    r'(?:(?<!ex\.)[-–.(,;:]|^)\s*L\.\s*'
+    r'(?:(?<!ex\.)[-–.(,;:]|^)\s*(?:L\.\s*|L\s+(?=[a-z]))'
     r'([A-Za-z][A-Za-z-]*(?:\s+[A-Za-z][A-Za-z-]*){0,3}'
     r'(?:\s*,\s*[A-Za-z][A-Za-z-]*(?:\s+[A-Za-z][A-Za-z-]*){0,3})?)'
-    r'\s*(?=[-–)(:;,]|\.[\s)]|\.?$|\s(?:I{1,3}|IV|V|VI)\.)')
+    r'\s*(?=[-–)(:;,]|\.[\s)–-]|\.?$|\s(?:I{1,3}|IV|V|VI)\.)')
 # Les sens se separent par « - II. », mais le tiret manque souvent : « ...
 # komenco-punto e fino-parto. II. (gram.) ... ». On coupe donc aussi sur un
 # point suivi du numero de sens, ce qui vaut pour 107 articles.
@@ -909,7 +916,15 @@ def analizar(e, lexique=None):
     # quels a une autre langue — « amen », « alpari », « angelus », « avoue ».
     # On retient le fait, sans le mettre dans la vedette : la recherche doit
     # continuer de trouver « amen » frappe sans guillemets.
-    e['citita'] = bool(re.match(r'^["\u00ab\u201c]', t))
+    # Encore faut-il que les guillemets tiennent TOUT le mot. « "brokoli"-kaulo »
+    # n'est pas un emprunt cite : c'est un mot ido dont le premier element seul
+    # est emprunte, et les editions, qui encadrent de chevrons la vedette citee,
+    # en mettaient une seconde paire autour de la premiere. On refuse donc la
+    # fermante suivie d'une minuscule ou d'un tiret — le mot continue. Suivie
+    # d'une capitale, elle ouvre la definition : « "madras"Kapovesto », ou
+    # l'espace a manque a la frappe.
+    e['citita'] = bool(re.match(r'^["\u00ab\u201c][^"\u00bb\u201d]{1,60}'
+                                r'["\u00bb\u201d](?![a-zà-ÿ-])', t))
     # Les lettres accentuees appartiennent au mot : sans elles « ampere » se
     # coupait en « amp » et le reste tombait dans la definition.
     # Locution latine ou anglaise prise pour vedette : le tapuscrit l'encadre de
