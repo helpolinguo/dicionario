@@ -75,6 +75,13 @@ RE_FAKO2  = re.compile(r'^([^()]{1,25})\)\s*\.?\s*')
 # point et le debut de segment au meme titre que le tiret.
 # La virgule appartient au nom scientifique quand il donne deux formes —
 # « L. anas, anatis ». Sans elle dans la classe, le nom restait dans le sens.
+# La SECONDE forme peut faire plusieurs mots — « L. rubus caesius, rubus
+# fructicosus » chez rovo, « L. dalbergia nigra, jacarania mimosifolia » chez
+# palisandro, et jusqu'a la glose de l'auteur, « L. conium maculatum, e speco di
+# cicuta » chez cikuto. N'en prendre qu'un laissait le reste dans la definition,
+# precede de la virgule orpheline du nom : « ... (rovbero). , rubus
+# fructicosus ». On admet donc la seconde forme entiere, quatre mots comme la
+# premiere.
 # Le nom scientifique ne finit pas toujours sur un tiret ou en fin de segment :
 # il est souvent suivi d'une parenthese fermante — « (L. triticum caninum) » —
 # d'une virgule qui reprend la phrase, ou du numero du sens suivant —
@@ -90,8 +97,8 @@ RE_FAKO2  = re.compile(r'^([^()]{1,25})\)\s*\.?\s*')
 RE_LATINA = re.compile(
     r'(?:(?<!ex\.)[-–.(,;:]|^)\s*L\.\s*'
     r'([A-Za-z][A-Za-z-]*(?:\s+[A-Za-z][A-Za-z-]*){0,3}'
-    r'(?:\s*,\s*[A-Za-z][A-Za-z-]*)?)'
-    r'\s*(?=[-–)(:;,]|\.\s|\.?$|\s(?:I{1,3}|IV|V|VI)\.)')
+    r'(?:\s*,\s*[A-Za-z][A-Za-z-]*(?:\s+[A-Za-z][A-Za-z-]*){0,3})?)'
+    r'\s*(?=[-–)(:;,]|\.[\s)]|\.?$|\s(?:I{1,3}|IV|V|VI)\.)')
 # Les sens se separent par « - II. », mais le tiret manque souvent : « ...
 # komenco-punto e fino-parto. II. (gram.) ... ». On coupe donc aussi sur un
 # point suivi du numero de sens, ce qui vaut pour 107 articles.
@@ -1758,13 +1765,20 @@ def strukturizar(e):
     # « prosodio » et « prozodio » ne se contiennent pas l'un l'autre : la table
     # des variantes le dit, la comparaison ne peut pas le deviner.
     fakoj |= {_plata(v) for f in list(fakoj) for v in DOMENI_VARIANTOJ.get(f, ())}
+    # Le nom scientifique donne parfois DEUX formes en une : « rubus caesius,
+    # rubus fructicosus », « conium maculatum, e speco di cicuta ». Le filet, lui,
+    # couvre chaque nom a part : cherche au caractere pres, le second passait
+    # pour un souligne non place. On accepte donc le MORCEAU, a partir de quatre
+    # lettres.
     lat={x.lower() for x in (e.get('latina') or [])}
+    latp={_plata(x) for x in (e.get('latina') or [])}
     lokoj=[x['loko'] for b in strukt for x in b['sub']]
     e['dubinda']=[u for u in dub
                   if not any(_plata(u) and (_plata(u) in f
                                             or (len(f) >= 4 and f in _plata(u)))
                              for f in fakoj)
                   and u.lower() not in lat
+                  and not any(len(_plata(u)) >= 4 and _plata(u) in f for f in latp)
                   and not any(_kongruas(u, L) or _enhavas(L, u) for L in lokoj)
                   # L'etiquette du symbole chimique a quitte le texte pour son
                   # champ : le filet qui la couvrait est place, non douteux.
@@ -2305,6 +2319,10 @@ def netigar_punktuo(t):
     """
     t = re.sub(r',\s*,', ',', t)
     t = re.sub(r',\s*\.(?!\.)', ', ', t)
+    # Le point separe de sa virgule : « fuzebla ye 201° C. , kontenata en la
+    # kortico » chez salicino — le point est celui de l'abreviation, la virgule
+    # celle de la phrase, et l'espace entre les deux n'est de personne.
+    t = re.sub(r'\.\s+,', '.,', t)
     t = re.sub(r'(?<!\.)\.\s+\.(?!\.)', '.', t)
     return re.sub(r'  +', ' ', t)
 

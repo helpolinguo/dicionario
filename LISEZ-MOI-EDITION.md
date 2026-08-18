@@ -202,6 +202,12 @@ retrouvait plus, et le domaine perdait son italique ; il est donc cherché aussi
 sous la forme retenue. Le compte des soulignements non placés tombe de 1 762 à
 1 713, et 14 italiques de plus trouvent leur place.
 
+Le **nom scientifique** demande la même tolérance, et pour la même raison : le
+filet couvre `agrimonia` puis `eupatoria`, ou se rompt en fin de ligne sur
+`allium fistu-` et `losum`, là où le champ porte le binôme entier. Cherchés au
+caractère près, ces 139 fragments passaient pour non placés ; ils sont
+reconnus dès quatre lettres. Le compte tombe à **1 574**.
+
 ### Le nom scientifique (`latina`)
 
 Le tapuscrit l'annonce par un `L.` — *L. cynocephalus*. Deux pièges, tous deux
@@ -212,6 +218,11 @@ rencontrés :
   Pris pour un binôme, il quittait la définition — qui restait sur « Kom ex.; »
   — pour aller s'afficher en nom latin. Un `L.` précédé de `ex.` est désormais
   laissé au texte ;
+- le nom donne parfois **deux formes**, séparées d'une virgule — *L. rubus
+  caesius, rubus fructicosus*, *L. anas, anatis* —, et jusqu'à une glose de
+  l'auteur : *L. conium maculatum, e speco di cicuta*. N'en prendre qu'une
+  laissait le reste dans la définition, précédé de la virgule orpheline du nom :
+  *« … (rovbero). , rubus fructicosus »*. La seconde forme est admise entière ;
 - la dactylo coupe parfois un mot en deux : *capparia spi nosa* pour *capparia
   spinosa*. Ni `spi` ni `nosa` n'étant des mots latins, la machine ne peut pas
   le savoir. `travail/latinaji.txt` porte les noms redressés à l'œil, avec la
@@ -294,8 +305,8 @@ de colonnes ; il suffit d'y lire le texte.
 | champ | ce que c'est |
 |---|---|
 | `sublineita` | tout ce qui est souligné dans l'entrée, remis bout à bout, les coupures de fin de ligne recollées. 6 542 entrées |
-| `kursiva` | ceux que l'édition a **su placer** dans le texte, et qu'elle rend en italique. 1 257 entrées |
-| `dubinda` | ceux qu'elle **n'a pas su placer** : le fragment ne se retrouve pas tel quel, ou ne couvre que des mots-outils. 1 474 entrées, 1 713 fragments |
+| `kursiva` | ceux que l'édition a **su placer** dans le texte, et qu'elle rend en italique. 1 254 entrées |
+| `dubinda` | ceux qu'elle **n'a pas su placer** : le fragment ne se retrouve pas tel quel, ou ne couvre que des mots-outils. 1 409 entrées, 1 574 fragments |
 
 Un souligné n'est ni `kursiva` ni `dubinda` quand il a trouvé sa place ailleurs
 — dans `fako`, dans `latina`, dans `simbolo`, ou comme locution. C'est le cas de *cinocefalo*
@@ -311,9 +322,9 @@ teksto   : Pikanta ed atakema (metaf.)
 teksto_k : Pikanta ed atakema \ue000(metaf.)\ue001
 ```
 
-`filets-dubinda.md` classe les 1 713 fragments non placés par famille, la plus
+`filets-dubinda.md` classe les 1 574 fragments non placés par famille, la plus
 douteuse en tête, avec la page et la vedette pour aller voir le fac-similé. Une
-seule famille demande un arbitrage — 26 fragments qui ressemblent à un
+seule famille demande un arbitrage — 18 fragments qui ressemblent à un
 qualificatif ou à une locution ; les autres sont des artefacts du relevé, où le
 trait déborde ou s'arrête trop tôt. `python3 outils/releve_filets.py` le
 reconstruit.
