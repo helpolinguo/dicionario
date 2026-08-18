@@ -11,7 +11,7 @@ Chaque enregistrement porte sa **provenance** — image du scan, page du livre,
 ligne de la grille — et ses **drapeaux de qualite**. Rien n'est efface : ce qui
 est douteux est signale, pas masque.
 """
-import numpy as np, os, pickle, re, collections, sys, json, os
+import numpy as np, os, pickle, re, collections, sys, json, os, unicodedata
 sys.path.insert(0,'/root/dicionario/outils')
 from consolider import vedettes
 T="/root/dicionario/travail"
@@ -1082,9 +1082,45 @@ def _klavo_ordino(v):
     lui. Quatre-vingt-cinq drapeaux ne disaient que cela.
 
     Le point d'exclamation de l'interjection ne se range pas davantage :
-    « ah! » se cherche a « ah ».
+    « ah! » se cherche a « ah ». Ni le tiret FINAL du suffixe — « -an- » se
+    range avec « an » —, ni l'espace de la locution latine : le livre pose
+    « a posteriori » entre « apostata » et « apostemo », donc a « aposteriori ».
     """
-    return v.lower().lstrip('*+"«.-').rstrip('!')
+    # L'accent ne se range pas non plus : « ampèremetro » precede « ampla »
+    # dans le livre, ce que seul un « e » sans accent explique. Le tapuscrit
+    # n'en porte que sur des noms empruntes — ampère, Roentgen.
+    v = unicodedata.normalize('NFD', v.lower())
+    v = ''.join(c for c in v if not unicodedata.combining(c))
+    return v.lstrip('*+"«.-').rstrip('!').rstrip('-').replace(' ', '')
+
+
+# La DESINENCE ne compte pas dans le rangement du livre. C'est une regle qu'il
+# n'enonce pas, mais qu'il suit : « aktinio » precede « aktinika » parce que
+# l'auteur range « aktini » avant « aktinik », le -o et le -a n'y entrant pas.
+# Comparees mot entier, ces deux vedettes passaient pour un desordre, et neuf
+# cents autres avec elles.
+#
+# L'auteur ne s'y tient pas toujours : il ecrit « astrakano » puis « astro »,
+# ou la racine seule voudrait l'inverse — « astr » avant « astrakan ». Les deux
+# lectures sont donc gardees, et le drapeau ne se leve que si TOUTES DEUX sont
+# rompues : ce qu'aucune des deux conventions n'explique.
+FINALES_ORDINO = ('ar', 'ir', 'or', 'o', 'a', 'e', 'i')
+
+
+def _klavo_radiko(v):
+    """La vedette rangee, sa desinence otee en plus."""
+    k = _klavo_ordino(v)
+    for d in FINALES_ORDINO:
+        if k.endswith(d):
+            return k[:-len(d)]
+    return k
+
+
+# Le livre se termine par deux listes a part, qui recommencent chacune
+# l'alphabet : un addendum de cinq articles (image 636) et la « LISTO de vorti
+# qui... probable adoptesos da la Akademio di Ido » (images 637-638). Leur
+# premiere vedette recule forcement dans l'alphabet ; ce n'est pas un desordre.
+KOMENCO_DE_SEKCIONO = (636, 637)
 
 
 # La nature grammaticale, telle que le livre l'annonce lui-meme en tete de
@@ -1120,6 +1156,37 @@ def _finalo_ok(e):
     S = e.get('senci') or []
     if S and RE_GRAMATIKA.match(S[0].lstrip('( ')): return True
     return any(v.lower().endswith(f) for f in FINALES_OK)
+
+
+def drapeli_ordino(ent):
+    """Pose le drapeau d'ordre sur toute la liste, et rend le nombre pose.
+
+    Le drapeau se lit sur la SUITE des vedettes : il se repose donc en entier
+    des qu'une vedette change, ou qu'un article s'ajoute. Une vedette rompt
+    l'ordre quand elle recule sur les DEUX lectures — mot entier et racine
+    (voir _klavo_radiko) —, et qu'elle n'ouvre pas une des listes finales.
+    """
+    for e in ent:
+        if 'ordino-ruptita' in (e.get('drapeli') or []):
+            e['drapeli'].remove('ordino-ruptita')
+    v=[_klavo_ordino(e.get('vedetto') or '') for e in ent]
+    r=[_klavo_radiko(e.get('vedetto') or '') for e in ent]
+    unua={}
+    for e in ent: unua.setdefault(e.get('image'), id(e))
+    n=0
+    for i in range(1, len(v)):
+        if not (v[i] and v[i-1] and r[i] and r[i-1]): continue
+        if v[i] >= v[i-1] or r[i] >= r[i-1]: continue
+        if (ent[i].get('image') in KOMENCO_DE_SEKCIONO
+                and unua.get(ent[i].get('image')) == id(ent[i])): continue
+        # Les quatre locutions latines — « a posteriori », « ex libris » — sont
+        # rangees tantot comme un seul mot, « aposteriori » entre « apostata »
+        # et « apostemo », tantot comme deux, « ex libris » avant « exajerar ».
+        # Le livre ne dit pas laquelle des deux ; on ne les compte donc pas.
+        if ' ' in (ent[i].get('vedetto') or '') or ' ' in (ent[i-1].get('vedetto') or ''):
+            continue
+        ent[i].setdefault('drapeli', []).append('ordino-ruptita'); n+=1
+    return n
 
 
 def e_ok(e):
@@ -1923,10 +1990,7 @@ def konstrui():
     for e in ent: e.pop('filetoj', None)
     n_rat=rataching_subvortoj(ent)
     if n_rat: print("articles rattaches en sous-entree : %d"%n_rat)
-    v=[_klavo_ordino(e['vedetto']) for e in ent]
-    for i in range(1,len(v)):
-        if v[i] and v[i-1] and v[i] < v[i-1]:
-            ent[i]['drapeli'].append('ordino-ruptita')
+    drapeli_ordino(ent)
     return ent
 
 # ---------------------------------------------------------------------------

@@ -300,14 +300,14 @@ dictionnaire. Plutôt que de masquer ce qui reste, la base le **signale** :
 
 | drapeau | entrées | ce qu'il veut dire |
 |---|---|---|
-| `ordino-ruptita` | 1 082 | **la vedette rompt l'ordre alphabétique** |
+| `ordino-ruptita` | 64 | **la vedette rompt l'ordre alphabétique** |
 | `sen-lingua` | 1 035 | pas de code de langues final — souvent normal, le livre n'en donne pas toujours |
 | `finalo-nekustumala` | 54 | finale étrangère à la morphologie d'Ido (-o, -a, -e, -i, -ar, -ir, -or). Trois familles en sont **exemptées**, la question n'ayant de sens que pour un mot de la langue : l'affixe (`-eyo`, `poli-`), le mot que le livre déclare lui-même grammatical (*« an. Prepoziciono qua… »*), et l'emprunt cité (`amen`, `cambium`). Ce qui reste — numéraux `cent` et `dek`, noms de notes `b`, `c`, `d` — est légitime aussi, mais rien dans le texte ne permet de le dire |
 | `pagino-nefidinda` | 32 | pages 539-540, photographiées à une autre échelle, décodage nettement moins sûr |
 | `artiklo-dividita` | 13 | l'article était coupé par un saut de page ; les deux moitiés ont été recollées |
 | `sen-chefvorto` | 0 | l'entrée n'a pas de vedette lisible — plus aucun cas |
 
-**7 403 entrées ne portent aucun drapeau.**
+**8 299 entrées ne portent aucun drapeau.**
 
 `korektita` a cessé d'être un drapeau : il disait « au moins une cellule
 corrigée automatiquement », une provenance et non un doute, et toutes les
@@ -319,15 +319,33 @@ Le drapeau d'ordre se lit sur la vedette **rangée**, sa marque de tête ôtée 
 l'astérisque du mot non officiel et le tiret de l'affixe ne sont pas des
 lettres, et le livre ne les range pas — `-acho` est entre `acetono` et
 `aciano`. Comparés tels quels, ils passaient avant toute lettre, et chacun des
-126 affixes et mots non officiels rompait l'ordre par sa seule marque.
+126 affixes et mots non officiels rompait l'ordre par sa seule marque. Le tiret
+**final** du suffixe ne compte pas davantage — `-an-` se range avec `an` —, ni
+l'accent d'un nom emprunté — `ampèremetro` précède `ampla` —, ni l'espace.
 
-`ordino-ruptita` est le plus utile des drapeaux. Un dictionnaire est trié : une
-vedette qui rompt l'ordre désigne presque toujours une mauvaise lecture, dans
-l'une des deux vedettes voisines — *aoendar* pour *acendar*, *a)rotano* pour
-*abrotano*, *aacho* pour le suffixe *-acho*. **Corriger ces 1 082 cas, c'est
-achever le livre**, et le travail est divisible : chacun peut en prendre cent.
+Et surtout : **la désinence ne compte pas**. C'est une règle que le livre
+n'énonce pas, mais qu'il suit — `aktinio` précède `aktinika` parce que l'auteur
+range `aktini` avant `aktinik`, le `-o` et le `-a` n'y entrant pas. Comparées
+mot entier, ces deux vedettes passaient pour un désordre, et neuf cents autres
+avec elles.
 
-**2 065 entrées portent au moins un drapeau.** L'édition HTML ne les filtre plus
+L'auteur ne s'y tient pas toujours : il écrit `astrakano` puis `astro`, où la
+racine seule voudrait l'inverse. Les deux lectures sont donc gardées, et le
+drapeau ne se lève que si **toutes deux** sont rompues — ce qu'aucune des deux
+conventions n'explique. Deux exceptions encore : les quatre locutions latines,
+que le livre range tantôt comme un mot (`aposteriori`) tantôt comme deux
+(`ex libris` avant `exajerar`), et la première vedette des deux listes finales,
+qui recommencent chacune l'alphabet.
+
+`ordino-ruptita` reste le plus utile des drapeaux. Un dictionnaire est trié :
+une vedette qui rompt l'ordre désigne souvent une mauvaise lecture, dans l'une
+des deux vedettes voisines — *aoendar* pour *acendar*, *hetedoroxo* pour
+*heterodoxo*, dont la définition dit elle-même « Qua deviacas de la
+ortodoxeso ». Les 64 qui restent sont une liste qu'un lecteur peut tenir dans
+la main ; certaines sont des lapsus de l'auteur lui-même — *remarkar* avant
+*remar*, *inventariar* avant *inventar* — que le fac-similé confirmera.
+
+**1 169 entrées portent au moins un drapeau.** L'édition HTML ne les filtre plus
 — elle n'offre que la recherche ; le tri se fait sur `drapeli`, dans le JSONL ou
 dans la colonne du même nom du TSV.
 
