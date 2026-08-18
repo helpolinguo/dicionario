@@ -49,6 +49,12 @@ def _lire_code(jeton):
         c = 'I' if c=='l' else c.upper()
         if c not in LANGUI: return None
         out.append(LANGUI[c])
+    # Aucun vrai code ne nomme deux fois la meme langue. « II » et « III » sont
+    # des numeros de sens que la fin d'article laisse pendre — chez « forsan »,
+    # « xenio », « -ajo », « ek » —, et l'edition les donnait pour « Italiana,
+    # Italiana ». Le decoupage en articles (dividar) posait deja cette regle ;
+    # elle vaut ici aussi.
+    if len(set(out)) != len(out): return None
     return out or None
 # Le code de langues est parfois colle au point qui le precede — « agar
 # lo.DEFIS. » — faute de l'original. On accepte donc le point comme separateur
@@ -947,6 +953,12 @@ def analizar(e, lexique=None):
             resto = _kupar(resto[:mj.start()])
     if remarko:
         resto = (resto.rstrip(' -–.') + '. ' + remarko) if resto else remarko
+    # Le numero de sens qui pend au bout de l'article, sans rien apres lui :
+    # « forsan. Adverbo qua signifikas "..." - II. » — la dactylo a annonce un
+    # second sens qu'elle n'a pas frappe. Seul, le numero ne dit rien, et
+    # l'edition ecarte deja ses pareils au milieu du texte. On exige le tiret
+    # qui l'annonce, pour ne pas rogner « la rejo Francisko I ».
+    resto = re.sub(r'[.;,]?\s*[-–]\s*(?:I{1,3}|IV|V|VI|IX|X)\.?$', '', resto)
     resto = resto.lstrip(' -–.,;:')
     # « ed. (Videz "e"). » : la parenthese porte un RENVOI, pas un domaine. Prise
     # pour un domaine, elle laissait l'article sans definition du tout.

@@ -22,8 +22,8 @@ Transcription établie à partir du fac-similé fourni (639 pages photographiée
 
 **9 468 entrées** extraites de 632 pages de corps d'ouvrage.
 5 271 portent une marque de domaine (*bot.*, *zool.*, *arkitekt.*…),
-813 un nom scientifique latin, 1 675 plusieurs sens numérotés,
-8 433 un code de langues final.
+813 un nom scientifique latin, 1 676 plusieurs sens numérotés,
+8 429 un code de langues final.
 
 ---
 
@@ -123,6 +123,25 @@ place, et les éditions le renumérotent comme les autres. De même, le numéro
 collé au qualificatif — *leono. I (zool.) Mamifero karnivora…* — restait dans le
 texte, où il doublait celui que les éditions posent : il tombe désormais comme
 les autres, dans six entrées.
+
+### Le code de langues (`kodo`, `lingui`)
+
+La dernière chose de l'article : `- DEFIRS.`, une lettre par langue —
+**D**eutsch, **E**nglish, **F**rançais, **I**taliano, **R**usse,
+e**S**pañol —, dans cet ordre, tenu par 8 153 codes sur 8 174. Quelques
+notations épellent au lieu d'abréger : `FDSued`, `Jap.,Sanskr.`
+
+Aucun code ne nomme deux fois la même langue. C'est ce qui permet de le
+distinguer de ce qui lui ressemble à cette place : un **numéro de sens** que la
+fin d'article laisse pendre. *forsan*, *xenio*, *-ajo* et *ek* annonçaient un
+sens `II.` ou `III.` que la dactylo n'a pas frappé, ou que la ligne suivante
+portait ; l'édition en faisait « Italiana, Italiana ». Elle refuse maintenant
+tout code qui répète une langue, et les quatre articles retrouvent leurs sens —
+*-ajo* en avait cinq, il n'en montrait plus que quatre.
+
+Le même ordre répare deux codes mal lus : `EFIES` et `DEFIES` répètent l'anglais
+là où la place, entre `I` et `S`, ne peut être que `R`. `travail/texti.txt`
+porte les deux lectures, `EFIRS` et `DEFIRS`.
 
 ### Le domaine (`fako`)
 
@@ -302,7 +321,7 @@ dictionnaire. Plutôt que de masquer ce qui reste, la base le **signale** :
 | drapeau | entrées | ce qu'il veut dire |
 |---|---|---|
 | `ordino-ruptita` | 55 | **la vedette rompt l'ordre alphabétique** |
-| `sen-lingua` | 1 035 | pas de code de langues final — souvent normal, le livre n'en donne pas toujours |
+| `sen-lingua` | 1 039 | pas de code de langues final — souvent normal, le livre n'en donne pas toujours |
 | `finalo-nekustumala` | 54 | finale étrangère à la morphologie d'Ido (-o, -a, -e, -i, -ar, -ir, -or). Trois familles en sont **exemptées**, la question n'ayant de sens que pour un mot de la langue : l'affixe (`-eyo`, `poli-`), le mot que le livre déclare lui-même grammatical (*« an. Prepoziciono qua… »*), et l'emprunt cité (`amen`, `cambium`). Ce qui reste — numéraux `cent` et `dek`, noms de notes `b`, `c`, `d` — est légitime aussi, mais rien dans le texte ne permet de le dire |
 | `pagino-nefidinda` | 32 | pages 539-540, photographiées à une autre échelle, décodage nettement moins sûr |
 | `artiklo-dividita` | 13 | l'article était coupé par un saut de page ; les deux moitiés ont été recollées |
