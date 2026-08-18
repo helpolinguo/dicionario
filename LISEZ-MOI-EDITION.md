@@ -301,14 +301,14 @@ dictionnaire. Plutôt que de masquer ce qui reste, la base le **signale** :
 
 | drapeau | entrées | ce qu'il veut dire |
 |---|---|---|
-| `ordino-ruptita` | 59 | **la vedette rompt l'ordre alphabétique** |
+| `ordino-ruptita` | 55 | **la vedette rompt l'ordre alphabétique** |
 | `sen-lingua` | 1 035 | pas de code de langues final — souvent normal, le livre n'en donne pas toujours |
 | `finalo-nekustumala` | 54 | finale étrangère à la morphologie d'Ido (-o, -a, -e, -i, -ar, -ir, -or). Trois familles en sont **exemptées**, la question n'ayant de sens que pour un mot de la langue : l'affixe (`-eyo`, `poli-`), le mot que le livre déclare lui-même grammatical (*« an. Prepoziciono qua… »*), et l'emprunt cité (`amen`, `cambium`). Ce qui reste — numéraux `cent` et `dek`, noms de notes `b`, `c`, `d` — est légitime aussi, mais rien dans le texte ne permet de le dire |
 | `pagino-nefidinda` | 32 | pages 539-540, photographiées à une autre échelle, décodage nettement moins sûr |
 | `artiklo-dividita` | 13 | l'article était coupé par un saut de page ; les deux moitiés ont été recollées |
 | `sen-chefvorto` | 0 | l'entrée n'a pas de vedette lisible — plus aucun cas |
 
-**8 303 entrées ne portent aucun drapeau.**
+**8 306 entrées ne portent aucun drapeau.**
 
 `korektita` a cessé d'être un drapeau : il disait « au moins une cellule
 corrigée automatiquement », une provenance et non un doute, et toutes les
@@ -330,10 +330,17 @@ range `aktini` avant `aktinik`, le `-o` et le `-a` n'y entrant pas. Comparées
 mot entier, ces deux vedettes passaient pour un désordre, et neuf cents autres
 avec elles.
 
+Le **suffixe** ne compte pas davantage, et pour la même raison : le rangement
+suit la racine. `venerala` précède `veneracar` parce que le premier est
+*vener-al-a* et le second *venerac-ar* ; `inventariar` précède `inventar` parce
+que les deux sortent de *invent-*. Le dépouillement s'arrête à un suffixe et ne
+descend jamais sous cinq lettres — sans cette borne `metalo` deviendrait *met-*
+et `histerio` *hist-*.
+
 L'auteur ne s'y tient pas toujours : il écrit `astrakano` puis `astro`, où la
-racine seule voudrait l'inverse. Les deux lectures sont donc gardées, et le
-drapeau ne se lève que si **toutes deux** sont rompues — ce qu'aucune des deux
-conventions n'explique. Deux exceptions encore : les quatre locutions latines,
+racine seule voudrait l'inverse. Les trois lectures sont donc gardées — mot
+entier, racine, racine dépouillée —, et le drapeau ne se lève que si **toutes
+trois** sont rompues : ce qu'aucune convention n'explique. Deux exceptions encore : les quatre locutions latines,
 que le livre range tantôt comme un mot (`aposteriori`) tantôt comme deux
 (`ex libris` avant `exajerar`), et la première vedette des deux listes finales,
 qui recommencent chacune l'alphabet.
@@ -352,13 +359,13 @@ par sa propre définition :
 | *ostegomo* | **osteomo** | « (patol.) Tumoro ek osto-tisuo » |
 | *apie* | **apio** | « Planto umbelifera… L. apium », et *celerio* se définit par « Apio odoranta » |
 
-Les 59 qui restent sont une liste qu'un lecteur peut tenir dans la main.
+Les 55 qui restent sont une liste qu'un lecteur peut tenir dans la main.
 `ordino-ruptita.md` la classe en deux familles — les deux vedettes voisines
-qu'il suffit d'intervertir (39), et la vedette posée loin de sa place (20) —
+qu'il suffit d'intervertir (35), et la vedette posée loin de sa place (20) —
 avec le folio, l'image, la ligne de la grille, et les lectures qui tiendraient
 dans la place occupée. `python3 outils/releve_ordino.py` le reconstruit.
 
-**1 165 entrées portent au moins un drapeau.** L'édition HTML ne les filtre plus
+**1 162 entrées portent au moins un drapeau.** L'édition HTML ne les filtre plus
 — elle n'offre que la recherche ; le tri se fait sur `drapeli`, dans le JSONL ou
 dans la colonne du même nom du TSV.
 

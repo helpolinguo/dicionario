@@ -7,14 +7,14 @@ partout — il ecrit « astrakano » puis « astro » —, et le drapeau ne se
 leve donc que si la vedette recule sur LES DEUX lectures, mot entier et
 racine.
 
-**59 cas**, sur 9468 articles. Deux familles :
+**55 cas**, sur 9468 articles. Deux familles :
 les deux vedettes voisines qu'il suffit d'intervertir, et la vedette
 posee loin de sa place — celle-la est souvent une mauvaise lecture.
 
 Chaque cas donne le folio imprime, l'image du fac-simile et la ligne de
 la grille, pour aller voir.
 
-## Deux vedettes voisines interverties — 39
+## Deux vedettes voisines interverties — 35
 
 L'ordre du livre voudrait la seconde d'abord. Rien d'autre ne cloche :
 les deux vedettes sont a leur page, et leurs voisines sont en ordre.
@@ -22,7 +22,6 @@ les deux vedettes sont a leur page, et leurs voisines sont en ordre.
 | folio | image:ligne | telles qu'ecrites | dans l'ordre |
 |---|---|---|---|
 | 23 | 30:38 | amfipirenino, amfioxo | amfioxo, amfipirenino |
-| 33 | 40:49 | aplanatika, aplanata | aplanata, aplanatika |
 | 45 | 52:28 | astenopa, astatika | astatika, astenopa |
 | 50 | 57:36 | auxosporo, autuno | autuno, auxosporo |
 | 65 | 72:44 | biodinamiko, binomio | binomio, biodinamiko |
@@ -33,7 +32,6 @@ les deux vedettes sont a leur page, et leurs voisines sont en ordre.
 | 184 | 191:5 | furnelo, furnazo | furnazo, furnelo |
 | 220 | 227:6 | histerio, histerezometro | histerezometro, histerio |
 | 222 | 229:25 | homologio, homologa | homologa, homologio |
-| 242 | 249:9 | inventariar, inventar | inventar, inventariar |
 | 276 | 283:46 | kirko, kiragro | kiragro, kirko |
 | 331 | 338:37 | latiro, laticifera | laticifera, latiro |
 | 337 | 344:15 | licensar, licenco | licenco, licensar |
@@ -45,7 +43,6 @@ les deux vedettes sont a leur page, et leurs voisines sont en ordre.
 | 401 | 408:36 | obskurantismo, obskura | obskura, obskurantismo |
 | 402 | 409:15 | oceloto, oceano | oceano, oceloto |
 | 407 | 414:51 | oportuna, oportar | oportar, oportuna |
-| 444 | 451:55 | plastido, plastica | plastica, plastido |
 | 447 | 454:39 | plombo, *pliz | *pliz, plombo |
 | 459 | 466:6 | presbiterismo, presbiterio | presbiterio, presbiterismo |
 | 481 | 488:45 | ramno, ramio | ramio, ramno |
@@ -58,7 +55,6 @@ les deux vedettes sont a leur page, et leurs voisines sont en ordre.
 | 559 | 566:7 | subordinar, submisionar | submisionar, subordinar |
 | 595 | 602:17 | trioleto, trinomio | trinomio, trioleto |
 | 597 | 604:27 | trotar, tropismo | tropismo, trotar |
-| 611 | 618:50 | venerala, veneracar | veneracar, venerala |
 | 631 | 638:20 | *relektar, *rekonocar | *rekonocar, *relektar |
 
 ## Une vedette loin de sa place — 20

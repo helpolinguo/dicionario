@@ -1116,6 +1116,32 @@ def _klavo_radiko(v):
     return k
 
 
+# Le suffixe ne compte pas plus que la desinence, et pour la meme raison : le
+# rangement suit la RACINE. « venerala » precede « veneracar » parce que le
+# premier est vener-al-a et le second venerac-ar ; « inventariar » precede
+# « inventar » parce que les deux sortent de invent-. C'est ainsi que plusieurs
+# dictionnaires de l'ido les analysent, et le livre les range de meme.
+#
+# Le depouillement s'arrete a UN suffixe, et ne descend jamais sous cinq
+# lettres : sans cette borne « metalo » deviendrait « met- » et « histerio »
+# « hist- ». Cette troisieme lecture ne peut qu'OTER des drapeaux — il en faut
+# trois pour en poser un —, jamais en ajouter.
+SUFIXI = tuple(sorted(
+    ('ari', 'atr', 'ebl', 'end', 'eri', 'esk', 'estr', 'ier', 'ind', 'ism',
+     'ist', 'oid', 'ach', 'ad', 'aj', 'al', 'an', 'ar', 'ed', 'eg', 'em',
+     'er', 'es', 'et', 'ey', 'id', 'if', 'ig', 'ik', 'il', 'in', 'iv', 'iz',
+     'oz', 'ul', 'um', 'ur', 'uy'), key=len, reverse=True))
+
+
+def _klavo_radikalo(v, mini=5):
+    """La vedette rangee, sa desinence et UN suffixe otes."""
+    r = _klavo_radiko(v)
+    for x in SUFIXI:
+        if r.endswith(x) and len(r) - len(x) >= mini:
+            return r[:-len(x)]
+    return r
+
+
 # Le livre se termine par deux listes a part, qui recommencent chacune
 # l'alphabet : un addendum de cinq articles (image 636) et la « LISTO de vorti
 # qui... probable adoptesos da la Akademio di Ido » (images 637-638). Leur
@@ -1163,20 +1189,22 @@ def drapeli_ordino(ent):
 
     Le drapeau se lit sur la SUITE des vedettes : il se repose donc en entier
     des qu'une vedette change, ou qu'un article s'ajoute. Une vedette rompt
-    l'ordre quand elle recule sur les DEUX lectures — mot entier et racine
-    (voir _klavo_radiko) —, et qu'elle n'ouvre pas une des listes finales.
+    l'ordre quand elle recule sur les TROIS lectures — mot entier, racine, et
+    racine depouillee de son suffixe (voir _klavo_radiko et _klavo_radikalo) —,
+    et qu'elle n'ouvre pas une des listes finales.
     """
     for e in ent:
         if 'ordino-ruptita' in (e.get('drapeli') or []):
             e['drapeli'].remove('ordino-ruptita')
     v=[_klavo_ordino(e.get('vedetto') or '') for e in ent]
     r=[_klavo_radiko(e.get('vedetto') or '') for e in ent]
+    d=[_klavo_radikalo(e.get('vedetto') or '') for e in ent]
     unua={}
     for e in ent: unua.setdefault(e.get('image'), id(e))
     n=0
     for i in range(1, len(v)):
-        if not (v[i] and v[i-1] and r[i] and r[i-1]): continue
-        if v[i] >= v[i-1] or r[i] >= r[i-1]: continue
+        if not (v[i] and v[i-1] and r[i] and r[i-1] and d[i] and d[i-1]): continue
+        if v[i] >= v[i-1] or r[i] >= r[i-1] or d[i] >= d[i-1]: continue
         if (ent[i].get('image') in KOMENCO_DE_SEKCIONO
                 and unua.get(ent[i].get('image')) == id(ent[i])): continue
         # Les quatre locutions latines — « a posteriori », « ex libris » — sont
