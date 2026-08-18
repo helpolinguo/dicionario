@@ -16,6 +16,7 @@ Transcription établie à partir du fac-similé fourni (639 pages photographiée
 | `dicionario.pdf` | le **dictionnaire de poche**, vers lequel pointe le bouton « Deskargar » ; copie de `posho/posho.pdf` |
 | `main.pdf` | le fac-similé LaTeX, page à page, grille à grille (`main.tex` + `contenu/`) |
 | `filets-dubinda.md` | les soulignements de l'auteur que l'édition n'a pas su placer |
+| `ordino-ruptita.md` | les vedettes qui rompent l'ordre alphabétique, avec la place où elles auraient dû aller |
 | `travail/journal_complet.txt` | **toutes** les corrections : ce qui a été lu, ce qui a été retenu, et si c'est un correcteur ou l'œil qui a tranché |
 | `outils/` | la chaîne complète, de l'image au JSON |
 
@@ -300,14 +301,14 @@ dictionnaire. Plutôt que de masquer ce qui reste, la base le **signale** :
 
 | drapeau | entrées | ce qu'il veut dire |
 |---|---|---|
-| `ordino-ruptita` | 64 | **la vedette rompt l'ordre alphabétique** |
+| `ordino-ruptita` | 59 | **la vedette rompt l'ordre alphabétique** |
 | `sen-lingua` | 1 035 | pas de code de langues final — souvent normal, le livre n'en donne pas toujours |
 | `finalo-nekustumala` | 54 | finale étrangère à la morphologie d'Ido (-o, -a, -e, -i, -ar, -ir, -or). Trois familles en sont **exemptées**, la question n'ayant de sens que pour un mot de la langue : l'affixe (`-eyo`, `poli-`), le mot que le livre déclare lui-même grammatical (*« an. Prepoziciono qua… »*), et l'emprunt cité (`amen`, `cambium`). Ce qui reste — numéraux `cent` et `dek`, noms de notes `b`, `c`, `d` — est légitime aussi, mais rien dans le texte ne permet de le dire |
 | `pagino-nefidinda` | 32 | pages 539-540, photographiées à une autre échelle, décodage nettement moins sûr |
 | `artiklo-dividita` | 13 | l'article était coupé par un saut de page ; les deux moitiés ont été recollées |
 | `sen-chefvorto` | 0 | l'entrée n'a pas de vedette lisible — plus aucun cas |
 
-**8 299 entrées ne portent aucun drapeau.**
+**8 303 entrées ne portent aucun drapeau.**
 
 `korektita` a cessé d'être un drapeau : il disait « au moins une cellule
 corrigée automatiquement », une provenance et non un doute, et toutes les
@@ -338,14 +339,26 @@ que le livre range tantôt comme un mot (`aposteriori`) tantôt comme deux
 qui recommencent chacune l'alphabet.
 
 `ordino-ruptita` reste le plus utile des drapeaux. Un dictionnaire est trié :
-une vedette qui rompt l'ordre désigne souvent une mauvaise lecture, dans l'une
-des deux vedettes voisines — *aoendar* pour *acendar*, *hetedoroxo* pour
-*heterodoxo*, dont la définition dit elle-même « Qua deviacas de la
-ortodoxeso ». Les 64 qui restent sont une liste qu'un lecteur peut tenir dans
-la main ; certaines sont des lapsus de l'auteur lui-même — *remarkar* avant
-*remar*, *inventariar* avant *inventar* — que le fac-similé confirmera.
+une vedette qui rompt l'ordre désigne souvent une mauvaise lecture, et la place
+vide dit alors quel mot il fallait lire. Six l'ont été ainsi, chacune confirmée
+par sa propre définition :
 
-**1 169 entrées portent au moins un drapeau.** L'édition HTML ne les filtre plus
+| lu | retenu | ce que dit la définition |
+|---|---|---|
+| *hetedoroxo* | **heterodoxo** | « Qua deviacas de la ortodoxeso » |
+| *konaxo* | **konexo** | « (mat.) Equaciono algebrala homogena inter x, y, z… » — le connexe de Clebsch |
+| *pecnio* | **peonio** | « (bot.) Planto ranunkulacea… L. paeonia » |
+| *quartebo* | **quarteto** | « (muziko) Muzikajo kompozita por quar voci o por quar instrumenti » |
+| *ostegomo* | **osteomo** | « (patol.) Tumoro ek osto-tisuo » |
+| *apie* | **apio** | « Planto umbelifera… L. apium », et *celerio* se définit par « Apio odoranta » |
+
+Les 59 qui restent sont une liste qu'un lecteur peut tenir dans la main.
+`ordino-ruptita.md` la classe en deux familles — les deux vedettes voisines
+qu'il suffit d'intervertir (39), et la vedette posée loin de sa place (20) —
+avec le folio, l'image, la ligne de la grille, et les lectures qui tiendraient
+dans la place occupée. `python3 outils/releve_ordino.py` le reconstruit.
+
+**1 165 entrées portent au moins un drapeau.** L'édition HTML ne les filtre plus
 — elle n'offre que la recherche ; le tri se fait sur `drapeli`, dans le JSONL ou
 dans la colonne du même nom du TSV.
 
