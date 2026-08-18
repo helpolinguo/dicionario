@@ -313,6 +313,36 @@ trois-là en deux. Elle épargne désormais celle que précède le tiret d'affix
 celle que suit une lettre **seule** : la finale du mot. *F(z) esas monodroma*
 porte déjà son espace, et n'est pas touché.
 
+### La croix de la dactylo : astérisque ou plus
+
+La machine à écrire n'avait pas d'astérisque. Pour marquer les mots **non
+officiels** — ceux qu'il propose sans les donner pour acquis — l'auteur frappe
+une croix, `+`, que l'édition rend par l'astérisque de la tradition ido. Elle
+porte sur la vedette (*\*grandoro*, *\*stencilo*, *\*kluza*, *\*sesiono*) comme sur
+les mots cités dans les définitions. **215 occurrences.**
+
+Mais la même touche sert le **plus de l'algèbre**, et rien dans le signe ne les
+distingue. C'est la frappe qui les distingue :
+
+> La marque est **collée** au mot qu'elle marque — la dactylo ne laissait pas
+> d'espace : *pri+grandoro*, *sur+stencilo*, *vazo+kluza*, *o+sesiono*. Détachée,
+> elle n'est la marque que si elle **ouvre** le fragment ou suit une parenthèse
+> ouvrante — *legi (+ leyi)* chez `cienco`, *+ prei*. Entre deux termes, c'est
+> une addition.
+
+Le contrôle est dans le livre lui-même : *grandoro*, *stencilo*, *kluza*,
+*sesiono* y sont vedettes, et **marquées non officielles à leur place
+alphabétique**. La règle qui prenait toute croix pour la marque posait quatre
+astérisques sur des inconnues — *ax² \*bx \*c = 0* chez `diskriminanto`,
+*a \*b i e a' \*b' i* chez `konjugar`, *a² = b² \*c* chez `pitagorala`. Elles sont
+rendues à l'arithmétique ; chez `konjugar`, le filet *a' + b' i* retrouve du
+même coup son texte et passe des fragments douteux à l'italique.
+
+Une croix restait, qui n'était ni l'une ni l'autre : chez `ecentrika`, *de pn +n
+donita*. Cinq caractères pour un mot de cinq lettres — c'est **punto**, et la
+définition le dit : *Di qua la centro eskartesas de punto donita*, le centre qui
+s'écarte d'un point donné. La correction est dans `travail/texti.txt`.
+
 ### Les parenthèses orphelines
 
 Le tapuscrit laisse cent vingt parenthèses sans leur paire. Elles ne sont pas
@@ -356,7 +386,7 @@ de colonnes ; il suffit d'y lire le texte.
 |---|---|
 | `sublineita` | tout ce qui est souligné dans l'entrée, remis bout à bout, les coupures de fin de ligne recollées. 6 542 entrées |
 | `kursiva` | ceux que l'édition a **su placer** dans le texte, et qu'elle rend en italique. 1 246 entrées |
-| `dubinda` | ceux qu'elle **n'a pas su placer** : le fragment ne se retrouve pas tel quel, ou ne couvre que des mots-outils. 1 409 entrées, 1 573 fragments |
+| `dubinda` | ceux qu'elle **n'a pas su placer** : le fragment ne se retrouve pas tel quel, ou ne couvre que des mots-outils. 1 410 entrées, 1 572 fragments |
 
 Un souligné n'est ni `kursiva` ni `dubinda` quand il a trouvé sa place ailleurs
 — dans `fako`, dans `latina`, dans `simbolo`, ou comme locution. C'est le cas de *cinocefalo*
@@ -372,7 +402,7 @@ teksto   : Pikanta ed atakema (metaf.)
 teksto_k : Pikanta ed atakema \ue000(metaf.)\ue001
 ```
 
-`filets-dubinda.md` classe les 1 573 fragments non placés par famille, la plus
+`filets-dubinda.md` classe les 1 572 fragments non placés par famille, la plus
 douteuse en tête, avec la page et la vedette pour aller voir le fac-similé. Une
 seule famille demande un arbitrage — 18 fragments qui ressemblent à un
 qualificatif ou à une locution ; les autres sont des artefacts du relevé, où le

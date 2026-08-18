@@ -6,7 +6,7 @@ scientifique. L'edition epuree lit ces filets et les rend. Voici ceux
 qu'elle n'a pas su placer : le fragment releve ne se retrouve pas tel
 quel dans le texte, ou ne couvre que des mots-outils.
 
-**1573 fragments**, sur 9472 articles. La premiere famille est
+**1572 fragments**, sur 9472 articles. La premiere famille est
 la seule qui demande un arbitrage : les autres sont des artefacts du
 releve des filets, ou le trait deborde ou s'arrete trop tot.
 
@@ -33,7 +33,7 @@ releve des filets, ou le trait deborde ou s'arrete trop tot.
 | 527 | signifikar | `Progres` |
 | 531 | sinoptika | `Kurso di la filozo-` |
 
-## Fragment de trois lettres ou moins — 540
+## Fragment de trois lettres ou moins — 539
 
 | page | mot-vedette | fragment souligne |
 |---:|---|---|
@@ -265,7 +265,6 @@ releve des filets, ou le trait deborde ou s'arrete trop tot.
 | 291 | komto | `bel` |
 | 295 | kongro | `k l` |
 | 296 | konjugar | `Imaginari konjugaa + b i` |
-| 296 | konjugar | `a' + b' i` |
 | 299 | konsomeo | `oqu` |
 | 303 | konvenar | `sar` |
 | 304 | konvolvulo | `lva` |

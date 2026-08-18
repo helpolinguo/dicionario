@@ -2507,7 +2507,20 @@ def typographio(ent):
             # Un mot non officiel est un mot ido, donc en minuscule : « +H₂O »,
             # dans la formule de la morphine, est le plus de la chimie et non
             # la marque de l'auteur.
-            t=re.sub(r'\+\s*(?=[a-zà-ÿ])', '*', t)
+            #
+            # La marque est COLLEE au mot qu'elle marque — la dactylo ne laissait
+            # pas d'espace : « pri+grandoro », « sur+stencilo », « vazo+kluza »,
+            # « o+sesiono ». Le livre donne bien « *grandoro », « *stencilo »,
+            # « *kluza », « *sesiono » comme vedettes non officielles.
+            t=re.sub(r'\+(?=[a-zà-ÿ])', '*', t)
+            # Detachee du mot, elle ne l'est que si elle OUVRE le fragment ou
+            # suit une parenthese ouvrante : « legi (+ leyi) » chez « cienco ».
+            # Entre deux termes, c'est le plus de l'algebre, que la regle
+            # precedente prenait pour la marque : « ax² + bx + c = 0 » chez
+            # « diskriminanto », « a + b i e a' + b' i » chez « konjugar »,
+            # « a² = b² + c » chez « pitagorala » — quatre asterisques posees
+            # sur des inconnues.
+            t=re.sub(r'(?:^|(?<=[(\[«“"]))\+\s+(?=[a-zà-ÿ])', '*', t)
             # Guillemets : la machine n'avait que la double apostrophe droite.
             # On ne convertit que les PAIRES — 834 sur 1 690 apostrophes ; les
             # orphelines restent droites plutot que d'ouvrir un chevron qui ne
