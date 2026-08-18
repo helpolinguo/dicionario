@@ -105,10 +105,16 @@ RE_LATINA = re.compile(
 # produktata... » chez « ampulo », « ...kontenar aquo. – II Mar-baseno... »
 # chez « baseno ». Le livre n'en compte que deux, et les deux sont de vrais
 # sens ; on admet donc le numero suivi d'une simple espace, a condition qu'une
-# lettre suive.
+# lettre suive. Une PARENTHESE la vaut : le sens s'ouvre tres souvent sur son
+# qualificatif, « reklamacar. I(netrans.) ... ne-equitatoza.II (trans.)
+# Postular... », et le numero se retrouvait alors dans le texte du sens, ou il
+# doublait celui que les editions posent elles-memes — « 1. I (zool.) Mamifero
+# karnivora... » chez « leono ». L'espace y est facultative : la dactylo colle
+# le numero a la parenthese aussi souvent qu'elle l'en separe.
 RE_SENCO  = re.compile(r'\s*(?:[-–]\s*|(?<=[.)])\s*)'
                        r'(?=(?:I{1,3}|IV|V|VI)[.,]\s?'
                        r'|(?:I{1,3}|IV|V|VI)\s+[A-Za-zÀ-ÿ]'
+                       r'|(?:I{1,3}|IV|V|VI)\s*\('
                        r'|[l\d]\d?\.\s*[A-ZÀ-Ý(])')
 # L'auteur numerote parfois ses sens ENTRE PARENTHESES : « (1) ... (2) ... ».
 # Ecrits ainsi, ils tiennent le plus souvent en une seule phrase — les morceaux
@@ -489,6 +495,30 @@ RE_DIVIDO = re.compile(r'[-–]\s*([A-Za-z]{1,12})\.\s+'
                        # Onze articles se trouvaient ainsi noyes dans leur voisin.
                        r'|["\u00ab]\s*[+*]?[a-zà-ÿ]))')
 
+_DIVIDI=None
+def _dividi(fichier=f"{T}/dividi.txt"):
+    """Coupures relevees a l'oeil : image:ligno -> chaine ou couper.
+
+    Le reperage automatique s'appuie sur le code de langues qui finit chaque
+    article. Quand une note s'est glissee entre les deux — « shokar. ... II.
+    (Ref. "Adjuntenda", fine di ca verko) shovar. (trans.) Glitigar per
+    pulso. - DE. » —, il n'y a plus de code a l'endroit de la couture, et le
+    second article — une racine entiere, absente du reste du livre — restait
+    noye dans le premier.
+    """
+    global _DIVIDI
+    if _DIVIDI is None:
+        _DIVIDI={}
+        if os.path.exists(fichier):
+            for l in open(fichier,encoding='utf-8'):
+                l=l.rstrip("\n")
+                if not l.strip() or l.startswith("#"): continue
+                p=l.split("\t")
+                if len(p)>=2 and p[0].strip() and p[1].strip():
+                    _DIVIDI[p[0].strip()]=p[1].strip()
+    return _DIVIDI
+
+
 def dividar(brut, lexique=None):
     """Scinde les entrees qui en contiennent deux. Rend la liste elargie."""
     out=[]
@@ -501,6 +531,15 @@ def dividar(brut, lexique=None):
             # sur lequel la coupure s'appuie (« - DEFIR. shut! »).
             for a,b in _texti().items():
                 if a in t: t=t.replace(a,b)
+        # La coupure relevee a l'oeil passe la premiere : elle porte la ou le
+        # code de langues manque, et le reperage automatique ne voit rien.
+        _c = _dividi().get("%d:%d" % (e.get('image',-1), e.get('ligno',-1)))
+        if _c and _c in t and t.index(_c) > 0:
+            j=t.index(_c)
+            f=dict(e); f['teksto_brut']=t[:j].strip()
+            f['drapeli_pre']=['artiklo-dividita']
+            out.append(f)
+            t=t[j:].strip()
         while True:
             coupe=None
             for m in RE_DIVIDO.finditer(t):
@@ -1550,7 +1589,7 @@ def konstrui():
             # de l'original, non du texte. « titrar » commencait par un point.
             S[k]=ekvilibrigi_parentezojn(pointi_abrevo(fermi_parentezon(
                 fermi_kvalifikilon(orfa_parentezo(formuli(cifri(pointi_sencoj(
-                    surcharge(espacar(t))))))))).lstrip('.,;:) ').strip())
+                    surcharge(espacar(netigar_punktuo(t)))))))))).lstrip('.,;:) ').strip())
     # (cifri et formuli n'interviennent qu'ici, une fois la relecture posee)
     # Second passage des corrections a l'oeil. Une ligne de vorti.txt ecrite
     # d'apres le texte RENDU ne pouvait pas s'appliquer plus haut : « de l til
@@ -1578,6 +1617,26 @@ def konstrui():
         if 'sen-lingua' in e['drapeli']: e['drapeli'].remove('sen-lingua')
         n+=1
     if n: print("codes de langues rattrapes apres la typographie : %d"%n)
+    # Le code n'est pas toujours au bout du DERNIER sens. L'auteur l'a parfois
+    # pose, puis a ajoute un sens apres coup : « arniko. I. Planto aromata...
+    # - L. arnica montana. - DEFIS. II. Medikamento liquida... ». Le code reste
+    # alors au milieu de l'article, l'article passe pour « sen-lingua », et le
+    # lecteur voit « DEFIS » dans une definition. On le releve la aussi — sur le
+    # DERNIER sens qui en porte un, et pour les seuls articles qui n'en ont pas.
+    n=0
+    for e in ent:
+        if e.get('kodo') or not e.get('senci'): continue
+        for k in range(len(e['senci'])-1, -1, -1):
+            mk=re.search(r'(?:[-–.,()*]|\s)\s*([A-Za-z]{1,12})\s*\.?\s*$', e['senci'][k])
+            li=_lire_code(mk.group(1)) if mk else None
+            if not li: continue
+            e['lingui']=li; e['kodo']=mk.group(1)
+            q=e['senci'][k][:mk.start()].rstrip(' -–.,;:')
+            if q: e['senci'][k]=q
+            else: e['senci'].pop(k)
+            if 'sen-lingua' in e['drapeli']: e['drapeli'].remove('sen-lingua')
+            n+=1; break
+    if n: print("codes de langues releves hors du dernier sens : %d"%n)
     # Article commence en bas de page, abandonne, puis RECOMMENCE en tete de la
     # page suivante. « ampère » est le seul cas du livre : la premiere version
     # s'arrete net, sans code de langues ; la seconde est complete. L'edition de
@@ -1626,7 +1685,11 @@ def konstrui():
     # ouvrirait le sens que la coupure vient d'isoler.
     RE_NUM=re.compile(r'^(?:(?:I{1,3}|IV|VI{0,3}|IX|X|[l\d]\d?)[.)](?!\d)\s*'
                       r'|(?:I{1,3}|IV|VI{0,3}|IX|X),\s*(?=[A-ZÀ-Ý(])'
-                      r'|(?:I{1,3}|IV|VI{0,3}|IX|X)\s+(?=[A-Za-zÀ-ÿ]))')
+                      r'|(?:I{1,3}|IV|VI{0,3}|IX|X)\s+(?=[A-Za-zÀ-ÿ])'
+                      # Le numero suivi de la parenthese du qualificatif —
+                      # « I (zool.) Mamifero... » chez « leono », six articles.
+                      # L'espace y est facultative : « reklamacar.I(netrans.) ».
+                      r'|(?:I{1,3}|IV|VI{0,3}|IX|X)\s*(?=\())')
     RE_ETIQ=re.compile(r'^\([^()]{1,40}\)\.?$')
     n_num=0
     for e in ent:
@@ -1911,6 +1974,25 @@ def ekvilibrigi_parentezojn(t):
     return _kupar("".join(c for i, c in enumerate(t) if i not in orfaj))
 
 
+def netigar_punktuo(t):
+    """Les scories de frappe : virgule doublee, point double, virgule-point.
+
+    La dactylo a parfois frappe deux fois. Onze articles portent un point
+    double — « ...e tonizala. . – DEFIS » chez « arniko », « (trans. .) » chez
+    « reklamacar » —, quatre une virgule doublee, un une virgule suivie d'un
+    point. Le fac-simile les garde ; l'edition de lecture, non.
+
+    Le point double n'est retire que SEPARE d'une espace. Colles, « ie.. » et
+    « venenifanta.. » sont deux cas contraires — une ellipse ecourtee et un
+    point de trop — que rien ne distingue mecaniquement : ils sont traites un a
+    un dans vorti.txt. Et l'ellipse de l'auteur, « ... », reste intacte.
+    """
+    t = re.sub(r',\s*,', ',', t)
+    t = re.sub(r',\s*\.(?!\.)', ', ', t)
+    t = re.sub(r'(?<!\.)\.\s+\.(?!\.)', '.', t)
+    return re.sub(r'  +', ' ', t)
+
+
 def espacar(t):
     """Espacement de la ponctuation, usage franco-canadien.
 
@@ -2041,7 +2123,7 @@ def typographio(ent):
             # de rendu, et la couche de relecture cherche des chaines relevees
             # sur le texte brut. « H2 Hg3 Si4 O12 » ne se retrouve plus une fois
             # les indices poses ; on les pose donc APRES elle.
-            t=pointi_sencoj(surcharge(espacar(t)))
+            t=pointi_sencoj(surcharge(espacar(netigar_punktuo(t))))
             if t!=o: s[k]=t; n+=1
     return n
 

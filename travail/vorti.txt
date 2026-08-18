@@ -61,6 +61,13 @@ la osto *sfenoida	la osto sfenoida	p225 hipofizo : vorto oficala, sen asterisko
 qualan kande on renkontras	qualan kande onu renkontras	p382 mineralogio
 senteblano	senteblan o	p061 bela : « per igar senteblan o per manifestar » — deux mots soudes
 e .c	e c.	p613 verda : « di herbo, e c. » — le point de l abreviation a saute avant le c
-pronuncar : she-atra.	pronuncar : she-atra.)	p523 sh-atra : la parenthese de tete se ferme sur la prononciation, avant le domaine — « (pronuncar : she-atra.) - (fonetiko). »
+she-atra. –	she-atra.) –	p523 sh-atra : la parenthese de tete se ferme sur la prononciation, avant le domaine. La chaine cherchee porte le tiret qui suit, pour ne pas se retrouver dans son propre resultat : la couche passe deux fois, et « she-atra.) » y gagnait une seconde fermante — « (pronuncar : she-atra.) - (fonetiko). »
 Kom ex.;	Kom ex.: L. que en neque;	p137 enklitiko : l exemple latin avait ete pris pour le nom scientifique de l article et retire du texte
 hatti-i-oheriff	hatti-i-cheriff	p243 irade : le c lu comme o — la confusion la plus frequente du tapuscrit. Verifie sur l original. Le mot entier est donne car la couche exclut le trait d union de ses frontieres.
+# --- « e c. », l abreviation de « e cetere », que la dactylo soude en « ec »
+ec.	e c.	celebrar, fronto, kromatoforo, kotleto, termometro : « e c. » est ecrit 788 fois dans le livre, « ec » n est pas un mot de l ido
+ec	e c.	fricionar, kripla, quadrilo, submersar : meme cas, sans le point
+pordo., ec	pordo, e c.	p308 kornico : « moblo, pordo., ec » — le point de « pordo » est une scorie de frappe, au milieu d une enumeration
+e c.p	e c.	p006 adequata : « (aludante penso, cienco, e c.p » — la parenthese fermante frappee a cote
+ie..)	ie...)	p110 diftongo : « (kom ex. : au, eu, ie.. ) » — l ellipse de l auteur, ecourtee d un point ; le livre en porte cinquante-cinq
+venenifanta..	venenifanta.	p537 skorpiono : point double colle, la ou les neuf autres sont separes d une espace

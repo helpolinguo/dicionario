@@ -1,0 +1,17 @@
+# Deux articles frappes a la suite sur une MEME ligne de la grille, sans le
+# code de langues qui permet a la machine de les separer d'elle-meme (voir
+# RE_DIVIDO dans outils/edition.py : la coupure s'appuie sur le « - DEFIS. »
+# qui finit chaque article). Quand la dactylo a insere une note entre les deux,
+# ce reperage tombe, et le second article se retrouve avale dans le premier.
+#
+# La cle est la ligne de la grille — image:ligno. Le second article commence a
+# la chaine donnee, et il HERITE la ligne du premier : les deux ont bien ete
+# frappes la, et le fac-simile le montrera.
+#
+# La dactylo a souligne « shovar » comme elle souligne les domaines : c'est
+# ainsi qu'elle signale une vedette posee au milieu d'une ligne. Le mot manquait
+# au dictionnaire, entre « shokar » et « shovelo », et son code de langues — DE,
+# schieben et shove — finissait la ligne sans que rien le rattache a lui.
+#
+# cle	chaine ou commence le second article
+532:29	shovar. (trans.) Glitigar per pulso

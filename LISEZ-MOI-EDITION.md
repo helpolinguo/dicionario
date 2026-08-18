@@ -19,10 +19,10 @@ Transcription établie à partir du fac-similé fourni (639 pages photographiée
 | `travail/journal_complet.txt` | **toutes** les corrections : ce qui a été lu, ce qui a été retenu, et si c'est un correcteur ou l'œil qui a tranché |
 | `outils/` | la chaîne complète, de l'image au JSON |
 
-**9 467 entrées** extraites de 632 pages de corps d'ouvrage.
-5 270 portent une marque de domaine (*bot.*, *zool.*, *arkitekt.*…),
+**9 468 entrées** extraites de 632 pages de corps d'ouvrage.
+5 271 portent une marque de domaine (*bot.*, *zool.*, *arkitekt.*…),
 813 un nom scientifique latin, 1 675 plusieurs sens numérotés,
-8 431 un code de langues final.
+8 433 un code de langues final.
 
 ---
 
@@ -49,7 +49,7 @@ fourni ; `ligno` la ligne de la grille du tapuscrit. **Chaque entrée peut donc
 travail reste vérifiable dans vingt ans.
 
 Une réserve sur `pagino`, vérifiée sur le fac-similé : il vaut `image - 7` pour
-les 9 467 entrées, sans exception — c'est un calcul, non une lecture. Or **le
+les 9 468 entrées, sans exception — c'est un calcul, non une lecture. Or **le
 livre saute deux numéros** : la page qui porte `fosfo` est numérotée
 « 173/175 », doublement, et l'écart change de part et d'autre. Après elle,
 `pagino` est bien le folio imprimé ; **avant elle, le folio imprimé vaut
@@ -67,16 +67,6 @@ l'entrée : une provenance, non un doute.
 
 `senci` donne le texte d'un sens tel qu'il se lit. `strukt` donne le même texte
 **découpé** : un corps, et les locutions qui portent leur propre définition.
-
-L'auteur numérote ses sens de trois façons — *1.*, *I.*, et parfois entre
-parenthèses, *(1) … (2) …*. Cette dernière forme tient le plus souvent en une
-seule phrase, les morceaux séparés d'un point-virgule ou d'un deux-points ; on
-la laisse telle quelle, comme l'a écrite l'auteur. Mais le **premier** de ces
-numéros suit la vedette, là où l'analyse cherche le domaine : il y partait, et
-en était écarté comme numéro. L'entrée perdait alors son *(1)* en gardant son
-*(2)* — *ramo*, *romano*, *vice*, les trois seuls du livre. La numérotation
-restée seule ne renseignait plus personne : le sens est maintenant coupé à sa
-place, et les éditions le renumérotent comme les autres.
 
 L'auteur en pose de plusieurs façons. Le plus souvent la locution ouvre la
 phrase, capitale et deux-points — *Proporciono geometriala : …* Parfois elle
@@ -119,6 +109,19 @@ qu'il fait dépendre du précédent — *protestanto* sous *protestar*. Ce signe
 unique dans les six cent quarante pages du livre. `travail/subvorti.txt` porte
 ce rattachement ; l'article rattaché devient une sous-entrée de son voisin, sans
 rien perdre — ni domaine, ni code de langues, ni page.
+
+L'auteur numérote ses sens de trois façons — *1.*, *I.*, et parfois entre
+parenthèses, *(1) … (2) …*. Cette dernière forme tient le plus souvent en une
+seule phrase, les morceaux séparés d'un point-virgule ou d'un deux-points ; on
+la laisse telle quelle, comme l'a écrite l'auteur. Mais le **premier** de ces
+numéros suit la vedette, là où l'analyse cherche le domaine : il y partait, et
+en était écarté comme numéro. L'entrée perdait alors son *(1)* en gardant son
+*(2)* — *ramo*, *romano*, *vice*, les trois seuls du livre. La numérotation
+restée seule ne renseignait plus personne : le sens est maintenant coupé à sa
+place, et les éditions le renumérotent comme les autres. De même, le numéro
+collé au qualificatif — *leono. I (zool.) Mamifero karnivora…* — restait dans le
+texte, où il doublait celui que les éditions posent : il tombe désormais comme
+les autres, dans six entrées.
 
 ### Le domaine (`fako`)
 
@@ -279,10 +282,10 @@ dictionnaire. Plutôt que de masquer ce qui reste, la base le **signale** :
 | drapeau | entrées | ce qu'il veut dire |
 |---|---|---|
 | `ordino-ruptita` | 1 082 | **la vedette rompt l'ordre alphabétique** |
-| `sen-lingua` | 1 036 | pas de code de langues final — souvent normal, le livre n'en donne pas toujours |
+| `sen-lingua` | 1 035 | pas de code de langues final — souvent normal, le livre n'en donne pas toujours |
 | `finalo-nekustumala` | 54 | finale étrangère à la morphologie d'Ido (-o, -a, -e, -i, -ar, -ir, -or). Trois familles en sont **exemptées**, la question n'ayant de sens que pour un mot de la langue : l'affixe (`-eyo`, `poli-`), le mot que le livre déclare lui-même grammatical (*« an. Prepoziciono qua… »*), et l'emprunt cité (`amen`, `cambium`). Ce qui reste — numéraux `cent` et `dek`, noms de notes `b`, `c`, `d` — est légitime aussi, mais rien dans le texte ne permet de le dire |
 | `pagino-nefidinda` | 32 | pages 539-540, photographiées à une autre échelle, décodage nettement moins sûr |
-| `artiklo-dividita` | 11 | l'article était coupé par un saut de page ; les deux moitiés ont été recollées |
+| `artiklo-dividita` | 13 | l'article était coupé par un saut de page ; les deux moitiés ont été recollées |
 | `sen-chefvorto` | 0 | l'entrée n'a pas de vedette lisible — plus aucun cas |
 
 **7 403 entrées ne portent aucun drapeau.**
@@ -290,7 +293,7 @@ dictionnaire. Plutôt que de masquer ce qui reste, la base le **signale** :
 `korektita` a cessé d'être un drapeau : il disait « au moins une cellule
 corrigée automatiquement », une provenance et non un doute, et toutes les
 définitions ayant été relues une à une il ne désignait plus de travail restant.
-Le compte reste dans le champ `korektita`, pour qui veut mesurer : 6 289 entrées
+Le compte reste dans le champ `korektita`, pour qui veut mesurer : 6 287 entrées
 en portent au moins une.
 
 Le drapeau d'ordre se lit sur la vedette **rangée**, sa marque de tête ôtée :
@@ -305,7 +308,7 @@ l'une des deux vedettes voisines — *aoendar* pour *acendar*, *a)rotano* pour
 *abrotano*, *aacho* pour le suffixe *-acho*. **Corriger ces 1 082 cas, c'est
 achever le livre**, et le travail est divisible : chacun peut en prendre cent.
 
-**2 064 entrées portent au moins un drapeau.** L'édition HTML ne les filtre plus
+**2 065 entrées portent au moins un drapeau.** L'édition HTML ne les filtre plus
 — elle n'offre que la recherche ; le tri se fait sur `drapeli`, dans le JSONL ou
 dans la colonne du même nom du TSV.
 
@@ -335,6 +338,23 @@ Une cellule n'est déclarée ambiguë que si le décodage doute : son groupe doi
 avoir, parmi ses plus proches voisins dans l'espace des formes, un groupe
 d'étiquette différente. **Aucune cellule que le décodage lit sans hésiter n'a été
 touchée.**
+
+Au-dessus du décodage viennent les **couches posées à l'œil**, chacune un
+fichier à part, lisible et versionné, qui l'emporte sur ce que la machine avait
+lu. Elles se relisent comme un apparat critique :
+
+| couche | ce qu'elle corrige |
+|---|---|
+| `travail/texti.txt` | le texte **brut**, avant toute analyse |
+| `travail/vedetti.txt` | la vedette |
+| `travail/vorti.txt` | un mot dans une définition |
+| `travail/subvorti.txt` | le rattachement d'un article à son voisin |
+| `travail/simboli.txt` | le symbole chimique relevé sur la page |
+| `travail/latinaji.txt` | le nom scientifique relevé sur la page |
+| `travail/dividi.txt` | **deux articles frappés sur une même ligne**, que le repérage automatique ne sait pas séparer faute de code de langues entre eux : *shovar* était noyé dans *shokar*, à la fin d'une note |
+| `travail/lignes_plus.txt` | une ligne de grille perdue, restituée |
+| `travail/exceptions_manuel.txt` | la cellule elle-même |
+| `travail/relire/reponses/` | les corrections rendues par la relecture, article par article |
 
 Une piste a été essayée puis abandonnée — corriger les vedettes par l'ordre
 alphabétique global : sans contrainte de langue elle produit *adiar* → *adiao*.
