@@ -15,3 +15,13 @@
 #
 # cle	chaine ou commence le second article
 532:29	shovar. (trans.) Glitigar per pulso
+#
+# Quatre autres, trouves de la meme facon : le code de langues finit bien
+# l'article, mais ce qui suit ne se presente pas comme une vedette — une
+# virgule au lieu du point chez « asasinar », un tiret d'affixe chez « ko- »,
+# une parenthese egaree entre les deux chez « tino », rien du tout chez
+# « warfo ». La dactylo, elle, les a tous soulignes.
+50:7	asasinar, (trans.) Mortigar kun preparo
+288:47	ko- Prefixo ciencala qua signifikas
+588:42	tino. Earelo di qua la fundo
+630:15	warfo Amaso de petri, ronda stoni

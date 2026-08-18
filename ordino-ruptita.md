@@ -7,7 +7,7 @@ partout — il ecrit « astrakano » puis « astro » —, et le drapeau ne se
 leve donc que si la vedette recule sur LES DEUX lectures, mot entier et
 racine.
 
-**55 cas**, sur 9468 articles. Deux familles :
+**55 cas**, sur 9472 articles. Deux familles :
 les deux vedettes voisines qu'il suffit d'intervertir, et la vedette
 posee loin de sa place — celle-la est souvent une mauvaise lecture.
 

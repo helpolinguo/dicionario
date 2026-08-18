@@ -44,3 +44,7 @@ elektrala = l09 unaji	elektrala = 10⁹ unaji
 Luther, Calvin, e c.) (antonimo	Luther, Calvin, e c. (antonimo
 - EFIES.	- EFIRS.	p087 charniro : le code de langues suit un ordre fixe dans tout le livre, D E F I R S — 8 153 codes s y tiennent. La lettre qui revient entre I et S ne peut etre que R, et le E lu a sa place en est la mauvaise lecture. Sans quoi l edition annoncait « Angla » deux fois.
 - DEFIES.	- DEFIRS.	p109 diciplinar : meme cas, meme raison.
+- S. stachys	- L. stachys	p549 stakiso : « Planto ek la familio "labiei", deveninta de Japonia » — c est le genre Stachys, et le livre annonce partout le nom scientifique par L. La ligne finit sur un tiret : le code de langues, lui, s est perdu.
+- DE. s q c i	- DE.	p215 hidranto : quatre lettres isolees derriere le code, que rien ne rattache au texte.
+imitar lu, e c. - DEFIS. pre-	imitar lu, e c. - DEFIS.	p557 studiar : « pre- » est une vedette du livre, definie a sa place ; ce qui traine ici en est le debut, pose apres le code.
+habitanti Lakonia, lor la epoki antiqua. - DEFIRS. di	habitanti di Lakonia, lor la epoki antiqua). - DEFIRS.	p327 lakonika : le « di » de « la habitanti di Lakonia » et la parenthese fermante ont ete frappes apres le code, la ou ils ne sont de personne.

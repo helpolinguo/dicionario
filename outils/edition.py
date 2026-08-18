@@ -146,6 +146,10 @@ RE_ORFA_NUM = re.compile(r'(?<=[.!])\s*[-–]?\s*\((?:I{2,3}|IV|[2-9])\)\s*'
                          r'(?=[A-Za-zÀ-Ý«(])')
 RE_NUM_UNESMA = re.compile(r'\(\s*(?:1|l|I)\s*\)')
 FINALES_OK = ("o","a","e","i","ar","ir","or")
+# Signe de coupure pose dans le texte par l'analyse, la ou un sens finit sans
+# que le livre l'ait numerote — le code de langues qui le clot, par exemple.
+# Invisible, il est lu par le decoupage en sens, et n'en sort jamais.
+KUPO = "\ue002"
 
 _LP=None
 def _lignes_plus(fichier=f"{T}/lignes_plus.txt"):
@@ -960,6 +964,34 @@ def analizar(e, lexique=None):
             resto = _kupar(resto[:mj.start()])
     if remarko:
         resto = (resto.rstrip(' -–.') + '. ' + remarko) if resto else remarko
+    # Le code de langues qui n'est PAS au bout. L'auteur l'a parfois pose apres
+    # un premier sens et a continue — « cilio. (anat.) Pilo... - F. (bot.) Sorto
+    # di pilo... - F. » —, ou la frappe a laisse une scorie derriere lui :
+    # « - DE. s q c i » chez hidranto, « - DEFIS. pre- » chez studiar. Le code
+    # restait alors AU MILIEU de la definition, ou il n'a rien a faire, et
+    # l'article passait pour « sen-lingua ».
+    #
+    # On ne touche qu'a deux cas surs : l'article n'a pas de code, ou il porte
+    # deja le MEME. Un code different au milieu du texte est autre chose — chez
+    # « staciono », « (autofiakri - F. taxi - autobusi, e c.) » donne le mot
+    # francais, il ne clot pas l'article.
+    #
+    # Quand ce qui suit ouvre un sens — un domaine entre parentheses, ou un
+    # tiret suivi d'une capitale —, la coupure se fait la : le code marquait la
+    # fin d'un sens. On la note d'un signe que le decoupage lira.
+    mi = re.search(r'\s*[-–]\s*([A-Z][A-Zl]{0,11})\.?\s+(?=\S)', resto)
+    li = _lire_code(mi.group(1)) if mi and mi.group(1) != 'L' else None
+    if li and (not e['kodo'] or e['kodo'].upper() == mi.group(1).upper()):
+        if not e['kodo']:
+            e['lingui']=li; e['kodo']=mi.group(1)
+        gauche = resto[:mi.start()]; droite = resto[mi.end():].lstrip()
+        mq = re.match(r'\(([a-zà-ÿ]{2,12})\.?\)', droite)
+        if (mq and mq.group(1) in MALLONGIGI) or re.match(r'[-–]\s*[A-ZÀ-Ý]', droite):
+            resto = gauche.rstrip(' -–.,;:') + KUPO + droite
+        elif re.search(r'[.!?)]\s*$', gauche):
+            resto = gauche.rstrip(' -–.,;:') + '. ' + droite
+        else:
+            resto = gauche.rstrip() + ' ' + droite
     # Le numero de sens qui pend au bout de l'article, sans rien apres lui :
     # « forsan. Adverbo qua signifikas "..." - II. » — la dactylo a annonce un
     # second sens qu'elle n'a pas frappe. Seul, le numero ne dit rien, et
@@ -1042,8 +1074,8 @@ def analizar(e, lexique=None):
             and re.search(r'[0-9\u2080-\u2089]', e['fako'])):
         e['simbolo'] = e['fako'].strip()
         e['fako'] = None
-    senci=[_kupar(s.lstrip(' -–.,;:')) for s in RE_SENCO.split(resto)
-           if s.strip(' -–.,;:')]
+    senci=[_kupar(x.lstrip(' -–.,;:')) for m in resto.split(KUPO)
+           for x in RE_SENCO.split(m) if x.strip(' -–.,;:')]
     e['senci']= senci if senci else ([resto] if resto else [])
     # La numerotation entre parentheses dont le « (1) » est parti au domaine :
     # on coupe a la place des numeros restes (voir RE_ORFA_NUM).

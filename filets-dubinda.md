@@ -6,7 +6,7 @@ scientifique. L'edition epuree lit ces filets et les rend. Voici ceux
 qu'elle n'a pas su placer : le fragment releve ne se retrouve pas tel
 quel dans le texte, ou ne couvre que des mots-outils.
 
-**1574 fragments**, sur 9468 articles. La premiere famille est
+**1574 fragments**, sur 9472 articles. La premiere famille est
 la seule qui demande un arbitrage : les autres sont des artefacts du
 releve des filets, ou le trait deborde ou s'arrete trop tot.
 
@@ -538,9 +538,9 @@ releve des filets, ou le trait deborde ou s'arrete trop tot.
 | 574 | tempestar | `e c` |
 | 575 | tenua | `ske` |
 | 576 | teraso | `upr` |
-| 581 | timuso | `lar` |
 | 581 | tineo | `qua` |
 | 581 | tineo | `qua` |
+| 581 | tino | `lar` |
 | 583 | tisuo | `nti` |
 | 583 | titrar | `rea` |
 | 590 | transitar | `ala` |

@@ -20,10 +20,10 @@ Transcription établie à partir du fac-similé fourni (639 pages photographiée
 | `travail/journal_complet.txt` | **toutes** les corrections : ce qui a été lu, ce qui a été retenu, et si c'est un correcteur ou l'œil qui a tranché |
 | `outils/` | la chaîne complète, de l'image au JSON |
 
-**9 468 entrées** extraites de 632 pages de corps d'ouvrage.
-5 271 portent une marque de domaine (*bot.*, *zool.*, *arkitekt.*…),
-813 un nom scientifique latin, 1 676 plusieurs sens numérotés,
-8 429 un code de langues final.
+**9 472 entrées** extraites de 632 pages de corps d'ouvrage.
+5 272 portent une marque de domaine (*bot.*, *zool.*, *arkitekt.*…),
+814 un nom scientifique latin, 1 678 plusieurs sens numérotés,
+8 439 un code de langues final.
 
 ---
 
@@ -50,7 +50,7 @@ fourni ; `ligno` la ligne de la grille du tapuscrit. **Chaque entrée peut donc
 travail reste vérifiable dans vingt ans.
 
 Une réserve sur `pagino`, vérifiée sur le fac-similé : il vaut `image - 7` pour
-les 9 468 entrées, sans exception — c'est un calcul, non une lecture. Or **le
+les 9 472 entrées, sans exception — c'est un calcul, non une lecture. Or **le
 livre saute deux numéros** : la page qui porte `fosfo` est numérotée
 « 173/175 », doublement, et l'écart change de part et d'autre. Après elle,
 `pagino` est bien le folio imprimé ; **avant elle, le folio imprimé vaut
@@ -105,6 +105,16 @@ Une même locution peut relever de **deux** entrées, chacune avec sa
 définition : *estado civila* se range sous `civila`, qui la définit au long,
 comme sous `estado`, qui la mentionne. Les deux sont conservées telles quelles.
 
+Le code de langues sert aussi à **séparer deux articles frappés sur une même
+ligne** : il finit le premier. Quand ce qui suit ne se présente pas comme une
+vedette — une virgule au lieu du point chez *asasinar*, un tiret d'affixe chez
+*ko-*, une parenthèse égarée entre les deux chez *tino*, rien du tout chez
+*warfo* —, le second restait noyé dans le premier, et lui donnait son code.
+`travail/dividi.txt` porte ces coupures, relevées à l'œil ; la dactylo, elle,
+avait souligné chacune de ces vedettes, comme elle souligne celles qu'elle pose
+au milieu d'une ligne. Cinq racines ont ainsi été rendues au dictionnaire —
+*shovar*, *asasinar*, *ko-*, *tino*, *warfo*.
+
 Un cas particulier : l'auteur a marqué d'un double tiret marginal un article
 qu'il fait dépendre du précédent — *protestanto* sous *protestar*. Ce signe est
 unique dans les six cent quarante pages du livre. `travail/subvorti.txt` porte
@@ -138,6 +148,18 @@ et la ligne brute garde la graphie de la page.
 Quelques notations **épellent** la langue au lieu de l'abréger — `FDSued`,
 `DERPol`, `Gr`, `Ned`, `Jap.,Sanskr.` Ce ne sont pas des suites de lettres, et
 l'ordre ne les touche pas.
+
+Le code n'est pas toujours **au bout**. L'auteur l'a parfois posé après un
+premier sens et a continué — *cilio. (anat.) Pilo… — F. (bot.) Sorto di pilo…
+— F.* —, ou la frappe a laissé une scorie derrière lui — *— DE. s q c i* chez
+*hidranto*. Le code restait alors au milieu de la définition, où il n'a rien à
+faire, et l'entrée passait pour `sen-lingua`. Il en est tiré dans **dix**
+entrées, et le sens se coupe à sa place quand ce qui suit en ouvre un autre —
+un domaine entre parenthèses, un tiret suivi d'une capitale. On ne touche qu'à
+deux cas sûrs : l'entrée n'a pas de code, ou elle porte déjà le même. Un code
+**différent** au milieu du texte est autre chose : chez *staciono*,
+*(autofiakri — F. taxi — autobusi, e c.)* donne le mot français, il ne clôt pas
+l'article.
 
 Aucun code ne nomme deux fois la même langue. C'est ce qui permet de le
 distinguer de ce qui lui ressemble à cette place : un **numéro de sens** que la
@@ -305,7 +327,7 @@ de colonnes ; il suffit d'y lire le texte.
 | champ | ce que c'est |
 |---|---|
 | `sublineita` | tout ce qui est souligné dans l'entrée, remis bout à bout, les coupures de fin de ligne recollées. 6 542 entrées |
-| `kursiva` | ceux que l'édition a **su placer** dans le texte, et qu'elle rend en italique. 1 254 entrées |
+| `kursiva` | ceux que l'édition a **su placer** dans le texte, et qu'elle rend en italique. 1 249 entrées |
 | `dubinda` | ceux qu'elle **n'a pas su placer** : le fragment ne se retrouve pas tel quel, ou ne couvre que des mots-outils. 1 409 entrées, 1 574 fragments |
 
 Un souligné n'est ni `kursiva` ni `dubinda` quand il a trouvé sa place ailleurs
@@ -340,10 +362,10 @@ dictionnaire. Plutôt que de masquer ce qui reste, la base le **signale** :
 | drapeau | entrées | ce qu'il veut dire |
 |---|---|---|
 | `ordino-ruptita` | 55 | **la vedette rompt l'ordre alphabétique** |
-| `sen-lingua` | 1 039 | pas de code de langues final — souvent normal, le livre n'en donne pas toujours |
+| `sen-lingua` | 1 033 | pas de code de langues final — souvent normal, le livre n'en donne pas toujours |
 | `finalo-nekustumala` | 54 | finale étrangère à la morphologie d'Ido (-o, -a, -e, -i, -ar, -ir, -or). Trois familles en sont **exemptées**, la question n'ayant de sens que pour un mot de la langue : l'affixe (`-eyo`, `poli-`), le mot que le livre déclare lui-même grammatical (*« an. Prepoziciono qua… »*), et l'emprunt cité (`amen`, `cambium`). Ce qui reste — numéraux `cent` et `dek`, noms de notes `b`, `c`, `d` — est légitime aussi, mais rien dans le texte ne permet de le dire |
 | `pagino-nefidinda` | 32 | pages 539-540, photographiées à une autre échelle, décodage nettement moins sûr |
-| `artiklo-dividita` | 13 | l'article était coupé par un saut de page ; les deux moitiés ont été recollées |
+| `artiklo-dividita` | 21 | l'article était coupé par un saut de page ; les deux moitiés ont été recollées |
 | `sen-chefvorto` | 0 | l'entrée n'a pas de vedette lisible — plus aucun cas |
 
 **8 306 entrées ne portent aucun drapeau.**
@@ -351,7 +373,7 @@ dictionnaire. Plutôt que de masquer ce qui reste, la base le **signale** :
 `korektita` a cessé d'être un drapeau : il disait « au moins une cellule
 corrigée automatiquement », une provenance et non un doute, et toutes les
 définitions ayant été relues une à une il ne désignait plus de travail restant.
-Le compte reste dans le champ `korektita`, pour qui veut mesurer : 6 287 entrées
+Le compte reste dans le champ `korektita`, pour qui veut mesurer : 6 284 entrées
 en portent au moins une.
 
 Le drapeau d'ordre se lit sur la vedette **rangée**, sa marque de tête ôtée :
@@ -403,7 +425,7 @@ qu'il suffit d'intervertir (35), et la vedette posée loin de sa place (20) —
 avec le folio, l'image, la ligne de la grille, et les lectures qui tiendraient
 dans la place occupée. `python3 outils/releve_ordino.py` le reconstruit.
 
-**1 162 entrées portent au moins un drapeau.** L'édition HTML ne les filtre plus
+**1 166 entrées portent au moins un drapeau.** L'édition HTML ne les filtre plus
 — elle n'offre que la recherche ; le tri se fait sur `drapeli`, dans le JSONL ou
 dans la colonne du même nom du TSV.
 
