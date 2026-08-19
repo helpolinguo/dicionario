@@ -2631,6 +2631,13 @@ def typographio(ent):
         s=e.get('senci') or []
         for k,t in enumerate(s):
             o=t
+            # Le tiret de separation colle a la parenthese du domaine :
+            # « granda. -(cinemo) » chez « skreno », « direte.- (metaf.) » chez
+            # « intuicar ». Le livre l'ecrit avec ses deux espaces quatre-vingt-
+            # cinq fois ; treize fois l'une des deux manque. La parenthese d'un
+            # AFFIXE n'en est pas une — « = -(at)ajo », « equivalas -(ant)ajo » :
+            # la le mot continue apres la fermante, et le tiret lui appartient.
+            t=re.sub(r'\s*-\s*(\([^()]*\))(?![A-Za-zà-ÿ])', r' - \1', t)
             t=re.sub(r'(\w)- -(\w)', r'\1-\2', t)          # trait redouble d'une coupure
             t=re.sub(r'(?<![-\w])(?:- -|--)(?![-\w])', '—', t)
             t=re.sub(r'(?<=\S) - (?=\S)', ' – ', t)
