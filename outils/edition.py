@@ -1508,7 +1508,7 @@ def marki(t, motifs):
 def _tuti(u, t):
     if not u.strip(): return []
     mo=re.compile(r'(?<![A-Za-z\u00c0-\u00ff])'
-                  + r'\s+'.join(re.escape(w) for w in u.split())
+                  + r'\s+\*?'.join(re.escape(w) for w in u.split())
                   + r'(?![A-Za-z\u00c0-\u00ff])', re.I)
     return list(mo.finditer(t))
 
@@ -1881,8 +1881,13 @@ def _trovar(u, t):
     # Sans egard a la casse : l'auteur ecrit « (Anke metaf.) », l'edition
     # abaisse l'initiale des domaines, et le fragment releve sur la grille ne
     # se retrouverait plus dans le texte.
+    # L'asterisque du mot non officiel se pose APRES le releve du filet, et
+    # le trait de la dactylo la couvre sans la connaitre : « pri grandoro » ne
+    # se retrouvait plus dans « (pri *grandoro) ». On la laisse donc passer
+    # entre les mots — devant le premier, la borne de gauche l'admet deja.
+    # _tuti(), qui POSE l'italique, suit la meme regle.
     mo=re.compile(r'(?<![A-Za-z\u00c0-\u00ff])'
-                  + r'\s+'.join(re.escape(w) for w in u.split())
+                  + r'\s+\*?'.join(re.escape(w) for w in u.split())
                   + r'(?![A-Za-z\u00c0-\u00ff])', re.I)
     return mo.search(t)
 
@@ -2043,6 +2048,8 @@ def konstrui():
     if n: print("codes de langues releves hors du dernier sens : %d"%n)
     n=ordinigi_kodojn(ent)
     if n: print("codes de langues remis dans l'ordre du livre : %d"%n)
+    n=steligar(ent)
+    if n: print("mots non officiels marques la ou ils etaient nus : %d"%n)
     # Article commence en bas de page, abandonne, puis RECOMMENCE en tete de la
     # page suivante. « ampère » est le seul cas du livre : la premiere version
     # s'arrete net, sans code de langues ; la seconde est complete. L'edition de
@@ -2549,6 +2556,52 @@ def elipso(t):
     # Le mot ordinaire qui suit ne prend que l'espace.
     t = re.sub(r'\u2026(?=[A-Za-z\u00c0-\u00ff])', '\u2026 ', t)
     return t
+
+
+# La finale sous laquelle un mot se laisse citer : desinence nominale,
+# adjectivale, adverbiale, verbale, ou participe.
+RE_FINALO_CITITA = (r'(?:oj|o|a|e|i|ar|ir|or|as|is|os|us|ez'
+                    r'|ant[aeio]|int[aeio]|ont[aeio]'
+                    r'|at[aeio]|it[aeio]|ot[aeio])')
+
+
+def steligar(ent):
+    """La marque du mot non officiel, portee PARTOUT ou le mot est cite.
+
+    Le livre declare ses mots non officiels a leur place alphabetique — la
+    vedette porte l'asterisque — et les marque aussi quand il les cite dans une
+    definition. Mais pas toujours : « werar » est marque cinquante fois et nu
+    six fois, « publico » cinq fois et nu une fois, « grandoro » quatre fois et
+    nu six fois. Le lecteur voyait le meme mot tantot signale, tantot non.
+
+    On aligne sur la marque, et seulement pour les mots ou l'auteur l'a lui-meme
+    posee au moins une fois : la ou il ne l'a jamais posee — « pondar »,
+    « niuzo », « golfo », « tarda », « intrenar » —, l'ajouter serait une
+    affirmation neuve, non une mise au net. Quatorze mots, 45 emplois.
+
+    L'article du mot lui-meme est laisse tel quel : sa vedette porte deja la
+    marque, et la redoubler dans sa propre definition n'apprend rien.
+    """
+    radiki={}
+    for e in ent:
+        v=e.get('vedetto') or ''
+        if not v.startswith('*'): continue
+        r=re.sub(r'(ar|ir|or|o|a|e|i)$', '', v[1:])
+        if len(r)>=3: radiki[r]=v
+    n=0
+    for r,v in sorted(radiki.items()):
+        marke=re.compile(r'\*(%s%s)(?![A-Za-zà-ÿ-])' % (re.escape(r), RE_FINALO_CITITA))
+        if not any(marke.search(s) for e in ent for s in (e.get('senci') or [])):
+            continue
+        nuda=re.compile(r'(?<![*A-Za-zà-ÿ-])(%s%s)(?![A-Za-zà-ÿ-])'
+                        % (re.escape(r), RE_FINALO_CITITA))
+        for e in ent:
+            if (e.get('vedetto') or '')==v: continue
+            S=e.get('senci') or []
+            for k,t in enumerate(S):
+                u=nuda.sub(r'*\1', t)
+                if u!=t: S[k]=u; n+=u.count('*')-t.count('*')
+    return n
 
 
 def typographio(ent):

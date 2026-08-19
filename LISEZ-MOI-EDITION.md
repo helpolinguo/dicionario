@@ -322,7 +322,8 @@ La machine à écrire n'avait pas d'astérisque. Pour marquer les mots **non
 officiels** — ceux qu'il propose sans les donner pour acquis — l'auteur frappe
 une croix, `+`, que l'édition rend par l'astérisque de la tradition ido. Elle
 porte sur la vedette (*\*grandoro*, *\*stencilo*, *\*kluza*, *\*sesiono*) comme sur
-les mots cités dans les définitions. **215 occurrences.**
+les mots cités dans les définitions. **253 occurrences dans les
+définitions**, dont 45 posées par mise au net — voir plus bas.
 
 Mais la même touche sert le **plus de l'algèbre**, et rien dans le signe ne les
 distingue. C'est la frappe qui les distingue :
@@ -340,6 +341,25 @@ astérisques sur des inconnues — *ax² \*bx \*c = 0* chez `diskriminanto`,
 *a \*b i e a' \*b' i* chez `konjugar`, *a² = b² \*c* chez `pitagorala`. Elles sont
 rendues à l'arithmétique ; chez `konjugar`, le filet *a' + b' i* retrouve du
 même coup son texte et passe des fragments douteux à l'italique.
+
+**La marque se porte partout où le mot est cité.** L'auteur la pose à la
+vedette — le mot non officiel a sa place alphabétique comme un autre — et aussi
+dans les définitions, mais pas toujours : *werar* y est marqué cinquante fois
+et nu six fois, *publico* cinq fois et nu une, *grandoro* quatre fois et nu six.
+Le lecteur voyait le même mot tantôt signalé, tantôt non. On aligne sur la
+marque — **quatorze mots, 45 emplois** —, et seulement pour les mots où
+l'auteur l'a lui-même posée au moins une fois : là où il ne l'a jamais posée
+(*pondar*, *niuzo*, *golfo*, *tarda*, *intrenar*), l'ajouter serait une
+affirmation neuve et non une mise au net. L'article du mot lui-même est laissé
+tel quel — sa vedette porte déjà la marque.
+
+Un quarante-sixième emploi demandait d'abord une lecture : chez `tuberkulo`,
+la croix est frappée **derrière** le mot — *(kartofli+ - terpomi - patati…* —
+là où le livre la pose partout ailleurs devant. Corrigé par `travail/texti.txt`.
+
+Le filet de la dactylo, lui, a été relevé avant que l'astérisque soit posée :
+*pri grandoro* ne se retrouvait plus dans *(pri \*grandoro)*. La recherche du
+fragment souligné la laisse donc passer entre les mots.
 
 Une croix restait, qui n'était ni l'une ni l'autre : chez `ecentrika`, *de pn +n
 donita*. Cinq caractères pour un mot de cinq lettres — c'est **punto**, et la
