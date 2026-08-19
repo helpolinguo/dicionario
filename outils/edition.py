@@ -1765,6 +1765,13 @@ def strukturizar(e):
         if u.lower() in lok: continue
         pose=False
         alt=alia_formo(u)
+        # Le releve est BRUT, le texte est typographie : les points de
+        # suspension y sont devenus le caractere unique, et l'affixe qui les
+        # suit s'en est detache. « lore...lore » (lor), « trans., por...-eso »
+        # (elektar) ne s'y retrouvaient plus, et le filet passait pour non
+        # place. On cherche donc aussi la forme typographiee du releve.
+        if not alt and elipso(u) != u:
+            alt=elipso(u)
         for t in textoj:
             m=_trovar(u, t); mot=u
             if not m and alt:
@@ -1957,7 +1964,7 @@ def konstrui():
     # nu quand ses trente voisins etaient pointes. On repasse les deux
     # normalisations derriere la correction ; elles sont idempotentes.
     for e in ent:
-        if e.get('fako'): e['fako']=uniformigar(minuskligi(pointi(e['fako'])))
+        if e.get('fako'): e['fako']=elipso(uniformigar(minuskligi(pointi(e['fako']))))
     # La relecture pose des chaines relevees avant la typographie : on repasse
     # l'espacement derriere elle. espacar() est idempotente.
     for e in ent:
@@ -1965,9 +1972,9 @@ def konstrui():
         for k,t in enumerate(S):
             # Ponctuation orpheline en tete de sens : elle vient d'une coupure
             # de l'original, non du texte. « titrar » commencait par un point.
-            S[k]=ekvilibrigi_parentezojn(pointi_abrevo(fermi_parentezon(
+            S[k]=elipso(ekvilibrigi_parentezojn(pointi_abrevo(fermi_parentezon(
                 fermi_kvalifikilon(orfa_parentezo(formuli(cifri(pointi_sencoj(
-                    surcharge(espacar(netigar_punktuo(t)))))))))).lstrip('.,;:) ').strip())
+                    surcharge(espacar(netigar_punktuo(t)))))))))).lstrip('.,;:) ').strip()))
     # (cifri et formuli n'interviennent qu'ici, une fois la relecture posee)
     # Second passage des corrections a l'oeil. Une ligne de vorti.txt ecrite
     # d'apres le texte RENDU ne pouvait pas s'appliquer plus haut : « de l til
@@ -2479,6 +2486,49 @@ def espacar(t):
                lambda m: m.group(0) if re.fullmatch(
                    r'[\s\u00a0-]*\.{2,}[\s\u00a0]*[\u00bb"\')\]]*', m.group(0)) else '', t)
     t = _kupar(t)
+    return t
+
+
+# Les points de suspension. La machine n'avait pas le caractere unique :
+# l'auteur frappe trois points, parfois quatre. 96 occurrences.
+#
+# Quand une desinence ou un suffixe suit les points, il s'en detache par une
+# espace et prend le tiret d'affixe. C'est la forme que le livre ecrit
+# lui-meme chez « min » — « ne tam multe ...-a » — et chez « quadri- » —
+# « Qua havas quar...-i » ; ailleurs le tiret, l'espace, ou les deux sont
+# tombes : « quik...onta », « esar...ata », « t. e. ...is...inta ».
+#
+# Un MOT qui suit n'est pas un affixe et ne prend que l'espace : « lasas
+# ...efikar », « preferar...kam », « lore...lore », « ...esante prezenta ».
+# On s'en remet donc a la liste CLOSE des desinences, et au tiret que l'auteur
+# a lui-meme frappe — « por...-eso » —, jamais a une ressemblance de forme :
+# « esante » se decoupe en « es- » plus « -ante » sans etre pour autant un
+# suffixe suivi d'une desinence.
+#
+# Les desinences d'UNE lettre — « -o », « -a », « -e », « -i » — n'y sont pas :
+# ce sont aussi les mots-outils les plus courants du livre. « Esar prezenta
+# ye... e regardar » (asistar), « domeno qua dependas de... e, konseque »
+# (-i-) portent la conjonction, non la desinence. Ou l'auteur veut la
+# desinence d'une lettre, il a frappe le tiret lui-meme : « ...-a » chez
+# « min », « ...-i » chez « quadri- ».
+DESINENCI = tuple(sorted(
+    ('anta', 'inta', 'onta', 'ante', 'inte', 'onte', 'anto', 'into', 'onto',
+     'ata', 'ita', 'ota', 'ate', 'ite', 'ote', 'ato', 'ito', 'oto',
+     'ant', 'int', 'ont', 'ar', 'ir', 'or', 'as', 'is', 'os', 'us', 'ez'),
+    key=len, reverse=True))
+
+RE_ELIPSO = re.compile(
+    r'\u2026[\s\u00a0]*(?:-\s*([A-Za-z\u00e0-\u00ff]+)|(%s))(?![a-z\u00e0-\u00ff])'
+    % '|'.join(DESINENCI))
+
+
+def elipso(t):
+    """Trois ou quatre points rendus par le caractere unique, et l'affixe qui
+    les suit detache par une espace et pointe d'un tiret."""
+    t = re.sub(r'\.{3,}', '\u2026', t)
+    t = RE_ELIPSO.sub(lambda m: '\u2026 -%s' % (m.group(1) or m.group(2)), t)
+    # Le mot ordinaire qui suit ne prend que l'espace.
+    t = re.sub(r'\u2026(?=[A-Za-z\u00c0-\u00ff])', '\u2026 ', t)
     return t
 
 

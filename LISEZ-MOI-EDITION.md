@@ -343,6 +343,40 @@ donita*. Cinq caractères pour un mot de cinq lettres — c'est **punto**, et la
 définition le dit : *Di qua la centro eskartesas de punto donita*, le centre qui
 s'écarte d'un point donné. La correction est dans `travail/texti.txt`.
 
+### Les points de suspension, et l'affixe qui les suit
+
+La machine n'avait pas le caractère unique : l'auteur frappe trois points,
+parfois quatre. L'édition pose `…` partout — **96 occurrences**, plus aucune
+suite de points dans les deux éditions.
+
+Ces points tiennent la place d'un mot, et souvent ce qui les suit est une
+**désinence ou un suffixe**, non un mot : *quik…onta*, *esar…ata*, *t. e.
+…is…inta*. La forme juste, le livre l'écrit lui-même chez `min` — *ne tam
+multe …-a* — et chez `quadri-` — *Qua havas quar…-i* : une espace, puis le
+tiret d'affixe. On la généralise :
+
+> Une **désinence** qui suit les points s'en détache par une espace et prend le
+> tiret : *quik… -onta*, *esar… -ata*, *… -is… -inta*. Un **mot** ne prend que
+> l'espace : *lasas … efikar*, *preferar… kam*, *lore… lore*.
+
+La liste des désinences est **close**, et les désinences d'**une lettre** n'y
+sont pas : *-o*, *-a*, *-e*, *-i* sont aussi les mots-outils les plus courants
+du livre, et *Esar prezenta ye… e regardar* porte la conjonction, non la
+finale. Là où l'auteur veut la désinence d'une lettre, il a frappé le tiret
+lui-même. On ne se fie pas non plus à la forme : *esante* se découpe en *es-*
+plus *-ante* sans être pour autant un suffixe suivi d'une désinence.
+
+Dix sites prennent le tiret, dans huit articles — `-ig-`, `-ind-`, `min`,
+`\*pliz`, `plusquamperfekto`, `pronta`, `quadri-`, et le champ `fako`
+d'`elektar`. Un seul demandait d'abord une lecture : chez `\*pliz`, *ke
+lu....+ez* portait la croix là où le tiret devait être, et l'édition imprimait
+*lu....\*ez*. Corrigé par `travail/texti.txt`.
+
+Un relevé de filet est brut quand le texte, lui, est typographié : *lore...lore*
+ne s'y retrouvait plus et perdait son italique. La recherche essaie donc aussi
+la forme typographiée du relevé, comme elle essaie déjà la forme retenue d'un
+domaine.
+
 ### Les parenthèses orphelines
 
 Le tapuscrit laisse cent vingt parenthèses sans leur paire. Elles ne sont pas
