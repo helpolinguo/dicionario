@@ -6,23 +6,20 @@ scientifique. L'edition epuree lit ces filets et les rend. Voici ceux
 qu'elle n'a pas su placer : le fragment releve ne se retrouve pas tel
 quel dans le texte, ou ne couvre que des mots-outils.
 
-**1572 fragments**, sur 9472 articles. La premiere famille est
+**1550 fragments**, sur 9472 articles. La premiere famille est
 la seule qui demande un arbitrage : les autres sont des artefacts du
 releve des filets, ou le trait deborde ou s'arrete trop tot.
 
-## Ressemble a un qualificatif ou a une locution — 18
+## Ressemble a un qualificatif ou a une locution — 14
 
 | page | mot-vedette | fragment souligne |
 |---:|---|---|
 | 135 | emiro | `II. Ti` |
 | 289 | komodoro | `Navaro B` |
-| 314 | kreto | `Kreto-kra-` |
 | 332 | lavendo | `Plant` |
 | 360 | materio | `I. (filoz` |
-| 378 | modlar | `Anke alu-` |
 | 394 | niktalopo | `Pers` |
 | 405 | olivo | `L. olea europaea` |
-| 409 | ordonanco | `Ordonanc-` |
 | 413 | ovacionar | `Hono` |
 | 415 | pajo | `Ludo-` |
 | 443 | plano | `Surf` |
@@ -31,9 +28,8 @@ releve des filets, ou le trait deborde ou s'arrete trop tot.
 | 517 | sen | `Preppziciono` |
 | 523 | shaloto | `EFRS` |
 | 527 | signifikar | `Progres` |
-| 531 | sinoptika | `Kurso di la filozo-` |
 
-## Fragment de trois lettres ou moins — 539
+## Fragment de trois lettres ou moins — 537
 
 | page | mot-vedette | fragment souligne |
 |---:|---|---|
@@ -346,8 +342,6 @@ releve des filets, ou le trait deborde ou s'arrete trop tot.
 | 380 | monero | `tot` |
 | 380 | monitoro | `sur` |
 | 382 | monsinioro | `lio` |
-| 382 | monstro | `mi-` |
-| 382 | monstro | `tol` |
 | 382 | mordar | `oro` |
 | 382 | moreno | `aku` |
 | 383 | mortero | `por` |
@@ -584,7 +578,7 @@ releve des filets, ou le trait deborde ou s'arrete trop tot.
 | 523 | shagrino | `quan` |
 | 523 | shalmo | `quan` |
 
-## Coupe au milieu d'un mot, ou reste du mot-vedette — 1013
+## Coupe au milieu d'un mot, ou reste du mot-vedette — 997
 
 | page | mot-vedette | fragment souligne |
 |---:|---|---|
@@ -986,8 +980,6 @@ releve des filets, ou le trait deborde ou s'arrete trop tot.
 | 239 | interogativo | `nterogativo` |
 | 240 | interviuvar | `aludante la mrnalisti` |
 | 240 | intestino | `kozi` |
-| 241 | invalida | `aludante ex-` |
-| 241 | invalida | `militisto` |
 | 242 | inyamo | `acei` |
 | 242 | ionika | `aludante la triesma ek la kin klasA` |
 | 243 | irigacar | `irigaca` |
@@ -1132,17 +1124,12 @@ releve des filets, ou le trait deborde ou s'arrete trop tot.
 | 311 | krapular | `ar g` |
 | 312 | kratero | `ertu` |
 | 312 | krear | `aludant` |
-| 312 | kredar | `senco ab-` |
-| 312 | kredar | `soluta` |
 | 312 | kremo | `nu var` |
 | 313 | kreso | `river` |
 | 314 | kretino | `etino` |
-| 314 | kreto | `yono` |
 | 315 | kriptogama | `riptogama` |
 | 316 | krizantemo | `i, f` |
 | 318 | krucifera | `rucifera` |
-| 318 | kruda | `aludante materio quan onu sub-` |
-| 318 | kruda | `misas a preparo` |
 | 320 | kukulo | `kulo` |
 | 322 | kupleto | `kans` |
 | 322 | kurar | `kura` |
@@ -1253,7 +1240,6 @@ releve des filets, ou le trait deborde ou s'arrete trop tot.
 | 376 | mirtelo | `mirte` |
 | 376 | mispelo | `mes-` |
 | 378 | modiliono | `o du` |
-| 378 | modlar | `dante la materio quan onu fasonas` |
 | 383 | mortifikar | `ortifikar` |
 | 385 | mucilajo | `farmaci` |
 | 386 | multiplikar | `likar` |
@@ -1459,7 +1445,6 @@ releve des filets, ou le trait deborde ou s'arrete trop tot.
 | 513 | sat(e) | `sat (e` |
 | 513 | satrapo | `ia-epoke` |
 | 514 | *seancar | `seancan` |
-| 514 | saturnali | `epoke` |
 | 516 | sekondar | `andi, precipue Britaniana` |
 | 517 | sempre | `a, s` |
 | 518 | senco | `signifiko kon` |
@@ -1472,7 +1457,6 @@ releve des filets, ou le trait deborde ou s'arrete trop tot.
 | 526 | sibarito | `rito` |
 | 527 | signifikar | `gnifikar` |
 | 527 | sika | `s ko` |
-| 531 | sinoptika | `fio pozitivista` |
 | 532 | siringo | `lo k` |
 | 532 | siropo | `armac` |
 | 533 | skabioso | `skabios` |
@@ -1537,8 +1521,6 @@ releve des filets, ou le trait deborde ou s'arrete trop tot.
 | 557 | sturgo | `aci-` |
 | 558 | sublima | `a, p` |
 | 559 | subrekargo | `subrek` |
-| 559 | substantivo | `adjek-` |
-| 559 | substantivo | `tivo` |
 | 559 | substitucar | `subst` |
 | 559 | substitucar | `tucar` |
 | 564 | surtuto | `surtut` |
@@ -1567,13 +1549,9 @@ releve des filets, ou le trait deborde ou s'arrete trop tot.
 | 589 | tranchar | `kuta` |
 | 589 | trancheo | `ximi` |
 | 590 | transmisar | `rgano` |
-| 592 | trepidar | `aludante navo, automobilo, qua fun-` |
-| 592 | trepidar | `cionas` |
 | 593 | tribono | `ribono` |
 | 598 | trumpeto | `r la` |
 | 600 | tumultar | `gran` |
-| 600 | turgecar | `aludante ula organi, preci-` |
-| 600 | turgecar | `pue le sexuala` |
 | 603 | ultramikroskopio | `nsio` |
 | 604 | unikursala | `unikursal` |
 | 604 | urano | `or la` |

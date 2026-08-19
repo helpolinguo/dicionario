@@ -1674,6 +1674,35 @@ def apartigar_simbolon(e):
     return 0
 
 
+def _rekolar(subl, textoj):
+    """Le filet coupe par une fin de ligne : ses deux moities n'en font qu'une.
+
+    La dactylo souligne « Kreto-krayono » ; la ligne casse au milieu du mot, et
+    le releve rend « Kreto-kra- » puis « yono ». Cherches tels quels, aucun des
+    deux ne se retrouve dans le texte recolle : la locution qu'ils designent
+    n'etait plus reconnue, et les deux moities finissaient parmi les fragments
+    non places. On les recolle quand la forme jointe, elle, se trouve dans le
+    texte — avec ou sans le trait d'union, selon ce que le recollage a decide.
+
+    Un tiret final n'annonce pas toujours une coupure : « -ez- » et « auto - »
+    en portent un qui leur appartient. La condition est donc la MEME que pour
+    poser l'italique — le morceau joint doit se retrouver dans le texte —, et
+    ce qui ne s'y retrouve pas reste tel quel.
+    """
+    out=[]; i=0
+    while i < len(subl):
+        u=subl[i]
+        if u.endswith('-') and i+1 < len(subl):
+            for j in (u[:-1]+subl[i+1], u+subl[i+1]):
+                if any(_trovar(j, t) for t in textoj):
+                    out.append(j); i+=2; break
+            else:
+                out.append(u); i+=1
+        else:
+            out.append(u); i+=1
+    return out
+
+
 def strukturizar(e):
     """Decoupe chaque sens en un corps et, s'il y a lieu, ses sous-entrees.
 
@@ -1681,7 +1710,7 @@ def strukturizar(e):
     sa propre definition. Les couler dans un seul paragraphe les rendait
     introuvables ; on les detache, avec leur qualificatif de domaine.
     """
-    subl=sublineajoj(e)
+    subl=_rekolar(sublineajoj(e), e.get('senci') or [])
     e['sublineita']=subl
     strukt=[]; n_sub=0
     for t in (e.get('senci') or []):

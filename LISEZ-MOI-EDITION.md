@@ -110,7 +110,7 @@ cherchent comme une vedette**.
 | `sub[].teksto` | sa définition |
 | `sub[].kodo`, `sub[].lingui` | présents sur la seule sous-entrée qui vient d'un **rattachement** (voir plus bas) : l'article rattaché garde son code de langues |
 
-101 sous-entrées dans 82 entrées, dont 41 portent un domaine propre.
+103 sous-entrées dans 84 entrées, dont 41 portent un domaine propre.
 
 Une même locution peut relever de **deux** entrées, chacune avec sa
 définition : *estado civila* se range sous `civila`, qui la définit au long,
@@ -366,6 +366,22 @@ donita*. Cinq caractères pour un mot de cinq lettres — c'est **punto**, et la
 définition le dit : *Di qua la centro eskartesas de punto donita*, le centre qui
 s'écarte d'un point donné. La correction est dans `travail/texti.txt`.
 
+### Le filet coupé par une fin de ligne
+
+La dactylo souligne *Kreto-krayono* ; la ligne casse au milieu du mot, et le
+relevé rend deux morceaux — *Kreto-kra-* puis *yono*. Cherché tel quel, aucun
+des deux ne se retrouve dans le texte recollé : les deux moitiés finissaient
+parmi les fragments non placés, et la **sous-entrée** qu'elles désignaient
+n'était pas reconnue.
+
+On les recolle quand la forme jointe, elle, se trouve dans le texte — avec ou
+sans le trait d'union, selon ce que le recollage a décidé. La condition est donc
+la même que pour poser l'italique, et un tiret final qui n'annonce aucune
+coupure (*-ez-*, *auto -*) ne trompe pas la règle : ce qui ne se retrouve pas
+reste tel quel. **Vingt-neuf filets** recollés, **22 fragments** de moins parmi
+les non placés, et deux sous-entrées de plus : `kreto-krayono` et
+`ordonancoficiro`.
+
 ### Le tiret de séparation devant la parenthèse
 
 L'auteur sépare ses sens d'un tiret encadré de deux espaces, et le sens suivant
@@ -464,7 +480,7 @@ de colonnes ; il suffit d'y lire le texte.
 |---|---|
 | `sublineita` | tout ce qui est souligné dans l'entrée, remis bout à bout, les coupures de fin de ligne recollées. 6 542 entrées |
 | `kursiva` | ceux que l'édition a **su placer** dans le texte, et qu'elle rend en italique. 1 246 entrées |
-| `dubinda` | ceux qu'elle **n'a pas su placer** : le fragment ne se retrouve pas tel quel, ou ne couvre que des mots-outils. 1 410 entrées, 1 572 fragments |
+| `dubinda` | ceux qu'elle **n'a pas su placer** : le fragment ne se retrouve pas tel quel, ou ne couvre que des mots-outils. 1 400 entrées, 1 550 fragments |
 
 Un souligné n'est ni `kursiva` ni `dubinda` quand il a trouvé sa place ailleurs
 — dans `fako`, dans `latina`, dans `simbolo`, ou comme locution. C'est le cas de *cinocefalo*
@@ -480,7 +496,7 @@ teksto   : Pikanta ed atakema (metaf.)
 teksto_k : Pikanta ed atakema \ue000(metaf.)\ue001
 ```
 
-`filets-dubinda.md` classe les 1 572 fragments non placés par famille, la plus
+`filets-dubinda.md` classe les 1 550 fragments non placés par famille, la plus
 douteuse en tête, avec la page et la vedette pour aller voir le fac-similé. Une
 seule famille demande un arbitrage — 18 fragments qui ressemblent à un
 qualificatif ou à une locution ; les autres sont des artefacts du relevé, où le
