@@ -118,13 +118,63 @@
 % Chaque lettre ouvre sur un RECTO, comme dans les dictionnaires relies : on
 % trouve la section au feuilletage, sans lire. La lettre est composee en grand,
 % seule sur sa ligne, avec un filet dessous.
+\makeatletter
 \newcommand{\sekciono}[1]{%
   \cleardoublepage
+  % La pagino di la sekciono, notita en la dosiero .aux quale la vorti : la
+  % signeti di la PDF konstruktesas de olu, che la duesma paso.
+  \protected@write\@auxout{}{\string\sekpag{#1}{\thepage}}%
   \vspace*{2mm}%
   {\centering\titra\bfseries\fontsize{34}{38}\selectfont\color{akcento}#1\par}%
   \vspace{1.5mm}\hrule height0.5pt\vspace{4mm}}
+\makeatother
+
+% --- Signeti di la PDF ---------------------------------------------------
+% Un dictionnaire de 440 pages ne se feuillette pas a l'ecran. Le lecteur de
+% PDF sait afficher un sommaire lateral : on lui donne la meme prise que le
+% livre relie — les vingt-six lettres, et sous chacune le mot que porte
+% l'en-tete de chaque page, exactement ce que l'oeil cherche en tournant les
+% feuilles. Le signet d'une page paire porte donc son PREMIER mot, celui d'une
+% impaire son DERNIER, comme les titres courants.
+%
+% Ils se posent TOUS ensemble, juste apres \begin{document}, a partir du .aux
+% du passage precedent : le format PDF impose que l'ordre des signets suive
+% celui des pages, et poses au fil du texte, celui de la lettre et celui de la
+% page se disputaient le meme instant d'expedition. Ecrits d'un seul tenant,
+% l'ordre est celui de la boucle, donc celui des pages.
+\usepackage[hidelinks,bookmarksopen=false,bookmarksdepth=2,
+            pdftitle={Dicionario de la 10.000 radiki di la linguo universala Ido},
+            pdfauthor={Marcelo Persiko (Marcel Pesch)}]{hyperref}
+\usepackage{bookmark}
+
+\makeatletter
+\newcommand\sekpag[2]{\expandafter\gdef\csname sek@#2\endcsname{#1}}
+\newcommand\finapag[1]{\gdef\fina@pagino{#1}}
+\AtEndDocument{\clearpage
+  \immediate\write\@auxout{\string\finapag{\the\value{page}}}}
+\newcount\pg@nombro
+\newcommand\signeti{%
+  \@ifundefined{fina@pagino}{}{%
+    \pg@nombro=\z@
+    \loop\ifnum\pg@nombro<\fina@pagino\relax
+      \advance\pg@nombro\@ne
+      \@ifundefined{sek@\the\pg@nombro}{}%
+        {\bookmark[level=1,page=\the\pg@nombro]%
+          {\csname sek@\the\pg@nombro\endcsname}}%
+      \ifodd\pg@nombro
+        \@ifundefined{pglasta@\the\pg@nombro}{}%
+          {\bookmark[level=2,page=\the\pg@nombro]%
+            {\csname pglasta@\the\pg@nombro\endcsname}}%
+      \else
+        \@ifundefined{pgunesma@\the\pg@nombro}{}%
+          {\bookmark[level=2,page=\the\pg@nombro]%
+            {\csname pgunesma@\the\pg@nombro\endcsname}}%
+      \fi
+    \repeat}}
+\makeatother
 
 \begin{document}
+\signeti
 \thispagestyle{empty}
 \null\vfill
 {\centering\titra

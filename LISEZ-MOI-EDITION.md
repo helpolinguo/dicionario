@@ -382,6 +382,26 @@ reste tel quel. **Vingt-neuf filets** recollés, **22 fragments** de moins parmi
 les non placés, et deux sous-entrées de plus : `kreto-krayono` et
 `ordonancoficiro`.
 
+### Le classement du dictionnaire de poche
+
+Le livre imprimé suit l'ordre du tapuscrit, avec ses erreurs de classement — la
+liste `ordino-ruptita` les relève. Le dictionnaire de poche, lui, **reclasse** :
+c'est une édition de lecture, on y cherche un mot.
+
+Il le faisait avec sa propre clé, qui ne connaissait ni les guillemets ni
+l'espace. *« brokoli »-kaulo* se rangeait donc **après `z`**, et l'article se
+composait tout à la fin du livre, derrière *zumar*, à cent cinquante pages de sa
+place. La clé est désormais celle du dictionnaire lui-même, `_klavo_ordino` —
+la règle du livre, sans l'astérisque du mot non officiel, sans le tiret de
+l'affixe, sans le point d'exclamation de l'interjection, sans les guillemets ni
+les espaces. **Cent une vedettes** changent de rang : les affixes à tiret final,
+les interjections, et les locutions latines, que le livre range comme un seul
+mot — *a posteriori* entre *apostata* et *apostilo*, *ex libris* entre *exkuzar*
+et *exodo*.
+
+Le classement de poche et la liste de travail se mesurent maintenant à la même
+clé, et ne peuvent plus diverger.
+
 ### Le composé soudé par le recollage
 
 Quand le mot coupé en fin de ligne est un **composé**, le trait d'union lui
@@ -684,6 +704,21 @@ façon qu'ils ne divergent pas. La dernière étape recopie à la racine
 `index.html`, `dicionario.tsv`, `dicionario.jsonl` et `dicionario.pdf`.
 
 `lualatex` demande les polices **Charis SIL** et **Inter**.
+
+### Les signets du PDF
+
+Un dictionnaire de 444 pages ne se feuillette pas à l'écran. Le PDF porte donc
+un sommaire, celui que les lecteurs affichent en panneau latéral : les
+**vingt-six lettres** au premier niveau, et sous chacune le mot que porte
+**l'en-tête de chaque page** — le premier mot d'une page paire, le dernier
+d'une impaire, exactement ce qui est imprimé en haut de la feuille. **454
+signets**, les lettres repliées à l'ouverture.
+
+Ils se posent tous ensemble, juste après `\begin{document}`, à partir du `.aux`
+du passage précédent : le format PDF exige que l'ordre des signets suive celui
+des pages, et posés au fil du texte, celui de la lettre et celui de la page se
+disputaient le même instant d'expédition. La page de chaque lettre est notée
+dans le `.aux` par le même mécanisme que les mots des titres courants.
 
 Les outils écrivent leur racine en dur, `/root/dicionario`. Pour reprendre le
 travail ailleurs, le plus court est de l'y rendre :

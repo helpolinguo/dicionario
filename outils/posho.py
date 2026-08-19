@@ -11,7 +11,10 @@ travail/edicioni/dicionario.jsonl. Les deux editions ne peuvent donc pas
 diverger : toute correction posee dans les couches de relecture se retrouve
 dans l'une comme dans l'autre des la reconstruction suivante.
 """
-import json, os, re, unicodedata
+import json, os, re, sys, unicodedata
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import edition
 
 RAC = "/root/dicionario"; T = f"{RAC}/travail"; OUT = f"{RAC}/posho"
 SOURCE = f"{T}/edicioni/dicionario.jsonl"
@@ -38,11 +41,22 @@ def esc(t):
 
 
 def cle(v):
-    """Cle de classement : sans asterisque, sans accent, sans tiret."""
-    v = v.lstrip('*-')
-    v = unicodedata.normalize('NFD', v)
-    v = ''.join(c for c in v if unicodedata.category(c) != 'Mn')
-    return v.lower()
+    """Cle de classement : celle du dictionnaire lui-meme.
+
+    `edition._klavo_ordino` est la regle du LIVRE — sans l'asterisque du mot
+    non officiel, sans le tiret de l'affixe, sans accent, sans le point
+    d'exclamation de l'interjection, sans les guillemets ni les espaces : le
+    livre range « a posteriori » entre « apostata » et « apostemo ». C'est
+    aussi la cle sur laquelle le drapeau `ordino-ruptita` mesure le desordre ;
+    le classement de poche et la liste de travail ne peuvent plus diverger.
+
+    La cle locale d'avant ne connaissait ni les guillemets ni l'espace :
+    « "brokoli"-kaulo » se rangeait APRES « z », et l'article se composait tout
+    a la fin du livre, derriere « zumar » — a cent cinquante pages de sa place.
+    Cent une vedettes changeaient ainsi de rang : les affixes a tiret final,
+    les interjections a point d'exclamation, et les locutions latines.
+    """
+    return edition._klavo_ordino(v)
 
 
 # Une parenthese de tete qui ne contient qu'UNE lettre ou UN chiffre n'est pas
