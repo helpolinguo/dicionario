@@ -12,14 +12,19 @@ et le mot-vedette pour aller voir le fac-simile.
 
     python3 outils/releve_filets.py
 """
-import json, re, collections
+import json, os, re, sys, collections
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import edition
 
 RAC = "/root/dicionario"
 SOURCE = f"{RAC}/dicionario.jsonl"
 SORTIE = f"{RAC}/filets-dubinda.md"
 
-MOTOUTIL = {'qua', 'quan', 'quo', 'sur', 'per', 'por', 'nun', 'sas', 'ala',
-            'la', 'de', 'di', 'en', 'kun', 'pri', 'pro', 'kom', 'ye', 'ad'}
+# La liste des mots-outils est celle de l'edition, `edition.MALGRANDA` : c'est
+# elle qui decide de ne PAS poser l'italique, et la liste de travail doit
+# classer d'apres la meme regle, sans quoi les fragments qu'elle ecarte se
+# retrouvent ici dans une autre famille que la leur.
 
 
 def famille(u):
@@ -29,7 +34,7 @@ def famille(u):
         return "2. Fragment de trois lettres ou moins"
     if not re.fullmatch(r"[A-Za-zÀ-ÿ'’ .,()-]+", u):
         return "2. Fragment de trois lettres ou moins"
-    if all(m.lower().strip('.,()') in MOTOUTIL for m in mots):
+    if edition._nur_motouti(u):
         return "3. Mots-outils seuls"
     if u[0].isupper() and len(mots) <= 4:
         return "1. Ressemble a un qualificatif ou a une locution"

@@ -6,7 +6,7 @@ scientifique. L'edition epuree lit ces filets et les rend. Voici ceux
 qu'elle n'a pas su placer : le fragment releve ne se retrouve pas tel
 quel dans le texte, ou ne couvre que des mots-outils.
 
-**1550 fragments**, sur 9472 articles. La premiere famille est
+**1571 fragments**, sur 9472 articles. La premiere famille est
 la seule qui demande un arbitrage : les autres sont des artefacts du
 releve des filets, ou le trait deborde ou s'arrete trop tot.
 
@@ -29,7 +29,7 @@ releve des filets, ou le trait deborde ou s'arrete trop tot.
 | 523 | shaloto | `EFRS` |
 | 527 | signifikar | `Progres` |
 
-## Fragment de trois lettres ou moins — 537
+## Fragment de trois lettres ou moins — 551
 
 | page | mot-vedette | fragment souligne |
 |---:|---|---|
@@ -49,6 +49,7 @@ releve des filets, ou le trait deborde ou s'arrete trop tot.
 | 26 | anakoluto | `est` |
 | 27 | anemometro | `o p` |
 | 31 | antitezo | `udi` |
+| 32 | antonomazio | `ula` |
 | 36 | apta | `Qua` |
 | 38 | argano | `ina` |
 | 38 | argono | `tim` |
@@ -74,6 +75,7 @@ releve des filets, ou le trait deborde ou s'arrete trop tot.
 | 68 | blua | `pas` |
 | 68 | boikotar | `tar` |
 | 70 | borso | `aci` |
+| 73 | brelano | `onu` |
 | 73 | brido | `sas` |
 | 74 | « brokoli »-kaulo | `brokoli"-kaulo` |
 | 75 | brosar | `ako` |
@@ -82,11 +84,13 @@ releve des filets, ou le trait deborde ou s'arrete trop tot.
 | 76 | buketo | `e k` |
 | 78 | bushelo | `dek` |
 | 78 | busolo | `iga` |
+| 78 | bustrofedono | `Onu` |
 | 81 | cefalopodo | `vic` |
 | 82 | ceno | `eat` |
 | 83 | centifolio | `i q` |
 | 86 | chamaro | `ver` |
 | 86 | chambelano | `ham` |
+| 86 | chapo | `ula` |
 | 87 | charniro | `eti` |
 | 88 | chifrar | `kas` |
 | 88 | chiniono | `i l` |
@@ -94,6 +98,7 @@ releve des filets, ou le trait deborde ou s'arrete trop tot.
 | 93 | cirkonspekta | `dic` |
 | 93 | cisoido | `end` |
 | 94 | citologio | `e l` |
+| 96 | dardo | `pos` |
 | 97 | deo | `kre` |
 | 101 | delikata | `a : di` |
 | 105 | despenso | `e o` |
@@ -136,10 +141,12 @@ releve des filets, ou le trait deborde ou s'arrete trop tot.
 | 149 | etapar | `par` |
 | 149 | eterna | `nos` |
 | 149 | etmoido | `a o` |
+| 150 | eufemismo | `onu` |
 | 152 | exhalar | `org` |
 | 152 | exhaustar | `gra` |
 | 153 | exodo | `e E` |
 | 153 | exotera | `Dic` |
+| 154 | expansar | `ula` |
 | 155 | extorsar | `gen` |
 | 156 | extraordinara | `esa` |
 | 157 | fago | `ago` |
@@ -168,6 +175,7 @@ releve des filets, ou le trait deborde ou s'arrete trop tot.
 | 185 | gafo | `nda` |
 | 189 | garoto | `str` |
 | 190 | genero | `nti` |
+| 192 | germanio | `til` |
 | 192 | gibo | `ron` |
 | 197 | gluo | `a s` |
 | 197 | gnuo | `gnu` |
@@ -209,9 +217,11 @@ releve des filets, ou le trait deborde ou s'arrete trop tot.
 | 234 | inflexar | `gen` |
 | 236 | inkursar | `eso` |
 | 236 | inokular | `ulu` |
+| 240 | interviuvar | `lua` |
 | 241 | *intrenar | `+intrenar` |
 | 241 | introduktar | `oci` |
 | 244 | *itemo | `+itemo` |
+| 244 | izogama | `qui` |
 | 246 | ja | `kan` |
 | 246 | jakobino | `agn` |
 | 249 | jonko | `alt` |
@@ -300,6 +310,7 @@ releve des filets, ou le trait deborde ou s'arrete trop tot.
 | 342 | lobelio | `lob` |
 | 342 | lobo | `obo` |
 | 343 | logiko | `- I` |
+| 343 | logiko | `che` |
 | 344 | longa | `lon` |
 | 346 | lumar | `lum` |
 | 346 | lumbo | `nch` |
@@ -327,6 +338,7 @@ releve des filets, ou le trait deborde ou s'arrete trop tot.
 | 367 | mestiero | `ual` |
 | 368 | metalo | `o m` |
 | 369 | metonomazio | `s =` |
+| 373 | mimoso | `ula` |
 | 375 | minoritato | `qua` |
 | 375 | minto | `nto` |
 | 376 | mirmekofila | `mir` |
@@ -339,6 +351,7 @@ releve des filets, ou le trait deborde ou s'arrete trop tot.
 | 379 | moloso | `Nun` |
 | 379 | moloso | `sar` |
 | 379 | molusko | `DEF` |
+| 379 | molusko | `qui` |
 | 380 | monero | `tot` |
 | 380 | monitoro | `sur` |
 | 382 | monsinioro | `lio` |
@@ -511,6 +524,7 @@ releve des filets, ou le trait deborde ou s'arrete trop tot.
 | 539 | sofisto | `nst` |
 | 542 | sorbo | `sor` |
 | 544 | spektro | `tro` |
+| 545 | spermino | `onu` |
 | 549 | st! | `st !` |
 | 549 | stacar | `sur` |
 | 550 | standardo | `tan` |
@@ -571,14 +585,61 @@ releve des filets, ou le trait deborde ou s'arrete trop tot.
 | 623 | *wishar | `+wishar` |
 | 629 | cerebelo | `bot` |
 
-## Mots-outils seuls — 2
+## Mots-outils seuls — 49
 
 | page | mot-vedette | fragment souligne |
 |---:|---|---|
+| 4 | absinto | `ek la` |
+| 4 | abutmento | `a su` |
+| 16 | albina | `la a` |
+| 18 | alimentar | `o, vi` |
+| 28 | angorar | `a su` |
+| 43 | asepta | `trans` |
+| 43 | asesoro | `trans` |
+| 85 | ceruzo | `to e` |
+| 85 | chamado | `a en` |
+| 92 | cinika | `a su` |
+| 107 | dio | `o di` |
+| 120 | dolmeno | `a, po` |
+| 131 | elefanto | `lua ma` |
+| 136 | emula | `esar` |
+| 142 | epoko | `to qua` |
+| 142 | equipar | `o, a` |
+| 152 | exemplero | `o en` |
+| 176 | fotografar | `o (o` |
+| 198 | gotika | `a ye` |
+| 245 | izolar | `lu e` |
+| 257 | kampar | `o de` |
+| 258 | kandida | `e lua` |
+| 260 | kantarido | `e en` |
+| 263 | karabino | `esas` |
+| 301 | kontinento | `e sen` |
+| 304 | kopaivo | `kontre` |
+| 305 | korano | `a en` |
+| 306 | korinto | `e ni` |
+| 308 | korpulenta | `esas` |
+| 324 | kurtezar | `a lu` |
+| 324 | kustumar | `a ma` |
+| 333 | legacar | `od a` |
+| 333 | legendo | `do e` |
+| 353 | mandolino | `e qui` |
+| 360 | matraso | `esas` |
+| 408 | orangutano | `e la` |
+| 437 | piedestalo | `lo di` |
+| 445 | plastidulo | `la e` |
+| 493 | repozar | `en o` |
+| 496 | reversionar | `a do` |
+| 510 | saltar | `a la` |
+| 518 | senso | `de la` |
 | 523 | shagrino | `quan` |
 | 523 | shalmo | `quan` |
+| 538 | slango | `anke` |
+| 557 | stupida | `a la` |
+| 562 | suportar | `e lo` |
+| 605 | urtiko | `a la` |
+| 611 | vektoro | `esas` |
 
-## Coupe au milieu d'un mot, ou reste du mot-vedette — 997
+## Coupe au milieu d'un mot, ou reste du mot-vedette — 957
 
 | page | mot-vedette | fragment souligne |
 |---:|---|---|
@@ -586,7 +647,6 @@ releve des filets, ou le trait deborde ou s'arrete trop tot.
 | 2 | abdikar | `ritato` |
 | 3 | abolisar | `leji, sklaveso-rejimo` |
 | 4 | absolvar | `u exp` |
-| 4 | abutmento | `a su` |
 | 5 | aceptar | `- II` |
 | 6 | acizo | `osto` |
 | 6 | adepto | `adepto.- Pe` |
@@ -606,10 +666,8 @@ releve des filets, ou le trait deborde ou s'arrete trop tot.
 | 14 | akrostiko | `lite` |
 | 14 | aktinio | `r baz` |
 | 15 | akuta | `a. -` |
-| 16 | albina | `la a` |
 | 16 | albo | `i, e` |
 | 17 | alegorio | `la s` |
-| 18 | alimentar | `o, vi` |
 | 20 | alotropa | `trig` |
 | 21 | alternativo | `lternativo` |
 | 21 | amaso | `as ma` |
@@ -620,7 +678,6 @@ releve des filets, ou le trait deborde ou s'arrete trop tot.
 | 25 | -an- | `-an -` |
 | 26 | anafazo | `o mi` |
 | 28 | angelus | `ye d` |
-| 28 | angorar | `a su` |
 | 30 | anterozoido | `anterozoid` |
 | 31 | antinomio | `real` |
 | 33 | aparta | `rita` |
@@ -638,12 +695,10 @@ releve des filets, ou le trait deborde ou s'arrete trop tot.
 | 43 | asepta | `asento` |
 | 43 | asepta | `asesoro` |
 | 43 | asepta | `konsento` |
-| 43 | asepta | `trans` |
 | 43 | asesoro | `asentar` |
 | 43 | asesoro | `asento` |
 | 43 | asesoro | `asepta` |
 | 43 | asesoro | `konsento` |
-| 43 | asesoro | `trans` |
 | 45 | asterismo | `ptik` |
 | 46 | -at- | `- at -` |
 | 46 | astriktar | `astr` |
@@ -695,8 +750,6 @@ releve des filets, ou le trait deborde ou s'arrete trop tot.
 | 82 | cenobito | `cenobit` |
 | 84 | ceptro | `mpero-` |
 | 84 | ceriz-lauro | `cerasus (prunus) laurocerasus` |
-| 85 | ceruzo | `to e` |
-| 85 | chamado | `a en` |
 | 88 | chimo | `s, e` |
 | 89 | cienco | `de f` |
 | 90 | ciklido | `o di l` |
@@ -704,7 +757,6 @@ releve des filets, ou le trait deborde ou s'arrete trop tot.
 | 91 | cilindroido | `cilindroid` |
 | 91 | cinamo | `cinam` |
 | 91 | cinematiko | `konce` |
-| 92 | cinika | `a su` |
 | 94 | civeto | `martr` |
 | 94 | cizelar | `un e` |
 | 95 | dago | `is p` |
@@ -722,7 +774,6 @@ releve des filets, ou le trait deborde ou s'arrete trop tot.
 | 107 | devota | `devot` |
 | 107 | dextrino | `u uza` |
 | 107 | diado | `iado` |
-| 107 | dio | `o di` |
 | 108 | diafragmo | `tiko` |
 | 108 | diakoniso | `ismo` |
 | 109 | dianto | `anto` |
@@ -753,7 +804,6 @@ releve des filets, ou le trait deborde ou s'arrete trop tot.
 | 119 | dogmato | `dogmato. Kr` |
 | 119 | dolio | `olio` |
 | 120 | dolmano | `exem` |
-| 120 | dolmeno | `a, po` |
 | 120 | dolomito | `-mar` |
 | 120 | domo | `ktur` |
 | 121 | dominanto | `kristalografi` |
@@ -772,12 +822,10 @@ releve des filets, ou le trait deborde ou s'arrete trop tot.
 | 129 | egotismo | `gotismo` |
 | 129 | ekidno | `echidna (hystrix` |
 | 130 | el(u) | `el(u` |
-| 131 | elefanto | `lua ma` |
 | 131 | elektro | `ukta` |
 | 132 | elevatoro | `niko` |
 | 133 | embarasar | `erpl` |
 | 135 | empireo | `la te` |
-| 136 | emula | `esar` |
 | 136 | endemika | `a es` |
 | 137 | engajar | `ngajar` |
 | 137 | enkilemo | `nkilemo` |
@@ -790,9 +838,7 @@ releve des filets, ou le trait deborde ou s'arrete trop tot.
 | 140 | epidemio | `aspe` |
 | 140 | epidermo | `i la p` |
 | 142 | epodo | `iamb` |
-| 142 | epoko | `to qua` |
 | 142 | equatoro | `ko d` |
-| 142 | equipar | `o, a` |
 | 142 | equipolar | `equip` |
 | 143 | eritrocito | `ritrocito` |
 | 145 | eskamotar | `otar` |
@@ -808,7 +854,6 @@ releve des filets, ou le trait deborde ou s'arrete trop tot.
 | 151 | exajerar | `xajerar` |
 | 151 | exaltar | `velo` |
 | 151 | exekutar | `o kon` |
-| 152 | exemplero | `o en` |
 | 154 | expiacar | `desp` |
 | 154 | expirar | `pri vejetant` |
 | 154 | explorar | `stud` |
@@ -848,7 +893,6 @@ releve des filets, ou le trait deborde ou s'arrete trop tot.
 | 175 | forta | `alud` |
 | 175 | forta | `ludante la anmo` |
 | 175 | forta | `te korpo` |
-| 176 | fotografar | `o (o` |
 | 177 | framasono | `framaso` |
 | 178 | francisko | `francisk` |
 | 178 | frankolino | `frank` |
@@ -872,7 +916,6 @@ releve des filets, ou le trait deborde ou s'arrete trop tot.
 | 195 | glikogena | `likogena` |
 | 196 | glosario | `glosar` |
 | 197 | gluglar | `guglar` |
-| 198 | gotika | `a ye` |
 | 199 | grafismo | `grafism` |
 | 199 | granario | `ranario` |
 | 199 | granato | `ranato` |
@@ -985,7 +1028,6 @@ releve des filets, ou le trait deborde ou s'arrete trop tot.
 | 243 | irigacar | `irigaca` |
 | 243 | iruptar | `ruptar` |
 | 243 | iskiono | `skiono` |
-| 245 | izolar | `lu e` |
 | 245 | izometra | `izometr` |
 | 246 | jalapo | `i qua` |
 | 246 | janicharo | `sold` |
@@ -1010,21 +1052,17 @@ releve des filets, ou le trait deborde ou s'arrete trop tot.
 | 257 | kampaniar | `ampaniar` |
 | 257 | kampanulo | `ampanulo` |
 | 257 | kampar | `ampar` |
-| 257 | kampar | `o de` |
 | 258 | kampesho | `kampesh` |
 | 258 | kanalio | `kanali` |
-| 258 | kandida | `e lua` |
 | 259 | kanina | `he l` |
 | 259 | kanoniko | `anoniko` |
 | 259 | kanoo | `anoo` |
-| 260 | kantarido | `e en` |
 | 261 | kaoso | `mataf` |
 | 262 | kapono | `a qu` |
 | 262 | kapro | `capra (hircus` |
 | 263 | kapsulo | `artilri` |
 | 263 | kapuchino | `apuchino` |
 | 263 | karabino | `arabino` |
-| 263 | karabino | `esas` |
 | 263 | karabo | `arabo` |
 | 263 | karafo | `gene` |
 | 263 | karakolar | `istre` |
@@ -1101,18 +1139,14 @@ releve des filets, ou le trait deborde ou s'arrete trop tot.
 | 299 | konsonancar | `aludante silabi, e pre` |
 | 299 | konsonanto | `onsonanto` |
 | 299 | konsorto | `onsorto` |
-| 301 | kontinento | `e sen` |
 | 301 | kontingento | `a kontin` |
 | 301 | kontrabaso | `ntrabaso` |
 | 302 | kontradanso | `ta s` |
 | 303 | konvento | `mblit` |
-| 305 | korano | `a en` |
 | 305 | kordio | `la ka` |
-| 306 | korinto | `e ni` |
 | 307 | kormorano | `phalacrocorax (carbo` |
 | 308 | kornico | `ariktekt` |
 | 308 | korporalo | `ro, l` |
-| 308 | korpulenta | `esas` |
 | 308 | korpuskulo | `orpuskulo` |
 | 308 | korsajo | `korsaj` |
 | 309 | korsaro | `orsaro` |
@@ -1135,7 +1169,6 @@ releve des filets, ou le trait deborde ou s'arrete trop tot.
 | 322 | kurar | `kura` |
 | 323 | kuratar | `yurosienco` |
 | 323 | kurkumo | `nteyi` |
-| 324 | kustumar | `a ma` |
 | 325 | kutio | `utio` |
 | 325 | kuvento | `kuvent` |
 | 326 | la | `determinata d` |
@@ -1149,7 +1182,6 @@ releve des filets, ou le trait deborde ou s'arrete trop tot.
 | 331 | laubo | `aubo` |
 | 331 | laudar | `audar` |
 | 332 | laureato | `kron` |
-| 333 | legendo | `do e` |
 | 333 | lego | `norm` |
 | 334 | lektoro | `r la` |
 | 334 | leono | `oneg` |
@@ -1200,7 +1232,6 @@ releve des filets, ou le trait deborde ou s'arrete trop tot.
 | 351 | maledikar | `meledikar` |
 | 351 | maleolo | `tera` |
 | 351 | malio | `ek l` |
-| 353 | mandolino | `e qui` |
 | 353 | mandragoro | `trib` |
 | 354 | maniplo | `liturgio kato` |
 | 355 | manovrar | `alud` |
@@ -1210,7 +1241,6 @@ releve des filets, ou le trait deborde ou s'arrete trop tot.
 | 359 | masonar | `asonar` |
 | 359 | masonar | `ponto, l o` |
 | 360 | mastico | `duri` |
-| 360 | matraso | `esas` |
 | 361 | matrico | `ldur` |
 | 361 | matrono | `o re` |
 | 361 | mazurko | `am va` |
@@ -1273,7 +1303,6 @@ releve des filets, ou le trait deborde ou s'arrete trop tot.
 | 404 | okro | `iabl` |
 | 404 | ol(u) | `ol(u` |
 | 405 | on(u) | `on(u` |
-| 408 | orangutano | `e la` |
 | 409 | ordinar | `ordin` |
 | 409 | organo | `gano` |
 | 409 | organzino | `krud` |
@@ -1330,7 +1359,6 @@ releve des filets, ou le trait deborde ou s'arrete trop tot.
 | 435 | perseverar | `pers` |
 | 435 | perseverar | `verar` |
 | 437 | pichpino | `pinus palustris (australis` |
-| 437 | piedestalo | `lo di` |
 | 437 | piedestalo | `pied` |
 | 437 | piedestalo | `stalo` |
 | 439 | pimento | `bril` |
@@ -1342,7 +1370,6 @@ releve des filets, ou le trait deborde ou s'arrete trop tot.
 | 443 | plano | `co plana` |
 | 444 | plasmodio | `modio` |
 | 444 | plastido | `stido` |
-| 445 | plastidulo | `la e` |
 | 446 | plesiosauro | `i st` |
 | 446 | pleuronekto | `onekto` |
 | 447 | pleyado | `ala, Ido` |
@@ -1411,7 +1438,6 @@ releve des filets, ou le trait deborde ou s'arrete trop tot.
 | 490 | remisar | `tomi di morbo` |
 | 491 | renet-pomo | `akul` |
 | 491 | reno | `duop` |
-| 493 | repozar | `en o` |
 | 493 | repulsar | `repulsa` |
 | 494 | resipicencar | `resipicenca` |
 | 494 | respirar | `respir` |
@@ -1419,7 +1445,6 @@ releve des filets, ou le trait deborde ou s'arrete trop tot.
 | 494 | responsar | `responsa` |
 | 495 | retraktar | `etraktar` |
 | 496 | retro- | `retro` |
-| 496 | reversionar | `a do` |
 | 497 | revoltar | `revolta` |
 | 499 | rinocero | `paki` |
 | 500 | ritmo | `riodo` |
@@ -1474,7 +1499,6 @@ releve des filets, ou le trait deborde ou s'arrete trop tot.
 | 537 | skrachar | `skracha` |
 | 538 | skurelo | `ilio` |
 | 538 | skurelo | `rascurius` |
-| 538 | slango | `anke` |
 | 538 | slango | `extr` |
 | 538 | slango | `rapti` |
 | 538 | slingo | `irkum` |
@@ -1517,7 +1541,6 @@ releve des filets, ou le trait deborde ou s'arrete trop tot.
 | 556 | strikta | `asas` |
 | 556 | stroncio | `troncio` |
 | 557 | studiar | `coze` |
-| 557 | stupida | `a la` |
 | 557 | sturgo | `aci-` |
 | 558 | sublima | `a, p` |
 | 559 | subrekargo | `subrek` |
@@ -1556,10 +1579,8 @@ releve des filets, ou le trait deborde ou s'arrete trop tot.
 | 604 | unikursala | `unikursal` |
 | 604 | urano | `or la` |
 | 605 | urso | `vida` |
-| 605 | urtiko | `a la` |
 | 606 | -uyo | `- uyo` |
 | 610 | vazo | `iqui` |
-| 611 | vektoro | `esas` |
 | 611 | velino | `a e p` |
 | 612 | Venus | `che la Lati` |
 | 613 | verdikto | `verdi` |

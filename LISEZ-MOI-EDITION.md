@@ -366,6 +366,42 @@ donita*. Cinq caractères pour un mot de cinq lettres — c'est **punto**, et la
 définition le dit : *Di qua la centro eskartesas de punto donita*, le centre qui
 s'écarte d'un point donné. La correction est dans `travail/texti.txt`.
 
+### Le filet qui ne couvre que des mots-outils
+
+`absinto` portait *ek la* en italique au milieu de sa définition. Le garde-fou
+existait — un fragment qui n'est **qu'un** mot-outil ne reçoit pas d'italique —
+mais il ne voyait qu'un mot à la fois : *ek la*, qui en fait deux, passait au
+travers.
+
+La règle porte maintenant sur **tous** les mots du fragment, contre une liste
+close — articles, prépositions, conjonctions, pronoms, corrélatifs, formes de
+*esar*. Un mot plein n'y entre pas, même court : *Ido* chez `logiko`, *ohm* chez
+`volto`, *tri* chez `tri-` sont des mots cités et gardent leur italique.
+
+Quatre mots-outils en sont retirés, parce que le livre les **cite** quelque part
+et que le filet y est une vraie marque : *ante* chez `avan` — « kontre ke ante
+relatas tempo » —, *avan* et *dop* chez `retro-`, et *que* chez `enklitiko`, où
+il est latin : « L. que en neque ».
+
+**Vingt-deux italiques** partent — *ula*, *onu*, *qui*, *a lu*, *od a*, *de la*,
+*a la*, *e lo*… Elles ne disparaissent pas : elles rejoignent les fragments non
+placés, sous la famille « mots-outils seuls » de `filets-dubinda.md`, qui compte
+désormais 49 entrées. La liste de travail et l'édition se règlent sur la même
+liste de mots.
+
+### Le tiret d'affixe détaché de son affixe
+
+Chez `metro`, *1/10.000.000- ima* est *1/10.000.000-**ima***, la dix-millionième
+partie. C'est l'espace parasite que la vedette connaît déjà — *« - as. »* pour
+*-as*, *« bo - . »* pour *bo-* —, posée cette fois dans le corps.
+
+On exige un **suffixe suivi de sa désinence**, sans quoi *radio- o
+televizionorecevili* (`megafono`), où le tiret reste en suspens devant la
+conjonction, se recollait en *radio-o*. Un seul cas dans le livre ; les quatre
+autres tirets isolés — *ekirar- per*, *perforuro- e*, *implikas- kontre*,
+*establisita- ube* — ne sont pas des affixes mais des tirets mis pour une
+virgule, et restent tels quels.
+
 ### Le filet coupé par une fin de ligne
 
 La dactylo souligne *Kreto-krayono* ; la ligne casse au milieu du mot, et le
@@ -530,7 +566,7 @@ de colonnes ; il suffit d'y lire le texte.
 |---|---|
 | `sublineita` | tout ce qui est souligné dans l'entrée, remis bout à bout, les coupures de fin de ligne recollées. 6 542 entrées |
 | `kursiva` | ceux que l'édition a **su placer** dans le texte, et qu'elle rend en italique. 1 246 entrées |
-| `dubinda` | ceux qu'elle **n'a pas su placer** : le fragment ne se retrouve pas tel quel, ou ne couvre que des mots-outils. 1 400 entrées, 1 550 fragments |
+| `dubinda` | ceux qu'elle **n'a pas su placer** : le fragment ne se retrouve pas tel quel, ou ne couvre que des mots-outils. 1 416 entrées, 1 571 fragments |
 
 Un souligné n'est ni `kursiva` ni `dubinda` quand il a trouvé sa place ailleurs
 — dans `fako`, dans `latina`, dans `simbolo`, ou comme locution. C'est le cas de *cinocefalo*
@@ -546,7 +582,7 @@ teksto   : Pikanta ed atakema (metaf.)
 teksto_k : Pikanta ed atakema \ue000(metaf.)\ue001
 ```
 
-`filets-dubinda.md` classe les 1 550 fragments non placés par famille, la plus
+`filets-dubinda.md` classe les 1 571 fragments non placés par famille, la plus
 douteuse en tête, avec la page et la vedette pour aller voir le fac-similé. Une
 seule famille demande un arbitrage — 18 fragments qui ressemblent à un
 qualificatif ou à une locution ; les autres sont des artefacts du relevé, où le

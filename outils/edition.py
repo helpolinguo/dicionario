@@ -1830,7 +1830,7 @@ def strukturizar(e):
             # bout de la ligne. On met en italique la parenthese entiere —
             # c'est elle, le qualificatif — et les deux moities se recollent.
             g=_parentezo(t, m.start(), m.end())
-            if g is None and (len(mot) < 3 or mot.lower() in MALGRANDA):
+            if g is None and (len(mot) < 3 or _nur_motouti(mot)):
                 dub.append(u); continue
             v=g if g else mot
             if v.lower() not in vu: vu.add(v.lower()); kur.append(v)
@@ -1898,10 +1898,42 @@ def strukturizar(e):
 
 # Mots-outils : un filet qui ne couvre qu eux est un artefact du releve des
 # soulignements, non une intention de l auteur.
-MALGRANDA={'la','de','di','en','per','sur','qua','quan','quo','quon','ulo','ulu',
-           'lu','li','ol','olu','ed','od','ad','kun','pri','pro','po','ne','nek',
-           'kom','esas','esis','ma','se','ke','anke','tre','plu','min','sen',
-           'ica','ita','ta','ca','nun','olim','sua','lia','e c','por','ye'}
+# Les mots-outils : ceux qu'un filet ne designe jamais pour eux-memes. Un
+# soulignement qui ne couvre QUE ceux-la n'est pas une marque de l'auteur mais
+# une trace — le trait d'une ligne voisine, ou un releve qui a deborde.
+# « absinto » portait « ek la » en italique au milieu de sa definition.
+#
+# La liste est CLOSE : articles, prepositions, conjonctions, pronoms et
+# correlatifs, plus les formes de « esar ». Un mot plein n'y entre pas, meme
+# court : « Ido » chez « logiko », « ohm » chez « volto », « tri » chez
+# « tri- » sont des mots cites, et gardent leur italique.
+#
+# Quatre mots-outils en sont retires, parce que le livre les CITE quelque part
+# et que le filet y est une vraie marque : « ante » chez « avan » (« kontre ke
+# ante relatas tempo »), « avan » et « dop » chez « retro- » (« movo de avan ad
+# dop »), et « que » chez « enklitiko », ou il est latin — « L. que en neque ».
+MALGRANDA={'la','lo','de','da','di','en','per','sur','a','ad','ab','ek','ye',
+           'che','apud','cirkum','dum','exter','inter','kontre',
+           'malgre','preter','segun','sub','super','til','trans','ultre','vers',
+           'kun','pri','pro','po','sen','por','pos',
+           'qua','quan','quo','quon','qui','quin','ula','ulo','ulu','irga',
+           'lu','li','ol','olu','ilu','elu','onu','me','tu','vu','ni','vi',
+           'su','mea','tua','vua','nia','via','lua','sua','lia','olua',
+           'ica','ita','ico','ito','ta','to','ca','co',
+           'e','ed','o','od','ma','se','ke','nam','do','nek','ne',
+           'kom','anke','tre','plu','min','nun','olim','hike','ibe','ja','mem',
+           'nur','tro','tam','tale','quale','kande','ube','lore','tande',
+           'esas','esis','esos','esus','esar','e c'}
+
+
+def _nur_motouti(u):
+    """Le fragment ne couvre-t-il QUE des mots-outils ?"""
+    # « e c » — « e cetera » — s'ecrit en deux morceaux dont le second n'est
+    # pas un mot : on l'admet entier.
+    if u.strip().lower() in MALGRANDA: return True
+    mots=[m.strip('.,;:()«»\'’\u201c\u201d "').lower() for m in u.split()]
+    mots=[m for m in mots if m]
+    return bool(mots) and all(m in MALGRANDA for m in mots)
 
 
 def _trovar(u, t):
@@ -2444,6 +2476,20 @@ def netigar_punktuo(t):
     return re.sub(r'  +', ' ', t)
 
 
+# Les affixes que le livre donne comme VEDETTES, plus ceux que SUFIXI porte
+# pour le rangement. SUFIXI seul ne suffit pas ici : bati pour oter UN suffixe
+# d'un radical, il ignore « -im- », le suffixe de la fraction, qui est
+# justement celui de « 1/10.000.000-ima ». Les affixes d'UNE lettre — « -e »,
+# « -i » — n'y sont pas : ils se confondent avec les mots-outils.
+AFIXI_KUN_FINALO = tuple(sorted(
+    set(SUFIXI) | {'ab', 'ant', 'at', 'esm', 'im', 'int', 'ont', 'op', 'opl',
+                   'ot', 'un'}, key=len, reverse=True))
+
+RE_AFIXO_ESPACO = re.compile(
+    r'(?<=[A-Za-z0-9\u00e0-\u00ff])-[\s\u00a0]+((?:%s)(?:o|a|e|i|ar|ir|or))'
+    r'(?![A-Za-z\u00e0-\u00ff])' % '|'.join(AFIXI_KUN_FINALO))
+
+
 def espacar(t):
     """Espacement de la ponctuation, usage franco-canadien.
 
@@ -2453,6 +2499,16 @@ def espacar(t):
     apres elle. La fonction est idempotente.
     """
     t = re.sub(r',(?=[A-Za-zÀ-ÿ])', ', ', t)
+    # Le tiret d'affixe ne se detache pas de son affixe : « 1/10.000.000- ima »
+    # chez « metro » est « 1/10.000.000-ima », la dix-millionieme partie. C'est
+    # la meme espace parasite que la vedette connait — « - as. » pour « -as »,
+    # « bo - . » pour « bo- » —, posee cette fois dans le corps.
+    # On exige un SUFFIXE suivi de sa desinence : sans quoi « radio- o
+    # televizionorecevili » (megafono), ou le tiret reste en suspens devant la
+    # conjonction, se recollait en « radio-o ». Les quatre autres tirets isoles
+    # du livre — « ekirar- per », « perforuro- e », « implikas- kontre »,
+    # « establisita- ube » — n'en sont pas davantage.
+    t = RE_AFIXO_ESPACO.sub(r'-\1', t)
     # La parenthese fermante collee au mot suivant prend une espace — mais pas
     # celle qui fait CORPS avec le mot. L'auteur note ainsi l'element facultatif
     # : « leon(in)o » dit le lion et la lionne, « formac(es)o » la formation et
