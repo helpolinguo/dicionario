@@ -853,6 +853,15 @@ def pointi_sencoj(t):
                   + ')', t)
 
 
+def _tondar_fino(s):
+    """Le balayage de fin de chaine, qui s'arrete aux points de suspension."""
+    m = re.search(r'[\s.\-—–]+$', s)
+    if not m:
+        return s
+    d = list(re.finditer(r'\.{3,}', m.group(0)))
+    return s[:m.start() + d[-1].end()] if d else s[:m.start()]
+
+
 def analizar(e, lexique=None):
     t=e.get('teksto_brut')
     if t is None:
@@ -943,7 +952,13 @@ def analizar(e, lexique=None):
         resto = t[m.end():].strip() if m else t
     # Le bruit qui suit parfois le code — « - DEFIRS. --- » — empechait
     # l'ancrage en fin de chaine, et l'entree passait pour « sen-lingua ».
-    resto = re.sub(r'[\s.\-—–]+$', '', resto)
+    # Les POINTS DE SUSPENSION, eux, appartiennent au texte : ils tiennent la
+    # place du complement, et huit articles finissent dessus — « Kambie di... »
+    # chez « po », « Qua havas tri... » chez « tri- », « Profite da... Destine
+    # di... » chez « por ». Le balayage les emportait, sauf quand un guillemet
+    # fermant les protegeait (« qua tendencas a... »). On garde donc le dernier
+    # groupe de points du balayage et on ne retire que ce qui le suit.
+    resto = _tondar_fino(resto)
     e['lingui']=[]; e['kodo']=None
     me = RE_EPELE.search(resto)
     if me:
@@ -1157,7 +1172,11 @@ def _klavo_ordino(v):
     # n'en porte que sur des noms empruntes — ampère, Roentgen.
     v = unicodedata.normalize('NFD', v.lower())
     v = ''.join(c for c in v if not unicodedata.combining(c))
-    return v.lstrip('*+"«.-').rstrip('!').rstrip('-').replace(' ', '')
+    # Les guillemets ne se rangent pas davantage, ou qu'ils soient : le livre
+    # range « "brokoli"-kaulo » a « brokoli-kaulo ». L'espace insecable qui les
+    # accompagne dans l'edition part avec eux.
+    v = v.lstrip('*+"«.-').rstrip('!').rstrip('-')
+    return re.sub('[\\s\u00a0"«»\u201c\u201d]', '', v)
 
 
 # La DESINENCE ne compte pas dans le rangement du livre. C'est une regle qu'il
@@ -2545,6 +2564,16 @@ def typographio(ent):
       « mot - mot »           -> tiret demi-cadratin    (829 cas)
     """
     n=0
+    # Les chevrons de la VEDETTE prennent leur espace, comme partout ailleurs
+    # dans le livre. « "brokoli"-kaulo » est le seul cas ou ils restent DANS la
+    # chaine : le mot ido n'y est cite qu'en partie, et le drapeau `citita`,
+    # qui fait poser aux editions « \u00ab\u00a0amen\u00a0\u00bb », ne peut pas le porter.
+    for e in ent:
+        v=e.get('vedetto') or ''
+        if '\u00ab' in v or '\u00bb' in v:
+            u=re.sub(r'\u00ab[\s\u00a0]*', '\u00ab\u00a0',
+                     re.sub(r'[\s\u00a0]*\u00bb', '\u00a0\u00bb', v))
+            if u!=v: e['vedetto']=u; n+=1
     for e in ent:
         s=e.get('senci') or []
         for k,t in enumerate(s):

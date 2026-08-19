@@ -79,7 +79,7 @@ releve des filets, ou le trait deborde ou s'arrete trop tot.
 | 68 | boikotar | `tar` |
 | 70 | borso | `aci` |
 | 73 | brido | `sas` |
-| 74 | «brokoli»-kaulo | `brokoli"-kaulo` |
+| 74 | « brokoli »-kaulo | `brokoli"-kaulo` |
 | 75 | brosar | `ako` |
 | 75 | bruta | `ins` |
 | 76 | bufro | `lst` |

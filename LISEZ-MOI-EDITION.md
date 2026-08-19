@@ -67,7 +67,10 @@ premier élément seul est emprunté, et les éditions lui mettaient une seconde
 paire de chevrons autour de la première. Une fermante suivie d'une minuscule ou
 d'un trait d'union est donc refusée — le mot continue ; suivie d'une capitale,
 elle ouvre la définition, l'espace ayant manqué à la frappe
-(*"madras"Kapovesto*).
+(*"madras"Kapovesto*). Ses chevrons restent **dans** la vedette, faute d'un
+drapeau qui puisse les porter, et prennent l'espace que les éditions posent
+partout ailleurs : *« brokoli »-kaulo*. Le rangement, lui, ne compte ni chevron
+ni espace — le mot se cherche à *brokoli-kaulo*.
 
 `korektita` compte les cellules redressées dans l'entrée : une provenance, non
 un doute.
@@ -371,6 +374,14 @@ Dix sites prennent le tiret, dans huit articles — `-ig-`, `-ind-`, `min`,
 d'`elektar`. Un seul demandait d'abord une lecture : chez `\*pliz`, *ke
 lu....+ez* portait la croix là où le tiret devait être, et l'édition imprimait
 *lu....\*ez*. Corrigé par `travail/texti.txt`.
+
+Les points **finissent** parfois l'article — ils tiennent la place du
+complément que la définition appelle : *Kambie di…* (`po`), *Qua havas tri…*
+(`tri-`), *Profite da… Destine di…* (`por`). Le balayage qui nettoie la fin de
+la chaîne — celui qui retire le bruit derrière le code de langues, *« - DEFIRS.
+--- »* — les emportait, sauf là où un guillemet fermant les protégeait. Il
+s'arrête désormais devant eux : **huit articles** retrouvent leur ellipse
+finale, et `nona-` le trait d'union qui partait avec (*= non-…*).
 
 Un relevé de filet est brut quand le texte, lui, est typographié : *lore...lore*
 ne s'y retrouvait plus et perdait son italique. La recherche essaie donc aussi
