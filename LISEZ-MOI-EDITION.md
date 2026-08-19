@@ -481,7 +481,11 @@ Trois cas où la paire est déterminée, donc fournie :
   étant équilibré — la fermante s'est perdue en fin de ligne (65 sens,
   `fermi_parentezon`) ;
 - le **qualificatif de tête** — `(trans. Kustumigar…`, `(anat. Saliajo…` — que
-  le livre ferme des centaines de fois juste après l'abréviation ;
+  le livre ferme des centaines de fois juste après l'abréviation. L'espace a pu
+  tomber avec la fermante : `(bot.Frukto kapsula…` chez `folikulo`. Une
+  **capitale** collée au point de l'abréviation ouvre la définition, elle ne
+  continue pas le mot abrégé ; sans cela la parenthèse se fermait au bout du
+  sens et le domaine avalait toute la définition ;
 - le **signe doublé**, `((anke metaf.)` ou `Dekart'))`, une double frappe.
 
 Pour le reste, le signe orphelin part. La fermante seule a d'ailleurs le plus

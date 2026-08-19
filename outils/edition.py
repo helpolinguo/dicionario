@@ -2330,7 +2330,10 @@ def fermi_kvalifikilon(t):
     """
     m = RE_KVAL_MANKA.match(t)
     if m and t.count('(') > t.count(')'):
-        return '(%s)%s' % (m.group(1), t[m.end():])
+        resto = t[m.end():]
+        if resto[:1] and not resto[:1].isspace():
+            resto = ' ' + resto
+        return '(%s)%s' % (m.group(1), resto)
     return t
 
 
@@ -2371,7 +2374,12 @@ def pointi_abrevo(t):
 # Un qualificatif de tete dont la fermante s'est perdue : « (trans. Kustumigar
 # animalo... », « (anat. Saliajo mi-sferatra... ». Le livre ferme celle-la des
 # centaines de fois ; sa place ne fait aucun doute, juste apres l'abreviation.
-RE_KVAL_MANKA = re.compile(r'^\(([A-Za-zÀ-ÿ][A-Za-zà-ÿ]{1,11}\.)(?=\s)')
+#
+# L'espace a pu tomber avec elle : « (bot.Frukto kapsula... » chez « folikulo ».
+# Une CAPITALE collee au point de l'abreviation ouvre la definition ; elle ne
+# continue pas le mot abrege. Sans cela la parenthese se fermait au bout du
+# sens, et le domaine avalait toute la definition.
+RE_KVAL_MANKA = re.compile(r'^\(([A-Za-zÀ-ÿ][A-Za-zà-ÿ]{1,11}\.)(?=\s|[A-ZÀ-Ý])')
 
 
 def ekvilibrigi_parentezojn(t):
