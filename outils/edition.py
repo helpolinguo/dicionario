@@ -752,12 +752,12 @@ DOMENI_UNIFORMA = {
     'paleontologio': 'paleont.',    #   1 /   5
     'elektr.': 'elektro',           #   9 /  20
     'milito': 'milit.',             #   6 /  10
-    'imprim.': 'imprimarto',        #   1 /   3
-    'imprim-arto': 'imprimarto',    #   1 /   2
-    'militarto': 'milit-arto',      #   4 /   8
-    'shakoludo': 'shako-ludo',      #   1 /   1  — egalite : le trait d'union,
-    'skermarto': 'skerm-arto',      #   1 /   1    maniere du livre pour ses
-    'yuro-cienco': 'yurocienco',    #  15 /  24    domaines composes
+    'imprim.': 'imprim-arto',       #   1 /   3  — le trait d'union, maniere
+    'imprimarto': 'imprim-arto',    #   2 /   1    du livre pour ses domaines
+    'militarto': 'milit-arto',      #   4 /   8    composes : il l'ecrit ainsi
+    'shakoludo': 'shako-ludo',      #   1 /   1    dans TOUS les autres —
+    'skermarto': 'skerm-arto',      #   1 /   1    « banko-komerco », « natur-
+    'yurocienco': 'yuro-cienco',    #  24 /  15    historio », « politiko-yuro ».
     'akustiko': 'akust.',           #   1 /   1  — egalite : l'abrege
     'diplomaco': 'diplomac.',       #   1 /   1
     'magnetismo': 'magnet.',        #   1 /   1
@@ -2017,7 +2017,7 @@ def konstrui():
     # nu quand ses trente voisins etaient pointes. On repasse les deux
     # normalisations derriere la correction ; elles sont idempotentes.
     for e in ent:
-        if e.get('fako'): e['fako']=elipso(uniformigar(minuskligi(pointi(e['fako']))))
+        if e.get('fako'): e['fako']=kompozita(elipso(uniformigar(minuskligi(pointi(e['fako'])))))
     # La relecture pose des chaines relevees avant la typographie : on repasse
     # l'espacement derriere elle. espacar() est idempotente.
     for e in ent:
@@ -2025,9 +2025,9 @@ def konstrui():
         for k,t in enumerate(S):
             # Ponctuation orpheline en tete de sens : elle vient d'une coupure
             # de l'original, non du texte. « titrar » commencait par un point.
-            S[k]=elipso(ekvilibrigi_parentezojn(pointi_abrevo(fermi_parentezon(
+            S[k]=kompozita(elipso(ekvilibrigi_parentezojn(pointi_abrevo(fermi_parentezon(
                 fermi_kvalifikilon(orfa_parentezo(formuli(cifri(pointi_sencoj(
-                    surcharge(espacar(netigar_punktuo(t)))))))))).lstrip('.,;:) ').strip()))
+                    surcharge(espacar(netigar_punktuo(t)))))))))).lstrip('.,;:) ').strip())))
     # (cifri et formuli n'interviennent qu'ici, une fois la relecture posee)
     # Second passage des corrections a l'oeil. Une ligne de vorti.txt ecrite
     # d'apres le texte RENDU ne pouvait pas s'appliquer plus haut : « de l til
@@ -2575,6 +2575,26 @@ DESINENCI = tuple(sorted(
 RE_ELIPSO = re.compile(
     r'\u2026[\s\u00a0]*(?:-\s*([A-Za-z\u00e0-\u00ff]+)|(%s))(?![a-z\u00e0-\u00ff])'
     % '|'.join(DESINENCI))
+
+
+# Les composes que le livre ecrit tantot avec le trait d'union, tantot soudes.
+# Il pose le trait a TOUS ses autres composes — « banko-komerco »,
+# « natur-historio », « politiko-yuro », « milit-arto », « skerm-arto » — et a
+# la grande majorite des emplois de ceux-ci ; on aligne les formes soudees qui
+# restent hors du champ `fako`, ou la table des domaines s'en charge deja.
+KOMPOZITA = (('yurocienco', 'yuro-cienco'),
+             ('imprimarto', 'imprim-arto'))
+
+RE_KOMPOZITA = tuple(
+    (re.compile(r'(?<![-A-Za-z\u00e0-\u00ff])%s(?![A-Za-z\u00e0-\u00ff])' % a), b)
+    for a, b in KOMPOZITA)
+
+
+def kompozita(t):
+    """Le compose soude rendu au trait d'union du livre."""
+    for r, b in RE_KOMPOZITA:
+        t = r.sub(b, t)
+    return t
 
 
 def elipso(t):

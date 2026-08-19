@@ -382,6 +382,32 @@ reste tel quel. **Vingt-neuf filets** recollés, **22 fragments** de moins parmi
 les non placés, et deux sous-entrées de plus : `kreto-krayono` et
 `ordonancoficiro`.
 
+### Le composé soudé par le recollage
+
+Quand le mot coupé en fin de ligne est un **composé**, le trait d'union lui
+appartient, et le recollage l'ôte à tort : *Ordonanc-* plus *oficiro* donnait
+*ordonancoficiro*. Le livre, lui, pose le trait à tous ses composés —
+*banko-komerco*, *natur-historio*, *politiko-yuro*, *milit-arto*,
+*skerm-arto* —, et les deux éléments sont ici vedettes l'un et l'autre.
+
+Trois sites, tous montrés par le relevé du filet, qui donne la place exacte de
+la cassure :
+
+| article | lu | rendu | ce qui le prouve |
+|---|---|---|---|
+| `ordonanco` | *ordonancoficiro* | *ordonanc-oficiro* | `ordonanco` et `oficiro` sont vedettes |
+| `invalida` | *exmilitisto* | *ex-militisto* | `ex-` est vedette, et `korsaro` écrit *ex-pirato* |
+| `saturnali` | *niaepoke* | *nia-epoke* | le livre écrit *nia-epoke* huit fois |
+
+La règle générale, elle, **n'a pas été retouchée** : `recoller` tranche sur le
+lexique des vedettes, et son jugement ne peut se remesurer sans le fac-similé,
+absent du dépôt. Les trois corrections passent donc par `travail/texti.txt`,
+chacune avec sa preuve.
+
+Deux domaines composés restaient soudés là où le livre écrit tous les autres
+avec le trait : `yurocienco` et `imprimarto`. Ils s'alignent — **43 champs
+`fako`** et les quatre emplois en texte courant.
+
 ### Le tiret de séparation devant la parenthèse
 
 L'auteur sépare ses sens d'un tiret encadré de deux espaces, et le sens suivant
