@@ -545,6 +545,18 @@ règle — la citation est justement ce qui autorise l'accent ailleurs. On les
 relève donc un à un, dans `travail/texti.txt`. Après quoi il ne reste, dans les
 deux éditions, que des accents qui se justifient.
 
+### L'espace avant la virgule
+
+Elle n'est de personne, comme le point séparé de sa virgule que la chaîne
+recollait déjà. Deux cas nets — *rimo nekompleta , quan* chez `asonancar*, *la
+religiani , ekleziani* chez `sinagogo` — et deux autres où elle accompagnait un
+passage abîmé, `atropino` et `ultramikroskopo`.
+
+La règle exige une **lettre devant et une lettre derrière** : chez `*puntuar`,
+*la signi ,; . : ? !* énumère les signes eux-mêmes, et la virgule y est le
+premier de la liste, non une ponctuation de phrase. C'est le seul cas du livre
+où l'espace reste, et il doit rester.
+
 ### Le « x » qui est une croix
 
 La machine n'avait pas de signe de multiplication : la dactylo frappe la lettre.

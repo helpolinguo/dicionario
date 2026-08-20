@@ -2627,6 +2627,12 @@ def netigar_punktuo(t):
     # kortico » chez salicino — le point est celui de l'abreviation, la virgule
     # celle de la phrase, et l'espace entre les deux n'est de personne.
     t = re.sub(r'\.\s+,', '.,', t)
+    # L'espace AVANT la virgule : « rimo nekompleta , quan » chez « asonancar »,
+    # « la religiani , ekleziani » chez « sinagogo ». Elle n'est de personne non
+    # plus. On exige une lettre devant et une lettre derriere : chez
+    # « *puntuar », « la signi ,; . : ? ! » enumere les signes eux-memes, et la
+    # virgule y est le premier de la liste, non une ponctuation de phrase.
+    t = re.sub(r'(?<=[A-Za-zÀ-ÿ)])[\s\u00a0]+,(?=[\s\u00a0]+[A-Za-zÀ-ÿ])', ',', t)
     t = re.sub(r'(?<!\.)\.\s+\.(?!\.)', '.', t)
     return re.sub(r'  +', ' ', t)
 
