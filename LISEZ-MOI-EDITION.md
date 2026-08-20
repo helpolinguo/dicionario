@@ -403,6 +403,21 @@ donita*. Cinq caractères pour un mot de cinq lettres — c'est **punto**, et la
 définition le dit : *Di qua la centro eskartesas de punto donita*, le centre qui
 s'écarte d'un point donné. La correction est dans `travail/texti.txt`.
 
+### Le trait coupé court
+
+Le relevé ne rend parfois que le **début** du qualificatif : *met* pour
+*(metaf.)*, *alud* pour *(aludante homo od animalo vivanta)*, *aci* pour
+*(acioni, obligacioni)*. Cherché tel quel, il ne se retrouve nulle part, et le
+domaine perdait son italique quand ses quatre voisins l'avaient — c'est ce qui
+se voyait chez `stelo`.
+
+Un fragment d'au moins trois lettres qui **préfixe une parenthèse du même
+article** désigne cette parenthèse : c'est la même reconnaissance que pour un
+domaine écrit autrement, appliquée au trait rompu. **Vingt domaines** retrouvent
+leur italique, et cinq autres fragments — *alud*, *aludant* — rejoignent
+l'italique déjà posée au lieu de traîner parmi les non placés. Les fragments non
+placés passent de 1 556 à **1 531**.
+
 ### Le filet que l'œil écarte
 
 La dactylo souligne le domaine, la locution, le mot cité, le nom scientifique.
@@ -707,7 +722,7 @@ de colonnes ; il suffit d'y lire le texte.
 |---|---|
 | `sublineita` | tout ce qui est souligné dans l'entrée, remis bout à bout, les coupures de fin de ligne recollées. 6 542 entrées |
 | `kursiva` | ceux que l'édition a **su placer** dans le texte, et qu'elle rend en italique. 1 246 entrées |
-| `dubinda` | ceux qu'elle **n'a pas su placer** : le fragment ne se retrouve pas tel quel, ou ne couvre que des mots-outils. 1 405 entrées, 1 556 fragments |
+| `dubinda` | ceux qu'elle **n'a pas su placer** : le fragment ne se retrouve pas tel quel, ou ne couvre que des mots-outils. 1 388 entrées, 1 531 fragments |
 
 Un souligné n'est ni `kursiva` ni `dubinda` quand il a trouvé sa place ailleurs
 — dans `fako`, dans `latina`, dans `simbolo`, ou comme locution. C'est le cas de *cinocefalo*
@@ -723,7 +738,7 @@ teksto   : Pikanta ed atakema (metaf.)
 teksto_k : Pikanta ed atakema \ue000(metaf.)\ue001
 ```
 
-`filets-dubinda.md` classe les 1 556 fragments non placés par famille, la plus
+`filets-dubinda.md` classe les 1 531 fragments non placés par famille, la plus
 douteuse en tête, avec la page et la vedette pour aller voir le fac-similé. Une
 seule famille demande un arbitrage — 18 fragments qui ressemblent à un
 qualificatif ou à une locution ; les autres sont des artefacts du relevé, où le

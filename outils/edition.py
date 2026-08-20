@@ -1942,6 +1942,19 @@ def strukturizar(e):
         # place. On cherche donc aussi la forme typographiee du releve.
         if not alt and elipso(u) != u:
             alt=elipso(u)
+        # Le trait coupe court : le releve ne rend que le DEBUT du qualificatif
+        # — « met » pour « (metaf.) », « alud » pour « (aludante homo od animalo
+        # vivanta) », « aci » pour « (acioni, obligacioni) ». Cherche tel quel,
+        # il ne se retrouve nulle part, et le domaine perdait son italique quand
+        # ses voisins l'avaient. Vingt cas dans le livre, tous des qualificatifs
+        # entre parentheses du meme article ; on exige trois lettres, pour qu'un
+        # fragment plus court ne designe pas n'importe quelle parenthese.
+        if (len(u) >= 3 and u.isalpha()
+                and not any(_trovar(u, t) for t in textoj)
+                and not (alt and any(_trovar(alt, t) for t in textoj))):
+            for t in textoj:
+                mq=re.search(r'\((%s[^()]*)\)' % re.escape(u), t, re.I)
+                if mq: alt=mq.group(1); break
         for t in textoj:
             m=_trovar(u, t); mot=u
             if not m and alt:
