@@ -6,7 +6,7 @@ scientifique. L'edition epuree lit ces filets et les rend. Voici ceux
 qu'elle n'a pas su placer : le fragment releve ne se retrouve pas tel
 quel dans le texte, ou ne couvre que des mots-outils.
 
-**1571 fragments**, sur 9472 articles. La premiere famille est
+**1558 fragments**, sur 9472 articles. La premiere famille est
 la seule qui demande un arbitrage : les autres sont des artefacts du
 releve des filets, ou le trait deborde ou s'arrete trop tot.
 
@@ -639,7 +639,7 @@ releve des filets, ou le trait deborde ou s'arrete trop tot.
 | 605 | urtiko | `a la` |
 | 611 | vektoro | `esas` |
 
-## Coupe au milieu d'un mot, ou reste du mot-vedette — 957
+## Coupe au milieu d'un mot, ou reste du mot-vedette — 944
 
 | page | mot-vedette | fragment souligne |
 |---:|---|---|
@@ -776,7 +776,6 @@ releve des filets, ou le trait deborde ou s'arrete trop tot.
 | 107 | diado | `iado` |
 | 108 | diafragmo | `tiko` |
 | 108 | diakoniso | `ismo` |
-| 109 | dianto | `anto` |
 | 109 | dicionario | `icionario` |
 | 109 | diciono | `iciono` |
 | 109 | diciplinar | `ioiplinar` |
@@ -817,7 +816,6 @@ releve des filets, ou le trait deborde ou s'arrete trop tot.
 | 125 | dushar | `r (la` |
 | 127 | ecitar | `anis` |
 | 127 | edero | `e qu` |
-| 129 | eglefino | `glefino` |
 | 129 | egorjar | `gorjar` |
 | 129 | egotismo | `gotismo` |
 | 129 | ekidno | `echidna (hystrix` |
@@ -909,7 +907,6 @@ releve des filets, ou le trait deborde ou s'arrete trop tot.
 | 184 | fuxino | `fuxi` |
 | 187 | gangliono | `angliono` |
 | 187 | gangrenar | `angrenar` |
-| 187 | ganso | `anso` |
 | 192 | germanio | `germ` |
 | 193 | giganto | `giganto. P` |
 | 195 | glicino | `licino` |
@@ -1050,7 +1047,6 @@ releve des filets, ou le trait deborde ou s'arrete trop tot.
 | 256 | kameo | `kame` |
 | 257 | kamiono | `amiono` |
 | 257 | kampaniar | `ampaniar` |
-| 257 | kampanulo | `ampanulo` |
 | 257 | kampar | `ampar` |
 | 258 | kampesho | `kampesh` |
 | 258 | kanalio | `kanali` |
@@ -1063,7 +1059,6 @@ releve des filets, ou le trait deborde ou s'arrete trop tot.
 | 263 | kapsulo | `artilri` |
 | 263 | kapuchino | `apuchino` |
 | 263 | karabino | `arabino` |
-| 263 | karabo | `arabo` |
 | 263 | karafo | `gene` |
 | 263 | karakolar | `istre` |
 | 264 | karavano | `zerti` |
@@ -1071,7 +1066,6 @@ releve des filets, ou le trait deborde ou s'arrete trop tot.
 | 265 | kareno | `areno` |
 | 267 | karpentar | `zesa` |
 | 267 | kartamino | `artamino` |
-| 267 | kartamo | `car-` |
 | 269 | kaskado | `ntometaf` |
 | 270 | kastanyeto | `or i` |
 | 270 | katafalko | `katafalko. E` |
@@ -1264,18 +1258,15 @@ releve des filets, ou le trait deborde ou s'arrete trop tot.
 | 372 | mikrono | `di m` |
 | 373 | milyeto | `ilieto` |
 | 373 | mimar | `imar` |
-| 373 | mimoso | `imoso` |
 | 375 | minucio | `talo` |
 | 376 | mirmekofila | `ofila` |
 | 376 | mirtelo | `mirte` |
-| 376 | mispelo | `mes-` |
 | 378 | modiliono | `o du` |
 | 383 | mortifikar | `ortifikar` |
 | 385 | mucilajo | `farmaci` |
 | 386 | multiplikar | `likar` |
 | 386 | multiplikar | `ulti` |
 | 386 | mumio | `mumi` |
-| 386 | mureno | `mure` |
 | 386 | murmurar | `murm` |
 | 388 | mutuala | `inte` |
 | 388 | muzelo | `uzelo` |
@@ -1388,7 +1379,6 @@ releve des filets, ou le trait deborde ou s'arrete trop tot.
 | 455 | posturar | `aludante persono qua esas ava` |
 | 459 | pretoro | `irek` |
 | 460 | primadono | `ntist` |
-| 460 | primulo | `pri-` |
 | 461 | prismato | `u, re` |
 | 461 | privilejo | `indi` |
 | 461 | probabla | `probab` |
@@ -1484,7 +1474,6 @@ releve des filets, ou le trait deborde ou s'arrete trop tot.
 | 527 | sika | `s ko` |
 | 532 | siringo | `lo k` |
 | 532 | siropo | `armac` |
-| 533 | skabioso | `skabios` |
 | 534 | skaleno | `kaleno` |
 | 534 | skalio | `kalio` |
 | 535 | skarmuchar | `aludante detach` |
@@ -1541,7 +1530,6 @@ releve des filets, ou le trait deborde ou s'arrete trop tot.
 | 556 | strikta | `asas` |
 | 556 | stroncio | `troncio` |
 | 557 | studiar | `coze` |
-| 557 | sturgo | `aci-` |
 | 558 | sublima | `a, p` |
 | 559 | subrekargo | `subrek` |
 | 559 | substitucar | `subst` |
@@ -1591,7 +1579,6 @@ releve des filets, ou le trait deborde ou s'arrete trop tot.
 | 615 | vibriono | `ibriono` |
 | 616 | viktimo | `tafore` |
 | 622 | votar | `majorit` |
-| 622 | vulnerario | `rario` |
 | 623 | wolframo | `wolfra` |
 | 625 | ye | `esas da la senco` |
 | 626 | yuro | `ar (o` |

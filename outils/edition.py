@@ -1880,7 +1880,9 @@ def strukturizar(e):
                                             or (len(f) >= 4 and f in _plata(u)))
                              for f in fakoj)
                   and u.lower() not in lat
-                  and not any(len(_plata(u)) >= 4 and _plata(u) in f for f in latp)
+                  and not any(_preskau_en(u.lower(), x) for x in lat)
+                  and not any(len(_plata(u)) >= 4 and _preskau_en(_plata(u), f)
+                              for f in latp)
                   and not any(_kongruas(u, L) or _enhavas(L, u) for L in lokoj)
                   # L'etiquette du symbole chimique a quitte le texte pour son
                   # champ : le filet qui la couvrait est place, non douteux.
@@ -1934,6 +1936,22 @@ def _nur_motouti(u):
     mots=[m.strip('.,;:()«»\'’\u201c\u201d "').lower() for m in u.split()]
     mots=[m for m in mots if m]
     return bool(mots) and all(m in MALGRANDA for m in mots)
+
+
+def _preskau_en(u, f):
+    """Le fragment se retrouve-t-il dans f, a UNE lettre pres ?
+
+    Le releve du filet porte la lecture de la MACHINE ; le champ `latina`, lui,
+    a pu etre redresse a l'oeil — « myrmedophaga » rendu « myrmecophaga », que
+    la vedette « mirmekofago » prouve. Cherche au caractere pres, le filet ne se
+    retrouvait plus, et le nom scientifique passait pour un souligne non place.
+    Une lettre d'ecart, c'est exactement ce qu'une correction de lecture change ;
+    on exige quatre lettres pour qu'un fragment bref ne couvre pas n'importe quoi.
+    """
+    if len(u) < 4 or len(u) > len(f):
+        return False
+    return any(sum(1 for a, b in zip(u, f[i:i+len(u)]) if a != b) <= 1
+               for i in range(len(f) - len(u) + 1))
 
 
 def _trovar(u, t):

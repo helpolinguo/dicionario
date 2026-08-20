@@ -13,3 +13,16 @@
 # cle	nom(s)	motif
 kapero@268:33	capparia spinosa	p416 : le livre porte « capparia spi nosa » — une espace parasite au milieu de « spinosa »
 oktopodo@411:34	octo-	p404 : le livre porte « - L. octo- », sans suite — verifie sur l original. L auteur donne l element latin, non un binome ; le tiret final le dit, et le rognage des fins de ligne l emportait.
+#
+# Six genres ou la lecture a pris une lettre pour une autre. La preuve est dans
+# le livre : l'auteur a transcrit lui-meme le nom latin en ido, et sa vedette
+# porte la lettre que le nom a perdue — « mirmekofago » dit le c de
+# « myrmecophaga », « motacilo » le t de « motacilla », « cetonio » le e de
+# « cetonia ». « mirmekoleono », deux articles plus loin, ecrit « myrmecoleon »
+# avec son c.
+mirmekofago@383:6	myrmecophaga	p376 : lu « myrmedophaga » ; la vedette porte « mirmeko- », et « mirmekoleono » ecrit « myrmecoleon »
+cetonio@92:26	cetonia	p085 : lu « catonia » ; la vedette porte « cetonio »
+faleno@166:15	phalaena	p159 : lu « phanaena » ; la vedette porte « faleno », avec son l
+motacilo@391:34	motacilla alba	p384 : lu « molacilla alba » ; la vedette porte « motacilo », avec son t
+kaprimulgo@269:48	caprimulgus europeus	p262 : lu « caprimalgus » ; la vedette porte « kaprimulgo », avec son u
+kokoso@291:3	cocos nucifera	p284 : lu « cocus nucifera » ; la vedette porte « kokoso », et le genre est Cocos

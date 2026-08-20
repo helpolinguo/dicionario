@@ -271,6 +271,33 @@ rencontrés :
   le savoir. `travail/latinaji.txt` porte les noms redressés à l'œil, avec la
   clé de `simboli.txt` — `vedetto@image:ligno` — et l'emporte sur le décodage.
 
+#### Le nom lu pour un autre
+
+Six genres portaient une lettre pour une autre, et le livre lui-même fournit la
+preuve : l'auteur a **transcrit** le nom latin en ido, et sa vedette porte la
+lettre que le nom avait perdue.
+
+| article | lu | rendu | ce qui le prouve |
+|---|---|---|---|
+| `mirmekofago` | *myrmedophaga* | *myrmecophaga* | la vedette dit *mirmeko-*, et `mirmekoleono` écrit *myrmecoleon* |
+| `cetonio` | *catonia* | *cetonia* | la vedette dit *cetonio* |
+| `faleno` | *phanaena* | *phalaena* | la vedette dit *faleno*, avec son *l* |
+| `motacilo` | *molacilla alba* | *motacilla alba* | la vedette dit *motacilo*, avec son *t* |
+| `kaprimulgo` | *caprimalgus* | *caprimulgus* | la vedette dit *kaprimulgo*, avec son *u* |
+| `kokoso` | *cocus nucifera* | *cocos nucifera* | la vedette dit *kokoso*, et le genre est *Cocos* |
+
+Ils sont sortis d'un contrôle qui vaut d'être gardé : comparer chaque genre à sa
+vedette, une fois l'un et l'autre ramenés à la même graphie (*ph* → *f*, *c* →
+*k*, *y* → *i*…). Sur les 823 noms, trente-cinq diffèrent d'une seule lettre ;
+vingt-neuf de ces écarts sont la différence normale entre le mot ido et le latin
+— *abieto* / *abies*, *elefanto* / *elephas* —, six étaient des lectures.
+
+Le relevé du filet, lui, porte la lecture de la **machine** : corrigé, le champ
+ne s'y retrouvait plus et le nom perdait sa place. La comparaison tolère donc
+**une lettre** d'écart — exactement ce qu'une correction de lecture change. Elle
+rattrape du même coup treize filets brisés par une fin de ligne : *anto* pour
+*dianthus*, *glefino* pour *aeglefinus*, *aci-* pour *acipenser*.
+
 ### Le symbole chimique (`simbolo`)
 
 Quatre-vingt-neuf articles donnent le symbole ou la formule d'un corps. Le
@@ -566,7 +593,7 @@ de colonnes ; il suffit d'y lire le texte.
 |---|---|
 | `sublineita` | tout ce qui est souligné dans l'entrée, remis bout à bout, les coupures de fin de ligne recollées. 6 542 entrées |
 | `kursiva` | ceux que l'édition a **su placer** dans le texte, et qu'elle rend en italique. 1 246 entrées |
-| `dubinda` | ceux qu'elle **n'a pas su placer** : le fragment ne se retrouve pas tel quel, ou ne couvre que des mots-outils. 1 416 entrées, 1 571 fragments |
+| `dubinda` | ceux qu'elle **n'a pas su placer** : le fragment ne se retrouve pas tel quel, ou ne couvre que des mots-outils. 1 406 entrées, 1 558 fragments |
 
 Un souligné n'est ni `kursiva` ni `dubinda` quand il a trouvé sa place ailleurs
 — dans `fako`, dans `latina`, dans `simbolo`, ou comme locution. C'est le cas de *cinocefalo*
@@ -582,7 +609,7 @@ teksto   : Pikanta ed atakema (metaf.)
 teksto_k : Pikanta ed atakema \ue000(metaf.)\ue001
 ```
 
-`filets-dubinda.md` classe les 1 571 fragments non placés par famille, la plus
+`filets-dubinda.md` classe les 1 558 fragments non placés par famille, la plus
 douteuse en tête, avec la page et la vedette pour aller voir le fac-similé. Une
 seule famille demande un arbitrage — 18 fragments qui ressemblent à un
 qualificatif ou à une locution ; les autres sont des artefacts du relevé, où le
