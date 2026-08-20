@@ -442,6 +442,23 @@ ordinaire. Le champ `kursiva`, lui, ne recense que les filets de la dactylo :
 une italique posée à l'œil est celle de l'éditeur, et c'est `filetoj.txt` qui en
 tient le compte.
 
+**Les deux directions se combinent.** Chez `prostezo`, l'article démontre la
+prothèse par quatre paires — *ica vice ca*, *iscala vice scala*, *lierre vice
+ierre*. La dactylo a souligné *ica* comme les autres, mais la règle des
+mots-outils l'écartait, *ica* étant aussi un démonstratif ordinaire ; et *ca*,
+le trait ne l'avait pas rendu. Une ligne retire le relevé de la liste des filets
+non placés — il n'y avait pas sa place, il est bon —, une seconde repose
+l'italique sur les deux mots :
+
+```
+prostezo@473:41   ica
+prostezo@473:41   {ica} vice {ca}, en L.
+```
+
+C'est le cas qui montre pourquoi cette couche est nécessaire : aucune règle ne
+distingue le *ica* cité de `prostezo` du *ica* pronom qui court dans le reste du
+livre.
+
 ### Le filet qui ne couvre que des mots-outils
 
 `absinto` portait *ek la* en italique au milieu de sa définition. Le garde-fou
