@@ -61,3 +61,20 @@ II. Ordonancoficiro :	II. Ordonanc-oficiro :	p395 ordonanco : compose de « ordo
 (aludante exmilitisto)	(aludante ex-militisto)	p234 invalida : « ex- » est vedette du livre, et le livre ecrit « ex-pirato » chez korsaro. Le trait est tombe au recollage de la ligne, que le filet montre coupee en « aludante ex- » puis « militisto ».
 (Niaepoke)	(Nia-epoke)	p514 saturnali : le livre ecrit « nia-epoke » huit fois et « niaepoke » une seule, ici, ou la ligne cassait a la jointure — le filet le montre, coupe en « Nia- » puis « epoke ».
 katoliki :- episkopo	katoliki : episkopo	p452 pontifiko : « Che la katoliki : episkopo. » Le deux-points introduit deja ; le tiret qui le suit ne separe rien, et le livre n en porte aucun autre — onze fois la virgule appelle un tiret d incise, jamais le deux-points.
+#
+# L'ido ne porte pas d'accent. Le tapuscrit n'en frappe que sur ce qu'il CITE
+# d'une autre langue — « avoue », « ampere », « noel », « poele »,
+# « cooperation », « Bruder » —, sur les noms propres — Linne, Pantheon,
+# Eugene Pottier, Andre Lalande, Bemont, Plattner — et dans les quatre articles
+# qui parlent des signes eux-memes : diakritika, cirkonflexo, tremao, grava,
+# ou « la e la » est l'exemple francais. Partout ailleurs, l'accent est une
+# lecture. Dix mots ido ou latins le portaient sans raison ; sept etaient deja
+# redresses en aval — six par la relecture, « redigas », « exter »,
+# « karakterizata »..., et « en ta o ca » par le jugement lexical, qui lit la
+# le « o » de l'alternative et non un « a » accentue. Restent les trois que
+# rien ne voyait. Deux sont entre guillemets — « liliacei », « labiacei » —,
+# ce qui interdit d'en faire une regle sur la seule citation : on les releve
+# un a un.
+(muziko). (à) Espineto	(muziko). (a) Espineto	p536 sordino : l ido ne porte pas d accent
+familio "liliacéi"	familio "liliacei"	p599 tulipo : l ido ne porte pas d accent
+familio "lábiacei"	familio "labiacei"	p632 yuko : l ido ne porte pas d accent

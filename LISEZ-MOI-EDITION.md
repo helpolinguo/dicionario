@@ -426,6 +426,27 @@ placés, sous la famille « mots-outils seuls » de `filets-dubinda.md`, qui com
 désormais 49 entrées. La liste de travail et l'édition se règlent sur la même
 liste de mots.
 
+### L'accent, que l'ido ne porte pas
+
+Le tapuscrit n'accentue que ce qu'il **cite** d'une autre langue — *avoué*,
+*ampère*, *noël*, *poële*, *coöperation*, *Brüder* —, les **noms propres** —
+Linné, Panthéon, Eugène Pottier, André Lalande, Bémont, Plättner — et les trois
+articles qui parlent des signes eux-mêmes : `diakritika`, `cirkonflexo`,
+`tremao`, plus le *la e là* français de `grava`. Partout ailleurs, un accent est
+une lecture.
+
+**Dix mots** ido ou latins en portaient un sans raison. Sept étaient déjà
+redressés en aval — six par la relecture (*redigás* → *redigas*, *éxter* →
+*exter*, *karakterizáta* → *karakterizata*…), et un par le jugement lexical, qui
+lit dans le *à* de `kondutar` le **o** de l'alternative : *en ta o ca
+cirkonstanco*, et non un *a* accentué. Restent les trois que rien ne voyait :
+*(à)* chez `sordino`, *liliacéi* chez `tulipo`, *lábiacei* chez `yuko`.
+
+Les deux derniers sont **entre guillemets**, ce qui interdit d'en faire une
+règle — la citation est justement ce qui autorise l'accent ailleurs. On les
+relève donc un à un, dans `travail/texti.txt`. Après quoi il ne reste, dans les
+deux éditions, que des accents qui se justifient.
+
 ### Le tiret d'affixe détaché de son affixe
 
 Chez `metro`, *1/10.000.000- ima* est *1/10.000.000-**ima***, la dix-millionième
