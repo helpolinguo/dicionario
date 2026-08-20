@@ -426,6 +426,22 @@ placés, sous la famille « mots-outils seuls » de `filets-dubinda.md`, qui com
 désormais 49 entrées. La liste de travail et l'édition se règlent sur la même
 liste de mots.
 
+### La numérotation des sens, jusqu'à VIII
+
+Le découpage des sens s'arrêtait au chiffre **VI**. Quatre articles vont plus
+loin — `punto`, `exemplo` et `lineo` ont sept sens, `modo` en a huit — et leur
+dernier sens restait collé au précédent, son numéro au milieu du texte :
+*« … pos singla gano-stroko. -VII.(tipogr.) Mezuro qua determinas… »*. La règle
+couvre maintenant V, VI, VII et VIII d'un seul tenant, comme le faisait déjà
+celle qui **ôte** le numéro en tête de sens. Le livre ne va pas au-delà : aucun
+article ne porte de IX.
+
+Chez `modo`, le sens VII ouvre sur son domaine puis se subdivise en chiffres
+arabes — *VII. (muziko). 1. … 2. …*. Les deux sous-sens deviennent des sens à
+part entière, et VII se réduit à son qualificatif : c'est la forme que le livre
+donne déjà à trois autres sens — *(anke metaf.)* chez `lurar`, *(videz « e »)*
+chez `ed`, *(sinonimo di « spermatozoido »)* chez `zoospermo`.
+
 ### L'accent, que l'ido ne porte pas
 
 Le tapuscrit n'accentue que ce qu'il **cite** d'une autre langue — *avoué*,

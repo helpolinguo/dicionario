@@ -105,7 +105,7 @@ RE_LATINA = re.compile(
     r'(?:(?<!ex\.)[-–.(,;:]|^)\s*(?:L\.\s*|L\s+(?=[a-z]))'
     r'([A-Za-z][A-Za-z-]*(?:\s+[A-Za-z][A-Za-z-]*){0,3}'
     r'(?:\s*,\s*[A-Za-z][A-Za-z-]*(?:\s+[A-Za-z][A-Za-z-]*){0,3})?)'
-    r'\s*(?=[-–)(:;,]|\.[\s)–-]|\.?$|\s(?:I{1,3}|IV|V|VI)\.)')
+    r'\s*(?=[-–)(:;,]|\.[\s)–-]|\.?$|\s(?:I{1,3}|IV|VI{0,3})\.)')
 # Les sens se separent par « - II. », mais le tiret manque souvent : « ...
 # komenco-punto e fino-parto. II. (gram.) ... ». On coupe donc aussi sur un
 # point suivi du numero de sens, ce qui vaut pour 107 articles.
@@ -131,10 +131,16 @@ RE_LATINA = re.compile(
 # doublait celui que les editions posent elles-memes — « 1. I (zool.) Mamifero
 # karnivora... » chez « leono ». L'espace y est facultative : la dactylo colle
 # le numero a la parenthese aussi souvent qu'elle l'en separe.
+# Le livre numerote jusqu'a VIII — « modo » a huit sens, « exemplo », « lineo »
+# et « punto » en ont sept. La suite s'arretait a VI : « -VII.(tipogr.) » chez
+# « punto » restait dans le sens VI, son numero au milieu du texte.
+# « VI{0,3} » couvre V, VI, VII et VIII d'un seul tenant, comme le fait deja la
+# regle qui OTE le numero en tete de sens. Le livre ne va pas au-dela : aucun
+# article ne porte de IX.
 RE_SENCO  = re.compile(r'\s*(?:[-–]\s*|(?<=[.)])\s*)'
-                       r'(?=(?:I{1,3}|IV|V|VI)[.,]\s?'
-                       r'|(?:I{1,3}|IV|V|VI)\s+[A-Za-zÀ-ÿ]'
-                       r'|(?:I{1,3}|IV|V|VI)\s*\('
+                       r'(?=(?:I{1,3}|IV|VI{0,3})[.,]\s?'
+                       r'|(?:I{1,3}|IV|VI{0,3})\s+[A-Za-zÀ-ÿ]'
+                       r'|(?:I{1,3}|IV|VI{0,3})\s*\('
                        r'|[l\d]\d?\.\s*[A-ZÀ-Ý(])')
 # L'auteur numerote parfois ses sens ENTRE PARENTHESES : « (1) ... (2) ... ».
 # Ecrits ainsi, ils tiennent le plus souvent en une seule phrase — les morceaux
@@ -1027,7 +1033,7 @@ def analizar(e, lexique=None):
     # second sens qu'elle n'a pas frappe. Seul, le numero ne dit rien, et
     # l'edition ecarte deja ses pareils au milieu du texte. On exige le tiret
     # qui l'annonce, pour ne pas rogner « la rejo Francisko I ».
-    resto = re.sub(r'[.;,]?\s*[-–]\s*(?:I{1,3}|IV|V|VI|IX|X)\.?$', '', resto)
+    resto = re.sub(r'[.;,]?\s*[-–]\s*(?:I{1,3}|IV|VI{0,3}|IX|X)\.?$', '', resto)
     resto = resto.lstrip(' -–.,;:')
     # « ed. (Videz "e"). » : la parenthese porte un RENVOI, pas un domaine. Prise
     # pour un domaine, elle laissait l'article sans definition du tout.
@@ -1044,7 +1050,7 @@ def analizar(e, lexique=None):
     # le regime appartient au marqueur de transitivite, pas a la definition,
     # qui commencait donc par une parenthese orpheline.
     if e['fako']:
-        m2 = re.match(r'^[\s.,;:\u2013-]*\(([^()]{1,40})\)\s*\.?\s*(?=[-\u2013]?\s*(?:[IVX]{1,3}\.|[A-Z\u00c0-\u00dd]))', resto)
+        m2 = re.match(r'^[\s.,;:\u2013-]*\(([^()]{1,40})\)\s*\.?\s*(?=[-\u2013]?\s*(?:[IVX]{1,4}\.|[A-Z\u00c0-\u00dd]))', resto)
         if m2:
             # La seconde parenthese est un renseignement de meme nature que la
             # premiere, et lui revient le meme traitement : minuscule initiale,

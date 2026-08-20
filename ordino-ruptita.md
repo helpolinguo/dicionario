@@ -234,7 +234,7 @@ Sa place est apres « sordida », f.542 (image 549, ligne 46) — 2 articles plu
 Lectures qui tiendraient dans la place occupee : **soridno**, **sorino**.
 
 ```
-sordino. I. (muziko). (à) Espineto, di qua la kordin vibrigas mikra peci de ligno envelopita en drapo, por moderar la soni ; (b) Kono de kartono, kun truo ye la bazo, quan onu lokizas en la funelo di 
+sordino. I. (muziko). (a) Espineto, di qua la kordin vibrigas mikra peci de ligno envelopita en drapo, por moderar la soni ; (b) Kono de kartono, kun truo ye la bazo, quan onu lokizas en la funelo di 
 ```
 
 ### *stejo — f.551 (image 558, ligne 52)
