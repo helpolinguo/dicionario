@@ -403,6 +403,25 @@ donita*. Cinq caractères pour un mot de cinq lettres — c'est **punto**, et la
 définition le dit : *Di qua la centro eskartesas de punto donita*, le centre qui
 s'écarte d'un point donné. La correction est dans `travail/texti.txt`.
 
+### Le filet que l'œil écarte
+
+La dactylo souligne le domaine, la locution, le mot cité, le nom scientifique.
+Le relevé, lui, prend aussi ce qui n'est pas une intention : le trait d'une
+ligne voisine, ou qui déborde d'un mot sur le suivant. Deux fois, un mot plein
+s'est ainsi retrouvé en italique au milieu d'une définition — *Agar* chez
+`sordino`, où le trait de *(metaf.)* a mordu sur le mot suivant, et *multa* chez
+`ja`, où le même trait de travers a laissé derrière lui *kan*, morceau de
+*kande*.
+
+**Aucune règle ne peut les distinguer** d'un mot cité : le livre en cite
+beaucoup, et souvent un seul mot — *Ido* chez `logiko`, *ohm* chez `volto`,
+*multa* chez `kelka`, où il oppose justement *kelka* à *multa* et à *plura*.
+Cent quarante-deux italiques ne couvrent qu'un mot, et la grande majorité sont
+légitimes.
+
+Ils s'écartent donc **un par un**, dans `travail/filetoj.txt`, avec le motif en
+regard. Cette couche ne fait que retirer un relevé, jamais en poser un.
+
 ### Le filet qui ne couvre que des mots-outils
 
 `absinto` portait *ek la* en italique au milieu de sa définition. Le garde-fou
@@ -780,6 +799,7 @@ lu. Elles se relisent comme un apparat critique :
 | `travail/subvorti.txt` | le rattachement d'un article à son voisin |
 | `travail/simboli.txt` | le symbole chimique relevé sur la page |
 | `travail/latinaji.txt` | le nom scientifique relevé sur la page |
+| `travail/filetoj.txt` | un **soulignement relevé que l'œil écarte** : le trait d'une ligne voisine, ou qui déborde d'un mot sur le suivant. Cette couche ne fait que **retirer** un relevé, jamais en poser un |
 | `travail/dividi.txt` | **deux articles frappés sur une même ligne**, que le repérage automatique ne sait pas séparer faute de code de langues entre eux : *shovar* était noyé dans *shokar*, à la fin d'une note |
 | `travail/lignes_plus.txt` | une ligne de grille perdue, restituée |
 | `travail/exceptions_manuel.txt` | la cellule elle-même |

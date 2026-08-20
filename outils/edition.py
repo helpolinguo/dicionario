@@ -1680,6 +1680,32 @@ def apartigar_simbolon(e):
     return 0
 
 
+_FILETOJ = None
+
+
+def filetoj_ekartita(fichier=f"{T}/filetoj.txt"):
+    """Les filets releves que l'oeil ecarte : vedetto@image:ligno -> fragments.
+
+    Le releve prend aussi ce qui n'est pas une intention — le trait d'une ligne
+    voisine, un trait qui deborde d'un mot sur le suivant. L'edition ne peut pas
+    toujours le savoir : un mot plein souligne au milieu d'une definition
+    ressemble a un mot cite, et le livre en cite beaucoup. Ce fichier ne fait que
+    RETIRER un releve, jamais en poser un.
+    """
+    global _FILETOJ
+    if _FILETOJ is None:
+        _FILETOJ = {}
+        if os.path.exists(fichier):
+            with open(fichier, encoding='utf-8') as h:
+                for l in h:
+                    if l.startswith('#') or not l.strip():
+                        continue
+                    q = l.rstrip('\n').split('\t')
+                    if len(q) >= 2 and q[0].strip() and q[1].strip():
+                        _FILETOJ.setdefault(q[0].strip(), set()).add(q[1].strip())
+    return _FILETOJ
+
+
 def _rekolar(subl, textoj):
     """Le filet coupe par une fin de ligne : ses deux moities n'en font qu'une.
 
@@ -1717,6 +1743,9 @@ def strukturizar(e):
     introuvables ; on les detache, avec leur qualificatif de domaine.
     """
     subl=_rekolar(sublineajoj(e), e.get('senci') or [])
+    _for=filetoj_ekartita().get("%s@%d:%d" % (e.get('vedetto'),
+                                              e.get('image', -1), e.get('ligno', -1)))
+    if _for: subl=[u for u in subl if u not in _for]
     e['sublineita']=subl
     strukt=[]; n_sub=0
     for t in (e.get('senci') or []):

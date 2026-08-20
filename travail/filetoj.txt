@@ -1,0 +1,18 @@
+# Filets releves que l'oeil ECARTE.
+#
+# La dactylo souligne le domaine, la locution qui porte sa propre definition,
+# le mot cite, le nom scientifique. Le releve, lui, prend aussi ce qui n'est pas
+# une intention : le trait d'une ligne voisine, un trait qui deborde d'un mot
+# sur le suivant, une rature. L'edition ne peut pas toujours le savoir — un mot
+# plein souligne au milieu d'une definition ressemble a un mot cite, et le livre
+# en cite beaucoup : « Ido » chez logiko, « ohm » chez volto, « multa » chez
+# kelka, ou il oppose « kelka » a « multa » et a « plura ».
+#
+# On ecarte donc a l'oeil, un par un, avec le motif en regard. Rien n'est
+# devine : ce fichier ne fait que RETIRER un releve, jamais en poser un.
+#
+# La cle est celle de simboli.txt et de latinaji.txt : vedetto@image:ligno.
+#
+# cle	fragment ecarte	motif
+sordino@550:2	Agar	p543 : le trait du domaine « (metaf.) » deborde sur le premier mot de la definition. « Agar sen bruiso » n'est ni une locution ni un mot cite
+ja@253:8	multa	p246 : « Sen vartar til kande fluabos multa tempo » — « multa » n'y est ni oppose ni cite ; le meme filet a laisse « kan » derriere lui, morceau de « kande », qui trahit un trait pose de travers
