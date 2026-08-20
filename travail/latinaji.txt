@@ -26,3 +26,7 @@ faleno@166:15	phalaena	p159 : lu « phanaena » ; la vedette porte « faleno »,
 motacilo@391:34	motacilla alba	p384 : lu « molacilla alba » ; la vedette porte « motacilo », avec son t
 kaprimulgo@269:48	caprimulgus europeus	p262 : lu « caprimalgus » ; la vedette porte « kaprimulgo », avec son u
 kokoso@291:3	cocos nucifera	p284 : lu « cocus nucifera » ; la vedette porte « kokoso », et le genre est Cocos
+#
+# Deux de plus, ou la preuve n'est pas dans la vedette seule.
+moskardino@391:16	muscardinus avellanarius	p384 : lu « avelianarius » — le double l pris pour « li ». Le genre Muscardinus n a qu une espece, avellanarius, du latin avellana, la noisette
+fritilario@187:28	fritillaria	p180 : lu « fritilius » ; la vedette « fritilario » transcrit Fritillaria, et l article dit « Planto liliacea » — c est bien le genre, non un binome

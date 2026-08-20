@@ -1081,6 +1081,13 @@ def analizar(e, lexique=None):
     _man = latinaji_manuala().get("%s@%d:%d" % (e.get('vedetto'), e.get('image', -1),
                                                 e.get('ligno', -1)))
     if _man:
+        # Le filet de la dactylo couvre le nom TEL QUE LA MACHINE L'A LU. Corrige
+        # ici, il ne s'y retrouverait plus, et le soulignement passerait pour non
+        # place — « fritilius » rendu « fritillaria » s'ecarte de trop pour que la
+        # tolerance d'une lettre le rattrape. On garde donc la lecture le temps du
+        # placement ; strukturizar la consomme et l'efface.
+        if e['latina']:
+            e['_latina_lekita'] = list(e['latina'])
         e['latina'] = [x.strip() for x in _man.split(';') if x.strip()]
     e['simbolo']= None
     # Un NUMERO de sens entre parentheses n'est pas un domaine : « romano. (I)
@@ -1872,8 +1879,9 @@ def strukturizar(e):
     # couvre chaque nom a part : cherche au caractere pres, le second passait
     # pour un souligne non place. On accepte donc le MORCEAU, a partir de quatre
     # lettres.
-    lat={x.lower() for x in (e.get('latina') or [])}
-    latp={_plata(x) for x in (e.get('latina') or [])}
+    lat={x.lower() for x in (e.get('latina') or [])
+         + (e.pop('_latina_lekita', None) or [])}
+    latp={_plata(x) for x in lat}
     lokoj=[x['loko'] for b in strukt for x in b['sub']]
     e['dubinda']=[u for u in dub
                   if not any(_plata(u) and (_plata(u) in f

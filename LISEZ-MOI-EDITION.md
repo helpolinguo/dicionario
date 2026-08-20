@@ -285,6 +285,8 @@ lettre que le nom avait perdue.
 | `motacilo` | *molacilla alba* | *motacilla alba* | la vedette dit *motacilo*, avec son *t* |
 | `kaprimulgo` | *caprimalgus* | *caprimulgus* | la vedette dit *kaprimulgo*, avec son *u* |
 | `kokoso` | *cocus nucifera* | *cocos nucifera* | la vedette dit *kokoso*, et le genre est *Cocos* |
+| `moskardino` | *avelianarius* | *avellanarius* | le double *l* pris pour *li* ; le genre *Muscardinus* n'a qu'une espèce |
+| `fritilario` | *fritilius* | *fritillaria* | la vedette *fritilario* transcrit *Fritillaria*, et l'article dit *Planto liliacea* |
 
 Ils sont sortis d'un contrôle qui vaut d'être gardé : comparer chaque genre à sa
 vedette, une fois l'un et l'autre ramenés à la même graphie (*ph* → *f*, *c* →
@@ -293,10 +295,14 @@ vingt-neuf de ces écarts sont la différence normale entre le mot ido et le lat
 — *abieto* / *abies*, *elefanto* / *elephas* —, six étaient des lectures.
 
 Le relevé du filet, lui, porte la lecture de la **machine** : corrigé, le champ
-ne s'y retrouvait plus et le nom perdait sa place. La comparaison tolère donc
-**une lettre** d'écart — exactement ce qu'une correction de lecture change. Elle
-rattrape du même coup treize filets brisés par une fin de ligne : *anto* pour
-*dianthus*, *glefino* pour *aeglefinus*, *aci-* pour *acipenser*.
+ne s'y retrouvait plus et le nom perdait sa place. Deux réponses, l'une et
+l'autre nécessaires. La comparaison tolère **une lettre** d'écart — exactement
+ce qu'une correction de lecture change —, ce qui rattrape du même coup treize
+filets brisés par une fin de ligne : *anto* pour *dianthus*, *glefino* pour
+*aeglefinus*, *aci-* pour *acipenser*. Et quand l'écart est plus grand —
+*fritilius* rendu *fritillaria* —, la lecture de la machine est **gardée le
+temps du placement**, puis effacée : le filet trouve sa place, et le champ ne
+garde que la forme retenue.
 
 ### Le symbole chimique (`simbolo`)
 
