@@ -2212,9 +2212,9 @@ def konstrui():
         for k,t in enumerate(S):
             # Ponctuation orpheline en tete de sens : elle vient d'une coupure
             # de l'original, non du texte. « titrar » commencait par un point.
-            S[k]=kompozita(elipso(ekvilibrigi_parentezojn(pointi_abrevo(fermi_parentezon(
+            S[k]=multipliko(kompozita(elipso(ekvilibrigi_parentezojn(pointi_abrevo(fermi_parentezon(
                 fermi_kvalifikilon(orfa_parentezo(formuli(cifri(pointi_sencoj(
-                    surcharge(espacar(netigar_punktuo(t)))))))))).lstrip('.,;:) ').strip())))
+                    surcharge(espacar(netigar_punktuo(t)))))))))).lstrip('.,;:) ').strip()))))
     # (cifri et formuli n'interviennent qu'ici, une fois la relecture posee)
     # Second passage des corrections a l'oeil. Une ligne de vorti.txt ecrite
     # d'apres le texte RENDU ne pouvait pas s'appliquer plus haut : « de l til
@@ -2807,6 +2807,21 @@ KOMPOZITA = (('yurocienco', 'yuro-cienco'),
 RE_KOMPOZITA = tuple(
     (re.compile(r'(?<![-A-Za-z\u00e0-\u00ff])%s(?![A-Za-z\u00e0-\u00ff])' % a), b)
     for a, b in KOMPOZITA)
+
+
+def multipliko(t):
+    """Le « x » de la machine rendu au signe de la multiplication.
+
+    La machine n'avait pas de croix : la dactylo frappe la lettre. Deux fois
+    dans le livre, et deux fois devant un NOMBRE — « ... x 1000 » chez « kilo- »,
+    « oktiliono x 1.000.000 » chez « noniliono ». C'est la condition : les trois
+    autres « x » isoles sont des inconnues, et aucune n'est suivie d'un chiffre —
+    « inter x, y, z » chez « konexo », « 2 D x + 2 Ey » chez « koniko »,
+    « y = sin. x » chez « sinusoido ».
+
+    Se pose APRES cifri(), qui rend au « lOOO » de la dactylo ses chiffres.
+    """
+    return re.sub(r'(?<![A-Za-z\u00e0-\u00ff0-9])x(?=[\s\u00a0]+\d)', '\u00d7', t)
 
 
 def kompozita(t):

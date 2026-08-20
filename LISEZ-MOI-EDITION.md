@@ -545,6 +545,24 @@ règle — la citation est justement ce qui autorise l'accent ailleurs. On les
 relève donc un à un, dans `travail/texti.txt`. Après quoi il ne reste, dans les
 deux éditions, que des accents qui se justifient.
 
+### Le « x » qui est une croix
+
+La machine n'avait pas de signe de multiplication : la dactylo frappe la lettre.
+Deux fois dans le livre, et deux fois **devant un nombre** — *« … x 1000 »* chez
+`kilo-`, *oktiliono x 1.000.000* chez `noniliono`. C'est la condition, et elle
+suffit : les trois autres *x* isolés du livre sont des inconnues, et aucune n'est
+suivie d'un chiffre — *inter x, y, z* (`konexo`), *2 D x + 2 Ey* (`koniko`),
+*y = sin. x* (`sinusoido`). La règle se pose après `cifri()`, qui rend au *lOOO*
+de la dactylo ses chiffres.
+
+**Deux exposants perdus** sont apparus en même temps. `oktiliono` se lisait *10*
+et `noniliono` *10 ,* : l'exposant, frappé sur une ligne à part, ne se rattachait
+à rien — le même accident que les formules chimiques d'`aluno` et de `sukro`. Le
+livre donne lui-même la série longue, 10 puissance 6n : *miliono* 10⁶,
+*septiliono* 10⁴², *deciliono* 10⁶⁰. L'octillion y tient la place n=8, le
+nonillion n=9 : **10⁴⁸** et **10⁵⁴**. Et `noniliono` le confirme dans son propre
+texte — *od oktiliono × 1.000.000*, soit 10⁴⁸ fois 10⁶.
+
 ### Le tiret d'affixe détaché de son affixe
 
 Chez `metro`, *1/10.000.000- ima* est *1/10.000.000-**ima***, la dix-millionième
