@@ -6,7 +6,7 @@ scientifique. L'edition epuree lit ces filets et les rend. Voici ceux
 qu'elle n'a pas su placer : le fragment releve ne se retrouve pas tel
 quel dans le texte, ou ne couvre que des mots-outils.
 
-**1557 fragments**, sur 9472 articles. La premiere famille est
+**1556 fragments**, sur 9472 articles. La premiere famille est
 la seule qui demande un arbitrage : les autres sont des artefacts du
 releve des filets, ou le trait deborde ou s'arrete trop tot.
 
@@ -638,7 +638,7 @@ releve des filets, ou le trait deborde ou s'arrete trop tot.
 | 605 | urtiko | `a la` |
 | 611 | vektoro | `esas` |
 
-## Coupe au milieu d'un mot, ou reste du mot-vedette — 944
+## Coupe au milieu d'un mot, ou reste du mot-vedette — 943
 
 | page | mot-vedette | fragment souligne |
 |---:|---|---|
@@ -1395,7 +1395,6 @@ releve des filets, ou le trait deborde ou s'arrete trop tot.
 | 471 | pudlar | `ar l` |
 | 471 | pudorar | `netran` |
 | 471 | pudro | `reme` |
-| 471 | pulo | `Lor ludo per karti, biliardo, en la parii pri kavalkuri` |
 | 473 | purpuro | `murex brancari` |
 | 474 | quadranto | `quadrant` |
 | 474 | quadri- | `quadri` |

@@ -1,0 +1,25 @@
+# ECARTE — ce fichier repond a l'ANCIENNE numerotation des fiches.
+#
+# Les fiches ont ete renumerotees ; les reponses ci-dessous designent donc
+# d'autres mots que ceux qu'elles visaient. Le decalage est de dix-huit :
+# la reponse « 196 instruktar » vise la fiche 178, « 200 jeleo » la fiche 182,
+# « 184 agar » la fiche 166 — et les fichiers r_v2_* repondent deja a ces
+# trois-la sous le bon numero.
+#
+# Applique tel quel, il corrompait cinq articles, en remplacant un mot juste
+# par la reponse d'un autre :
+#
+#   kalfatar    « stopar la junturi »        ->  « stopar la agar »
+#   receptaklo  « la karpelo (o karpeli) »   ->  « (o instruktar) »
+#   blonda      « klar-kastanea »            ->  « klar-jeleo »
+#   marono      « plu grosa kam kastaneo »   ->  « kam lojeyo »
+#   pulo        « la parii pri kavalkuri »   ->  « pri arkaika »
+#
+# Il est garde ici, hors du dossier que lit appliquer_jugements, pour que la
+# trace subsiste.
+#
+184	agar
+196	instruktar
+200	jeleo
+201	lojeyo
+205	arkaika

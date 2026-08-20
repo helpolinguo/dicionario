@@ -707,7 +707,7 @@ de colonnes ; il suffit d'y lire le texte.
 |---|---|
 | `sublineita` | tout ce qui est souligné dans l'entrée, remis bout à bout, les coupures de fin de ligne recollées. 6 542 entrées |
 | `kursiva` | ceux que l'édition a **su placer** dans le texte, et qu'elle rend en italique. 1 246 entrées |
-| `dubinda` | ceux qu'elle **n'a pas su placer** : le fragment ne se retrouve pas tel quel, ou ne couvre que des mots-outils. 1 406 entrées, 1 558 fragments |
+| `dubinda` | ceux qu'elle **n'a pas su placer** : le fragment ne se retrouve pas tel quel, ou ne couvre que des mots-outils. 1 405 entrées, 1 556 fragments |
 
 Un souligné n'est ni `kursiva` ni `dubinda` quand il a trouvé sa place ailleurs
 — dans `fako`, dans `latina`, dans `simbolo`, ou comme locution. C'est le cas de *cinocefalo*
@@ -723,7 +723,7 @@ teksto   : Pikanta ed atakema (metaf.)
 teksto_k : Pikanta ed atakema \ue000(metaf.)\ue001
 ```
 
-`filets-dubinda.md` classe les 1 558 fragments non placés par famille, la plus
+`filets-dubinda.md` classe les 1 556 fragments non placés par famille, la plus
 douteuse en tête, avec la page et la vedette pour aller voir le fac-similé. Une
 seule famille demande un arbitrage — 18 fragments qui ressemblent à un
 qualificatif ou à une locution ; les autres sont des artefacts du relevé, où le
@@ -852,6 +852,27 @@ lu. Elles se relisent comme un apparat critique :
 | `travail/lignes_plus.txt` | une ligne de grille perdue, restituée |
 | `travail/exceptions_manuel.txt` | la cellule elle-même |
 | `travail/relire/reponses/` | les corrections rendues par la relecture, article par article |
+
+**Un jeu de réponses écarté.** Les jugements lexicaux se rendent par fiche
+numérotée. Les fiches ont été renumérotées en cours de route, et un fichier de
+réponses de la **première** numérotation était resté dans le dossier que lit la
+chaîne : décalé de dix-huit, il appliquait à cinq articles la réponse d'une
+autre fiche, remplaçant un mot juste par un mot étranger.
+
+| article | lu | remplacé à tort par |
+|---|---|---|
+| `kalfatar` | *stopar la junturi* | *stopar la agar* |
+| `receptaklo` | *la karpelo (o karpeli)* | *(o instruktar)* |
+| `blonda` | *klar-kastanea* | *klar-jeleo* |
+| `marono` | *plu grosa kam kastaneo* | *kam lojeyo* |
+| `pulo` | *la parii pri kavalkuri* | *pri arkaika* |
+
+Trois de ses cinq réponses sont d'ailleurs **déjà rendues** sous le bon numéro
+par les fichiers de la seconde numérotation — *instruktar* pour `misiono`,
+*jeleo* pour `gelatino`, *Agar* pour `ludar` : le fichier était redondant autant
+que nuisible. Il est conservé hors du dossier de lecture,
+`travail/juger/r04_NUMEROTACION_ANCIENNE.txt`, avec le relevé de ce qu'il
+faisait.
 
 Une piste a été essayée puis abandonnée — corriger les vedettes par l'ordre
 alphabétique global : sans contrainte de langue elle produit *adiar* → *adiao*.
