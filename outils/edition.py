@@ -1711,10 +1711,41 @@ def filetoj_ekartita(fichier=f"{T}/filetoj.txt"):
                     if len(q) < 2 or not q[0].strip() or not q[1].strip():
                         continue
                     u = q[1].strip()
-                    if '{' in u:
-                        continue          # ligne de POSE, lue par filetoj_pozita
+                    if '{' in u or u.startswith('>'):
+                        continue          # POSE : filetoj_pozita, filetoj_rendita
                     _FILETOJ.setdefault(q[0].strip(), set()).add(u)
     return _FILETOJ
+
+
+_RENDITAJ = None
+
+
+def filetoj_rendita(fichier=f"{T}/filetoj.txt"):
+    """Les filets RENDUS au releve : vedetto@image:ligno -> fragments.
+
+    Le trait etait la, le releve ne l'a pas vu. Rendu ici, il reprend le chemin
+    ordinaire : la locution qui porte sa propre definition ouvre son alinea, le
+    reste passe en italique. C'est ce dont « pseudonima » avait besoin —
+    « Pseudonimo : Nomo ne-exakta » est une sous-entree, mais aucun filet ne la
+    designait, et rien ne la distinguait d'une phrase.
+
+    La ligne commence par « > » : aucun releve du livre ne porte ce signe.
+    """
+    global _RENDITAJ
+    if _RENDITAJ is None:
+        _RENDITAJ = {}
+        if os.path.exists(fichier):
+            with open(fichier, encoding='utf-8') as h:
+                for l in h:
+                    if l.startswith('#') or not l.strip():
+                        continue
+                    q = l.rstrip('\n').split('\t')
+                    if len(q) < 2 or not q[1].strip().startswith('>'):
+                        continue
+                    u = q[1].strip()[1:].strip()
+                    if u:
+                        _RENDITAJ.setdefault(q[0].strip(), []).append(u)
+    return _RENDITAJ
 
 
 _POZITAJ = None
@@ -1798,6 +1829,10 @@ def strukturizar(e):
     _for=filetoj_ekartita().get("%s@%d:%d" % (e.get('vedetto'),
                                               e.get('image', -1), e.get('ligno', -1)))
     if _for: subl=[u for u in subl if u not in _for]
+    for u in filetoj_rendita().get("%s@%d:%d" % (e.get('vedetto'),
+                                                e.get('image', -1),
+                                                e.get('ligno', -1)), ()):
+        if u not in subl: subl.append(u)
     e['sublineita']=subl
     strukt=[]; n_sub=0
     for t in (e.get('senci') or []):

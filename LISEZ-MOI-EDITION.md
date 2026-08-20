@@ -110,7 +110,7 @@ cherchent comme une vedette**.
 | `sub[].teksto` | sa définition |
 | `sub[].kodo`, `sub[].lingui` | présents sur la seule sous-entrée qui vient d'un **rattachement** (voir plus bas) : l'article rattaché garde son code de langues |
 
-103 sous-entrées dans 84 entrées, dont 41 portent un domaine propre.
+104 sous-entrées dans 85 entrées, dont 41 portent un domaine propre.
 
 Une même locution peut relever de **deux** entrées, chacune avec sa
 définition : *estado civila* se range sous `civila`, qui la définit au long,
@@ -458,6 +458,17 @@ prostezo@473:41   {ica} vice {ca}, en L.
 C'est le cas qui montre pourquoi cette couche est nécessaire : aucune règle ne
 distingue le *ica* cité de `prostezo` du *ica* pronom qui court dans le reste du
 livre.
+
+**Une troisième direction** rend au relevé un filet que la lecture n'a pas vu :
+le fragment commence par `>`, et reprend ensuite le chemin ordinaire — la
+locution qui porte sa propre définition ouvre son alinéa, le reste passe en
+italique. `pseudonima` en avait besoin : *Pseudonimo : Nomo ne-exakta* est la
+sous-entrée substantive de l'article, mais l'article ne porte **aucun** filet, et
+sans lui rien ne distingue la locution d'une phrase de la définition.
+
+```
+pseudonima@476:49   >Pseudonimo
+```
 
 ### Le filet qui ne couvre que des mots-outils
 
@@ -836,7 +847,7 @@ lu. Elles se relisent comme un apparat critique :
 | `travail/subvorti.txt` | le rattachement d'un article à son voisin |
 | `travail/simboli.txt` | le symbole chimique relevé sur la page |
 | `travail/latinaji.txt` | le nom scientifique relevé sur la page |
-| `travail/filetoj.txt` | le **soulignement** : un relevé que l'œil écarte, ou une italique qu'il pose là où le trait s'est perdu |
+| `travail/filetoj.txt` | le **soulignement** : un relevé que l'œil écarte, une italique qu'il pose, ou un filet qu'il rend au relevé |
 | `travail/dividi.txt` | **deux articles frappés sur une même ligne**, que le repérage automatique ne sait pas séparer faute de code de langues entre eux : *shovar* était noyé dans *shokar*, à la fin d'une note |
 | `travail/lignes_plus.txt` | une ligne de grille perdue, restituée |
 | `travail/exceptions_manuel.txt` | la cellule elle-même |

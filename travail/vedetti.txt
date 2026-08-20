@@ -63,3 +63,4 @@ pecnio	peonio	p431 : « (bot.) Planto ranunkulacea, kun granda flori intense red
 quartebo	quarteto	p476 : « (muziko) Muzikajo kompozita por quar voci o por quar instrumenti » — le quatuor, « quarteto ». Entre « quarterono » et « quartiko ».
 ostegomo	osteomo	p412 : « (patol.) Tumoro ek osto-tisuo » — l osteome, « osteomo ». Une lettre de trop a la frappe ; la place, entre « osteologio » et « ostito », ne va qu a cette lecture.
 plastica	*plastica	p444 : vorto ne oficala — releve par GPhMorin. Le tapuscrit n a pas frappe le plus qui marque les autres.
+pseudonimo	pseudonima	p469 : la definition commence par « Qua publikigas (o publikigesas) kun autor-nomo ne-exakta », qui est celle d un ADJECTIF — le livre ouvre par « Qua » toutes ses definitions d adjectif. Le substantif, il le donne a part dans le meme article : « Pseudonimo : Nomo ne-exakta ». La finale o lue pour a.
