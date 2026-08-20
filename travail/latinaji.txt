@@ -29,4 +29,4 @@ kokoso@291:3	cocos nucifera	p284 : lu « cocus nucifera » ; la vedette porte «
 #
 # Deux de plus, ou la preuve n'est pas dans la vedette seule.
 moskardino@391:16	muscardinus avellanarius	p384 : lu « avelianarius » — le double l pris pour « li ». Le genre Muscardinus n a qu une espece, avellanarius, du latin avellana, la noisette
-fritilario@187:28	fritillaria	p180 : lu « fritilius » ; la vedette « fritilario » transcrit Fritillaria, et l article dit « Planto liliacea » — c est bien le genre, non un binome
+fritilario@187:28	fritillus	p180 : lu « fritilius » — le double l pris pour « li », comme chez moskardino. « fritillus » est le cornet a des du latin, dont le damier des petales a donne son nom au genre Fritillaria ; le livre cite ailleurs le mot latin nu, « anas, anatis » chez anado, avec son genitif. La finale en -us est d'ailleurs celle que la ligne porte : une lecture ne l'inventerait pas.
