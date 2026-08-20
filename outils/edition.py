@@ -952,7 +952,11 @@ def analizar(e, lexique=None):
     if mq:
         e['vedetto']=mq.group(1); m=None; resto=t[mq.end():].strip()
     else:
-        m=re.match(r'^(\+?-?["\u201c]?[A-Za-zÀ-ÿ][A-Za-zÀ-ÿ"’\'\u201d-]*)\s*\.?', t)
+        # L'asterisque autant que la croix : la marque du mot non officiel est
+        # deja rendue plus haut quand elle touche son mot — « +si » devient
+        # « *si » —, et la vedette ne se reconnaissait plus. « si » porte deux
+        # articles, et le second, l'adverbe, perdait le sien.
+        m=re.match(r'^([+*]?-?["\u201c]?[A-Za-zÀ-ÿ][A-Za-zÀ-ÿ"’\'\u201d-]*)\s*\.?', t)
         e['vedetto']= (m.group(1).strip('.').strip('"\u201c\u201d')
                        .replace('+','*',1)) if m else ""
         resto = t[m.end():].strip() if m else t
@@ -2949,6 +2953,11 @@ def typographio(ent):
             # « a² = b² + c » chez « pitagorala » — quatre asterisques posees
             # sur des inconnues.
             t=re.sub(r'(?:^|(?<=[(\[«“"]))\+\s+(?=[a-zà-ÿ])', '*', t)
+            # Le plus de l'arithmetique prend ses deux espaces, comme le livre
+            # les lui donne partout ailleurs — « Ax² + 2 Bxy + Cy² » chez
+            # « koniko », « a² = b² + c » chez « pitagorala ». Un seul endroit
+            # les perd : « Sis plus un (6 +1, o 4 +3) » chez « sep ».
+            t=re.sub(r'(?<=\d)[\s\u00a0]*\+[\s\u00a0]*(?=\d)', ' + ', t)
             # Guillemets : la machine n'avait que la double apostrophe droite.
             # On ne convertit que les PAIRES — 834 sur 1 690 apostrophes ; les
             # orphelines restent droites plutot que d'ouvrir un chevron qui ne

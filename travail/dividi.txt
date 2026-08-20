@@ -25,3 +25,10 @@
 288:47	ko- Prefixo ciencala qua signifikas
 588:42	tino. Earelo di qua la fundo
 630:15	warfo Amaso de petri, ronda stoni
+#
+# « si » porte deux articles : la note de musique, qui n'a pas de code de
+# langues, et l'adverbe non officiel « *si » — celui que « yes » cite,
+# « (yes ya = *si) » —, qui porte le « - F. » final. La dactylo les a frappes
+# a la suite sans laisser de ligne, et le second commence par sa marque, non
+# par une majuscule : le reperage automatique n'y voyait rien.
+533:2	+si Adverbo per qua onu afirmas

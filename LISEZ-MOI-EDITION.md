@@ -20,7 +20,7 @@ Transcription établie à partir du fac-similé fourni (639 pages photographiée
 | `travail/journal_complet.txt` | **toutes** les corrections : ce qui a été lu, ce qui a été retenu, et si c'est un correcteur ou l'œil qui a tranché |
 | `outils/` | la chaîne complète, de l'image au JSON |
 
-**9 472 entrées** extraites de 632 pages de corps d'ouvrage.
+**9 473 entrées** extraites de 632 pages de corps d'ouvrage.
 5 272 portent une marque de domaine (*bot.*, *zool.*, *arkitekt.*…),
 823 un nom scientifique latin, 1 678 plusieurs sens numérotés,
 8 441 un code de langues final.
@@ -50,7 +50,7 @@ fourni ; `ligno` la ligne de la grille du tapuscrit. **Chaque entrée peut donc
 travail reste vérifiable dans vingt ans.
 
 Une réserve sur `pagino`, vérifiée sur le fac-similé : il vaut `image - 7` pour
-les 9 472 entrées, sans exception — c'est un calcul, non une lecture. Or **le
+les 9 473 entrées, sans exception — c'est un calcul, non une lecture. Or **le
 livre saute deux numéros** : la page qui porte `fosfo` est numérotée
 « 173/175 », doublement, et l'écart change de part et d'autre. Après elle,
 `pagino` est bien le folio imprimé ; **avant elle, le folio imprimé vaut
@@ -123,8 +123,16 @@ vedette — une virgule au lieu du point chez *asasinar*, un tiret d'affixe chez
 *warfo* —, le second restait noyé dans le premier, et lui donnait son code.
 `travail/dividi.txt` porte ces coupures, relevées à l'œil ; la dactylo, elle,
 avait souligné chacune de ces vedettes, comme elle souligne celles qu'elle pose
-au milieu d'une ligne. Cinq racines ont ainsi été rendues au dictionnaire —
-*shovar*, *asasinar*, *ko-*, *tino*, *warfo*.
+au milieu d'une ligne. **Six** racines ont ainsi été rendues au dictionnaire —
+*shovar*, *asasinar*, *ko-*, *tino*, *warfo*, et *\*si*.
+
+Cette dernière est d'une autre espèce : `si` porte **deux** articles, la note de
+musique et l'adverbe non officiel — celui que `yes` cite, *(yes ya = \*si)* —,
+et le second commence par sa **marque**, non par une majuscule. Il portait le
+*- F.* final, si bien que la note de musique s'attribuait le code du français.
+Le second perdait aussi sa vedette : la marque touchant son mot, elle était déjà
+rendue en astérisque quand la vedette se lisait, et le motif n'admettait que la
+croix. Il admet les deux.
 
 Un cas particulier : l'auteur a marqué d'un double tiret marginal un article
 qu'il fait dépendre du précédent — *protestanto* sous *protestar*. Ce signe est
@@ -786,10 +794,10 @@ dictionnaire. Plutôt que de masquer ce qui reste, la base le **signale** :
 | drapeau | entrées | ce qu'il veut dire |
 |---|---|---|
 | `ordino-ruptita` | 55 | **la vedette rompt l'ordre alphabétique** |
-| `sen-lingua` | 1 031 | pas de code de langues final — souvent normal, le livre n'en donne pas toujours |
+| `sen-lingua` | 1 032 | pas de code de langues final — souvent normal, le livre n'en donne pas toujours |
 | `finalo-nekustumala` | 54 | finale étrangère à la morphologie d'Ido (-o, -a, -e, -i, -ar, -ir, -or). Trois familles en sont **exemptées**, la question n'ayant de sens que pour un mot de la langue : l'affixe (`-eyo`, `poli-`), le mot que le livre déclare lui-même grammatical (*« an. Prepoziciono qua… »*), et l'emprunt cité (`amen`, `cambium`). Ce qui reste — numéraux `cent` et `dek`, noms de notes `b`, `c`, `d` — est légitime aussi, mais rien dans le texte ne permet de le dire |
 | `pagino-nefidinda` | 32 | pages 539-540, photographiées à une autre échelle, décodage nettement moins sûr |
-| `artiklo-dividita` | 21 | l'article était coupé par un saut de page ; les deux moitiés ont été recollées |
+| `artiklo-dividita` | 23 | l'article était coupé par un saut de page ; les deux moitiés ont été recollées |
 | `sen-chefvorto` | 0 | l'entrée n'a pas de vedette lisible — plus aucun cas |
 
 **8 306 entrées ne portent aucun drapeau.**
