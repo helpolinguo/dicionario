@@ -420,7 +420,27 @@ Cent quarante-deux italiques ne couvrent qu'un mot, et la grande majorité sont
 légitimes.
 
 Ils s'écartent donc **un par un**, dans `travail/filetoj.txt`, avec le motif en
-regard. Cette couche ne fait que retirer un relevé, jamais en poser un.
+regard.
+
+**L'inverse arrive aussi** : le trait était là, et le relevé ne l'a pas rendu.
+Chez `anakoluto`, l'article définit l'anacoluthe comme l'omission de *ta* devant
+*qua* — *La omiso di ta avan qua esas anakoluto*. Les deux mots y sont **cités**,
+non employés, et sans l'italique la phrase se lit de travers. Le relevé n'a
+rendu sur cette ligne que le *Qua* du vers de Voltaire et un *est* que rien ne
+place : le trait y était, mais lu de travers.
+
+Une ligne du même fichier pose alors l'italique, les **accolades** entourant ce
+qui la prend et le reste servant de **contexte** :
+
+```
+anakoluto@33:15   La omiso di {ta} avan {qua} esas anakoluto
+```
+
+Le contexte n'est pas décoratif : sans lui, *qua* serait mis en italique aux
+trois endroits où il paraît dans l'article, dont deux où il est un pronom
+ordinaire. Le champ `kursiva`, lui, ne recense que les filets de la dactylo :
+une italique posée à l'œil est celle de l'éditeur, et c'est `filetoj.txt` qui en
+tient le compte.
 
 ### Le filet qui ne couvre que des mots-outils
 
@@ -799,7 +819,7 @@ lu. Elles se relisent comme un apparat critique :
 | `travail/subvorti.txt` | le rattachement d'un article à son voisin |
 | `travail/simboli.txt` | le symbole chimique relevé sur la page |
 | `travail/latinaji.txt` | le nom scientifique relevé sur la page |
-| `travail/filetoj.txt` | un **soulignement relevé que l'œil écarte** : le trait d'une ligne voisine, ou qui déborde d'un mot sur le suivant. Cette couche ne fait que **retirer** un relevé, jamais en poser un |
+| `travail/filetoj.txt` | le **soulignement** : un relevé que l'œil écarte, ou une italique qu'il pose là où le trait s'est perdu |
 | `travail/dividi.txt` | **deux articles frappés sur une même ligne**, que le repérage automatique ne sait pas séparer faute de code de langues entre eux : *shovar* était noyé dans *shokar*, à la fin d'une note |
 | `travail/lignes_plus.txt` | une ligne de grille perdue, restituée |
 | `travail/exceptions_manuel.txt` | la cellule elle-même |

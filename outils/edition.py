@@ -1491,14 +1491,21 @@ def _kongruas(a, b):
 KOMENCO="\ue000"; FINO="\ue001"     # bornes de l'italique, invisibles au texte
 
 
-def marki(t, motifs):
+def marki(t, motifs, pozitaj=()):
     """Encadre de bornes chaque passage a mettre en italique.
 
     On pose les plus longs d'abord : « (aludante persono) » contient
     « persono », et l'ordre inverse aurait coupe la parenthese en deux.
     """
-    if not t or not motifs: return t
+    if not t or not (motifs or pozitaj): return t
     spans=[]
+    # Les italiques posees a l'oeil : le contexte donne la place, les accolades
+    # disent ce qui la prend. Elles passent AVANT les filets, qui ne doivent pas
+    # recouper un passage deja borne.
+    for kun, sp in pozitaj:
+        i=t.find(kun)
+        if i < 0: continue
+        for a,b in sp: spans.append((i+a, i+b))
     for u in sorted(motifs, key=len, reverse=True):
         for m in _tuti(u, t):
             if any(not (m.end() <= a or m.start() >= b) for a,b in spans): continue
@@ -1701,9 +1708,54 @@ def filetoj_ekartita(fichier=f"{T}/filetoj.txt"):
                     if l.startswith('#') or not l.strip():
                         continue
                     q = l.rstrip('\n').split('\t')
-                    if len(q) >= 2 and q[0].strip() and q[1].strip():
-                        _FILETOJ.setdefault(q[0].strip(), set()).add(q[1].strip())
+                    if len(q) < 2 or not q[0].strip() or not q[1].strip():
+                        continue
+                    u = q[1].strip()
+                    if '{' in u:
+                        continue          # ligne de POSE, lue par filetoj_pozita
+                    _FILETOJ.setdefault(q[0].strip(), set()).add(u)
     return _FILETOJ
+
+
+_POZITAJ = None
+
+
+def filetoj_pozita(fichier=f"{T}/filetoj.txt"):
+    """Les italiques posees A L'OEIL : vedetto@image:ligno -> (contexte, spans).
+
+    L'auteur met en italique le mot qu'il CITE. Quand le releve du filet n'a rien
+    rendu, l'edition ne peut pas le deviner — mais le lecteur, lui, bute :
+    « La omiso di ta avan qua esas anakoluto » ne se lit pas sans savoir que
+    « ta » et « qua » y sont cites, non employes.
+
+    Le fragment porte alors des ACCOLADES autour de ce qui prend l'italique, et
+    le reste est du contexte : « La omiso di {ta} avan {qua} esas anakoluto ».
+    Sans lui, « qua » serait mis en italique aux trois endroits ou il parait dans
+    l'article, dont deux ou il est un pronom ordinaire.
+    """
+    global _POZITAJ
+    if _POZITAJ is None:
+        _POZITAJ = {}
+        if os.path.exists(fichier):
+            with open(fichier, encoding='utf-8') as h:
+                for l in h:
+                    if l.startswith('#') or not l.strip():
+                        continue
+                    q = l.rstrip('\n').split('\t')
+                    if len(q) < 2 or '{' not in q[1]:
+                        continue
+                    brut = q[1].strip(); kun = ''; spans = []; deb = None
+                    for c in brut:
+                        if c == '{':
+                            deb = len(kun)
+                        elif c == '}':
+                            if deb is not None: spans.append((deb, len(kun)))
+                            deb = None
+                        else:
+                            kun += c
+                    if kun and spans:
+                        _POZITAJ.setdefault(q[0].strip(), []).append((kun, spans))
+    return _POZITAJ
 
 
 def _rekolar(subl, textoj):
@@ -1872,10 +1924,12 @@ def strukturizar(e):
             pose=True
         if not pose and u not in dub: dub.append(u)
     e['kursiva']=kur
+    _poz=filetoj_pozita().get("%s@%d:%d" % (e.get('vedetto'),
+                                            e.get('image', -1), e.get('ligno', -1)), ())
     for b in strukt:
-        b['teksto_k']=marki(b['teksto'], kur)
+        b['teksto_k']=marki(b['teksto'], kur, _poz)
         for x in b['sub']:
-            x['teksto_k']=marki(x['teksto'], kur)
+            x['teksto_k']=marki(x['teksto'], kur, _poz)
     # Un fragment absent du corps n'est pas douteux s'il a trouve sa place
     # ailleurs : domaine, nom latin, locution — fut-ce une PART de locution.
     # Le filet de « radiko » se rompt en fin de ligne et rend « Extraktar

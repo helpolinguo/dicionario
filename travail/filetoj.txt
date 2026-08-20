@@ -13,6 +13,16 @@
 #
 # La cle est celle de simboli.txt et de latinaji.txt : vedetto@image:ligno.
 #
-# cle	fragment ecarte	motif
+# Une ligne dont le fragment porte des ACCOLADES fait l'inverse : elle POSE
+# l'italique la ou le releve n'a rien rendu. L'auteur met en italique le mot
+# qu'il CITE ; quand le trait s'est perdu, le lecteur bute — « La omiso di ta
+# avan qua esas anakoluto » ne se lit pas sans savoir que « ta » et « qua » y
+# sont cites, non employes. Les accolades entourent ce qui prend l'italique, le
+# reste est du CONTEXTE, qui donne la place : sans lui, « qua » serait mis en
+# italique aux trois endroits ou il parait dans l'article, dont deux ou il est
+# un pronom ordinaire.
+#
+# cle	fragment ecarte, ou pose entre accolades	motif
 sordino@550:2	Agar	p543 : le trait du domaine « (metaf.) » deborde sur le premier mot de la definition. « Agar sen bruiso » n'est ni une locution ni un mot cite
 ja@253:8	multa	p246 : « Sen vartar til kande fluabos multa tempo » — « multa » n'y est ni oppose ni cite ; le meme filet a laisse « kan » derriere lui, morceau de « kande », qui trahit un trait pose de travers
+anakoluto@33:15	La omiso di {ta} avan {qua} esas anakoluto	p026 : l article definit l anacoluthe comme l omission de « ta » devant « qua » ; les deux mots y sont CITES, non employes, et sans l italique la phrase se lit de travers. Le releve du filet n a rendu sur cette ligne que « Qua » — celui du vers de Voltaire — et « est », fragment que rien ne place : le trait etait la, mais lu de travers.
