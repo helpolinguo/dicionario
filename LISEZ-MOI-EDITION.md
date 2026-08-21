@@ -616,6 +616,32 @@ La règle exige une **lettre devant et une lettre derrière** : chez `*puntuar`,
 premier de la liste, non une ponctuation de phrase. C'est le seul cas du livre
 où l'espace reste, et il doit rester.
 
+### Le 1 et le 0 frappés « l » et « O »
+
+La machine n'avait ni touche `1` ni touche `0` : la dactylo frappe le `l` et le
+`O`. `cifri()` rend ceux que rien n'ambiguïse — le jeton qui ouvre par un `l`
+(*lOOO*), le signe collé à un chiffre (*l3*, *2O*), la suite de trois `O`, le
+numéro d'énumération *(l)*. Il s'arrête là **volontairement** : le `O` isolé est
+souvent l'oxygène d'une formule, ou le nom d'un point — *De punto fixa O* chez
+`hodografo`, *un punto fixa O* et *la punto O* chez `homoteta`.
+
+Restaient **douze** `l` et `O` isolés dans tout le dictionnaire. La phrase les
+départage, une à une :
+
+| article | lu | rendu | ce qui tranche |
+|---|---|---|---|
+| `binara` p. 65 | *du cifri (l e O)* | *(1 e 0)* | la phrase les annonce : **deux chiffres**, et ceux du binaire sont 1 et 0 |
+| `bushelo` p. 78 | *l o 2 dekalitri* | *1 o 2* | un ou deux décalitres ; la même phrase porte *cirkume l3 litri*, déjà rendu *13 litri* |
+| `kilogrametro` p. 276 | *sublevar l kilogramo ad l metro* | *1 … 1* | le kilogrammètre est le travail qui soulève **un** kilogramme de **un** mètre |
+| `kin` p. 276 | *2 plus 3, o l plus 4* | *o 1 plus 4* | cinq, c'est 2 + 3 ou 1 + 4 |
+| `ikonogeno` p. 227 | *amino-l-naftolo-2* | *amino-1-* | l'eikonogène est le sel de l'acide amino-**1**-naphtol-2-sulfonique-6 ; les positions voisines sont déjà des chiffres, *-2* et *-6* |
+
+Les cinq derniers restent tels quels : trois sont le point **O** de la géométrie,
+et deux sont des passages abîmés où le `l` n'est pas un chiffre mais un mot
+tronqué — *obliqua ye l plaso propra* chez `ripar`, *Granda peco de l de silkajo*
+chez `shalo`. Le mot manquant y commence par `l` (*la* ? *lua* ? *lano* ?
+*lino* ?) et rien dans le livre ne permet de choisir : on ne devine pas.
+
 ### Le « x » qui est une croix
 
 La machine n'avait pas de signe de multiplication : la dactylo frappe la lettre.

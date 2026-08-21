@@ -76,3 +76,12 @@ dop la ster) numo	dop la sternumo	p581 timuso : « situita dop la sternumo, an l
 Io quo	To quo	p177 fragmento e p179 fresko : « Io quo restas de libro », « Io quo esas piktita ». Le livre ecrit « to quo » 106 fois et « To quo » 73, jamais « lo quo » — et l ido dit « to quo ». Les deux sont en tete de sens, ou la majuscule est attendue : le T y a perdu sa barre
 pri Io	pri lo	p011 agregar : « la konkurso pri Io ». Le mot ouvre une ligne du tapuscrit, au milieu d une phrase : le signe est un l minuscule, meme trait vertical que le I. Le livre ecrit « pri lo » 14 fois
 nyf	ny'	p580 tildo : « pronuncigar lu "nyf" ». Le troisieme signe entre les guillemets est l apostrophe, non un f — « nyf » n est pas un mot de la langue. Le livre glose ses prononciations par une graphie ido entre guillemets (« ta c esas pronuncenda quale s », cedilio p081 ; « la F. eau qua pronuncesas o », triftongo p594) et marque d une apostrophe finale la forme etrangere ecourtee : « pr. Dekart' » (karteziana p268), « pron. Konyak' » (konyako p304). L apostrophe droite est celle de tout le livre.
+# --- Le 1 et le 0 frappes « l » et « O » : la machine n avait pas les deux
+# touches. La chaine convertit ce qui est sans ambiguite (l colle a un chiffre,
+# « lOO », « (l) ») ; ce qui suit demandait la phrase pour trancher, le O
+# pouvant etre l oxygene ou le nom d un point — « De punto fixa O » (hodografo).
+cifri (l e O)	cifri (1 e 0)	p065 binara : « expresas omna nombri per du cifri (l e O) ». La phrase les annonce elle-meme : DU chiffres, et ceux du systeme binaire sont 1 et 0
+l o 2 dekalitri	1 o 2 dekalitri	p078 bushelo : un ou deux decalitres. La meme phrase porte « cirkume l3 litri », que la chaine a deja rendu « 13 litri »
+sublevar l kilogramo ad l metro	sublevar 1 kilogramo ad 1 metro	p276 kilogrametro : le kilogrammetre est le travail qui souleve UN kilogramme de UN metre, et la definition ne dit rien d autre
+2 plus 3, o l plus 4	2 plus 3, o 1 plus 4	p276 kin : cinq, c est 2 plus 3 ou 1 plus 4
+amino-l-naftolo-2	amino-1-naftolo-2	p227 ikonogeno : l eikonogene est le sel de sodium de l acide amino-1-naftol-2-sulfonique-6 ; les positions voisines sont ecrites -2 et -6, chiffres
