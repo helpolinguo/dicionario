@@ -849,14 +849,24 @@ def uniformigar(f):
     return ') ('.join(out)
 
 
+def _pointi_unu(m):
+    u = m.group(1)
+    # La parenthese qui CITE un signe de ponctuation n'est pas un qualificatif :
+    # « komo. Puntuo-signo (,) qua indikas... », « cirkonflexo... signo (^) »,
+    # « diezo... Signo (#) ». Le rognage de la virgule finale, pose pour les
+    # domaines a rallonge — « (netrans.,) » —, videait la parenthese de komo
+    # tout entiere, et l'article definissait la virgule sans la montrer.
+    if not re.search(r'[0-9A-Za-z\u00c0-\u00ff]', u):
+        return m.group(0)
+    return '(' + uniformigar(minuskligi(pointi(u).rstrip(' ,'))) + ')'
+
+
 def pointi_sencoj(t):
     """Meme regle DANS les parentheses d'un sens : tous les qualificatifs ne
     sont pas dans le champ du domaine — « ajuro » porte les siens dans ses deux
     sens, « (arkitekt.) » pointe et « (stofo) » non, ce dernier etant un mot
     entier et non une abreviation."""
-    return re.sub(r'\(([^()]{1,120})\)',
-                  lambda m: '(' + uniformigar(minuskligi(pointi(m.group(1)).rstrip(' ,')))
-                  + ')', t)
+    return re.sub(r'\(([^()]{1,120})\)', _pointi_unu, t)
 
 
 def _tondar_fino(s):

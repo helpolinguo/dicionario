@@ -674,6 +674,23 @@ La parenthèse d'un **affixe** n'est pas de celles-là : dans *= -(at)ajo* et
 *equivalas -(ant)ajo*, le mot continue après la fermante, et le tiret lui
 appartient. La règle les laisse.
 
+### La parenthèse qui cite un signe
+
+Le champ `fako` porte souvent une virgule finale héritée de la frappe —
+*(netrans.,)*, *(zool,)* — et la règle qui uniformise les domaines la rogne,
+dans le champ comme au fil du texte. Elle rognait aussi la parenthèse dont la
+virgule est **tout le contenu**, et l'article qui définit la virgule la
+définissait sans la montrer : `komo. *Puntuo-signo () qua indikas…* (p. 287).
+
+> Une parenthèse qui ne contient **ni lettre ni chiffre** cite un signe : on ne
+> la touche pas.
+
+Le dictionnaire en tient trois — la virgule chez `komo`, le circonflexe chez
+`cirkonflexo` (p. 96), le dièse chez `diezo` (p. 114) ; seule la première était
+atteinte, les deux autres ne finissant pas par une virgule. La paire de
+parenthèses citée chez `parentezo` — *Singla de la signi : ()* — est du même
+ordre et se lit telle quelle : c'est ce que la page imprime.
+
 ### Les points de suspension, et l'affixe qui les suit
 
 La machine n'avait pas le caractère unique : l'auteur frappe trois points,
