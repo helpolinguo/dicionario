@@ -2088,10 +2088,17 @@ def _preskau_en(u, f):
     retrouvait plus, et le nom scientifique passait pour un souligne non place.
     Une lettre d'ecart, c'est exactement ce qu'une correction de lecture change ;
     on exige quatre lettres pour qu'un fragment bref ne couvre pas n'importe quoi.
+
+    Un nom LONG peut en porter deux — « gamelopardalis giraffz » rendu
+    « camelopardalis giraffa » chez « jirafo », le c lu g et le a lu z. On admet
+    donc une lettre par tranche de douze : deux pour vingt-quatre caracteres,
+    une pour les fragments courts, ou la moindre tolerance de plus ferait se
+    ressembler n'importe quoi.
     """
     if len(u) < 4 or len(u) > len(f):
         return False
-    return any(sum(1 for a, b in zip(u, f[i:i+len(u)]) if a != b) <= 1
+    tolero = 1 + len(u) // 12
+    return any(sum(1 for a, b in zip(u, f[i:i+len(u)]) if a != b) <= tolero
                for i in range(len(f) - len(u) + 1))
 
 

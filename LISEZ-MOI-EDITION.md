@@ -293,6 +293,7 @@ lettre que le nom avait perdue.
 | `motacilo` | *molacilla alba* | *motacilla alba* | la vedette dit *motacilo*, avec son *t* |
 | `kaprimulgo` | *caprimalgus* | *caprimulgus* | la vedette dit *kaprimulgo*, avec son *u* |
 | `kokoso` | *cocus nucifera* | *cocos nucifera* | la vedette dit *kokoso*, et le genre est *Cocos* |
+| `jirafo` | *gamelopardalis giraffz* | *camelopardalis giraffa* | le livre écrit *camel-* quatre fois ailleurs, *gamel-* une seule |
 | `moskardino` | *avelianarius* | *avellanarius* | le double *l* pris pour *li* ; le genre *Muscardinus* n'a qu'une espèce |
 | `fritilario` | *fritilius* | *fritillus* | le double *l* pris pour *li*, comme chez `moskardino` |
 
@@ -312,9 +313,11 @@ correction ne change qu'une lettre, le double *l* pris pour *li*, comme chez
 
 Le relevé du filet, lui, porte la lecture de la **machine** : corrigé, le champ
 ne s'y retrouvait plus et le nom perdait sa place. La comparaison tolère donc
-**une lettre** d'écart — exactement ce qu'une correction de lecture change. Elle
-rattrape du même coup treize filets brisés par une fin de ligne : *anto* pour
-*dianthus*, *glefino* pour *aeglefinus*, *aci-* pour *acipenser*.
+**une lettre par tranche de douze** — une pour les fragments courts, deux pour
+*gamelopardalis giraffz*, qui en a deux de fausses. C'est exactement ce qu'une
+correction de lecture change, et pas assez pour faire se ressembler n'importe
+quoi. Elle rattrape du même coup treize filets brisés par une fin de ligne :
+*anto* pour *dianthus*, *glefino* pour *aeglefinus*, *aci-* pour *acipenser*.
 
 ### Le symbole chimique (`simbolo`)
 
