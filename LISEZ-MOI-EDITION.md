@@ -122,7 +122,33 @@ radiko nomala :* sous `-ig-` — se seraient détachés comme des sous-entrées,
 alors qu'ils appartiennent à la phrase. Sur tout le dictionnaire, la règle en
 lève **une seule** : `agregito`.
 
-105 sous-entrées dans 86 entrées, dont 42 portent un domaine propre.
+**Le filet qui a perdu la vedette.** Le relevé des soulignements est rendu
+ligne par ligne. Quand la dactylo souligne une locution que la fin de ligne
+coupe — *… – II. Licenco* puis *poeziala : su-liberigo…* —, il en rend deux
+morceaux ; et celui qui porte la vedette est écarté, parce qu'un filet égal à
+la vedette est justement celui du mot-vedette, qui n'apprend rien. La locution
+se retrouvait réduite à sa fin, et n'était plus reconnue.
+
+`tribono` le montre en deux lignes voisines : *Tribono di la soldati*, dont le
+filet a tenu sur une ligne, ouvre sa sous-entrée ; *Tribono di la plebeyi*, son
+exact parallèle, n'en ouvrait pas — son filet ayant perdu le mot *Tribono*. Le
+livre traite les deux de la même façon.
+
+> Un filet qui est la **fin** d'une locution la désigne, si le seul mot qui lui
+> manque devant est la **vedette**.
+
+Le mot manquant doit être **un seul**, et citer la vedette : sans cette double
+condition, le suffixe seul rattachait *Kun radiko di verbo netransitiva* à
+`-ig-`, ou *Testamento* au filet *Olda Testamento*. Sur tout le dictionnaire la
+règle lève **trois** locutions : *Licenco poeziala*, *Puteo arteza*, *Tribono
+di la plebeyi*.
+
+Un filet ainsi absorbé ne se pose plus **une seconde fois** en italique dans le
+corps : il désigne déjà sa locution. Trois filets le faisaient — *plana* chez
+`plano`, *Elektro* chez `pozitiva`, *doco* chez `sekundara` —, chacun italique
+dans le texte alors qu'il nommait une sous-entrée voisine.
+
+108 sous-entrées dans 88 entrées, dont 42 portent un domaine propre.
 
 Une même locution peut relever de **deux** entrées, chacune avec sa
 définition : *estado civila* se range sous `civila`, qui la définit au long,

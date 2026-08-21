@@ -1899,6 +1899,36 @@ def _rekolar(subl, textoj):
     return out
 
 
+def _filet_sen_vedeto(loko, u, vedetto):
+    """Le filet a perdu son premier mot, et ce mot etait LA VEDETTE.
+
+    Le releve rend les filets ligne par ligne. Quand la dactylo souligne une
+    locution que la fin de ligne coupe — « ... - II. Licenco » puis
+    « poeziala : su-liberigo... » —, il en rend deux morceaux ; et celui qui
+    porte la vedette est ecarte, parce qu'un filet egal a la vedette est
+    justement celui du mot-vedette, qui n'apprend rien. La locution se
+    retrouvait donc reduite a sa fin, et n'etait plus reconnue.
+
+    « tribono » le montre en deux lignes voisines : « Tribono di la soldati »,
+    dont le filet a tenu sur une ligne, ouvre sa sous-entree ; « Tribono di la
+    plebeyi », son exact parallele, n'en ouvrait pas, son filet ayant perdu le
+    mot « Tribono ». Le livre traite les deux de la meme facon.
+
+    On exige que le mot manquant soit UN seul, et qu'il cite la vedette. Sans
+    cette condition, le suffixe seul rattachait « Kun radiko di verbo
+    netransitiva » a « -ig- », ou « Testamento » au filet « Olda Testamento ».
+    Sur tout le dictionnaire la regle leve trois locutions : « Licenco
+    poeziala », « Puteo arteza », « Tribono di la plebeyi ».
+    """
+    pl = loko.split(); pu = u.split()
+    if len(pl) != len(pu) + 1:
+        return False
+    net = lambda w: w.lower().strip('.,;:')
+    if [net(w) for w in pl[1:]] != [net(w) for w in pu]:
+        return False
+    return _citas_vedeton(pl[0], vedetto)
+
+
 def strukturizar(e):
     """Decoupe chaque sens en un corps et, s'il y a lieu, ses sous-entrees.
 
@@ -1920,7 +1950,9 @@ def strukturizar(e):
         trov=[]
         for m in RE_LOKUCO.finditer(t):
             loko=m.group(1)
-            if not any(_kongruas(loko, u) for u in subl): continue
+            if not any(_kongruas(loko, u)
+                       or _filet_sen_vedeto(loko, u, e.get('vedetto') or '')
+                       for u in subl): continue
             # Voir RE_LOKUCO : hors parenthese, une locution qui n'ouvre pas
             # par une capitale doit etre un derive de la vedette.
             if (loko[:1].islower()
@@ -2019,6 +2051,9 @@ def strukturizar(e):
     kur=[]; dub=[]; vu=set()
     for u in subl:
         if u.lower() in lok: continue
+        # Le filet ampute dont la locution est nee : il la designe deja, et
+        # n'a pas a se poser une seconde fois en italique dans le corps.
+        if any(_trovar(u, L) for L in lok): continue
         pose=False
         alt=alia_formo(u)
         # Le releve est BRUT, le texte est typographie : les points de
