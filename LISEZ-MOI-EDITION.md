@@ -1011,6 +1011,14 @@ trois grandes pointes sur le cercle, les trois petites à mi-rayon. Mesurée sur
 le PDF composé, à 1200 points par pouce, elle tombe **à 0,4 % près** sur ces six
 rayons.
 
+La quatrième règle en recouvre une autre, plus parlante, et sans doute celle du
+symbole d'origine : **le bord d'une longue pointe, prolongé vers l'intérieur,
+passe par le milieu d'un des deux autres côtés** du triangle. Les deux règles
+donnent la **même figure**, et c'est encore *t* = 1/2 qui les accorde — la
+construction par les milieux donne à la base (2 − *t*)/(4 + *t*) du côté, soit
+un tiers exactement lorsque *t* vaut un demi. Rien à choisir entre elles, donc :
+elles décrivent le même dessin.
+
 La maquette, dont l'étoile est dessinée à la main, s'en écarte de 2,4 % du rayon
 au plus : son étoile est posée 1,4 % trop bas dans son disque, et ses longues
 pointes ont à la base 0,30 fois le côté et non un tiers. C'est la figure
