@@ -110,7 +110,19 @@ cherchent comme une vedette**.
 | `sub[].teksto` | sa définition |
 | `sub[].kodo`, `sub[].lingui` | présents sur la seule sous-entrée qui vient d'un **rattachement** (voir plus bas) : l'article rattaché garde son code de langues |
 
-104 sous-entrées dans 85 entrées, dont 41 portent un domaine propre.
+La **capitale** n'était qu'un indice. Ce qui annonce une locution, c'est le
+soulignement et le deux-points ; quand le sens s'ouvre sur son domaine, le mot
+qui suit garde sa minuscule et la locution passait inaperçue — *agregar. … III.
+(en la universitato di Francia) agregito : la persono qua…* On accepte donc la
+minuscule, sous une condition : **hors parenthèse, une locution qui n'ouvre pas
+par une capitale doit citer la vedette**, comme le fait déjà toute locution d'un
+seul mot. Sans elle, les exemples que l'auteur énumère après un *Exemple :* —
+*krucagar : agar per kruco* sous `-agar` — et ses conditions d'emploi — *kun
+radiko nomala :* sous `-ig-` — se seraient détachés comme des sous-entrées,
+alors qu'ils appartiennent à la phrase. Sur tout le dictionnaire, la règle en
+lève **une seule** : `agregito`.
+
+105 sous-entrées dans 86 entrées, dont 42 portent un domaine propre.
 
 Une même locution peut relever de **deux** entrées, chacune avec sa
 définition : *estado civila* se range sous `civila`, qui la définit au long,
@@ -925,6 +937,20 @@ lu. Elles se relisent comme un apparat critique :
 | `travail/lignes_plus.txt` | une ligne de grille perdue, restituée |
 | `travail/exceptions_manuel.txt` | la cellule elle-même |
 | `travail/relire/reponses/` | les corrections rendues par la relecture, article par article |
+
+**Le trait vertical.** Sur un tapuscrit, le `I` capitale, le `l` minuscule et
+le chiffre `1` sont le même jambage nu, et le `T` le devient dès que sa barre
+pâlit. Trois lectures en sortaient, toutes trois jugées sur l'usage du livre
+lui-même :
+
+| article | lu | rendu | ce qui tranche |
+|---|---|---|---|
+| `fragmento` p. 177 | *Io quo restas de libro* | *To quo* | le livre écrit *to quo* 106 fois et *To quo* 73, jamais *lo quo* — et l'ido dit *to quo* |
+| `fresko` p. 179 | *Io quo esas piktita* | *To quo* | même position, en tête de sens après le numéro, où la capitale est attendue |
+| `agregar` p. 11 | *la konkurso pri Io* | *pri lo* | le mot ouvre une ligne du tapuscrit **au milieu** d'une phrase : le signe y est un `l`, et le livre écrit *pri lo* 14 fois |
+
+La nymphe **Io** d'`argus` — *Junono donabis kom instrucioni surveyor la nimfo
+Io* — est le seul `Io` que le dictionnaire écrive vraiment, et il reste.
 
 **Un jeu de réponses écarté.** Les jugements lexicaux se rendent par fiche
 numérotée. Les fiches ont été renumérotées en cours de route, et un fichier de

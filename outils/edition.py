@@ -1373,8 +1373,19 @@ def e_ok(e):
 # en une seule fois ; « La matematiki pura, la mekaniko pura : ... ». Sans elle,
 # la definition qui suit grossissait le corps de la locution PRECEDENTE, qui
 # n'en pouvait mais.
+# La MINUSCULE est admise, sous condition. La capitale n'etait qu'un indice :
+# ce qui annonce une locution, c'est le soulignement et le deux-points. Quand
+# le sens s'ouvre sur son domaine, le mot qui suit garde sa minuscule —
+# « agregar. ... III. (en la universitato di Francia) agregito : la persono
+# qua... » —, et la locution passait inapercue. On l'accepte donc, mais une
+# locution en minuscule doit CITER la vedette, comme le fait deja toute
+# locution d'un seul mot : « agregito » sous « agregar ». Sans quoi les
+# exemples que l'auteur enumere apres un « Exemple : » — « krucagar : agar per
+# kruco » sous « -agar » — et ses conditions d'emploi — « kun radiko nomala : »
+# sous « -ig- » — se seraient detachees comme des sous-entrees, alors qu'elles
+# appartiennent a la phrase.
 RE_LOKUCO=re.compile(r'(?:^|(?<=[.;:]\s)|(?<=\)\s)|(?<=[-\u2013]\s))'
-                     r'([A-ZÀ-Ý][A-Za-zà-ÿ]+(?:[-, ]+[A-Za-zà-ÿ]+){0,6})\s*:\s')
+                     r'([A-Za-zÀ-ÿ][A-Za-zà-ÿ]+(?:[-, ]+[A-Za-zà-ÿ]+){0,6})\s*:\s')
 # Un qualificatif de tete : « (matem.) », « (kemio) ». Une lettre ou un chiffre
 # seul entre parentheses est un numero d'enumeration, non un domaine.
 RE_KVAL=re.compile(r'(?:[-\u2013\s]*\((?![A-Za-z0-9]\))[^()]{1,60}\)\s*)+$')
@@ -1854,6 +1865,11 @@ def strukturizar(e):
         for m in RE_LOKUCO.finditer(t):
             loko=m.group(1)
             if not any(_kongruas(loko, u) for u in subl): continue
+            # Voir RE_LOKUCO : hors parenthese, une locution qui n'ouvre pas
+            # par une capitale doit etre un derive de la vedette.
+            if (loko[:1].islower()
+                    and not _citas_vedeton(loko, e.get('vedetto') or '')):
+                continue
             # Un seul mot, sans trait d'union, etranger a la vedette : ce n'est
             # pas une locution mais une GLOSE — « moloso. ... – Nun : grosa
             # gardo-hundo », ou « Nun » est l'adverbe « maintenant ». La

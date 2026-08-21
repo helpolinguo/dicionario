@@ -72,3 +72,6 @@ e c.p	e c.	p006 adequata : « (aludante penso, cienco, e c.p » — la parenthes
 ie..)	ie...)	p110 diftongo : « (kom ex. : au, eu, ie.. ) » — l ellipse de l auteur, ecourtee d un point ; le livre en porte cinquante-cinq
 venenifanta..	venenifanta.	p537 skorpiono : point double colle, la ou les neuf autres sont separes d une espace
 dop la ster) numo	dop la sternumo	p581 timuso : « situita dop la sternumo, an la parto infra di la kolo » — le thymus est derriere le sternum. La parenthese fermante est celle qui separait l article de « tino », frappe sur la meme ligne.
+# --- Le trait vertical : I lu pour T en tete de phrase, pour l au milieu
+Io quo	To quo	p177 fragmento e p179 fresko : « Io quo restas de libro », « Io quo esas piktita ». Le livre ecrit « to quo » 106 fois et « To quo » 73, jamais « lo quo » — et l ido dit « to quo ». Les deux sont en tete de sens, ou la majuscule est attendue : le T y a perdu sa barre
+pri Io	pri lo	p011 agregar : « la konkurso pri Io ». Le mot ouvre une ligne du tapuscrit, au milieu d une phrase : le signe est un l minuscule, meme trait vertical que le I. Le livre ecrit « pri lo » 14 fois
