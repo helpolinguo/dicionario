@@ -701,7 +701,23 @@ def minuskligi(f):
         return f
     if unua in PROPRA or re.search(r'[\d\u2080-\u2089]', unua):
         return f
+    # Le chiffre peut n'arriver qu'au mot SUIVANT, et le premier symbole
+    # n'etre ni une capitale seule ni un nom propre : « (Si O3)2n », le
+    # silicium de l'amiante, devenait « (si O3)2n ». La formule ne se
+    # reconnait alors qu'ENTIERE, et c'est le motif qui pose deja les indices
+    # qu'on interroge, avec ses deux garde-fous — au moins deux symboles et un
+    # chiffre. Une phrase qui ouvre par une capitale et porte un nombre n'y
+    # passe pas : « (Dicesas precipue pri la homo qua evas plu kam 20 yari) ».
+    if _formulo_sola(f):
+        return f
     return f[0].lower() + f[1:]
+
+
+def _formulo_sola(u):
+    """La chaine est-elle une FORMULE chimique, et rien d'autre ?"""
+    u = u.strip()
+    return bool(_FORMULO.fullmatch(u) and re.search(r'\d', u)
+                and len(re.findall(r'[A-Z]', u)) >= 2)
 
 
 # Le meme domaine, ecrit de deux facons par l'auteur — « (anatom.) » une fois
@@ -849,16 +865,30 @@ def uniformigar(f):
     return ') ('.join(out)
 
 
-def _pointi_unu(m):
-    u = m.group(1)
-    # La parenthese qui CITE un signe de ponctuation n'est pas un qualificatif :
-    # « komo. Puntuo-signo (,) qua indikas... », « cirkonflexo... signo (^) »,
-    # « diezo... Signo (#) ». Le rognage de la virgule finale, pose pour les
-    # domaines a rallonge — « (netrans.,) » —, videait la parenthese de komo
-    # tout entiere, et l'article definissait la virgule sans la montrer.
-    if not re.search(r'[0-9A-Za-z\u00c0-\u00ff]', u):
-        return m.group(0)
-    return '(' + uniformigar(minuskligi(pointi(u).rstrip(' ,'))) + ')'
+# Une abreviation, ou le « e c. » de l'auteur, ne finit pas une phrase.
+RE_ABREVO_FINA = re.compile(r'(?:\be\s*c|\b[A-Za-z])\.$')
+
+
+def _remarko_fina(t, m):
+    """La parenthese CLOT-elle le sens, apres un point ?
+
+    Alors ce n'est pas un qualificatif de domaine mais une REMARQUE, et elle
+    garde la capitale que l'auteur lui a donnee : « (Dicesas precipue pri la
+    homo qua evas plu kam 20 yari) » chez adulta, « (Uzesas ordinare en
+    pluralo.) » chez litanio, « (Anke metaf.) » chez sept articles.
+
+    Le point ne suffit pas, ni la place : le domaine du sens SUIVANT se pose
+    lui aussi apres un point — « Kontrea. (en lukto) La persono qua
+    opozesas... » chez adversa, « ...kombatis en lico. (metaf.) La persono
+    qua... » chez championo. Ce qui separe les deux, c'est que la remarque ne
+    laisse rien derriere elle, tandis que le qualificatif annonce ce qui suit.
+    Sur tout le dictionnaire la regle leve 47 parentheses, et aucune n'est un
+    domaine.
+    """
+    if t[m.end():].strip(' .'):
+        return False
+    av = t[:m.start()].rstrip()
+    return av.endswith('.') and not RE_ABREVO_FINA.search(av)
 
 
 def pointi_sencoj(t):
@@ -866,7 +896,20 @@ def pointi_sencoj(t):
     sont pas dans le champ du domaine — « ajuro » porte les siens dans ses deux
     sens, « (arkitekt.) » pointe et « (stofo) » non, ce dernier etant un mot
     entier et non une abreviation."""
-    return re.sub(r'\(([^()]{1,120})\)', _pointi_unu, t)
+    def _un(m):
+        u = m.group(1)
+        # La parenthese qui CITE un signe de ponctuation n'est pas un
+        # qualificatif : « komo. Puntuo-signo (,) qua indikas... »,
+        # « cirkonflexo... signo (^) », « diezo... Signo (#) ». Le rognage de
+        # la virgule finale, pose pour les domaines a rallonge —
+        # « (netrans.,) » —, videait la parenthese de komo tout entiere, et
+        # l'article definissait la virgule sans la montrer.
+        if not re.search(r'[0-9A-Za-z\u00c0-\u00ff]', u):
+            return m.group(0)
+        if _remarko_fina(t, m):
+            return m.group(0)
+        return '(' + uniformigar(minuskligi(pointi(u).rstrip(' ,'))) + ')'
+    return re.sub(r'\(([^()]{1,120})\)', _un, t)
 
 
 def _tondar_fino(s):

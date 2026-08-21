@@ -686,6 +686,39 @@ La parenthèse d'un **affixe** n'est pas de celles-là : dans *= -(at)ajo* et
 *equivalas -(ant)ajo*, le mot continue après la fermante, et le tiret lui
 appartient. La règle les laisse.
 
+### La parenthèse qui n'est pas un domaine
+
+L'auteur n'a pas uniformisé la casse de ses qualificatifs : *(Muziko)* une
+fois, *(muziko)* ailleurs. L'édition les met en bas de casse — mais toutes les
+parenthèses ne sont pas des qualificatifs, et la règle mordait sur deux sortes
+qui n'en sont pas.
+
+**La formule chimique.** *amianto* définit l'amiante comme une variété
+d'asbeste *(Si O₃)₂n* ; la parenthèse en sortait *(si O₃)₂n*, le silicium
+devenu minuscule. La fonction épargnait déjà les formules « reconnues à leur
+chiffre », mais ne regardait que le **premier mot** : *C₈ H₈ AZ₂ O₆* chez
+`asparagino` passait, *Si O₃* non, son chiffre n'arrivant qu'au second. On
+interroge donc, sur la parenthèse **entière**, le motif qui pose déjà les
+indices, avec ses deux garde-fous — au moins deux symboles et un chiffre. Une
+phrase qui ouvre par une capitale et porte un nombre n'y passe pas.
+
+**La remarque finale.** L'auteur ferme souvent un sens sur une parenthèse qui
+est une phrase, non une étiquette : *adulta. Qua atingis la fino di sua kresko.
+(Dicesas precipue pri la homo qua evas plu kam 20 yari)*, *litanio. … (Uzesas
+ordinare en pluralo.)*, *ulno. … (En Paris = 1,18 metro)*. Toutes perdaient
+leur capitale.
+
+Ni le point qui précède ni la position ne les distinguent d'un domaine : le
+qualificatif du sens **suivant** se pose lui aussi après un point — *adversa.
+Kontrea. (en lukto) La persono qua opozesas…*, *championo. … kombatis en lico.
+(metaf.) La persono qua…*
+
+> Ce qui les sépare : la **remarque ne laisse rien derrière elle**, le
+> qualificatif annonce ce qui suit.
+
+Sur tout le dictionnaire la règle relève **47 parenthèses**, et aucune n'est un
+domaine — 7 fois *(Anke metaf.)*, et pour le reste des phrases entières.
+
 ### La parenthèse qui cite un signe
 
 Le champ `fako` porte souvent une virgule finale héritée de la frappe —
