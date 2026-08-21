@@ -25,6 +25,9 @@
 \definecolor{grize}{gray}{0.45}
 \definecolor{akcento}{HTML}{8A4B2A}
 
+% Couverture, page de titre et plat verso : voir kovrilo.tex.
+\input{kovrilo}
+
 \setlength{\columnsep}{4.2mm}
 \setlength{\columnseprule}{0.2pt}
 \renewcommand{\columnseprulecolor}{\color{grize!45}}
@@ -175,21 +178,13 @@
 
 \begin{document}
 \signeti
-\thispagestyle{empty}
-\null\vfill
-{\centering\titra
- {\bfseries\Large Dicionario\par}
- \vspace{2mm}
- {\large de la 10.000 radiki\par}
- {\large di la linguo universala\par}
- {\bfseries\LARGE Ido\par}
- \vspace{9mm}
- {\footnotesize Marcelo Persiko\par}
- {\footnotesize (Marcel Pesch)\par}
- \par}
-\vfill\vfill
-% Le verso du titre reste blanc, e la dicionario komencas sur recto, quale en
-% la libri imprimita. \cleardoublepage pozas la pagino sequanta sur nepara.
+% Les trois premieres pages du livre relie : le plat recto, son verso blanc,
+% la page de titre. Le verso du titre reste blanc lui aussi, e la dicionario
+% komencas sur recto, quale en la libri imprimita — \cleardoublepage pozas la
+% pagino sequanta sur nepara.
+\platrekto
+\cleardoublepage
+\titolpagino
 \cleardoublepage
 
 \small
@@ -200,10 +195,12 @@
 \null
 \clearpage
 % Un livre se compte en pages PAIRES : chaque feuille porte deux faces, et un
-% total impair laisserait une face orpheline au brochage. Apres le \clearpage
-% ci-dessus, le compteur pointe la page SUIVANTE ; s'il est pair, c'est que le
-% nombre de pages composees est impair, et il en manque une.
-\ifodd\value{page}\else
+% total impair laisserait une face orpheline au brochage. Le plat verso occupe
+% la derniere page, et doit donc tomber sur un PAIR. Apres le \clearpage
+% ci-dessus, le compteur pointe la page que prendra le plat verso ; s'il est
+% impair, une garde s'intercale.
+\ifodd\value{page}
   \thispagestyle{empty}\null\clearpage
 \fi
+\platverso
 \end{document}

@@ -975,11 +975,53 @@ La page HTML et le dictionnaire de poche sortent du **même fichier**,
 façon qu'ils ne divergent pas. La dernière étape recopie à la racine
 `index.html`, `dicionario.tsv`, `dicionario.jsonl` et `dicionario.pdf`.
 
-`lualatex` demande les polices **Charis SIL** et **Inter**.
+`lualatex` demande les polices **Charis SIL** et **Inter**. La couverture
+demande **Jost\***, qui voyage avec le dépôt dans `posho/polices/` et se charge
+par chemin : elle n'a pas à être installée.
+
+### La couverture, la page de titre, le plat verso
+
+Le livre de poche s'ouvre comme un livre relié : **plat recto** bleu à
+lettrage noir, son verso blanc, **page de titre** blanche à lettrage noir, son
+verso blanc ; le dictionnaire commence page 5. Un **plat verso** bleu uni ferme
+le volume, sur une page paire — un livre se compte en faces, et la dernière ne
+peut rester orpheline.
+
+Tout est composé, rien n'est une image : le lettrage est en **Jost\***, reprise
+libre de la Futura de Renner dans laquelle la maquette est écrite, et l'emblème
+est un **tracé**, disque et étoile.
+
+**L'étoile d'Ido** a six branches, trois longues à 120° l'une de l'autre et
+trois courtes entre elles ; elle n'est pas régulière. Ses douze sommets ont été
+relevés sur la maquette en balayant le rayon de la figure degré par degré
+autour de son centre de gravité, puis rendus symétriques par rapport à la
+verticale — la figure l'est manifestement, et l'écart mesuré, 0,3 %, est le
+lissage du rendu et non le dessin. Le tracé recouvre le modèle **à un demi-pixel
+près** sur un emblème de 683 pixels, soit 0,08 % du diamètre.
+
+Les corps et les hauteurs de ligne viennent du même relevé, au 300e de pouce,
+et sont rapportés à la page de poche par le rapport des largeurs de page. Une
+seconde correction leur est appliquée : la hauteur de capitale de Jost\* vaut
+0,700 em contre 0,754 pour la Futura, et sans le facteur **1,0770** qui les
+égalise, un lettrage presque tout en capitales paraîtrait plus petit que le
+modèle à corps égal. Les sept lignes tombent à **moins de 0,35 pt** de leur
+hauteur visée, et le bloc se centre à 0,36 pt près.
+
+Le bleu ne se relève pas au pixel : la maquette est écrite en **Display P3**, où
+il vaut (0,2549 ; 0,5728 ; 0,9688), et deux moteurs de rendu en donnent deux
+valeurs différentes selon qu'ils gèrent la couleur ou non. La conversion vers
+sRGB, faite d'après les primaires du profil enfermé dans le fichier, donne
+**`#0094FF`** — la composante bleue y sature, la couleur d'origine débordant le
+gamut sRGB.
+
+Un détail du modèle qu'il fallait voir : les lettres **ID** prennent la couleur
+du *disque*, non celle du texte. Blanches sur le plat quand le titre est noir,
+bleues sur la page de titre. Le mot fait bloc avec l'emblème, pas avec le
+lettrage.
 
 ### Les signets du PDF
 
-Un dictionnaire de 444 pages ne se feuillette pas à l'écran. Le PDF porte donc
+Un dictionnaire de 446 pages ne se feuillette pas à l'écran. Le PDF porte donc
 un sommaire, celui que les lecteurs affichent en panneau latéral : les
 **vingt-six lettres** au premier niveau, et sous chacune le mot que porte
 **l'en-tête de chaque page** — le premier mot d'une page paire, le dernier

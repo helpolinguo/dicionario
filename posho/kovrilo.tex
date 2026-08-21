@@ -1,0 +1,145 @@
+% =====================================================================
+%  Couverture, page de titre et plat verso du dictionnaire de poche.
+%
+%  Le modele est la maquette fournie par l'editeur de cette edition
+%  (Dicionario.pages, A4) : plat recto bleu a lettrage noir et etoile
+%  blanche, page de titre blanche a lettrage noir et etoile bleue, plat
+%  verso bleu uni. Tout ce qui suit — corps des caracteres, hauteurs de
+%  ligne, diametre de l'embleme — est RELEVE sur ce modele au 300e de
+%  pouce, puis rapporte a la page de poche. Les valeurs mesurees sont
+%  donnees en regard, pour qu'on puisse refaire le calcul.
+% =====================================================================
+
+\usepackage{tikz}
+\usepackage{eso-pic}
+
+% Le bleu du modele. Il ne se releve PAS au pixel : la maquette est ecrite
+% dans l'espace Display P3, ou le bleu vaut (0,2549 ; 0,5728 ; 0,9688), et
+% deux moteurs de rendu en donnent deux valeurs differentes selon qu'ils
+% gerent la couleur ou non. La conversion P3 -> sRGB, faite selon les
+% primaires du profil enferme dans le fichier, donne #0094FF ; la composante
+% bleue y sature, la couleur d'origine debordant le gamut sRGB.
+\definecolor{idoblua}{RGB}{0,148,255}
+
+% Futura n'est pas libre ; Jost* en est la reprise sous licence ouverte.
+% Chargee PAR CHEMIN, non par nom : le document se compose a l'identique
+% sur une machine ou la police n'est pas installee. Voir polices/LISEZ-MOI.md.
+\newfontfamily\kovrilfonto{Jost}[Path=polices/, Extension=.ttf,
+  UprightFont=*-Medium, BoldFont=*-Bold, ItalicFont=*-MediumItalic]
+
+% --- Corps des caracteres --------------------------------------------
+% Le modele est compose en Futura sur une page A4 (595,28 pt) : 62 pt pour
+% DICIONARIO, 38 pt pour le sous-titre, 204 pt pour IDO, 29 pt pour la
+% signature. Deux corrections les rapportent a la page de poche :
+%
+%   1. le rapport des largeurs de page, 110 mm / 210 mm ;
+%   2. le rapport des hauteurs de capitale, Futura 0,754 em contre
+%      Jost 0,700 em, soit 1,0770 — sans quoi le lettrage, sur une
+%      couverture qui n'est presque que capitales, paraitrait plus petit
+%      que le modele a corps egal.
+%
+% Les deux se composent en un seul facteur, applique a \paperwidth.
+\newcommand{\korpDICIONARIO}{0.11217\paperwidth}   % 62 pt sur A4
+\newcommand{\korpSUBTITOLO} {0.06875\paperwidth}   % 38 pt
+\newcommand{\korpIDO}       {0.36908\paperwidth}   % 204 pt
+\newcommand{\korpNOMO}      {0.05247\paperwidth}   % 29 pt
+
+% --- Hauteurs de ligne ------------------------------------------------
+% Position du HAUT de l'encre de chaque ligne, comptee depuis le bord
+% superieur de la feuille. Le bloc du modele (87,8 pt a 653,3 pt sur A4)
+% est reduit au rapport des largeurs, puis les deux marges qui restent
+% sont partagees dans la proportion du modele, 87,8 contre 188,6.
+\newcommand{\posTITOLO}  {0.13327\paperheight}
+\newcommand{\posRADIKI}  {0.20892\paperheight}
+\newcommand{\posDILA}    {0.26035\paperheight}
+\newcommand{\posLINGUO}  {0.31805\paperheight}
+\newcommand{\posIDO}     {0.41886\paperheight}
+\newcommand{\posNOMO}    {0.64838\paperheight}
+\newcommand{\posAKADEMIO}{0.68863\paperheight}
+
+% --- L'embleme --------------------------------------------------------
+% Un disque et une etoile a six branches — trois longues, a 120 degres
+% l'une de l'autre, et trois courtes entre elles. Ce n'est pas une etoile
+% reguliere : les douze sommets sont RELEVES sur le modele, en balayant le
+% rayon de la figure degre par degre autour de son centre de gravite, puis
+% rendus symetriques par rapport a la verticale — la figure l'est
+% manifestement, et les ecarts constates, 0,3 %, sont le lissage du rendu
+% et non le dessin. Les trois longues pointes touchent le cercle.
+%
+% Le trace ainsi obtenu recouvre le modele a un demi-pixel pres sur un
+% embleme de 683 pixels, soit 0,08 % du diametre.
+%
+% Coordonnees en unites de RAYON, origine au centre du disque, y vers le
+% haut. La ligne de base de la figure passe par le centre du disque.
+\newlength{\stelrayo}
+\newcommand{\idoemblemo}[3]{% #1 diametre, #2 couleur du disque, #3 de l'etoile
+  \setlength{\stelrayo}{0.5\dimexpr#1\relax}%
+  \begin{tikzpicture}[x=\stelrayo, y=\stelrayo, baseline={(0,0)}]
+    \fill[#2] (0,0) circle[radius=1];
+    \fill[#3] (0,1)
+      -- (-0.1305, 0.2376) -- (-0.4355, 0.2376) -- (-0.2859,-0.0242)
+      -- (-0.8592,-0.5117) -- (-0.1526,-0.2553) -- ( 0     ,-0.5191)
+      -- ( 0.1526,-0.2553) -- ( 0.8592,-0.5117) -- ( 0.2859,-0.0242)
+      -- ( 0.4355, 0.2376) -- ( 0.1305, 0.2376) -- cycle;
+  \end{tikzpicture}}
+
+% Le mot IDO : les deux premieres lettres sont composees, la troisieme est
+% l'embleme. Sur le modele le disque vaut 1,0651 fois la hauteur de
+% capitale et se centre sur elle, et il suit le D a 1,4 pt.
+%
+% Les lettres prennent la couleur du DISQUE et non celle du texte : sur le
+% plat elles sont blanches quand le titre est noir, sur la page de titre
+% elles sont bleues. Le mot fait bloc avec l'embleme, il ne fait pas bloc
+% avec le lettrage.
+\newlength{\kapalto}
+\newcommand{\idogrupo}[2]{% #1 couleur du disque, #2 couleur de l'etoile
+  {\kovrilfonto\bfseries\fontsize{\korpIDO}{\korpIDO}\selectfont
+   \settoheight{\kapalto}{ID}%
+   \textcolor{#1}{ID}\kern0.0045\paperwidth
+   \raisebox{0.5\kapalto}{\idoemblemo{1.0651\kapalto}{#1}{#2}}}}
+
+% --- Pose des lignes --------------------------------------------------
+% \supre{hauteur}{contenu} : le contenu centre sur la largeur de la
+% feuille, le HAUT de son encre a la hauteur dite. \raisebox{-\height}
+% descend la boite de sa propre hauteur, ce qui amene son sommet sur la
+% ligne de base du \put.
+\newcommand{\supre}[2]{%
+  \put(0,-#1){\makebox[\paperwidth][c]{\raisebox{-\height}{#2}}}}
+
+% Le lettrage, identique sur les deux pages ; seules changent les couleurs.
+\newcommand{\kovrilteksto}[3]{% #1 encre, #2 disque, #3 etoile
+  \AddToShipoutPictureFG*{\AtPageUpperLeft{%
+    \setlength{\unitlength}{1pt}\color{#1}\kovrilfonto
+    \supre{\posTITOLO}{\bfseries\fontsize{\korpDICIONARIO}{\korpDICIONARIO}
+      \selectfont DICIONARIO}%
+    \supre{\posRADIKI}{\bfseries\fontsize{\korpSUBTITOLO}{\korpSUBTITOLO}
+      \selectfont de la 10.000 RADIKI}%
+    \supre{\posDILA}{\bfseries\fontsize{\korpSUBTITOLO}{\korpSUBTITOLO}
+      \selectfont di la}%
+    \supre{\posLINGUO}{\bfseries\fontsize{\korpSUBTITOLO}{\korpSUBTITOLO}
+      \selectfont linguo universala}%
+    \supre{\posIDO}{\idogrupo{#2}{#3}}%
+    \supre{\posNOMO}{\fontsize{\korpNOMO}{\korpNOMO}\selectfont
+      Marcelo Persiko \textit{(Marcel Pesch)}}%
+    \supre{\posAKADEMIO}{\fontsize{\korpNOMO}{\korpNOMO}\selectfont
+      ex-membro di la Akademio}%
+  }}}
+
+\newcommand{\fondo}[1]{%
+  \AddToShipoutPictureBG*{\AtPageLowerLeft{%
+    \color{#1}\rule{\paperwidth}{\paperheight}}}}
+
+% --- Les trois pages --------------------------------------------------
+% Le plat recto : fond bleu, lettrage noir, disque blanc, etoile bleue.
+\newcommand{\platrekto}{%
+  \fondo{idoblua}\kovrilteksto{black}{white}{idoblua}%
+  \thispagestyle{empty}\null\clearpage}
+
+% La page de titre : fond blanc, lettrage noir, disque bleu, etoile blanche.
+\newcommand{\titolpagino}{%
+  \kovrilteksto{black}{idoblua}{white}%
+  \thispagestyle{empty}\null\clearpage}
+
+% Le plat verso : bleu uni, sans rien dessus.
+\newcommand{\platverso}{%
+  \fondo{idoblua}\thispagestyle{empty}\null\clearpage}
