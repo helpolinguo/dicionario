@@ -699,7 +699,11 @@ def minuskligi(f):
     # lettre M represente. Un domaine du livre est un mot, non une lettre.
     if len(unua.rstrip("'")) <= 2 and unua.rstrip("'").isupper():
         return f
-    if unua in PROPRA or re.search(r'[\d\u2080-\u2089]', unua):
+    # Le nom propre peut porter une queue : « Roentgen-radii » n'est pas
+    # « Roentgen » pour le test, et les rayons X de radiografar sortaient
+    # « roentgen-radii ». On interroge aussi ce qui precede le trait.
+    if (unua in PROPRA or unua.split('-')[0] in PROPRA
+            or re.search(r'[\d\u2080-\u2089]', unua)):
         return f
     # Le chiffre peut n'arriver qu'au mot SUIVANT, et le premier symbole
     # n'etre ni une capitale seule ni un nom propre : « (Si O3)2n », le
@@ -713,9 +717,18 @@ def minuskligi(f):
     return f[0].lower() + f[1:]
 
 
+_CIFRIGI = str.maketrans('\u2080\u2081\u2082\u2083\u2084'
+                         '\u2085\u2086\u2087\u2088\u2089', '0123456789')
+
+
 def _formulo_sola(u):
-    """La chaine est-elle une FORMULE chimique, et rien d'autre ?"""
-    u = u.strip()
+    """La chaine est-elle une FORMULE chimique, et rien d'autre ?
+
+    Les indices sont ramenes sur la ligne avant le test : la chaine pose
+    d'abord les majuscules, ensuite les indices, mais la meme fonction se
+    rejoue sur un texte deja rendu, ou « Si O3 » s'ecrit « Si O\u2083 ».
+    """
+    u = u.strip().translate(_CIFRIGI)
     return bool(_FORMULO.fullmatch(u) and re.search(r'\d', u)
                 and len(re.findall(r'[A-Z]', u)) >= 2)
 

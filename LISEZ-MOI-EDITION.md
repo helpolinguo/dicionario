@@ -421,6 +421,16 @@ Le filet de la dactylo, lui, a été relevé avant que l'astérisque soit posée
 *pri grandoro* ne se retrouvait plus dans *(pri \*grandoro)*. La recherche du
 fragment souligné la laisse donc passer entre les mots.
 
+**La croix que la dactylo n'a pas frappée.** Elle manque parfois là où le mot
+est bien non officiel : le livre le donne alors nu, et rien dans le texte ne le
+signale. Sept vedettes ont ainsi reçu leur marque, chacune dans
+`travail/vedetti.txt` avec son motif — cinq sur la foi d'une **citation
+marquée ailleurs** dans le livre (*\*pliz* cité dans `*prei`, *\*sesiono* dans
+`prorogar`, *\*siejo* dans `rezidar`, *\*ultima* dans `lasta`, *\*niuzo*), et
+deux sur la seule lecture de l'éditeur, le mot ne paraissant nulle part
+ailleurs — `*plastica` et `*liguo`. Ces deux-là sont des **affirmations**, non
+des mises au net, et le fichier le dit.
+
 Une croix restait, qui n'était ni l'une ni l'autre : chez `ecentrika`, *de pn +n
 donita*. Cinq caractères pour un mot de cinq lettres — c'est **punto**, et la
 définition le dit : *Di qua la centro eskartesas de punto donita*, le centre qui
