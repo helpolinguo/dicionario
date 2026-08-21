@@ -57,17 +57,31 @@
 \newcommand{\posNOMO}    {0.64838\paperheight}
 \newcommand{\posAKADEMIO}{0.68863\paperheight}
 
-% --- L'embleme --------------------------------------------------------
-% Un disque et une etoile a six branches — trois longues, a 120 degres
-% l'une de l'autre, et trois courtes entre elles. Ce n'est pas une etoile
-% reguliere : les douze sommets sont RELEVES sur le modele, en balayant le
-% rayon de la figure degre par degre autour de son centre de gravite, puis
-% rendus symetriques par rapport a la verticale — la figure l'est
-% manifestement, et les ecarts constates, 0,3 %, sont le lissage du rendu
-% et non le dessin. Les trois longues pointes touchent le cercle.
+% --- L'embleme -------------------------------------------------------
+% Un disque et une etoile a six branches. Elle est REGULIERE, et se
+% construit :
 %
-% Le trace ainsi obtenu recouvre le modele a un demi-pixel pres sur un
-% embleme de 683 pixels, soit 0,08 % du diametre.
+%   1. un triangle equilateral au centre, une pointe en bas — ses trois
+%      sommets sont les trois petites branches ;
+%   2. sur chacun de ses cotes, une longue pointe dressee vers l'exterieur,
+%      dont le sommet touche le cercle ;
+%   3. la longue pointe du haut a la meme hauteur que le triangle ;
+%   4. chaque longue pointe a pour base le TIERS du cote qui la porte.
+%
+% La condition 3 suffit a tout fixer. En prenant le rayon du disque pour
+% unite et t pour rayon circonscrit du triangle, la hauteur du triangle vaut
+% 3t/2 et celle d'une pointe 1 moins le rayon inscrit, soit 1 - t/2 ; les
+% egaler donne t = 1/2. Le triangle tient donc dans le demi-disque, son cote
+% vaut V3/2, son rayon inscrit 1/4, et le tiers de son cote V3/6 — d'ou tous
+% les nombres ci-dessous, qui sont des multiples de V3/12 et de 1/4.
+%
+% La figure est invariante par rotation d'un tiers de tour : les trois
+% grandes pointes sont sur le cercle, les trois petites a mi-rayon.
+%
+% Confrontee a la maquette, dont l'etoile est dessinee a la main, la figure
+% construite s'en ecarte de 2,4 % du rayon au plus — l'etoile de la maquette
+% est posee 1,4 % trop bas dans son disque, et ses longues pointes ont a la
+% base 0,30 fois le cote et non un tiers.
 %
 % Coordonnees en unites de RAYON, origine au centre du disque, y vers le
 % haut. La ligne de base de la figure passe par le centre du disque.
@@ -76,11 +90,20 @@
   \setlength{\stelrayo}{0.5\dimexpr#1\relax}%
   \begin{tikzpicture}[x=\stelrayo, y=\stelrayo, baseline={(0,0)}]
     \fill[#2] (0,0) circle[radius=1];
-    \fill[#3] (0,1)
-      -- (-0.1305, 0.2376) -- (-0.4355, 0.2376) -- (-0.2859,-0.0242)
-      -- (-0.8592,-0.5117) -- (-0.1526,-0.2553) -- ( 0     ,-0.5191)
-      -- ( 0.1526,-0.2553) -- ( 0.8592,-0.5117) -- ( 0.2859,-0.0242)
-      -- ( 0.4355, 0.2376) -- ( 0.1305, 0.2376) -- cycle;
+    \fill[#3]
+         (            0 ,  1   )   % longue pointe du haut
+      -- ({-sqrt(3)/12 },  0.25)   % base de la pointe du haut
+      -- ({-sqrt(3)/4  },  0.25)   % sommet gauche du triangle
+      -- ({-sqrt(3)/6  },  0   )   % base de la pointe bas-gauche
+      -- ({-sqrt(3)/2  }, -0.5 )   % longue pointe bas-gauche
+      -- ({-sqrt(3)/12 }, -0.25)   % base de la pointe bas-gauche
+      -- (            0 , -0.5 )   % sommet bas du triangle
+      -- ({ sqrt(3)/12 }, -0.25)
+      -- ({ sqrt(3)/2  }, -0.5 )   % longue pointe bas-droite
+      -- ({ sqrt(3)/6  },  0   )
+      -- ({ sqrt(3)/4  },  0.25)   % sommet droit du triangle
+      -- ({ sqrt(3)/12 },  0.25)
+      -- cycle;
   \end{tikzpicture}}
 
 % Le mot IDO : les deux premieres lettres sont composees, la troisieme est

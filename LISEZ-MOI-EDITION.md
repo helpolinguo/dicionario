@@ -991,13 +991,30 @@ Tout est composé, rien n'est une image : le lettrage est en **Jost\***, reprise
 libre de la Futura de Renner dans laquelle la maquette est écrite, et l'emblème
 est un **tracé**, disque et étoile.
 
-**L'étoile d'Ido** a six branches, trois longues à 120° l'une de l'autre et
-trois courtes entre elles ; elle n'est pas régulière. Ses douze sommets ont été
-relevés sur la maquette en balayant le rayon de la figure degré par degré
-autour de son centre de gravité, puis rendus symétriques par rapport à la
-verticale — la figure l'est manifestement, et l'écart mesuré, 0,3 %, est le
-lissage du rendu et non le dessin. Le tracé recouvre le modèle **à un demi-pixel
-près** sur un emblème de 683 pixels, soit 0,08 % du diamètre.
+**L'étoile d'Ido** a six branches, et elle est **régulière** — elle se
+construit :
+
+1. un **triangle équilatéral** au centre, une pointe en bas ; ses trois sommets
+   sont les trois petites branches ;
+2. sur chacun de ses côtés, une **longue pointe** dressée vers l'extérieur, dont
+   le sommet touche le cercle ;
+3. la longue pointe du haut a la **même hauteur que le triangle** ;
+4. chaque longue pointe a pour base le **tiers du côté** qui la porte.
+
+La troisième condition suffit à tout fixer. En prenant le rayon du disque pour
+unité et *t* pour rayon circonscrit du triangle, la hauteur du triangle vaut
+3*t*/2 et celle d'une pointe 1 moins le rayon inscrit, soit 1 − *t*/2 ; les
+égaler donne **t = 1/2**. Le triangle tient donc dans le demi-disque, son côté
+vaut √3/2, son rayon inscrit 1/4 — et les douze sommets de l'étoile sont des
+multiples de √3/12 et de 1/4. La figure est invariante par tiers de tour : les
+trois grandes pointes sur le cercle, les trois petites à mi-rayon. Mesurée sur
+le PDF composé, à 1200 points par pouce, elle tombe **à 0,4 % près** sur ces six
+rayons.
+
+La maquette, dont l'étoile est dessinée à la main, s'en écarte de 2,4 % du rayon
+au plus : son étoile est posée 1,4 % trop bas dans son disque, et ses longues
+pointes ont à la base 0,30 fois le côté et non un tiers. C'est la figure
+**construite** qui est composée.
 
 Les corps et les hauteurs de ligne viennent du même relevé, au 300e de pouce,
 et sont rapportés à la page de poche par le rapport des largeurs de page. Une
