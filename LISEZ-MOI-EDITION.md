@@ -636,11 +636,16 @@ départage, une à une :
 | `kin` p. 276 | *2 plus 3, o l plus 4* | *o 1 plus 4* | cinq, c'est 2 + 3 ou 1 + 4 |
 | `ikonogeno` p. 227 | *amino-l-naftolo-2* | *amino-1-* | l'eikonogène est le sel de l'acide amino-**1**-naphtol-2-sulfonique-6 ; les positions voisines sont déjà des chiffres, *-2* et *-6* |
 
-Les cinq derniers restent tels quels : trois sont le point **O** de la géométrie,
-et deux sont des passages abîmés où le `l` n'est pas un chiffre mais un mot
-tronqué — *obliqua ye l plaso propra* chez `ripar`, *Granda peco de l de silkajo*
-chez `shalo`. Le mot manquant y commence par `l` (*la* ? *lua* ? *lano* ?
-*lino* ?) et rien dans le livre ne permet de choisir : on ne devine pas.
+Deux autres ne sont pas des chiffres mais des **mots coupés par la marge
+droite** : le `l` finit la ligne du tapuscrit et la suite du mot est perdue.
+
+| article | lu | rendu | ce qui tranche |
+|---|---|---|---|
+| `ripar` p. 499 | *obliqua ye l plaso propra* | *ye **lua** plaso propra* | *propra* veut un possesseur, et le possesseur — la roue — n'est pas le sujet de la proposition : l'ido demande `lua`, non `sua`, que le `l` exclurait de toute façon. La même ligne portait *di automobi*, rendu *di automobilo* à la relecture |
+| `shalo` p. 523 | *Granda peco de l de silkajo* | *de **lanajo**, de silkajo* | le livre donne lui-même le mot, et en premier exemple du suffixe `-ajo` p. 12 : *ex. : lanajo, kotonajo, bonajo, bitrajo*. *lanajo* et *silkajo* vont de pair |
+
+Les trois derniers restent : ce sont le point **O** de la géométrie — *De punto
+fixa O* chez `hodografo`, *un punto fixa O* et *la punto O* chez `homoteta`.
 
 ### Le « x » qui est une croix
 
