@@ -23,17 +23,23 @@
 \newfontfamily\titra{Inter}[Ligatures=TeX]
 
 \definecolor{grize}{gray}{0.45}
-% L'accent est le COMPLEMENT de l'azur de la couverture : teinte 30,1
-% degres contre 210,1, soit le tour de roue exact. Le complement plein,
-% #FF8000, ne tient pas sur du papier — 2,52 contre 1 avec le blanc, la
-% ou un texte courant en demande 4,5 : on garde la teinte et la
-% saturation pleines, et on descend a la valeur que l'ancien accent avait
-% deja, 0,541. Le brun d'avant etait le meme ton avec du bleu dedans ;
-% l'oter le rend a sa teinte.
-\definecolor{akcento}{HTML}{8A4500}
 
-% Couverture, page de titre et plat verso : voir kovrilo.tex.
+% Couverture, page de titre et plat verso : voir kovrilo.tex. C'est la
+% qu'est defini l'azur, #007FFF.
 \input{kovrilo}
+
+% Le livre n'a qu'UNE couleur. L'accent — les vedettes, les grandes
+% lettres, les sous-entrees, le carre qui les annonce — n'est pas une
+% couleur de plus : c'est l'azur de la couverture, pose par renvoi. Ecrit
+% ainsi, il ne peut pas deriver.
+%
+% Sur le blanc l'azur donne 3,83 contre 1, un peu sous les 4,5 qu'un texte
+% courant demande ; mais la vedette est en gras, et le bleu est depuis
+% longtemps la couleur des mots qu'on cherche. En niveaux de gris elle
+% tombe a 78 %, ce qui la garde plus foncee que le texte n'est clair. Le
+% brun qui la precedait tenait mieux la photocopie, 90 %, mais il faisait
+% deux couleurs dans un livre qui n'en veut qu'une.
+\colorlet{akcento}{idoblua}
 
 \setlength{\columnsep}{4.2mm}
 \setlength{\columnseprule}{0.2pt}

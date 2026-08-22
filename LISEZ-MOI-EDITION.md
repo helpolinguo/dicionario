@@ -1162,43 +1162,38 @@ primaires du profil enfermé dans le fichier, cela donne `#0094FF`. L'azur en es
 proche — vingt et un points de vert plus bas — et c'est une couleur **nommée**,
 non le résidu d'une conversion.
 
-### L'accent, complément de l'azur
+### L'accent
 
-Les deux éditions marquent d'une couleur ce qui n'est pas la définition : les
-vedettes et les grandes lettres dans le livre de poche, le domaine et les
-sous-entrées sur la page. Cette couleur est le **complément** de l'azur de la
-couverture — teinte **30,1°** contre 210,1°, soit le demi-tour exact de la roue.
+**Le livre de poche n'a qu'une couleur.** L'accent — les vedettes, les grandes
+lettres, les sous-entrées et le carré qui les annonce — n'est pas une couleur de
+plus : c'est **l'azur de la couverture**, posé par renvoi.
 
-Le complément plein, `#FF8000`, ne tient pas sur du papier : **2,52 contre 1**
-avec le blanc, là où un texte courant en demande 4,5 et un grand titre 3. On
-garde donc la teinte et la saturation pleines, et on descend à la valeur que
-l'ancien accent avait déjà, 0,541 — le brun d'avant était le même ton avec du
-bleu dedans, et l'ôter le rend à sa teinte.
-
-| | couleur | teinte | contraste |
-|---|---|---|---|
-| azur, la couverture | `#007FFF` | 210,1° | 3,83 : 1 |
-| complément littéral | `#FF8000` | 30,1° | 2,52 : 1 — refusé |
-| **accent, le livre de poche** | `#8A4500` | 30,1° | **7,15 : 1** |
-| **accent, la page (clair)** | `#7A3D00` | 30,1° | **8,05 : 1** |
-| **accent, la page (sombre)** | `#D6A06A` | 30,1° | **7,83 : 1** |
-
-Les trois accents gardent la valeur — donc le contraste — qu'ils avaient ; seule
-la teinte se purifie, et le contraste y gagne un demi-point, le bleu qu'on ôte
-étant ce qui les assombrissait sans les foncer.
-
-Les **drapeaux** (`sen-lingua`, `ordino-ruptita`) portaient une couleur à part,
-`#B4552D`, à 17,8° — assez proche de l'accent pour ne pas s'en distinguer, assez
-loin pour qu'on voie deux tons. Ils n'en ont plus : la page ne connaît **qu'une
-seule couleur chaude**, et le drapeau la prend par renvoi.
-
-```css
-:root{ … --acc:#7A3D00; --flag:var(--acc) }
+```tex
+\input{kovrilo}                 % c'est la qu'est defini l'azur
+\colorlet{akcento}{idoblua}
 ```
 
-Écrite ainsi, la règle ne peut plus dériver : le thème sombre ne redéfinit que
-`--acc`, et le drapeau suit. Le contraste y gagne d'ailleurs — le drapeau, qui
-s'écrit en 11,5 px, passe de 4,70 à 8,05 sur le papier de la page.
+Écrit ainsi, l'accent ne peut pas dériver du plat.
+
+Sur le blanc, l'azur donne **3,83 : 1**, un peu sous les 4,5 qu'un texte courant
+demande. Le prix est réel et il est assumé : la vedette est en gras, et le bleu
+est depuis longtemps la couleur des mots qu'on cherche. En niveaux de gris elle
+tombe à 78 %, ce qui la garde nettement plus foncée que le papier. Le brun qui
+la précédait, `#8A4500`, tenait mieux la photocopie — 90 % — mais il faisait deux
+couleurs dans un livre qui n'en veut qu'une.
+
+Le **complément** de l'azur, `#FF8000`, a été essayé et écarté : sur du blanc il
+ne donne que 2,52 : 1, et en niveaux de gris il tombe à 63 %, c'est-à-dire plus
+clair que le texte qu'il commande — les vedettes s'effaçaient sous leur propre
+définition. Sur le plat bleu il est pire encore, 1,52 : 1 : deux complémentaires
+à pleine saturation ont presque la même luminance, et l'œil lit par la
+luminance, non par la teinte.
+
+**La page HTML** garde son accent chaud, `#7A3D00` en thème clair et `#D6A06A` en
+sombre — le domaine et les sous-entrées y sont en petit corps, et les drapeaux en
+11,5 px, où 3,83 : 1 ne suffirait pas. Les drapeaux prennent cet accent par
+renvoi, `--flag:var(--acc)`, pour la même raison qu'au livre : une seule couleur
+chaude sur la page.
 
 ### La grille verticale
 
