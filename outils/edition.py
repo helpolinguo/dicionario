@@ -2095,6 +2095,21 @@ def strukturizar(e):
     # Ce qui reste souligne sans etre une locution : le domaine, le nom latin,
     # le mot cite. L'edition le rend en italique, la ou il se retrouve.
     lok={x["loko"].lower() for b in strukt for x in b["sub"]}
+    # Le filet DU DOMAINE, pour la meme raison que celui de la locution : il a
+    # deja fait son travail. « (elektro) » est parti au champ `fako`, que les
+    # deux editions rendent en italique a leur maniere ; le fragment n'a pas a
+    # se reposer sur le premier « elektro » venu de la definition. Il le
+    # faisait dans 31 articles — « fonto di ELEKTRO » chez akumulatoro, « la
+    # ponto di NAVO » chez swabro, « komandas ARMEO » chez generalo —, ou le
+    # mot est employe, non cite.
+    #
+    # Le livre porte 4 109 filets egaux a un domaine, et pas un seul hors de sa
+    # parenthese : la dactylo souligne le domaine la ou il est, jamais son
+    # echo. Le garde-fou est donc sans faux frere.
+    fak={(e.get('fako') or '').strip().strip('()').rstrip('.').lower()}
+    fak |= {(x.get('fako') or '').strip().strip('()').rstrip('.').lower()
+            for b in strukt for x in b['sub']}
+    fak.discard('')
     textoj=[b["teksto"] for b in strukt] + [x["teksto"] for b in strukt for x in b["sub"]]
     kur=[]; dub=[]; vu=set()
     for u in subl:
@@ -2134,6 +2149,16 @@ def strukturizar(e):
             # bout de la ligne. On met en italique la parenthese entiere —
             # c'est elle, le qualificatif — et les deux moities se recollent.
             g=_parentezo(t, m.start(), m.end())
+            # Le domaine deja parti au champ ne se repose pas NU dans le corps.
+            # « (elektro) » est le domaine de akumulatoro ; l'italique retombait
+            # sur le « elektro » de « fonto di elektro », ou le mot est employe,
+            # non cite. On exige donc que le fragment soit encore une
+            # PARENTHESE dans le texte : la ou il l'est — « (bot.) » ouvrant le
+            # sens II de lotuso, « (fiziol.) » celui de sero, « (ica) » cite par
+            # ca —, il garde son italique ; la ou il ne l'est plus, il l'a
+            # laissee au champ.
+            if g is None and mot.strip().rstrip('.').lower() in fak:
+                continue
             if g is None and (len(mot) < 3 or _nur_motouti(mot)):
                 dub.append(u); continue
             v=g if g else mot

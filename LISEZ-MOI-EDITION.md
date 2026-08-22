@@ -682,6 +682,73 @@ enklitiko@144:49   {que} en {neque}; {ne} en {venisne}; F. {ce} en {est-ce}; {je
 Le seuil de trois caractères reste : il gagne plus qu'il ne coûte, et le peu
 qu'il coûte se répare à l'œil, ligne par ligne, dans `filetoj.txt`.
 
+### Le filet du domaine, qui se reposait dans le corps
+
+Le domaine souligné — *(elektro)*, *(navo)*, *(armeo)* — part au champ `fako`,
+que les deux éditions rendent en italique à leur manière. Le **fragment**, lui,
+restait dans la liste des filets, et `marki()` le reposait sur la première
+occurrence venue du mot dans la définition : *fonto di* ***elektro*** chez
+`akumulatoro`, *la ponto di* ***navo*** chez `swabro`, *komandas* ***armeo***
+chez `generalo`. Le mot y est employé, non cité, et la dactylo ne l'avait pas
+souligné.
+
+Le garde-fou existait déjà pour la locution — « le filet amputé dont la locution
+est née la désigne déjà, et n'a pas à se poser une seconde fois ». Le domaine
+demandait le même, et le livre le permet sans réserve : il porte **4 109 filets
+égaux à un domaine, et pas un seul hors de sa parenthèse**. La dactylo souligne
+le domaine là où il est, jamais son écho.
+
+La règle exige donc que le fragment soit **encore une parenthèse dans le
+texte** : là où il l'est, il garde son italique — *(bot.)* ouvrant le sens II de
+`lotuso`, *(fiziol.)* celui de `sero`, *(ica)* cité par `ca`, *(da banko)* chez
+`cheko` —, là où il ne l'est plus, il l'a laissée au champ. **Trente-deux
+articles** perdent une italique fantôme, dont deux qui la portaient deux fois :
+`apostata` — *abandonis sua religio (la religio en qua lu naskis)* — et `katodo`.
+
+Deux ne sont pas des domaines de matière. Chez `butono`, c'est la sous-entrée
+*\*botono* qui porte *(elektro)*, et l'italique retombait sur *elektro-filo*.
+Chez `or`, le livre ouvre par *(konjunciono)* puis rouvre le sens II par
+*(logiko) Konjunciono uzata por…* : le premier mot de la définition répétait le
+qualificatif, et l'italique l'avait pris.
+
+### La vedette citée dans sa propre définition
+
+`sublineajoj()` écarte tout fragment égal à la vedette, et il le faut : la
+dactylo souligne le mot-vedette en tête de chaque article, et ce filet-là
+n'apprend rien. La règle est aveugle à la ligne, et emporte du même coup la
+vedette **citée** plus bas.
+
+`aliancar` en vit : sa note oppose terme à terme trois mots — *Ta vorto ne esas
+sinonimo di mariajar : mariajo relatas nur la gespozi ; aliancar relatas lia
+familii* —, la dactylo a souligné les trois, et le troisième manquait. Un `>` de
+`filetoj.txt` le rend.
+
+Le même article portait l'autre bout du problème. Le relevé ne mesure **qu'un**
+*mariajo*, celui de la note ; `marki()` cherche *toutes* les occurrences, et le
+posait aussi sur *per mariajo*, où le mot est employé. Une ligne l'écarte, une
+seconde le repose à sa place, avec le contexte qui la désigne.
+
+```
+aliancar@24:53   mariajo
+aliancar@24:53   {mariajo} relatas nur la gespozi
+aliancar@24:53   >aliancar
+```
+
+Le livre compte **dix-sept** vedettes soulignées ailleurs que sur leur première
+ligne, et elles ne sont pas de la même espèce : sept sont des citations
+véritables — `agulo`, `aliancar`, `farad`, `procento`, `puteo`, `yen` —, deux
+sont le nom latin identique à la vedette — `dahlia`, `plantago` —, quatre
+ouvrent une locution à deux-points — `baseno`, `konfluanta`, `pozitiva`,
+`sentinelo` —, et cinq sont la ligne de vedette elle-même, l'article ayant
+commencé une ligne plus haut que le découpage ne l'a cru — `asesoro`, `*pondar`,
+`shovar`, `tino`, `warfo`. Aucune règle ne les sépare : elles se prennent une par
+une.
+
+Cinq articles seulement posaient un fragment plus souvent qu'il n'a été mesuré :
+`aliancar`, `apostata`, `katodo` — réglés ici —, `maskulo`, où *maskula* ouvre
+le sens II et se répète en fin de phrase, et `kelka`, où les deux *plura* sont
+bel et bien soulignés tous les deux.
+
 ### Le filet qui ne couvre que des mots-outils
 
 `absinto` portait *ek la* en italique au milieu de sa définition. Le garde-fou
