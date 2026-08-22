@@ -1187,9 +1187,18 @@ Les trois accents gardent la valeur — donc le contraste — qu'ils avaient ; s
 la teinte se purifie, et le contraste y gagne un demi-point, le bleu qu'on ôte
 étant ce qui les assombrissait sans les foncer.
 
-Les **drapeaux** (`sen-lingua`, `ordino-ruptita`) gardent leur propre couleur,
-`#B4552D`, à 17,8° : ils signalent autre chose que l'accent, et les douze degrés
-qui les en séparaient s'ouvrent maintenant à un peu plus.
+Les **drapeaux** (`sen-lingua`, `ordino-ruptita`) portaient une couleur à part,
+`#B4552D`, à 17,8° — assez proche de l'accent pour ne pas s'en distinguer, assez
+loin pour qu'on voie deux tons. Ils n'en ont plus : la page ne connaît **qu'une
+seule couleur chaude**, et le drapeau la prend par renvoi.
+
+```css
+:root{ … --acc:#7A3D00; --flag:var(--acc) }
+```
+
+Écrite ainsi, la règle ne peut plus dériver : le thème sombre ne redéfinit que
+`--acc`, et le drapeau suit. Le contraste y gagne d'ailleurs — le drapeau, qui
+s'écrit en 11,5 px, passe de 4,70 à 8,05 sur le papier de la page.
 
 ### La grille verticale
 

@@ -22,8 +22,8 @@ GABARITO = """<!DOCTYPE html><html lang="io"><meta charset="utf-8">
 <title>Dicionario de la 10.000 radiki di la linguo universala Ido</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <style>
-:root{--enk:#1a1a1a;--pap:#fbfaf7;--sub:#6b6560;--acc:#7A3D00;--lin:#e2ddd5;--flag:#b4552d}
-@media(prefers-color-scheme:dark){:root{--enk:#e8e4de;--pap:#16161a;--sub:#9a938c;--acc:#D6A06A;--lin:#2c2c33;--flag:#e08a5c}}
+:root{--enk:#1a1a1a;--pap:#fbfaf7;--sub:#6b6560;--acc:#7A3D00;--lin:#e2ddd5;--flag:var(--acc)}
+@media(prefers-color-scheme:dark){:root{--enk:#e8e4de;--pap:#16161a;--sub:#9a938c;--acc:#D6A06A;--lin:#2c2c33}}
 *{box-sizing:border-box}
 body{margin:0;background:var(--pap);color:var(--enk);
  font:16px/1.55 "Iowan Old Style",Palatino,"Palatino Linotype",Georgia,serif}
