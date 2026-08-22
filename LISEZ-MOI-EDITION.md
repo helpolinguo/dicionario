@@ -657,6 +657,31 @@ sans lui rien ne distingue la locution d'une phrase de la définition.
 pseudonima@476:49   >Pseudonimo
 ```
 
+
+### Les mots de deux lettres, que le relevé ne peut pas rendre
+
+`enklitiko` définit l'enclitique en l'opposant, quatre fois de suite, au mot qui
+l'a absorbé : *L. que en neque ; ne en venisne ; F. ce en est-ce ; je en
+sais-je*. Le fac-similé ne souligne que **quatre** des huit — *que*, *neque*,
+*venisne*, *est-ce* —, et l'article se lisait donc à moitié marqué, la
+démonstration cassée au milieu de chaque paire.
+
+Le relevé n'y pouvait rien. `sublineajoj` écarte par construction tout fragment
+de **moins de trois caractères** : c'est le garde-fou qui empêche un pâté d'encre
+ou la queue d'un *p* de passer pour un trait. *ne*, *ce* et *je* en font deux, et
+n'auraient pas survécu même mesurés ; *sais-je* ferme l'énumération, là où le
+trait de la dactylo s'arrête souvent avant la fin.
+
+Une ligne à accolades pose les huit d'un coup, le contexte servant à ne pas
+mettre en italique le *ne* adverbe qui court ailleurs dans l'article :
+
+```
+enklitiko@144:49   {que} en {neque}; {ne} en {venisne}; F. {ce} en {est-ce}; {je} en {sais-je}
+```
+
+Le seuil de trois caractères reste : il gagne plus qu'il ne coûte, et le peu
+qu'il coûte se répare à l'œil, ligne par ligne, dans `filetoj.txt`.
+
 ### Le filet qui ne couvre que des mots-outils
 
 `absinto` portait *ek la* en italique au milieu de sa définition. Le garde-fou
