@@ -381,6 +381,18 @@ Les binômes vont parfois **par deux** — *L. ostrea edulis e gryphea angulata*
 conjonction n'est pas un mot du nom : sans l'exclure, le premier binôme mordait
 dessus et rendait *ostrea edulis e gryphea*.
 
+**Deux annonces manquées.** Le nom n'est pas toujours introduit par un `L.` net.
+Chez `eringo`, le tapuscrit le pose **seul sur sa ligne**, souligné, sans rien
+devant : *Genero de planto umbelifera, pikantoza.* puis *eryngium.* Le `L.` que
+l'auteur omet est rendu par `travail/texti.txt`, et la règle fait le reste.
+
+Chez `askarido`, l'annotation porte un **deux-points** — *L. ascaridae genus :
+ascaris*, la famille *Ascaridae*, genre *Ascaris* — et la règle s'arrête dessus,
+laissant *: ascaris* dans la définition. C'est le seul `L.` du livre à porter un
+deux-points, et la règle ne change pas pour un cas : le nom entier est posé par
+`travail/latinaji.txt`, le reste ôté par `travail/vorti.txt`. Les articles à nom
+scientifique passent à **837**.
+
 **Deux points, deux lectures.** Le `L.` du nom scientifique prend son espace :
 le livre l'écrit ainsi partout, et une seule fois sans — *la tipo esas L.acarus*
 chez `akaro`. Mais on ne touche à aucun autre point collé à une minuscule : il y

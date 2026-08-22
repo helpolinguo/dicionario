@@ -36,3 +36,4 @@ fritilario@187:28	fritillus	p180 : lu « fritilius » — le double l pris pour 
 # « camelus bactrianus » (kamelo), « struthio camelus » (strucho),
 # « tragocamelus » (nilgauo) — et « gamel- » une seule, ici.
 jirafo@255:48	camelopardalis giraffa	p248 : lu « gamelopardalis giraffz ». Le c lu comme g — le livre ecrit « camel- » partout ailleurs — et le a final lu comme z, qui ne finit aucun nom latin. « Camelopardalis », le chameau-leopard, est le nom ancien de la girafe
+askarido@51:11	ascaridae genus : ascaris	p044 : le fac-simile porte « - L. ascaridae genus : » en fin de ligne et « ascaris. » au debut de la suivante, le filet couvrant les deux. C est UNE annotation — la famille Ascaridae, genero Ascaris — et le deux-points en fait partie. La regle d extraction s arrete dessus et laissait « : ascaris » dans la definition ; c est le seul « L. » du livre qui porte un deux-points, et la regle ne change pas pour un cas.
