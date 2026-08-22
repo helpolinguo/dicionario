@@ -23,7 +23,14 @@
 \newfontfamily\titra{Inter}[Ligatures=TeX]
 
 \definecolor{grize}{gray}{0.45}
-\definecolor{akcento}{HTML}{8A4B2A}
+% L'accent est le COMPLEMENT de l'azur de la couverture : teinte 30,1
+% degres contre 210,1, soit le tour de roue exact. Le complement plein,
+% #FF8000, ne tient pas sur du papier — 2,52 contre 1 avec le blanc, la
+% ou un texte courant en demande 4,5 : on garde la teinte et la
+% saturation pleines, et on descend a la valeur que l'ancien accent avait
+% deja, 0,541. Le brun d'avant etait le meme ton avec du bleu dedans ;
+% l'oter le rend a sa teinte.
+\definecolor{akcento}{HTML}{8A4500}
 
 % Couverture, page de titre et plat verso : voir kovrilo.tex.
 \input{kovrilo}

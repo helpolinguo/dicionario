@@ -1162,6 +1162,35 @@ primaires du profil enfermé dans le fichier, cela donne `#0094FF`. L'azur en es
 proche — vingt et un points de vert plus bas — et c'est une couleur **nommée**,
 non le résidu d'une conversion.
 
+### L'accent, complément de l'azur
+
+Les deux éditions marquent d'une couleur ce qui n'est pas la définition : les
+vedettes et les grandes lettres dans le livre de poche, le domaine et les
+sous-entrées sur la page. Cette couleur est le **complément** de l'azur de la
+couverture — teinte **30,1°** contre 210,1°, soit le demi-tour exact de la roue.
+
+Le complément plein, `#FF8000`, ne tient pas sur du papier : **2,52 contre 1**
+avec le blanc, là où un texte courant en demande 4,5 et un grand titre 3. On
+garde donc la teinte et la saturation pleines, et on descend à la valeur que
+l'ancien accent avait déjà, 0,541 — le brun d'avant était le même ton avec du
+bleu dedans, et l'ôter le rend à sa teinte.
+
+| | couleur | teinte | contraste |
+|---|---|---|---|
+| azur, la couverture | `#007FFF` | 210,1° | 3,83 : 1 |
+| complément littéral | `#FF8000` | 30,1° | 2,52 : 1 — refusé |
+| **accent, le livre de poche** | `#8A4500` | 30,1° | **7,15 : 1** |
+| **accent, la page (clair)** | `#7A3D00` | 30,1° | **8,05 : 1** |
+| **accent, la page (sombre)** | `#D6A06A` | 30,1° | **7,83 : 1** |
+
+Les trois accents gardent la valeur — donc le contraste — qu'ils avaient ; seule
+la teinte se purifie, et le contraste y gagne un demi-point, le bleu qu'on ôte
+étant ce qui les assombrissait sans les foncer.
+
+Les **drapeaux** (`sen-lingua`, `ordino-ruptita`) gardent leur propre couleur,
+`#B4552D`, à 17,8° : ils signalent autre chose que l'accent, et les douze degrés
+qui les en séparaient s'ouvrent maintenant à un peu plus.
+
 ### La grille verticale
 
 Les corps viennent du relevé de la maquette, au 300e de pouce, rapportés à la
