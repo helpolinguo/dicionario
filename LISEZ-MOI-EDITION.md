@@ -494,7 +494,31 @@ Cent quarante-deux italiques ne couvrent qu'un mot, et la grande majorité sont
 légitimes.
 
 Ils s'écartent donc **un par un**, dans `travail/filetoj.txt`, avec le motif en
-regard.
+regard. Un troisième cas s'y est ajouté : *disto* chez `longitudo`, dans *…sur
+la surfaco di la Terglobo : disto de ta loko a la meridiano determinita*. Le mot
+y est employé, non cité, et il paraît **deux fois** dans l'article sans que rien
+distingue l'un de l'autre.
+
+**Pourquoi il en reste.** L'édition prend les plages de soulignement **telles
+que la mesure les a rendues**, sans retouche. Le fac-similé, lui, leur applique
+quatre règles réglées sur 1 698 lignes relues à l'œil (voir `outils/generer.py`)
+— ébarbage des extrémités, recollement d'un filet que l'usure du ruban a coupé,
+et le rejet d'un filet qui commence au milieu d'un mot. Ces règles écartent
+**1 045** fragments que l'édition conserve.
+
+On ne peut pas les reprendre telles quelles : elles sont réglées pour préférer
+un soulignement manquant à un mot souligné à tort, et elles en perdent. À
+`katarakto` le fac-similé ne porte **aucun** filet, pas même sous la vedette, là
+où la mesure en a bien relevé deux. Les reprendre coûterait **67 italiques
+légitimes** pour en retirer 853 qui ne se posent nulle part et ne coûtent rien —
+un mauvais échange.
+
+Reste que **70 italiques ne couvrent qu'un mot ordinaire**, minuscule, étranger
+à la vedette. Beaucoup sont de vraies citations — *acarus* chez `akaro`,
+*bombyx* chez `silko`, *lierre* chez `prostezo`, *volt* et *coulomb* chez
+`farad`, *ante* chez `avan`. D'autres sont du même genre que *disto* : *mikra*
+chez `limeto`, *uzata* chez `medikamento`, *omna* chez `ubiqua`, *aquo* chez
+`algo`. Ils se jugent un par un, comme les autres.
 
 **L'inverse arrive aussi** : le trait était là, et le relevé ne l'a pas rendu.
 Chez `anakoluto`, l'article définit l'anacoluthe comme l'omission de *ta* devant
