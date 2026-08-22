@@ -734,6 +734,21 @@ aliancar@24:53   {mariajo} relatas nur la gespozi
 aliancar@24:53   >aliancar
 ```
 
+**Deux autres du même genre.** Chez `kelka`, l'incise oppose la vedette à ses
+voisines — *Kelka indikas quanto min granda kam multa, e plu granda kam plura* —
+et la dactylo a souligné les trois. Le relevé n'en a rendu que deux : la mesure
+du troisième a glissé d'une colonne et rend *elka*, quatre lettres qui ne
+répondent à aucun mot. La parenthèse ouvrante manquait aussi, la dactylo ayant
+frappé un tiret à sa place, et la fermante — *nur « du »)* — restait orpheline et
+tombait. `travail/texti.txt` rend la parenthèse, `filetoj.txt` l'italique.
+
+Chez `sekundara`, le relevé ne mesure qu'un *primara*, ligne 48 colonne 3 : celui
+de l'incise du sens II, *kontraste kun la doco primara, agata en la skoli
+elementala*. Le sens III — *Kuzi sekundara : Filii de kuzi primara* — n'en porte
+aucun ; le mot y est employé, non opposé. Le fragment se posait aux deux
+endroits, et c'est par lui que l'incise du sens II recevait son italique : le
+fragment *doco*, qui l'aurait reprise, est déjà tenu pour placé par la locution
+*doco sekundara*. On écarte donc le fragment et on repose l'incise entière.
 Le livre compte **dix-sept** vedettes soulignées ailleurs que sur leur première
 ligne, et elles ne sont pas de la même espèce : sept sont des citations
 véritables — `agulo`, `aliancar`, `farad`, `procento`, `puteo`, `yen` —, deux
@@ -828,6 +843,20 @@ page 405 — *Pronomo personala nedefinita* —, où l'auteur donne les deux for
 sous une seule entrée : c'est sa définition, pas son usage. Le second est chez
 `tildo`, *la F. « an » e « on »*, où le mot n'est pas un pronom mais le **son
 nasal français**, cité entre guillemets.
+
+### L'astérisque soudée au mot qui précède
+
+La croix du tapuscrit — l'astérisque du mot non officiel — est **collée au mot
+qu'elle marque**, et c'est voulu : *+stencilo* est un seul mot, et le livre le
+range ainsi parmi ses vedettes. Six fois, la dactylo l'a collée aussi à celui
+d'avant : *per perforo, sur+stencilo* chez `hektografar`, *di omna+itemi* chez
+`*seancar`, *la+chevaliere* chez `barono`, *la+asiejo-mashini* chez `traino`,
+*adolecanti,+konvokata* chez `klaso`, *en vazo+kluza* chez `koko`.
+
+Le livre en porte **189 déjà détachées** et 50 en tête de fragment ; ces six sont
+les seules soudées, et la marque y appartient sans ambiguïté au mot qui suit.
+`espacar` rend l'espace, sans toucher à celle qui ouvre un fragment ni à celle
+d'une vedette.
 
 ### L'espace après le point, derrière un guillemet fermant
 

@@ -2906,6 +2906,16 @@ def espacar(t):
     # le premier gardait la phrase suivante soudee a la precedente. Aucun faux
     # frere : un guillemet fermant ne fait jamais corps avec le mot d'apres.
     t = re.sub(r'([»"])\.(?=[A-ZÀ-Ý])', r'\1. ', t)
+    # L'asterisque du mot non officiel prend l'espace qui la separe du mot
+    # PRECEDENT. La dactylo collait sa croix au mot qu'elle marque — c'est
+    # voulu, « +stencilo » est un seul mot —, mais elle la collait aussi,
+    # six fois, a celui d'avant : « per perforo, sur+stencilo » chez
+    # hektografar, « di omna+itemi » chez *seancar, « la+chevaliere » chez
+    # barono, « la+asiejo-mashini » chez traino, « adolecanti,+konvokata »
+    # chez klaso, « en vazo+kluza » chez koko. Le livre porte 189 asterisques
+    # deja detachees et 50 en tete de fragment ; ces six sont les seules
+    # soudees, et la marque y appartient au mot qui SUIT.
+    t = re.sub(r'(?<=[A-Za-zÀ-ÿ,])\*(?=[a-zà-ÿ])', ' *', t)
     # Espace parasite CONTRE la parenthese : « ( fig.) » pour
     # « (fig.) », « hundo-herbo )» pour « hundo-herbo) ». La dactylo
     # espacait pour caler sa ligne. 15 ouvrantes et 33 fermantes.
