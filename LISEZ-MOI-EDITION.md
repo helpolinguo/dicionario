@@ -357,6 +357,38 @@ correction de lecture change, et pas assez pour faire se ressembler n'importe
 quoi. Elle rattrape du même coup treize filets brisés par une fin de ligne :
 *anto* pour *dianthus*, *glefino* pour *aeglefinus*, *aci-* pour *acipenser*.
 
+#### Le nom que la phrase retient
+
+La règle ci-dessus prend le nom que l'auteur pose **à part**, et l'ôte du texte
+pour le porter au champ. Mais le nom se glisse aussi **dans** la phrase, où la
+syntaxe le retient : *Familio de insekti di qui la tipo esas L. acarus, kun
+korpo…* ne se lit plus si on l'en retire. **Treize articles** sont dans ce cas,
+et leur champ restait vide — le nom ne se cherchait pas, et les deux éditions ne
+l'annonçaient pas.
+
+On le **copie** donc, sans toucher au texte : `akaro`, `benzoo`, `indigo`,
+`kasio`, `mistelo`, `ostro`, `purpuro`, `quasio`, `sifiliso`, `sodo`,
+`tamarindo`, `tinlauro`, `tirozimazo`. Les articles à nom scientifique passent
+de 823 à **836**.
+
+Deux `L.` n'annoncent pas un nom, et sont écartés : celui qui ouvre un exemple —
+*Kom ex. : L. que en neque* chez `enklitiko` — et celui qui nomme la langue —
+*ica vice ca, en L. iscala vice scala* chez `prostezo`. L'un se reconnaît à son
+*ex.*, l'autre à son *en*.
+
+Les binômes vont parfois **par deux** — *L. ostrea edulis e gryphea angulata*,
+*L. salsola soda e salsola kali*, *L. murex trunculus o murex brancaris* — et la
+conjonction n'est pas un mot du nom : sans l'exclure, le premier binôme mordait
+dessus et rendait *ostrea edulis e gryphea*.
+
+**Deux points, deux lectures.** Le `L.` du nom scientifique prend son espace :
+le livre l'écrit ainsi partout, et une seule fois sans — *la tipo esas L.acarus*
+chez `akaro`. Mais on ne touche à aucun autre point collé à une minuscule : il y
+en a huit dans le livre, et chacun demande sa lecture. *ex.en* chez `grava` veut
+l'espace ; *viburnum.tinus* chez `tinlauro` veut **perdre son point**, le binôme
+étant *Viburnum tinus*, le laurier-tin. Celui-là est corrigé dans
+`travail/vorti.txt`.
+
 ### Le symbole chimique (`simbolo`)
 
 Quatre-vingt-neuf articles donnent le symbole ou la formule d'un corps. Le

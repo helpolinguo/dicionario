@@ -1717,6 +1717,54 @@ def _kodo_ne_simbolo(e):
             e.setdefault('drapeli', []).append('sen-lingua')
 
 
+_LAT_MOT = r'(?!(?:e|o|ed|od)(?![a-z-]))[a-z][a-z-]*'
+_LAT_NOMO = _LAT_MOT + r'(?:\s+' + _LAT_MOT + r'){0,3}'
+RE_LATINA_ENTEKSTA = re.compile(
+    r'(?<![A-Za-zÀ-ÿ])L\.\s*(' + _LAT_NOMO + r')'
+    r'(?:\s*[,;]?\s*(?:[eo]d?)\s+(' + _LAT_NOMO + r'))?')
+
+
+def latinaji_enteksta(e):
+    """Le nom scientifique que la PHRASE retient.
+
+    RE_LATINA prend le nom que l'auteur pose a part — « ... kompozaji". L.
+    artemisia absinthium » — et l'ote du texte pour le porter au champ. Mais le
+    nom se glisse aussi DANS la phrase, ou la syntaxe le retient : « Familio de
+    insekti di qui la tipo esas L. acarus, kun korpo... » ne se lit plus si on
+    l'en retire. Treize articles sont dans ce cas, et leur champ restait vide —
+    le nom ne se cherchait pas, et les deux editions ne l'annoncaient pas.
+
+    On le COPIE donc, sans toucher au texte. Deux « L. » n'annoncent pas un
+    nom : celui qui ouvre un exemple — « Kom ex. : L. que en neque » chez
+    enklitiko — et celui qui nomme la langue — « ica vice ca, en L. iscala vice
+    scala » chez prostezo. L'un se reconnait a son « ex. », l'autre a son
+    « en ».
+
+    Les binomes vont par deux — « L. ostrea edulis e gryphea angulata » — et la
+    conjonction n'est pas un mot du nom : sans l'exclure, le premier binome
+    mordait dessus et rendait « ostrea edulis e gryphea ».
+    """
+    # On lit les SENS, non la structure : celle-ci se reconstruit en fin de
+    # chaine, et la lire ici rendrait la passe dependante de son rang.
+    nova = []
+    for t in (e.get('senci') or []):
+            for m in RE_LATINA_ENTEKSTA.finditer(t):
+                avan = t[max(0, m.start() - 14):m.start()]
+                if re.search(r'ex\.\s*:?\s*$', avan):
+                    continue
+                if re.search(r'(?<![A-Za-zÀ-ÿ])en\s+$', avan):
+                    continue
+                nova += [g for g in (m.group(1), m.group(2)) if g]
+    if not nova:
+        return 0
+    deja = [x.lower() for x in (e.get('latina') or [])]
+    aldonita = [x for x in nova if x.lower() not in deja]
+    if not aldonita:
+        return 0
+    e['latina'] = (e.get('latina') or []) + aldonita
+    return len(aldonita)
+
+
 def apartigar_simbolon(e):
     """Sort le symbole chimique du texte et le met dans son champ.
 
@@ -2490,6 +2538,7 @@ def konstrui():
             u=majuskla_komenco(t)
             if u != t: S[k]=u; n_maj += 1
     if n_maj: print("sens rendus a la capitale initiale : %d"%n_maj)
+    n_lat=sum(latinaji_enteksta(e) for e in ent)
     n_sim=sum(apartigar_simbolon(e) for e in ent)
     if n_sim: print("symboles chimiques mis en champ : %d"%n_sim)
     n_sub=sum(strukturizar(e) for e in ent)
@@ -2788,6 +2837,12 @@ def espacar(t):
     apres elle. La fonction est idempotente.
     """
     t = re.sub(r',(?=[A-Za-zÀ-ÿ])', ', ', t)
+    # Le « L. » qui annonce le nom scientifique prend son espace : le livre
+    # l'ecrit ainsi partout, et une seule fois sans — « la tipo esas L.acarus »
+    # chez akaro. On ne touche a aucun autre point colle a une minuscule : il y
+    # en a huit dans le livre, et chacun demande sa lecture — « ex.en » veut
+    # l'espace, « viburnum.tinus » veut perdre son point.
+    t = re.sub(r'(?<![A-Za-zÀ-ÿ])L\.(?=[a-zà-ÿ])', 'L. ', t)
     # Le tiret d'affixe ne se detache pas de son affixe : « 1/10.000.000- ima »
     # chez « metro » est « 1/10.000.000-ima », la dix-millionieme partie. C'est
     # la meme espace parasite que la vedette connait — « - as. » pour « -as »,
