@@ -2873,6 +2873,14 @@ def espacar(t):
     # fermante colle au mot suivant. 88 cas. On ne touche qu'apres une
     # parenthese : ailleurs, « CH3CO.CH3 » est une formule chimique.
     t = re.sub(r'\)\.(?=[A-ZÀ-Ý])', '). ', t)
+    # Le meme point colle, cette fois derriere le GUILLEMET fermant : « ... kom
+    # nomo "prolonguro".On plulongigas » chez prolongar. Trois cas dans le
+    # livre, et les trois veulent l'espace — « "kancero".DEFIRS » chez
+    # karcinomo, « "paria".En India » chez paria. Les deux derniers s'en
+    # tiraient sans elle, le code de langues et la vedette se detachant seuls ;
+    # le premier gardait la phrase suivante soudee a la precedente. Aucun faux
+    # frere : un guillemet fermant ne fait jamais corps avec le mot d'apres.
+    t = re.sub(r'([»"])\.(?=[A-ZÀ-Ý])', r'\1. ', t)
     # Espace parasite CONTRE la parenthese : « ( fig.) » pour
     # « (fig.) », « hundo-herbo )» pour « hundo-herbo) ». La dactylo
     # espacait pour caler sa ligne. 15 ouvrantes et 33 fermantes.

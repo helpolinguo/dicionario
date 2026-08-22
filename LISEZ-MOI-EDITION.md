@@ -742,6 +742,47 @@ règle — la citation est justement ce qui autorise l'accent ailleurs. On les
 relève donc un à un, dans `travail/texti.txt`. Après quoi il ne reste, dans les
 deux éditions, que des accents qui se justifient.
 
+### L'espace après le point, derrière un guillemet fermant
+
+La dactylo serrait pour tenir la ligne, et le point de fin de phrase s'y colle
+parfois au mot suivant. Le livre en compte **565** : 297 derrière une parenthèse
+fermante — *(olim).Vaporo-mashino* —, 145 derrière une capitale, 116 derrière une
+minuscule, 3 derrière un guillemet fermant.
+
+Presque tous se dénouent seuls, parce que ce qui suit le point est justement ce
+que l'analyse va détacher : le code de langues — *agar lo.DEFIS* —, le numéro de
+sens — *noto.II.Alveolo* —, la vedette elle-même — *butono.Mikra peco*. Une fois
+le code au champ, le sens ouvert, la vedette séparée, le point n'a plus de
+voisin. **Deux seulement** survivaient jusqu'au texte imprimé, et il a fallu les
+prendre chacun par son bout.
+
+`prolongar` est le premier : *… e qua havas kom nomo « prolonguro ».On
+plulongigas : vivo, milito, voyajo…*. Le point suit un **guillemet fermant**, que
+rien ne détache. Une règle de trois lignes le rend, calquée sur celle de la
+parenthèse fermante :
+
+```python
+t = re.sub(r'([»"])\.(?=[A-ZÀ-Ý])', r'\1. ', t)
+```
+
+Trois cas dans le livre, et les trois veulent l'espace — les deux autres,
+*« kancero ».DEFIRS* chez `karcinomo` et *« paria ».En India* chez `paria`, s'en
+tiraient parce que le code et la vedette se détachaient seuls. Aucun faux
+frère : un guillemet fermant ne fait jamais corps avec le mot d'après, à la
+différence de la parenthèse — *leon(in)o*, *formac(es)o* —, qui a demandé, elle,
+un garde-fou.
+
+Le point n'est pas une règle générale pour autant : *CH3CO.CH3* chez `acetono`
+est une formule, *E.F.* et *I.S.* sont des sigles, et une règle qui prendrait
+tout point suivi d'une capitale les couperait en deux.
+
+**Et un numéro de sens lu de travers.** `diezo` portait *- Ii.Signo (#)*. Le
+second `I` du numéro a été lu `i` ; *Ii* n'est un mot ni en ido ni en latin, et
+il n'apparaît qu'**une fois dans tout le livre**, là. L'article porte déjà un
+`I.` plus haut, dont ce numéro est la suite. `travail/texti.txt` le redresse, et
+le sens II — le dièse, le signe `#` lui-même — s'ouvre enfin au lieu de rester
+soudé à la définition de l'intervalle.
+
 ### L'espace avant la virgule
 
 Elle n'est de personne, comme le point séparé de sa virgule que la chaîne
