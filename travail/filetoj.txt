@@ -37,3 +37,26 @@ pseudonima@476:49	>Pseudonimo	p469 : « Pseudonimo : Nomo ne-exakta » est la so
 stelo@558:34	roto	p551 : « quale la spoki di roto » — la roue y est un simple terme de comparaison, ni domaine, ni locution, ni mot cite. Le meme article a laisse « met » derriere lui, morceau de « metaf. » : le trait de ce dernier sens a ete lu de travers
 zezear@634:21	pronuncar le {j} quale le {z}, e {sh} quale {s}	p627 : les quatre lettres y sont CITEES — le zezaiement prononce le j comme le z et le sh comme le s. Sans l italique la phrase ne se lit pas, une lettre isolee se prenant pour un mot. Aucun filet n a ete releve sur cette ligne, l article n en porte qu un, sous « netrans. »
 longitudo@351:33	disto	p344 : « ...sur la surfaco di la Terglobo : disto de ta loko a la meridiano determinita ». Le mot est employe, non cite, et il parait deux fois dans l article sans que rien le distingue. Le fac-simile de la page ne porte aucun filet a cet endroit : c est un fantome de la mesure, tombe par hasard sur un mot entier.
+# --- Les mots pleins qu un fantome de la mesure a mis en italique. Releve
+# systematique des italiques qui tiennent en UN mot ordinaire, minuscule,
+# etranger a la vedette : soixante-neuf cas, dont ceux-ci, relus sur
+# l original par GPhMorin. Le mot y est EMPLOYE, non cite.
+# Voir LISEZ-MOI-EDITION.md, « Le filet que l oeil ecarte ».
+abrogar@10:51	lego	p003 : « Supresar lego per altra lego, dekreto per altra dekreto ». Le mot revient deux fois dans la phrase et seule la premiere occurrence porte le filet ; un mot cite le serait aux deux.
+adjurar@13:54	nomo	p006 : « Sumnar (ulu), ye la nomo di sakrajo ». Le mot est employe, non cite.
+algo@24:35	aquo	p017 : « Vejetanto kriptogama qua kreskas en aquo sen-sala ». L eau est le milieu ou pousse l algue, pas un terme cite.
+alopatio@26:52	medicino	p019 : « La medicino qua kuracas per la inversaji ». Le mot porte la definition, il n y est pas cite. La formule latine du meme article, « contraria contrariis curantur », garde son italique : elle, l auteur la cite.
+antilopo@38:19	kava	p031 : « kun korni ne-kaduka, kava, cirkondanta ». Trois adjectifs de suite, un seul souligne.
+kamizolo@264:35	lano	p257 : « Vesto kun maniki, ek telo, lano, e c. ». Une liste de matieres, dont une seule serait citee.
+limeto@345:51	mikra	p338 : « qua produktas mikra citrono dolca ». Seul filet releve de l article, et il tombe sur un adjectif ordinaire.
+medikamento@369:52	uzata	p362 : « Substanco uzata, interne od extere ». Seul filet de l article, sur un participe.
+perigeo@439:55	olca	p432 : « ube olca esas maxime proxima a Tero ». « olca » est un pronom, il renvoie a la planete.
+providenco@475:31	omna	p468 : « La sajo dea qua guvernas omna existajo ». Un quantificateur, pas un terme.
+rendimento@498:32	homala	p491 : « Efekto utila di mashino, di laboro homala ». Seul filet de l article, sur un adjectif.
+ringo@506:33	sama	p499 : « du cirkli sama-centra ». Le filet ne couvre que la moitie du compose.
+skurar@545:29	generale	p538 : « generale per froto pumicage ». Un adverbe.
+slupo@545:49	mala	p538 : « por la kazo di vetero mala ». Un adjectif ordinaire, seul filet de l article.
+stabila@556:15	sama	p549 : « en la sama loko, en la sama situeso, en la sama stando ». « sama » parait trois fois, une seule soulignee.
+ubiqua@609:11	omna	p602 : « Qua esas prezenta en omna loki ». Un quantificateur.
+ultramikroskopo@609:51	maxima	p602 : « ye la plugrandigo maxima di mikroskopo ordinara ». Un superlatif.
+adjurar@13:54	Sumnar	p006 : le premier mot de la definition, « Sumnar (ulu) », souligne comme « nomo » sur la meme ligne. C est le verbe qui definit adjurar, il n y est pas cite.

@@ -513,12 +513,35 @@ où la mesure en a bien relevé deux. Les reprendre coûterait **67 italiques
 légitimes** pour en retirer 853 qui ne se posent nulle part et ne coûtent rien —
 un mauvais échange.
 
-Reste que **70 italiques ne couvrent qu'un mot ordinaire**, minuscule, étranger
-à la vedette. Beaucoup sont de vraies citations — *acarus* chez `akaro`,
-*bombyx* chez `silko`, *lierre* chez `prostezo`, *volt* et *coulomb* chez
-`farad`, *ante* chez `avan`. D'autres sont du même genre que *disto* : *mikra*
-chez `limeto`, *uzata* chez `medikamento`, *omna* chez `ubiqua`, *aquo* chez
-`algo`. Ils se jugent un par un, comme les autres.
+**Le relevé systématique.** Toute italique posée qui tient en **un mot
+ordinaire** — minuscule, quatre lettres au moins, absent du vocabulaire des 653
+domaines du livre, absent du champ des noms scientifiques, et qui ne reprend pas
+la racine de la vedette — donne **69 cas**. Ils ont été relus sur l'original, un
+par un, et se partagent en trois :
+
+| | | |
+|---|---|---|
+| **17 écartés** | le mot est employé, non cité | *mikra* chez `limeto`, *uzata* chez `medikamento`, *omna* chez `ubiqua`, *aquo* chez `algo` |
+| **4 en attente** | le passage ne permet pas de trancher | `kontingento`, `rajuntar`, `skurar`, `sodo` |
+| **48 gardés** | de vraies citations | *acarus* chez `akaro`, *bombyx* chez `silko`, *lierre* chez `prostezo`, *volt* chez `farad`, *ante* chez `avan` |
+
+Le signe le plus sûr, dans le premier tas, est la **répétition** : le mot paraît
+deux ou trois fois dans la même phrase et une seule occurrence porte l'italique
+— *Supresar **lego** per altra lego* chez `abrogar`, *en la **sama** loko, en la
+sama situeso, en la sama stando* chez `stabila`. Un mot cité le serait partout.
+Quatre articles n'ont d'ailleurs qu'un seul filet relevé en tout, et il tombe
+sur un adjectif ordinaire.
+
+Un dix-huitième fragment est parti avec eux : *Sumnar*, premier mot de la
+définition d'`adjurar`, souligné sur la même ligne que *nomo*. Et l'article
+`alopatio`, qui perd *medicino*, **garde** la formule latine que l'auteur y
+cite, *contraria contrariis curantur*.
+
+Les 48 gardés se rangent sous quatre raisons, chacune vérifiable dans la phrase :
+le **nom scientifique** couru au fil du texte (7), l'**exemple énuméré** après un
+deux-points, construction constante chez l'auteur (15), le **mot cité ou
+opposé**, l'usage le plus fréquent du livre (24), et le **domaine dont le filet
+s'est arrêté court** (2).
 
 **L'inverse arrive aussi** : le trait était là, et le relevé ne l'a pas rendu.
 Chez `anakoluto`, l'article définit l'anacoluthe comme l'omission de *ta* devant
