@@ -13,13 +13,17 @@
 \usepackage{tikz}
 \usepackage{eso-pic}
 
-% Le bleu du modele. Il ne se releve PAS au pixel : la maquette est ecrite
-% dans l'espace Display P3, ou le bleu vaut (0,2549 ; 0,5728 ; 0,9688), et
-% deux moteurs de rendu en donnent deux valeurs differentes selon qu'ils
-% gerent la couleur ou non. La conversion P3 -> sRGB, faite selon les
-% primaires du profil enferme dans le fichier, donne #0094FF ; la composante
-% bleue y sature, la couleur d'origine debordant le gamut sRGB.
-\definecolor{idoblua}{RGB}{0,148,255}
+% Le bleu est l'AZUR, #007FFF — le bleu de reference, a mi-chemin exact du
+% bleu et du cyan sur la roue sRGB (teinte 210 degres, saturation e valeur
+% pleines). C'est celui des deux plats, du disque et du lettrage ID de la
+% page de titre : une seule couleur pour tout le livre.
+%
+% Il ne vient pas d'un releve sur la maquette : celle-ci est ecrite dans
+% l'espace Display P3, ou son bleu vaut (0,2549 ; 0,5728 ; 0,9688), soit
+% #0094FF une fois converti en sRGB d'apres le profil enferme dans le
+% fichier. L'azur en est proche — vingt et un points de vert plus bas — et
+% c'est une couleur NOMMEE, non le residu d'une conversion.
+\definecolor{idoblua}{RGB}{0,127,255}
 
 % Futura n'est pas libre ; Jost* en est la reprise sous licence ouverte.
 % Chargee PAR CHEMIN, non par nom : le document se compose a l'identique
@@ -46,16 +50,40 @@
 
 % --- Hauteurs de ligne ------------------------------------------------
 % Position du HAUT de l'encre de chaque ligne, comptee depuis le bord
-% superieur de la feuille. Le bloc du modele (87,8 pt a 653,3 pt sur A4)
-% est reduit au rapport des largeurs, puis les deux marges qui restent
-% sont partagees dans la proportion du modele, 87,8 contre 188,6.
-\newcommand{\posTITOLO}  {0.13327\paperheight}
-\newcommand{\posRADIKI}  {0.20892\paperheight}
-\newcommand{\posDILA}    {0.26035\paperheight}
-\newcommand{\posLINGUO}  {0.31805\paperheight}
-\newcommand{\posIDO}     {0.41886\paperheight}
-\newcommand{\posNOMO}    {0.64838\paperheight}
-\newcommand{\posAKADEMIO}{0.68863\paperheight}
+% superieur de la feuille. Trois decisions les fixent.
+%
+% 1. L'ECHELLE. Les distances verticales suivent le rapport des LARGEURS de
+%    page, 110/210 = 0,5238, et non celui des corps. Les deux different : le
+%    corps a ete grossi de 1,0770 pour egaliser la hauteur de capitale de
+%    Jost* et celle de la Futura, et c'est la capitale, non le cadratin, que
+%    l'oeil mesure. Une distance verticale mise a l'echelle des capitales est
+%    donc mise a l'echelle des largeurs — les deux facteurs se compensent
+%    exactement, et le diametre de l'embleme le verifie : 204 x 0,5641 x 0,700
+%    = 153,8 x 0,5238.
+%
+% 2. L'INTERLIGNAGE DU SOUS-TITRE. Le modele porte 50,1 pt entre la premiere
+%    et la deuxieme ligne, 56,2 entre la deuxieme et la troisieme, la ou les
+%    trois sont du meme corps. C'est un reglage de paragraphe reste inegal,
+%    non une intention : on prend la moyenne, 53,15 pt, et « di la » descend
+%    de 3,05 pt sur le gabarit A4, soit 1,6 pt sur la page de poche.
+%
+% 3. LA POSE DU BLOC. Les deux marges qui restent sont partagees en SECTION
+%    DOREE, la petite en haut : 81,75 pt contre 132,27, dont le rapport est
+%    1/phi = 0,6180. Le modele les partageait 87,8 contre 188,6, soit 0,466 —
+%    proportion qui allait a une page A4 mais qui, reportee sur une page plus
+%    haute que large, poussait la composition trop haut.
+%
+%    Le controle vient de l'embleme, qui est ce que l'oeil pese : sa section
+%    doree le centre a 0,5297 de la hauteur de page, la ou le modele le place
+%    a 0,5323 — deux millimes d'ecart. L'ancienne pose le mettait a 0,5034,
+%    c'est-a-dire au milieu mort de la page.
+\newcommand{\posTITOLO}  {0.160218\paperheight}
+\newcommand{\posRADIKI}  {0.235673\paperheight}
+\newcommand{\posDILA}    {0.290237\paperheight}
+\newcommand{\posLINGUO}  {0.344801\paperheight}
+\newcommand{\posIDO}     {0.445613\paperheight}
+\newcommand{\posNOMO}    {0.675162\paperheight}
+\newcommand{\posAKADEMIO}{0.715404\paperheight}
 
 % --- L'embleme -------------------------------------------------------
 % Un disque et une etoile a six branches. Elle est REGULIERE, et se
@@ -122,11 +150,17 @@
 % elles sont bleues. Le mot fait bloc avec l'embleme, il ne fait pas bloc
 % avec le lettrage.
 \newlength{\kapalto}
+% Le diametre, mesure une fois pour toutes a l'ouverture du document : les
+% deux plats et la page de titre portent le MEME embleme, et il ne doit pas
+% dependre de l'endroit ou on le pose.
+\newlength{\emblemdiam}
+\AtBeginDocument{{\kovrilfonto\bfseries\fontsize{\korpIDO}{\korpIDO}\selectfont
+  \settoheight{\kapalto}{ID}\global\emblemdiam=1.0651\kapalto}}
 \newcommand{\idogrupo}[2]{% #1 couleur du disque, #2 couleur de l'etoile
   {\kovrilfonto\bfseries\fontsize{\korpIDO}{\korpIDO}\selectfont
    \settoheight{\kapalto}{ID}%
    \textcolor{#1}{ID}\kern0.0045\paperwidth
-   \raisebox{0.5\kapalto}{\idoemblemo{1.0651\kapalto}{#1}{#2}}}}
+   \raisebox{0.5\kapalto}{\idoemblemo{\emblemdiam}{#1}{#2}}}}
 
 % --- Pose des lignes --------------------------------------------------
 % \supre{hauteur}{contenu} : le contenu centre sur la largeur de la
@@ -170,6 +204,26 @@
   \kovrilteksto{black}{idoblua}{white}%
   \thispagestyle{empty}\null\clearpage}
 
-% Le plat verso : bleu uni, sans rien dessus.
+% Le plat verso : l'embleme seul sur le bleu. Meme diametre qu'au plat recto
+% — c'est la meme marque, et la repeter a la meme taille fait rimer les deux
+% plats. Le disque est blanc et l'etoile bleue, comme au recto : sur un fond
+% bleu, c'est le disque qui doit porter la lumiere.
+%
+% La hauteur n'est pas le milieu geometrique : un signe seul y parait BAS,
+% et il faut le centre optique. Celui que l'oeil demande ici se trouve etre
+% le MIROIR du centre de l'embleme du plat recto autour de l'axe horizontal
+% de la page — 0,5297 au recto, 1 moins 0,5297 au verso. Les deux plats
+% tiennent donc la marque a des hauteurs symetriques : un peu au-dessous du
+% milieu quand une composition l'accompagne, un peu au-dessus quand elle est
+% seule.
+\newcommand{\posVERSO}{0.470298\paperheight}
+\newlength{\posverso}
 \newcommand{\platverso}{%
-  \fondo{idoblua}\thispagestyle{empty}\null\clearpage}
+  \fondo{idoblua}%
+  \AddToShipoutPictureFG*{\AtPageUpperLeft{%
+    \setlength{\unitlength}{1pt}%
+    \setlength{\posverso}{\posVERSO}%
+    \addtolength{\posverso}{-0.5\emblemdiam}%
+    \put(0,-\posverso){\makebox[\paperwidth][c]{\raisebox{-\height}{%
+      \idoemblemo{\emblemdiam}{white}{idoblua}}}}}}%
+  \thispagestyle{empty}\null\clearpage}

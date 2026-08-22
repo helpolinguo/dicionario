@@ -1109,9 +1109,9 @@ par chemin : elle n'a pas à être installée.
 
 Le livre de poche s'ouvre comme un livre relié : **plat recto** bleu à
 lettrage noir, son verso blanc, **page de titre** blanche à lettrage noir, son
-verso blanc ; le dictionnaire commence page 5. Un **plat verso** bleu uni ferme
-le volume, sur une page paire — un livre se compte en faces, et la dernière ne
-peut rester orpheline.
+verso blanc ; le dictionnaire commence page 5. Un **plat verso** ferme le
+volume, sur une page paire — un livre se compte en faces, et la dernière ne
+peut rester orpheline : il porte l'emblème seul sur le bleu.
 
 Tout est composé, rien n'est une image : le lettrage est en **Jost\***, reprise
 libre de la Futura de Renner dans laquelle la maquette est écrite, et l'emblème
@@ -1150,20 +1150,72 @@ au plus : son étoile est posée 1,4 % trop bas dans son disque, et ses longues
 pointes ont à la base 0,30 fois le côté et non un tiers. C'est la figure
 **construite** qui est composée.
 
-Les corps et les hauteurs de ligne viennent du même relevé, au 300e de pouce,
-et sont rapportés à la page de poche par le rapport des largeurs de page. Une
-seconde correction leur est appliquée : la hauteur de capitale de Jost\* vaut
-0,700 em contre 0,754 pour la Futura, et sans le facteur **1,0770** qui les
-égalise, un lettrage presque tout en capitales paraîtrait plus petit que le
-modèle à corps égal. Les sept lignes tombent à **moins de 0,35 pt** de leur
-hauteur visée, et le bloc se centre à 0,36 pt près.
+### L'azur
 
-Le bleu ne se relève pas au pixel : la maquette est écrite en **Display P3**, où
-il vaut (0,2549 ; 0,5728 ; 0,9688), et deux moteurs de rendu en donnent deux
-valeurs différentes selon qu'ils gèrent la couleur ou non. La conversion vers
-sRGB, faite d'après les primaires du profil enfermé dans le fichier, donne
-**`#0094FF`** — la composante bleue y sature, la couleur d'origine débordant le
-gamut sRGB.
+Une seule couleur pour les deux plats, le disque et le lettrage *ID* de la page
+de titre : l'**azur, `#007FFF`** — le bleu de référence, à mi-chemin exact du
+bleu et du cyan sur la roue sRGB, teinte 210°, saturation et valeur pleines.
+
+Elle ne vient pas d'un relevé sur la maquette. Celle-ci est écrite en **Display
+P3**, où son bleu vaut (0,2549 ; 0,5728 ; 0,9688) ; converti en sRGB d'après les
+primaires du profil enfermé dans le fichier, cela donne `#0094FF`. L'azur en est
+proche — vingt et un points de vert plus bas — et c'est une couleur **nommée**,
+non le résidu d'une conversion.
+
+### La grille verticale
+
+Les corps viennent du relevé de la maquette, au 300e de pouce, rapportés à la
+page de poche par le rapport des largeurs. Une seconde correction leur est
+appliquée : la hauteur de capitale de Jost\* vaut 0,700 em contre 0,754 pour la
+Futura, et sans le facteur **1,0770** qui les égalise, un lettrage presque tout
+en capitales paraîtrait plus petit que le modèle à corps égal.
+
+**Les distances verticales suivent le rapport des largeurs, non celui des
+corps.** Les deux diffèrent d'exactement ce facteur 1,0770 ; et c'est la
+capitale, non le cadratin, que l'œil mesure. Une distance mise à l'échelle des
+capitales est donc mise à l'échelle des largeurs — les deux facteurs se
+compensent, et le diamètre de l'emblème le vérifie : 204 × 0,5641 × 0,700 =
+153,8 × 0,5238.
+
+**L'interlignage du sous-titre est uniformisé.** La maquette porte 50,1 pt entre
+la première et la deuxième ligne, 56,2 entre la deuxième et la troisième, là où
+les trois sont du même corps : c'est un réglage de paragraphe resté inégal, non
+une intention. On prend la moyenne, 53,15 pt, et *di la* descend de 1,6 pt sur
+la page de poche.
+
+**Le bloc est posé par section dorée.** Les deux marges qui restent une fois
+l'encre placée — 296,21 pt sur 510,24 — se partagent **81,75 pt en haut contre
+132,27 en bas**, dont le rapport est 1/φ = 0,6180. La maquette les partageait
+87,8 contre 188,6, soit 0,466 : proportion qui allait à une page A4, mais qui,
+reportée sur une page bien plus haute que large, poussait la composition trop
+haut.
+
+Le contrôle vient de l'emblème, qui est ce que l'œil pèse. La section dorée le
+centre à **0,5297** de la hauteur de page, là où la maquette le place à
+**0,5323** — deux millièmes d'écart. L'ancienne pose le mettait à 0,5034,
+c'est-à-dire au milieu mort de la page.
+
+| ligne | haut de l'encre | | ligne | haut de l'encre |
+|---|---|---|---|---|
+| DICIONARIO | 0,1602 h | | emblème *IDO* | 0,4456 h |
+| de la 10.000 RADIKI | 0,2357 h | | Marcelo Persiko | 0,6752 h |
+| di la | 0,2902 h | | ex-membro di la Akademio | 0,7154 h |
+| linguo universala | 0,3448 h | | | |
+
+Mesurées sur le PDF composé, les sept lignes tombent à **moins de 0,35 pt** de
+ces hauteurs, et le bloc se centre à 0,36 pt près.
+
+### Le plat verso
+
+L'emblème seul, au même diamètre qu'au plat recto : c'est la même marque, et la
+répéter à la même taille fait rimer les deux plats.
+
+Sa hauteur n'est **pas** le milieu géométrique — un signe seul y paraît bas, et
+il faut le centre optique. Celui que l'œil demande ici se trouve être le
+**miroir** du centre de l'emblème du plat recto autour de l'axe horizontal de la
+page : 0,5297 au recto, **0,4703** au verso. Les deux plats tiennent donc la
+marque à des hauteurs symétriques — un peu au-dessous du milieu quand une
+composition l'accompagne, un peu au-dessus quand elle est seule.
 
 Un détail du modèle qu'il fallait voir : les lettres **ID** prennent la couleur
 du *disque*, non celle du texte. Blanches sur le plat quand le titre est noir,
