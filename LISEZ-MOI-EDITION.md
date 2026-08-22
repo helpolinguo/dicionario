@@ -1189,6 +1189,24 @@ définition. Sur le plat bleu il est pire encore, 1,52 : 1 : deux complémentair
 à pleine saturation ont presque la même luminance, et l'œil lit par la
 luminance, non par la teinte.
 
+### La grande lettre
+
+Elle est composée dans la fonte de la **couverture**, Jost\*, et non dans celle
+des titres courants.
+
+Le partage est celui des rôles. Inter porte tout l'**appareil** du livre — les
+titres courants, les vedettes, les numéros de sens, les codes de langues, ce qui
+sert à se repérer. La grande lettre n'est pas de l'appareil : c'est un **titre**,
+le seul signe de l'intérieur qui soit du même ordre que l'IDO du plat. Elle en a
+déjà la couleur ; elle en prend la voix.
+
+Le corps passe de 34 à **35,34** pour que la lettre ne rétrécisse pas : la
+hauteur de capitale de Jost\* vaut 0,700 em contre 0,72754 pour Inter, et
+34 × 0,72754 / 0,700 = 35,34 rend aux deux la même capitale, **24,74 pt**.
+Mesurées sur le PDF composé, les capitales plates — `D`, `K`, `Z` — tombent
+entre 24,55 et 24,87. Le `A` et le `O` dépassent, à 26,18 et 25,85 : c'est le
+débord de leur pointe et de leur rondeur, que Jost\* pousse plus loin qu'Inter.
+
 **La page HTML** garde son accent chaud, `#7A3D00` en thème clair et `#D6A06A` en
 sombre — le domaine et les sous-entrées y sont en petit corps, et les drapeaux en
 11,5 px, où 3,83 : 1 ne suffirait pas. Les drapeaux prennent cet accent par

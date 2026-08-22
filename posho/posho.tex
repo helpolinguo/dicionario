@@ -141,7 +141,18 @@
   % signeti di la PDF konstruktesas de olu, che la duesma paso.
   \protected@write\@auxout{}{\string\sekpag{#1}{\thepage}}%
   \vspace*{2mm}%
-  {\centering\titra\bfseries\fontsize{34}{38}\selectfont\color{akcento}#1\par}%
+  % La grande lettre est composee dans la fonte de la COUVERTURE, non dans
+  % celle des titres courants. Elle n'est pas de l'appareil — Inter porte
+  % l'apparat du livre, les titres courants, les vedettes, les numeros de
+  % sens, les codes de langues — mais un TITRE : le seul signe du livre qui
+  % soit du meme ordre que l'IDO du plat. Elle en a deja la couleur ; elle
+  % en prend la voix.
+  %
+  % Le corps passe de 34 a 35,34 pour que la lettre ne retrecisse pas : la
+  % hauteur de capitale de Jost* vaut 0,700 em contre 0,72754 pour Inter, et
+  % 34 x 0,72754 / 0,700 = 35,34 rend aux deux la meme capitale, 24,74 pt.
+  {\centering\kovrilfonto\bfseries\fontsize{35.34}{38}\selectfont
+   \color{akcento}#1\par}%
   \vspace{1.5mm}\hrule height0.5pt\vspace{4mm}}
 \makeatother
 
