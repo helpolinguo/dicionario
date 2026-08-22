@@ -742,6 +742,26 @@ règle — la citation est justement ce qui autorise l'accent ailleurs. On les
 relève donc un à un, dans `travail/texti.txt`. Après quoi il ne reste, dans les
 deux éditions, que des accents qui se justifient.
 
+### Le pronom indéfini : *onu*, et jamais *on*
+
+L'auteur écrit **1 342 fois `onu`** contre **9 fois `on`**. C'est assez pour
+faire une règle, et `travail/vorti.txt` la tenait déjà, ligne par ligne, avec le
+motif écrit au premier cas — `nova` p. 404, *quan on jus komencis*. Sept lignes
+la portaient : `espineto`, `gipso`, `ironio`, `kapistro`, `karburar`, `tu`,
+`mineralogio`.
+
+La huitième manquait. `prolongar` porte *… kom nomo « prolonguro ». On
+plulongigas : vivo, milito…* : c'est le seul `on` du livre en **capitale**, et
+les sept lignes étaient écrites sur la forme minuscule. Il a doublement échappé,
+puisque le point qui le précède était collé au guillemet fermant et que la phrase
+se lisait d'un seul tenant.
+
+Deux `on` restent, et doivent rester. Le premier est la vedette `on(u)` de la
+page 405 — *Pronomo personala nedefinita* —, où l'auteur donne les deux formes
+sous une seule entrée : c'est sa définition, pas son usage. Le second est chez
+`tildo`, *la F. « an » e « on »*, où le mot n'est pas un pronom mais le **son
+nasal français**, cité entre guillemets.
+
 ### L'espace après le point, derrière un guillemet fermant
 
 La dactylo serrait pour tenir la ligne, et le point de fin de phrase s'y colle
