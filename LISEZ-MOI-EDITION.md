@@ -148,7 +148,7 @@ corps : il désigne déjà sa locution. Trois filets le faisaient — *plana* ch
 `plano`, *Elektro* chez `pozitiva`, *doco* chez `sekundara` —, chacun italique
 dans le texte alors qu'il nommait une sous-entrée voisine.
 
-108 sous-entrées dans 88 entrées, dont 42 portent un domaine propre.
+110 sous-entrées dans 89 entrées, dont 44 portent un domaine propre.
 
 Une même locution peut relever de **deux** entrées, chacune avec sa
 définition : *estado civila* se range sous `civila`, qui la définit au long,
@@ -522,8 +522,8 @@ par un, et se partagent en trois :
 | | | |
 |---|---|---|
 | **17 écartés** | le mot est employé, non cité | *mikra* chez `limeto`, *uzata* chez `medikamento`, *omna* chez `ubiqua`, *aquo* chez `algo` |
-| **4 en attente** | le passage ne permet pas de trancher | `kontingento`, `rajuntar`, `skurar`, `sodo` |
-| **48 gardés** | de vraies citations | *acarus* chez `akaro`, *bombyx* chez `silko`, *lierre* chez `prostezo`, *volt* chez `farad`, *ante* chez `avan` |
+| **6 écartés ensuite** | relus à leur tour | `harmoniko`, `rajuntar`, `skurar`, `sodo`, et les deux filets recollés ci-dessous |
+| **46 gardés** | de vraies citations | *acarus* chez `akaro`, *bombyx* chez `silko`, *lierre* chez `prostezo`, *volt* chez `farad`, *ante* chez `avan` |
 
 Le signe le plus sûr, dans le premier tas, est la **répétition** : le mot paraît
 deux ou trois fois dans la même phrase et une seule occurrence porte l'italique
@@ -537,11 +537,33 @@ définition d'`adjurar`, souligné sur la même ligne que *nomo*. Et l'article
 `alopatio`, qui perd *medicino*, **garde** la formule latine que l'auteur y
 cite, *contraria contrariis curantur*.
 
-Les 48 gardés se rangent sous quatre raisons, chacune vérifiable dans la phrase :
+Les 46 gardés se rangent sous trois raisons, chacune vérifiable dans la phrase :
 le **nom scientifique** couru au fil du texte (7), l'**exemple énuméré** après un
-deux-points, construction constante chez l'auteur (15), le **mot cité ou
-opposé**, l'usage le plus fréquent du livre (24), et le **domaine dont le filet
-s'est arrêté court** (2).
+deux-points, construction constante chez l'auteur (15), et le **mot cité ou
+opposé**, l'usage le plus fréquent du livre (24).
+
+**Deux filets recollés.** La quatrième raison — le domaine dont le trait s'est
+arrêté court — n'en était pas une : les deux cas se sont révélés être des filets
+que la mesure avait rendus en morceaux.
+
+Chez `posturar`, le fac-similé porte le trait d'un bout à l'autre de la
+parenthèse ; la mesure a sauté le `n` d'*avan* et la fin de ligne a coupé le
+reste, d'où trois fragments dont deux seulement se posaient. Les trois sont
+écartés et le trait entier posé, par la direction à accolades de
+`travail/filetoj.txt`.
+
+Chez `harmoniko`, le trait de *(muzik.)* s'est arrêté avant le point. Le domaine
+étant parti au champ, le fragment n'avait plus de place et s'est posé sur
+*Muzik-instrumento*, premier mot de la définition.
+
+**Et un mot coupé par la marge.** `kontingento` portait *la kontin genti* : le
+tapuscrit coupe *kontingenti* au bord droit, `kontin` finissant une ligne et
+`genti` ouvrant la suivante, le tout souligné d'un seul trait. La fiche lexicale
+225 avait rendu le mot entier à la place de `kontin` sans ôter la seconde
+moitié. `travail/vorti.txt` l'ôte, les deux moitiés du filet s'écartent, et le
+sens II rend enfin ses **deux locutions** — *moneto-kontingento* et
+*la kontingenti*, chacune avec son domaine. Les sous-entrées passent de 108
+à **110**.
 
 **L'inverse arrive aussi** : le trait était là, et le relevé ne l'a pas rendu.
 Chez `anakoluto`, l'article définit l'anacoluthe comme l'omission de *ta* devant

@@ -60,3 +60,25 @@ stabila@556:15	sama	p549 : « en la sama loko, en la sama situeso, en la sama st
 ubiqua@609:11	omna	p602 : « Qua esas prezenta en omna loki ». Un quantificateur.
 ultramikroskopo@609:51	maxima	p602 : « ye la plugrandigo maxima di mikroskopo ordinara ». Un superlatif.
 adjurar@13:54	Sumnar	p006 : le premier mot de la definition, « Sumnar (ulu) », souligne comme « nomo » sur la meme ligne. C est le verbe qui definit adjurar, il n y est pas cite.
+# --- Les quatre cas restes en attente, tranches sur l original par GPhMorin,
+# et deux filets que la mesure avait coupes en morceaux.
+harmoniko@215:29	muzik	p208 : le filet du domaine « (muzik.) » s est arrete avant le point. Le domaine etant parti au champ, le fragment n avait plus de place et s est pose sur « Muzik-instrumento », premier mot de la definition.
+rajuntar@488:8	juntar	p481 : « Irar por juntar su itere ad (ulu) de qua onu esas separita ». Le verbe est employe, non cite.
+skurar@545:29	pumicage	p538 : « generale per froto pumicage ». Mot ido, employe, non cite.
+sodo@546:37	fuki	p539 : « Salo alkalioza quan onu extraktas de ta planto ed anke ek la fuki ». Mot ido, employe, non cite.
+# Le filet de la parenthese de « posturar » est UN seul trait que la mesure a
+# rendu en trois morceaux : elle a saute le « n » de « avan », et la fin de
+# ligne a coupe le reste. On ecarte les trois et on pose le trait entier.
+posturar@462:24	aludante persono qua esas ava
+posturar@462:24	piktisto
+posturar@462:24	fotografisto qui esas pronta operacar
+posturar@462:24	{aludante persono qua esas avan piktisto, fotografisto qui esas pronta operacar}	p455 : le fac-simile porte le filet d un bout a l autre de la parenthese.
+# « kontingento » : « kontin » finit la ligne du tapuscrit et « genti » ouvre la
+# suivante — un seul mot, « kontingenti », coupe par la marge et souligne en
+# entier. Le jugement lexical a rendu le mot mais laisse la seconde moitie
+# derriere lui ; travail/vorti.txt l ote. Les deux moities du filet s ecartent,
+# et les deux locutions du sens II prennent leur alinea.
+kontingento@308:33	a kontin
+kontingento@308:33	genti
+kontingento@308:33	>Moneto-kontingento
+kontingento@308:33	>la kontingenti
