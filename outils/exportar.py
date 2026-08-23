@@ -18,9 +18,20 @@ def tsv(ent):
                 str(e['pagino']), str(e['ligno']), str(e['image']),
                 ",".join(e['drapeli'])]).replace("\n"," ")+"\n")
 
+# Le bouton de retour vers ido.help, la porte des trois livres, tient en deux
+# lignes du gabarit : la feuille `/pordo.css` et l'ancre `ido-pordo`. Son
+# apparence n'est PAS ici — pordo.css et emblemo.svg sont servis depuis la
+# racine du site, que les trois livres partagent, pour que le retoucher se
+# fasse a un seul endroit. Le mot « Ido » est dans l'ancre et non dans la
+# feuille : si celle-ci ne se charge pas, il reste un lien lisible en fin de
+# document au lieu d'un carre vide.
+#
+# Il est pose ICI et non a la main dans index.html : la page est un produit
+# de fabrication, et la reconstruction suivante l'effacerait.
 GABARITO = """<!DOCTYPE html><html lang="io"><meta charset="utf-8">
 <title>Dicionario de la 10.000 radiki di la linguo universala Ido</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="/pordo.css">
 <style>
 :root{--enk:#1a1a1a;--pap:#fbfaf7;--sub:#6b6560;--acc:#7A3D00;--lin:#e2ddd5;--flag:var(--acc)}
 @media(prefers-color-scheme:dark){:root{--enk:#e8e4de;--pap:#16161a;--sub:#9a938c;--acc:#D6A06A;--lin:#2c2c33}}
@@ -204,7 +215,8 @@ function montri(){
  nb.textContent=n+' artikl'+(n>1?'i':'o')+(n>400?' — la 400 unesma montresas':'');
  lst.innerHTML=sel.slice(0,400).map(x=>rendi(x[1],r)).join('');}
 q.addEventListener('input',montri); montri();
-</script></html>"""
+</script><a class="ido-pordo" href="/">Ido</a>
+</html>"""
 
 def html_edition(ent):
     D=[{"v":e['vedetto'],"f":e['fako'],"l":e['latina'],
