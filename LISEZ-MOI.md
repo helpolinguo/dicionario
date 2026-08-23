@@ -1189,3 +1189,23 @@ deborder.
 Le livre se terminait sur « F I N O » en page 639 — nombre impair, sans garde.
 Une page blanche de plus le porte a **640 pages, soit quarante cahiers de
 seize** : ce qu'il faut pour le relier.
+
+---
+
+## Le bouton de retour
+
+La page porte, dans le coin inférieur gauche, l'emblème azur en petit : un
+lien vers `ido.help`, la porte des trois livres. Il tient en deux lignes,
+et **son apparence n'est pas ici** :
+
+```html
+<link rel="stylesheet" href="/pordo.css">
+<a class="ido-pordo" href="/">Ido</a>
+```
+
+`pordo.css` et `emblemo.svg` sont servis depuis la racine du site — le
+dépôt `gphmorin.github.io` —, et les trois livres les partagent. C'est ce
+qui garantit que le bouton est identique sur les trois, et que le retoucher
+se fait à un seul endroit. Le mot « Ido » est dans le lien et non dans la
+feuille : si celle-ci ne se charge pas, il reste un lien lisible en fin de
+document au lieu d'un carré vide.
