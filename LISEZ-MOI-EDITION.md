@@ -824,6 +824,23 @@ règle — la citation est justement ce qui autorise l'accent ailleurs. On les
 relève donc un à un, dans `travail/texti.txt`. Après quoi il ne reste, dans les
 deux éditions, que des accents qui se justifient.
 
+### Le mot que les articles voisins corrigent
+
+`abado` ouvrait sur *Superiori di monakeyo (katolika) de viri* — au pluriel, là
+où l'abbé est **un** homme, et où la définition le dit d'un bout à l'autre :
+*por ilta qua havis la ofico*, « pour celui qui tenait la charge ».
+
+Ce n'est pas une lecture douteuse : le tapuscrit porte bien `Superiori`. Mais le
+livre porte **deux fois la même construction**, mot pour mot, et les deux au
+singulier — *Superioro di monakeyo unesma-klasa* chez `arkimandrito` p. 46,
+*Superioro di kuvento, di monakeyo* chez `prioro` p. 461. Ce `Superiori` est le
+**seul du livre** : `superioro` y paraît six fois, `Superioro` deux, et le `o` et
+le `i` sont voisins au clavier.
+
+C'est le meilleur cas de figure pour une correction à l'œil : l'auteur se
+corrige lui-même, ailleurs, en écrivant la même phrase. La ligne va dans
+`travail/vorti.txt` avec les deux renvois en regard.
+
 ### Le pronom indéfini : *onu*, et jamais *on*
 
 L'auteur écrit **1 342 fois `onu`** contre **9 fois `on`**. C'est assez pour
