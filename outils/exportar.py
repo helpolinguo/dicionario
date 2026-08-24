@@ -26,12 +26,25 @@ def tsv(ent):
 # feuille : si celle-ci ne se charge pas, il reste un lien lisible en fin de
 # document au lieu d'un carre vide.
 #
-# Il est pose ICI et non a la main dans index.html : la page est un produit
-# de fabrication, et la reconstruction suivante l'effacerait.
+# `/pordo.js` dessine la croix qui vide le champ de recherche. Le champ n'en a
+# pas sur iPhone et ne peut pas en avoir : WebKit ne rend
+# « ::-webkit-search-cancel-button » que sur macOS. Sans le script, le champ
+# reste ce qu'il etait — on le vide au clavier.
+#
+# Le champ de recherche porte enfin autocapitalize="none", autocorrect="off" et
+# spellcheck="false" : sur iPhone, iOS met d'office une capitale a la premiere
+# lettre d'un champ de texte, remplace un mot ido par le mot anglais ou francais
+# qu'il croit reconnaitre, et le souligne en rouge. Ici, ce qu'on tape EST le
+# terme cherche.
+#
+# Ces trois retouches sont posees ICI et non a la main dans index.html : la
+# page est un produit de fabrication, et la reconstruction suivante les
+# effacerait sans bruit.
 GABARITO = """<!DOCTYPE html><html lang="io"><meta charset="utf-8">
 <title>Dicionario de la 10.000 radiki di la linguo universala Ido</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="stylesheet" href="/pordo.css">
+<script src="/pordo.js" defer></script>
 <style>
 :root{--enk:#1a1a1a;--pap:#fbfaf7;--sub:#6b6560;--acc:#7A3D00;--lin:#e2ddd5;--flag:var(--acc)}
 @media(prefers-color-scheme:dark){:root{--enk:#e8e4de;--pap:#16161a;--sub:#9a938c;--acc:#D6A06A;--lin:#2c2c33}}
@@ -92,7 +105,7 @@ mark{background:rgba(214,160,106,.34);color:inherit;border-radius:2px}
 </div>
 <div class="sub">Marcelo Persiko (Marcel Pesch) · editio princeps, 2 di agosto 1964 · __N__ artikli</div>
 <div class="bar">
- <input type="search" id="q" placeholder="Serchez radiko o vorto en la defino…" autocomplete="off">
+ <input type="search" id="q" placeholder="Serchez radiko o vorto en la defino…" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false">
 </div>
 </header>
 <div id="kont"><p id="nombro"></p><div id="lst"></div></div>
