@@ -37,9 +37,10 @@ def tsv(ent):
 # qu'il croit reconnaitre, et le souligne en rouge. Ici, ce qu'on tape EST le
 # terme cherche.
 #
-# Ces trois retouches sont posees ICI et non a la main dans index.html : la
-# page est un produit de fabrication, et la reconstruction suivante les
-# effacerait sans bruit.
+# Toute retouche de la page se pose ICI et non a la main dans index.html : la
+# page est un produit de fabrication, et la reconstruction suivante l'effacerait
+# sans bruit. C'est vrai du gabarit comme de la feuille de style qu'il porte —
+# l'ecart lateral de l'en-tete, entre autres, est venu par ce chemin.
 GABARITO = """<!DOCTYPE html><html lang="io"><meta charset="utf-8">
 <title>Dicionario de la 10.000 radiki di la linguo universala Ido</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -52,7 +53,26 @@ GABARITO = """<!DOCTYPE html><html lang="io"><meta charset="utf-8">
 body{margin:0;background:var(--pap);color:var(--enk);
  font:16px/1.55 "Iowan Old Style",Palatino,"Palatino Linotype",Georgia,serif}
 header{position:sticky;top:0;background:var(--pap);border-bottom:1px solid var(--lin);
- padding:14px 20px 12px;z-index:9}
+ padding:14px 20px 12px;z-index:9;
+
+ /* --- L'EN-TETE SUIT LE CORPS. ---------------------------------------
+    La bande tient toute la largeur, et c'est voulu : le fond et le filet
+    du bas doivent aller d'un bord a l'autre. Mais ce qu'elle PORTE doit
+    s'arreter ou le corps s'arrete. Sinon, sur une vue tres large, le
+    titre et la barre de recherche continuent de s'etendre alors que
+    la colonne des articles s'est deja fige a 780px et centre. Cela s'est vu
+    sur un Vision Pro, dont la vue est bien plus large qu'aucun ecran
+    d'ordinateur.
+
+    L'ecart lateral vaut donc 20 px tant que la vue est etroite, puis la
+    moitie de ce qui deborde des 780px de « #kont », dont les 820 px comptent ses 20 px de marge interne. Les deux
+    boites se superposent alors exactement, a toute largeur au-dela.
+
+    Elle est posee APRES la forme courte, qu'elle ne remplace que sur les
+    deux cotes : un navigateur ignorant « max » ecarte cette ligne-ci et
+    garde les 20 px de la precedente, de sorte que l'en-tete redevient ce
+    qu'elle etait, sans rien casser. */
+ padding-inline:max(20px, (100% - 780px) / 2)}
 /* Le bouton de telechargement s'ancre en haut a droite du titre. Sur ecran
    etroit il perd son texte et ne garde que l'icone : la barre de recherche a
    besoin de toute la largeur. */
