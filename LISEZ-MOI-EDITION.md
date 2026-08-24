@@ -148,7 +148,7 @@ corps : il désigne déjà sa locution. Trois filets le faisaient — *plana* ch
 `plano`, *Elektro* chez `pozitiva`, *doco* chez `sekundara` —, chacun italique
 dans le texte alors qu'il nommait une sous-entrée voisine.
 
-110 sous-entrées dans 89 entrées, dont 44 portent un domaine propre.
+111 sous-entrées dans 90 entrées, dont 45 portent un domaine propre.
 
 Une même locution peut relever de **deux** entrées, chacune avec sa
 définition : *estado civila* se range sous `civila`, qui la définit au long,
@@ -857,6 +857,36 @@ endroit où l'auteur le cite porte la croix — *Influro di la \*funikulo* chez
 *nikulo* : la marque avait toute chance de tomber dans la coupure.
 
 Restent sept mots à une occurrence contre une, que rien ne départage encore.
+
+### La locution qui porte la croix
+
+`skreno` a trois sens : l'écran de cheminée, celui du peintre, et — sans numéro,
+introduit par un simple tiret — *(cinemo) Telo blanka, tabelo blanka, sur qua la
+lumo-radii… su reflektas por \*reproduktar la imajo projektita*. L'auteur ferme
+l'article, **après le code de langues**, sur une note : *(pri cinemo e tel. :
++skrino)*. Le mot y est souligné, et `skrino` n'est vedette nulle part.
+
+Autrement dit, le troisième sens n'est pas celui de `skreno` : c'est la
+définition d'un autre mot, que l'auteur nomme en fin d'article faute de lui
+avoir donné son entrée. `travail/texti.txt` le porte en tête de son sens, avec
+le deux-points de la locution et son domaine devant lui —
+
+```
+tro granda. - (cinemo) +skrino : Telo blanka…
+```
+
+— et la note, qui ne portait que ce nom, disparaît. Rien ne s'y perd : *e tel.*
+est déjà dans la définition, *(analoge pri televiziono)*.
+
+Restait à ce que la machine l'accepte. `RE_LOKUCO` ne lisait pas la croix, et
+deux garde-fous rejetaient de toute façon une locution d'un seul mot en
+minuscule étrangère à la vedette — la règle qui écarte la glose, *moloso. – Nun :
+grosa gardo-hundo*. Mais un mot **marqué de la croix** est par définition un mot
+que l'auteur nomme, jamais l'adverbe d'une glose : les deux garde-fous s'écartent
+devant elle. Mesuré sur le livre entier, ce relâchement ne crée pas une seule
+locution de plus ailleurs.
+
+Les sous-entrées passent de 110 à **111**, dont 45 portent un domaine propre.
 
 ### Le mot que les articles voisins corrigent
 

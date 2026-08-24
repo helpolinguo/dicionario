@@ -1440,8 +1440,13 @@ def e_ok(e):
 # kruco » sous « -agar » — et ses conditions d'emploi — « kun radiko nomala : »
 # sous « -ig- » — se seraient detachees comme des sous-entrees, alors qu'elles
 # appartiennent a la phrase.
+# La locution porte parfois la CROIX du mot non officiel : « *skrino » est le
+# mot du cinema, et l'auteur le nomme comme tel sous « skreno ». La marque se
+# lit donc avec elle, et les deux garde-fous qui suivent — la capitale, le lien
+# avec la vedette — n'ont pas a s'y appliquer : un mot marque de la croix EST
+# un mot que l'auteur nomme, jamais l'adverbe d'une glose.
 RE_LOKUCO=re.compile(r'(?:^|(?<=[.;:]\s)|(?<=\)\s)|(?<=[-\u2013]\s))'
-                     r'([A-Za-zÀ-ÿ][A-Za-zà-ÿ]+(?:[-, ]+[A-Za-zà-ÿ]+){0,6})\s*:\s')
+                     r'([*+]?[A-Za-zÀ-ÿ][A-Za-zà-ÿ]+(?:[-, ]+[A-Za-zà-ÿ]+){0,6})\s*:\s')
 # Un qualificatif de tete : « (matem.) », « (kemio) ». Une lettre ou un chiffre
 # seul entre parentheses est un numero d'enumeration, non un domaine.
 RE_KVAL=re.compile(r'(?:[-\u2013\s]*\((?![A-Za-z0-9]\))[^()]{1,60}\)\s*)+$')
@@ -1548,7 +1553,9 @@ def _enhavas(tuto, parto):
 
 def _kongruas(a, b):
     """Deux chaines designent-elles la meme locution ?"""
-    a=a.lower().strip(' .:'); b=b.lower().strip(' .:')
+    # La croix du mot non officiel ne separe pas deux ecritures du meme mot :
+    # le releve rend « +skrino », le texte typographie « *skrino ».
+    a=a.lower().strip(' .:').lstrip('*+'); b=b.lower().strip(' .:').lstrip('*+')
     if a == b: return True
     # Mot a mot, la ponctuation de fin otee : le filet de « radiko » s'arrete
     # sur « Extraktar radiko, quadrata » quand la locution ecrit « quadrata, ».
@@ -2003,7 +2010,7 @@ def strukturizar(e):
                        for u in subl): continue
             # Voir RE_LOKUCO : hors parenthese, une locution qui n'ouvre pas
             # par une capitale doit etre un derive de la vedette.
-            if (loko[:1].islower()
+            if (loko[:1].islower() and not loko.startswith(('*', '+'))
                     and not _citas_vedeton(loko, e.get('vedetto') or '')):
                 continue
             # Un seul mot, sans trait d'union, etranger a la vedette : ce n'est
@@ -2014,6 +2021,7 @@ def strukturizar(e):
             # soit des composes — « mar-baseno », « dento-krono » —, soit des
             # derives de la vedette — « acido » sous « acida ».
             if (len(loko.split()) == 1 and '-' not in loko
+                    and not loko.startswith(('*', '+'))
                     and not _citas_vedeton(loko, e.get('vedetto') or '')):
                 continue
             trov.append((m.start(1), m.end(), loko, None))
