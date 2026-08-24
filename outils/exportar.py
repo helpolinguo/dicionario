@@ -228,6 +228,39 @@ function montri(){
  nb.textContent=n+' artikl'+(n>1?'i':'o')+(n>400?' — la 400 unesma montresas':'');
  lst.innerHTML=sel.slice(0,400).map(x=>rendi(x[1],r)).join('');}
 q.addEventListener('input',montri); montri();
+
+// Le curseur arrive dans la barre de recherche : c'est la seule chose qu'on
+// fait de cette page. On l'y met SANS faire defiler — focus() emmene sinon la
+// vue vers le champ sur les ecrans etroits — et seulement la ou il y a un
+// clavier physique. Sur un telephone, le focus leve le clavier logiciel, qui
+// couvre la moitie de l'ecran avant meme qu'on ait lu le titre ; et de toute
+// facon la reprise de frappe ci-dessous ne peut pas y servir, faute de touche
+// a frapper hors du champ.
+if(matchMedia('(hover:hover) and (pointer:fine)').matches)q.focus({preventScroll:true});
+
+// On quitte le champ en cliquant ailleurs — c'est la conduite ordinaire du
+// navigateur, et on ne la contrarie pas. Mais des qu'on retape, le curseur y
+// revient, et la frappe n'est pas perdue : l'evenement est parti au document,
+// non au champ, et le navigateur ne la lui donnera pas apres coup. On la pose
+// donc soi-meme, a la place du curseur, et on annule la frappe d'origine.
+//
+// Ce qu'on ne prend pas : les raccourcis du navigateur — Ctrl+F, Cmd+A —, mais
+// on laisse passer AltGr, qui est ctrl+alt sur les claviers Windows et sert a
+// frapper des lettres. Ni ce qui se tape dans un autre champ, s'il en vient un.
+const editebla=n=>n&&(n.tagName==='INPUT'||n.tagName==='TEXTAREA'||n.isContentEditable);
+addEventListener('keydown',function(ev){
+ if(ev.target===q||editebla(ev.target))return;
+ if((ev.ctrlKey||ev.metaKey)&&!ev.altKey)return;
+ const efac=ev.key==='Backspace';
+ if(!efac&&ev.key.length!==1)return;
+ let a=q.selectionStart,b=q.selectionEnd;
+ if(a===null||a>q.value.length){a=b=q.value.length;}
+ if(efac){
+  if(a===b){if(!a)  {q.focus({preventScroll:true});ev.preventDefault();return;} a--;}
+  q.setRangeText('',a,b,'end');
+ }else q.setRangeText(ev.key,a,b,'end');
+ q.focus({preventScroll:true}); ev.preventDefault(); montri();
+});
 </script><a class="ido-pordo" href="/">Ido</a>
 </html>"""
 

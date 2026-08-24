@@ -1128,6 +1128,37 @@ ce qui la rend assez rapide pour 8 309 articles a chaque frappe. Elle rattrape
 les coquilles de qui cherche autant que celles de l'original. Verifie sous
 node : `libbro` rend `libro`, `kavallo` rend `kavalo`, `amiku` rend `amiko`.
 
+### Le curseur, qui n'a qu'un seul endroit ou aller
+
+La page ne fait qu'une chose : chercher. Le curseur arrive donc dans la barre,
+et il y arrive **sans faire defiler** — `focus()` seul emmene la vue vers le
+champ sur les ecrans etroits, `{preventScroll:true}` l'en empeche.
+
+On le pose la ou il y a un clavier physique, `(hover:hover) and (pointer:fine)`,
+et nulle part ailleurs. Sur un telephone, le focus leve le clavier logiciel, qui
+couvre la moitie de l'ecran avant meme qu'on ait lu le titre ; et la reprise de
+frappe ci-dessous n'y sert a rien, faute de touche a frapper hors du champ.
+
+On quitte le champ en cliquant ailleurs — c'est la conduite ordinaire du
+navigateur, et rien ne la contrarie. Mais des qu'on retape, le curseur y revient
+**et la frappe n'est pas perdue**. Elle le serait sans precaution : l'evenement
+est parti au document, non au champ, et le navigateur ne le lui donnera pas
+apres coup. On pose donc la lettre soi-meme, par `setRangeText`, a la place
+exacte du curseur — au milieu du mot si c'est la qu'il etait —, et on annule la
+frappe d'origine. `Backspace` fait de meme a l'envers, et sur un champ vide il
+ne laisse pas le navigateur revenir en arriere.
+
+Ce qui n'est pas capte : les raccourcis du navigateur — `Ctrl+F`, `Cmd+A` —, les
+fleches, `Entree`, `Tab`, et ce qui se tape dans un autre champ. `AltGr` passe,
+lui : c'est `ctrl+alt` sur les claviers Windows, et il sert a frapper des
+lettres.
+
+Verifie sous Chromium, onze fois : le curseur a l'arrivee, la frappe ordinaire,
+le clic qui libere, la lettre et le `Backspace` qui ramenent et s'enregistrent,
+la liste qui suit a l'identique, la lettre posee au curseur et non a la fin,
+`Ctrl+A` ignore, les fleches et `Entree` et `Tab` ignores, le `Backspace` a vide,
+et le telephone ou le clavier ne se leve pas.
+
 ### L'indication portee sur chaque page
 
 Chaque page porte, invisible, la mention de qui a concu, numerise et dirige la
