@@ -827,10 +827,9 @@ deux éditions, que des accents qui se justifient.
 ### La croix oubliée
 
 Le livre cite **quatre-vingt-quatorze** mots non officiels dans ses définitions.
-Onze d'entre eux paraissent aussi sans la croix quelque part, et dix de ces onze
-sont à une occurrence contre une : rien ne tranche, et rien n'a été touché.
+Onze d'entre eux paraissent aussi sans la croix quelque part.
 
-Le onzième tranche seul. `certena` est marqué **sept fois sur huit**, et six de
+`certena` tranche seul par le nombre. est marqué **sept fois sur huit**, et six de
 ces sept portent le `+` noir sur blanc dans le tapuscrit — `konfirmar` p. 294
 deux fois, `konstatar` p. 300, `revuar` p. 497, `riskar` p. 499, `*si` p. 526.
 La huitième, chez `*identifikar` p. 630, est nue : *por divenar certena ke lu
@@ -840,6 +839,24 @@ Ce qui achève la démonstration est sur la page elle-même. `identifikar`
 appartient aux listes finales, celles des mots non encore officiels, et l'auteur
 s'y sert de la marque six lignes plus haut : *frendo. — Kun-partoprenanto di
 +muvmento*. C'est un oubli, non un usage.
+
+**Trois autres se décident par la vedette, non par le nombre.** `skrino` porte la
+croix trois fois sur quatre, mais ce n'est pas ce qui tranche : l'article
+`skreno` — qui, lui, est vedette du livre — donne le mot comme sa variante non
+officielle, en toutes lettres, *(pri cinemo e tel. : \*skrino)*. La quatrième,
+chez `radioskopar`, la reçoit.
+
+`rekonocebla` se décide de même : sa racine, *\*rekonocar*, est **vedette des
+listes finales** p. 631, celles des mots non encore officiels, et un dérivé d'une
+racine non officielle l'est aussi. L'auteur marque d'ailleurs le même mot chez
+`marko` p. 357 ; c'est chez `insigno` qu'il l'oublie.
+
+`funikulo`, enfin, n'est vedette nulle part, sous aucune graphie, et l'autre
+endroit où l'auteur le cite porte la croix — *Influro di la \*funikulo* chez
+`karunklo`. Chez `hilo`, le mot est coupé par la fin de ligne, *sur la fu-* puis
+*nikulo* : la marque avait toute chance de tomber dans la coupure.
+
+Restent sept mots à une occurrence contre une, que rien ne départage encore.
 
 ### Le mot que les articles voisins corrigent
 
