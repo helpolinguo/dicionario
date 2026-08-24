@@ -1159,6 +1159,38 @@ la liste qui suit a l'identique, la lettre posee au curseur et non a la fin,
 `Ctrl+A` ignore, les fleches et `Entree` et `Tab` ignores, le `Backspace` a vide,
 et le telephone ou le clavier ne se leve pas.
 
+### Chaque frappe remonte au sommet
+
+La liste est **classee** : vedette exacte, vedette commencant par, vedette
+contenant, a une faute pres, a deux, puis definition. Apres chaque frappe la
+reponse est donc en tete — et rester en place montrait le quarantieme resultat
+d'un ensemble qu'on n'avait pas choisi.
+
+Mesure, avant :
+
+| on tape | resultats | ou l'on se retrouve | le meilleur resultat est a |
+|---|---|---|---|
+| `am` → `amp` depuis 3 000 px | 1 808 → 72 | 3 000 px | **−2 815 px** |
+| `amp` → `am` depuis 2 000 px | 72 → 1 808 | 2 000 px | **−1 815 px** |
+| `a` → `abado` depuis le bas | 9 441 → 54 | 5 574 px | **−5 389 px** |
+
+Le troisieme cas est le pire : la page passe de 45 349 px a 6 474, la position
+de 44 449 px n'existe plus, et le navigateur la rogne **lui-meme** a 5 574 —
+le lecteur est depose au hasard, au milieu d'une liste qu'il n'a pas parcourue.
+
+D'un coup, non en glissant : une glissade depuis 44 000 px durerait des
+secondes, defilerait devant des milliers d'articles, et la frappe suivante se
+battrait avec elle. Et seulement si l'on n'y est pas deja, pour qu'aucune
+secousse ne parte quand il n'y a rien a faire.
+
+L'appel de DEPART ne passe pas par la : au rechargement, le navigateur rend sa
+position au lecteur, et il ne faut pas la lui reprendre. Lire la liste sans
+taper ne remonte donc rien.
+
+Verifie sous Chromium : affiner depuis 3 000 px, effacer depuis 2 000, aller du
+bas de la liste entiere a un mot precis, la frappe reprise hors du champ, le cas
+ou l'on est deja en haut, et le defilement sans frappe.
+
 ### L'indication portee sur chaque page
 
 Chaque page porte, invisible, la mention de qui a concu, numerise et dirige la

@@ -204,7 +204,23 @@ function montri(){
  const n=sel.length;
  nb.textContent=n+' artikl'+(n>1?'i':'o')+(n>400?' — la 400 unesma montresas':'');
  lst.innerHTML=sel.slice(0,400).map(x=>rendi(x[1],r)).join('');}
-q.addEventListener('input',montri); montri();
+// Chaque frappe remonte au sommet. La liste est CLASSEE — vedette exacte,
+// vedette commencant par, vedette contenant, a une faute pres, a deux, puis
+// definition — donc apres chaque frappe la reponse est en tete. Rester en
+// place montrait le quarantieme resultat d'un ensemble qu'on n'a pas choisi :
+// de « am » a « amp », la liste passe de 47 488 px a 9 657 et le premier
+// resultat se retrouve 2 815 px au-dessus de l'ecran. Pire, quand la page
+// raccourcit plus que la position ne le permet, le navigateur rogne
+// lui-meme — de 44 449 px a 5 574 — et depose le lecteur au hasard.
+//
+// D'un coup, non en glissant : une glissade depuis 44 000 px durerait des
+// secondes, defilerait devant des milliers d'articles, et la frappe suivante
+// se battrait avec elle. Et seulement si l'on n'y est pas deja.
+//
+// L'appel de DEPART ne passe pas par la : au rechargement, le navigateur
+// rend sa position au lecteur, et il ne faut pas la lui reprendre.
+function serchis(){montri(); if(scrollY)scrollTo({top:0,behavior:'instant'});}
+q.addEventListener('input',serchis); montri();
 
 // Le curseur arrive dans la barre de recherche : c'est la seule chose qu'on
 // fait de cette page. On l'y met SANS faire defiler — focus() emmene sinon la
@@ -236,7 +252,7 @@ addEventListener('keydown',function(ev){
   if(a===b){if(!a)  {q.focus({preventScroll:true});ev.preventDefault();return;} a--;}
   q.setRangeText('',a,b,'end');
  }else q.setRangeText(ev.key,a,b,'end');
- q.focus({preventScroll:true}); ev.preventDefault(); montri();
+ q.focus({preventScroll:true}); ev.preventDefault(); serchis();
 });
 </script><a class="ido-pordo" href="/">Ido</a>
 </html>
