@@ -824,6 +824,23 @@ règle — la citation est justement ce qui autorise l'accent ailleurs. On les
 relève donc un à un, dans `travail/texti.txt`. Après quoi il ne reste, dans les
 deux éditions, que des accents qui se justifient.
 
+### La croix oubliée
+
+Le livre cite **quatre-vingt-quatorze** mots non officiels dans ses définitions.
+Onze d'entre eux paraissent aussi sans la croix quelque part, et dix de ces onze
+sont à une occurrence contre une : rien ne tranche, et rien n'a été touché.
+
+Le onzième tranche seul. `certena` est marqué **sept fois sur huit**, et six de
+ces sept portent le `+` noir sur blanc dans le tapuscrit — `konfirmar` p. 294
+deux fois, `konstatar` p. 300, `revuar` p. 497, `riskar` p. 499, `*si` p. 526.
+La huitième, chez `*identifikar` p. 630, est nue : *por divenar certena ke lu
+esas ya la persono quan lu afirmas esar*.
+
+Ce qui achève la démonstration est sur la page elle-même. `identifikar`
+appartient aux listes finales, celles des mots non encore officiels, et l'auteur
+s'y sert de la marque six lignes plus haut : *frendo. — Kun-partoprenanto di
++muvmento*. C'est un oubli, non un usage.
+
 ### Le mot que les articles voisins corrigent
 
 `abado` ouvrait sur *Superiori di monakeyo (katolika) de viri* — au pluriel, là
