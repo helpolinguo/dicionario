@@ -1,9 +1,10 @@
-# Bytecode Python : regenere a chaque execution d'un outil, propre a la machine
-# et a la version de l'interprete. Rien a versionner.
+# Python bytecode: regenerated at every run of a tool, particular to the
+# machine and to the interpreter's version. Nothing to keep.
 __pycache__/
 *.py[cod]
 
-# Sortie intermediaire de LuaTeX. Le PDF, lui, est suivi : il est livre.
+# LaTeX's intermediate output. The PDFs themselves are tracked: they are
+# what the site hands the reader.
 *.aux
 *.log
 *.out
