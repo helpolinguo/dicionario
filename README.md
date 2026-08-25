@@ -132,17 +132,16 @@ for byte at every step.
 The code in this repository is under the **MIT Licence** — see
 [`LICENSE`](LICENSE). Copyright © 2026 Gilles-Philippe Morin.
 
-The **work transcribed here is held to be in the public domain in
-Canada**, where this project is maintained. Note that the argument is not
-the one the other two books rest on: the *Dicionario* was published in
-1964, not in the 1920s, and this repository does not record the death of
-its author, Marcel Pesch (Marcelo Persiko). Canada's term ran to fifty
-years after the author's death until the 2022 extension to seventy, which
-did not restore copyrights already expired. Copyright terms differ from
-country to country; readers should satisfy themselves of the position
-under their own law. The transcription, the typesetting, the cleaned
-edition, the tools and the reading page are this project's own work, and
-are covered by the licence above.
+The **work transcribed here is in the public domain in Canada**, where
+this project is maintained. Its author, Marcel Pesch (Marcelo Persiko),
+died in 1970; Canada's term then ran to fifty years after the author's
+death, so it expired at the end of **2020**, two years before the 2022
+extension to seventy — and that extension did not restore copyrights
+already expired. Copyright terms differ from country to country; readers
+elsewhere should satisfy themselves of the position under their own law.
+The transcription, the typesetting, the cleaned edition, the tools and
+the reading page are this project's own work, and are covered by the
+licence above.
 
 The font of the pocket edition's cover, **Jost\***, is under the SIL Open
 Font License 1.1 — see [`pocket/fonts/OFL.txt`](pocket/fonts/OFL.txt).
