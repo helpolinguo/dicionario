@@ -1,15 +1,15 @@
 # -*- coding: utf-8 -*-
-"""Dicionario de posho — edituro moderna, en LaTeX.
+"""Dicionario de posho — a modern edition, in LaTeX.
 
-Ce n'est pas le fac-simile : c'est le TEXTE EPURE, celui de la page HTML,
-compose comme un dictionnaire de poche d'aujourd'hui — deux colonnes, titre
-courant donnant le premier mot-vedette a gauche et le dernier a droite,
-lettrines de section.
+This is not the facsimile: it is the CLEANED TEXT, that of the HTML page, set
+as a pocket dictionary of today would be -- two columns, a running head
+giving the first headword on the left and the last on the right, section
+initials.
 
-La source est le meme fichier que la page HTML,
-work/edicioni/dicionario.jsonl. Les deux editions ne peuvent donc pas
-diverger : toute correction posee dans les couches de relecture se retrouve
-dans l'une comme dans l'autre des la reconstruction suivante.
+The source is the same file as the HTML page,
+work/edicioni/dicionario.jsonl. The two editions therefore cannot diverge:
+any correction laid in the proofreading layers is found in the one as in the
+other at the next rebuild.
 """
 import json, os, re, sys, unicodedata
 
@@ -19,17 +19,17 @@ import edition
 RAC = "/root/dicionario"; T = f"{RAC}/travail"; OUT = f"{RAC}/posho"
 SOURCE = f"{T}/edicioni/dicionario.jsonl"
 
-# Le tapuscrit note les langues par une lettre ; l'edition de lecture les
-# ecrit au long. En poche, la place manque : on revient a l'abrege, mais
-# lisible.
+# The typescript notes the languages by a letter; the reading edition writes
+# them out. In the pocket edition there is no room: we return to the
+# abbreviation, but a legible one.
 ABREGE = {'Germana': 'D', 'Angla': 'E', 'Franca': 'F', 'Italiana': 'I',
           'Rusa': 'R', 'Hispana': 'S', 'Latina': 'L', 'Portugalana': 'P',
           'Greka': 'G', 'Nederlandana': 'N'}
 
 
 def esc(t):
-    """Texte vers LaTeX. La source contient des chevrons, des tirets longs et
-    des espaces insecables qu'il faut garder tels quels."""
+    """Text to LaTeX. The source contains guillemets, em dashes and non-breaking
+    spaces that must be kept as they stand."""
     if t is None:
         return ""
     for a, b in (('\\', r'\textbackslash{}'), ('{', r'\{'), ('}', r'\}'),
@@ -41,28 +41,30 @@ def esc(t):
 
 
 def cle(v):
-    """Cle de classement : celle du dictionnaire lui-meme.
+    """The sort key: the dictionary's own.
 
-    `edition._klavo_ordino` est la regle du LIVRE — sans l'asterisque du mot
-    non officiel, sans le tiret de l'affixe, sans accent, sans le point
-    d'exclamation de l'interjection, sans les guillemets ni les espaces : le
-    livre range « a posteriori » entre « apostata » et « apostemo ». C'est
-    aussi la cle sur laquelle le drapeau `ordino-ruptita` mesure le desordre ;
-    le classement de poche et la liste de travail ne peuvent plus diverger.
+    `edition._klavo_ordino` is the BOOK's rule -- without the asterisk of the
+    unofficial word, without the hyphen of the affix, without accents, without
+    the exclamation mark of the interjection, without the quotation marks or
+    the spaces: the book files « a posteriori » between « apostata » and
+    « apostemo ». It is also the key on which the `ordino-ruptita` flag
+    measures the disorder; the pocket sorting and the working list can no
+    longer diverge.
 
-    La cle locale d'avant ne connaissait ni les guillemets ni l'espace :
-    « "brokoli"-kaulo » se rangeait APRES « z », et l'article se composait tout
-    a la fin du livre, derriere « zumar » — a cent cinquante pages de sa place.
-    Cent une vedettes changeaient ainsi de rang : les affixes a tiret final,
-    les interjections a point d'exclamation, et les locutions latines.
+    The local key of before knew neither quotation marks nor spaces:
+    « "brokoli"-kaulo » filed itself AFTER « z », and the article was set right
+    at the end of the book, behind « zumar » -- a hundred and fifty pages from
+    its place. A hundred and one headwords changed rank that way: the affixes
+    with a final hyphen, the interjections with an exclamation mark, and the
+    Latin phrases.
     """
     return edition._klavo_ordino(v)
 
 
-# Une parenthese de tete qui ne contient qu'UNE lettre ou UN chiffre n'est pas
-# un qualificatif mais un numero d'enumeration — « (a) », « (b) », « (1) ». Elle
-# reste droite, et arrete la serie : dans « (metaf.)(a) Profundegajo... », seul
-# « (metaf.) » prend l'italique.
+# A leading parenthesis containing only ONE letter or ONE figure is not a
+# qualifier but an enumeration number -- « (a) », « (b) », « (1) ». It stays
+# upright, and stops the series: in « (metaf.)(a) Profundegajo... », only
+# « (metaf.) » takes the italic.
 RE_TETO = re.compile(r'^((?:\((?![a-zA-Z0-9]\))[^()]{1,120}\)\s*)+)')
 
 
@@ -70,39 +72,39 @@ KOMENCO = "\ue000"; FINO = "\ue001"
 
 
 def _borni(t):
-    """Les bornes que l'edition a posees deviennent l'italique de LaTeX.
+    """The bounds the edition laid become LaTeX's italic.
 
-    A appliquer APRES esc() : la contre-oblique de \\textit serait sinon
-    echappee a son tour, et la commande s'imprimerait en toutes lettres.
+    To be applied AFTER esc(): the backslash of \\textit would otherwise be
+    escaped in its turn, and the command would print out in full.
     """
     return t.replace(KOMENCO, "\\textit{").replace(FINO, "}")
 
 
 def _kursiva(t):
-    """Applique APRES esc() : sinon la contre-oblique de \\textit serait elle-meme
-    echappee, et la commande s'imprimerait en toutes lettres.
+    """Applied AFTER esc(): otherwise the backslash of \\textit would itself be
+    escaped, and the command would print out in full.
 
-    La parenthese de TETE d'un sens est un qualificatif — domaine, epoque,
-    regime : « (aludante la hari...) », « (olim) », « (muziko) ». Le domaine de
-    l'article est deja en italique ; celle-ci doit l'etre aussi, sinon deux
-    marques de meme nature s'ecrivent de deux facons dans la meme colonne."""
+    The LEADING parenthesis of a sense is a qualifier -- domain, period,
+    register: « (aludante la hari...) », « (olim) », « (muziko) ». The
+    article's domain is already in italic; this one must be too, or two marks
+    of the same nature are written two ways in the same column."""
     if t.startswith("\\textit{"):
         return t
     m = RE_TETO.match(t)
     if not m:
         return t
-    # Formule chimique : « (CH\u2083)\u2082. CH... ». L'italique la couperait de son
-    # indice, et l'espace que la commande introduit ouvrirait un blanc entre la
-    # parenthese et le chiffre. On la laisse droite et entiere.
+    # A chemical formula: « (CH\u2083)\u2082. CH... ». The italic would cut it
+    # off from its subscript, and the space the command introduces would open a
+    # gap between the parenthesis and the figure. We leave it upright and whole.
     if re.search(r'[\d\u2080-\u2089]', m.group(1)) or t[m.end():m.end()+1] in '\u2080\u2081\u2082\u2083\u2084\u2085\u2086\u2087\u2088\u2089':
         return t
     return "\\textit{%s} %s" % (m.group(1).rstrip(), t[m.end():].lstrip())
 
 
 def artiklo(e):
-    """Un article, en LaTeX."""
+    """One article, in LaTeX."""
     v = e['vedetto']
-    # Emprunt cite : le tapuscrit l'encadre de guillemets. On les rend.
+    # A quoted borrowing: the typescript frames it in quotation marks. We render them.
     aff = "\u00ab\u00a0%s\u00a0\u00bb" % v if e.get('citita') else v
     L = ["\\vorto{%s}" % esc(aff)]
     if e.get('fako'):
@@ -115,7 +117,7 @@ def artiklo(e):
         num = ""
         if len(B) > 1:
             if t: L.append("\\senco{%d}{%s}" % (i + 1, _kursiva(t)))
-            else: num = str(i + 1)     # le numero ira sur la sous-entree
+            else: num = str(i + 1)     # the number will go on the sub-entry
         elif t:
             L.append(" " + _kursiva(t))
         for j, x in enumerate(sub):
@@ -132,9 +134,9 @@ def artiklo(e):
         code = ''.join(ABREGE.get(x, '') for x in e['lingui'])
         if code:
             L.append("\\lingui{%s}" % esc(code))
-    # Le code de langues clot la definition de l'article, non ses sous-entrees :
-    # rejete apres elles, il pendait seul sous un bloc en retrait et semblait
-    # leur appartenir. On le remonte au dernier morceau qui soit de l'article.
+    # The language code closes the article's definition, not its sub-entries:
+    # thrown after them, it hung alone beneath an indented block and seemed to
+    # belong to them. We raise it to the last piece that is the article's own.
     if any(x.startswith("\\subvorto") for x in L):
         queue = [x for x in L if x.startswith(("\\simbolo", "\\latina", "\\lingui"))]
         if queue:
