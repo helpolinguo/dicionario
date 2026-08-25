@@ -1,10 +1,10 @@
-"""Analyse d'une page : desinclinaison, lattis des lignes, lattis des colonnes."""
+"""Analysis of a page: deskewing, lattice of lines, lattice of columns."""
 import numpy as np
 from PIL import Image
 from scipy.ndimage import rotate as ndrotate, uniform_filter, gaussian_filter1d
 
-PASV_NOM = 17.85   # pas vertical nominal (px @150dpi)
-PASH_NOM = 10.55   # pas horizontal nominal
+PASV_NOM = 17.85   # nominal vertical pitch (px @150dpi)
+PASH_NOM = 10.55   # nominal horizontal pitch
 
 def charger(p):
     return np.asarray(Image.open(p).convert("L")).astype(np.float32)
@@ -16,26 +16,26 @@ def normaliser(a, w=41):
     return np.clip(d / (m if m > 1 else 1), 0, 1)
 
 def masquer_bords(b, seuil=0.18, frac=0.45, marge=0.16):
-    """Efface les bandes sombres collees aux bords de l'image : ce sont les
-    ombres du bord du papier ou de la reliure, pas du texte. Le seuil est bas
-    a dessein : ces ombres sont grises, pas noires."""
+    """Erases the dark bands stuck to the edges of the image: they are the
+    shadows of the paper's edge or of the binding, not text. The threshold is
+    low on purpose: those shadows are grey, not black."""
     H, W = b.shape
     colonne = (b > seuil).mean(axis=0)
     ligne   = (b > seuil).mean(axis=1)
-    # L'ombre du bord n'est pas toujours collee au bord de l'image : le cadrage
-    # laisse souvent quelques millimetres de blanc avant elle. On cherche donc
-    # la derniere bande sombre dans la marge, et on efface tout jusqu'a elle.
+    # The edge shadow is not always stuck to the edge of the image: the framing
+    # often leaves a few millimetres of white before it. We therefore look for
+    # the last dark band in the margin, and erase everything as far as it.
     lim = int(W*marge); limh = int(H*marge)
 
     def _bande(prof, bord_max, trou_max):
-        """Longueur de la bande sombre issue du bord.
+        """The length of the dark band running from the edge.
 
-        La version precedente prenait la DERNIERE rangee sombre de la marge et
-        effacait tout jusqu'a elle. Une ligne de texte soulignee est sombre :
-        sur la page 28, une ligne a la rangee 177 etait prise pour une ombre et
-        le masque detruisait six lignes de texte. Une ombre de bord, elle,
-        touche le bord et reste continue ; une ligne soulignee est isolee au
-        milieu du blanc. On exige donc la continuite depuis le bord."""
+        The previous version took the LAST dark row of the margin and erased
+        everything as far as it. An underlined line of text is dark: on page
+        28, a line at row 177 was taken for a shadow and the mask destroyed
+        six lines of text. An edge shadow, for its part, touches the edge and
+        stays continuous; an underlined line is isolated in the middle of the
+        white. We therefore require continuity from the edge."""
         fin = -1; trou = 0
         for i, v in enumerate(prof):
             if v > frac:
@@ -47,13 +47,13 @@ def masquer_bords(b, seuil=0.18, frac=0.45, marge=0.16):
                 elif i > bord_max: break
         return fin
 
-    # La continuite depuis le bord ne vaut que dans le sens des LIGNES.
-    # Une ligne de texte soulignee peut etre sombre sur 45 % de la largeur ;
-    # une colonne de caracteres, jamais sur 45 % de la hauteur. Cote gauche et
-    # droit, l'ancienne regle — la derniere colonne sombre de la marge — reste
-    # donc la bonne : l'assouplir laisse l'ombre de reliure dans l'image, et le
-    # lattis de colonnes s'accroche dessus. Essaye : soixante pages y ont perdu
-    # toutes leurs vedettes, le texte revenant entrelace.
+    # Continuity from the edge holds only in the direction of the LINES.
+    # An underlined line of text can be dark over 45 % of the width; a column
+    # of characters, never over 45 % of the height. On the left and right side
+    # the old rule -- the last dark column of the margin -- therefore remains
+    # the right one: relaxing it leaves the binding shadow in the image, and the
+    # lattice of columns catches on it. Tried: sixty pages lost every one of
+    # their headwords, the text coming back interleaved.
     by = int(H*0.02); ty = int(H*0.012)
     sombres = np.where(colonne[:lim] > frac)[0]
     g = int(sombres.max())+6 if len(sombres) else 0
@@ -87,7 +87,7 @@ def dft_pas(prof, lo, hi, n=1201):
         m = np.hypot(c, d)
         if m > best[0]: best = (m, p, np.arctan2(d, c))
     m, p, ph = best
-    x_max = (ph*p/(2*np.pi)) % p      # position de max d'encre modulo p
+    x_max = (ph*p/(2*np.pi)) % p      # position of the ink maximum modulo p
     return p, x_max, m/(np.abs(s).sum()+1e-9)
 
 def bloc_texte(r, seuil=0.06):
@@ -98,7 +98,7 @@ def bloc_texte(r, seuil=0.06):
     return ys.min(), ys.max(), xs.min(), xs.max()
 
 def lattis_lignes(r, y0, y1, pas_nom=PASV_NOM):
-    """Lattis vertical : pas + phase par Fourier, puis affinage local par ligne."""
+    """Vertical lattice: pitch + phase by Fourier, then local refinement by line."""
     ph = gaussian_filter1d(r.sum(axis=1), 1.0)
     seg = ph[y0:y1+1]
     pas, ymax, q = dft_pas(seg, pas_nom*0.93, pas_nom*1.07, 801)
@@ -106,7 +106,7 @@ def lattis_lignes(r, y0, y1, pas_nom=PASV_NOM):
     ks = np.arange(n)
     ys = ymax + ks*pas
     seuil = max(seg.max()*0.06, 2.0)
-    # affinage : pour chaque ligne occupee, barycentre local sur +-pas/2
+    # refinement: for each occupied line, a local barycentre over +-pitch/2
     obs_k, obs_y = [], []
     for k, y in zip(ks, ys):
         i0 = int(round(y-pas*0.42)); i1 = int(round(y+pas*0.42))
@@ -127,10 +127,10 @@ def lattis_lignes(r, y0, y1, pas_nom=PASV_NOM):
         n = int(np.floor((len(seg)-1-ymax)/pas)) + 1
         ks = np.arange(max(n,0))
         ys = ymax + ks*pas
-    # le lattis est prolonge a toute la hauteur de l'image : les folios et les
-    # lignes isolees hors du bloc principal (titres, notes) doivent etre pris.
+    # the lattice is extended to the whole height of the image: the folios and
+    # the isolated lines outside the main block (titles, notes) must be caught.
     tot = ph
-    seuil2 = max(seg.max()*0.02, 3.0)   # hors du bloc principal : folios, notes
+    seuil2 = max(seg.max()*0.02, 3.0)   # outside the main block: folios, notes
     k0 = int(np.floor((0 - (ymax+y0))/pas))
     k1 = int(np.ceil((len(tot)-1 - (ymax+y0))/pas))
     occupe = []
@@ -149,17 +149,17 @@ def lattis_lignes(r, y0, y1, pas_nom=PASV_NOM):
 def lattis_colonnes(r, y0, y1, x0, x1, pas_nom=PASH_NOM):
     pv = r[y0:y1+1, x0:x1+1].sum(axis=0)
     pas, xmax, q = dft_pas(pv, pas_nom*0.94, pas_nom*1.06, 1201)
-    # bord gauche de cellule : encre centree sur xmax -> bord a xmax - pas/2
+    # left edge of a cell: ink centred on xmax -> edge at xmax - pitch/2
     xg = (xmax - pas/2) % pas
     return pas, x0 + xg, q
 
-RAPPORT = 1.700   # pas vertical / pas horizontal, mesure sur l'ensemble du livre
+RAPPORT = 1.700   # vertical pitch / horizontal pitch, measured over the whole book
 
-HAUT_NOM = 1119.0   # hauteur mediane des images de page
+HAUT_NOM = 1119.0   # median height of the page images
 
 def echelle(a):
-    """Deux pages du scan (538 et 539) sont photographiees a 1,47x. On deduit
-    l'echelle de la hauteur de l'image : toutes les autres sont a 1,0x."""
+    """Two pages of the scan (538 and 539) are photographed at 1.47x. We deduce
+    the scale from the height of the image: all the others are at 1.0x."""
     h = a.shape[0]
     return 1.0 if h < 1300 else h/HAUT_NOM
 
@@ -174,18 +174,18 @@ def _analyser_brut(a):
 
 def analyser(chemin):
     a = charger(chemin)
-    # Deux pages du scan sont photographiees a 1,47x. On les ramene a l'echelle
-    # commune des 637 autres : sinon leurs cellules, rechantillonnees depuis une
-    # image plus fine, ne ressemblent a aucune des autres et forment des groupes
-    # a part, sans etiquette.
+    # Two pages of the scan are photographed at 1.47x. We bring them back to the
+    # common scale of the other 637: otherwise their cells, resampled from a
+    # finer image, resemble none of the others and form groups of their own,
+    # with no label.
     e = echelle(a)
     if abs(e-1.0) > 0.05:
         a = _redim(a, e)
     d = _analyser_brut(a)
-    # affinage : si la chasse mesuree s'ecarte de la norme de plus de 3 %, la
-    # page a ete photographiee a une autre distance ; on la ramene a l'echelle
-    # commune et on recommence. Les cellules doivent etre comparables d'une
-    # page a l'autre, sinon le regroupement les separe pour rien.
+    # refinement: if the measured set departs from the norm by more than 3 %,
+    # the page was photographed at another distance; we bring it back to the
+    # common scale and begin again. The cells must be comparable from one page
+    # to another, or the grouping separates them for nothing.
     for _ in range(6):
         f = d['pash']/PASH_NOM
         if abs(f-1.0) <= 0.012: break

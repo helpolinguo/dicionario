@@ -1,24 +1,24 @@
 # -*- coding: utf-8 -*-
-"""Restitution du mot « invitas » sur la couverture.
+"""Restoring the word « invitas » on the cover.
 
-Dans le scan, ce mot est presque efface : « inv » subsiste, puis « as », et
-entre les deux le papier est nu — le niveau d'encre y plafonne a 0,146 et le
-95e centile a 0,014. Aucun seuil ne fera apparaitre ce qui n'a pas ete
-imprime. Ne restent, dans l'intervalle, que trois salissures.
+In the scan, that word is almost erased: « inv » survives, then « as », and
+between the two the paper is bare -- the ink level there peaks at 0.146 and
+the 95th percentile at 0.014. No threshold will bring out what was not
+printed. All that remains in the gap is three smuts.
 
-On ne dessine pourtant rien. Les deux lettres manquantes, un « i » et un
-« t », figurent a quelques centimetres de la, dans « profitar » — meme ligne,
-meme main, meme corps, et dans le meme ordre. On les y prend, on les tourne de
-la difference d'inclinaison entre les deux endroits de l'arc, et on les repose
-a la place que l'espacement de « profitar » leur assigne. Chaque trait de la
-couverture reste donc de la couverture.
+We draw nothing, all the same. The two missing letters, an « i » and a « t »,
+appear a few centimetres away, in « profitar » -- same line, same hand, same
+size, and in the same order. We take them from there, turn them by the
+difference of inclination between the two places on the arc, and lay them back
+in the place the spacing of « profitar » assigns them. Every stroke of the
+cover therefore remains the cover's own.
 
-Le choix des composantes s'est fait a l'oeil, sur planche (work/cv_zone.png
-et work/cv_inv.png). On les designe ici par leur numero d'etiquette, mais on
-verifie leur signature (centre, surface) avant de s'en servir : si la
-binarisation change, le script s'arrete au lieu de transplanter n'importe quoi.
-Une premiere version choisissait la composante « la plus proche d'un point » ;
-elle est allee prendre un « o » et a ecrit « invoias ».
+The choice of components was made by eye, on a sheet (work/cv_zone.png and
+work/cv_inv.png). We designate them here by their label number, but we verify
+their signature (centre, area) before using them: if the binarisation changes,
+the script stops instead of transplanting anything at all. A first version
+chose the component « nearest to a point »; it went and took an « o » and
+wrote « invoias ».
 """
 import numpy as np, sys
 sys.path.insert(0, '/root/dicionario/outils')
@@ -27,30 +27,30 @@ from scipy.ndimage import label, find_objects, rotate as ndrot
 
 RAC = "/root/dicionario"
 
-# Signatures relevees sur la trame x4, repere de l'image entiere :
-#   etiquette : (cx, cy, surface)
-SRC_I  = (509, 1566, 1860,  588)   # le « i » de profitar
-SRC_T  = (502, 1589, 1855,  832)   # le « t » de profitar
-SRC_F  = (501, 1536, 1858,  941)   # le « f » de profitar (repere gauche)
-SRC_A  = (510, 1628, 1858, 1175)   # le « a » de profitar (repere droit)
+# Signatures surveyed on the x4 screen, in the frame of the whole image:
+#   label: (cx, cy, area)
+SRC_I  = (509, 1566, 1860,  588)   # the « i » of profitar
+SRC_T  = (502, 1589, 1855,  832)   # the « t » of profitar
+SRC_F  = (501, 1536, 1858,  941)   # the « f » of profitar (left cue)
+SRC_A  = (510, 1628, 1858, 1175)   # the « a » of profitar (right cue)
 
-CIB_V  = (557, 1053, 1982,  619)   # le « v » de invitas (repere gauche)
-CIB_A  = (547, 1163, 1953, 1330)   # le « a » de invitas (repere droit)
-CIB_I  = (558,  978, 2003,  661)   # le « i » de invitas : donne l'inclinaison
+CIB_V  = (557, 1053, 1982,  619)   # the « v » of invitas (left cue)
+CIB_A  = (547, 1163, 1953, 1330)   # the « a » of invitas (right cue)
+CIB_I  = (558,  978, 2003,  661)   # the « i » of invitas: gives the inclination
 
 DEBRIS = [(554, 1088, 1969, 175), (550, 1122, 1946, 123), (556, 1125, 1974, 295)]
 
-TOL_POS, TOL_AIRE = 6, 0.15        # tolerance de verification
+TOL_POS, TOL_AIRE = 6, 0.15        # tolerance of the verification
 
 
 def _prendre(l, obj, sig):
-    """Composante retrouvee par sa signature : centre et surface.
+    """A component found again by its signature: centre and area.
 
-    On ne se fie pas au numero d'etiquette — il change des que la binarisation
-    bouge. On cherche donc, parmi toutes les composantes, celle dont le centre
-    et la surface repondent a la signature relevee sur planche. S'il n'y en a
-    pas exactement une, on s'arrete : mieux vaut un script qui refuse de
-    tourner qu'une greffe posee au mauvais endroit.
+    We do not trust the label number -- it changes as soon as the binarisation
+    moves. We therefore look, among all the components, for the one whose
+    centre and area answer the signature surveyed on the sheet. If there is
+    not exactly one, we stop: better a script that refuses to run than a graft
+    laid in the wrong place.
     """
     _, cx, cy, aire = sig
     cands = []
@@ -78,7 +78,7 @@ def _angle(a, b):
 
 
 def _axe(l, k, o):
-    """Inclinaison du fut d'une lettre, par son axe principal (degres, 0-180)."""
+    """Inclination of a letter's stem, by its principal axis (degrees, 0-180)."""
     ys, xs = np.nonzero(l[o] == k)
     ys = ys.astype(float) - ys.mean(); xs = xs.astype(float) - xs.mean()
     w, v = np.linalg.eigh(np.cov(np.vstack([xs, ys])))
@@ -87,45 +87,45 @@ def _axe(l, k, o):
 
 
 def appliquer(B):
-    """Repare le mot en place sur un calque de trait deja binarise."""
+    """Repairs the word in place on an already binarised line layer."""
     l, nb = label(B, np.ones((3, 3), int))
     obj = find_objects(l)
 
-    # 1. effacer les trois salissures de l'intervalle
+    # 1. erase the three smuts in the gap
     for sig in DEBRIS:
         k, o = _prendre(l, obj, sig)
         B[o] &= ~(l[o] == k)
 
-    # 2. inclinaison a donner aux lettres.
+    # 2. the inclination to give the letters.
     #
-    # Premiere version : la difference des angles de corde entre les deux
-    # endroits de l'arc. C'etait faux deux fois — de valeur (la corde n'est pas
-    # l'inclinaison des lettres, qui se redressent sur l'arc) et de signe
-    # (ndimage.rotate tourne dans le sens oppose a celui suppose). Les lettres
-    # penchaient a droite au lieu de pencher a gauche.
+    # First version: the difference of the chord angles between the two places
+    # on the arc. That was wrong twice over -- in value (the chord is not the
+    # inclination of the letters, which straighten along the arc) and in sign
+    # (ndimage.rotate turns the opposite way to the one supposed). The letters
+    # leaned right instead of leaning left.
     #
-    # On mesure donc directement, sur la meme lettre : l'axe principal du « i »
-    # de profitar et celui du « i » de invitas, quatre lettres plus tot. Leur
-    # difference est exactement ce qu'il faut tourner, signe compris.
+    # We therefore measure directly, on the same letter: the principal axis of
+    # the « i » of profitar and that of the « i » of invitas, four letters
+    # earlier. Their difference is exactly what must be turned, sign included.
     ki, oi = _prendre(l, obj, SRC_I)
     kc, oc = _prendre(l, obj, CIB_I)
     da = _axe(l, ki, oi) - _axe(l, kc, oc)
 
-    # 3. positions : l'espacement de « profitar », mis a l'echelle de l'ecart
-    #    disponible. f->i et f->t donnent les deux abscisses ; l'ecart vertical
-    #    de chaque lettre a la corde f-a est reporte tel quel.
+    # 3. positions: the spacing of « profitar », brought to the scale of the
+    #    gap available. f->i and f->t give the two abscissae; each letter's
+    #    vertical departure from the chord f-a is carried over as it stands.
     port_s = SRC_A[1] - SRC_F[1]
     port_c = CIB_A[1] - CIB_V[1]
     ech = port_c / float(port_s)
     cibles = []
     for src in (SRC_I, SRC_T):
-        f = (src[1] - SRC_F[1]) / float(port_s)          # position relative
-        dy = src[2] - (SRC_F[2] + f * (SRC_A[2] - SRC_F[2]))   # ecart a la corde
+        f = (src[1] - SRC_F[1]) / float(port_s)          # relative position
+        dy = src[2] - (SRC_F[2] + f * (SRC_A[2] - SRC_F[2]))   # departure from the chord
         x = CIB_V[1] + f * port_c
         y = CIB_V[2] + f * (CIB_A[2] - CIB_V[2]) + dy
         cibles.append((x, y))
 
-    # 4. prendre, tourner, reposer
+    # 4. take, turn, lay back
     for src, (cx, cy) in zip((SRC_I, SRC_T), cibles):
         k, o = _prendre(l, obj, src)
         g = (l[o] == k)
