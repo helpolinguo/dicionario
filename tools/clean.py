@@ -1,42 +1,42 @@
 # -*- coding: utf-8 -*-
-"""Nettoyage lexical de l'edition de lecture — par les RACINES du livre.
+"""Lexical cleaning of the reading edition — by the book's ROOTS.
 
-Le fac-simile garde la moindre coquille : c'est sa raison d'etre. L'edition
-HTML doit donner le contenu de l'oeuvre, non ses accidents de frappe.
+The facsimile keeps the least slip: that is its reason for being. The HTML
+edition must give the content of the work, not its accidents of typing.
 
-PREMIERE VERSION, ECARTEE. Elle corrigeait toute forme rare vers une forme
-frequente obtenue par echange de deux caracteres que la machine confond. Sur
-537 formes, elle rendait « papuli » (papules, dans « erupto di papuli ») par
-« populi » (peuples), « por-tar » par « por-par », et remplacait la vedette
-« agapo » par « agato » — deux mots reels, l'un chassant l'autre. La frequence
-brute ignore le sens, et surtout la morphologie : en ido la finale porte la
-nature du mot, -o nom, -a adjectif, -e adverbe, -ar verbe. La changer n'est
-jamais une correction typographique.
+FIRST VERSION, SET ASIDE. It corrected every rare form towards a frequent one
+obtained by exchanging two characters the machine confuses. Over 537 forms it
+rendered « papuli » (papules, in « erupto di papuli ») as « populi »
+(peoples), « por-tar » as « por-par », and replaced the headword « agapo » by
+« agato » -- two real words, the one driving out the other. Raw frequency
+ignores sense, and above all morphology: in Ido the ending carries the nature
+of the word, -o noun, -a adjective, -e adverb, -ar verb. Changing it is never
+a typographic correction.
 
-VERSION RETENUE. L'ido est une langue a posteriori : ses racines sont
-internationales, donc elles REVIENNENT dans le livre. Le dictionnaire est ainsi
-son propre lexique. On ne corrige un mot d'une definition que si :
+VERSION ADOPTED. Ido is an a posteriori language: its roots are
+international, so they RECUR through the book. The dictionary is thus its own
+lexicon. We correct a word of a definition only if:
 
-  1. sa racine n'existe NULLE PART comme vedette du livre — le mot ne fait
-     donc pas sens en ido ;
-  2. un seul echange de sosies suffit a en faire une racine attestee ;
-  3. l'echange ne touche pas la finale grammaticale.
+  1. its root exists NOWHERE as a headword of the book -- the word therefore
+     makes no sense in Ido;
+  2. a single exchange of look-alikes suffices to make it an attested root;
+  3. the exchange does not touch the grammatical ending.
 
-Les vedettes ne sont jamais touchees : une vedette est un article, pas une
-occurrence. Le doute profite toujours a l'original.
+The headwords are never touched: a headword is an article, not an occurrence.
+The doubt always benefits the original.
 
-VERSION RETENUE, NON APPLIQUEE. Elle aussi echoue, et pour une raison de fond.
-Sur 116 propositions elle rend « falko » par « talko », « anglo » par « unglo »,
-« adoptas » par « adaptas », « feko » par « foko » : tous des mots ido
-parfaitement reels, qui ne sont simplement pas VEDETTES de ce dictionnaire.
-Un dictionnaire de 10 000 racines n'est pas la liste de tous les mots de la
-langue : ses definitions emploient des derives, des noms propres, des formes
-latines. Son lexique interne ne peut donc pas servir d'arbitre.
+VERSION ADOPTED, NOT APPLIED. It fails too, and for a fundamental reason.
+Over 116 proposals it renders « falko » as « talko », « anglo » as « unglo »,
+« adoptas » as « adaptas », « feko » as « foko »: all perfectly real Ido
+words, which simply are not HEADWORDS of this dictionary. A dictionary of
+10,000 roots is not the list of every word of the language: its definitions
+use derivatives, proper nouns, Latin forms. Its internal lexicon therefore
+cannot serve as arbiter.
 
-Conclusion, verifiee deux fois par deux methodes : aucune passe automatique ne
-distingue ici une coquille d'un mot legitime. Il y faut un lexique ido
-authentique, ou une lecture en contexte. Cet outil reste en mode PROPOSITION :
-il donne une liste a examiner, il ne modifie rien.
+Conclusion, verified twice by two methods: no automatic pass here
+distinguishes a slip from a legitimate word. It needs a genuine Ido lexicon,
+or a reading in context. This tool stays in PROPOSAL mode: it gives a list to
+be examined, it changes nothing.
 """
 import json, re, sys, collections
 sys.path.insert(0,'/root/dicionario/outils')
@@ -48,7 +48,7 @@ for a,b in PAIRES:
     if len(a)==1 and len(b)==1: SOSIE[a].add(b); SOSIE[b].add(a)
 MOT=re.compile(r"[A-Za-zÀ-ÿ]{4,}")
 FINALES=("ar","ir","or","as","is","os","us","o","a","e","i")
-# Mots grammaticaux : ils n'ont pas de racine-vedette et ne doivent rien subir.
+# Function words: they have no headword root and must undergo nothing.
 GRAM=set("""la le lo li ed od ma nam kad ka ke ke qua quo qui quan quin kande ube
 pro por per pri sen sub sur tra trans ye da de di del dil en inter kun dum kontre
 ante dop apud avan cirkum til vers nur anke tam tante quale quante on onu ol olu
@@ -76,7 +76,7 @@ def connu(w, rac):
     return w in rac or _racine(w) in rac or w in GRAM
 
 def variantes(w):
-    """Echanges de sosies, jamais sur la finale grammaticale."""
+    """Exchanges of look-alikes, never on the grammatical ending."""
     n=len(w); fin=len(w)-len(_racine(w))
     for i,c in enumerate(w):
         if i >= n-max(fin,1): break

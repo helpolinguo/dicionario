@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
-"""Genere les 639 pages du fac-simile, y compris ce qui n'est pas de la frappe.
+"""Generates the 639 pages of the facsimile, including what is not typing.
 
-Trois sortes de pages echappent a la grille et sont traitees a part :
-la couverture, qui est une lithographie ; les six pages blanches ; et les
-pages qui portent un ornement — la signature autographe de l'auteur sur la
-page de contrefacon, la lettre de l'alphabet en grand corps en tete de chaque
-section. L'ornement est decoupe dans le scan et repose a sa place, mesuree en
-fraction de feuille, sans occuper de place dans la grille.
+Three kinds of page escape the grid and are dealt with apart: the cover,
+which is a lithograph; the six blank pages; and the pages that carry an
+ornament -- the author's autograph signature on the copyright page, the
+letter of the alphabet in a large size at the head of each section. The
+ornament is cut out of the scan and laid back in its place, measured as a
+fraction of the sheet, without taking up room in the grid.
 """
 import numpy as np, sys, os, json
 sys.path.insert(0,'/root/dicionario/outils')
@@ -14,7 +14,7 @@ from decode import charger
 from generate import ecrire
 T="/root/dicionario/travail"; RAC="/root/dicionario"
 LARG=210.0; HAUT=297.0; ORIGX=21.9; ORIGY=12.44
-MARGE={'signaturo':10}          # marge du decoupage, en pixels du scan
+MARGE={'signaturo':10}          # margin of the cutting, in pixels of the scan
 
 def non_dactylo():
     d={}
@@ -26,12 +26,12 @@ def non_dactylo():
     return d
 
 def ornements():
-    """Ornements par page — une LISTE par page, et non un seul ornement.
+    """Ornaments by page — a LIST per page, and not a single ornament.
 
-    Le dictionnaire {page: ornement} perdait le second ornement d'une page qui
-    en porte deux. La page 631 en porte justement deux : le « X » en tete, et
-    le « Y » au milieu, la section Y ne s'ouvrant pas sur une feuille neuve.
-    Le « Y » y disparaissait sans bruit.
+    The dictionary {page: ornament} lost the second ornament of a page that
+    carries two. Page 631 carries exactly two: the « X » at the head, and the
+    « Y » in the middle, section Y not opening on a fresh sheet. The « Y »
+    disappeared there without a sound.
     """
     p=f"{T}/ornements.json"
     if not os.path.exists(p): return {}
@@ -39,17 +39,17 @@ def ornements():
     for e in json.load(open(p)): d.setdefault(e['pagino'], []).append(e)
     return d
 
-PASH_MM=2.540; PASV_MM=4.321      # le pas de la machine, en millimetres
+PASH_MM=2.540; PASV_MM=4.321      # the machine's pitch, in millimetres
 
 def _latex_ornement(e):
-    """Position de l'ornement en coordonnees de GRILLE, pas en fraction de feuille.
+    """The ornament's position in GRID coordinates, not as a fraction of the sheet.
 
-    Premiere version : la position etait exprimee en fraction de la feuille
-    scannee. Elle tombait a cote — le cadrage du scan varie d'une page a
-    l'autre, alors que la grille, elle, ne varie pas. On convertit donc la
-    boite de l'ornement en colonnes et en lignes de la grille de sa page, puis
-    on la repose au pas de la machine. C'est le meme invariant que le texte,
-    donc le meme calage.
+    First version: the position was expressed as a fraction of the scanned
+    sheet. It fell wide -- the framing of the scan varies from one page to the
+    next, whereas the grid does not vary. We therefore convert the ornament's
+    box into columns and lines of its page's grid, then lay it back at the
+    machine's pitch. It is the same invariant as the text, hence the same
+    registration.
     """
     m=MARGE.get(e['litero'], 6)
     pg=e['pagino']
@@ -84,9 +84,9 @@ def executer():
             print("ECHEC p%03d : %s"%(pg,e), flush=True); continue
         if pg in orn:
             L=open(chemin,encoding='utf-8').read().split("\n")
-            # Tous les ornements de la page, poses sur la premiere ligne : leur
-            # place est donnee en coordonnees de grille par \marge, donc l'un
-            # comme l'autre tombe ou il doit, quelle que soit la ligne d'accueil.
+            # All the page's ornaments, laid on the first line: their place is
+            # given in grid coordinates by \marge, so each falls where it must,
+            # whatever the line that receives it.
             tete="".join(_latex_ornement(e) for e in orn[pg])
             for i,l in enumerate(L):
                 if l.startswith("\\l{"):
@@ -99,10 +99,10 @@ def executer():
             open(chemin,"w",encoding='utf-8').write("\n".join(L))
         faites.append(pg)
         if pg%100==0: print("  ...p%03d"%pg, flush=True)
-    # Feuillet de garde. Le livre se termine sur « F I N O », en page 639 —
-    # nombre impair, et sans garde. Une page blanche de plus le porte a 640,
-    # soit quarante cahiers de seize : ce qu'il faut pour le relier. La garde
-    # de tete existe deja dans le livre (les pages blanches du scan).
+    # Endpaper. The book ends on « F I N O », at page 639 -- an odd number,
+    # and with no endpaper. One more blank page brings it to 640, that is,
+    # forty gatherings of sixteen: what is needed to bind it. The endpaper at
+    # the head already exists in the book (the blank pages of the scan).
     open(f"{RAC}/content/garde.tex","w",encoding='utf-8').write(
         "%% feuillet de garde final : porte le livre a 640 pages, quarante cahiers de seize\n\\pgvakua\n")
     with open(f"{RAC}/content/toutes.tex","w",encoding='utf-8') as f:

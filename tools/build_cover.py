@@ -1,4 +1,4 @@
-"""Reconstruit tous les elements de la couverture."""
+"""Rebuilds every element of the cover."""
 import sys, numpy as np, os, re, shutil, subprocess
 sys.path.insert(0,'/root/dicionario/outils')
 from cover import *
@@ -25,7 +25,7 @@ def executer():
     os.makedirs(TRV,exist_ok=True); np.save(f"{TRV}/niveaux.npy",n)
     u=surechantillonner(n)
 
-    # --- portraits : deux tons ---
+    # --- portraits: two tones ---
     shutil.rmtree(f"{ORN}/portraits",ignore_errors=True); os.makedirs(f"{ORN}/portraits")
     for (x0,x1,y0,y1),nom in zip(BOITES,NOMS):
         m=6; a,b,c,d=max(x0-m,0),min(x1+m,n.shape[1]),max(y0-m,0),min(y1+m,n.shape[0])
@@ -37,33 +37,33 @@ def executer():
         Image.fromarray((np.clip(1-z,0,1)*255).astype(np.uint8)).resize(((b-a)*6,(d-c)*6),Image.LANCZOS)\
              .save(f"{ORN}/portraits/{nom}-gris-x6.png")
 
-    # --- couverture complete : lettrages au trait + portraits a deux tons ---
+    # --- the whole cover: line lettering + two-tone portraits ---
     noir=binariser_trait(n); gris=np.zeros_like(noir)
-    # Le mot « invitas » est efface au scan : on lui rend son « i » et son « t »,
-    # pris dans « profitar ». Voir tools/repair_cover.py.
+    # The word « invitas » is erased in the scan: we give it back its « i » and
+    # its « t », taken from « profitar ». See tools/repair_cover.py.
     from repair_cover import appliquer as _reparer_invitas
     noir=_reparer_invitas(noir)
-    # Le grain du papier n'est jamais vraiment noir : on le retire par le
-    # niveau d'encre, avant de juger quoi que ce soit par la taille.
+    # The grain of the paper is never truly black: we take it out by the ink
+    # level, before judging anything by size.
     _av=noir.sum()
     noir=retirer_pale(noir, u)
     print("  composantes pales retirees : %.1f%% de l'encre"%(100*(1-noir.sum()/max(_av,1))))
-    # Depoussierage final du calque de trait.
+    # Final despeckling of the line layer.
     #
-    # Premier essai : retirer les petites composantes loin d'une grosse. Mauvais
-    # critere — les legendes sous les portraits n'ont aucune grosse composante,
-    # leurs points sur les i n'etaient donc ancres a rien et disparaissaient :
-    # « PRECIZA, KONC ZA, FACILA » devenait « PREC ZA KONC ZA FAC LA ».
+    # First attempt: remove the small components far from a large one. A bad
+    # criterion -- the captions under the portraits have no large component at
+    # all, so the dots on their i's were anchored to nothing and disappeared:
+    # « PRECIZA, KONC ZA, FACILA » became « PREC ZA KONC ZA FAC LA ».
     #
-    # Ce qui distingue la poussiere, ce n'est pas la taille, c'est l'isolement.
-    # On dilate donc l'encre : les lettres d'un meme mot se rejoignent en un
-    # amas, une salissure reste seule. Un amas qui, dilatation defaite, ne pese
-    # pas 1 500 pixels d'encre est de la poussiere.
+    # What distinguishes dust is not size, it is isolation. We therefore dilate
+    # the ink: the letters of one word join into a cluster, a smut stays alone.
+    # A cluster that, with the dilation undone, does not weigh 1,500 pixels of
+    # ink is dust.
     #
-    # Le rayon compte autant que le seuil. A huit pixels, un mot forme un amas
-    # mais une ligne n'en forme pas : « vu », « lia », « ZA », « di la » ont
-    # ete pris pour des salissures et effaces. A vingt-deux, les mots d'une
-    # meme ligne se rejoignent, et seule une tache vraiment seule reste seule.
+    # The radius counts as much as the threshold. At eight pixels, a word forms
+    # a cluster but a line does not: « vu », « lia », « ZA », « di la » were
+    # taken for smuts and erased. At twenty-two, the words of one line join,
+    # and only a truly isolated spot stays alone.
     from scipy.ndimage import label as _lab, binary_dilation as _dil
     _R=22*SUR
     _amas,_na=_lab(_dil(noir, np.ones((_R,_R),bool)), np.ones((3,3),int))
@@ -74,24 +74,23 @@ def executer():
         noir &= ~_seuls
         print("  amas de poussiere retires :", len(_dust))
 
-    # Second depoussierage, plus fin.
+    # Second despeckling, finer.
     #
-    # Le rayon de vingt-deux pixels est genereux : une salissure posee a dix
-    # pixels d'un mot rejoint son amas et survit. Il en restait une cinquantaine,
-    # bien visibles dans les blancs de la page. On ne peut pas simplement
-    # resserrer le rayon — c'est ce qui effacait « vu » et « di la ».
+    # The radius of twenty-two pixels is generous: a smut set ten pixels from a
+    # word joins its cluster and survives. Some fifty of them were left, plainly
+    # visible in the whites of the page. We cannot simply tighten the radius --
+    # that is what erased « vu » and « di la ».
     #
-    # On dilate donc de facon anisotrope : large en largeur (les mots d'une meme
-    # ligne se rejoignent), etroite en hauteur (une tache posee au-dessus d'une
-    # ligne ne la rejoint pas). Puis on n'efface une composante que si les trois
-    # conditions tiennent ensemble :
-    #   - elle est petite (moins de 900 pixels d'encre) ;
-    #   - la ligne a laquelle elle appartiendrait est pauvre en encre ;
-    #   - aucune vraie lettre ne se tient a moins de douze pixels d'elle.
-    # La derniere condition est un veto, jamais un motif : le point d'un i, une
-    # virgule, un accent touchent presque leur lettre et sont donc epargnes,
-    # meme quand leur legende n'a aucune grosse composante — c'est ce qui avait
-    # fait disparaitre les points de « PRECIZA, KONCIZA, FACILA ».
+    # We therefore dilate anisotropically: wide across (the words of one line
+    # join), narrow in height (a spot set above a line does not join it). Then
+    # we erase a component only if all three conditions hold together:
+    #   - it is small (less than 900 pixels of ink);
+    #   - the line it would belong to is poor in ink;
+    #   - no real letter stands within twelve pixels of it.
+    # The last condition is a veto, never a motive: the dot of an i, a comma, an
+    # accent almost touch their letter and are therefore spared, even when their
+    # caption has no large component -- which is what had made the dots of
+    # « PRECIZA, KONCIZA, FACILA » disappear.
     _LH,_LV,_AIRE,_ENCRE,_GROS,_LOIN = 12,6,900,1500,900,12
     _mp=np.zeros(noir.shape,bool)
     for (x0,x1,y0,y1) in BOITES:
@@ -130,13 +129,13 @@ def executer():
     Image.fromarray((np.clip(1-n,0,1)*255).astype(np.uint8)).resize((1205*3,1636*3),Image.LANCZOS)\
          .save(f"{ORN}/couverture/couverture-nettoyee-x3.png")
 
-    # --- elements de trait ---
+    # --- line elements ---
     shutil.rmtree(f"{ORN}/trait",ignore_errors=True); os.makedirs(f"{ORN}/trait")
     mp=np.zeros(noir.shape,bool)
     for (x0,x1,y0,y1) in BOITES:
         m=8; mp[(max(y0-m,0))*SUR:(min(y1+m,n.shape[0]))*SUR,(max(x0-m,0))*SUR:(min(x1+m,n.shape[1]))*SUR]=True
     T=noir & ~mp
-    # embleme
+    # emblem
     z=T[440*SUR:640*SUR, 460*SUR:740*SUR]
     C=binary_closing(z,np.ones((9*SUR//2,9*SUR//2)))
     lab,nb=label(C); objs=find_objects(lab)
@@ -144,7 +143,7 @@ def executer():
     sub=T[440*SUR+sl[0].start-4*SUR:440*SUR+sl[0].stop+4*SUR, 460*SUR+sl[1].start-4*SUR:460*SUR+sl[1].stop+4*SUR]
     tracer(sub,f"{ORN}/trait/embleme-ido.svg")
     rendre(f"{ORN}/trait/embleme-ido.svg",f"{ORN}/trait/embleme-ido-x6.png",largeur=sub.shape[1]//SUR*6)
-    # bandes de lettrage
+    # bands of lettering
     row=T.sum(1); bandes=[];i=0
     while i<len(row):
         if row[i]>0:

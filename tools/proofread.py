@@ -1,18 +1,18 @@
 # -*- coding: utf-8 -*-
-"""Couche de relecture des definitions, article par article.
+"""A proofreading layer for the definitions, article by article.
 
-Les detecteurs structurels sont epuises. Ce qui reste — « vaormashino » pour
-« vapormashino », « fibranta » pour « vibranta », « kuh » pour « kun » — ne se
-voit qu'en lisant la phrase. Le livre est donc decoupe en lots de 130 articles
-(tools/sheets_proofread.py), relus un lot a la fois, et les corrections sont
-deposees ici.
+The structural detectors are exhausted. What is left -- « vaormashino » for
+« vapormashino », « fibranta » for « vibranta », « kuh » for « kun » -- can be
+seen only by reading the sentence. The book is therefore cut into batches of
+130 articles (tools/sheets_proofread.py), re-read one batch at a time, and the
+corrections are deposited here.
 
-L'identifiant rendu par la relecture n'est PAS utilise pour appliquer la
-correction. Il derive de la position dans le fichier, or cette position bouge
-des qu'un article s'ajoute — la reparation du bas de page en a ajoute quatre.
-On cherche donc la chaine fautive elle-meme, et on n'applique que si elle est
-UNIQUE dans le livre : une chaine ambigue est refusee plutot que posee au
-hasard. Les chaines rendues font plusieurs mots, ce qui suffit a les distinguer.
+The identifier the proofreading returns is NOT used to apply the correction.
+It derives from the position in the file, and that position moves as soon as
+an article is added -- the repair of the foot of the page added four. We
+therefore look for the faulty string itself, and apply it only if it is UNIQUE
+in the book: an ambiguous string is refused rather than laid at random. The
+strings returned run to several words, which is enough to distinguish them.
 """
 import os, re, glob
 T = "/root/dicionario/travail"
@@ -20,7 +20,7 @@ DOSSIER = f"{T}/relire/reponses"
 
 
 def lire(dossier=DOSSIER):
-    """Toutes les corrections rendues : liste de (fautif, correct, lot)."""
+    """Every correction returned: a list of (faulty, correct, batch)."""
     out = []
     for p in sorted(glob.glob(f"{dossier}/*.txt")):
         lot = os.path.basename(p)[:-4]
@@ -32,10 +32,10 @@ def lire(dossier=DOSSIER):
             if len(ch) < 3:
                 continue
             a, b = ch[-2].strip(), ch[-1].strip()
-            # Une relecture rend parfois une ligne de prose au lieu d'une
-            # correction — « apofizo<TAB>... », « check done ». On refuse ce
-            # qui n'a pas la forme d'un remplacement : ellipse, chaine vide,
-            # ou cible bien plus courte que la source.
+            # A proofreading sometimes returns a line of prose instead of a
+            # correction -- « apofizo<TAB>... », « check done ». We refuse what
+            # has not the form of a replacement: an ellipsis, an empty string,
+            # or a target much shorter than the source.
             if not a or not b or a == b: continue
             if '...' in b or '…' in b: continue
             if len(b) < len(a) * 0.5: continue
@@ -46,7 +46,7 @@ def lire(dossier=DOSSIER):
 _ESP = r"[\s\u00a0]*"
 
 def _motif(a):
-    """Regex de la chaine fautive, indifferente a l'espacement."""
+    """Regex of the faulty string, indifferent to spacing."""
     out = []
     n = len(a)
     for i, c in enumerate(a):
@@ -56,8 +56,9 @@ def _motif(a):
                 continue
             out.append(_ESP + "+")
         elif c in "\u00ab\u00bb:;!?()":
-            # Aux BORDS de la chaine, ne pas absorber l'espace voisin : il ne
-            # serait pas rendu par le remplacement, et deux mots se colleraient.
+            # At the EDGES of the string, do not absorb the neighbouring space: it
+            # would not be returned by the replacement, and two words would stick
+            # together.
             g = "" if i == 0 else _ESP
             d = "" if i == n - 1 else _ESP
             out.append(g + re.escape(c) + d)
@@ -67,39 +68,39 @@ def _motif(a):
 
 
 def appliquer(ent, dossier=DOSSIER):
-    """Pose les corrections de relecture. Rend (posees, refusees)."""
+    """Lays the proofreading corrections. Returns (laid, refused)."""
     cor = lire(dossier)
     if not cor:
         return 0, 0
     pose = 0; refus = 0
     for a, b, lot in cor:
-        # La chaine fautive a ete relevee AVANT que la typographie soit posee :
-        # les chevrons et le deux-points ont depuis gagne une espace insecable,
-        # « grande » s'ecrit « \u00ab\u00a0grande\u00a0\u00bb ». Cherchee au
-        # caractere pres, la correction ne se retrouvait plus. On rend donc la
-        # recherche indifferente a l'espacement autour de la ponctuation.
+        # The faulty string was surveyed BEFORE the typography was laid: the
+        # guillemets and the colon have since gained a non-breaking space,
+        # « grande » is written « \u00ab\u00a0grande\u00a0\u00bb ». Sought to
+        # the character, the correction was no longer found. We therefore make
+        # the search indifferent to the spacing around the punctuation.
         mot = _motif(a)
         vus = []
         for e in ent:
             for k, t in enumerate(e.get('senci') or []):
                 if mot.search(t):
                     vus.append((e, k))
-            # Le domaine est un champ a part : « (ariktekt) » n'est dans aucun
-            # sens, et la correction etait refusee faute de le chercher la.
+            # The domain is a separate field: « (ariktekt) » is in no sense, and
+            # the correction was refused for want of looking there.
             #
-            # Le champ est rendu en MINUSCULES (edition.minuskligi) alors que la
-            # relecture recopie la page : « Yorocienco » chez « prekara » ne se
-            # retrouvait pas dans « yorocienco », et la correction — la seule qui
-            # portait sur ce mot — etait refusee en silence. La comparaison
-            # ignore donc la casse, de part et d'autre.
+            # The field is rendered in LOWER CASE (edition.minuskligi) whereas the
+            # proofreading copies the page: « Yorocienco » under « prekara » was not
+            # found in « yorocienco », and the correction -- the only one that bore
+            # on that word -- was refused in silence. The comparison therefore
+            # ignores case, on both sides.
             f = e.get('fako')
             if f and re.search(re.escape(a.strip('()')), f, re.I):
                 vus.append((e, 'fako'))
-        # Une meme coquille se repete parfois a l'identique — « pseupodi » deux
-        # fois, « di sapto » deux fois. La refuser serait perdre une correction
-        # juste. On l'applique donc partout, mais SEULEMENT si la chaine est
-        # assez distinctive pour ne pas happer autre chose : au moins six
-        # caracteres, ou plusieurs mots. « lO », vu onze fois, reste refuse.
+        # The same slip is sometimes repeated identically -- « pseupodi » twice,
+        # « di sapto » twice. To refuse it would be to lose a correct correction.
+        # We therefore apply it everywhere, but ONLY if the string is
+        # distinctive enough not to catch something else: at least six
+        # characters, or several words. « lO », seen eleven times, stays refused.
         if not vus or (len(vus) > 1 and len(a) < 6 and ' ' not in a):
             refus += 1
             print("  relire %s : «%s» vu %d fois — refuse" % (lot, a[:40], len(vus)))
