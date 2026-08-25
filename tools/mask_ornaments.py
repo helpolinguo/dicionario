@@ -9,7 +9,7 @@ The ratio of the two heights gives the factor.
 """
 import numpy as np, json, os, sys
 _ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-ROOT=_ROOT; T=f"{ROOT}/travail"
+ROOT=_ROOT; T=f"{ROOT}/work"
 
 def run_step(out_path=f"{T}/exceptions_ornements.txt", margin=3, dilate=0.35):
     orn=json.load(open(f"{T}/ornements.json"))

@@ -20,7 +20,7 @@ _ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 ROOT = _ROOT
 SOURCE = f"{ROOT}/dicionario.jsonl"
-OUT_PATH = f"{ROOT}/filets-dubinda.md"
+OUT_PATH = f"{ROOT}/docs/underlines-unplaced.md"
 
 # The list of function words is the edition's own, `edition.MALGRANDA`: it is
 # that list which decides NOT to lay the italic, and this working list must
@@ -28,18 +28,18 @@ OUT_PATH = f"{ROOT}/filets-dubinda.md"
 # here in a family other than their own.
 
 
-def famille(u):
+def family(u):
     """What does the fragment look like?"""
     words = u.split()
     if len(u) <= 3:
-        return "2. Fragment de trois lettres ou moins"
+        return "2. Fragment of three letters or fewer"
     if not re.fullmatch(r"[A-Za-zÀ-ÿ'’ .,()-]+", u):
-        return "2. Fragment de trois lettres ou moins"
+        return "2. Fragment of three letters or fewer"
     if edition._nur_motouti(u):
-        return "3. Mots-outils seuls"
+        return "3. Function words alone"
     if u[0].isupper() and len(words) <= 4:
-        return "1. Ressemble a un qualificatif ou a une locution"
-    return "4. Coupe au milieu d'un mot, ou reste du mot-vedette"
+        return "1. Looks like a qualifier or a phrase"
+    return "4. Cut in the middle of a word, or left over from the headword"
 
 
 def write_(source=SOURCE, out_path=OUT_PATH):
@@ -47,24 +47,25 @@ def write_(source=SOURCE, out_path=OUT_PATH):
     per = collections.defaultdict(list)
     for e in ent:
         for u in e.get('dubinda', []):
-            per[famille(u)].append((e['pagino'], e['vedetto'], u))
+            per[family(u)].append((e['pagino'], e['vedetto'], u))
     total = sum(len(v) for v in per.values())
-    L = ["# Soulignements non places",
+    L = ["# Underlines that could not be placed",
          "",
-         "L'auteur souligne ce qu'une imprimerie mettrait en italique : le",
-         "domaine, la locution qui porte sa propre definition, le nom",
-         "scientifique. L'edition epuree lit ces filets et les rend. Voici ceux",
-         "qu'elle n'a pas su placer : le fragment releve ne se retrouve pas tel",
-         "quel dans le texte, ou ne couvre que des mots-outils.",
+         "The author underlines what a printing house would set in italic:",
+         "the domain, the phrase that carries its own definition, the",
+         "scientific name. The clean edition reads those rules and renders",
+         "them. Here are the ones it could not place: the fragment surveyed",
+         "is not found as it stands in the text, or covers function words",
+         "only.",
          "",
-         f"**{total} fragments**, sur {len(ent)} articles. La premiere famille est",
-         "la seule qui demande un arbitrage : les autres sont des artefacts du",
-         "releve des filets, ou le trait deborde ou s'arrete trop tot.",
+         f"**{total} fragments**, over {len(ent)} entries. The first family is",
+         "the only one that calls for a judgement: the others are artefacts of",
+         "the survey of the rules, where the stroke runs over or stops short.",
          ""]
     for fam in sorted(per):
         v = sorted(per[fam])
         L += [f"## {fam[3:]} — {len(v)}", "",
-              "| page | mot-vedette | fragment souligne |",
+              "| page | headword | underlined fragment |",
               "|---:|---|---|"]
         for p, hw, u in v:
             L.append(f"| {p} | {hw} | `{u}` |")

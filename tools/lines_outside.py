@@ -12,7 +12,7 @@ import os
 _ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0,_ROOT + "/tools")
 import page as P
-ROOT=_ROOT; T=f"{ROOT}/travail"
+ROOT=_ROOT; T=f"{ROOT}/work"
 
 def lattice(pg, threshold=0.02):
     z=np.load(f"{T}/cellules/p-{pg:03d}.npz", allow_pickle=True)

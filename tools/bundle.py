@@ -7,7 +7,7 @@ some fifteen megabytes.
 """
 import os, shutil, zipfile, glob
 _ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-ROOT=_ROOT; T=f"{ROOT}/travail"
+ROOT=_ROOT; T=f"{ROOT}/work"
 OUT_PATH=os.path.join(os.path.dirname(_ROOT), "dicionario-source.zip")
 
 FICHIERS = ["main.tex", "preamble.tex", "LISEZ-MOI.md", "main.pdf",
@@ -16,7 +16,7 @@ FICHIERS = ["main.tex", "preamble.tex", "LISEZ-MOI.md", "main.pdf",
             # it by a relative link, and the site is published by copying the two
             # files into the same folder.
             "dicionario.pdf"]
-DOSSIERS = ["outils", "contenu", "ornements", "posho"]
+DOSSIERS = ["tools", "content", "ornaments", "pocket"]
 CORRECTIONS = ["exceptions.txt", "exceptions_manuel.txt", "exceptions_fins.txt",
                "exceptions_paires.txt", "exceptions_relecture.txt",
                "exceptions_ornements.txt", "sou_relus.txt",

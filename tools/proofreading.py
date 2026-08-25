@@ -16,7 +16,7 @@ import numpy as np, os, sys, json
 from PIL import Image, ImageDraw
 _ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0,_ROOT + "/tools")
-ROOT=_ROOT; T=f"{ROOT}/travail"
+ROOT=_ROOT; T=f"{ROOT}/work"
 ZOOM=1.7; BANDES=3; CHEV=2      # overlap, in lines
 
 def texte_page(pg, pages=None):

@@ -3,7 +3,7 @@
 import numpy as np, os, sys
 from PIL import Image
 _ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-ROOT=_ROOT; T=f"{ROOT}/travail"
+ROOT=_ROOT; T=f"{ROOT}/work"
 def one_(pg):
     z=np.load(f"{T}/cellules/p-{pg:03d}.npz", allow_pickle=True)
     forme=tuple(z['shape']); lg=z['lignes']; vstep=float(z['pasv'])

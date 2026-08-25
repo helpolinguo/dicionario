@@ -18,14 +18,14 @@ _ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0,_ROOT + "/tools")
 import cells
 from features2 import feature_vector2
-ROOT=_ROOT; T=f"{ROOT}/travail"
+ROOT=_ROOT; T=f"{ROOT}/work"
 
 def one_(pg, Q, tab, bav_seuils=True):
     z=np.load(f"{T}/cellules/p-{pg:03d}.npz", allow_pickle=True)
     ncol=z['occ'].shape[1]; col0=int(z['col0'])
     keys_=set(int(k) for k,_ in z['lignes'])
-    cells_of.ETENDRE=False; cells_of.ETENDRE_D=True
-    d=cells_of.extract(f"{ROOT}/scan/p-{pg:03d}.jpg")
+    cells.ETENDRE=False; cells.ETENDRE_D=True
+    d=cells.extract(f"{ROOT}/scan/p-{pg:03d}.jpg")
     c0=int(d['col0']); lg=np.array(d['lignes'])
     if c0!=col0: return None, "origine des colonnes deplacee"
     if set(int(k) for k in lg[:,0]) != keys_: return None, "lignes differentes"

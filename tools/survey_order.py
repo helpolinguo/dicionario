@@ -22,7 +22,7 @@ _ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ROOT = _ROOT
 SOURCE = f"{ROOT}/dicionario.jsonl"
 OUT_PATH = f"{ROOT}/ordino-ruptita.md"
-sys.path.insert(0, f"{ROOT}/outils")
+sys.path.insert(0, f"{ROOT}/tools")
 import edition as E
 
 # The decoding's confusions, surveyed in work/journal_complet.txt: the letter

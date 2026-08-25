@@ -7,7 +7,7 @@ from page import analyse
 from scipy.ndimage import rotate as ndrotate
 
 def apercu(name_, out_path, zoom=3, crop=None):
-    d = analyse(f_ROOT + "/scan/{name_}.jpg")
+    d = analyse(_ROOT + f"/scan/{name_}.jpg")
     base = ndrotate(d['img'], d['angle'], reshape=False, order=1, mode='constant', cval=255)
     im = Image.fromarray(np.clip(base,0,255).astype(np.uint8)).convert("RGB")
     px = im.load()

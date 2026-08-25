@@ -1,7 +1,7 @@
 import numpy as np, sys, os, json
 _ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0,_ROOT + "/tools")
-ROOT=_ROOT; T=f"{ROOT}/travail"
+ROOT=_ROOT; T=f"{ROOT}/work"
 if __name__=="__main__":
     a,b=int(sys.argv[1]),int(sys.argv[2]); out=[]
     from cells import extract

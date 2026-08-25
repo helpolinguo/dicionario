@@ -294,7 +294,7 @@ def lignes_plus(file_=f"{T}/lignes_plus.txt"):
     return _LP
 
 
-def write_(pg, lab, M, tab, rep=f"{ROOT}/contenu"):
+def write_(pg, lab, M, tab, rep=f"{ROOT}/content"):
     os.makedirs(rep, exist_ok=True)
     lines, ncol = page_lines(pg, lab, M, tab)
     sup=lignes_plus().get(pg)

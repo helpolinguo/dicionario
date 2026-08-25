@@ -17,7 +17,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import edition
 _ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-ROOT = _ROOT; T = f"{ROOT}/travail"; OUT = f"{ROOT}/posho"
+ROOT = _ROOT; T = f"{ROOT}/work"; OUT = f"{ROOT}/pocket"
 SOURCE = f"{T}/edicioni/dicionario.jsonl"
 
 # The typescript notes the languages by a letter; the reading edition writes

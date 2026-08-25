@@ -31,7 +31,7 @@ _ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, _ROOT + "/tools")
 import cells
 from features2 import feature_vector2
-ROOT = _ROOT; T = f"{ROOT}/travail"
+ROOT = _ROOT; T = f"{ROOT}/work"
 
 
 def one_(pg, Q, tab):
@@ -39,11 +39,11 @@ def one_(pg, Q, tab):
     z = np.load(f"{T}/cellules/p-{pg:03d}.npz", allow_pickle=True)
     col0 = int(z['col0'])
     keys_ = set(int(k) for k, _ in z['lignes'])
-    cells_of.ETENDRE = True; cells_of.ETENDRE_D = False; cells_of.ETENDRE_FORCE = 2
+    cells.ETENDRE = True; cells.ETENDRE_D = False; cells.ETENDRE_FORCE = 2
     try:
-        d = cells_of.extract(f"{ROOT}/scan/p-{pg:03d}.jpg")
+        d = cells.extract(f"{ROOT}/scan/p-{pg:03d}.jpg")
     finally:
-        cells_of.ETENDRE = False; cells_of.ETENDRE_FORCE = 0
+        cells.ETENDRE = False; cells.ETENDRE_FORCE = 0
     lg = np.array(d['lignes'])
     if set(int(k) for k in lg[:, 0]) != keys_:
         return None, "lignes differentes"

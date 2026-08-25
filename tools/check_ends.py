@@ -11,13 +11,13 @@ import numpy as np
 _ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0,_ROOT + "/tools")
 import cells
-ROOT=_ROOT; T=f"{ROOT}/travail"
+ROOT=_ROOT; T=f"{ROOT}/work"
 
 def one_(pg):
     z=np.load(f"{T}/cellules/p-{pg:03d}.npz", allow_pickle=True)
     ncol=z['occ'].shape[1]; col0=int(z['col0'])
-    cells_of.ETENDRE=False; cells_of.ETENDRE_D=True
-    d=cells_of.extract(f"{ROOT}/scan/p-{pg:03d}.jpg")
+    cells.ETENDRE=False; cells.ETENDRE_D=True
+    d=cells.extract(f"{ROOT}/scan/p-{pg:03d}.jpg")
     occ=d['occ']; c0=int(d['col0'])
     # columns of the extension: beyond (col0-c0) + ncol in the extended frame
     start_=(col0-c0)+ncol

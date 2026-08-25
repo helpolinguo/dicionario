@@ -16,7 +16,7 @@ from scipy.ndimage import label as cclabel, find_objects
 from PIL import Image
 _ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0,_ROOT + "/tools")
-ROOT=_ROOT; T=f"{ROOT}/travail"
+ROOT=_ROOT; T=f"{ROOT}/work"
 _ST=np.ones((3,3),int)
 
 def analyser_page(pg):

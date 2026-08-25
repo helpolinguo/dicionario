@@ -35,7 +35,7 @@ def run_step(baz=True):
     print("4. kompozo di la posho-libro (lualatex, du pasi)")
     for _ in range(2):
         _kurar(["lualatex", "-interaction=nonstopmode", "-halt-on-error",
-                "posho.tex"], dosiero=f"{ROOT}/posho")
+                "posho.tex"], dosiero=f"{ROOT}/pocket")
     for f in ("index.html", "dicionario.tsv", "dicionario.jsonl"):
         _kurar(["cp", f"{ROOT}/work/edicioni/{f}", f"{ROOT}/{f}"])
     # The pocket PDF takes at the root the name the page's button points at:

@@ -22,7 +22,7 @@ import numpy as np, os, sys, json, difflib
 _ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0,_ROOT + "/tools")
 from features2 import feature_vector2
-ROOT=_ROOT; T=f"{ROOT}/travail"
+ROOT=_ROOT; T=f"{ROOT}/work"
 
 def _texte(cells_occ, kl_page, cols, lines, tab, smudge):
     """Dictionary line -> string, one cell per column."""
