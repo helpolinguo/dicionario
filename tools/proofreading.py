@@ -65,4 +65,4 @@ def preparer(pgs, rep=f"{T}/relecture"):
 if __name__=="__main__":
     pgs=[int(x) for x in sys.argv[1:]]
     f=preparer(pgs)
-    print("pages preparees :", len(f), " bandes :", sum(len(x['bandes']) for x in f))
+    print("pages prepared:", len(f), " bandes :", sum(len(x['bandes']) for x in f))

@@ -27,7 +27,7 @@ def write_(source=f"{T}/edicioni/dicionario.jsonl", folder=f"{T}/relire/loti"):
                 fa = f"({e['fako']}) " if e['fako'] else ""
                 f.write("%d\t%s\t%s%s\n" % (idx, e['vedetto'], fa,
                                             " | ".join(e['senci'])))
-    print("%d lots de %d articles dans %s" % (n, LOT, folder))
+    print("%d batches of %d articles in %s" % (n, LOT, folder))
     return n
 
 

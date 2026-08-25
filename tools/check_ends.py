@@ -35,4 +35,4 @@ if __name__=="__main__":
         except Exception as e: print("ECHEC",pg,e, flush=True)
     json.dump(out, open(f"{T}/fins_{a}.json","w"))
     p=sum(x['perdus'] for x in out); l=sum(x['lignes'] for x in out)
-    print(f"{a}-{b} : {len(out)} pages, {l} lignes touchees, {p} caracteres coupes")
+    print(f"{a}-{b} : {len(out)} pages, {l} lines touched, {p} characters cut off")

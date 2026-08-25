@@ -76,11 +76,11 @@ def controler(ent):
 if __name__=="__main__":
     ent=load_()
     pb=controler(ent)
-    print("articles : %d"%len(ent))
+    print("articles: %d"%len(ent))
     tot=0
     for f,l in sorted(pb.items(), key=lambda x:-len(x[1])):
         print("  %-24s %5d" % (f, len(l))); tot+=len(l)
-    print("  %-24s %5d" % ("TOTAL des signalements", tot))
+    print("  %-24s %5d" % ("TOTAL reports", tot))
     for f,l in sorted(pb.items(), key=lambda x:-len(x[1])):
         print("\n--- %s ---"%f)
         for x in l[:6]: print("   ", x)

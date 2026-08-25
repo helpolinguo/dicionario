@@ -27,12 +27,12 @@ def inventaire():
 
 if __name__=="__main__":
     ent,root,inc,ctx,freq=inventaire()
-    print("articles %d | racines connues %d"%(len(ent),len(root)))
-    print("formes distinctes dans les definitions : %d"%len(freq))
+    print("articles %d | roots known %d"%(len(ent),len(root)))
+    print("distinct forms in the definitions: %d"%len(freq))
     print("formes a racine inconnue : %d (occurrences %d)"%(len(inc),sum(inc.values())))
     per=collections.Counter()
     for w,n in inc.items(): per[min(n,4)]+=1
     print("  dont hapax : %d | 2 fois : %d | 3 fois : %d | 4+ : %d"
           %(per[1],per[2],per[3],per[4]))
     avec=sum(1 for w in inc if any(known(v,root) for v in set(variants(w))))
-    print("  dont un echange de sosies suffit a rendre connues : %d"%avec)
+    print("  of which one exchange of look-alikes makes known: %d"%avec)

@@ -55,8 +55,8 @@ def run_step(out_path=f"{T}/horsgrille.json"):
     json.dump(out, open(out_path,'w'), ensure_ascii=False)
     bl=[o['pagino'] for o in out if o.get('blanka')]
     ho=[(o['pagino'], len(o['elementi'])) for o in out if o.get('elementi')]
-    print("pages blanches :", len(bl), bl)
-    print("pages portant un element hors grille :", len(ho))
+    print("blank pages:", len(bl), bl)
+    print("pages carrying an off-grid element:", len(ho))
     print(ho[:60])
 
 if __name__=="__main__": run_step()

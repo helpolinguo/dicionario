@@ -37,7 +37,7 @@ def mesurer(pdf, pas_pouce=0.1, orig_mm=21.9):
                 approches={c:round(v,3) for c,v in sorted(appr.items())})
 if __name__=="__main__":
     r=mesurer(sys.argv[1] if len(sys.argv)>1 else "/root/dicionario/main.pdf")
-    print("mots controles : %d"%r['n'])
-    print("ecart a la colonne entiere : moyen %.4f, 99e centile %.4f, max %.4f cellule"%(r['moyen'],r['q99'],r['max']))
+    print("words checked: %d"%r['n'])
+    print("departure from the whole column: mean %.4f, 99th centile %.4f, max %.4f cell"%(r['moyen'],r['q99'],r['max']))
     print("hors tolerance 0,12 cellule : %d"%r['nb_hors'])
     for p in r['pires']: print("   ",p)

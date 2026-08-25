@@ -76,6 +76,6 @@ def run_step(out_path=f"{T}/exceptions_casse.txt"):
                 if np.isnan(sum_[i]) or sum_[i]>threshold: continue
                 pg,k,cc=M[g[i]]
                 f.write(f"{int(pg)}\t{int(k)}\t{int(cc)}\t{c[i].upper()}\n"); ecrit+=1
-    print("lignes calibrees :",lines," cellules passees en capitale :",ecrit)
+    print("lines calibrated:",lines," cells raised to a capital:",ecrit)
 
 if __name__=="__main__": run_step()

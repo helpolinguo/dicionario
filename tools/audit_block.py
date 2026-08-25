@@ -41,7 +41,7 @@ def all_(start_=0, end_=None):
         if i % 40 == 0: print("  %d/%d (p%03d)" % (i, len(pages), pg), flush=True)
     json.dump(out, open(OUT_PATH, "w"), indent=0)
     graves = {p: v for p, v in out.items() if v.get('lignes_perdues', 0) >= 0.8}
-    print("pages auditees : %d ; pages perdant au moins une ligne : %d"
+    print("pages audited: %d ; pages losing at least one line: %d"
           % (len(out), len(graves)))
     return graves
 
@@ -50,5 +50,5 @@ if __name__ == "__main__":
     d = int(sys.argv[1]); f = int(sys.argv[2]) if len(sys.argv) > 2 else None
     g = all_(d, f)
     for p in sorted(g)[:40]:
-        print("  p%03d : bloc %d -> %d, %.1f ligne(s) perdue(s)"
+        print("  p%03d : block %d -> %d, %.1f line(s) lost"
               % (p, g[p]['stocke'], g[p]['neuf'], g[p]['lignes_perdues']))

@@ -43,7 +43,7 @@ def run_step(rep=f"{T}/juger/reponses/r.txt", fic=f"{T}/juger/fiches.json"):
     with open(f"{T}/jugements.txt","w",encoding='utf-8') as f:
         f.write("# image\tligne\tforme lue\tforme retenue\n")
         for x in log_: f.write("%s\t%s\t%s\t%s\n"%x)
-    print("corrections retenues : %d ; occurrences remplacees : %d"%(len(corr),len(log_)))
+    print("corrections kept: %d ; occurrences replaced: %d"%(len(corr),len(log_)))
     return log_
 
 if __name__=="__main__": run_step()

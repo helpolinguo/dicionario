@@ -36,11 +36,11 @@ if __name__=="__main__":
         except Exception as e: print("ECHEC",pg,e)
     import json; json.dump(out, open(f"{T}/diag_haut_{a}.json","w"))
     mh=np.array([r['manque_haut'] for r in out]); mg=np.array([r['manque_gauche'] for r in out])
-    print("pages :",len(out))
-    print("lignes manquantes en haut : moyenne %.2f, mediane %.2f, p90 %.2f, max %.2f"
+    print("pages:",len(out))
+    print("lines missing at the top: mean %.2f, median %.2f, p90 %.2f, max %.2f"
           %(mh.mean(), np.median(mh), np.percentile(mh,90), mh.max()))
-    print("  pages ou il manque >= 1 ligne en haut :", int((mh>=1).sum()), "(%.0f%%)"%(100*(mh>=1).mean()))
-    print("  pages ou il manque >= 2 lignes en haut :", int((mh>=2).sum()))
-    print("cellules manquantes a gauche : mediane %.2f, p90 %.2f, max %.2f"
+    print("  pages missing >= 1 line at the top:", int((mh>=1).sum()), "(%.0f%%)"%(100*(mh>=1).mean()))
+    print("  pages missing >= 2 lines at the top:", int((mh>=2).sum()))
+    print("cells missing on the left: median %.2f, p90 %.2f, max %.2f"
           %(np.median(mg), np.percentile(mg,90), mg.max()))
-    print("  pages ou il manque >= 1 colonne :", int((mg>=1).sum()))
+    print("  pages missing >= 1 column:", int((mg>=1).sum()))

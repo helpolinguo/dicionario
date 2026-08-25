@@ -75,7 +75,7 @@ def reparer(pg, Q, tab, verbeux=True):
     # The block can extend to the left: the columns shift by as much.
     scol = int(z['col0']) - int(d['col0'])
     if verbeux:
-        print(f"  p-{pg:03d} : {len(anc_txt)} lignes -> {len(neu_txt)} ; decalage {dec:+d} ligne, {scol:+d} colonne ; concordance {score:.3f}")
+        print(f"  p-{pg:03d} : {len(anc_txt)} lines -> {len(neu_txt)} ; shift {dec:+d} line, {scol:+d} column ; concordance {score:.3f}")
     # the cells already known keep their group
     cle_anc={(int(k)+dec, int(c)+scol): int(g) for (p,k,c),g in zip(M[sel], kl[sel])}
     kept=0
@@ -83,7 +83,7 @@ def reparer(pg, Q, tab, verbeux=True):
         v=cle_anc.get((int(Mnew[i,1]), int(Mnew[i,2])))
         if v is not None: gnew[i]=v; kept+=1
     if verbeux:
-        print(f"           cellules : {len(sel)} avant, {len(gnew)} apres ; {kept} conservees, {len(gnew)-kept} nouvelles")
+        print(f"           cells: {len(sel)} before, {len(gnew)} after ; {kept} kept, {len(gnew)-kept} new")
     # The corpus is in bytes 0-255; extraire() returns floats 0-1.
     # Mixing the two empties the cells on screen and falsifies the smudge
     # criterion, whose thresholds are absolute.
@@ -110,7 +110,7 @@ def run_step(pages, out_path=f"{T}/reparation.json"):
     np.save(f"{T}/reparation_grp.npy",   np.concatenate([r['groupes'] for r in res]))
     json.dump([{k:v for k,v in r.items() if k in ('pagino','decalage','colonne','score','avant')} for r in res],
               open(out_path,'w'))
-    print("pages reparees :", len(res))
+    print("pages repaired:", len(res))
 
 if __name__=="__main__":
     pages=[int(x) for x in sys.argv[1:]]

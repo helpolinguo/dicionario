@@ -95,7 +95,7 @@ def all_(out_path=f"{T}/debuts.pkl", start_=0, end_=None):
             print("  ...%d/%d" % (i, len(pages)), flush=True)
     with open(out_path, "wb") as f:
         pickle.dump(out, f)
-    print("pages avec un debut recupere : %d ; pages refusees : %d" % (len(out), refused))
+    print("pages with a start recovered: %d ; pages refused: %d" % (len(out), refused))
     return out
 
 

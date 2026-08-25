@@ -67,7 +67,7 @@ if __name__=="__main__":
     alt=pickle.load(open(f"{T}/cls_alternatives.pkl","rb"))
     exc=dict(exceptions())
     fresh,log_=corriger(lab,M,tab,smudges(),exc,alt)
-    print(len(log_),"cellules de vedette corrigees par l'ordre alphabetique")
+    print(len(log_),"headword cells corrected by alphabetical order")
     with open(f"{T}/journal_ordre_alpha.txt","w",encoding='utf-8') as f:
         f.write("page\tligne\tcol\tlu\tcorrige\tvedette lue\tvedette retenue\tprecedente\tsuivante\n")
         for j in log_: f.write("\t".join(map(str,j))+"\n")

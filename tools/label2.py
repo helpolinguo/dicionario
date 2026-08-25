@@ -31,7 +31,7 @@ def run_step(rounds=4, cache=30, by_group=12):
     flats=np.sort(np.concatenate([e for e in scale if len(e)]))
     pos={v:i for i,v in enumerate(flats)}
     Xe=feature_vector2(np.asarray(C[flats]))
-    print("feature_vector: %.0fs, %d cellules d'echantillon"%(time.time()-t0, len(flats)), flush=True)
+    print("feature_vector: %.0fs, %d sample cells"%(time.time()-t0, len(flats)), flush=True)
     m=MLPClassifier(hidden_layer_sizes=(256,), alpha=1e-4, max_iter=40,
                     random_state=0, early_stopping=False)
     Xa, Ya, Wa = X, Y, np.full(len(Y),1.0)
@@ -47,7 +47,7 @@ def run_step(rounds=4, cache=30, by_group=12):
             mean_=P[idx].mean(0)
             j=int(mean_.argmax()); label_[k]=cls[j]; conf[k]=mean_[j]
         surs=np.where(conf>0.90)[0]
-        print(f"  tour {tour}: {len(surs)} groupes surs, conf med {np.median(conf):.3f}  ({time.time()-t0:.0f}s)", flush=True)
+        print(f"  round {tour}: {len(surs)} sure groups, median conf {np.median(conf):.3f}  ({time.time()-t0:.0f}s)", flush=True)
         if tour==rounds-1: break
         idx=[];l2=[]
         for k in surs:
@@ -75,6 +75,6 @@ def run_step(rounds=4, cache=30, by_group=12):
     np.save(f"{T}/cls_lab.npy", label_); np.save(f"{T}/cls_conf.npy", conf)
     pickle.dump(m, open(f"{T}/modele.pkl","wb"))
     ex=(label_[lab[I]]==Y).mean()
-    print(f"exactitude sur l'amorce : {100*ex:.3f}%  ({len(I)} cellules)", flush=True)
-    print(f"groupes couverts : {len(vote)} ; impurs : {imp} ; manuels : {nman}", flush=True)
+    print(f"exactness on the seed: {100*ex:.3f}%  ({len(I)} cells)", flush=True)
+    print(f"groups covered: {len(vote)} ; impure: {imp} ; manual: {nman}", flush=True)
 if __name__=="__main__": run_step()

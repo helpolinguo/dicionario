@@ -76,7 +76,7 @@ def run_step(seuil_maj=0.6, mini=3):
 
 if __name__=="__main__":
     fresh, log_ = run_step()
-    print(len(log_),"cellules de vedette corrigees")
+    print(len(log_),"headword cells corrected")
     import collections as C
     print(C.Counter(j[5] for j in log_))
     with open(f"{T}/journal_vedettes.txt","w",encoding='utf-8') as f:

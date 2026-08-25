@@ -25,7 +25,7 @@ def run_step(rounds=3):
             if len(mm)>per: mm=rng.choice(mm,per,replace=False)
             idx.append(mm); l2.append(np.full(len(mm),p[k]))
         idx=np.concatenate(idx); l2=np.concatenate(l2); o=np.argsort(idx)
-        print(f"  tour {tour}: {len(surs)} groupes surs, {len(idx)} cellules", flush=True)
+        print(f"  round {tour}: {len(surs)} sure groups, {len(idx)} cells", flush=True)
         X2=np.concatenate([X,feature_vector(np.asarray(C[idx[o]]))]); Y2=np.concatenate([Y,l2[o]])
         w=np.concatenate([np.full(len(Y),5.),np.ones(len(l2))])
         m=LogisticRegression(max_iter=2000,C=20.).fit(X2,Y2,sample_weight=w)
@@ -55,6 +55,6 @@ def run_step(rounds=3):
                 faibles=int((pc<0.5).sum()))
 if __name__=="__main__":
     r=run_step()
-    print(f"exactitude sur l'amorce : {100*r['exactitude']:.3f}%  ({r['amorce']} cellules)")
-    print(f"groupes couverts par l'amorce : {r['groupes_amorces']} ; impurs : {len(r['impurs'])} ; manuels : {r['manuels']}")
-    print(f"confiance mediane {r['conf_med']:.3f} ; groupes < 0.5 : {r['faibles']}")
+    print(f"exactness on the seed: {100*r['exactitude']:.3f}%  ({r['amorce']} cells)")
+    print(f"groups covered by the seed: {r['groupes_amorces']} ; impure: {len(r['impurs'])} ; manual: {r['manuels']}")
+    print(f"median confidence {r['conf_med']:.3f} ; groups < 0.5 : {r['faibles']}")

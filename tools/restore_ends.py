@@ -63,4 +63,4 @@ if __name__=="__main__":
             else: cor+=r
         except Exception as e: refused.append((pg,str(e)))
     json.dump(dict(cor=cor, refus=refused), open(f"{T}/fins_cor_{a}.json","w"))
-    print(f"{a}-{b} : {len(cor)} caracteres rendus ; {len(refused)} pages refusees")
+    print(f"{a}-{b} : {len(cor)} characters given back ; {len(refused)} pages refused")

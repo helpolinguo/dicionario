@@ -74,6 +74,6 @@ def write_(source=SOURCE, out_path=OUT_PATH):
 
 if __name__ == "__main__":
     n, d = write_()
-    print("fragments non places :", n)
+    print("fragments not placed:", n)
     for k in sorted(d):
         print("   %-58s %d" % (k, d[k]))

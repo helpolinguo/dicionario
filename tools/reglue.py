@@ -28,7 +28,7 @@ def run_step():
             mC.append(np.asarray(C[w[0]:w[-1]+1])); mS.append(S[w[0]:w[-1]+1])
     M2=np.concatenate(mM); G2=np.concatenate(mG).astype(G.dtype)
     C2=np.concatenate(mC); S2=np.concatenate(mS)
-    print("cellules :", len(M), "->", len(M2))
+    print("cells:", len(M), "->", len(M2))
     np.save(f"{T}/meta_all.npy", M2); np.save(f"{T}/km_lab.npy", G2)
     np.save(f"{T}/cells_all.npy", C2); np.save(f"{T}/km_sim.npy", S2)
     # reindexing of the corrections
@@ -44,6 +44,6 @@ def run_step():
                 b=str(int(b)+d); c=str(int(c)+sc); n+=1
             out.append(f"{a}\t{b}\t{c}\t{v}\n")
         open(p,'w',encoding='utf-8').writelines(out)
-        print(f"  {name_} : {n} corrections reindexees")
+        print(f"  {name_} : {n} corrections reindexed")
 
 if __name__=="__main__": run_step()

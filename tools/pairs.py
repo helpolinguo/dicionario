@@ -59,7 +59,7 @@ def run_step(out_path=f"{T}/paires.json"):
                 prop.append(dict(pagino=pg, ligno=k, kolumno=m.start()+i,
                                  de=w[i], al=other, fautiva=w, korektita=v,
                                  n_fautiva=n, n_korektita=nv))
-    print("corrections proposees :", len(prop), flush=True)
+    print("corrections proposed:", len(prop), flush=True)
     c=collections.Counter((p['de'],p['al']) for p in prop)
     for (a,b),n in c.most_common(30): print(f"   {a} -> {b} : {n}")
     json.dump(prop, open(out_path,'w'), ensure_ascii=False)

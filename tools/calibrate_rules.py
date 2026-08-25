@@ -45,8 +45,8 @@ def mesurer(pages, veto):
 
 if __name__=="__main__":
     V=verite(); pgs=sorted(set(p for p,_ in V))[:24]
-    print("pages testees :", pgs)
+    print("pages tested:", pgs)
     for veto in (None, 0.15):
         fp,fn,ok,n=mesurer(pgs, veto)
-        print("veto=%-5s  lignes=%4d  faux filets=%3d  filets manques=%3d  lignes vraies avec filet=%3d"
+        print("veto=%-5s  lines=%4d  false rules=%3d  rules missed=%3d  true lines with a rule=%3d"
               %(veto,n,fp,fn,ok), flush=True)

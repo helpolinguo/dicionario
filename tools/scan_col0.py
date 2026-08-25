@@ -12,4 +12,4 @@ for pg in range(a,b):
         out.append(dict(pg=pg, anc=int(z['col0']), neu=int(d['col0'])))
     except Exception as e: print("ECHEC",pg,e, flush=True)
 json.dump(out, open(f'{T}/col0_{a}.json','w'))
-print(f"{a}-{b} : {sum(1 for r in out if r['anc']!=r['neu'])} pages changent")
+print(f"{a}-{b} : {sum(1 for r in out if r['anc']!=r['neu'])} pages change")

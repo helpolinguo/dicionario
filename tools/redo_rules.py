@@ -41,7 +41,7 @@ if __name__=="__main__":
         anc=pickle.loads(z['sou'].item())
         ka=set(k for k,v in anc.items() if v[1]); kn=set(k for k,v in neuf.items() if v[1])
         egal=all(sorted(anc[k][1])==sorted(neuf[k][1]) for k in ka|kn if k in anc and k in neuf)
-        print("p%03d : lignes avec filet anc=%d neuf=%d  identiques=%s"%(pg,len(ka),len(kn),egal and ka==kn))
+        print("p%03d : lines with a rule old=%d new=%d  identical=%s"%(pg,len(ka),len(kn),egal and ka==kn))
 
 def all_(out_path=f"{T}/filets.pkl", start_=0, end_=None):
     """Recomputes the rules of every page and deposits them apart.
@@ -63,5 +63,5 @@ def all_(out_path=f"{T}/filets.pkl", start_=0, end_=None):
             print("ECHEC p%03d : %s"%(pg,e), flush=True); continue
         if i%25==0: print("  %d/%d (p%03d)"%(i,len(pages),pg), flush=True)
     with open(out_path,"wb") as f: pickle.dump(out,f)
-    print("ecrit %s : %d pages"%(out_path,len(out)))
+    print("written %s : %d pages"%(out_path,len(out)))
     return out

@@ -80,7 +80,7 @@ def run_step(rounds=3, cache=20, seuil_auto=0.98, by_group=6):
         if i not in vu or w>W[vu[i]]: vu[i]=j
     kept=np.array(sorted(vu.values()))
     I,Y=I[kept],Y[kept]
-    print("apprentissage : %d cellules, %d classes (verite %d, amorce %d, planches %d)"
+    print("learning: %d cells, %d classes (truth %d, seed %d, sheets %d)"
           %(len(I),len(set(Y)),len(Iv),len(Ia),len(Ip)), flush=True)
 
     X=_lots(C,I)
@@ -92,7 +92,7 @@ def run_step(rounds=3, cache=20, seuil_auto=0.98, by_group=6):
     flats=np.sort(np.concatenate([e for e in scale if len(e)]))
     pos={v:i for i,v in enumerate(flats)}
     Xe=_lots(C,flats)
-    print("feature_vector calcules : %.0fs, %d cellules de vote"%(time.time()-t0,len(flats)), flush=True)
+    print("feature_vector computed: %.0fs, %d voting cells"%(time.time()-t0,len(flats)), flush=True)
 
     m=MLPClassifier(hidden_layer_sizes=(256,), alpha=1e-4, max_iter=40,
                     random_state=0, early_stopping=False)
@@ -107,7 +107,7 @@ def run_step(rounds=3, cache=20, seuil_auto=0.98, by_group=6):
             mean_=P[[pos[v] for v in e]].mean(0)
             j=int(mean_.argmax()); label_[k]=cls[j]; conf[k]=mean_[j]
         surs=np.where(conf>seuil_auto)[0]
-        print(f"  tour {tour}: {len(surs)} groupes surs (>{seuil_auto}), conf mediane {np.median(conf):.3f}  ({time.time()-t0:.0f}s)", flush=True)
+        print(f"  round {tour}: {len(surs)} sure groups (>{seuil_auto}), median conf {np.median(conf):.3f}  ({time.time()-t0:.0f}s)", flush=True)
         if tour==rounds-1: break
         ii=[];ll=[]
         for k in surs:
@@ -121,7 +121,7 @@ def run_step(rounds=3, cache=20, seuil_auto=0.98, by_group=6):
     np.save(f"{T}/cls_lab_modele.npy", label_); np.save(f"{T}/cls_conf3.npy", conf)
     pickle.dump(m, open(f"{T}/modele3.pkl","wb"))
     ex=(label_[kl[I]]==Y).mean()
-    print(f"exactitude du modele sur les cellules connues : {100*ex:.3f}%", flush=True)
+    print(f"exactness of the model on the known cells: {100*ex:.3f}%", flush=True)
     return label_, conf
 
 if __name__=="__main__": run_step()

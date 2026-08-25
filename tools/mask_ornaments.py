@@ -40,6 +40,6 @@ def run_step(out_path=f"{T}/exceptions_ornements.txt", margin=3, dilate=0.35):
                 if yy+1.2*vstep < y0 or yy-1.2*vstep > y1: continue
                 for c in range(max(c0,0), min(c1+1,ncol)):
                     f.write(f"{pg}\t{int(k)}\t{c}\t \n"); n+=1
-    print("cellules neutralisees :", n)
+    print("cells neutralised:", n)
 
 if __name__=="__main__": run_step()

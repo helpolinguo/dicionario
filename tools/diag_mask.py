@@ -35,4 +35,4 @@ if __name__=="__main__":
     json.dump(out, open(f'{ROOT}/work/diag_masque_{a}.json','w'))
     import numpy as np
     dh=np.array([r['dh'] for r in out])
-    print(f"pages {a}-{b} : masque haut allege sur {int((dh>20).sum())} pages (max {dh.max()} px)")
+    print(f"pages {a}-{b} : top mask lightened on {int((dh>20).sum())} pages (max {dh.max()} px)")

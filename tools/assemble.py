@@ -52,7 +52,7 @@ def run_step():
     anc=np.load(f"{T}/cls_lab_avant_relecture_groupes.npy",allow_pickle=True)
     n=np.bincount(kl,minlength=K)
     d=[g for g in range(K) if end_[g]!=anc[g]]
-    print("groupes differents de l'etiquetage d'origine :",len(d)," cellules:",int(n[d].sum()))
+    print("groups differing from the original labelling:",len(d)," cells:",int(n[d].sum()))
     return end_, mixtes
 
 def cellules_mixtes(mixtes, out_path=f"{T}/exceptions_modele.txt"):
@@ -62,7 +62,7 @@ def cellules_mixtes(mixtes, out_path=f"{T}/exceptions_modele.txt"):
     from features2 import feature_vector2
     m=pickle.load(open(f"{T}/modele3.pkl","rb"))
     sel=np.where(np.isin(kl, mixtes))[0]
-    print("cellules a decoder une a une :",len(sel))
+    print("cells to decode one by one:",len(sel))
     ecrit=0
     with open(out_path,"w",encoding='utf-8') as f:
         f.write("# Cellules des groupes melanges, decodees une a une par le modele.\n")
@@ -78,7 +78,7 @@ def cellules_mixtes(mixtes, out_path=f"{T}/exceptions_modele.txt"):
                 if ch==' ': continue
                 pg,k,c=M[i]
                 f.write(f"{int(pg)}\t{int(k)}\t{int(c)}\t{ch}\n"); ecrit+=1
-    print("cellules ecrites :",ecrit)
+    print("cells written:",ecrit)
 
 if __name__=="__main__":
     end_,mix=run_step()

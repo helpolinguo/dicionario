@@ -63,9 +63,9 @@ def run_step(out_path=f"{T}/sou_relus.txt"):
                 if pl:
                     lines+=1; segs+=len(pl)
                     fo.write(f"{pg}\t{k}\t"+",".join(f"{a}-{b}" for a,b in pl)+"\n")
-    print(f"lignes soulignees relevees : {lines} ; segments : {segs}")
+    print(f"underlined lines surveyed: {lines} ; segments: {segs}")
     if lost:
-        print(f"segments introuvables dans la ligne : {len(lost)}")
+        print(f"segments not found in the line: {len(lost)}")
         for x in lost[:8]: print("   ", x)
 
 if __name__=="__main__": run_step()

@@ -146,8 +146,8 @@ def run_step(mini_atteste=8, maxi_fautif=5, max_pos=3, margin=8, marge_ngram=6.0
                 exc[(pg,k,col)]=a
                 log_.append((pg,k,col,anc,a,f,v,freq[f],-1))
                 n2+=1
-    print(f"{len(log_)} cellules corrigees dans {len(set((j[0],j[1]) for j in log_))} lignes "
-          f"(dont {n2} par le modele de n-grammes)", flush=True)
+    print(f"{len(log_)} cells corrected in {len(set((j[0],j[1]) for j in log_))} lines "
+          f"(of which {n2} by the n-gram model)", flush=True)
     return exc, log_, freq
 
 if __name__=="__main__":

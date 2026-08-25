@@ -67,8 +67,8 @@ def _prendre(l, obj, sig):
         cands.append((i + 1, o))
     if len(cands) != 1:
         raise SystemExit(
-            "signature (%d,%d,aire %d) : %d composantes candidates au lieu d'une.\n"
-            "La binarisation a bouge : refaire les planches avant de continuer."
+            "signature (%d,%d,area %d) : %d candidate components instead of one.\n"
+            "The binarisation has moved: remake the sheets before going on."
             % (cx, cy, area, len(cands)))
     return cands[0]
 

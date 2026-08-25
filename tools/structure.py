@@ -56,11 +56,11 @@ def entries(pages):
 if __name__=="__main__":
     pages=texte_livre()
     ent=entries(pages)
-    print(f"{len(ent)} entrees reperees sur {len(pages)} pages")
+    print(f"{len(ent)} entries located over {len(pages)} pages")
     avec=sum(1 for e in ent if e['code'])
-    print(f"  code de langues final reconnu : {avec} ({100*avec/len(ent):.1f} %)")
+    print(f"  final language code recognised: {avec} ({100*avec/len(ent):.1f} %)")
     bonne=sum(1 for e in ent if e['vedette'] and e['vedette'][-1] in "oaeir")
-    print(f"  vedette a finale morphologique valide : {bonne} ({100*bonne/len(ent):.1f} %)")
+    print(f"  headword with a valid morphological ending: {bonne} ({100*bonne/len(ent):.1f} %)")
     v=[e['vedette'].lower() for e in ent if e['vedette']]
     ruptures=sum(1 for a,b in zip(v,v[1:]) if a>b)
     print(f"  ruptures de l'ordre alphabetique : {ruptures} ({100*ruptures/max(len(v)-1,1):.1f} %)")

@@ -41,5 +41,5 @@ def releve(threshold=0.20):
 
 if __name__=="__main__":
     t=releve()
-    print("vedettes precedees d'un signe encre en colonne 0 :",len(t))
+    print("headwords preceded by an inked sign in column 0:",len(t))
     for pg,k,e,word in t: print("   p%03d k=%-3d encre %.3f  %s"%(pg,k,e,word))

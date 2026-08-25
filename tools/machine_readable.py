@@ -37,7 +37,7 @@ def lektar_datumi(html: str) -> list:
     """
     m = re.search(r'\bconst\s+D\s*=\s*\[', html)
     if not m:
-        raise SystemExit('tableau D introuvable dans index.html')
+        raise SystemExit('array D not found in index.html')
     debuto = html.index('[', m.start())
     datumi, _ = json.JSONDecoder().raw_decode(html[debuto:])
     return datumi

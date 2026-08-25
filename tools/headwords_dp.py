@@ -98,7 +98,7 @@ if __name__=="__main__":
     alt=pickle.load(open(f"{T}/cls_alternatives.pkl","rb"))
     exc=dict(exceptions())
     fresh,log_,hw,C,ch=resoudre(lab,M,tab,smudges(),exc,alt)
-    print(len(hw),"vedettes ;",len(log_),"cellules corrigees")
+    print(len(hw),"headwords ;",len(log_),"cells corrected")
     with open(f"{T}/journal_vedettes.txt","w",encoding='utf-8') as f:
         f.write("page\tligne\tcol\tlu\tcorrige\tvedette lue\tvedette retenue\n")
         for j in log_: f.write("\t".join(map(str,j))+"\n")

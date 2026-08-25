@@ -108,7 +108,7 @@ def run_step():
     with open(f"{ROOT}/content/toutes.tex","w",encoding='utf-8') as f:
         for pg in faites: f.write("\\input{content/p%03d}\n"%pg)
         f.write("\\input{content/garde}\n")
-    print("pages ecrites :", len(faites), "| non dactylographiees :", len(nd),
+    print("pages written:", len(faites), "| not typewritten:", len(nd),
           "| ornees :", len([p for p in orn if p in faites]))
 
 if __name__=="__main__": run_step()

@@ -52,9 +52,9 @@ def run_step(out_path=f"{T}/exceptions_relecture.txt"):
         fo.write("# celles qui ont ete soumises, donc la comparaison est exacte.\n")
         for pg,k,c,v in cor:
             fo.write(f"{pg}\t{k}\t{c}\t{v if v!=' ' else ' '}\n")
-    print(f"pages relues : {npage} ; lignes appliquees : {nlig} ; cellules corrigees : {len(cor)}")
+    print(f"pages proofread: {npage} ; lines applied: {nlig} ; cells corrected: {len(cor)}")
     if refused:
-        print(f"lignes refusees : {len(refused)}")
+        print(f"lines refused: {len(refused)}")
         for r in refused[:10]: print("   ", r)
     return len(cor)
 

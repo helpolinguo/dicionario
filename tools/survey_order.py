@@ -194,7 +194,7 @@ def write_(source=SOURCE, out_path=OUT_PATH):
             L += ["```", (e.get('teksto_brut') or '')[:200], "```", ""]
 
     open(out_path, "w", encoding='utf-8').write("\n".join(L) + "\n")
-    print("%s : %d interversions, %d vedettes egarees"
+    print("%s : %d transpositions, %d headwords astray"
           % (out_path, len(inversi), len(egari)))
 
 

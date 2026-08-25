@@ -35,7 +35,7 @@ def lattice(pg, threshold=0.02):
 if __name__=="__main__":
     for pg in [int(x) for x in sys.argv[1:]]:
         z,out=lattice(pg)
-        print("=== p%03d  pasv %.2f  bloc %s  %d lignes stockees"%(pg,float(z['pasv']),list(z['bloc']),len(z['lignes'])))
+        print("=== p%03d  vstep %.2f  block %s  %d lines stored"%(pg,float(z['pasv']),list(z['bloc']),len(z['lines'])))
         for k,y,e,ink,known in out:
             if ink and not known: print("   HORS  k=%3d  y=%6.1f  encre %.0f"%(k,y,e))
 

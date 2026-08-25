@@ -47,5 +47,5 @@ if __name__=="__main__":
     for pg,ch in [(560,f"{T}/amorce_test_p560.txt"), (450,f"{T}/amorce_test_p450.txt")]:
         if not os.path.exists(ch): continue
         b,t,f=mesurer(pg,ch)
-        print(f"page image {pg} : {b}/{t} = {100*b/t:.2f} %   ({len(f)} ecarts)")
+        print(f"page image {pg} : {b}/{t} = {100*b/t:.2f} %   ({len(f)} departures)")
         for x in f[:25]: print("   ", x)

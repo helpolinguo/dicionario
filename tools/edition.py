@@ -414,7 +414,7 @@ def decouper(pages, corrected, rules_=None):
         # A letter on its own, a sign: an accident of typing, not a text.
         if len(u) < 8 or len(u.split()) < 2: continue
         e['lineoj'].extend(lines); n_suite+=1
-    if n_suite: print("articles poursuivis en tete de page : %d"%n_suite)
+    if n_suite: print("articles continued at the head of a page: %d"%n_suite)
     for e in ent:
         e['korektita'] = sum(1 for (k,_) in e['lineoj']
                              for c in range(120) if (e['image'],k,c) in corrected)
@@ -2351,7 +2351,7 @@ def rataching_subvortoj(ent, file_=f"{T}/subvorti.txt"):
     for key_, clep in couples:
         f=per.get(key_); m=per.get(clep)
         if f is None or m is None:
-            print("  rattachement sans cible : %s -> %s" % (key_, clep)); continue
+            print("  attachment with no target: %s -> %s" % (key_, clep)); continue
         blocks=f.get('strukt') or []
         korpo=" ".join(b['teksto'] for b in blocks if b['teksto']).strip()
         korpo_k=" ".join(b.get('teksto_k') or b['teksto'] for b in blocks
@@ -2380,14 +2380,14 @@ def konstrui():
     lex={e['vedetto'].lower() for e in (analizar(x) for x in raw)
          if e_ok(e) and len(e['vedetto']) >= 2}
     n0=len(raw); raw=dividar(raw, lex)
-    if len(raw)>n0: print("articles separes d'une ligne partagee : %d"%(len(raw)-n0))
+    if len(raw)>n0: print("articles separated from a shared line: %d"%(len(raw)-n0))
     ent=[analizar(e, lex) for e in raw]
     n=appliquer_jugements(ent)
     if n: print("jugements lexicaux appliques : %d occurrences"%n)
     n=typographio(ent)
     if n: print("sens retouches typographiquement : %d"%n)
     n=corriger_vedettes(ent)
-    if n: print("vedettes corrigees a la main : %d"%n)
+    if n: print("headwords corrected by hand: %d"%n)
     # The ending flag is read ON THE HEADWORD: corrected here, it must be read
     # again. « borc » become « boro », « fenikulc » become « fenikulo », the
     # impossible ending has gone -- but the flag that reported it stayed, and the
@@ -2403,10 +2403,10 @@ def konstrui():
             e['drapeli'].append('finalo-nekustumala'); n+=1
     if n: print("drapeaux de finale relus apres correction : %d"%n)
     n=corriger_vorti(ent)
-    if n: print("mots corriges dans les definitions : %d"%n)
+    if n: print("words corrected in the definitions: %d"%n)
     import proofread as _rel
     n,r=_rel.apply_(ent)
-    if n or r: print("relecture des definitions : %d corrections posees, %d refusees"%(n,r))
+    if n or r: print("proofreading of the definitions: %d corrections laid, %d refused"%(n,r))
     # The proofreading returns the domain as it READS on the page -- with its
     # capital, and without the full stop the typescript did not strike. The field,
     # for its part, is lower-cased and its abbreviation pointed much earlier,
@@ -2432,7 +2432,7 @@ def konstrui():
     # correction never took -- in silence. The function is idempotent: a correction
     # already laid no longer finds its faulty form and does nothing.
     n=corriger_vorti(ent)
-    if n: print("mots corriges apres la mise en chiffres : %d"%n)
+    if n: print("words corrected after the figures were set: %d"%n)
     # A second recovery of the language code. The analysis's pass comes BEFORE
     # the typography; when the end of the line still carried a cinder -- an
     # isolated full stop under « ganso », a missing punctuation under « rodar » --
@@ -2450,7 +2450,7 @@ def konstrui():
         else: e['senci'].pop()
         if 'sen-lingua' in e['drapeli']: e['drapeli'].remove('sen-lingua')
         n+=1
-    if n: print("codes de langues rattrapes apres la typographie : %d"%n)
+    if n: print("language codes recovered after the typography: %d"%n)
     # The code is not always at the end of the LAST sense. The author has
     # sometimes laid it, then added a sense after the fact: « arniko. I. Planto
     # aromata... - L. arnica montana. - DEFIS. II. Medikamento liquida... ». The
@@ -2471,11 +2471,11 @@ def konstrui():
             else: e['senci'].pop(k)
             if 'sen-lingua' in e['drapeli']: e['drapeli'].remove('sen-lingua')
             n+=1; break
-    if n: print("codes de langues releves hors du dernier sens : %d"%n)
+    if n: print("language codes surveyed outside the last sense: %d"%n)
     n=ordinigi_kodojn(ent)
-    if n: print("codes de langues remis dans l'ordre du livre : %d"%n)
+    if n: print("language codes put back into the book's order: %d"%n)
     n=steligar(ent)
-    if n: print("mots non officiels marques la ou ils etaient nus : %d"%n)
+    if n: print("unofficial words marked where they were bare: %d"%n)
     # An article begun at the foot of a page, abandoned, then BEGUN AGAIN at the
     # head of the next. « ampère » is the book's only case: the first version
     # stops short, with no language code; the second is complete. The reading
@@ -2492,7 +2492,7 @@ def konstrui():
             fals.add(id(a))
     if fals:
         ent=[e for e in ent if id(e) not in fals]
-        print("faux departs de bas de page ecartes : %d"%len(fals))
+        print("false starts at the foot of a page set aside: %d"%len(fals))
     n0=len(ent); ent=[e for e in ent if e_ok(e)]
     if len(ent)<n0: print("renvois d'errata ecartes : %d"%(n0-len(ent)))
     # A definition cut short at the foot of a page: the scan trimmed the last
@@ -2571,16 +2571,16 @@ def konstrui():
         for k,t in enumerate(S):
             u=majuskla_komenco(t)
             if u != t: S[k]=u; n_maj += 1
-    if n_maj: print("sens rendus a la capitale initiale : %d"%n_maj)
+    if n_maj: print("senses given back their initial capital: %d"%n_maj)
     n_lat=sum(latinaji_enteksta(e) for e in ent)
     n_sim=sum(apartigar_simbolon(e) for e in ent)
     if n_sim: print("symboles chimiques mis en champ : %d"%n_sim)
     n_sub=sum(strukturizar(e) for e in ent)
     n_kur=sum(1 for e in ent if e.get('kursiva'))
-    print("locutions detachees : %d ; articles avec un souligne : %d"%(n_sub, n_kur))
+    print("phrases detached: %d ; articles with an underline: %d"%(n_sub, n_kur))
     for e in ent: e.pop('filetoj', None)
     n_rat=rataching_subvortoj(ent)
-    if n_rat: print("articles rattaches en sous-entree : %d"%n_rat)
+    if n_rat: print("articles attached as sub-entries: %d"%n_rat)
     drapeli_ordino(ent)
     return ent
 
@@ -3310,7 +3310,7 @@ if __name__=="__main__":
     print(f"{len(ent)} enregistrements")
     c=collections.Counter(d for e in ent for d in e['drapeli'])
     print("drapeaux :", c.most_common())
-    print("sans aucun drapeau :", sum(1 for e in ent if not e['drapeli']))
-    print("avec fako :", sum(1 for e in ent if e['fako']),
-          "| avec nom latin :", sum(1 for e in ent if e['latina']),
+    print("with no flag at all:", sum(1 for e in ent if not e['drapeli']))
+    print("with fako:", sum(1 for e in ent if e['fako']),
+          "| with a Latin name:", sum(1 for e in ent if e['latina']),
           "| plusieurs sens :", sum(1 for e in ent if len(e['senci'])>1))
