@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Exportation de la base lexicale : JSONL, TSV, et edition HTML autonome."""
+"""Exporting the lexical base: JSONL, TSV, and a self-contained HTML edition."""
 import json, os, sys, html, collections
 T="/root/dicionario/travail"; SORT=f"{T}/edicioni"
 
@@ -18,29 +18,29 @@ def tsv(ent):
                 str(e['pagino']), str(e['ligno']), str(e['image']),
                 ",".join(e['drapeli'])]).replace("\n"," ")+"\n")
 
-# Le bouton de retour vers ido.help, la porte des trois livres, tient en deux
-# lignes du gabarit : la feuille `/pordo.css` et l'ancre `ido-pordo`. Son
-# apparence n'est PAS ici — pordo.css et emblemo.svg sont servis depuis la
-# racine du site, que les trois livres partagent, pour que le retoucher se
-# fasse a un seul endroit. Le mot « Ido » est dans l'ancre et non dans la
-# feuille : si celle-ci ne se charge pas, il reste un lien lisible en fin de
-# document au lieu d'un carre vide.
+# The button back to ido.help, the door of the three books, holds in two lines
+# of the template: the sheet `/pordo.css` and the anchor `ido-pordo`. Its
+# appearance is NOT here -- pordo.css and emblemo.svg are served from the root
+# of the site, which the three books share, so that retouching it is done in
+# one place. The word « Ido » is in the anchor and not in the sheet: if the
+# sheet does not load, a legible link is left at the end of the document
+# instead of an empty square.
 #
-# `/pordo.js` dessine la croix qui vide le champ de recherche. Le champ n'en a
-# pas sur iPhone et ne peut pas en avoir : WebKit ne rend
-# « ::-webkit-search-cancel-button » que sur macOS. Sans le script, le champ
-# reste ce qu'il etait — on le vide au clavier.
+# `/pordo.js` draws the cross that empties the search field. The field has none
+# on iPhone and cannot have one: WebKit renders
+# « ::-webkit-search-cancel-button » on macOS only. Without the script, the
+# field stays what it was -- one empties it from the keyboard.
 #
-# Le champ de recherche porte enfin autocapitalize="none", autocorrect="off" et
-# spellcheck="false" : sur iPhone, iOS met d'office une capitale a la premiere
-# lettre d'un champ de texte, remplace un mot ido par le mot anglais ou francais
-# qu'il croit reconnaitre, et le souligne en rouge. Ici, ce qu'on tape EST le
-# terme cherche.
+# The search field carries, finally, autocapitalize="none", autocorrect="off"
+# and spellcheck="false": on an iPhone, iOS capitalises the first letter of a
+# text field as a matter of course, replaces an Ido word by the English or
+# French word it thinks it recognises, and underlines it in red. Here, what one
+# types IS the term sought.
 #
-# Toute retouche de la page se pose ICI et non a la main dans index.html : la
-# page est un produit de fabrication, et la reconstruction suivante l'effacerait
-# sans bruit. C'est vrai du gabarit comme de la feuille de style qu'il porte —
-# l'ecart lateral de l'en-tete, entre autres, est venu par ce chemin.
+# Every retouch of the page is laid HERE and not by hand in index.html: the
+# page is a manufactured product, and the next build would erase it without a
+# sound. That is true of the template as of the style sheet it carries -- the
+# header's side inset, among others, came by that road.
 GABARITO = """<!DOCTYPE html><html lang="io"><meta charset="utf-8">
 <title>Dicionario de la 10.000 radiki di la linguo universala Ido</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -313,8 +313,8 @@ def html_edition(ent):
         **({"c":1} if e.get('citita') else {})} for e in ent]
     s=GABARITO.replace("__DATA__", json.dumps(D, ensure_ascii=False, separators=(',',':')))
     s=s.replace("__N__", f"{len(ent)} ")
-    # index.html, e ne dicionario.html : la pagino publikigesas tale quale sur
-    # GitHub Pages, ube « index.html » esas la nomo qua sequesas automate.
+    # index.html, and not dicionario.html: the page is published as it stands on
+    # GitHub Pages, where « index.html » is the name that is followed automatically.
     open(f"{SORT}/index.html","w",encoding='utf-8').write(s)
     return os.path.getsize(f"{SORT}/index.html")
 

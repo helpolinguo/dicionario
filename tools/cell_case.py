@@ -1,36 +1,36 @@
 # -*- coding: utf-8 -*-
-"""Decision de casse, cellule par cellule, par comparaison a la ligne elle-meme.
+"""The decision of case, cell by cell, by comparison with the line itself.
 
-Deux tentatives ont echoue avant celle-ci, et elles disent pourquoi celle-ci
-tient.
+Two attempts failed before this one, and they say why this one holds.
 
-1. Sommet de l'encre, seuil absolu. Desastreux : la fenetre d'une cellule mord
-   sur ses voisines, une moucheture suffit a faire passer un « a » pour un « A ».
-2. Sommet de la composante connexe portant le corps de la lettre, seuil absolu.
-   Toujours perdant. En regardant enfin les cellules fautives, la raison saute
-   aux yeux : sur certaines pages les bas de casse montent aussi haut, en
-   rangees de la trame, que les capitales d'autres pages. L'echelle du scan
-   n'est pas constante ; un seuil absolu ne mesure donc rien.
+1. The top of the ink, an absolute threshold. Disastrous: a cell's window
+   bites into its neighbours, and one speck is enough to make an « a » pass
+   for an « A ».
+2. The top of the connected component carrying the body of the letter, an
+   absolute threshold. Still losing. On finally looking at the faulty cells,
+   the reason leaps out: on some pages the lower case rises as high, in rows
+   of the screen, as the capitals of other pages. The scan's scale is not
+   constant; an absolute threshold therefore measures nothing.
 
-D'ou la regle retenue : on ne compare pas une lettre a un seuil, on la compare
-aux lettres de sa propre ligne. Toute ligne de ce dictionnaire contient des
-hampes — « b d f h k l t » — qui montent a la hauteur des capitales, et des
-lettres a hauteur d'x — « a c e m n o r s u v w x z » — qui s'arretent a
-mi-corps. Ces deux reperes donnent l'echelle de la ligne. Une lettre a hauteur
-d'x qui monte du cote des hampes est une capitale.
+Hence the rule adopted: we do not compare a letter with a threshold, we
+compare it with the letters of its own line. Every line of this dictionary
+contains ascenders -- « b d f h k l t » -- that rise to the height of the
+capitals, and x-height letters -- « a c e m n o r s u v w x z » -- that stop
+halfway. Those two cues give the line's scale. An x-height letter that rises
+towards the ascenders is a capital.
 """
 import numpy as np, sys
 from scipy.ndimage import label as cclabel
 sys.path.insert(0,'/root/dicionario/outils')
 T="/root/dicionario/travail"
-XH  = "acemnorsuvwxz"     # hauteur d'x : c'est sur elles que porte le doute
-HAMPE = "bdfhklt"         # hampes : elles donnent la hauteur des capitales
-MINI = 4                  # reperes minimaux de chaque sorte sur la ligne
-PART = 0.35               # fraction du chemin hampe -> hauteur d'x
+XH  = "acemnorsuvwxz"     # x-height: it is on these that the doubt falls
+HAMPE = "bdfhklt"         # ascenders: they give the height of the capitals
+MINI = 4                  # minimum cues of each kind on the line
+PART = 0.35               # fraction of the way from ascender to x-height
 _ST = np.ones((3,3),int)
 
 def sommet_lettre(A):
-    """Sommet de la composante connexe qui porte le corps de la lettre."""
+    """The top of the connected component carrying the body of the letter."""
     B=(A>60); n=len(A); som=np.full(n,np.nan)
     for i in range(n):
         b=B[i]
@@ -52,7 +52,7 @@ def executer(sortie=f"{T}/exceptions_casse.txt"):
     from decode import bavures
     bv=bavures()
     car=np.array([str(tab[k]) for k in range(len(tab))], dtype=object)
-    # regroupement par ligne
+    # grouping by line
     cle = M[:,0].astype(np.int64)*10000 + M[:,1].astype(np.int64)
     o=np.argsort(cle, kind='stable'); bornes=np.flatnonzero(np.r_[True, np.diff(cle[o])!=0, True])
     ecrit=0; lignes=0
@@ -67,7 +67,7 @@ def executer(sortie=f"{T}/exceptions_casse.txt"):
             mx=np.array([x in XH for x in c]); mh=np.array([x in HAMPE for x in c])
             if mx.sum()<MINI or mh.sum()<MINI: continue
             som=sommet_lettre(np.asarray(C[np.sort(g)]).astype(np.float32))
-            som=som[np.argsort(np.argsort(g))]      # remettre dans l'ordre de g
+            som=som[np.argsort(np.argsort(g))]      # put back into the order of g
             sx=np.nanmedian(som[mx]); sh=np.nanmedian(som[mh])
             if np.isnan(sx) or np.isnan(sh) or sx-sh < 1.5: continue
             seuil = sh + PART*(sx-sh)

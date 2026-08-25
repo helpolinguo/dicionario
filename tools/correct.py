@@ -1,16 +1,16 @@
-"""Correction des lectures douteuses par le lexique du livre lui-meme.
+"""Correcting the doubtful readings by the book's own lexicon.
 
-Principe : le dictionnaire repete son vocabulaire des milliers de fois. Une
-forme lue une seule fois, alors qu'une variante obtenue en remplacant une
-cellule ambigue par l'une de ses voisines de groupe est attestee des dizaines
-de fois, est une faute de lecture, pas une coquille du tapuscrit.
+The principle: the dictionary repeats its vocabulary thousands of times. A
+form read once, when a variant obtained by replacing an ambiguous cell with
+one of its neighbours in the group is attested dozens of times, is a
+misreading, not a slip of the typescript.
 
-Une cellule n'est declaree ambigue que si son groupe a, parmi ses plus proches
-voisins dans l'espace des formes, un groupe d'etiquette differente a une
-correlation superieure a 0,86. C'est donc le decodage qui doute, pas nous.
+A cell is declared ambiguous only if its group has, among its nearest
+neighbours in the space of shapes, a group of a different label at a
+correlation above 0.86. It is therefore the decoding that doubts, not we.
 
-Toute substitution est journalisee dans work/journal_corrections.txt et
-inscrite dans work/exceptions.txt : elle reste inspectable et reversible.
+Every substitution is logged in work/journal_corrections.txt and entered in
+work/exceptions.txt: it stays inspectable and reversible.
 """
 import numpy as np, pickle, collections, glob, os, sys, itertools
 sys.path.insert(0,'/root/dicionario/outils')
@@ -20,7 +20,7 @@ MAJ=set("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
 TOUTES=LETTRES|MAJ
 
 def decoder_livre(lab, M, tab, bav, exc=None):
-    """Retourne {page: [(k, [(colonne, caractere, indice_cellule), ...])]}"""
+    """Returns {page: [(k, [(column, character, cell_index), ...])]}"""
     pages={}
     ordre=np.argsort(M[:,0], kind='stable')
     bornes=np.searchsorted(M[ordre,0], np.arange(M[:,0].max()+2))
@@ -38,7 +38,7 @@ def decoder_livre(lab, M, tab, bav, exc=None):
     return pages
 
 def mots(ligne):
-    """Decoupe une ligne (liste de (col, car, idx)) en mots contigus."""
+    """Cuts a line (list of (col, char, idx)) into contiguous words."""
     out=[]; cur=[]
     prev=None
     for col,ch,i in ligne:
@@ -46,7 +46,7 @@ def mots(ligne):
             out.append(cur); cur=[]
         cur.append((col,ch,i)); prev=col
     if cur: out.append(cur)
-    # on isole le noyau alphabetique de chaque groupe
+    # we isolate the alphabetic core of each group
     res=[]
     for g in out:
         j=0
@@ -65,7 +65,7 @@ def executer(mini_atteste=8, maxi_fautif=5, max_pos=3, marge=8, marge_ngram=6.0)
     bav=bavures(); exc=dict(exceptions())
     alt=pickle.load(open(f"{T}/cls_alternatives.pkl","rb"))
     pages=decoder_livre(lab, M, tab, bav, exc)
-    # 1. lexique du livre
+    # 1. the book's lexicon
     freq=collections.Counter()
     tous=[]
     for pg,lignes in pages.items():
@@ -78,10 +78,10 @@ def executer(mini_atteste=8, maxi_fautif=5, max_pos=3, marge=8, marge_ngram=6.0)
     journal=[]; exc={}
     for pg,k,mo,f in tous:
         if freq[f] > maxi_fautif: continue
-        # on ne touche pas aux noms propres ni aux sigles : une forme qui porte
-        # une majuscule ailleurs qu'a l'initiale, ou dont l'initiale est une
-        # majuscule, n'a pas a etre ramenee au lexique commun.
-        if any(c in MAJ for c in f[1:]): continue   # sigles : on ne touche pas
+        # we do not touch proper nouns or initialisms: a form that carries a
+        # capital anywhere but at the start, or whose initial is a capital, has no
+        # business being brought back to the common lexicon.
+        if any(c in MAJ for c in f[1:]): continue   # initialisms: we do not touch
         cle = f[0].lower()+f[1:] if f[0] in MAJ else f
         pos=[j for j,(c0,_,i) in enumerate(mo) if alt[lab[i]] and (pg,k,c0) not in exc]
         if not pos or len(pos)>max_pos: continue
@@ -98,18 +98,18 @@ def executer(mini_atteste=8, maxi_fautif=5, max_pos=3, marge=8, marge_ngram=6.0)
         if not cands: continue
         cands.sort(reverse=True)
         n1,v1,c1=cands[0]
-        if len(cands)>1 and cands[1][0]*3 > n1: continue   # ambigu : on s'abstient
-        if n1 < marge*max(freq[f],1): continue            # l'ecart doit etre net
+        if len(cands)>1 and cands[1][0]*3 > n1: continue   # ambiguous: we abstain
+        if n1 < marge*max(freq[f],1): continue            # the gap must be clear
         for a,j in zip(c1,pos):
             if a!=mo[j][1]:
                 col,ancien,i=mo[j]
                 exc[(pg,k,col)]=a
                 journal.append((pg,k,col,ancien,a,f,v1,freq[f],n1))
-    # --- deuxieme etage : modele de n-grammes de caracteres -----------------
-    # Certaines formes n'ont aucune attestation : une vedette n'apparait souvent
-    # qu'une fois. On leur applique alors un modele d'ordre 4 appris sur le
-    # vocabulaire du livre (formes vues au moins trois fois), et on ne substitue
-    # que si l'ecart de vraisemblance est net.
+    # --- second stage: a model of character n-grams -------------------------
+    # Some forms have no attestation at all: a headword often appears only once.
+    # We then apply to them a model of order 4 learnt on the book's vocabulary
+    # (forms seen at least three times), and substitute only if the gap in
+    # likelihood is clear.
     import math
     ngr=collections.Counter(); ctx=collections.Counter()
     for f,n in freq.items():
@@ -155,7 +155,7 @@ if __name__=="__main__":
     with open(f"{T}/journal_corrections.txt","w",encoding='utf-8') as f:
         f.write("page\tligne\tcol\tlu\tcorrige\tforme lue\tforme retenue\tfreq lue\tfreq retenue\n")
         for j in journal: f.write("\t".join(map(str,j))+"\n")
-    # fusion dans exceptions.txt en preservant les entrees manuelles
+    # merged into exceptions.txt, preserving the manual entries
     manuel=[]
     p=f"{T}/exceptions.txt"
     if os.path.exists(p):

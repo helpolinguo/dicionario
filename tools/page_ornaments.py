@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
-"""Extraction de ce qui n'est pas dactylographie : lettres de section, signature.
+"""Extracting what is not typewritten: section letters, signature.
 
-En tete de chaque lettre de l'alphabet, le livre porte cette lettre composee en
-grand corps dans une elzevir — ce n'est pas de la frappe et cela ne se decode
-pas. La page de contrefacon porte en outre la signature autographe de l'auteur.
-On les decoupe dans le scan et on les repose dans le fac-simile a leur place,
-mesuree en fraction de feuille.
+At the head of each letter of the alphabet, the book carries that letter set
+in a large size in an Elzevir -- it is not typing and it does not decode. The
+copyright page carries the author's autograph signature besides. We cut them
+out of the scan and lay them back in the facsimile in their place, measured as
+a fraction of the sheet.
 """
 import numpy as np, json, os, sys
 from scipy.ndimage import label as cclabel, find_objects
@@ -15,11 +15,11 @@ SECTIONS = {8:'A',60:'B',88:'C',102:'D',133:'E',164:'F',192:'G',213:'H',
             258:'K',333:'L',355:'M',396:'N',407:'O',422:'P',481:'Q',
             486:'R',514:'S',609:'U',614:'V',630:'W',631:'X'}
 
-# Cinq sections ne s'ouvrent pas en tete de page : elles suivent la precedente
-# au milieu d'une feuille. lettre() ne cherchait que dans le haut du scan — le
-# livre restait donc sans grande capitale pour I, J, T, Y et Z. On donne pour
-# celles-la la bande verticale ou chercher, en fraction de la hauteur de page.
-# La liste est de paires, et non un dictionnaire : X et Y partagent la page 631.
+# Five sections do not open at the head of a page: they follow the previous
+# one in the middle of a sheet. lettre() looked only in the top of the scan --
+# the book therefore stayed without a large capital for I, J, T, Y and Z. For
+# those we give the vertical band to search in, as a fraction of the page
+# height. The list is of pairs, and not a dictionary: X and Y share page 631.
 SECTIONS_MILIEU = [(233,'I',(0.04,0.32)), (253,'J',(0.02,0.26)),
                    (572,'T',(0.28,0.62)), (631,'Y',(0.55,0.92)),
                    (633,'Z',(0.35,0.78))]
@@ -46,9 +46,9 @@ def lettre(pg, hmax=0.28, bande=None):
         cx=(o[1].start+w/2)/W
         if not (0.28<=cx<=0.75): continue
         aire=int((L[o]==i+1).sum())
-        # Plancher de surface : il ecarte les caracteres tapes, qui pesent moins
-        # de cent pixels. A 400 il ecartait aussi les capitales etroites — le
-        # « I » de la page 233 pese 349 pixels, le « J » de la 253 en pese 365.
+        # An area floor: it sets aside the typed characters, which weigh less
+        # than a hundred pixels. At 400 it also set aside the narrow capitals --
+        # the « I » of page 233 weighs 349 pixels, the « J » of page 253 weighs 365.
         if aire<300: continue
         if best is None or aire>best[0]: best=(aire,o,h,w)
     if best is None: return None
@@ -88,16 +88,16 @@ def executer():
         out.append(e)
     s=signature()
     if s:
-        # Le paraphe est une seule tache d'encre, mais le « M » de Marcel en
-        # est detache : on elargit vers la gauche pour ne pas le tronquer.
+        # The flourish is a single spot of ink, but the « M » of Marcel is
+        # detached from it: we widen leftwards so as not to truncate it.
         im=Image.open(f"{RAC}/scan/p-002.jpg").convert('L'); m=10
-        # Le paraphe est une seule tache d'encre, mais le « M » de Marcel en
-        # est detache, et le haut des hampes depasse la boite : on elargit a
-        # gauche et vers le haut.
-        # Deux boites, et non une seule. Celle du DECOUPAGE est large, pour ne
-        # rogner ni les hampes ni le « M » de Marcel, detache du reste. Celle du
-        # MASQUE reste serree sur l'encre : la boite large mordait sur les deux
-        # lignes tapees au-dessus, et le texte y disparaissait.
+        # The flourish is a single spot of ink, but the « M » of Marcel is
+        # detached from it, and the top of the ascenders overruns the box: we
+        # widen to the left and upwards.
+        # Two boxes, and not one. The CUTTING box is wide, so as to crop neither
+        # the ascenders nor the « M » of Marcel, detached from the rest. The MASK
+        # box stays tight on the ink: the wide box bit into the two lines typed
+        # above, and the text disappeared there.
         s['masque']=dict(x=s['x'], y=s['y'], w=s['w'], h=s['h'])
         mg=int(s['w']*0.30); mh=int(s['h']*0.45)
         c=im.crop((max(s['x']-mg,0), max(s['y']-mh,0), s['x']+s['w']+m, s['y']+s['h']+m))

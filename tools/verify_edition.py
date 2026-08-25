@@ -1,21 +1,21 @@
 # -*- coding: utf-8 -*-
-"""Controle systematique de l'edition structuree.
+"""A systematic check of the structured edition.
 
-Le fac-simile conserve la moindre faute de l'original ; l'edition structuree,
-elle, doit en presenter une forme nette. On ne corrige donc pas au cas par cas
-— chaque passe faisait apparaitre une famille nouvelle — mais on inventorie
-les ecarts par FAMILLE, on traite la famille, et on recontrole.
+The facsimile preserves the least fault of the original; the structured
+edition must present a clean form of it. We therefore do not correct case by
+case -- each pass brought a new family to light -- but inventory the
+departures by FAMILY, deal with the family, and check again.
 
-Les controles sont independants les uns des autres, et chacun repose sur un
-invariant du livre lui-meme, non sur mon jugement :
+The checks are independent of one another, and each rests on an invariant of
+the book itself, not on my judgement:
 
-  couverture   chaque article a une source, chaque source un article
-  aller-retour le texte de l'article se retrouve dans ses lignes d'origine
-  ordre        le dictionnaire est alphabetique ; une rupture est un indice
-  morphologie  une vedette ido finit par -o -a -e -i -ar -ir -or (ou est affixe)
-  langui       le code final est un sous-ensemble de DEFIRSLP
-  ponctuation  ni ponctuation orpheline, ni cesure non recollee, ni vide
-  latina       le nom scientifique est extrait, pas laisse dans le sens
+  coverage     every article has a source, every source an article
+  round trip   the article's text is found again in the lines it came from
+  order        the dictionary is alphabetical; a break is a clue
+  morphology   an Ido headword ends in -o -a -e -i -ar -ir -or (or is an affix)
+  langui       the final code is a subset of DEFIRSLP
+  punctuation  no orphan punctuation, no unreglued hyphenation, nothing empty
+  latina       the scientific name is extracted, not left in the sense
 """
 import sys
 sys.path.insert(0,'/root/dicionario/outils')
@@ -30,7 +30,7 @@ def charger(p=f"{T}/edicioni/dicionario.jsonl"):
     return [json.loads(l) for l in open(p,encoding='utf-8')]
 
 def cles(v):
-    """Cle de tri : sans l'asterisque des mots non officiels, sans trait."""
+    """Sort key: without the asterisk of the unofficial words, without the hyphen."""
     return v.lower().lstrip("*+-").replace("-","")
 
 def controler(ent):
@@ -42,8 +42,8 @@ def controler(ent):
         n=(e['image'], e['ligno'], v)
         if not v: pb['vedette-vide'].append(n); continue
         nu=v.lstrip("*")
-        # Formes legitimes que le controle prenait pour du bruit : l'elision
-        # « a(d) », l'interjection « ah! », la locution « a posteriori ».
+        # Legitimate forms the check took for noise: the elision « a(d) », the
+        # interjection « ah! », the phrase « a posteriori ».
         if not re.fullmatch(r"[A-Za-zÀ-ÿ'’-]+(?:\([a-z]\))?!?"
                             r"(?: [A-Za-zÀ-ÿ'’-]+){0,2}", nu):
             pb['vedette-caracteres'].append(n)
@@ -54,16 +54,16 @@ def controler(ent):
             if re.match(r'^[.,;:)\]]', s): pb['ponctuation-en-tete'].append(n); break
             if re.search(r'\w- \w', s): pb['cesure-non-recollee'].append(n); break
             if re.search(r'\s{2,}', s): pb['espaces-doubles'].append(n); break
-        # Le code se lit par _lire_code, qui admet la capitale abimee
-        # (« dEFIRS »), le « l » lu pour « I » (« DEFlS ») et la langue epelee
-        # (« Ned », « FDSued », « Jap.,Sanskr »). Compare a un simple jeu de
-        # lettres, tout cela passait pour invalide.
+        # The code is read by _lire_code, which admits the damaged capital
+        # (« dEFIRS »), the « l » read for « I » (« DEFlS ») and the language
+        # spelled out (« Ned », « FDSued », « Jap.,Sanskr »). Compared with a
+        # plain set of letters, all of that passed for invalid.
         k=e.get('kodo')
         if k and not all(_lire_code(x.strip(' .')) for x in str(k).split(',')):
             pb['code-invalide'].append(n)
         if re.search(r'(?<![A-Za-z])L\.\s*[a-z]', txt): pb['latina-dans-le-senco'].append(n)
         if re.search(r'\b[DEFIRS]{3,7}\b\s*\.?\s*$', txt): pb['code-dans-le-senco'].append(n)
-    # ordre alphabetique
+    # alphabetical order
     prec=None
     for e in ent:
         v=e.get('vedetto') or ""
