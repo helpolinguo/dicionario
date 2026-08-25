@@ -13,7 +13,7 @@ doubtful is reported, not hidden.
 """
 import numpy as np, os, pickle, re, collections, sys, json, os, unicodedata
 sys.path.insert(0,'/root/dicionario/outils')
-from consolidate import vedettes
+from consolidate import headwords
 T="/root/dicionario/travail"
 DECALAGE_FOLIO = 7          # page number of the book = image index - 7
 
@@ -41,10 +41,10 @@ def _lire_code(jeton):
     if not jeton or len(jeton) > 12: return None
     hauts=sum(1 for c in jeton if c.isupper())
     if hauts < max(1, int(0.6*len(jeton))): return None
-    out=[]; reste=jeton
-    for ab,nom in ABREV.items():                    # a spelled-out abbreviation, at the end
-        if reste.endswith(ab): out.append(nom); reste=reste[:-len(ab)]; break
-    for c in reste.upper().replace('L','I') if False else reste:
+    out=[]; left_over=jeton
+    for ab,name_ in ABREV.items():                    # a spelled-out abbreviation, at the end
+        if left_over.endswith(ab): out.append(name_); left_over=left_over[:-len(ab)]; break
+    for c in left_over.upper().replace('L','I') if False else left_over:
         c = 'I' if c=='l' else c.upper()
         if c not in LANGUI: return None
         out.append(LANGUI[c])
@@ -166,7 +166,7 @@ FINALES_OK = ("o","a","e","i","ar","ir","or")
 KUPO = "\ue002"
 
 _LP=None
-def _lignes_plus(fichier=f"{T}/lignes_plus.txt"):
+def _lignes_plus(file_=f"{T}/lignes_plus.txt"):
     """Lines from the foot (or the head) of a page lost to a later RE-CUTTING.
 
     Page 290 showed it: its extraction was redone on 13 August, and the new
@@ -183,8 +183,8 @@ def _lignes_plus(fichier=f"{T}/lignes_plus.txt"):
     global _LP
     if _LP is None:
         _LP={}
-        if os.path.exists(fichier):
-            for l in open(fichier,encoding='utf-8'):
+        if os.path.exists(file_):
+            for l in open(file_,encoding='utf-8'):
                 l=l.rstrip("\n")
                 if not l.strip() or l.startswith("#"): continue
                 a,b,v=l.split("\t")
@@ -194,12 +194,12 @@ def _lignes_plus(fichier=f"{T}/lignes_plus.txt"):
 
 def _signaturo():
     """Fingerprint of the files the decoded text depends on."""
-    noms=["cls_lab.npy","cls_alternatives.pkl","lignes_plus.txt",
+    names=["cls_lab.npy","cls_alternatives.pkl","lignes_plus.txt",
           "exceptions_fins.txt","exceptions_ornements.txt","exceptions_paires.txt",
           "exceptions.txt","exceptions_relecture.txt","exceptions_manuel.txt",
           "pages_non_dactylo.txt"]
     sig=[]
-    for n in noms:
+    for n in names:
         p=f"{T}/{n}"
         sig.append((n, os.path.getmtime(p) if os.path.exists(p) else 0))
     d=f"{T}/cellules"
@@ -209,33 +209,33 @@ def _signaturo():
     return sig
 
 
-def charger_texte(kash=True):
+def load_text(kash=True):
     import pickle
     kf=f"{T}/_pages.pkl"
     sig=("v2", _signaturo())
     if kash and os.path.exists(kf):
         try:
-            with open(kf,"rb") as h: pages,corrigees,filetoj,vieux=pickle.load(h)
-            if vieux==sig: return pages,corrigees,filetoj
+            with open(kf,"rb") as h: pages,corrected,rules_,vieux=pickle.load(h)
+            if vieux==sig: return pages,corrected,rules_
         except Exception: pass
-    pages,corrigees,filetoj=_charger_texte()
+    pages,corrected,rules_=_charger_texte()
     try:
-        with open(kf,"wb") as h: pickle.dump((pages,corrigees,filetoj,sig),h)
+        with open(kf,"wb") as h: pickle.dump((pages,corrected,rules_,sig),h)
     except Exception: pass
-    return pages,corrigees,filetoj
+    return pages,corrected,rules_
 
 
 def _charger_texte():
-    from decode import charger, page_texte
+    from decode import load_, page_text
     from generate import exceptions
-    lab,M=charger(); tab=np.load(f"{T}/cls_lab.npy",allow_pickle=True); exc=exceptions()
-    corrigees=set((p,k,c) for (p,k,c) in exc)
-    pages={}; filetoj={}
+    lab,M=load_(); tab=np.load(f"{T}/cls_lab.npy",allow_pickle=True); exc=exceptions()
+    corrected=set((p,k,c) for (p,k,c) in exc)
+    pages={}; rules_={}
     for pg in range(int(M[:,0].max())+1):
-        try: lignes=page_texte(pg,lab,M,tab)
+        try: lines=page_text(pg,lab,M,tab)
         except Exception: continue
         out=[]
-        for k,s in lignes:
+        for k,s in lines:
             l=list(s)
             # A correction can lengthen the line: a headword re-read may count
             # more cells than the automatic reading. We complete the line instead
@@ -247,8 +247,8 @@ def _charger_texte():
             out.append((k,"".join(l).rstrip()))
         sup=_lignes_plus().get(pg)
         if sup:
-            par=dict(out); par.update(sup)
-            out=sorted(par.items())
+            per=dict(out); per.update(sup)
+            out=sorted(per.items())
         pages[pg]=out
         # The page's underline rules, as the cutting of the cells surveyed them:
         # a list of ranges of COLUMNS per line, in the same numbering as the text
@@ -258,12 +258,12 @@ def _charger_texte():
         try:
             z=np.load(f"{T}/cellules/p-{pg:03d}.npz", allow_pickle=True)
             import pickle as _pk
-            sou=_pk.loads(z['sou'].item())
-            filetoj[pg]={int(k): [(int(a),int(b)) for a,b in v[1]]
-                         for k,v in sou.items() if v[1]}
+            underline=_pk.loads(z['sou'].item())
+            rules_[pg]={int(k): [(int(a),int(b)) for a,b in v[1]]
+                         for k,v in underline.items() if v[1]}
         except Exception:
-            filetoj[pg]={}
-    return pages, corrigees, filetoj
+            rules_[pg]={}
+    return pages, corrected, rules_
 
 
 _ND=None
@@ -286,14 +286,14 @@ RE_FOLIO=re.compile(r'^[\dlOoIi][\dlOoIi\s/.,\u2013-]{0,7}$')
 # before it: « ... sen shancelar   563 ». It does not belong to the sentence.
 RE_FOLIO_FIN=re.compile(r'\s{2,}[\dlOoIi]{1,4}[.,]?$')
 
-def decouper(pages, corrigees, filetoj=None):
-    filetoj = filetoj or {}
+def decouper(pages, corrected, rules_=None):
+    rules_ = rules_ or {}
     ent=[]; tetoj={}
     for pg in sorted(pages):
         if pg < 8: continue          # front matter: title, preface, rezumo di gramatiko
         if pg in _non_dactylo(): continue   # blank pages: nothing to cut
-        try: ved={k for k,_ in vedettes(pg)}
-        except Exception: ved=set()
+        try: hw={k for k,_ in headwords(pg)}
+        except Exception: hw=set()
         # The page's margin, read off the DECODED TEXT and not off the occupation
         # of the cells: forty-five pages begin further right -- page 380 begins
         # at 5 -- and occ() sees ink in column 0 there where the decoding sees
@@ -347,20 +347,20 @@ def decouper(pages, corrigees, filetoj=None):
         # not running text. Without that transparency, « smalto » (folio stuck to
         # the headword) and « morfino » (the subscripts of its formula above)
         # were not headwords at all, and their articles fell outside the book.
-        prec=None; ved2=set()
+        preceding=None; ved2=set()
         for k,s in pages[pg]:
             if not s.strip(): continue
             if RE_FOLIO.match(s.strip()) or not any(c.isalpha() for c in s):
                 continue
-            blanc = (prec is None) or (k - prec > 1)
+            white = (preceding is None) or (k - preceding > 1)
             # A word ALL in capitals is not a headword: it is the language code,
             # which the author sometimes threw onto a line of its own after a
             # leading -- « DEFIR. » under « sodo ». « Direktorio », « Usa »,
             # « Venus » keep their initial capital and remain headwords.
             u=s.lstrip()
             capitales = re.match(r'^[A-Z]{2,}\b', u) is not None
-            if blanc and not capitales and RE_VED.match(u): ved2.add(k)
-            prec=k
+            if white and not capitales and RE_VED.match(u): ved2.add(k)
+            preceding=k
         # The subscripts of a formula, struck on a line of their own JUST BEFORE
         # the headword that carries them: « 12  22  11 » above « laktoso ». The
         # machine does not lower the figures; the typist therefore raises the
@@ -373,12 +373,12 @@ def decouper(pages, corrigees, filetoj=None):
         for i,(k,x) in enumerate(contenu):
             if any(c.isalpha() for c in x): continue
             j=i+1
-            if j < len(contenu) and (contenu[j][0] in ved or contenu[j][0] in ved2):
+            if j < len(contenu) and (contenu[j][0] in hw or contenu[j][0] in ved2):
                 muta.add(k)
         cur=None; orfa=[]
         for k,s in pages[pg]:
             if not s.strip() or k in muta: continue
-            if k in ved or k in ved2:
+            if k in hw or k in ved2:
                 if cur: ent.append(cur)
                 cur=dict(image=pg, pagino=pg-DECALAGE_FOLIO, ligno=k, lineoj=[(k,s)])
             elif cur is not None:
@@ -394,12 +394,12 @@ def decouper(pages, corrigees, filetoj=None):
     # was left IN SUSPENSE -- with no final language code -- which is the very mark
     # of the break.
     RE_KODO=re.compile(r'[-–]\s*[A-Za-z]{1,12}\.?\s*$')
-    der={}
+    last_={}
     for i,e in enumerate(ent):
-        if e['ligno'] >= der.get(e['image'], (-1,-1))[0]: der[e['image']]=(e['ligno'], i)
+        if e['ligno'] >= last_.get(e['image'], (-1,-1))[0]: last_[e['image']]=(e['ligno'], i)
     n_suite=0
-    for pg,lignes in sorted(tetoj.items()):
-        d=der.get(pg-1)
+    for pg,lines in sorted(tetoj.items()):
+        d=last_.get(pg-1)
         if d is None: continue
         e=ent[d[1]]
         t=" ".join(x for _,x in e['lineoj']).strip()
@@ -410,15 +410,15 @@ def decouper(pages, corrigees, filetoj=None):
         # the language code. « "nirvana" » ends so, and the head of the next page
         # belongs to « nivar », an article the book has lost.
         if re.search(r'[-–]\s*$', t): continue
-        u=" ".join(x.strip() for _,x in lignes).strip()
+        u=" ".join(x.strip() for _,x in lines).strip()
         # A letter on its own, a sign: an accident of typing, not a text.
         if len(u) < 8 or len(u.split()) < 2: continue
-        e['lineoj'].extend(lignes); n_suite+=1
+        e['lineoj'].extend(lines); n_suite+=1
     if n_suite: print("articles poursuivis en tete de page : %d"%n_suite)
     for e in ent:
         e['korektita'] = sum(1 for (k,_) in e['lineoj']
-                             for c in range(120) if (e['image'],k,c) in corrigees)
-        e['filetoj'] = filetoj.get(e['image'], {})
+                             for c in range(120) if (e['image'],k,c) in corrected)
+        e['filetoj'] = rules_.get(e['image'], {})
     return ent
 
 
@@ -435,10 +435,10 @@ def sublineajoj(e):
     then « triala ». The hyphen is the break's, not the word's.
     """
     fil=e.get('filetoj') or {}
-    par={k:s for k,s in e['lineoj']}
+    per={k:s for k,s in e['lineoj']}
     morceaux=[]                       # (text, cut_at_the_end)
     for k,s in e['lineoj']:
-        fin=len(s.rstrip())
+        end_=len(s.rstrip())
         for a,b in sorted(fil.get(k, [])):
             if a >= len(s): continue
             t=s[a:b+1]
@@ -446,15 +446,15 @@ def sublineajoj(e):
             t=t.strip(" .,;:)(\u00ab\u00bb\"'")
             if not t: continue
             # End-of-line break: the hyphen follows immediately.
-            coupe = s[b+1:fin].strip() == '-'
-            morceaux.append((t, coupe))
+            cut = s[b+1:end_].strip() == '-'
+            morceaux.append((t, cut))
     out=[]; i=0
     while i < len(morceaux):
-        t,coupe = morceaux[i]
-        while coupe and i+1 < len(morceaux):
+        t,cut = morceaux[i]
+        while cut and i+1 < len(morceaux):
             i += 1
             t = t + morceaux[i][0]
-            coupe = morceaux[i][1]
+            cut = morceaux[i][1]
         out.append(t); i += 1
     # The headword is underlined like the rest: it teaches nothing here.
     v=(e.get('vedetto') or '').lower().lstrip('*+')
@@ -467,16 +467,16 @@ def sublineajoj(e):
     return res
 
 _FIN=("ar","ir","or","as","is","os","us","o","a","e","i")
-def _atteste(w, lexique):
+def _atteste(w, lexicon):
     """Is the word, or its root once the grammatical ending is off, a headword?"""
-    if not lexique or not w: return False
+    if not lexicon or not w: return False
     w=w.lower()
-    if w in lexique: return True
+    if w in lexicon: return True
     for f in _FIN:
-        if w.endswith(f) and len(w)-len(f)>=2 and w[:-len(f)] in lexique: return True
+        if w.endswith(f) and len(w)-len(f)>=2 and w[:-len(f)] in lexicon: return True
     return False
 
-def recoller(lignes, lexique=None):
+def reglue(lines, lexicon=None):
     """Reglues an article's lines, giving back the words broken at the line end.
 
     The typescript breaks words at the right edge: « por rezis- » then « tar ».
@@ -492,16 +492,16 @@ def recoller(lignes, lexique=None):
     lexical judgement of the first wave found almost nothing else.
     """
     out=""
-    for i,s in enumerate(lignes):
+    for i,s in enumerate(lines):
         s=s.strip()
         if not out: out=s; continue
         if out.endswith('-') and s[:1].islower() and out[:-1][-1:].isalpha():
-            gauche=re.split(r'[^A-Za-z’\'-]', out[:-1])[-1]
-            droite=re.split(r'[^A-Za-z’\'-]', s)[0]
-            if _atteste(gauche+droite, lexique):
+            left_=re.split(r'[^A-Za-z’\'-]', out[:-1])[-1]
+            right_=re.split(r'[^A-Za-z’\'-]', s)[0]
+            if _atteste(left_+right_, lexicon):
                 out=out[:-1]+s          # the reglued word exists: it was a hyphenation
-            elif (lexique and _atteste(gauche, lexique)
-                          and _atteste(droite, lexique)):
+            elif (lexicon and _atteste(left_, lexicon)
+                          and _atteste(right_, lexicon)):
                 out=out+s               # two attested words: a compound, we keep the hyphen
             else:
                 out=out[:-1]+s          # in doubt, hyphenation is the ordinary case
@@ -525,7 +525,7 @@ RE_DIVIDO = re.compile(r'[-–]\s*([A-Za-z]{1,12})\.\s+'
                        r'|["\u00ab]\s*[+*]?[a-zà-ÿ]))')
 
 _DIVIDI=None
-def _dividi(fichier=f"{T}/dividi.txt"):
+def _dividi(file_=f"{T}/dividi.txt"):
     """Cuts surveyed by eye: image:line -> the string to cut at.
 
     The automatic location relies on the language code that ends each article.
@@ -538,8 +538,8 @@ def _dividi(fichier=f"{T}/dividi.txt"):
     global _DIVIDI
     if _DIVIDI is None:
         _DIVIDI={}
-        if os.path.exists(fichier):
-            for l in open(fichier,encoding='utf-8'):
+        if os.path.exists(file_):
+            for l in open(file_,encoding='utf-8'):
                 l=l.rstrip("\n")
                 if not l.strip() or l.startswith("#"): continue
                 p=l.split("\t")
@@ -548,13 +548,13 @@ def _dividi(fichier=f"{T}/dividi.txt"):
     return _DIVIDI
 
 
-def dividar(brut, lexique=None):
+def dividar(raw, lexicon=None):
     """Splits the entries that contain two. Returns the widened list."""
     out=[]
-    for e in brut:
+    for e in raw:
         t = e.get('teksto_brut')
         if t is None:
-            t = re.sub(r'\s+',' ',recoller([s for _,s in e['lineoj']], lexique)).strip()
+            t = re.sub(r'\s+',' ',reglue([s for _,s in e['lineoj']], lexicon)).strip()
             # The correction layer for the raw text must be applied BEFORE the
             # cutting: it is that layer which restores the full stop of the language
             # code, on which the cut relies (« - DEFIR. shut! »).
@@ -570,7 +570,7 @@ def dividar(brut, lexique=None):
             out.append(f)
             t=t[j:].strip()
         while True:
-            coupe=None
+            cut=None
             for m in RE_DIVIDO.finditer(t):
                 j=m.group(1)
                 # « - II. » is not a code but a number of sense: read as
@@ -584,12 +584,12 @@ def dividar(brut, lexique=None):
                 # the isolated Latin name, shorter still.
                 if len(t)-m.end() < 18: continue
                 if _lire_code(j):
-                    coupe=m; break
-            if not coupe: break
-            f=dict(e); f['teksto_brut']=t[:coupe.end()].strip()
+                    cut=m; break
+            if not cut: break
+            f=dict(e); f['teksto_brut']=t[:cut.end()].strip()
             f['drapeli_pre']=['artiklo-dividita']
             out.append(f)
-            t=t[coupe.end():].strip()
+            t=t[cut.end():].strip()
         f=dict(e); f['teksto_brut']=t
         if out and out[-1].get('image')==e.get('image') and out[-1].get('ligno')==e.get('ligno'):
             f['drapeli_pre']=['artiklo-dividita']
@@ -597,7 +597,7 @@ def dividar(brut, lexique=None):
     return out
 
 _TEXTI=None
-def _texti(fichier=f"{T}/texti.txt"):
+def _texti(file_=f"{T}/texti.txt"):
     """Corrections to the RAW TEXT, before any analysis.
 
     Some faults must be repaired before the language code, the domain and the
@@ -610,8 +610,8 @@ def _texti(fichier=f"{T}/texti.txt"):
     global _TEXTI
     if _TEXTI is None:
         _TEXTI={}
-        if os.path.exists(fichier):
-            for l in open(fichier,encoding='utf-8'):
+        if os.path.exists(file_):
+            for l in open(file_,encoding='utf-8'):
                 l=l.rstrip("\n")
                 if not l.strip() or l.startswith("#"): continue
                 p=l.split("\t")
@@ -692,17 +692,17 @@ def minuskligi(f):
     nouns and the chemical formulae, recognised by their figure."""
     if not f or not f[0].isupper():
         return f
-    unua = f.split()[0].rstrip('.,)')
+    first = f.split()[0].rstrip('.,)')
     # A chemical symbol -- « M », « M' », « Na » -- is not a domain:
     # « (M : natro, o kalio...) », in the formula for alum, says what the
     # letter M stands for. A domain of the book is a word, not a letter.
-    if len(unua.rstrip("'")) <= 2 and unua.rstrip("'").isupper():
+    if len(first.rstrip("'")) <= 2 and first.rstrip("'").isupper():
         return f
     # A proper noun can carry a tail: « Roentgen-radii » is not
     # « Roentgen » for the test, and the X-rays of radiografar came out
     # « roentgen-radii ». We ask about what precedes the hyphen as well.
-    if (unua in PROPRA or unua.split('-')[0] in PROPRA
-            or re.search(r'[\d\u2080-\u2089]', unua)):
+    if (first in PROPRA or first.split('-')[0] in PROPRA
+            or re.search(r'[\d\u2080-\u2089]', first)):
         return f
     # The figure may arrive only at the NEXT word, and the first symbol be
     # neither a lone capital nor a proper noun: « (Si O3)2n », the silicon of
@@ -859,22 +859,22 @@ def uniformigar(f):
         return f
     out=[]
     for part in f.split(') ('):
-        bouts=RE_KOMPONO.split(part)
-        for i in range(0, len(bouts), 2):
-            b=bouts[i].strip()
+        ends=RE_KOMPONO.split(part)
+        for i in range(0, len(ends), 2):
+            b=ends[i].strip()
             # The form sought is sought but for punctuation and case:
             # « Medicino », « kem » without its full stop and « kem. » are the same word.
             r=DOMENI_UNIFORMA.get(b) or DOMENI_PLATA.get(_plata(b))
             if r:
-                bouts[i]=bouts[i].replace(b, r)
+                ends[i]=ends[i].replace(b, r)
             # The comma that separates two domains takes its space, like the four
             # hundred others: « (netrans.,an) » is written « (netrans., an) ».
             # Except between two figures: « (en Paris = 1,18 metro) », under « ulno »,
             # carries a decimal and not an enumeration.
-            if (i+1 < len(bouts) and not re.search(r'\d', bouts[i])
-                    and not re.search(r'\d', bouts[i+2])):
-                bouts[i+1]=', ' if ',' in bouts[i+1] else ' e '
-        out.append(''.join(bouts))
+            if (i+1 < len(ends) and not re.search(r'\d', ends[i])
+                    and not re.search(r'\d', ends[i+2])):
+                ends[i+1]=', ' if ',' in ends[i+1] else ' e '
+        out.append(''.join(ends))
     return ') ('.join(out)
 
 
@@ -932,10 +932,10 @@ def _tondar_fino(s):
     return s[:m.start() + d[-1].end()] if d else s[:m.start()]
 
 
-def analizar(e, lexique=None):
+def analizar(e, lexicon=None):
     t=e.get('teksto_brut')
     if t is None:
-        t=recoller([s for _,s in e['lineoj']], lexique)
+        t=reglue([s for _,s in e['lineoj']], lexicon)
     t=re.sub(r'\s+',' ',t).strip()
     for a,b in _texti().items():
         # Idempotence: the layer passes once at the cutting and once at the
@@ -1014,7 +1014,7 @@ def analizar(e, lexique=None):
                 r'(?: [A-Za-zÀ-ÿ][A-Za-zÀ-ÿ\'’-]*){0,2})["\u201d]'
                 r'\s*(?:\.|(?=\s*[A-ZÀ-Ý(]))', t)
     if mq:
-        e['vedetto']=mq.group(1); m=None; resto=t[mq.end():].strip()
+        e['vedetto']=mq.group(1); m=None; rest=t[mq.end():].strip()
     else:
         # The asterisk as much as the cross: the mark of the unofficial word is
         # already rendered above when it touches its word -- « +si » becomes
@@ -1023,7 +1023,7 @@ def analizar(e, lexique=None):
         m=re.match(r'^([+*]?-?["\u201c]?[A-Za-zÀ-ÿ][A-Za-zÀ-ÿ"’\'\u201d-]*)\s*\.?', t)
         e['vedetto']= (m.group(1).strip('.').strip('"\u201c\u201d')
                        .replace('+','*',1)) if m else ""
-        resto = t[m.end():].strip() if m else t
+        rest = t[m.end():].strip() if m else t
     # The noise that sometimes follows the code -- « - DEFIRS. --- » -- kept it
     # from anchoring at the end of the string, and the entry passed for
     # « sen-lingua ».
@@ -1033,14 +1033,14 @@ def analizar(e, lexique=None):
     # « por ». The sweep carried them off, except where a closing quotation mark
     # protected them (« qua tendencas a... »). We therefore keep the sweep's last
     # group of dots and remove only what follows it.
-    resto = _tondar_fino(resto)
+    rest = _tondar_fino(rest)
     e['lingui']=[]; e['kodo']=None
-    me = RE_EPELE.search(resto)
+    me = RE_EPELE.search(rest)
     if me:
-        noms=[EPELE.get(x.strip(' .')) for x in me.group(1).split(',')]
-        if all(noms):
-            e['lingui']=noms; e['kodo']=me.group(1).strip()
-            resto = _kupar(resto[:me.start()])
+        names=[EPELE.get(x.strip(' .')) for x in me.group(1).split(',')]
+        if all(names):
+            e['lingui']=names; e['kodo']=me.group(1).strip()
+            rest = _kupar(rest[:me.start()])
     # The code is not always preceded by a hyphen. It sticks to the full stop
     # (« agar lo.DEFIS. »), to the closing parenthesis (« (anke metaf.)DEFIRS »),
     # but also to an OPENING parenthesis left open (« ...alambiko. (DEFIRS »), to
@@ -1057,19 +1057,19 @@ def analizar(e, lexique=None):
     remarko = ''
     if not e['kodo']:
         mr = re.match(r'^(.*?[-–]\s*[A-Za-z]{1,12}\s*\.)\s*(\(.{6,}\))\s*$',
-                      resto, re.S)
+                      rest, re.S)
         if mr and _lire_code(re.search(r'([A-Za-z]{1,12})\s*\.$', mr.group(1)).group(1)):
             # The final full stop must fall: the search for the code requires
             # letters at the very end of the string.
-            resto, remarko = mr.group(1).rstrip(' .'), mr.group(2)
-    mj = None if e['kodo'] else re.search(r'(?:[-–.,()*]|\s|^)\s*([A-Za-z]{1,12})$', resto)
+            rest, remarko = mr.group(1).rstrip(' .'), mr.group(2)
+    mj = None if e['kodo'] else re.search(r'(?:[-–.,()*]|\s|^)\s*([A-Za-z]{1,12})$', rest)
     if mj:
         li=_lire_code(mj.group(1))
         if li:
             e['lingui']=li; e['kodo']=mj.group(1)
-            resto = _kupar(resto[:mj.start()])
+            rest = _kupar(rest[:mj.start()])
     if remarko:
-        resto = (resto.rstrip(' -–.') + '. ' + remarko) if resto else remarko
+        rest = (rest.rstrip(' -–.') + '. ' + remarko) if rest else remarko
     # The language code that is NOT at the end. The author has sometimes laid it
     # after a first sense and gone on -- « cilio. (anat.) Pilo... - F. (bot.)
     # Sorto di pilo... - F. » -- or the typing left a cinder behind it: « - DE. s
@@ -1085,42 +1085,42 @@ def analizar(e, lexique=None):
     # When what follows opens a sense -- a domain in parentheses, or a hyphen
     # followed by a capital -- the cut is made there: the code marked the end of a
     # sense. We note it with a sign the cutting will read.
-    mi = re.search(r'\s*[-–]\s*([A-Z][A-Zl]{0,11})\.?\s+(?=\S)', resto)
+    mi = re.search(r'\s*[-–]\s*([A-Z][A-Zl]{0,11})\.?\s+(?=\S)', rest)
     li = _lire_code(mi.group(1)) if mi and mi.group(1) != 'L' else None
     if li and (not e['kodo'] or e['kodo'].upper() == mi.group(1).upper()):
         if not e['kodo']:
             e['lingui']=li; e['kodo']=mi.group(1)
-        gauche = resto[:mi.start()]; droite = resto[mi.end():].lstrip()
-        mq = re.match(r'\(([a-zà-ÿ]{2,12})\.?\)', droite)
-        if (mq and mq.group(1) in MALLONGIGI) or re.match(r'[-–]\s*[A-ZÀ-Ý]', droite):
-            resto = gauche.rstrip(' -–.,;:') + KUPO + droite
-        elif re.search(r'[.!?)]\s*$', gauche):
-            resto = gauche.rstrip(' -–.,;:') + '. ' + droite
+        left_ = rest[:mi.start()]; right_ = rest[mi.end():].lstrip()
+        mq = re.match(r'\(([a-zà-ÿ]{2,12})\.?\)', right_)
+        if (mq and mq.group(1) in MALLONGIGI) or re.match(r'[-–]\s*[A-ZÀ-Ý]', right_):
+            rest = left_.rstrip(' -–.,;:') + KUPO + right_
+        elif re.search(r'[.!?)]\s*$', left_):
+            rest = left_.rstrip(' -–.,;:') + '. ' + right_
         else:
-            resto = gauche.rstrip() + ' ' + droite
+            rest = left_.rstrip() + ' ' + right_
     # The number of a sense hanging at the end of the article, with nothing after
     # it: « forsan. Adverbo qua signifikas "..." - II. » -- the typist announced a
     # second sense she did not type. Alone, the number says nothing, and the
     # edition sets aside its like in the middle of the text already. We require
     # the hyphen that announces it, so as not to trim « la rejo Francisko I ».
-    resto = re.sub(r'[.;,]?\s*[-–]\s*(?:I{1,3}|IV|VI{0,3}|IX|X)\.?$', '', resto)
-    resto = resto.lstrip(' -–.,;:')
+    rest = re.sub(r'[.;,]?\s*[-–]\s*(?:I{1,3}|IV|VI{0,3}|IX|X)\.?$', '', rest)
+    rest = rest.lstrip(' -–.,;:')
     # « ed. (Videz "e"). »: the parenthesis carries a CROSS-REFERENCE, not a
     # domain. Taken for a domain, it left the article with no definition at all.
-    mf=None if re.match(r'^\(\s*(?:Videz|videz|Vid\.)\b', resto) else (
-        RE_FAKO.match(resto) or RE_FAKO2.match(resto))
+    mf=None if re.match(r'^\(\s*(?:Videz|videz|Vid\.)\b', rest) else (
+        RE_FAKO.match(rest) or RE_FAKO2.match(rest))
     # The domain often carries stray punctuation, inherited from the typing:
     # « zool, », « .trans », « patol, ». And it can contain a date, whose figures
     # are to be straightened as elsewhere -- « olim, ante l9l5 ».
     e['fako']= uniformigar(minuskligi(pointi(cifri(mf.group(1).strip(' .,;:'))))) if mf else None
     if e['fako']: e['fako']=formuli(e['fako'])
-    if mf: resto = resto[mf.end():]
+    if mf: rest = rest[mf.end():]
     # Two parentheses in a row: the second qualifies the first and not the
     # sense. « pensar. (trans. e netrans.) (ulo, ad ulo, pri ulu od ulo) » --
     # the government belongs to the marker of transitivity, not to the
     # definition, which therefore began with an orphaned parenthesis.
     if e['fako']:
-        m2 = re.match(r'^[\s.,;:\u2013-]*\(([^()]{1,40})\)\s*\.?\s*(?=[-\u2013]?\s*(?:[IVX]{1,4}\.|[A-Z\u00c0-\u00dd]))', resto)
+        m2 = re.match(r'^[\s.,;:\u2013-]*\(([^()]{1,40})\)\s*\.?\s*(?=[-\u2013]?\s*(?:[IVX]{1,4}\.|[A-Z\u00c0-\u00dd]))', rest)
         if m2:
             # The second parenthesis is a piece of information of the same nature as
             # the first, and the same treatment is due to it: initial lower case,
@@ -1129,8 +1129,8 @@ def analizar(e, lexique=None):
             # « (trans.) (tekn) », « (netrans.) (patol) », « (netrans.) (Kemio) ».
             dua = uniformigar(minuskligi(pointi(cifri(m2.group(1).strip(' .,;:')))))
             e['fako'] = "%s) (%s" % (e['fako'], dua)
-            resto = resto[m2.end():]
-    resto = resto.lstrip(' -–.,;:')
+            rest = rest[m2.end():]
+    rest = rest.lstrip(' -–.,;:')
     # Elision: « ka(d) », « on(u) », « a(d) ». The letter in parentheses belongs
     # to the word -- it is added only before a vowel. It was read as a domain, and
     # displayed apart from the headword, in another colour.
@@ -1141,15 +1141,15 @@ def analizar(e, lexique=None):
     # an elided letter.
     # Interjection: the exclamation mark belongs to the word, not to the
     # definition. « he » reads « he! », and its definition begins after it.
-    if resto.startswith('!') and e['vedetto'] and len(e['vedetto'].lstrip('*')) <= 6:
+    if rest.startswith('!') and e['vedetto'] and len(e['vedetto'].lstrip('*')) <= 6:
         e['vedetto'] = e['vedetto'] + '!'
-        resto = resto[1:].lstrip(' -–.,;:')
+        rest = rest[1:].lstrip(' -–.,;:')
     if (e['fako'] and len(e['fako'])==1 and e['fako'].isalpha()
             and e['vedetto'] and len(e['vedetto'].lstrip('*')) <= 3):
         e['vedetto'] = "%s(%s)" % (e['vedetto'], e['fako'])
         e['fako'] = None
-    e['latina']= [x.strip(' .') for x in RE_LATINA.findall(resto)]
-    resto = RE_LATINA.sub('', resto).strip(' -–')
+    e['latina']= [x.strip(' .') for x in RE_LATINA.findall(rest)]
+    rest = RE_LATINA.sub('', rest).strip(' -–')
     # A name surveyed by eye prevails: the machine cannot know that
     # « capparia spi nosa » is « capparia spinosa », neither of the two pieces
     # being a Latin word.
@@ -1179,9 +1179,9 @@ def analizar(e, lexique=None):
             and re.search(r'[0-9\u2080-\u2089]', e['fako'])):
         e['simbolo'] = e['fako'].strip()
         e['fako'] = None
-    senci=[_kupar(x.lstrip(' -–.,;:')) for m in resto.split(KUPO)
+    senses=[_kupar(x.lstrip(' -–.,;:')) for m in rest.split(KUPO)
            for x in RE_SENCO.split(m) if x.strip(' -–.,;:')]
-    e['senci']= senci if senci else ([resto] if resto else [])
+    e['senci']= senses if senses else ([rest] if rest else [])
     # The numbering in parentheses whose « (1) » went to the domain: we cut in
     # the place of the numbers that remain (see RE_ORFA_NUM).
     S=[]
@@ -1388,14 +1388,14 @@ def drapeli_ordino(ent):
     v=[_klavo_ordino(e.get('vedetto') or '') for e in ent]
     r=[_klavo_radiko(e.get('vedetto') or '') for e in ent]
     d=[_klavo_radikalo(e.get('vedetto') or '') for e in ent]
-    unua={}
-    for e in ent: unua.setdefault(e.get('image'), id(e))
+    first={}
+    for e in ent: first.setdefault(e.get('image'), id(e))
     n=0
     for i in range(1, len(v)):
         if not (v[i] and v[i-1] and r[i] and r[i-1] and d[i] and d[i-1]): continue
         if v[i] >= v[i-1] or r[i] >= r[i-1] or d[i] >= d[i-1]: continue
         if (ent[i].get('image') in KOMENCO_DE_SEKCIONO
-                and unua.get(ent[i].get('image')) == id(ent[i])): continue
+                and first.get(ent[i].get('image')) == id(ent[i])): continue
         # The four Latin phrases -- « a posteriori », « ex libris » -- are filed now
         # as one word, « aposteriori » between « apostata » and « apostemo », now as
         # two, « ex libris » before « exajerar ». The book does not say which of the
@@ -1496,7 +1496,7 @@ def _radiko(m):
     return m
 
 
-def _citas_vedeton(loko, vedetto):
+def _citas_vedeton(spot, vedetto):
     """Does the phrase take up the article's word?
 
     Within a parenthesis, the colon also introduces the GLOSS, which is not a
@@ -1516,7 +1516,7 @@ def _citas_vedeton(loko, vedetto):
     # -anta passes there for a participle it is not -- where « konstanto »
     # returns « konstant ». Requiring equality separated the two; the prefix
     # reunites them, without for all that bringing « nun » near « moloso ».
-    for w in loko.split():
+    for w in spot.split():
         u=_radiko(w)
         if len(u) < 4: continue
         if u == r or u.startswith(r) or r.startswith(u): return True
@@ -1592,8 +1592,8 @@ def marki(t, motifs, pozitaj=()):
     # The italics laid by eye: the context gives the place, the braces say what
     # takes it. They pass BEFORE the rules, which must not re-cut a passage
     # already bounded.
-    for kun, sp in pozitaj:
-        i=t.find(kun)
+    for with_, sp in pozitaj:
+        i=t.find(with_)
         if i < 0: continue
         for a,b in sp: spans.append((i+a, i+b))
     for u in sorted(motifs, key=len, reverse=True):
@@ -1601,10 +1601,10 @@ def marki(t, motifs, pozitaj=()):
             if any(not (m.end() <= a or m.start() >= b) for a,b in spans): continue
             spans.append((m.start(), m.end()))
     if not spans: return t
-    out=[]; prec=0
+    out=[]; preceding=0
     for a,b in sorted(spans):
-        out.append(t[prec:a]); out.append(KOMENCO+t[a:b]+FINO); prec=b
-    out.append(t[prec:])
+        out.append(t[preceding:a]); out.append(KOMENCO+t[a:b]+FINO); preceding=b
+    out.append(t[preceding:])
     return "".join(out)
 
 
@@ -1675,14 +1675,14 @@ LONGO_SIMBOLO = 40
 _SIMBOLI = None
 
 
-def simboli_manuala(fichier=f"{T}/simboli.txt"):
+def simboli_manuala(file_=f"{T}/simboli.txt"):
     """The symbols surveyed by eye on the facsimile, where the decoding lost
     them. The same key as subvorti.txt: vedetto@image:ligno."""
     global _SIMBOLI
     if _SIMBOLI is None:
         _SIMBOLI = {}
-        if os.path.exists(fichier):
-            for l in open(fichier, encoding='utf-8'):
+        if os.path.exists(file_):
+            for l in open(file_, encoding='utf-8'):
                 l = l.rstrip("\n")
                 if not l.strip() or l.startswith('#'):
                     continue
@@ -1695,13 +1695,13 @@ def simboli_manuala(fichier=f"{T}/simboli.txt"):
 _LATINAJI = None
 
 
-def latinaji_manuala(fichier=f"{T}/latinaji.txt"):
+def latinaji_manuala(file_=f"{T}/latinaji.txt"):
     """The scientific names put right by eye. The same key as simboli.txt."""
     global _LATINAJI
     if _LATINAJI is None:
         _LATINAJI = {}
-        if os.path.exists(fichier):
-            for l in open(fichier, encoding='utf-8'):
+        if os.path.exists(file_):
+            for l in open(file_, encoding='utf-8'):
                 l = l.rstrip("\n")
                 if not l.strip() or l.startswith('#'):
                     continue
@@ -1760,10 +1760,10 @@ def latinaji_enteksta(e):
     nova = []
     for t in (e.get('senci') or []):
             for m in RE_LATINA_ENTEKSTA.finditer(t):
-                avan = t[max(0, m.start() - 14):m.start()]
-                if re.search(r'ex\.\s*:?\s*$', avan):
+                ahead = t[max(0, m.start() - 14):m.start()]
+                if re.search(r'ex\.\s*:?\s*$', ahead):
                     continue
-                if re.search(r'(?<![A-Za-zÀ-ÿ])en\s+$', avan):
+                if re.search(r'(?<![A-Za-zÀ-ÿ])en\s+$', ahead):
                     continue
                 nova += [g for g in (m.group(1), m.group(2)) if g]
     if not nova:
@@ -1785,7 +1785,7 @@ def apartigar_simbolon(e):
     article keeps its text as it stands -- a label without a symbol says
     nothing, but erasing it would erase the trace of the lack as well.
     """
-    man = simboli_manuala().get("%s@%d:%d" % (e.get('vedetto'),
+    missing_ = simboli_manuala().get("%s@%d:%d" % (e.get('vedetto'),
                                               e.get('image', -1),
                                               e.get('ligno', -1)))
     S = e.get('senci') or []
@@ -1793,24 +1793,24 @@ def apartigar_simbolon(e):
         m = RE_SIMBOLO.search(t)
         if not m:
             continue
-        resto = t[m.end():]
+        rest = t[m.end():]
         if m.group(1):
             # The label as an aside -- « ..., (simbolo kemiala : Ir) quan onu
             # renkontras... »: it stops at its parenthesis, and the sentence takes up
             # again after it.
-            j = resto.find(')')
-            sim, suite = (resto[:j], resto[j+1:]) if j >= 0 else (resto, '')
+            j = rest.find(')')
+            sim, suite = (rest[:j], rest[j+1:]) if j >= 0 else (rest, '')
         else:
-            sim, suite = resto, ''
+            sim, suite = rest, ''
         sim = sim.strip(' .,;:')
         # A contaminated text will not be cut: under « ruteno » the following
         # article merged into its own, and what follows the label is not a symbol
         # but whole lines. We do not touch it, even to lay a reading made by eye.
         if len(sim) > LONGO_SIMBOLO:
             continue
-        if not sim and not man:
+        if not sim and not missing_:
             continue
-        e['simbolo'] = man or sim
+        e['simbolo'] = missing_ or sim
         S[k] = espacar((t[:m.start()] + ' ' + suite).strip(' .,;:–-'))
         _kodo_ne_simbolo(e)
         return 1
@@ -1818,8 +1818,8 @@ def apartigar_simbolon(e):
     # or an earlier pass has already taken it out. A reading made by eye is laid
     # there all the same, and corrects if need be a symbol the decoding had read
     # only by halves -- « Ca » for « Ca F² ».
-    if man and e.get('simbolo') != man:
-        e['simbolo'] = man
+    if missing_ and e.get('simbolo') != missing_:
+        e['simbolo'] = missing_
         _kodo_ne_simbolo(e)
         return 1
     _kodo_ne_simbolo(e)
@@ -1829,7 +1829,7 @@ def apartigar_simbolon(e):
 _FILETOJ = None
 
 
-def filetoj_ekartita(fichier=f"{T}/filetoj.txt"):
+def filetoj_ekartita(file_=f"{T}/filetoj.txt"):
     """The surveyed rules the eye sets aside: vedetto@image:ligno -> fragments.
 
     The survey also takes what is not an intention -- the stroke of a
@@ -1841,8 +1841,8 @@ def filetoj_ekartita(fichier=f"{T}/filetoj.txt"):
     global _FILETOJ
     if _FILETOJ is None:
         _FILETOJ = {}
-        if os.path.exists(fichier):
-            with open(fichier, encoding='utf-8') as h:
+        if os.path.exists(file_):
+            with open(file_, encoding='utf-8') as h:
                 for l in h:
                     if l.startswith('#') or not l.strip():
                         continue
@@ -1859,7 +1859,7 @@ def filetoj_ekartita(fichier=f"{T}/filetoj.txt"):
 _RENDITAJ = None
 
 
-def filetoj_rendita(fichier=f"{T}/filetoj.txt"):
+def filetoj_rendita(file_=f"{T}/filetoj.txt"):
     """The rules GIVEN BACK to the survey: vedetto@image:ligno -> fragments.
 
     The stroke was there, the survey did not see it. Given back here, it takes
@@ -1873,8 +1873,8 @@ def filetoj_rendita(fichier=f"{T}/filetoj.txt"):
     global _RENDITAJ
     if _RENDITAJ is None:
         _RENDITAJ = {}
-        if os.path.exists(fichier):
-            with open(fichier, encoding='utf-8') as h:
+        if os.path.exists(file_):
+            with open(file_, encoding='utf-8') as h:
                 for l in h:
                     if l.startswith('#') or not l.strip():
                         continue
@@ -1890,7 +1890,7 @@ def filetoj_rendita(fichier=f"{T}/filetoj.txt"):
 _POZITAJ = None
 
 
-def filetoj_pozita(fichier=f"{T}/filetoj.txt"):
+def filetoj_pozita(file_=f"{T}/filetoj.txt"):
     """The italics laid BY EYE: vedetto@image:ligno -> (context, spans).
 
     The author sets in italic the word he QUOTES. When the survey of the rule
@@ -1906,25 +1906,25 @@ def filetoj_pozita(fichier=f"{T}/filetoj.txt"):
     global _POZITAJ
     if _POZITAJ is None:
         _POZITAJ = {}
-        if os.path.exists(fichier):
-            with open(fichier, encoding='utf-8') as h:
+        if os.path.exists(file_):
+            with open(file_, encoding='utf-8') as h:
                 for l in h:
                     if l.startswith('#') or not l.strip():
                         continue
                     q = l.rstrip('\n').split('\t')
                     if len(q) < 2 or '{' not in q[1]:
                         continue
-                    brut = q[1].strip(); kun = ''; spans = []; deb = None
-                    for c in brut:
+                    raw = q[1].strip(); with_ = ''; spans = []; beg = None
+                    for c in raw:
                         if c == '{':
-                            deb = len(kun)
+                            beg = len(with_)
                         elif c == '}':
-                            if deb is not None: spans.append((deb, len(kun)))
-                            deb = None
+                            if beg is not None: spans.append((beg, len(with_)))
+                            beg = None
                         else:
-                            kun += c
-                    if kun and spans:
-                        _POZITAJ.setdefault(q[0].strip(), []).append((kun, spans))
+                            with_ += c
+                    if with_ and spans:
+                        _POZITAJ.setdefault(q[0].strip(), []).append((with_, spans))
     return _POZITAJ
 
 
@@ -1957,7 +1957,7 @@ def _rekolar(subl, textoj):
     return out
 
 
-def _filet_sen_vedeto(loko, u, vedetto):
+def _filet_sen_vedeto(spot, u, vedetto):
     """The rule has lost its first word, and that word was THE HEADWORD.
 
     The survey returns the rules line by line. When the typist underlines a
@@ -1978,11 +1978,11 @@ def _filet_sen_vedeto(loko, u, vedetto):
     Testamento ». Over the whole dictionary the rule raises three phrases:
     « Licenco poeziala », « Puteo arteza », « Tribono di la plebeyi ».
     """
-    pl = loko.split(); pu = u.split()
+    pl = spot.split(); pu = u.split()
     if len(pl) != len(pu) + 1:
         return False
-    net = lambda w: w.lower().strip('.,;:')
-    if [net(w) for w in pl[1:]] != [net(w) for w in pu]:
+    clean_ = lambda w: w.lower().strip('.,;:')
+    if [clean_(w) for w in pl[1:]] != [clean_(w) for w in pu]:
         return False
     return _citas_vedeton(pl[0], vedetto)
 
@@ -2003,18 +2003,18 @@ def strukturizar(e):
                                                 e.get('ligno', -1)), ()):
         if u not in subl: subl.append(u)
     e['sublineita']=subl
-    strukt=[]; n_sub=0
+    struct_=[]; n_sub=0
     for t in (e.get('senci') or []):
-        trov=[]
+        found=[]
         for m in RE_LOKUCO.finditer(t):
-            loko=m.group(1)
-            if not any(_kongruas(loko, u)
-                       or _filet_sen_vedeto(loko, u, e.get('vedetto') or '')
+            spot=m.group(1)
+            if not any(_kongruas(spot, u)
+                       or _filet_sen_vedeto(spot, u, e.get('vedetto') or '')
                        for u in subl): continue
             # See RE_LOKUCO: outside a parenthesis, a phrase that does not open
             # with a capital must be a derivative of the headword.
-            if (loko[:1].islower() and not loko.startswith(('*', '+'))
-                    and not _citas_vedeton(loko, e.get('vedetto') or '')):
+            if (spot[:1].islower() and not spot.startswith(('*', '+'))
+                    and not _citas_vedeton(spot, e.get('vedetto') or '')):
                 continue
             # A single word, with no hyphen, unrelated to the headword: this is
             # not a phrase but a GLOSS -- « moloso. ... – Nun : grosa gardo-hundo »,
@@ -2023,66 +2023,66 @@ def strukturizar(e):
             # one-word phrases are either compounds -- « mar-baseno »,
             # « dento-krono » -- or derivatives of the headword -- « acido » under
             # « acida ».
-            if (len(loko.split()) == 1 and '-' not in loko
-                    and not loko.startswith(('*', '+'))
-                    and not _citas_vedeton(loko, e.get('vedetto') or '')):
+            if (len(spot.split()) == 1 and '-' not in spot
+                    and not spot.startswith(('*', '+'))
+                    and not _citas_vedeton(spot, e.get('vedetto') or '')):
                 continue
-            trov.append((m.start(1), m.end(), loko, None))
-        pris={x[0] for x in trov}
+            found.append((m.start(1), m.end(), spot, None))
+        taken={x[0] for x in found}
         for m in RE_LOKUCO_KRAMPA.finditer(t):
-            loko=m.group(1)
-            if m.start(1) in pris: continue
-            if not any(_kongruas(loko, u) for u in subl): continue
-            if not (loko[:1].isupper()
-                    or _citas_vedeton(loko, e.get('vedetto') or '')): continue
-            trov.append((m.start(1), m.end(), loko, (m.start(), _fermo(t, m.start()))))
+            spot=m.group(1)
+            if m.start(1) in taken: continue
+            if not any(_kongruas(spot, u) for u in subl): continue
+            if not (spot[:1].isupper()
+                    or _citas_vedeton(spot, e.get('vedetto') or '')): continue
+            found.append((m.start(1), m.end(), spot, (m.start(), _fermo(t, m.start()))))
         for m in RE_SUBARTIKLO.finditer(t):
-            loko=m.group(1)
-            if m.start(1) in pris or any(x[0] == m.start(1) for x in trov): continue
-            if not any(_kongruas(loko.lstrip('*'), u) for u in subl): continue
-            trov.append((m.start(1), m.end(), loko, (m.start(), _fermo(t, m.start()))))
-        trov.sort()
-        if not trov:
-            strukt.append({"teksto": t, "sub": []}); continue
+            spot=m.group(1)
+            if m.start(1) in taken or any(x[0] == m.start(1) for x in found): continue
+            if not any(_kongruas(spot.lstrip('*'), u) for u in subl): continue
+            found.append((m.start(1), m.end(), spot, (m.start(), _fermo(t, m.start()))))
+        found.sort()
+        if not found:
+            struct_.append({"teksto": t, "sub": []}); continue
         # A phrase in parentheses begins at its OPENING parenthesis: the sign
         # belongs to the phrase, not to the text before it.
-        deb=[x[3][0] if x[3] else x[0] for x in trov]
+        beg=[x[3][0] if x[3] else x[0] for x in found]
         sub=[]; suite=[]
-        for i,(a,apres,loko,kr) in enumerate(trov):
-            fin=deb[i+1] if i+1 < len(trov) else len(t)
-            if kr and kr[1] is not None and kr[1] < fin:
+        for i,(a,after_,spot,kr) in enumerate(found):
+            end_=beg[i+1] if i+1 < len(found) else len(t)
+            if kr and kr[1] is not None and kr[1] < end_:
                 # The sub-entry stops at the parenthesis that closes it. What follows
                 # takes up the sentence of the sense -- « (en vehilo publika : ...) La
                 # komizo di qua la rolo... » -- and therefore goes back to the body.
-                suite.append(t[kr[1]+1:fin]); fin=kr[1]
-            sub.append({"loko": loko, "fako": "", "teksto": t[apres:fin].strip()})
-        tete=t[:deb[0]]
+                suite.append(t[kr[1]+1:end_]); end_=kr[1]
+            sub.append({"loko": spot, "fako": "", "teksto": t[after_:end_].strip()})
+        head=t[:beg[0]]
         # The qualifier goes with the phrase that follows, not with the sense before.
         for i in range(len(sub)):
-            src = tete if i == 0 else sub[i-1]["teksto"]
+            src = head if i == 0 else sub[i-1]["teksto"]
             m=RE_KVAL.search(src)
             if m:
                 q=m.group(0).strip(" -\u2013")
                 src=src[:m.start()]
                 sub[i]["fako"]=q
-                if i == 0: tete=src
+                if i == 0: head=src
                 else: sub[i-1]["teksto"]=src.rstrip(" -\u2013,;")
         # An enumeration number left alone at the head: it opens the first
         # sub-entry rather than make an empty sense.
-        tete=tete.strip(" -\u2013;,")
-        m=RE_NUMERO.match(tete.strip()) if tete else None
-        if m and len(tete.strip()) <= 3:
-            sub[0]["fako"]=(tete.strip()+" "+sub[0]["fako"]).strip(); tete=""
+        head=head.strip(" -\u2013;,")
+        m=RE_NUMERO.match(head.strip()) if head else None
+        if m and len(head.strip()) <= 3:
+            sub[0]["fako"]=(head.strip()+" "+sub[0]["fako"]).strip(); head=""
         # The text that followed the parenthesis is reglued to the body of the
         # sense, the parenthesis off. We do it LAST: the leading qualifier and the
         # enumeration number are read at the end of the text that PRECEDES, and a
         # resumption glued before them would have hidden them.
         if suite:
-            tete=espacar(re.sub(r'\s+', ' ',
-                                (tete + " " + " ".join(suite))).strip())
+            head=espacar(re.sub(r'\s+', ' ',
+                                (head + " " + " ".join(suite))).strip())
         n_sub += len(sub)
-        strukt.append({"teksto": tete, "sub": sub})
-    for b in strukt:
+        struct_.append({"teksto": head, "sub": sub})
+    for b in struct_:
         b['teksto']=majuskla_komenco(b['teksto'])
         for x in b['sub']:
             x['loko']=minuskla_lokuco(x['loko'])
@@ -2101,10 +2101,10 @@ def strukturizar(e):
             # taken in parentheses in the text -- and that of an attached article --
             # taken in the field -- were not written the same way.
             x['fako']=uniformigar(x['fako'].strip().strip('()').strip())
-    e['strukt']=strukt
+    e['strukt']=struct_
     # What is left underlined without being a phrase: the domain, the Latin
     # name, the quoted word. The edition renders it in italic, where it is found.
-    lok={x["loko"].lower() for b in strukt for x in b["sub"]}
+    lok={x["loko"].lower() for b in struct_ for x in b["sub"]}
     # The DOMAIN's rule, for the same reason as the phrase's: it has already
     # done its work. « (elektro) » has gone to the `fako` field, which both
     # editions render in italic in their own way; the fragment has no business
@@ -2118,16 +2118,16 @@ def strukturizar(e):
     # The safeguard therefore has no false brother.
     fak={(e.get('fako') or '').strip().strip('()').rstrip('.').lower()}
     fak |= {(x.get('fako') or '').strip().strip('()').rstrip('.').lower()
-            for b in strukt for x in b['sub']}
+            for b in struct_ for x in b['sub']}
     fak.discard('')
-    textoj=[b["teksto"] for b in strukt] + [x["teksto"] for b in strukt for x in b["sub"]]
+    textoj=[b["teksto"] for b in struct_] + [x["teksto"] for b in struct_ for x in b["sub"]]
     kur=[]; dub=[]; vu=set()
     for u in subl:
         if u.lower() in lok: continue
         # The truncated rule the phrase was born of: it designates the phrase
         # already, and has no business settling a second time in italic in the body.
         if any(_trovar(u, L) for L in lok): continue
-        pose=False
+        laid=False
         alt=alia_formo(u)
         # The survey is RAW, the text is typeset: the ellipsis has become the
         # single character there, and the affix that follows it has come away from
@@ -2150,9 +2150,9 @@ def strukturizar(e):
                 mq=re.search(r'\((%s[^()]*)\)' % re.escape(u), t, re.I)
                 if mq: alt=mq.group(1); break
         for t in textoj:
-            m=_trovar(u, t); mot=u
+            m=_trovar(u, t); word=u
             if not m and alt:
-                m=_trovar(alt, t); mot=alt
+                m=_trovar(alt, t); word=alt
             if not m: continue
             # The rule often covers only PART of the parenthesis: the typist
             # underlines « aludante persono » but cuts her stroke at the end of the
@@ -2166,18 +2166,18 @@ def strukturizar(e):
             # the text: where it is -- « (bot.) » opening sense II of lotuso,
             # « (fiziol.) » that of sero, « (ica) » quoted by ca -- it keeps its
             # italic; where it no longer is, it has left it with the field.
-            if g is None and mot.strip().rstrip('.').lower() in fak:
+            if g is None and word.strip().rstrip('.').lower() in fak:
                 continue
-            if g is None and (len(mot) < 3 or _nur_motouti(mot)):
+            if g is None and (len(word) < 3 or _nur_motouti(word)):
                 dub.append(u); continue
-            v=g if g else mot
+            v=g if g else word
             if v.lower() not in vu: vu.add(v.lower()); kur.append(v)
-            pose=True
-        if not pose and u not in dub: dub.append(u)
+            laid=True
+        if not laid and u not in dub: dub.append(u)
     e['kursiva']=kur
     _poz=filetoj_pozita().get("%s@%d:%d" % (e.get('vedetto'),
                                             e.get('image', -1), e.get('ligno', -1)), ())
-    for b in strukt:
+    for b in struct_:
         b['teksto_k']=marki(b['teksto'], kur, _poz)
         for x in b['sub']:
             x['teksto_k']=marki(x['teksto'], kur, _poz)
@@ -2195,7 +2195,7 @@ def strukturizar(e):
     # require four letters, so that a short domain -- « per », « pri » -- does
     # not cover any fragment at all.
     fakoj=set()
-    for _f in [(e.get('fako') or '')] + [x['fako'] for b in strukt for x in b['sub']]:
+    for _f in [(e.get('fako') or '')] + [x['fako'] for b in struct_ for x in b['sub']]:
         if not _f: continue
         for _part in _f.split(') ('):
             for _p in RE_KOMPONO.split(_part):
@@ -2212,7 +2212,7 @@ def strukturizar(e):
     # unplaced underline. We therefore accept the PIECE, from four letters up.
     lat={x.lower() for x in (e.get('latina') or [])}
     latp={_plata(x) for x in lat}
-    lokoj=[x['loko'] for b in strukt for x in b['sub']]
+    lokoj=[x['loko'] for b in struct_ for x in b['sub']]
     e['dubinda']=[u for u in dub
                   if not any(_plata(u) and (_plata(u) in f
                                             or (len(f) >= 4 and f in _plata(u)))
@@ -2272,9 +2272,9 @@ def _nur_motouti(u):
     # « e c » -- « e cetera » -- is written in two pieces the second of which is
     # not a word: we admit it whole.
     if u.strip().lower() in MALGRANDA: return True
-    mots=[m.strip('.,;:()«»\'’\u201c\u201d "').lower() for m in u.split()]
-    mots=[m for m in mots if m]
-    return bool(mots) and all(m in MALGRANDA for m in mots)
+    words=[m.strip('.,;:()«»\'’\u201c\u201d "').lower() for m in u.split()]
+    words=[m for m in words if m]
+    return bool(words) and all(m in MALGRANDA for m in words)
 
 
 def _preskau_en(u, f):
@@ -2328,7 +2328,7 @@ def _parentezo(t, a, b):
     if j-i > 70: return None
     return t[i:j+1]
 
-def rataching_subvortoj(ent, fichier=f"{T}/subvorti.txt"):
+def rataching_subvortoj(ent, file_=f"{T}/subvorti.txt"):
     """Attaches an article to the one the author made it depend on.
 
     The attachment does not DEGRADE the article: it keeps its domain, its
@@ -2337,24 +2337,24 @@ def rataching_subvortoj(ent, fichier=f"{T}/subvorti.txt"):
     stays findable by its name: the exports file the phrases among the
     searchable forms, on the same footing as a headword.
     """
-    if not os.path.exists(fichier): return 0
+    if not os.path.exists(file_): return 0
     couples=[]
-    for l in open(fichier,encoding='utf-8'):
+    for l in open(file_,encoding='utf-8'):
         l=l.rstrip("\n")
         if not l.strip() or l.startswith('#'): continue
         a,_,b=l.partition("\t")
         couples.append((a.strip(), b.strip()))
     if not couples: return 0
-    par={}
-    for e in ent: par["%s@%d:%d" % (e['vedetto'], e['image'], e['ligno'])]=e
+    per={}
+    for e in ent: per["%s@%d:%d" % (e['vedetto'], e['image'], e['ligno'])]=e
     otar=set(); n=0
-    for cle, clep in couples:
-        f=par.get(cle); m=par.get(clep)
+    for key_, clep in couples:
+        f=per.get(key_); m=per.get(clep)
         if f is None or m is None:
-            print("  rattachement sans cible : %s -> %s" % (cle, clep)); continue
-        blocs=f.get('strukt') or []
-        korpo=" ".join(b['teksto'] for b in blocs if b['teksto']).strip()
-        korpo_k=" ".join(b.get('teksto_k') or b['teksto'] for b in blocs
+            print("  rattachement sans cible : %s -> %s" % (key_, clep)); continue
+        blocks=f.get('strukt') or []
+        korpo=" ".join(b['teksto'] for b in blocks if b['teksto']).strip()
+        korpo_k=" ".join(b.get('teksto_k') or b['teksto'] for b in blocks
                          if b['teksto']).strip()
         if not korpo: continue
         cible=(m.get('strukt') or [None])[-1]
@@ -2371,17 +2371,17 @@ def rataching_subvortoj(ent, fichier=f"{T}/subvorti.txt"):
 
 
 def konstrui():
-    pages,corr,filetoj = charger_texte()
-    brut=decouper(pages,corr,filetoj)
+    pages,corr,rules_ = load_text()
+    raw=decouper(pages,corr,rules_)
     # Two passes: the first gives the lexicon of the headwords, the second uses
     # it to settle the hyphens fallen at an end of line.
     # The lexicon serves to settle the end-of-line hyphens: a one-letter
     # headword there would attest any fragment at all.
-    lex={e['vedetto'].lower() for e in (analizar(x) for x in brut)
+    lex={e['vedetto'].lower() for e in (analizar(x) for x in raw)
          if e_ok(e) and len(e['vedetto']) >= 2}
-    n0=len(brut); brut=dividar(brut, lex)
-    if len(brut)>n0: print("articles separes d'une ligne partagee : %d"%(len(brut)-n0))
-    ent=[analizar(e, lex) for e in brut]
+    n0=len(raw); raw=dividar(raw, lex)
+    if len(raw)>n0: print("articles separes d'une ligne partagee : %d"%(len(raw)-n0))
+    ent=[analizar(e, lex) for e in raw]
     n=appliquer_jugements(ent)
     if n: print("jugements lexicaux appliques : %d occurrences"%n)
     n=typographio(ent)
@@ -2405,7 +2405,7 @@ def konstrui():
     n=corriger_vorti(ent)
     if n: print("mots corriges dans les definitions : %d"%n)
     import proofread as _rel
-    n,r=_rel.appliquer(ent)
+    n,r=_rel.apply_(ent)
     if n or r: print("relecture des definitions : %d corrections posees, %d refusees"%(n,r))
     # The proofreading returns the domain as it READS on the page -- with its
     # capital, and without the full stop the typescript did not strike. The field,
@@ -2481,13 +2481,13 @@ def konstrui():
     # stops short, with no language code; the second is complete. The reading
     # edition keeps only the latter -- the facsimile keeps both, since it renders
     # the page as it was struck.
-    der={}; unua={}
+    last_={}; first={}
     for e in ent:
-        if e['ligno'] >= der.get(e['image'], (-1,))[0]: der[e['image']]=(e['ligno'], e)
-        if e['ligno'] <= unua.get(e['image'], (10**6,))[0]: unua[e['image']]=(e['ligno'], e)
+        if e['ligno'] >= last_.get(e['image'], (-1,))[0]: last_[e['image']]=(e['ligno'], e)
+        if e['ligno'] <= first.get(e['image'], (10**6,))[0]: first[e['image']]=(e['ligno'], e)
     fals=set()
-    for pg,(_, a) in der.items():
-        b = unua.get(pg+1, (None,None))[1]
+    for pg,(_, a) in last_.items():
+        b = first.get(pg+1, (None,None))[1]
         if b is not None and a['vedetto'] == b['vedetto'] and not a['kodo'] and b['kodo']:
             fals.add(id(a))
     if fals:
@@ -2500,10 +2500,10 @@ def konstrui():
     # their continuation is on no page. We do not invent it -- we say so.
     RE_OUTIL=re.compile(r"(?<![A-Za-zÀ-ÿ])(?:di|de|la|ye|ad|en|kun|per|sur|qua|quan"
                         r"|quon|pri|po|od|ek|da|kom|ma|nek|sen)$")
-    der={}
+    last_={}
     for e in ent: 
-        if e['ligno'] >= der.get(e['image'], (-1,None))[0]: der[e['image']]=(e['ligno'], e)
-    for _,e in der.values():
+        if e['ligno'] >= last_.get(e['image'], (-1,None))[0]: last_[e['image']]=(e['ligno'], e)
+    for _,e in last_.values():
         t=" ".join(e['senci']).rstrip()
         if t and not e['kodo'] and RE_OUTIL.search(t):
             e['drapeli'].append('tranchita-che-pagino-fino')
@@ -2648,16 +2648,16 @@ def formuli(t):
         c = m.group(1)
         if not re.search(r'\d', c) or len(re.findall(r'[A-Z]', c)) < 2:
             return c
-        tete = ''
+        head = ''
         ml = re.match(r'La\s+(?=[A-Z])', c)
         if ml:
-            tete = ml.group(0); c = c[ml.end():]
+            head = ml.group(0); c = c[ml.end():]
             if len(re.findall(r'[A-Z]', c)) < 2 or not re.search(r'\d', c):
                 return m.group(1)
         q = c[len(c.rstrip()):]; c = c.rstrip()
         c = re.sub(r'(?<=[A-Za-z0-9])\s+(?=[A-Z])', '', c)
         c = re.sub(r'(?<=[A-Za-z])(\d+)', lambda x: x.group(1).translate(_SUB), c)
-        return tete + c + q
+        return head + c + q
     t = _FORMULO.sub(_un, t)
     # Cases the main pattern does not take, for want of two neighbouring symbols:
     # the figure that follows a parenthesis -- « (CH\u2083)2 », « (OH)3 » -- the
@@ -2728,10 +2728,10 @@ def fermi_kvalifikilon(t):
     """
     m = RE_KVAL_MANKA.match(t)
     if m and t.count('(') > t.count(')'):
-        resto = t[m.end():]
-        if resto[:1] and not resto[:1].isspace():
-            resto = ' ' + resto
-        return '(%s)%s' % (m.group(1), resto)
+        rest = t[m.end():]
+        if rest[:1] and not rest[:1].isspace():
+            rest = ' ' + rest
+        return '(%s)%s' % (m.group(1), rest)
     return t
 
 
@@ -2901,11 +2901,11 @@ def espacar(t):
     # monodroma » carries its space already, « (aludante persono)Definuro » is not
     # an element but an aside.
     def _fermo_espaco(m):
-        tiro, dedans, sekvo = m.group(1), m.group(2), m.group(3)
-        korta = len(dedans) <= 6 and dedans.isalpha()
+        tiro, inside, sekvo = m.group(1), m.group(2), m.group(3)
+        korta = len(inside) <= 6 and inside.isalpha()
         if korta and (tiro or len(sekvo) == 1):
             return m.group(0)
-        return '%s(%s) ' % (tiro, dedans)
+        return '%s(%s) ' % (tiro, inside)
     t = re.sub(r'(-?)\(([^()]*)\)(?=([A-Za-zÀ-ÿ]+))', _fermo_espaco, t)
     # « (olim).Vaporo-mashino »: the full stop that follows the closing
     # parenthesis sticks to the next word. 88 cases. We touch it only after a
@@ -2946,8 +2946,8 @@ def espacar(t):
     # wrong. The distinctive sign of a formula is the figure that ends the
     # preceding symbol.
     def _pt(m):
-        avan = t[:m.start()]
-        if re.search(r'[A-Z][A-Za-z]?[0-9\u2080-\u2089]+$', avan):
+        ahead = t[:m.start()]
+        if re.search(r'[A-Z][A-Za-z]?[0-9\u2080-\u2089]+$', ahead):
             return m.group(0)
         return m.group(1) + ' ('
     t = re.sub(r'([.,;:!?])\(', _pt, t)
@@ -3209,7 +3209,7 @@ def typographio(ent):
             if t!=o: s[k]=t; n+=1
     return n
 
-def corriger_vedettes(ent, fichier=f"{T}/vedetti.txt"):
+def corriger_vedettes(ent, file_=f"{T}/vedetti.txt"):
     """Corrections to headwords, surveyed by eye.
 
     The layer of judgements touches the definitions alone: a headword is an
@@ -3217,9 +3217,9 @@ def corriger_vedettes(ent, fichier=f"{T}/vedetti.txt"):
     wrong. It is therefore corrected by hand, one line per case, with the
     reason written alongside. The facsimile keeps the original's spelling.
     """
-    if not os.path.exists(fichier): return 0
+    if not os.path.exists(file_): return 0
     corr={}
-    for l in open(fichier,encoding='utf-8'):
+    for l in open(file_,encoding='utf-8'):
         l=l.rstrip("\n")
         if not l.strip() or l.startswith("#"): continue
         p=l.split("\t")
@@ -3235,7 +3235,7 @@ def corriger_vedettes(ent, fichier=f"{T}/vedetti.txt"):
         if c is not None: e['vedetto']=c; n+=1
     return n
 
-def corriger_vorti(ent, fichier=f"{T}/vorti.txt"):
+def corriger_vorti(ent, file_=f"{T}/vorti.txt"):
     """Corrections to words in the definitions, surveyed by eye.
 
     The counterpart of vedetti.txt for the body of the articles. Two automatic
@@ -3244,9 +3244,9 @@ def corriger_vorti(ent, fichier=f"{T}/vorti.txt"):
     thousand roots is not the whole lexicon of the language. We therefore write
     the cases out one by one, with their reason.
     """
-    if not os.path.exists(fichier): return 0
+    if not os.path.exists(file_): return 0
     corr={}
-    for l in open(fichier,encoding='utf-8'):
+    for l in open(file_,encoding='utf-8'):
         l=l.rstrip("\n")
         if not l.strip() or l.startswith("#"): continue
         p=l.split("\t")
@@ -3272,33 +3272,33 @@ def appliquer_jugements(ent):
     total=0
     for fic, rep in JUGEMENTS:
         if not os.path.exists(fic): continue
-        fiches={x['id']:x for x in json.load(open(fic))}
+        records={x['id']:x for x in json.load(open(fic))}
         for f in sorted(glob.glob(f"{rep}/*.txt")):
             for l in open(f,encoding='utf-8'):
                 i,_,v = l.rstrip("\n").partition("\t")
                 if not v.strip() or not i.strip().isdigit(): continue
-                x=fiches.get(int(i))
+                x=records.get(int(i))
                 if x is None: continue
-                mot, bon = x['mot'], v.strip()
+                word, good = x['mot'], v.strip()
                 # Two patterns, tried in order. The first reglues a hyphenation --
                 # « pro-duktita » -> « produktita ». It must not be the only one:
                 # « uaze » corrected to « quaze » is not a hyphenation but a fallen
                 # letter, and the hyphenation pattern looked for « q-uaze » there
                 # without finding anything, in silence.
                 motifs=[]
-                if bon.lower().endswith(mot.lower()) and len(bon)>len(mot):
-                    tete=bon[:len(bon)-len(mot)]
-                    motifs.append(re.compile(r'\b'+re.escape(tete)+r'[-\s]+'+re.escape(mot)+r'\b', re.I))
-                motifs.append(re.compile(r'\b'+re.escape(mot)+r'\b', re.I))
+                if good.lower().endswith(word.lower()) and len(good)>len(word):
+                    head=good[:len(good)-len(word)]
+                    motifs.append(re.compile(r'\b'+re.escape(head)+r'[-\s]+'+re.escape(word)+r'\b', re.I))
+                motifs.append(re.compile(r'\b'+re.escape(word)+r'\b', re.I))
                 for mo in motifs:
-                    pose=0
+                    laid=0
                     for e in ent:
                         s=e.get('senci') or []
                         for k,t in enumerate(s):
-                            nt,n=mo.subn(bon, t)
-                            if n: s[k]=nt; pose+=n
-                    total+=pose
-                    if pose: break
+                            nt,n=mo.subn(good, t)
+                            if n: s[k]=nt; laid+=n
+                    total+=laid
+                    if laid: break
     return total
 
 if __name__=="__main__":

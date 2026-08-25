@@ -9,21 +9,21 @@ with a code of languages (a subset of D E F I R S L).
 """
 import numpy as np, pickle, re, collections, sys
 sys.path.insert(0,'/root/dicionario/outils')
-from consolidate import vedettes
+from consolidate import headwords
 T="/root/dicionario/travail"
 CODES=re.compile(r'-\s*([DEFIRSL]{1,7})[.,]?\s*$')
 FINALES=("o","a","e","i","ar","ir","or","um","e")
 
 def texte_livre():
-    from decode import charger, page_texte
+    from decode import load_, page_text
     from generate import exceptions
-    lab,M=charger(); tab=np.load(f"{T}/cls_lab.npy",allow_pickle=True); exc=exceptions()
+    lab,M=load_(); tab=np.load(f"{T}/cls_lab.npy",allow_pickle=True); exc=exceptions()
     pages={}
     for pg in range(int(M[:,0].max())+1):
-        try: lignes=page_texte(pg,lab,M,tab)
+        try: lines=page_text(pg,lab,M,tab)
         except Exception: continue
         out=[]
-        for k,s in lignes:
+        for k,s in lines:
             l=list(s)
             for (pp,kk,cc),v in exc.items():
                 if pp==pg and kk==k:
@@ -33,14 +33,14 @@ def texte_livre():
         pages[pg]=out
     return pages
 
-def entrees(pages):
+def entries(pages):
     ent=[]
     for pg in sorted(pages):
-        try: ved={k for k,_ in vedettes(pg)}
-        except Exception: ved=set()
+        try: hw={k for k,_ in headwords(pg)}
+        except Exception: hw=set()
         cur=None
         for k,s in pages[pg]:
-            if k in ved and s.strip():
+            if k in hw and s.strip():
                 if cur: ent.append(cur)
                 cur=dict(page=pg, ligne=k, lignes=[s])
             elif cur is not None and s.strip():
@@ -55,7 +55,7 @@ def entrees(pages):
     return ent
 if __name__=="__main__":
     pages=texte_livre()
-    ent=entrees(pages)
+    ent=entries(pages)
     print(f"{len(ent)} entrees reperees sur {len(pages)} pages")
     avec=sum(1 for e in ent if e['code'])
     print(f"  code de langues final reconnu : {avec} ({100*avec/len(ent):.1f} %)")

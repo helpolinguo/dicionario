@@ -9,23 +9,23 @@ discover it through the reader.
 import os, glob, sys
 T="/root/dicionario/work/relecture"
 
-def executer(seuil=3):
-    lignes={}; sou={}
+def run_step(threshold=3):
+    lines={}; underline={}
     for f in sorted(glob.glob(f"{T}/rez/p*.txt")):
         pg=int(os.path.basename(f)[1:4]); n=0
         for l in open(f,encoding='utf-8'):
             if l.startswith("#"): break
             if "|" in l: n+=1
-        lignes[pg]=n
+        lines[pg]=n
     for f in sorted(glob.glob(f"{T}/rez/p*.sou")):
         pg=int(os.path.basename(f)[1:4])
-        sou[pg]=sum(1 for l in open(f,encoding='utf-8') if "|" in l and not l.startswith("#"))
+        underline[pg]=sum(1 for l in open(f,encoding='utf-8') if "|" in l and not l.startswith("#"))
     import statistics as st
-    v=sorted(lignes.values())
-    print(f"pages relues : {len(lignes)} ; lignes corrigees : mediane {st.median(v)}, total {sum(v)}")
-    maigres=[(p,n,sou.get(p,0)) for p,n in sorted(lignes.items()) if n<seuil]
-    sans_sou=[p for p in lignes if p not in sou]
-    print(f"pages a moins de {seuil} corrections : {len(maigres)}")
+    v=sorted(lines.values())
+    print(f"pages relues : {len(lines)} ; lignes corrigees : mediane {st.median(v)}, total {sum(v)}")
+    maigres=[(p,n,underline.get(p,0)) for p,n in sorted(lines.items()) if n<threshold]
+    sans_sou=[p for p in lines if p not in underline]
+    print(f"pages a moins de {threshold} corrections : {len(maigres)}")
     for p,n,s in maigres: print(f"   p-{p:03d} : {n} lignes corrigees, {s} lignes soulignees")
     # Since page 96, the underlines are no longer surveyed by hand:
     # the automatic detection takes care of them. Their absence is therefore
@@ -34,5 +34,5 @@ def executer(seuil=3):
     return [p for p,_,_ in maigres]+sans_sou
 
 if __name__=="__main__":
-    a=executer()
+    a=run_step()
     print("\na refaire :", " ".join("%03d"%p for p in sorted(set(a))))

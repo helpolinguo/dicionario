@@ -14,7 +14,7 @@ import numpy as np, pickle, collections, sys
 sys.path.insert(0,'/root/dicionario/outils')
 T="/root/dicionario/travail"
 
-def marge(occ, mini=3):
+def margin(occ, mini=3):
     """The page's margin column: the first that serves on several lines.
 
     Column 0 was supposed to be the margin. It is not always: forty-five
@@ -27,49 +27,49 @@ def marge(occ, mini=3):
         if n[c] >= mini: return c
     return 0
 
-def vedettes(pg):
+def headwords(pg):
     """Headword lines: the page's margin inked and a rule beginning there."""
     z=np.load(f"{T}/cellules/p-{pg:03d}.npz", allow_pickle=True)
-    occ=z['occ']; lg=z['lignes']; sou=pickle.loads(z['sou'].item())
-    c0=marge(occ)
+    occ=z['occ']; lg=z['lignes']; underline=pickle.loads(z['sou'].item())
+    c0=margin(occ)
     out=[]
     for i,k in enumerate(lg[:,0]):
         k=int(k)
         if not occ[i,c0]: continue
-        r=sou.get(k)
+        r=underline.get(k)
         if not r: continue
-        plages=r[1]
-        if any(a<=c0<=b for a,b in plages): out.append((k,i))
+        ranges=r[1]
+        if any(a<=c0<=b for a,b in ranges): out.append((k,i))
     return out
 
-def consolider(lab, M, tab, pages=None, seuil=0.6, mini=3):
+def consolider(lab, M, tab, pages=None, threshold=0.6, mini=3):
     """Returns (new table, log). The table is not modified in place."""
     import glob, os
     if pages is None:
         pages=[int(os.path.basename(p)[2:5]) for p in sorted(glob.glob(f"{T}/cellules/*.npz"))]
     tab=np.array(tab, dtype=object).copy()
-    journal=[]
-    par_groupe=collections.defaultdict(collections.Counter)
+    log_=[]
+    by_group=collections.defaultdict(collections.Counter)
     for pg in pages:
-        ved=vedettes(pg)
-        if len(ved)<mini: continue
+        hw=headwords(pg)
+        if len(hw)<mini: continue
         sel=np.where(M[:,0]==pg)[0]
         pos={(int(k),int(c)):i for i,(p,k,c) in zip(sel,M[sel])}
         lettres=[]
-        for k,i in ved:
+        for k,i in hw:
             j=pos.get((k,0))
             if j is None: continue
             lettres.append((k,j,tab[lab[j]]))
         if not lettres: continue
         c=collections.Counter(x[2] for x in lettres)
-        (maj,n),=c.most_common(1)
-        if n/len(lettres) < seuil: continue
+        (upper_,n),=c.most_common(1)
+        if n/len(lettres) < threshold: continue
         for k,j,ch in lettres:
-            if ch!=maj:
-                par_groupe[int(lab[j])][maj]+=1
-                journal.append((pg,k,ch,maj))
-    for g,c in par_groupe.items():
-        (maj,n),=c.most_common(1)
+            if ch!=upper_:
+                by_group[int(lab[j])][upper_]+=1
+                log_.append((pg,k,ch,upper_))
+    for g,c in by_group.items():
+        (upper_,n),=c.most_common(1)
         if n>=2:
-            tab[g]=maj
-    return tab, journal
+            tab[g]=upper_
+    return tab, log_

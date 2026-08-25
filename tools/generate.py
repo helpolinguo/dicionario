@@ -1,7 +1,7 @@
 """Generating the LaTeX content files, one line of source per line of the book."""
 import numpy as np, os, pickle, sys
 sys.path.insert(0,'/root/dicionario/outils')
-T="/root/dicionario/travail"; RAC="/root/dicionario"
+T="/root/dicionario/travail"; ROOT="/root/dicionario"
 
 
 # --- the pages' layout, in millimetres ---------------------------------
@@ -35,12 +35,12 @@ ECHAP={'\\':r'\textbackslash{}', '{':r'\{', '}':r'\}', '%':r'\%', '#':r'\#',
        '_':r'\_', '&':r'\&', '$':r'\$', '^':r'\textasciicircum{}',
        '~':r'\textasciitilde{}', '"':r'\textquotedbl{}', "'":r'\textquotesingle{}',
        '<':r'\textless{}', '>':r'\textgreater{}', '|':r'\textbar{}'}
-def esc(cellules):
+def esc(cells_of):
     """Escapes a RUN of cell contents. A content of more than one character
     beginning with a backslash is raw LaTeX (an overstrike, a composed
     character) and passes as it stands."""
     out=[]
-    for c in cellules:
+    for c in cells_of:
         out.append(c if (len(c)>1 and c.startswith("\\")) else ECHAP.get(c,c))
     return "".join(out)
 
@@ -55,8 +55,8 @@ def exceptions():
     global _EXC
     if _EXC is None:
         _EXC={}
-        for nom in ("exceptions_fins.txt","exceptions_ornements.txt","exceptions_paires.txt","exceptions.txt","exceptions_relecture.txt","exceptions_manuel.txt"):
-            p=os.path.join(T, nom)
+        for name_ in ("exceptions_fins.txt","exceptions_ornements.txt","exceptions_paires.txt","exceptions.txt","exceptions_relecture.txt","exceptions_manuel.txt"):
+            p=os.path.join(T, name_)
             if not os.path.exists(p): continue
             for l in open(p, encoding='utf-8'):
                 l=l.rstrip("\n")
@@ -104,7 +104,7 @@ def sou_relus():
                                        for seg in c.split(",") if seg]
     return _SOU
 
-def _ebarber(plage, cellules):
+def _ebarber(range_, cells_of):
     """Trims an underline range.
 
     The rule is measured to the pixel, but it happens to run over onto the next
@@ -114,15 +114,15 @@ def _ebarber(plage, cellules):
     typescript does underline « historio di Italia » with a single stroke. An
     isolated rule of one or two cells is noise.
     """
-    a, b = plage
-    n=len(cellules)
+    a, b = range_
+    n=len(cells_of)
     a=max(a,0); b=min(b,n-1)
     if b < a: return None
     grp=[]; i=a
     while i<=b:
-        if cellules[i]!=" ":
+        if cells_of[i]!=" ":
             j=i
-            while j+1<=b and cellules[j+1]!=" ": j+=1
+            while j+1<=b and cells_of[j+1]!=" ": j+=1
             grp.append((i,j)); i=j+1
         else: i+=1
     if not grp: return None
@@ -133,23 +133,23 @@ def _ebarber(plage, cellules):
     if b2-a2+1 <= 2 and len(grp)==1: return None
     return (a2,b2)
 
-def lignes_page(pg, lab, M, tab):
+def page_lines(pg, lab, M, tab):
     z=np.load(f"{T}/cellules/p-{pg:03d}.npz", allow_pickle=True)
     lg=z['lignes']; ncol=z['occ'].shape[1]
-    sou=pickle.loads(z['sou'].item()) if 'sou' in z else {}
+    underline=pickle.loads(z['sou'].item()) if 'sou' in z else {}
     # Recomputed rules: see tools/redo_rules.py. The original detection took the
     # aligned top serifs of the DEFIRS capitals for an underline, and referred
     # them to the line above. We do not rewrite the corpus of cells for all that
     # -- 295 MB, and one accident of format has already cost 144 pages: the
     # correction is a layer laid over it.
     neufs=filets_neufs().get(pg)
-    if neufs: sou=neufs
-    from decode import bavures
+    if neufs: underline=neufs
+    from decode import smudges
     sel=np.where(M[:,0]==pg)[0]
-    bv=bavures()[sel]
-    par={}
+    bv=smudges()[sel]
+    per={}
     for (p,k,c),b,x in zip(M[sel], lab[sel], bv):
-        par.setdefault(int(k),{})[int(c)]=" " if x else tab[b]
+        per.setdefault(int(k),{})[int(c)]=" " if x else tab[b]
     # Line starts given back (see tools/restore_starts.py). They fall BEFORE
     # column zero: we shift the WHOLE PAGE by as many cells as are missing.
     # Shifting the one line concerned would set it one cell to the right of its
@@ -159,53 +159,53 @@ def lignes_page(pg, lab, M, tab):
     #
     # The shift is applied BEFORE the exceptions: those are surveyed by eye on
     # the shifted facsimile, hence already in the new numbering.
-    deb=debuts_rendus().get(pg)
+    beg=debuts_rendus().get(pg)
     dec=0
-    if deb:
-        dec=-min(c for d0 in deb.values() for c in d0)
-        par={k:{c+dec:v for c,v in d0.items()} for k,d0 in par.items()}
-        sou={k:(yy,[(a+dec,b+dec) for a,b in pl],t) for k,(yy,pl,t) in sou.items()}
+    if beg:
+        dec=-min(c for d0 in beg.values() for c in d0)
+        per={k:{c+dec:v for c,v in d0.items()} for k,d0 in per.items()}
+        underline={k:(yy,[(a+dec,b+dec) for a,b in pl],t) for k,(yy,pl,t) in underline.items()}
         ncol+=dec
-        for k,d0 in deb.items():
-            for c,ch in d0.items(): par.setdefault(int(k),{})[c+dec]=ch
+        for k,d0 in beg.items():
+            for c,ch in d0.items(): per.setdefault(int(k),{})[c+dec]=ch
     for (pp,kk,cc),v in exceptions().items():
-        if pp==pg: par.setdefault(int(kk),{})[int(cc)]=v
+        if pp==pg: per.setdefault(int(kk),{})[int(cc)]=v
     kmax=int(lg[:,0].max())
     # A correction can bear beyond the block: these are the line ends the
     # cutting had cut off. We widen the line to receive them, without having to
     # re-cut the page.
-    for (pp,kk),d0 in list(par.items()) if False else []: pass
-    for k,d0 in par.items():
+    for (pp,kk),d0 in list(per.items()) if False else []: pass
+    for k,d0 in per.items():
         if d0: ncol=max(ncol, max(d0)+1)
     out=[]
     for k in range(kmax+1):
-        d=par.get(k,{})
+        d=per.get(k,{})
         s=[d.get(c," ") for c in range(ncol)]
         s=[(c if c not in ("", None) else " ") for c in s]
-        plages=[]
+        ranges=[]
         relu = sou_relus().get((pg,k))
         if relu is not None:
             # Surveyed by eye: we take it as it stands, with no merging and no
             # trimming -- those corrections aim precisely at putting right what the
             # automatic measurement had placed badly.
-            plages=[(a,b) for a,b in relu if b>=a]
-        elif k in sou:
-            yy,pl,tot=sou[k]
-            plages=sorted((a,b) for a,b in pl if b>=a)
+            ranges=[(a,b) for a,b in relu if b>=a]
+        elif k in underline:
+            yy,pl,tot=underline[k]
+            ranges=sorted((a,b) for a,b in pl if b>=a)
             # The ribbon skips: a rule interrupted over one or two cells is still
             # the same rule. Two ranges separated by more than two cells, on the
             # other hand, are indeed two distinct underlines (« cinocefalo » and
             # « zool. » are three cells apart).
             fus=[]
-            for a,b in plages:
+            for a,b in ranges:
                 if fus and a-fus[-1][1] <= 2: fus[-1]=(fus[-1][0], max(fus[-1][1],b))
                 else: fus.append((a,b))
-            plages=[p for p in (_ebarber(p, s) for p in fus) if p]
+            ranges=[p for p in (_ebarber(p, s) for p in fus) if p]
             # Two rules set on 1,698 lines surveyed by eye: a rule neither begins
             # nor ends on an empty cell, and two stretches separated only by full
             # cells are the same rule, interrupted by the wear of the ribbon.
             f2=[]
-            for a,b in plages:
+            for a,b in ranges:
                 if f2 and a-f2[-1][1] <= 3 and all(
                         (c < len(s) and s[c] != " ") for c in range(f2[-1][1]+1, a)):
                     f2[-1]=(f2[-1][0], b)
@@ -221,7 +221,7 @@ def lignes_page(pg, lab, M, tab):
             # boundary, « +quoniam » lost its underline -- the rule, though properly
             # measured, was judged to begin in the middle of a word and thrown away.
             FRONT=set(' ("\'+')
-            plages=[]
+            ranges=[]
             for a,b in f2:
                 while b > a and (b >= len(s) or s[b] == " "): b -= 1
                 while a < b and (a >= len(s) or s[a] == " "): a += 1
@@ -234,42 +234,42 @@ def lignes_page(pg, lab, M, tab):
                 # « autoritato » and « esas, » showed as much.
                 if not (a == 0 or (a-1 < len(s) and s[a-1] in FRONT)):
                     continue
-                plages.append((a,b))
-        out.append((k, s, plages))
+                ranges.append((a,b))
+        out.append((k, s, ranges))
     return out, ncol
 
-def texifier(cells, plages):
+def texifier(cells, ranges):
     """Sets a line: spaces -> \\cel{n}, underlined ranges -> \\sou{...}."""
     n=len(cells)
-    marque=[False]*n
-    for a,b in plages:
-        for j in range(max(a,0), min(b+1,n)): marque[j]=True
+    mark=[False]*n
+    for a,b in ranges:
+        for j in range(max(a,0), min(b+1,n)): mark[j]=True
     # we truncate the trailing spaces
-    fin=n
-    while fin>0 and cells[fin-1]==" " and not marque[fin-1]: fin-=1
-    if fin==0: return ""
+    end_=n
+    while end_>0 and cells[end_-1]==" " and not mark[end_-1]: end_-=1
+    if end_==0: return ""
     res=[]; i=0; vide=0
-    while i<fin:
-        if cells[i]==" " and not marque[i]:
+    while i<end_:
+        if cells[i]==" " and not mark[i]:
             vide+=1; i+=1; continue
         if vide: res.append(f"\\cel{{{vide}}}"); vide=0
-        if marque[i]:
+        if mark[i]:
             j=i
-            while j<fin and marque[j]: j+=1
+            while j<end_ and mark[j]: j+=1
             res.append("\\sou{"+esc(cells[i:j])+"}")
             i=j
         else:
             j=i
-            while j<fin and cells[j]!=" " and not marque[j]: j+=1
+            while j<end_ and cells[j]!=" " and not mark[j]: j+=1
             # we keep the single interior spaces in plain form, for legibility
-            while j<fin and not marque[j] and (cells[j]!=" " or (j+1<fin and cells[j+1]!=" " and not marque[j+1])):
+            while j<end_ and not mark[j] and (cells[j]!=" " or (j+1<end_ and cells[j+1]!=" " and not mark[j+1])):
                 j+=1
             res.append(esc(cells[i:j]))
             i=j
     return "".join(res)
 
 _LP=None
-def lignes_plus(fichier=f"{T}/lignes_plus.txt"):
+def lignes_plus(file_=f"{T}/lignes_plus.txt"):
     """Lines that a later RE-CUTTING of the page left outside the block.
 
     Twenty-one pages were cut by a version of bloc_texte() that stopped the
@@ -284,8 +284,8 @@ def lignes_plus(fichier=f"{T}/lignes_plus.txt"):
     global _LP
     if _LP is None:
         _LP={}
-        if os.path.exists(fichier):
-            for l in open(fichier,encoding='utf-8'):
+        if os.path.exists(file_):
+            for l in open(file_,encoding='utf-8'):
                 l=l.rstrip("\n")
                 if not l.strip() or l.startswith("#"): continue
                 a,b,v=l.split("\t")
@@ -293,35 +293,35 @@ def lignes_plus(fichier=f"{T}/lignes_plus.txt"):
     return _LP
 
 
-def ecrire(pg, lab, M, tab, rep=f"{RAC}/contenu"):
+def write_(pg, lab, M, tab, rep=f"{ROOT}/contenu"):
     os.makedirs(rep, exist_ok=True)
-    lignes, ncol = lignes_page(pg, lab, M, tab)
+    lines, ncol = page_lines(pg, lab, M, tab)
     sup=lignes_plus().get(pg)
     if sup:
-        par={t[0]:t for t in lignes}
+        per={t[0]:t for t in lines}
         for k,txt in sorted(sup.items()):
             # A line already read but TRUNCATED on the right: we keep its underline
             # rules, which bear on the start, and return the whole text. A line
             # absent: we create it, with no rule.
-            plages = par[k][2] if k in par else []
+            ranges = per[k][2] if k in per else []
             cells=list(txt) + [" "]*max(0, ncol-len(txt))
-            par[k]=(k, cells, plages)
+            per[k]=(k, cells, ranges)
         # The lattice is DENSE: one entry per leading, blank or not. The lines
         # given back can leave a hole -- the blank leading that separates two
         # articles -- which must be recreated, or the articles touch and the page
         # shifts by a line. A NEGATIVE index returns a line lost above the first:
         # the lattice extends upwards, and the numbering of the lines already read
         # does not move.
-        lignes=[par.get(k, (k, [" "]*ncol, []))
-                for k in range(min(par), max(par)+1)]
+        lines=[per.get(k, (k, [" "]*ncol, []))
+                for k in range(min(per), max(per)+1)]
     # The lattice of lines covers the whole height of the image so as to catch
     # the folios; at the foot of a page it therefore produces ghost lines, empty.
     # An empty line AFTER the last inked line carries no information and would
     # overflow the composed page (a \vbox too tall). We subtract them.
     def _vide(t):
-        k,cells,plages = t
-        return not plages and all(c==" " for c in cells)
-    while lignes and _vide(lignes[-1]): lignes.pop()
+        k,cells,ranges = t
+        return not ranges and all(c==" " for c in cells)
+    while lines and _vide(lines[-1]): lines.pop()
     # The page's layout: we centre it on its own width, with a little more
     # margin on the sewing side. A fixed origin left as much as 66 mm of white
     # on one side and overflowed the other.
@@ -330,27 +330,27 @@ def ecrire(pg, lab, M, tab, rep=f"{RAC}/contenu"):
     # subtract it, under a strict condition: a single character, of punctuation,
     # separated from the rest by ten cells at least.
     ISOLES=set("-.,'\"")
-    for k,cells,plages in lignes:
-        fin=-1
+    for k,cells,ranges in lines:
+        end_=-1
         for j in range(len(cells)-1,-1,-1):
-            if cells[j]!=" ": fin=j; break
-        if fin<1 or cells[fin] not in ISOLES: continue
-        if any(b>=fin for a,b in plages): continue
-        vide=0; j=fin-1
+            if cells[j]!=" ": end_=j; break
+        if end_<1 or cells[end_] not in ISOLES: continue
+        if any(b>=end_ for a,b in ranges): continue
+        vide=0; j=end_-1
         while j>=0 and cells[j]==" ": vide+=1; j-=1
-        if vide>=10: cells[fin]=" "
+        if vide>=10: cells[end_]=" "
     dernier=0
-    for k,cells,plages in lignes:
-        fin=-1
+    for k,cells,ranges in lines:
+        end_=-1
         for j in range(len(cells)-1, -1, -1):
-            if cells[j] != " ": fin=j; break
-        if fin<0: continue
-        dernier=max(dernier, fin)
+            if cells[j] != " ": end_=j; break
+        if end_<0: continue
+        dernier=max(dernier, end_)
         # A rule that runs past the last character of its line is an artefact of
         # measurement: it must not widen the page.
-        for a,b in plages: dernier=max(dernier, min(b, fin))
-    larg=(dernier+1)*PASH_MM
-    haut=len(lignes)*PASV_MM
+        for a,b in ranges: dernier=max(dernier, min(b, end_))
+    wide=(dernier+1)*PASH_MM
+    top=len(lines)*PASV_MM
     # A FIXED origin, and not a page-by-page centring. Centring each page on
     # its own width made it balanced in isolation, but made the left edge jump
     # from one page to the next: over 631 pages, 199 jumped by more than five
@@ -359,20 +359,20 @@ def ecrire(pg, lab, M, tab, rep=f"{RAC}/contenu"):
     # lines simply leave white on the right.
     recto = (pg % 2 == 0)                    # a right-hand page in the facsimile
     if recto:
-        x = LARG_MM - BORD_EXT - larg        # set on the right fore-edge
+        x = LARG_MM - BORD_EXT - wide        # set on the right fore-edge
         if x < GOUTTIERE_MIN: x = GOUTTIERE_MIN
     else:
         x = BORD_EXT                         # set on the left fore-edge
-        if LARG_MM - x - larg < GOUTTIERE_MIN:
-            x = LARG_MM - GOUTTIERE_MIN - larg
+        if LARG_MM - x - wide < GOUTTIERE_MIN:
+            x = LARG_MM - GOUTTIERE_MIN - wide
     # The few very wide pages -- six pass 74 columns -- hold neither the
     # fore-edge nor the gutter. We leave them the absolute stop.
-    if x + larg > LARG_MM - MARGE_EXTREME:
-        x = max(LARG_MM - MARGE_EXTREME - larg, MARGE_EXTREME)
+    if x + wide > LARG_MM - MARGE_EXTREME:
+        x = max(LARG_MM - MARGE_EXTREME - wide, MARGE_EXTREME)
     x = max(x, MARGE_EXTREME)
     y = BORD_HAUT
-    if y + haut > HAUT_MM - MARGE_BAS_MIN:
-        y = max(HAUT_MM - MARGE_BAS_MIN - haut, MARGE_EXTREME)
+    if y + top > HAUT_MM - MARGE_BAS_MIN:
+        y = max(HAUT_MM - MARGE_BAS_MIN - top, MARGE_EXTREME)
     # The shift is quantised on the grid: a whole number of pitches in width,
     # a whole number of leadings in height. Without that the characters no
     # longer fall on a whole column, and the position check -- which guarantees
@@ -380,10 +380,10 @@ def ecrire(pg, lab, M, tab, rep=f"{RAC}/contenu"):
     dx=round((x-ORIGX_MM)/PASH_MM)*PASH_MM
     dy=round((y-ORIGY_MM)/PASV_MM)*PASV_MM
     L=["% page "+str(pg+1)+" du fac-simile (image p-%03d du scan)"%pg,
-       "%% bloc %.1f x %.1f mm ; marge gauche %.1f mm"%(larg,haut,x),
+       "%% bloc %.1f x %.1f mm ; marge gauche %.1f mm"%(wide,top,x),
        "\\pgc{%.3fmm}{%.3fmm}{"%(dx,dy)]
-    for k,cells,plages in lignes:
-        L.append("\\l{"+texifier(cells,plages)+"}")
+    for k,cells,ranges in lines:
+        L.append("\\l{"+texifier(cells,ranges)+"}")
     L.append("}")
     open(f"{rep}/p{pg:03d}.tex","w",encoding='utf-8').write("\n".join(L)+"\n")
-    return len(lignes)
+    return len(lines)

@@ -2,27 +2,27 @@
 import sys, numpy as np, collections, pickle
 sys.path.insert(0,'/root/dicionario/outils')
 from features import feature_vector
-from seed import tout
+from seed import everything
 from sklearn.linear_model import LogisticRegression
 T="/root/dicionario/travail"
-def executer(tours=3):
+def run_step(rounds=3):
     C=np.load(f"{T}/cells_all.npy", mmap_mode='r')
-    lab=np.load(f"{T}/km_lab.npy"); moy=np.load(f"{T}/km_moy.npy")
-    I,Y,_=tout(); o=np.argsort(I); I=I[o]; Y=Y[o]
+    lab=np.load(f"{T}/km_lab.npy"); mean_=np.load(f"{T}/km_moy.npy")
+    I,Y,_=everything(); o=np.argsort(I); I=I[o]; Y=Y[o]
     X=feature_vector(np.asarray(C[I]))
     m=LogisticRegression(max_iter=4000,C=20.).fit(X,Y)
-    Xm=feature_vector(np.clip(moy,0,255).astype(np.uint8))
-    ordre=np.argsort(lab, kind='stable')
-    bornes=np.searchsorted(lab[ordre], np.arange(len(moy)+1))
-    for tour in range(tours):
+    Xm=feature_vector(np.clip(mean_,0,255).astype(np.uint8))
+    order_=np.argsort(lab, kind='stable')
+    bounds=np.searchsorted(lab[order_], np.arange(len(mean_)+1))
+    for tour in range(rounds):
         pr=m.predict_proba(Xm); p=m.classes_[pr.argmax(1)]; c=pr.max(1)
         rng=np.random.default_rng(tour); idx=[];l2=[]
         surs=np.where(c>0.90)[0]
-        par=max(1, min(8, 80000//max(len(surs),1)))
+        per=max(1, min(8, 80000//max(len(surs),1)))
         for k in surs:
-            mm=ordre[bornes[k]:bornes[k+1]]
+            mm=order_[bounds[k]:bounds[k+1]]
             if not len(mm): continue
-            if len(mm)>par: mm=rng.choice(mm,par,replace=False)
+            if len(mm)>per: mm=rng.choice(mm,per,replace=False)
             idx.append(mm); l2.append(np.full(len(mm),p[k]))
         idx=np.concatenate(idx); l2=np.concatenate(l2); o=np.argsort(idx)
         print(f"  tour {tour}: {len(surs)} groupes surs, {len(idx)} cellules", flush=True)
@@ -40,10 +40,10 @@ def executer(tours=3):
         if len(c)>1: imp.append((k,dict(c)))
     # explicit hand labels (optional file)
     import os
-    man=f"{T}/etiquettes.txt"
+    missing_=f"{T}/etiquettes.txt"
     nman=0
-    if os.path.exists(man):
-        for l in open(man, encoding='utf-8'):
+    if os.path.exists(missing_):
+        for l in open(missing_, encoding='utf-8'):
             l=l.rstrip("\n")
             if not l.strip() or l.startswith("#"): continue
             i,_,ch=l.partition("\t"); p[int(i)]=ch; nman+=1
@@ -54,7 +54,7 @@ def executer(tours=3):
                 impurs=imp, manuels=nman, conf_med=float(np.median(pc)),
                 faibles=int((pc<0.5).sum()))
 if __name__=="__main__":
-    r=executer()
+    r=run_step()
     print(f"exactitude sur l'amorce : {100*r['exactitude']:.3f}%  ({r['amorce']} cellules)")
     print(f"groupes couverts par l'amorce : {r['groupes_amorces']} ; impurs : {len(r['impurs'])} ; manuels : {r['manuels']}")
     print(f"confiance mediane {r['conf_med']:.3f} ; groupes < 0.5 : {r['faibles']}")

@@ -43,9 +43,9 @@ sys.path.insert(0,'/root/dicionario/outils')
 from pairs import PAIRES
 T="/root/dicionario/travail"
 
-SOSIE=collections.defaultdict(set)
+LOOKALIKE=collections.defaultdict(set)
 for a,b in PAIRES:
-    if len(a)==1 and len(b)==1: SOSIE[a].add(b); SOSIE[b].add(a)
+    if len(a)==1 and len(b)==1: LOOKALIKE[a].add(b); LOOKALIKE[b].add(a)
 MOT=re.compile(r"[A-Za-zÀ-ÿ]{4,}")
 FINALES=("ar","ir","or","as","is","os","us","o","a","e","i")
 # Function words: they have no headword root and must undergo nothing.
@@ -71,33 +71,33 @@ def _racine(w):
         if w.endswith(f) and len(w)-len(f)>=2: return w[:-len(f)]
     return w
 
-def connu(w, rac):
+def known(w, root):
     w=w.lower()
-    return w in rac or _racine(w) in rac or w in GRAM
+    return w in root or _racine(w) in root or w in GRAM
 
-def variantes(w):
+def variants(w):
     """Exchanges of look-alikes, never on the grammatical ending."""
-    n=len(w); fin=len(w)-len(_racine(w))
+    n=len(w); end_=len(w)-len(_racine(w))
     for i,c in enumerate(w):
-        if i >= n-max(fin,1): break
-        for d in SOSIE.get(c,()):
+        if i >= n-max(end_,1): break
+        for d in LOOKALIKE.get(c,()):
             yield w[:i]+d+w[i+1:]
 
 def proposer(ent):
-    rac=racines(ent)
+    root=racines(ent)
     freq=collections.Counter()
     for e in ent:
         for t in (e.get('senci') or []):
             for w in MOT.findall(t): freq[w.lower()]+=1
     prop={}
     for w,n in freq.items():
-        if connu(w, rac): continue
-        cands=[v for v in set(variantes(w)) if connu(v, rac) and freq.get(v,0)+1>n]
+        if known(w, root): continue
+        cands=[v for v in set(variants(w)) if known(v, root) and freq.get(v,0)+1>n]
         if len(cands)==1: prop[w]=cands[0]
-    return prop, rac
+    return prop, root
 
 if __name__=="__main__":
     ent=[json.loads(l) for l in open(f"{T}/edicioni/dicionario.jsonl",encoding='utf-8')]
-    prop,rac=proposer(ent)
-    print("racines connues : %d ; corrections proposees : %d"%(len(rac),len(prop)))
+    prop,root=proposer(ent)
+    print("racines connues : %d ; corrections proposees : %d"%(len(root),len(prop)))
     for w,v in sorted(prop.items())[:40]: print("   %-22s -> %s"%(w,v))

@@ -17,19 +17,19 @@ occupied, formed with the confusions the log of corrections has recorded.
 """
 import json, sys, collections
 
-RAC = "/root/dicionario"
-SOURCE = f"{RAC}/dicionario.jsonl"
-SORTIE = f"{RAC}/ordino-ruptita.md"
-sys.path.insert(0, f"{RAC}/outils")
+ROOT = "/root/dicionario"
+SOURCE = f"{ROOT}/dicionario.jsonl"
+OUT_PATH = f"{ROOT}/ordino-ruptita.md"
+sys.path.insert(0, f"{ROOT}/outils")
 import edition as E
 
 # The decoding's confusions, surveyed in work/journal_complet.txt: the letter
 # read, the letter adopted, and how many times. We keep only the most frequent
 # -- they are the ones that explain a faulty headword.
-def konfuzoj(fichier=f"{RAC}/work/journal_complet.txt", minimo=15):
+def konfuzoj(file_=f"{ROOT}/work/journal_complet.txt", minimo=15):
     c = collections.Counter()
     try:
-        for l in open(fichier, encoding='utf-8'):
+        for l in open(file_, encoding='utf-8'):
             if l.startswith('#'):
                 continue
             p = l.rstrip('\n').split('\t')
@@ -48,38 +48,38 @@ def konfuzoj(fichier=f"{RAC}/work/journal_complet.txt", minimo=15):
 VOKALI = 'aeiou'
 
 
-def plausibla(v, mot):
+def plausibla(v, word):
     """Has the reading the shape of an Ido word?
 
     We set aside what the substitution manufactures mechanically: a doubled
     vowel the original did not have -- « brooho » for « brocho » -- and an
     ending that is not that of a word of the language.
     """
-    if not any(v.endswith(f) for f in E.FINALES_OK) and not v.endswith(mot[-1]):
+    if not any(v.endswith(f) for f in E.FINALES_OK) and not v.endswith(word[-1]):
         return False
     for a in VOKALI:
-        if a + a in v and a + a not in mot:
+        if a + a in v and a + a not in word:
             return False
     return True
 
 
-def variantoj(mot, konf, lexiko=()):
+def variantoj(word, konf, lexiko=()):
     """The neighbouring readings: one letter confused, or two transposed."""
     out = set()
-    for i, c in enumerate(mot):
+    for i, c in enumerate(word):
         for d in konf.get(c, ()):
-            out.add(mot[:i] + d + mot[i+1:])
-        if i + 1 < len(mot) and mot[i] != mot[i+1]:
-            out.add(mot[:i] + mot[i+1] + mot[i] + mot[i+2:])
+            out.add(word[:i] + d + word[i+1:])
+        if i + 1 < len(word) and word[i] != word[i+1]:
+            out.add(word[:i] + word[i+1] + word[i] + word[i+2:])
         # The letter too many: the typist strikes twice, or the decoding reads a
         # sign in a spot. « ostegomo » for « osteomo ».
-        if len(mot) > 4:
-            out.add(mot[:i] + mot[i+1:])
-    out.discard(mot)
-    return sorted(v for v in out if plausibla(v, mot))
+        if len(word) > 4:
+            out.add(word[:i] + word[i+1:])
+    out.discard(word)
+    return sorted(v for v in out if plausibla(v, word))
 
 
-def ecrire(source=SOURCE, sortie=SORTIE):
+def write_(source=SOURCE, out_path=OUT_PATH):
     ent = [json.loads(l) for l in open(source, encoding='utf-8')]
     K = [E._klavo_ordino(e['vedetto']) for e in ent]
     R = [E._klavo_radiko(e['vedetto']) for e in ent]
@@ -98,7 +98,7 @@ def ecrire(source=SOURCE, sortie=SORTIE):
     def monotona(idx):
         return all(not rupto(idx[t-1], idx[t]) for t in range(1, len(idx)))
 
-    def loko(e):
+    def spot(e):
         return "f.%s (image %s, ligne %s)" % (e['pagino'], e['image'], e['ligno'])
 
     def place(k, r, saut):
@@ -166,17 +166,17 @@ def ecrire(source=SOURCE, sortie=SORTIE):
         for x in cand:
             e = ent[x]
             j = place(K[x], R[x], {x})
-            avan = ent[j-1] if j > 0 else None
-            L += ["### %s — %s" % (e['vedetto'], loko(e)), "",
+            ahead = ent[j-1] if j > 0 else None
+            L += ["### %s — %s" % (e['vedetto'], spot(e)), "",
                   "Ecrite entre « %s » et « %s »." % (
                       ent[x-1]['vedetto'] if x else '(debut)',
                       ent[x+1]['vedetto'] if x+1 < len(ent) else '(fin)'),
                   ""]
-            if avan is not None and abs(j - x) > 1:
+            if ahead is not None and abs(j - x) > 1:
                 L += ["Sa place est apres « %s », %s — %d articles plus %s."
-                      % (avan['vedetto'], loko(avan), abs(j - x),
+                      % (ahead['vedetto'], spot(ahead), abs(j - x),
                          "loin" if j > x else "haut"), ""]
-            elif avan is not None:
+            elif ahead is not None:
                 L += ["Sa place est juste avant « %s », sa voisine."
                       % ent[x-1]['vedetto'], ""]
             # The reading proposed cannot be that of a neighbouring headword: the
@@ -193,10 +193,10 @@ def ecrire(source=SOURCE, sortie=SORTIE):
                                   for v in var[:8]), ""]
             L += ["```", (e.get('teksto_brut') or '')[:200], "```", ""]
 
-    open(sortie, "w", encoding='utf-8').write("\n".join(L) + "\n")
+    open(out_path, "w", encoding='utf-8').write("\n".join(L) + "\n")
     print("%s : %d interversions, %d vedettes egarees"
-          % (sortie, len(inversi), len(egari)))
+          % (out_path, len(inversi), len(egari)))
 
 
 if __name__ == "__main__":
-    ecrire()
+    write_()

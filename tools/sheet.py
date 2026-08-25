@@ -1,6 +1,6 @@
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont
-def planche(tuiles, etiquettes_lignes=True, cols=20, zoom=4, marge_g=70, titre=""):
+def sheet_(tuiles, etiquettes_lignes=True, cols=20, zoom=4, marge_g=70, titre=""):
     n=len(tuiles); h,w=tuiles[0].shape
     rows=(n+cols-1)//cols
     tw,th=w*zoom, h*zoom

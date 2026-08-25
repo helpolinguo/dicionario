@@ -19,11 +19,11 @@ T = "/root/dicionario/travail"
 DOSSIER = f"{T}/relire/reponses"
 
 
-def lire(dossier=DOSSIER):
+def lire(folder=DOSSIER):
     """Every correction returned: a list of (faulty, correct, batch)."""
     out = []
-    for p in sorted(glob.glob(f"{dossier}/*.txt")):
-        lot = os.path.basename(p)[:-4]
+    for p in sorted(glob.glob(f"{folder}/*.txt")):
+        batch = os.path.basename(p)[:-4]
         for l in open(p, encoding='utf-8'):
             l = l.rstrip("\n")
             if not l.strip() or l.startswith("#") or l.strip() == "RIEN":
@@ -39,7 +39,7 @@ def lire(dossier=DOSSIER):
             if not a or not b or a == b: continue
             if '...' in b or '…' in b: continue
             if len(b) < len(a) * 0.5: continue
-            out.append((a, b, lot))
+            out.append((a, b, batch))
     return out
 
 
@@ -50,7 +50,7 @@ def _motif(a):
     out = []
     n = len(a)
     for i, c in enumerate(a):
-        bord = (i == 0 or i == n - 1)
+        edge = (i == 0 or i == n - 1)
         if c.isspace():
             if out and out[-1] == _ESP + "+":
                 continue
@@ -67,24 +67,24 @@ def _motif(a):
     return re.compile("".join(out))
 
 
-def appliquer(ent, dossier=DOSSIER):
+def apply_(ent, folder=DOSSIER):
     """Lays the proofreading corrections. Returns (laid, refused)."""
-    cor = lire(dossier)
+    cor = lire(folder)
     if not cor:
         return 0, 0
-    pose = 0; refus = 0
-    for a, b, lot in cor:
+    laid = 0; refused = 0
+    for a, b, batch in cor:
         # The faulty string was surveyed BEFORE the typography was laid: the
         # guillemets and the colon have since gained a non-breaking space,
         # « grande » is written « \u00ab\u00a0grande\u00a0\u00bb ». Sought to
         # the character, the correction was no longer found. We therefore make
         # the search indifferent to the spacing around the punctuation.
-        mot = _motif(a)
-        vus = []
+        word = _motif(a)
+        seen = []
         for e in ent:
             for k, t in enumerate(e.get('senci') or []):
-                if mot.search(t):
-                    vus.append((e, k))
+                if word.search(t):
+                    seen.append((e, k))
             # The domain is a separate field: « (ariktekt) » is in no sense, and
             # the correction was refused for want of looking there.
             #
@@ -95,21 +95,21 @@ def appliquer(ent, dossier=DOSSIER):
             # ignores case, on both sides.
             f = e.get('fako')
             if f and re.search(re.escape(a.strip('()')), f, re.I):
-                vus.append((e, 'fako'))
+                seen.append((e, 'fako'))
         # The same slip is sometimes repeated identically -- « pseupodi » twice,
         # « di sapto » twice. To refuse it would be to lose a correct correction.
         # We therefore apply it everywhere, but ONLY if the string is
         # distinctive enough not to catch something else: at least six
         # characters, or several words. « lO », seen eleven times, stays refused.
-        if not vus or (len(vus) > 1 and len(a) < 6 and ' ' not in a):
-            refus += 1
-            print("  relire %s : «%s» vu %d fois — refuse" % (lot, a[:40], len(vus)))
+        if not seen or (len(seen) > 1 and len(a) < 6 and ' ' not in a):
+            refused += 1
+            print("  relire %s : «%s» vu %d fois — refuse" % (batch, a[:40], len(seen)))
             continue
-        for e, k in vus:
+        for e, k in seen:
             if k == 'fako':
                 e['fako'] = re.sub(re.escape(a.strip('()')),
                                    lambda _m: b.strip('()'), e['fako'], flags=re.I)
             else:
-                e['senci'][k] = mot.sub(lambda _m: b, e['senci'][k], count=1)
-            pose += 1
-    return pose, refus
+                e['senci'][k] = word.sub(lambda _m: b, e['senci'][k], count=1)
+            laid += 1
+    return laid, refused

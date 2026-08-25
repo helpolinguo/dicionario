@@ -1,9 +1,9 @@
 """Building a hand-labelled set: one verified transcription per page."""
 import numpy as np, glob, os
 T="/root/dicionario/travail"
-def lire(fichier):
+def lire(file_):
     d={}
-    for l in open(fichier, encoding='utf-8'):
+    for l in open(file_, encoding='utf-8'):
         l=l.rstrip("\n")
         if not l or l.startswith("#"): continue
         k,_,s=l.partition("\t"); d[int(k)]=s
@@ -27,11 +27,11 @@ def paires(pg, txt):
             # inked cell: either a character, or a smudge -> space class
             idx.append(pos[(k,c)]); car.append(ch)
     return np.array(idx), np.array(car, dtype=object), manques
-def tout(reps=(f"{T}/amorce", f"{T}/amorce_folios")):
+def everything(reps=(f"{T}/amorce", f"{T}/amorce_folios")):
     I=[];C=[];Mq=[]
-    fichiers=[]
-    for r in reps: fichiers += sorted(glob.glob(r+"/p*.txt"))
-    for f in fichiers:
+    files_=[]
+    for r in reps: files_ += sorted(glob.glob(r+"/p*.txt"))
+    for f in files_:
         pg=int(os.path.basename(f)[1:4])
         i,c,mq=paires(pg, lire(f))
         I.append(i); C.append(c); Mq+= [(pg,)+m for m in mq]

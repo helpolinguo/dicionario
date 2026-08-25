@@ -1,7 +1,7 @@
 import sys, os, subprocess, numpy as np
 sys.path.insert(0,'/root/dicionario/outils')
 from PIL import Image
-from cells import extraire
+from cells import extract
 LIGNES=["abcdefghijklmnopq","rstuvwxyzABCDEFGH","IJKLMNOPQRSTUVWXY",
         "Z0123456789.,;:!?","()-+=/'\"*_%&#$[]"]
 GAB=r"""\documentclass{article}
@@ -16,15 +16,15 @@ I J K L M N O P Q R S T U V W X Y
 Z 0 1 2 3 4 5 6 7 8 9 . , ; : ! ?
 ( ) - + = / \textquotesingle{} \textquotedbl{} * \_ \%% \& \# \$ [ ]
 \end{document}"""
-def gabarits(nom, font, opt, taille, rep="/root/dicionario/work/polices"):
+def gabarits(name_, font, opt, taille, rep="/root/dicionario/work/polices"):
     os.makedirs(rep, exist_ok=True)
-    tex=f"{rep}/{nom}.tex"
+    tex=f"{rep}/{name_}.tex"
     open(tex,"w").write(GAB % dict(font=font,opt=opt,taille=taille))
     subprocess.run(["xelatex","-interaction=nonstopmode","-output-directory",rep,tex],
                    capture_output=True)
-    subprocess.run(["pdftoppm","-r","150","-gray","-png",f"{rep}/{nom}.pdf",f"{rep}/{nom}"],capture_output=True)
-    Image.open(f"{rep}/{nom}-1.png").convert("L").save(f"{rep}/{nom}.jpg", quality=95)
-    d=extraire(f"{rep}/{nom}.jpg"); c=d['cells']
+    subprocess.run(["pdftoppm","-r","150","-gray","-png",f"{rep}/{name_}.pdf",f"{rep}/{name_}"],capture_output=True)
+    Image.open(f"{rep}/{name_}-1.png").convert("L").save(f"{rep}/{name_}.jpg", quality=95)
+    d=extract(f"{rep}/{name_}.jpg"); c=d['cells']
     T={}
     for i,s in enumerate(LIGNES):
         for j,ch in enumerate(s):

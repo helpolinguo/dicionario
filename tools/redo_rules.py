@@ -9,9 +9,9 @@ what is in the npz: that is the non-regression check.
 import numpy as np, sys, pickle, os, re
 sys.path.insert(0,'/root/dicionario/outils')
 import cells as C
-T="/root/dicionario/travail"; RAC="/root/dicionario"
+T="/root/dicionario/travail"; ROOT="/root/dicionario"
 
-def filets(pg, **kw):
+def rules(pg, **kw):
     """A page's rules, on the geometry ALREADY STORED.
 
     We are careful not to recompute the lattice's pitch and phase.
@@ -27,23 +27,23 @@ def filets(pg, **kw):
     the origin come from the npz, as at the first cutting.
     """
     z=np.load(f"{T}/cellules/p-{pg:03d}.npz", allow_pickle=True)
-    d = C.analyser(f"{RAC}/scan/p-{pg:03d}.jpg")
+    d = C.analyse(f"{ROOT}/scan/p-{pg:03d}.jpg")
     r=d['norm']
-    pasv=float(z['pasv']); pash=float(z['pash']); xg=float(z['xg']); c0=int(z['col0'])
-    ncol=int(np.floor((r.shape[1]-xg)/pash))
-    sou = C.soulignements(r, z['lignes'], pasv, pash, xg, ncol, **kw)
-    return {k:(yy,[(a-c0,b-c0) for a,b in pl],t) for k,(yy,pl,t) in sou.items()}
+    vstep=float(z['pasv']); hstep=float(z['pash']); xg=float(z['xg']); c0=int(z['col0'])
+    ncol=int(np.floor((r.shape[1]-xg)/hstep))
+    underline = C.underlines(r, z['lignes'], vstep, hstep, xg, ncol, **kw)
+    return {k:(yy,[(a-c0,b-c0) for a,b in pl],t) for k,(yy,pl,t) in underline.items()}
 
 if __name__=="__main__":
     for pg in (25,33):
-        neuf=filets(pg)
+        neuf=rules(pg)
         z=np.load(f"{T}/cellules/p-{pg:03d}.npz", allow_pickle=True)
         anc=pickle.loads(z['sou'].item())
         ka=set(k for k,v in anc.items() if v[1]); kn=set(k for k,v in neuf.items() if v[1])
         egal=all(sorted(anc[k][1])==sorted(neuf[k][1]) for k in ka|kn if k in anc and k in neuf)
         print("p%03d : lignes avec filet anc=%d neuf=%d  identiques=%s"%(pg,len(ka),len(kn),egal and ka==kn))
 
-def tous(sortie=f"{T}/filets.pkl", debut=0, fin=None):
+def all_(out_path=f"{T}/filets.pkl", start_=0, end_=None):
     """Recomputes the rules of every page and deposits them apart.
 
     We do not write into the corpus of cells: it weighs 295 MB and one error
@@ -54,14 +54,14 @@ def tous(sortie=f"{T}/filets.pkl", debut=0, fin=None):
     import glob
     pages=sorted(int(re.search(r'p-(\d+)',f).group(1))
                  for f in glob.glob(f"{T}/cellules/p-*.npz"))
-    pages=[p for p in pages if p>=debut and (fin is None or p<fin)]
+    pages=[p for p in pages if p>=start_ and (end_ is None or p<end_)]
     out={}
     for i,pg in enumerate(pages):
         try:
-            out[pg]=filets(pg)
+            out[pg]=rules(pg)
         except Exception as e:
             print("ECHEC p%03d : %s"%(pg,e), flush=True); continue
         if i%25==0: print("  %d/%d (p%03d)"%(i,len(pages),pg), flush=True)
-    with open(sortie,"wb") as f: pickle.dump(out,f)
-    print("ecrit %s : %d pages"%(sortie,len(out)))
+    with open(out_path,"wb") as f: pickle.dump(out,f)
+    print("ecrit %s : %d pages"%(out_path,len(out)))
     return out

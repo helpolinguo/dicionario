@@ -19,29 +19,29 @@ LETTRES=set("abcdefghijklmnopqrstuvwxyz")
 MAJ=set("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
 TOUTES=LETTRES|MAJ
 
-def decoder_livre(lab, M, tab, bav, exc=None):
+def decoder_livre(lab, M, tab, smudge, exc=None):
     """Returns {page: [(k, [(column, character, cell_index), ...])]}"""
     pages={}
-    ordre=np.argsort(M[:,0], kind='stable')
-    bornes=np.searchsorted(M[ordre,0], np.arange(M[:,0].max()+2))
+    order_=np.argsort(M[:,0], kind='stable')
+    bounds=np.searchsorted(M[order_,0], np.arange(M[:,0].max()+2))
     for pg in range(M[:,0].max()+1):
-        idx=ordre[bornes[pg]:bornes[pg+1]]
+        idx=order_[bounds[pg]:bounds[pg+1]]
         if not len(idx): continue
-        par=collections.defaultdict(list)
+        per=collections.defaultdict(list)
         for i in idx:
-            if bav[i]: continue
+            if smudge[i]: continue
             k,c=int(M[i,1]),int(M[i,2])
             ch=exc.get((pg,k,c), str(tab[lab[i]])) if exc else str(tab[lab[i]])
-            par[k].append((c, ch, int(i)))
-        for k in par: par[k].sort()
-        pages[pg]=sorted(par.items())
+            per[k].append((c, ch, int(i)))
+        for k in per: per[k].sort()
+        pages[pg]=sorted(per.items())
     return pages
 
-def mots(ligne):
+def words(line_):
     """Cuts a line (list of (col, char, idx)) into contiguous words."""
     out=[]; cur=[]
     prev=None
-    for col,ch,i in ligne:
+    for col,ch,i in line_:
         if prev is not None and col!=prev+1 and cur:
             out.append(cur); cur=[]
         cur.append((col,ch,i)); prev=col
@@ -57,32 +57,32 @@ def mots(ligne):
             if j>d: res.append(g[d:j])
     return res
 
-def executer(mini_atteste=8, maxi_fautif=5, max_pos=3, marge=8, marge_ngram=6.0):
+def run_step(mini_atteste=8, maxi_fautif=5, max_pos=3, margin=8, marge_ngram=6.0):
     lab=np.load(f"{T}/km_lab.npy"); M=np.load(f"{T}/meta_all.npy")
     tab=np.load(f"{T}/cls_lab.npy", allow_pickle=True)
-    from decode import bavures
+    from decode import smudges
     from generate import exceptions
-    bav=bavures(); exc=dict(exceptions())
+    smudge=smudges(); exc=dict(exceptions())
     alt=pickle.load(open(f"{T}/cls_alternatives.pkl","rb"))
-    pages=decoder_livre(lab, M, tab, bav, exc)
+    pages=decoder_livre(lab, M, tab, smudge, exc)
     # 1. the book's lexicon
     freq=collections.Counter()
-    tous=[]
-    for pg,lignes in pages.items():
-        for k,ligne in lignes:
-            for mo in mots(ligne):
+    all_=[]
+    for pg,lines in pages.items():
+        for k,line_ in lines:
+            for mo in words(line_):
                 f="".join(c for _,c,_ in mo)
-                if len(f)>=3: freq[f]+=1; tous.append((pg,k,mo,f))
+                if len(f)>=3: freq[f]+=1; all_.append((pg,k,mo,f))
     print(f"{len(freq)} formes distinctes, {sum(freq.values())} occurrences", flush=True)
     # 2. correction
-    journal=[]; exc={}
-    for pg,k,mo,f in tous:
+    log_=[]; exc={}
+    for pg,k,mo,f in all_:
         if freq[f] > maxi_fautif: continue
         # we do not touch proper nouns or initialisms: a form that carries a
         # capital anywhere but at the start, or whose initial is a capital, has no
         # business being brought back to the common lexicon.
         if any(c in MAJ for c in f[1:]): continue   # initialisms: we do not touch
-        cle = f[0].lower()+f[1:] if f[0] in MAJ else f
+        key_ = f[0].lower()+f[1:] if f[0] in MAJ else f
         pos=[j for j,(c0,_,i) in enumerate(mo) if alt[lab[i]] and (pg,k,c0) not in exc]
         if not pos or len(pos)>max_pos: continue
         cands=[]
@@ -99,12 +99,12 @@ def executer(mini_atteste=8, maxi_fautif=5, max_pos=3, marge=8, marge_ngram=6.0)
         cands.sort(reverse=True)
         n1,v1,c1=cands[0]
         if len(cands)>1 and cands[1][0]*3 > n1: continue   # ambiguous: we abstain
-        if n1 < marge*max(freq[f],1): continue            # the gap must be clear
+        if n1 < margin*max(freq[f],1): continue            # the gap must be clear
         for a,j in zip(c1,pos):
             if a!=mo[j][1]:
                 col,ancien,i=mo[j]
                 exc[(pg,k,col)]=a
-                journal.append((pg,k,col,ancien,a,f,v1,freq[f],n1))
+                log_.append((pg,k,col,ancien,a,f,v1,freq[f],n1))
     # --- second stage: a model of character n-grams -------------------------
     # Some forms have no attestation at all: a headword often appears only once.
     # We then apply to them a model of order 4 learnt on the book's vocabulary
@@ -124,7 +124,7 @@ def executer(mini_atteste=8, maxi_fautif=5, max_pos=3, marge=8, marge_ngram=6.0)
             t+=math.log10((ngr.get(s2[i-3:i+1],0)+0.2)/(ctx.get(s2[i-3:i],0)+0.2*V))
         return t
     n2=0
-    for pg,k,mo,f in tous:
+    for pg,k,mo,f in all_:
         if freq[f] > 1: continue
         if any(c in MAJ for c in f[1:]): continue
         if any((pg,k,c0) in exc for c0,_,_ in mo): continue
@@ -144,17 +144,17 @@ def executer(mini_atteste=8, maxi_fautif=5, max_pos=3, marge=8, marge_ngram=6.0)
             if a!=mo[j][1]:
                 col,anc,i=mo[j]
                 exc[(pg,k,col)]=a
-                journal.append((pg,k,col,anc,a,f,v,freq[f],-1))
+                log_.append((pg,k,col,anc,a,f,v,freq[f],-1))
                 n2+=1
-    print(f"{len(journal)} cellules corrigees dans {len(set((j[0],j[1]) for j in journal))} lignes "
+    print(f"{len(log_)} cellules corrigees dans {len(set((j[0],j[1]) for j in log_))} lignes "
           f"(dont {n2} par le modele de n-grammes)", flush=True)
-    return exc, journal, freq
+    return exc, log_, freq
 
 if __name__=="__main__":
-    exc, journal, freq = executer()
+    exc, log_, freq = run_step()
     with open(f"{T}/journal_corrections.txt","w",encoding='utf-8') as f:
         f.write("page\tligne\tcol\tlu\tcorrige\tforme lue\tforme retenue\tfreq lue\tfreq retenue\n")
-        for j in journal: f.write("\t".join(map(str,j))+"\n")
+        for j in log_: f.write("\t".join(map(str,j))+"\n")
     # merged into exceptions.txt, preserving the manual entries
     manuel=[]
     p=f"{T}/exceptions.txt"

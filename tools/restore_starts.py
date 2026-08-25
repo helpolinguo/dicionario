@@ -30,21 +30,21 @@ import numpy as np
 sys.path.insert(0, '/root/dicionario/outils')
 import cells
 from features2 import feature_vector2
-RAC = "/root/dicionario"; T = f"{RAC}/travail"
+ROOT = "/root/dicionario"; T = f"{ROOT}/travail"
 
 
-def une(pg, Q, tab):
+def one_(pg, Q, tab):
     """Characters recovered left of the block: {line: {negative column: char}}."""
     z = np.load(f"{T}/cellules/p-{pg:03d}.npz", allow_pickle=True)
     col0 = int(z['col0'])
-    cles = set(int(k) for k, _ in z['lignes'])
-    cellules.ETENDRE = True; cellules.ETENDRE_D = False; cellules.ETENDRE_FORCE = 2
+    keys_ = set(int(k) for k, _ in z['lignes'])
+    cells_of.ETENDRE = True; cells_of.ETENDRE_D = False; cells_of.ETENDRE_FORCE = 2
     try:
-        d = cellules.extraire(f"{RAC}/scan/p-{pg:03d}.jpg")
+        d = cells_of.extract(f"{ROOT}/scan/p-{pg:03d}.jpg")
     finally:
-        cellules.ETENDRE = False; cellules.ETENDRE_FORCE = 0
+        cells_of.ETENDRE = False; cells_of.ETENDRE_FORCE = 0
     lg = np.array(d['lignes'])
-    if set(int(k) for k in lg[:, 0]) != cles:
+    if set(int(k) for k in lg[:, 0]) != keys_:
         return None, "lignes differentes"
     delta = col0 - int(d['col0'])
     if delta <= 0:
@@ -56,15 +56,15 @@ def une(pg, Q, tab):
     A = (np.clip(d['nues'][ii, jj], 0, 1) * 255.0).round().astype(np.uint8)
     P = A.astype(np.float32) / 255.
     tot = P.sum((1, 2))
-    bord = (P[:, :, :2].sum((1, 2)) + P[:, :, -2:].sum((1, 2))) / (tot + 1e-6)
-    haut = P[:, :4, :].sum((1, 2)) / (tot + 1e-6)
-    bas = P[:, 18:, :].sum((1, 2)) / (tot + 1e-6)
-    bav = ((bord > 0.55) | ((tot < 12) & (bord > 0.25)) | (haut > 0.80) | (bas > 0.85))
+    edge = (P[:, :, :2].sum((1, 2)) + P[:, :, -2:].sum((1, 2))) / (tot + 1e-6)
+    top = P[:, :4, :].sum((1, 2)) / (tot + 1e-6)
+    bottom = P[:, 18:, :].sum((1, 2)) / (tot + 1e-6)
+    smudge = ((edge > 0.55) | ((tot < 12) & (edge > 0.25)) | (top > 0.80) | (bottom > 0.85))
     X = feature_vector2(A); X = X / np.maximum(np.linalg.norm(X, axis=1, keepdims=True), 1e-6)
     g = (X @ Q.T).argmax(1)
     out = {}
     for i in range(len(ii)):
-        if bav[i]:
+        if smudge[i]:
             continue
         ch = str(tab[g[i]])
         if ch == ' ' or len(ch) != 1:
@@ -73,31 +73,31 @@ def une(pg, Q, tab):
     return out, None
 
 
-def tous(sortie=f"{T}/debuts.pkl", debut=0, fin=None):
+def all_(out_path=f"{T}/debuts.pkl", start_=0, end_=None):
     Q = np.load(f"{T}/km_centres2.npy")
     tab = np.load(f"{T}/cls_lab.npy", allow_pickle=True)
     pages = sorted(int(re.search(r'p-(\d+)', f).group(1))
                    for f in glob.glob(f"{T}/cellules/p-*.npz"))
-    pages = [p for p in pages if p >= debut and (fin is None or p < fin)]
-    out = {}; refus = 0
+    pages = [p for p in pages if p >= start_ and (end_ is None or p < end_)]
+    out = {}; refused = 0
     for i, pg in enumerate(pages):
         try:
-            r, err = une(pg, Q, tab)
+            r, err = one_(pg, Q, tab)
         except Exception as e:
             print("ECHEC p%03d : %s" % (pg, e), flush=True); continue
         if r is None:
-            refus += 1
+            refused += 1
         elif r:
             out[pg] = r
             print("  p%03d : %s" % (pg, sorted((k, "".join(v[c] for c in sorted(v)))
                                                for k, v in r.items())), flush=True)
         if i % 50 == 0:
             print("  ...%d/%d" % (i, len(pages)), flush=True)
-    with open(sortie, "wb") as f:
+    with open(out_path, "wb") as f:
         pickle.dump(out, f)
-    print("pages avec un debut recupere : %d ; pages refusees : %d" % (len(out), refus))
+    print("pages avec un debut recupere : %d ; pages refusees : %d" % (len(out), refused))
     return out
 
 
 if __name__ == "__main__":
-    tous()
+    all_()

@@ -15,21 +15,21 @@ space again, and the matching is done column by column, without ambiguity.
 import numpy as np, os, sys, json
 from PIL import Image, ImageDraw
 sys.path.insert(0,'/root/dicionario/outils')
-RAC="/root/dicionario"; T=f"{RAC}/travail"
+ROOT="/root/dicionario"; T=f"{ROOT}/travail"
 ZOOM=1.7; BANDES=3; CHEV=2      # overlap, in lines
 
 def texte_page(pg, pages=None):
     if pages is None:
-        from edition import charger_texte
-        pages,_,_=charger_texte()
+        from edition import load_text
+        pages,_,_=load_text()
     return pages.get(pg, [])
 
-def bandes(pg, rep, lignes):
+def strips(pg, rep, lines):
     """Cuts the page into horizontal strips, each legible at a glance."""
     z=np.load(f"{T}/cellules/p-{pg:03d}.npz", allow_pickle=True)
-    ech=float(z['shape'][0])/Image.open(f"{RAC}/scan/p-{pg:03d}.jpg").size[1]
-    pasv=float(z['pasv']); lg={int(k):float(y) for k,y in z['lignes']}
-    im=Image.open(f"{RAC}/scan/p-{pg:03d}.jpg").convert('L')
+    scale=float(z['shape'][0])/Image.open(f"{ROOT}/scan/p-{pg:03d}.jpg").size[1]
+    vstep=float(z['pasv']); lg={int(k):float(y) for k,y in z['lignes']}
+    im=Image.open(f"{ROOT}/scan/p-{pg:03d}.jpg").convert('L')
     W,H=im.size
     ks=sorted(lg)
     n=max(1,(len(ks)+BANDES-1)//BANDES)
@@ -37,30 +37,30 @@ def bandes(pg, rep, lignes):
     for b in range(0, len(ks), n):
         sous=ks[max(b-CHEV,0): b+n+CHEV]
         if not sous: continue
-        y0=max(int((lg[sous[0]]-1.2*pasv)/ech), 0)
-        y1=min(int((lg[sous[-1]]+1.2*pasv)/ech), H)
+        y0=max(int((lg[sous[0]]-1.2*vstep)/scale), 0)
+        y1=min(int((lg[sous[-1]]+1.2*vstep)/scale), H)
         c=im.crop((0,y0,W,y1))
         c=c.resize((int(W*ZOOM), int((y1-y0)*ZOOM)), Image.LANCZOS)
-        nom=f"{rep}/p{pg:03d}b{b//n}.png"; c.save(nom)
-        out.append(dict(fichier=os.path.basename(nom), lignes=[k for k in ks[b:b+n]]))
+        name_=f"{rep}/p{pg:03d}b{b//n}.png"; c.save(name_)
+        out.append(dict(fichier=os.path.basename(name_), lignes=[k for k in ks[b:b+n]]))
     return out
 
 def preparer(pgs, rep=f"{T}/relecture"):
     os.makedirs(rep, exist_ok=True)
-    from edition import charger_texte
-    pages,_,_=charger_texte()
-    fiches=[]
+    from edition import load_text
+    pages,_,_=load_text()
+    records=[]
     for pg in pgs:
-        lignes=dict(texte_page(pg, pages))
-        bs=bandes(pg, rep, lignes)
+        lines=dict(texte_page(pg, pages))
+        bs=strips(pg, rep, lines)
         with open(f"{rep}/p{pg:03d}.txt","w",encoding='utf-8') as f:
             for b in bs:
                 f.write(f"== {b['fichier']}\n")
                 for k in b['lignes']:
-                    f.write(f"{k:03d}|{lignes.get(k,'')}\n")
-        fiches.append(dict(pagino=pg, bandes=bs))
-    json.dump(fiches, open(f"{rep}/fiches.json","w"))
-    return fiches
+                    f.write(f"{k:03d}|{lines.get(k,'')}\n")
+        records.append(dict(pagino=pg, bandes=bs))
+    json.dump(records, open(f"{rep}/fiches.json","w"))
+    return records
 
 if __name__=="__main__":
     pgs=[int(x) for x in sys.argv[1:]]

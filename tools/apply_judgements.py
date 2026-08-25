@@ -15,35 +15,35 @@ reglue, instead of replacing one word by another.
 import json, re, sys, collections
 T="/root/dicionario/travail"
 
-def executer(rep=f"{T}/juger/reponses/r.txt", fic=f"{T}/juger/fiches.json"):
-    fiches={x['id']:x for x in json.load(open(fic))}
+def run_step(rep=f"{T}/juger/reponses/r.txt", fic=f"{T}/juger/fiches.json"):
+    records={x['id']:x for x in json.load(open(fic))}
     corr=[]
     for l in open(rep,encoding='utf-8'):
         i,_,v=l.rstrip("\n").partition("\t")
         if not v.strip() or not i.strip().isdigit(): continue
-        x=fiches.get(int(i))
+        x=records.get(int(i))
         if x is None: continue
         corr.append((x['mot'], v.strip()))
     ent=[json.loads(l) for l in open(f"{T}/edicioni/dicionario.jsonl",encoding='utf-8')]
-    journal=[]
-    for mot, bon in corr:
+    log_=[]
+    for word, good in corr:
         # hyphenation: « pro-duktita » -> « produktita »
-        if bon.lower().endswith(mot.lower()) and len(bon)>len(mot):
-            tete=bon[:len(bon)-len(mot)]
-            motif=re.compile(r'\b'+re.escape(tete)+r'[-\s]+'+re.escape(mot)+r'\b', re.I)
+        if good.lower().endswith(word.lower()) and len(good)>len(word):
+            head=good[:len(good)-len(word)]
+            motif=re.compile(r'\b'+re.escape(head)+r'[-\s]+'+re.escape(word)+r'\b', re.I)
         else:
-            motif=re.compile(r'\b'+re.escape(mot)+r'\b', re.I)
+            motif=re.compile(r'\b'+re.escape(word)+r'\b', re.I)
         for e in ent:
             s=e.get('senci') or []
             for k,t in enumerate(s):
-                nt,n=motif.subn(bon, t)
-                if n: journal.append((e['image'],e['ligno'],mot,bon)); s[k]=nt
+                nt,n=motif.subn(good, t)
+                if n: log_.append((e['image'],e['ligno'],word,good)); s[k]=nt
     with open(f"{T}/edicioni/dicionario.jsonl","w",encoding='utf-8') as f:
         for e in ent: f.write(json.dumps(e,ensure_ascii=False)+"\n")
     with open(f"{T}/jugements.txt","w",encoding='utf-8') as f:
         f.write("# image\tligne\tforme lue\tforme retenue\n")
-        for x in journal: f.write("%s\t%s\t%s\t%s\n"%x)
-    print("corrections retenues : %d ; occurrences remplacees : %d"%(len(corr),len(journal)))
-    return journal
+        for x in log_: f.write("%s\t%s\t%s\t%s\n"%x)
+    print("corrections retenues : %d ; occurrences remplacees : %d"%(len(corr),len(log_)))
+    return log_
 
-if __name__=="__main__": executer()
+if __name__=="__main__": run_step()

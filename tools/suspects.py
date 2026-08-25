@@ -9,12 +9,12 @@ rest of the text does not need to be read to be judged sound.
 """
 import json, re, sys, collections
 sys.path.insert(0,'/root/dicionario/outils')
-from clean import racines, connu, MOT, variantes
+from clean import racines, known, MOT, variants
 T="/root/dicionario/travail"
 
 def inventaire():
     ent=[json.loads(l) for l in open(f"{T}/edicioni/dicionario.jsonl",encoding='utf-8')]
-    rac=racines(ent)
+    root=racines(ent)
     freq=collections.Counter(); ctx={}
     for e in ent:
         for i,s in enumerate(e.get('senci') or []):
@@ -22,17 +22,17 @@ def inventaire():
                 b=w.lower()
                 freq[b]+=1
                 if b not in ctx: ctx[b]=(e['vedetto'], e['image'], e['ligno'], i, s)
-    inc={w:n for w,n in freq.items() if not connu(w,rac)}
-    return ent, rac, inc, ctx, freq
+    inc={w:n for w,n in freq.items() if not known(w,root)}
+    return ent, root, inc, ctx, freq
 
 if __name__=="__main__":
-    ent,rac,inc,ctx,freq=inventaire()
-    print("articles %d | racines connues %d"%(len(ent),len(rac)))
+    ent,root,inc,ctx,freq=inventaire()
+    print("articles %d | racines connues %d"%(len(ent),len(root)))
     print("formes distinctes dans les definitions : %d"%len(freq))
     print("formes a racine inconnue : %d (occurrences %d)"%(len(inc),sum(inc.values())))
-    par=collections.Counter()
-    for w,n in inc.items(): par[min(n,4)]+=1
+    per=collections.Counter()
+    for w,n in inc.items(): per[min(n,4)]+=1
     print("  dont hapax : %d | 2 fois : %d | 3 fois : %d | 4+ : %d"
-          %(par[1],par[2],par[3],par[4]))
-    avec=sum(1 for w in inc if any(connu(v,rac) for v in set(variantes(w))))
+          %(per[1],per[2],per[3],per[4]))
+    avec=sum(1 for w in inc if any(known(v,root) for v in set(variants(w))))
     print("  dont un echange de sosies suffit a rendre connues : %d"%avec)

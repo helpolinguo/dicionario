@@ -14,25 +14,25 @@ verified by eye before being taken back.
 import pickle, sys
 T="/root/dicionario/travail"
 
-def filtrer(brut, maxlignes=2):
+def filtrer(raw, maxlignes=2):
     out={}
-    for pg,d in brut.items():
-        garde={}
+    for pg,d in raw.items():
+        kept={}
         for k,v in d.items():
             if set(v)!={-1}: continue
             ch=v[-1]
             if not (ch.isalpha() or ch=='+'): continue
-            garde[k]={-1:ch}
-        if garde and len(garde)<=maxlignes: out[pg]=garde
+            kept[k]={-1:ch}
+        if kept and len(kept)<=maxlignes: out[pg]=kept
     return out
 
 if __name__=="__main__":
-    brut=pickle.load(open(f"{T}/debuts_brut.pkl","rb"))
-    net=filtrer(brut)
-    pickle.dump(net, open(f"{T}/debuts.pkl","wb"))
-    print("pages retenues : %d (sur %d)"%(len(net), len(brut)))
-    for pg in sorted(net):
-        print("   p%03d : %s"%(pg, sorted((k,v[-1]) for k,v in net[pg].items())))
+    raw=pickle.load(open(f"{T}/debuts_brut.pkl","rb"))
+    clean_=filtrer(raw)
+    pickle.dump(clean_, open(f"{T}/debuts.pkl","wb"))
+    print("pages retenues : %d (sur %d)"%(len(clean_), len(raw)))
+    for pg in sorted(clean_):
+        print("   p%03d : %s"%(pg, sorted((k,v[-1]) for k,v in clean_[pg].items())))
 
 # Verification by eye, sheet by sheet (work/debuts.png).
 #

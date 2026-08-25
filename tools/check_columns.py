@@ -15,25 +15,25 @@ import subprocess, re, sys, numpy as np, collections
 HAUT_CACHE = 24.0        # PostScript points; the block starts lower
 
 def mesurer(pdf, pas_pouce=0.1, orig_mm=21.9):
-    pas=pas_pouce*72; orig=orig_mm/25.4*72
+    step=pas_pouce*72; orig=orig_mm/25.4*72
     xml=subprocess.run(["pdftotext","-bbox","-q",pdf,"-"],capture_output=True,text=True).stdout
-    U=collections.defaultdict(list); tout=[]
+    U=collections.defaultdict(list); everything=[]
     for ipg,pg in enumerate(re.split(r'<page ',xml)[1:]):
         for m in re.finditer(r'<word xMin="([\d.]+)" yMin="([\d.]+)" xMax="([\d.]+)" yMax="([\d.]+)">(.*?)</word>', pg):
             x=float(m.group(1)); t=m.group(5)
             if not t: continue
             if float(m.group(2)) < HAUT_CACHE: continue   # hidden mark
-            u=(x-orig)/pas
-            U[t[0]].append(u); tout.append((ipg+1,t,u))
+            u=(x-orig)/step
+            U[t[0]].append(u); everything.append((ipg+1,t,u))
     appr={c: float(np.median(np.array(v)-np.round(np.array(v)))) for c,v in U.items()}
-    ec=[]; pires=[]
-    for ipg,t,u in tout:
+    ec=[]; worst=[]
+    for ipg,t,u in everything:
         e=abs((u-appr[t[0]])-round(u-appr[t[0]]))
         ec.append(e)
-        if e>0.12: pires.append((ipg,t,round(u,3),round(e,3)))
+        if e>0.12: worst.append((ipg,t,round(u,3),round(e,3)))
     ec=np.array(ec)
     return dict(n=len(ec), max=float(ec.max()), moyen=float(ec.mean()),
-                q99=float(np.percentile(ec,99)), nb_hors=len(pires), pires=pires[:20],
+                q99=float(np.percentile(ec,99)), nb_hors=len(worst), pires=worst[:20],
                 approches={c:round(v,3) for c,v in sorted(appr.items())})
 if __name__=="__main__":
     r=mesurer(sys.argv[1] if len(sys.argv)>1 else "/root/dicionario/main.pdf")

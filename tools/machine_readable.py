@@ -60,12 +60,12 @@ def texto(t: str) -> str:
 
 def artiklo(e: dict) -> str:
     """One article, in Markdown. Follows the same form as the page."""
-    ved = f'« {e["v"]} »' if e.get('c') else e['v']
-    lin = [f'## {ved}' + (f' *({e["f"]})*' if e.get('f') else '')]
+    hw = f'« {e["v"]} »' if e.get('c') else e['v']
+    lin = [f'## {hw}' + (f' *({e["f"]})*' if e.get('f') else '')]
 
-    senci = e.get('b') or []
-    for i, b in enumerate(senci):
-        num = f'{i + 1}. ' if len(senci) > 1 else ''
+    senses = e.get('b') or []
+    for i, b in enumerate(senses):
+        num = f'{i + 1}. ' if len(senses) > 1 else ''
         if b.get('t') or not b.get('u'):
             lin.append(num + texto(b.get('t', '')))
             num = ''

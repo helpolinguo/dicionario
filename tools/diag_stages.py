@@ -5,24 +5,24 @@ a stroke disappears."""
 import numpy as np, sys, os
 sys.path.insert(0,'/root/dicionario/outils')
 from cover import binariser_trait, SUR
-from repair_cover import appliquer
+from repair_cover import apply_
 from scipy.ndimage import label as _lab, binary_dilation as _dil, find_objects
 from PIL import Image, ImageDraw
-RAC="/root/dicionario"
+ROOT="/root/dicionario"
 BOITES=[(21,138,264,394),(188,288,218,359),(379,458,187,331),(546,638,175,323),
         (720,801,188,330),(877,974,218,358),(1034,1136,285,394)]
 
 def etapes():
-    c=f"{RAC}/work/couv/etapes.npz"
+    c=f"{ROOT}/work/couv/etapes.npz"
     if os.path.exists(c):
         z=np.load(c); return z['b'],z['d1'],z['d2']
-    n=np.load(f"{RAC}/work/couv/niveaux.npy")
-    b=appliquer(binariser_trait(n))
+    n=np.load(f"{ROOT}/work/couv/niveaux.npy")
+    b=apply_(binariser_trait(n))
     d1=b.copy()
     R=22*SUR
     am,na=_lab(_dil(d1,np.ones((R,R),bool)),np.ones((3,3),int))
-    enc=np.bincount(am[d1].ravel(),minlength=na+1)
-    du=np.where(enc<1500)[0]; du=du[du>0]
+    ink_=np.bincount(am[d1].ravel(),minlength=na+1)
+    du=np.where(ink_<1500)[0]; du=du[du>0]
     d1 &= ~(np.isin(am,du)&d1)
     d2=d1.copy()
     LH,LV,AIRE,ENCRE,GROS,LOIN=12,6,900,1500,900,12
@@ -31,7 +31,7 @@ def etapes():
         m=8; mp[(max(y0-m,0))*SUR:(y1+m)*SUR,(max(x0-m,0))*SUR:(x1+m)*SUR]=True
     T=d2&~mp
     d=_dil(T,np.ones((1,LH*SUR),bool)); d=_dil(d,np.ones((LV*SUR,1),bool))
-    am,nb=_lab(d,np.ones((3,3),int)); enc=np.bincount(am[T].ravel(),minlength=nb+1)
+    am,nb=_lab(d,np.ones((3,3),int)); ink_=np.bincount(am[T].ravel(),minlength=nb+1)
     l,n2=_lab(T,np.ones((3,3),int)); ob=find_objects(l)
     ai=np.array([int((l[ob[i]]==i+1).sum()) for i in range(n2)])
     bb=np.array([(o[0].start,o[0].stop,o[1].start,o[1].stop) for o in ob])
@@ -39,7 +39,7 @@ def etapes():
     for i,o in enumerate(ob):
         if ai[i]>=AIRE: continue
         ys,xs=np.nonzero(l[o]==i+1)
-        if enc[am[o][ys[0],xs[0]]]>=ENCRE: continue
+        if ink_[am[o][ys[0],xs[0]]]>=ENCRE: continue
         if len(g):
             dy=np.maximum(0,np.maximum(Y0[i]-Y1[g],Y0[g]-Y1[i]))
             dx=np.maximum(0,np.maximum(X0[i]-X1[g],X0[g]-X1[i]))
@@ -48,8 +48,8 @@ def etapes():
     np.savez_compressed(c,b=b,d1=d1,d2=d2)
     return b,d1,d2
 
-def planche(nom,x0,x1,y0,y1,Z=5):
-    n=np.load(f"{RAC}/work/couv/niveaux.npy")
+def sheet_(name_,x0,x1,y0,y1,Z=5):
+    n=np.load(f"{ROOT}/work/couv/niveaux.npy")
     b,d1,d2=etapes()
     W=(x1-x0)*Z; H=(y1-y0)*Z
     vues=[("SCAN", np.clip(1-n[y0:y1,x0:x1],0,1)*255)]
@@ -59,8 +59,8 @@ def planche(nom,x0,x1,y0,y1,Z=5):
     for i,(t,a) in enumerate(vues):
         im=Image.fromarray(a.astype(np.uint8)).resize((W,H),Image.LANCZOS)
         d.text((4,i*(H+22)+4),t,fill=0); pl.paste(im,(0,i*(H+22)+20))
-    os.makedirs(f"{RAC}/work/audit",exist_ok=True)
-    pl.save(f"{RAC}/work/audit/etapes-{nom}.png"); print(nom,pl.size)
+    os.makedirs(f"{ROOT}/work/audit",exist_ok=True)
+    pl.save(f"{ROOT}/work/audit/etapes-{name_}.png"); print(name_,pl.size)
 
 if __name__=="__main__":
-    planche("lalande",546,800,415,505,Z=6)
+    sheet_("lalande",546,800,415,505,Z=6)

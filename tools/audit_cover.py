@@ -5,7 +5,7 @@ to the thresholding or the despeckling."""
 import numpy as np, sys, os
 sys.path.insert(0,'/root/dicionario/outils')
 from PIL import Image, ImageDraw
-RAC="/root/dicionario"
+ROOT="/root/dicionario"
 ZONES=[
  ("banniere",        0,1205, 112, 150),
  ("cap-beaufront",   10, 250, 380, 500),
@@ -28,19 +28,19 @@ ZONES=[
  ("akademio",       380, 830,1295,1335),
  ("bas",              0,1205,1560,1620),
 ]
-def executer():
-    n=np.load(f"{RAC}/work/couv/niveaux.npy")
-    fin=Image.open(f"{RAC}/ornaments/couverture/couverture-x2.png").convert("L")
-    os.makedirs(f"{RAC}/work/audit",exist_ok=True)
-    for nom,x0,x1,y0,y1 in ZONES:
+def run_step():
+    n=np.load(f"{ROOT}/work/couv/niveaux.npy")
+    end_=Image.open(f"{ROOT}/ornaments/couverture/couverture-x2.png").convert("L")
+    os.makedirs(f"{ROOT}/work/audit",exist_ok=True)
+    for name_,x0,x1,y0,y1 in ZONES:
         Z=max(2, min(5, 1500//max(1,(x1-x0))))
         o=np.clip(1-n[y0:y1, x0:x1],0,1)*255
         oi=Image.fromarray(o.astype(np.uint8)).resize(((x1-x0)*Z,(y1-y0)*Z),Image.LANCZOS)
-        fi=fin.crop((x0*2,y0*2,x1*2,y1*2)).resize(((x1-x0)*Z,(y1-y0)*Z),Image.LANCZOS)
+        fi=end_.crop((x0*2,y0*2,x1*2,y1*2)).resize(((x1-x0)*Z,(y1-y0)*Z),Image.LANCZOS)
         W=oi.width; H=oi.height
         pl=Image.new('L',(W, H*2+34),255); d=ImageDraw.Draw(pl)
-        d.text((4,2),"SCAN  "+nom,fill=0); pl.paste(oi,(0,16))
-        d.text((4,H+20),"FINAL "+nom,fill=0); pl.paste(fi,(0,H+34))
-        pl.save(f"{RAC}/work/audit/{nom}.png")
-        print(nom, pl.size)
-if __name__=="__main__": executer()
+        d.text((4,2),"SCAN  "+name_,fill=0); pl.paste(oi,(0,16))
+        d.text((4,H+20),"FINAL "+name_,fill=0); pl.paste(fi,(0,H+34))
+        pl.save(f"{ROOT}/work/audit/{name_}.png")
+        print(name_, pl.size)
+if __name__=="__main__": run_step()

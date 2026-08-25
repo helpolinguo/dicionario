@@ -10,51 +10,51 @@ line, column) is invalidated.
 import sys, numpy as np
 sys.path.insert(0,'/root/dicionario/outils')
 import page as P
-RAC="/root/dicionario"; T=f"{RAC}/travail"
+ROOT="/root/dicionario"; T=f"{ROOT}/travail"
 
-def lattis(pg, seuil=0.02):
+def lattice(pg, threshold=0.02):
     z=np.load(f"{T}/cellules/p-{pg:03d}.npz", allow_pickle=True)
-    lg=np.array(z['lignes']); pasv=float(z['pasv'])
-    a=P.charger(f"{RAC}/scan/p-{pg:03d}.jpg")
-    b=P.masquer_bords(P.normaliser(a)); _,r=P.desincliner(b)
+    lg=np.array(z['lignes']); vstep=float(z['pasv'])
+    a=P.load_(f"{ROOT}/scan/p-{pg:03d}.jpg")
+    b=P.mask_edges(P.normalise(a)); _,r=P.deskew(b)
     ph=r.sum(axis=1)
     y0=float(lg[0,1]); k0=int(lg[0,0])
-    connus={int(k) for k in lg[:,0]}
+    known_={int(k) for k in lg[:,0]}
     H=len(ph)
-    kmin=int(np.floor((0-y0)/pasv))-1; kmax=int(np.ceil((H-1-y0)/pasv))+1
-    seuilv=max(ph.max()*seuil, 3.0)
+    kmin=int(np.floor((0-y0)/vstep))-1; kmax=int(np.ceil((H-1-y0)/vstep))+1
+    seuilv=max(ph.max()*threshold, 3.0)
     out=[]
     for k in range(kmin, kmax+1):
-        y=y0+(k-k0)*pasv
-        i0=max(int(round(y-0.45*pasv)),0); i1=min(int(round(y+0.45*pasv)),H)
+        y=y0+(k-k0)*vstep
+        i0=max(int(round(y-0.45*vstep)),0); i1=min(int(round(y+0.45*vstep)),H)
         if i1-i0<3: continue
-        enc=float(ph[i0:i1].max())
-        out.append((k, round(y,1), round(enc,1), enc>seuilv, k in connus))
+        ink_=float(ph[i0:i1].max())
+        out.append((k, round(y,1), round(ink_,1), ink_>seuilv, k in known_))
     return z, out
 
 if __name__=="__main__":
     for pg in [int(x) for x in sys.argv[1:]]:
-        z,out=lattis(pg)
+        z,out=lattice(pg)
         print("=== p%03d  pasv %.2f  bloc %s  %d lignes stockees"%(pg,float(z['pasv']),list(z['bloc']),len(z['lignes'])))
-        for k,y,e,encre,connu in out:
-            if encre and not connu: print("   HORS  k=%3d  y=%6.1f  encre %.0f"%(k,y,e))
+        for k,y,e,ink,known in out:
+            if ink and not known: print("   HORS  k=%3d  y=%6.1f  encre %.0f"%(k,y,e))
 
 def colonnes(pg, ks):
     """For each line k, the first and the last inked column."""
     z=np.load(f"{T}/cellules/p-{pg:03d}.npz", allow_pickle=True)
-    lg=np.array(z['lignes']); pasv=float(z['pasv']); pash=float(z['pash'])
+    lg=np.array(z['lignes']); vstep=float(z['pasv']); hstep=float(z['pash'])
     xg=float(z['xg']); col0=int(z['col0'])
-    a=P.charger(f"{RAC}/scan/p-{pg:03d}.jpg")
-    b=P.masquer_bords(P.normaliser(a)); _,r=P.desincliner(b)
+    a=P.load_(f"{ROOT}/scan/p-{pg:03d}.jpg")
+    b=P.mask_edges(P.normalise(a)); _,r=P.deskew(b)
     H,W=r.shape; y0=float(lg[0,1]); k0=int(lg[0,0])
     out={}
     for k in ks:
-        y=y0+(k-k0)*pasv
-        i0=max(int(round(y-0.45*pasv)),0); i1=min(int(round(y+0.45*pasv)),H)
+        y=y0+(k-k0)*vstep
+        i0=max(int(round(y-0.45*vstep)),0); i1=min(int(round(y+0.45*vstep)),H)
         pv=r[i0:i1].sum(axis=0)
         xs=np.where(pv>max(pv.max()*0.10,0.5))[0]
         if not len(xs): out[k]=None; continue
-        c0=int(round((xs.min()-xg)/pash))-col0
-        c1=int(round((xs.max()-xg)/pash))-col0
+        c0=int(round((xs.min()-xg)/hstep))-col0
+        c1=int(round((xs.max()-xg)/hstep))-col0
         out[k]=(c0,c1)
     return out

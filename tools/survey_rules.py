@@ -17,9 +17,9 @@ import json, os, re, sys, collections
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import edition
 
-RAC = "/root/dicionario"
-SOURCE = f"{RAC}/dicionario.jsonl"
-SORTIE = f"{RAC}/filets-dubinda.md"
+ROOT = "/root/dicionario"
+SOURCE = f"{ROOT}/dicionario.jsonl"
+OUT_PATH = f"{ROOT}/filets-dubinda.md"
 
 # The list of function words is the edition's own, `edition.MALGRANDA`: it is
 # that list which decides NOT to lay the italic, and this working list must
@@ -29,25 +29,25 @@ SORTIE = f"{RAC}/filets-dubinda.md"
 
 def famille(u):
     """What does the fragment look like?"""
-    mots = u.split()
+    words = u.split()
     if len(u) <= 3:
         return "2. Fragment de trois lettres ou moins"
     if not re.fullmatch(r"[A-Za-zÀ-ÿ'’ .,()-]+", u):
         return "2. Fragment de trois lettres ou moins"
     if edition._nur_motouti(u):
         return "3. Mots-outils seuls"
-    if u[0].isupper() and len(mots) <= 4:
+    if u[0].isupper() and len(words) <= 4:
         return "1. Ressemble a un qualificatif ou a une locution"
     return "4. Coupe au milieu d'un mot, ou reste du mot-vedette"
 
 
-def ecrire(source=SOURCE, sortie=SORTIE):
+def write_(source=SOURCE, out_path=OUT_PATH):
     ent = [json.loads(l) for l in open(source, encoding='utf-8')]
-    par = collections.defaultdict(list)
+    per = collections.defaultdict(list)
     for e in ent:
         for u in e.get('dubinda', []):
-            par[famille(u)].append((e['pagino'], e['vedetto'], u))
-    total = sum(len(v) for v in par.values())
+            per[famille(u)].append((e['pagino'], e['vedetto'], u))
+    total = sum(len(v) for v in per.values())
     L = ["# Soulignements non places",
          "",
          "L'auteur souligne ce qu'une imprimerie mettrait en italique : le",
@@ -60,20 +60,20 @@ def ecrire(source=SOURCE, sortie=SORTIE):
          "la seule qui demande un arbitrage : les autres sont des artefacts du",
          "releve des filets, ou le trait deborde ou s'arrete trop tot.",
          ""]
-    for fam in sorted(par):
-        v = sorted(par[fam])
+    for fam in sorted(per):
+        v = sorted(per[fam])
         L += [f"## {fam[3:]} — {len(v)}", "",
               "| page | mot-vedette | fragment souligne |",
               "|---:|---|---|"]
-        for p, ved, u in v:
-            L.append(f"| {p} | {ved} | `{u}` |")
+        for p, hw, u in v:
+            L.append(f"| {p} | {hw} | `{u}` |")
         L.append("")
-    open(sortie, "w", encoding='utf-8').write("\n".join(L) + "\n")
-    return total, {k: len(v) for k, v in par.items()}
+    open(out_path, "w", encoding='utf-8').write("\n".join(L) + "\n")
+    return total, {k: len(v) for k, v in per.items()}
 
 
 if __name__ == "__main__":
-    n, d = ecrire()
+    n, d = write_()
     print("fragments non places :", n)
     for k in sorted(d):
         print("   %-58s %d" % (k, d[k]))

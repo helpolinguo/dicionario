@@ -1,9 +1,9 @@
 import numpy as np, sys, os, json
 sys.path.insert(0,'/root/dicionario/outils')
-RAC="/root/dicionario"; T=f"{RAC}/travail"
+ROOT="/root/dicionario"; T=f"{ROOT}/travail"
 if __name__=="__main__":
     a,b=int(sys.argv[1]),int(sys.argv[2]); out=[]
-    from cells import extraire
+    from cells import extract
     for pg in range(a,b):
         f=f"{T}/cellules/p-{pg:03d}.npz"
         if not os.path.exists(f): continue

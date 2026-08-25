@@ -3,7 +3,7 @@
 import json, os, sys, html, collections
 T="/root/dicionario/travail"; SORT=f"{T}/edicioni"
 
-def charger():
+def load_():
     return [json.loads(l) for l in open(f"{SORT}/dicionario.jsonl",encoding='utf-8')]
 
 def tsv(ent):
@@ -319,6 +319,6 @@ def html_edition(ent):
     return os.path.getsize(f"{SORT}/index.html")
 
 if __name__=="__main__":
-    ent=charger(); tsv(ent); n=html_edition(ent)
+    ent=load_(); tsv(ent); n=html_edition(ent)
     print(len(ent),"enregistrements ; HTML", round(n/1e6,2),"Mo")
     print("a verifier :", sum(1 for e in ent if e['drapeli']))

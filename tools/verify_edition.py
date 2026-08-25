@@ -26,10 +26,10 @@ T="/root/dicionario/travail"
 FIN_OK = ("o","a","e","i","ar","ir","or")
 CODES  = set("DEFIRSLP")
 
-def charger(p=f"{T}/edicioni/dicionario.jsonl"):
+def load_(p=f"{T}/edicioni/dicionario.jsonl"):
     return [json.loads(l) for l in open(p,encoding='utf-8')]
 
-def cles(v):
+def keys_(v):
     """Sort key: without the asterisk of the unofficial words, without the hyphen."""
     return v.lower().lstrip("*+-").replace("-","")
 
@@ -37,8 +37,8 @@ def controler(ent):
     pb=collections.defaultdict(list)
     for e in ent:
         v=e.get('vedetto') or ""
-        senci=e.get('senci') or []
-        txt=" ".join(senci)
+        senses=e.get('senci') or []
+        txt=" ".join(senses)
         n=(e['image'], e['ligno'], v)
         if not v: pb['vedette-vide'].append(n); continue
         nu=v.lstrip("*")
@@ -49,8 +49,8 @@ def controler(ent):
             pb['vedette-caracteres'].append(n)
         elif not (nu.endswith(FIN_OK) or nu.startswith("-") or nu.endswith("-")):
             pb['finale-non-ido'].append(n)
-        if not senci: pb['sans-senco'].append(n)
-        for s in senci:
+        if not senses: pb['sans-senco'].append(n)
+        for s in senses:
             if re.match(r'^[.,;:)\]]', s): pb['ponctuation-en-tete'].append(n); break
             if re.search(r'\w- \w', s): pb['cesure-non-recollee'].append(n); break
             if re.search(r'\s{2,}', s): pb['espaces-doubles'].append(n); break
@@ -64,17 +64,17 @@ def controler(ent):
         if re.search(r'(?<![A-Za-z])L\.\s*[a-z]', txt): pb['latina-dans-le-senco'].append(n)
         if re.search(r'\b[DEFIRS]{3,7}\b\s*\.?\s*$', txt): pb['code-dans-le-senco'].append(n)
     # alphabetical order
-    prec=None
+    preceding=None
     for e in ent:
         v=e.get('vedetto') or ""
         if not v: continue
-        k=cles(v)
-        if prec and k < prec: pb['ordre-rompu'].append((e['image'], e['ligno'], v))
-        prec=k
+        k=keys_(v)
+        if preceding and k < preceding: pb['ordre-rompu'].append((e['image'], e['ligno'], v))
+        preceding=k
     return pb
 
 if __name__=="__main__":
-    ent=charger()
+    ent=load_()
     pb=controler(ent)
     print("articles : %d"%len(ent))
     tot=0

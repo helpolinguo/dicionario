@@ -3,7 +3,7 @@
 import numpy as np, json, os, sys
 T="/root/dicionario/travail"
 
-def executer():
+def run_step():
     rep=json.load(open(f"{T}/reparation.json"))
     dec={r['pagino']: (r['decalage'], r.get('colonne',0)) for r in rep}
     Mn=np.load(f"{T}/reparation_meta.npy"); Gn=np.load(f"{T}/reparation_grp.npy")
@@ -32,8 +32,8 @@ def executer():
     np.save(f"{T}/meta_all.npy", M2); np.save(f"{T}/km_lab.npy", G2)
     np.save(f"{T}/cells_all.npy", C2); np.save(f"{T}/km_sim.npy", S2)
     # reindexing of the corrections
-    for nom in ("exceptions.txt","exceptions_manuel.txt","exceptions_paires.txt"):
-        p=f"{T}/{nom}"
+    for name_ in ("exceptions.txt","exceptions_manuel.txt","exceptions_paires.txt"):
+        p=f"{T}/{name_}"
         if not os.path.exists(p): continue
         out=[]; n=0
         for l in open(p,encoding='utf-8'):
@@ -44,6 +44,6 @@ def executer():
                 b=str(int(b)+d); c=str(int(c)+sc); n+=1
             out.append(f"{a}\t{b}\t{c}\t{v}\n")
         open(p,'w',encoding='utf-8').writelines(out)
-        print(f"  {nom} : {n} corrections reindexees")
+        print(f"  {name_} : {n} corrections reindexees")
 
-if __name__=="__main__": executer()
+if __name__=="__main__": run_step()

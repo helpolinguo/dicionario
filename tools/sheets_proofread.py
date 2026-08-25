@@ -15,21 +15,21 @@ T = "/root/dicionario/travail"
 LOT = 130
 
 
-def ecrire(source=f"{T}/edicioni/dicionario.jsonl", dossier=f"{T}/relire/loti"):
-    os.makedirs(dossier, exist_ok=True)
+def write_(source=f"{T}/edicioni/dicionario.jsonl", folder=f"{T}/relire/loti"):
+    os.makedirs(folder, exist_ok=True)
     ent = [json.loads(l) for l in open(source, encoding='utf-8')]
     n = 0
     for i in range(0, len(ent), LOT):
         n += 1
-        with open(f"{dossier}/l{n:03d}.txt", "w", encoding='utf-8') as f:
+        with open(f"{folder}/l{n:03d}.txt", "w", encoding='utf-8') as f:
             for j, e in enumerate(ent[i:i+LOT]):
                 idx = i + j
                 fa = f"({e['fako']}) " if e['fako'] else ""
                 f.write("%d\t%s\t%s%s\n" % (idx, e['vedetto'], fa,
                                             " | ".join(e['senci'])))
-    print("%d lots de %d articles dans %s" % (n, LOT, dossier))
+    print("%d lots de %d articles dans %s" % (n, LOT, folder))
     return n
 
 
 if __name__ == "__main__":
-    ecrire()
+    write_()

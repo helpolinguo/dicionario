@@ -10,7 +10,7 @@ a fraction of the sheet.
 import numpy as np, json, os, sys
 from scipy.ndimage import label as cclabel, find_objects
 from PIL import Image
-RAC="/root/dicionario"; T=f"{RAC}/travail"
+ROOT="/root/dicionario"; T=f"{ROOT}/travail"
 SECTIONS = {8:'A',60:'B',88:'C',102:'D',133:'E',164:'F',192:'G',213:'H',
             258:'K',333:'L',355:'M',396:'N',407:'O',422:'P',481:'Q',
             486:'R',514:'S',609:'U',614:'V',630:'W',631:'X'}
@@ -25,72 +25,72 @@ SECTIONS_MILIEU = [(233,'I',(0.04,0.32)), (253,'J',(0.02,0.26)),
                    (633,'Z',(0.35,0.78))]
 _ST=np.ones((3,3),int)
 
-def _composantes(a, seuil=0.28):
-    b = a < (a.mean()-seuil*a.std())
+def _composantes(a, threshold=0.28):
+    b = a < (a.mean()-threshold*a.std())
     m=int(0.03*min(a.shape)); b[:m]=False; b[-m:]=False; b[:,:m]=False; b[:,-m:]=False
     L,k=cclabel(b,structure=_ST)
     return L,k,find_objects(L)
 
-def lettre(pg, hmax=0.28, bande=None):
-    a=np.asarray(Image.open(f"{RAC}/scan/p-{pg:03d}.jpg").convert('L')).astype(np.float32)
+def lettre(pg, hmax=0.28, band=None):
+    a=np.asarray(Image.open(f"{ROOT}/scan/p-{pg:03d}.jpg").convert('L')).astype(np.float32)
     H,W=a.shape
     L,k,obj=_composantes(a)
     best=None
     for i,o in enumerate(obj):
         h=o[0].stop-o[0].start; w=o[1].stop-o[1].start
-        if bande is not None:
+        if band is not None:
             cy=(o[0].start+h/2)/H
-            if not (bande[0] <= cy <= bande[1]): continue
+            if not (band[0] <= cy <= band[1]): continue
         elif o[0].start > hmax*H: continue
         if not (25<=h<=110 and 6<=w<=120): continue
         cx=(o[1].start+w/2)/W
         if not (0.28<=cx<=0.75): continue
-        aire=int((L[o]==i+1).sum())
+        area=int((L[o]==i+1).sum())
         # An area floor: it sets aside the typed characters, which weigh less
         # than a hundred pixels. At 400 it also set aside the narrow capitals --
         # the « I » of page 233 weighs 349 pixels, the « J » of page 253 weighs 365.
-        if aire<300: continue
-        if best is None or aire>best[0]: best=(aire,o,h,w)
+        if area<300: continue
+        if best is None or area>best[0]: best=(area,o,h,w)
     if best is None: return None
     _,o,h,w=best
     return dict(pagino=pg, x=int(o[1].start), y=int(o[0].start), h=int(h), w=int(w),
                 fx=(o[1].start+w/2)/W, fy=(o[0].start+h/2)/H, W=int(W), H=int(H))
 
 def signature(pg=2):
-    a=np.asarray(Image.open(f"{RAC}/scan/p-{pg:03d}.jpg").convert('L')).astype(np.float32)
+    a=np.asarray(Image.open(f"{ROOT}/scan/p-{pg:03d}.jpg").convert('L')).astype(np.float32)
     H,W=a.shape
     L,k,obj=_composantes(a)
     best=None
     for i,o in enumerate(obj):
         h=o[0].stop-o[0].start; w=o[1].stop-o[1].start
         if h<60 or w<120: continue
-        aire=int((L[o]==i+1).sum())
-        if best is None or aire>best[0]: best=(aire,o,h,w)
+        area=int((L[o]==i+1).sum())
+        if best is None or area>best[0]: best=(area,o,h,w)
     if best is None: return None
     _,o,h,w=best
     return dict(pagino=pg, x=int(o[1].start), y=int(o[0].start), h=int(h), w=int(w),
                 fx=(o[1].start+w/2)/W, fy=(o[0].start+h/2)/H, W=int(W), H=int(H))
 
-def executer():
-    rep=f"{RAC}/ornaments/letroj"; os.makedirs(rep, exist_ok=True)
+def run_step():
+    rep=f"{ROOT}/ornaments/letroj"; os.makedirs(rep, exist_ok=True)
     out=[]
     taches=[(pg,L,None) for pg,L in sorted(SECTIONS.items())] + SECTIONS_MILIEU
-    for pg,L,bande in sorted(taches, key=lambda t:(t[0], t[1])):
-        e=lettre(pg, bande=bande)
+    for pg,L,band in sorted(taches, key=lambda t:(t[0], t[1])):
+        e=lettre(pg, band=band)
         if e is None: print("  lettre introuvable p%03d (%s)"%(pg,L)); continue
         e['litero']=L
-        im=Image.open(f"{RAC}/scan/p-{pg:03d}.jpg").convert('L')
+        im=Image.open(f"{ROOT}/scan/p-{pg:03d}.jpg").convert('L')
         m=6
         c=im.crop((e['x']-m, e['y']-m, e['x']+e['w']+m, e['y']+e['h']+m))
         c=c.resize((c.size[0]*4, c.size[1]*4), Image.LANCZOS)
         c=c.point(lambda v: 0 if v< c.getextrema()[0]+ (c.getextrema()[1]-c.getextrema()[0])*0.55 else 255)
-        nom=f"litero-{L}.png"; c.save(f"{rep}/{nom}"); e['dosiero']=f"ornaments/letroj/{nom}"
+        name_=f"litero-{L}.png"; c.save(f"{rep}/{name_}"); e['dosiero']=f"ornaments/letroj/{name_}"
         out.append(e)
     s=signature()
     if s:
         # The flourish is a single spot of ink, but the « M » of Marcel is
         # detached from it: we widen leftwards so as not to truncate it.
-        im=Image.open(f"{RAC}/scan/p-002.jpg").convert('L'); m=10
+        im=Image.open(f"{ROOT}/scan/p-002.jpg").convert('L'); m=10
         # The flourish is a single spot of ink, but the « M » of Marcel is
         # detached from it, and the top of the ascenders overruns the box: we
         # widen to the left and upwards.
@@ -109,4 +109,4 @@ def executer():
     print("ornements extraits :", len(out))
     for e in out: print(f"   {e['litero']:>10} p{e['pagino']:03d}  {e['w']}x{e['h']} px  centre ({e['fx']:.3f}, {e['fy']:.3f})")
 
-if __name__=="__main__": executer()
+if __name__=="__main__": run_step()

@@ -6,8 +6,8 @@ cells, the corpus of features, the proofreading sheets. All the rest fits in
 some fifteen megabytes.
 """
 import os, shutil, zipfile, glob
-RAC="/root/dicionario"; T=f"{RAC}/travail"
-SORTIE="/root/dicionario-source.zip"
+ROOT="/root/dicionario"; T=f"{ROOT}/travail"
+OUT_PATH="/root/dicionario-source.zip"
 
 FICHIERS = ["main.tex", "preamble.tex", "LISEZ-MOI.md", "main.pdf",
             "index.html", "dicionario.tsv", "dicionario.jsonl",
@@ -22,16 +22,16 @@ CORRECTIONS = ["exceptions.txt", "exceptions_manuel.txt", "exceptions_fins.txt",
                "ornements.json", "pages_non_dactylo.txt"]
 BINAIRES = ["filets.pkl", "debuts.pkl"]
 
-def executer(sortie=SORTIE):
-    if os.path.exists(sortie): os.remove(sortie)
-    z=zipfile.ZipFile(sortie, "w", zipfile.ZIP_DEFLATED, compresslevel=9)
+def run_step(out_path=OUT_PATH):
+    if os.path.exists(out_path): os.remove(out_path)
+    z=zipfile.ZipFile(out_path, "w", zipfile.ZIP_DEFLATED, compresslevel=9)
     for f in FICHIERS:
-        p=os.path.join(RAC,f)
+        p=os.path.join(ROOT,f)
         if os.path.exists(p): z.write(p, f"dicionario/{f}")
     for d in DOSSIERS:
-        for p in glob.glob(f"{RAC}/{d}/**/*", recursive=True):
+        for p in glob.glob(f"{ROOT}/{d}/**/*", recursive=True):
             if os.path.isfile(p) and "__pycache__" not in p:
-                z.write(p, "dicionario/"+os.path.relpath(p, RAC))
+                z.write(p, "dicionario/"+os.path.relpath(p, ROOT))
     for f in CORRECTIONS+BINAIRES:
         p=os.path.join(T,f)
         if os.path.exists(p): z.write(p, f"dicionario/corrections/{f}")
@@ -42,7 +42,7 @@ def executer(sortie=SORTIE):
         if os.path.isfile(p) and os.path.splitext(p)[1].lower() in (".txt", ".md"):
             z.write(p, "dicionario/relecture/"+os.path.basename(p))
     z.close()
-    return sortie, os.path.getsize(sortie)
+    return out_path, os.path.getsize(out_path)
 
 if __name__=="__main__":
-    p,n=executer(); print("%s : %.1f Mo"%(p, n/1e6))
+    p,n=run_step(); print("%s : %.1f Mo"%(p, n/1e6))

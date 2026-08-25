@@ -9,45 +9,45 @@ NOMS=["beaufront","couturat","jespersen","lalande","lorenz","ostwald","pfaundler
 BOITES=[(21,138,264,394),(188,288,218,359),(379,458,187,331),(546,638,175,323),
         (720,801,188,330),(877,974,218,358),(1034,1136,285,394)]
 
-def corps(f):
+def body(f):
     s=open(f).read(); m=re.search(r'(<svg[^>]*>)(.*?)(</svg>)',s,re.S); return m.group(1),m.group(2)
 
-def fusionner(gris_svg, noir_svg, sortie, gris="#8c8c8c"):
-    e,cg=corps(gris_svg); _,cn=corps(noir_svg)
-    open(sortie,"w").write(e+cg.replace('fill="#000000"',f'fill="{gris}"')+cn+"</svg>")
-    subprocess.run(["rsvg-convert","-f","pdf","-o",os.path.splitext(sortie)[0]+".pdf",sortie],check=False)
+def fusionner(gris_svg, noir_svg, out_path, gris="#8c8c8c"):
+    e,cg=body(gris_svg); _,cn=body(noir_svg)
+    open(out_path,"w").write(e+cg.replace('fill="#000000"',f'fill="{gris}"')+cn+"</svg>")
+    subprocess.run(["rsvg-convert","-f","pdf","-o",os.path.splitext(out_path)[0]+".pdf",out_path],check=False)
     for f in (gris_svg,noir_svg,os.path.splitext(gris_svg)[0]+".pdf",os.path.splitext(noir_svg)[0]+".pdf"):
         if os.path.exists(f): os.remove(f)
 
-def executer():
-    g=encre_monochrome(f"{RAC}/scan/p-000.jpg")
-    n=normaliser(g)[4:1640,0:1205]
+def run_step():
+    g=encre_monochrome(f"{ROOT}/scan/p-000.jpg")
+    n=normalise(g)[4:1640,0:1205]
     os.makedirs(TRV,exist_ok=True); np.save(f"{TRV}/niveaux.npy",n)
     u=surechantillonner(n)
 
     # --- portraits: two tones ---
     shutil.rmtree(f"{ORN}/portraits",ignore_errors=True); os.makedirs(f"{ORN}/portraits")
-    for (x0,x1,y0,y1),nom in zip(BOITES,NOMS):
+    for (x0,x1,y0,y1),name_ in zip(BOITES,NOMS):
         m=6; a,b,c,d=max(x0-m,0),min(x1+m,n.shape[1]),max(y0-m,0),min(y1+m,n.shape[0])
         z=n[c:d,a:b]
         Bg,Bn=binariser_deux_tons(z)
-        tracer(Bg,f"{ORN}/portraits/{nom}-g.svg"); tracer(Bn,f"{ORN}/portraits/{nom}-n.svg")
-        fusionner(f"{ORN}/portraits/{nom}-g.svg",f"{ORN}/portraits/{nom}-n.svg",f"{ORN}/portraits/{nom}.svg")
-        rendre(f"{ORN}/portraits/{nom}.svg",f"{ORN}/portraits/{nom}-x6.png",largeur=(b-a)*6)
+        draw(Bg,f"{ORN}/portraits/{name_}-g.svg"); draw(Bn,f"{ORN}/portraits/{name_}-n.svg")
+        fusionner(f"{ORN}/portraits/{name_}-g.svg",f"{ORN}/portraits/{name_}-n.svg",f"{ORN}/portraits/{name_}.svg")
+        rendre(f"{ORN}/portraits/{name_}.svg",f"{ORN}/portraits/{name_}-x6.png",width_=(b-a)*6)
         Image.fromarray((np.clip(1-z,0,1)*255).astype(np.uint8)).resize(((b-a)*6,(d-c)*6),Image.LANCZOS)\
-             .save(f"{ORN}/portraits/{nom}-gris-x6.png")
+             .save(f"{ORN}/portraits/{name_}-gris-x6.png")
 
     # --- the whole cover: line lettering + two-tone portraits ---
-    noir=binariser_trait(n); gris=np.zeros_like(noir)
+    black=binariser_trait(n); gris=np.zeros_like(black)
     # The word « invitas » is erased in the scan: we give it back its « i » and
     # its « t », taken from « profitar ». See tools/repair_cover.py.
-    from repair_cover import appliquer as _reparer_invitas
-    noir=_reparer_invitas(noir)
+    from repair_cover import apply_ as _reparer_invitas
+    black=_reparer_invitas(black)
     # The grain of the paper is never truly black: we take it out by the ink
     # level, before judging anything by size.
-    _av=noir.sum()
-    noir=retirer_pale(noir, u)
-    print("  composantes pales retirees : %.1f%% de l'encre"%(100*(1-noir.sum()/max(_av,1))))
+    _av=black.sum()
+    black=retirer_pale(black, u)
+    print("  composantes pales retirees : %.1f%% de l'encre"%(100*(1-black.sum()/max(_av,1))))
     # Final despeckling of the line layer.
     #
     # First attempt: remove the small components far from a large one. A bad
@@ -66,12 +66,12 @@ def executer():
     # and only a truly isolated spot stays alone.
     from scipy.ndimage import label as _lab, binary_dilation as _dil
     _R=22*SUR
-    _amas,_na=_lab(_dil(noir, np.ones((_R,_R),bool)), np.ones((3,3),int))
+    _amas,_na=_lab(_dil(black, np.ones((_R,_R),bool)), np.ones((3,3),int))
     if _na:
-        _encre=np.bincount(_amas[noir].ravel(), minlength=_na+1)
+        _encre=np.bincount(_amas[black].ravel(), minlength=_na+1)
         _dust=np.where(_encre<1500)[0]; _dust=_dust[_dust>0]
-        _seuls=np.isin(_amas,_dust) & noir
-        noir &= ~_seuls
+        _seuls=np.isin(_amas,_dust) & black
+        black &= ~_seuls
         print("  amas de poussiere retires :", len(_dust))
 
     # Second despeckling, finer.
@@ -92,10 +92,10 @@ def executer():
     # caption has no large component -- which is what had made the dots of
     # « PRECIZA, KONCIZA, FACILA » disappear.
     _LH,_LV,_AIRE,_ENCRE,_GROS,_LOIN = 12,6,900,1500,900,12
-    _mp=np.zeros(noir.shape,bool)
+    _mp=np.zeros(black.shape,bool)
     for (x0,x1,y0,y1) in BOITES:
         m=8; _mp[(max(y0-m,0))*SUR:(y1+m)*SUR,(max(x0-m,0))*SUR:(x1+m)*SUR]=True
-    _T=noir & ~_mp
+    _T=black & ~_mp
     _d=_dil(_T,np.ones((1,_LH*SUR),bool)); _d=_dil(_d,np.ones((_LV*SUR,1),bool))
     _am,_nb=_lab(_d,np.ones((3,3),int))
     _enc=np.bincount(_am[_T].ravel(),minlength=_nb+1)
@@ -113,52 +113,52 @@ def executer():
             dy=np.maximum(0,np.maximum(_Y0[i]-_Y1[_g], _Y0[_g]-_Y1[i]))
             dx=np.maximum(0,np.maximum(_X0[i]-_X1[_g], _X0[_g]-_X1[i]))
             if np.hypot(dy,dx).min() <= _LOIN*SUR: continue
-        noir[o] &= ~(_l[o]==i+1); _fait+=1
+        black[o] &= ~(_l[o]==i+1); _fait+=1
     print("  taches isolees retirees :", _fait)
 
     for (x0,x1,y0,y1) in BOITES:
         m=6; a,b,c,d=(max(x0-m,0))*SUR,(min(x1+m,n.shape[1]))*SUR,(max(y0-m,0))*SUR,(min(y1+m,n.shape[0]))*SUR
         z=u[c:d,a:b]
-        noir[c:d,a:b]=enlever_grain(z>SEUIL_NOIR,aire_gros=18)
+        black[c:d,a:b]=enlever_grain(z>SEUIL_NOIR,aire_gros=18)
         gris[c:d,a:b]=enlever_grain(z>SEUIL_GRIS)
     os.makedirs(f"{ORN}/couverture",exist_ok=True)
-    tracer(gris,f"{ORN}/couverture/_g.svg"); tracer(noir,f"{ORN}/couverture/_n.svg")
+    draw(gris,f"{ORN}/couverture/_g.svg"); draw(black,f"{ORN}/couverture/_n.svg")
     fusionner(f"{ORN}/couverture/_g.svg",f"{ORN}/couverture/_n.svg",f"{ORN}/couverture/couverture.svg")
-    rendre(f"{ORN}/couverture/couverture.svg",f"{ORN}/couverture/couverture-x2.png",largeur=1205*2)
+    rendre(f"{ORN}/couverture/couverture.svg",f"{ORN}/couverture/couverture-x2.png",width_=1205*2)
     Image.fromarray((np.clip(1-n,0,1)*255).astype(np.uint8)).save(f"{ORN}/couverture/couverture-nettoyee.png")
     Image.fromarray((np.clip(1-n,0,1)*255).astype(np.uint8)).resize((1205*3,1636*3),Image.LANCZOS)\
          .save(f"{ORN}/couverture/couverture-nettoyee-x3.png")
 
     # --- line elements ---
     shutil.rmtree(f"{ORN}/trait",ignore_errors=True); os.makedirs(f"{ORN}/trait")
-    mp=np.zeros(noir.shape,bool)
+    mp=np.zeros(black.shape,bool)
     for (x0,x1,y0,y1) in BOITES:
         m=8; mp[(max(y0-m,0))*SUR:(min(y1+m,n.shape[0]))*SUR,(max(x0-m,0))*SUR:(min(x1+m,n.shape[1]))*SUR]=True
-    T=noir & ~mp
+    T=black & ~mp
     # emblem
     z=T[440*SUR:640*SUR, 460*SUR:740*SUR]
     C=binary_closing(z,np.ones((9*SUR//2,9*SUR//2)))
     lab,nb=label(C); objs=find_objects(lab)
     k=max(range(nb),key=lambda i:(lab[objs[i]]==i+1).sum()); sl=objs[k]
     sub=T[440*SUR+sl[0].start-4*SUR:440*SUR+sl[0].stop+4*SUR, 460*SUR+sl[1].start-4*SUR:460*SUR+sl[1].stop+4*SUR]
-    tracer(sub,f"{ORN}/trait/embleme-ido.svg")
-    rendre(f"{ORN}/trait/embleme-ido.svg",f"{ORN}/trait/embleme-ido-x6.png",largeur=sub.shape[1]//SUR*6)
+    draw(sub,f"{ORN}/trait/embleme-ido.svg")
+    rendre(f"{ORN}/trait/embleme-ido.svg",f"{ORN}/trait/embleme-ido-x6.png",width_=sub.shape[1]//SUR*6)
     # bands of lettering
-    row=T.sum(1); bandes=[];i=0
+    row=T.sum(1); strips=[];i=0
     while i<len(row):
         if row[i]>0:
             j=i
             while j<len(row) and row[j:j+12*SUR].sum()>0: j+=1
-            if j-i>8*SUR: bandes.append((i,j))
+            if j-i>8*SUR: strips.append((i,j))
             i=j
         else: i+=1
-    for k,(a,b) in enumerate(bandes):
+    for k,(a,b) in enumerate(strips):
         s=T[max(a-4*SUR,0):min(b+4*SUR,T.shape[0])]
         xs=np.where(s.sum(0)>0)[0]
         if not len(xs): continue
         s=s[:,max(xs.min()-4*SUR,0):min(xs.max()+5*SUR,s.shape[1])]
-        tracer(s,f"{ORN}/trait/bande{k:02d}.svg")
-        rendre(f"{ORN}/trait/bande{k:02d}.svg",f"{ORN}/trait/bande{k:02d}-x4.png",largeur=s.shape[1]//SUR*4)
-    return len(bandes)
+        draw(s,f"{ORN}/trait/bande{k:02d}.svg")
+        rendre(f"{ORN}/trait/bande{k:02d}.svg",f"{ORN}/trait/bande{k:02d}-x4.png",width_=s.shape[1]//SUR*4)
+    return len(strips)
 if __name__=="__main__":
-    print(executer(),"bandes de lettrage")
+    print(run_step(),"bandes de lettrage")

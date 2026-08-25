@@ -14,32 +14,32 @@ as not to have judged what does not need judging.
 import json, re, sys, os, collections
 sys.path.insert(0,'/root/dicionario/outils')
 from suspects import inventaire
-from clean import connu, variantes
+from clean import known, variants
 from sheets_judge import context_of
 T="/root/dicionario/travail"; REP=f"{T}/sens"
 
-def executer(par=60, lots=10):
-    ent,rac,inc,ctx,freq=inventaire()
+def run_step(per=60, batches=10):
+    ent,root,inc,ctx,freq=inventaire()
     pool=[]
     for w,n in inc.items():
         if n>2: continue
-        if any(connu(v,rac) for v in set(variantes(w))): continue   # seen by the other sheet
-        ved,img,lig,idx,s = ctx[w]
+        if any(known(v,root) for v in set(variants(w))): continue   # seen by the other sheet
+        hw,img,ln,idx,s = ctx[w]
         if re.search(r'\bL\.\s*[A-Za-z]', s): continue              # scientific name
         o=re.search(re.escape(w), s, re.I)
         if o and s[o.start():o.start()+1].isupper(): continue       # proper noun
-        pool.append((n, w, ved, img, lig, s))
+        pool.append((n, w, hw, img, ln, s))
     pool.sort(key=lambda x:(x[0], x[1]))                            # hapax first
     os.makedirs(REP, exist_ok=True)
-    fiches=[dict(id=i, mot=w, ved=ved, img=img, lig=lig, ctx=context_of(s,w))
-            for i,(n,w,ved,img,lig,s) in enumerate(pool)]
-    json.dump(fiches, open(f"{REP}/fiches.json","w"), ensure_ascii=False)
-    for L in range(lots):
-        lot=fiches[L*par:(L+1)*par]
-        if not lot: break
+    records=[dict(id=i, mot=w, ved=hw, img=img, lig=ln, ctx=context_of(s,w))
+            for i,(n,w,hw,img,ln,s) in enumerate(pool)]
+    json.dump(records, open(f"{REP}/fiches.json","w"), ensure_ascii=False)
+    for L in range(batches):
+        batch=records[L*per:(L+1)*per]
+        if not batch: break
         with open(f"{REP}/lot{L+1:02d}.txt","w",encoding='utf-8') as f:
-            for x in lot:
+            for x in batch:
                 f.write("%d\t%s\t%s | %s\n"%(x['id'], x['mot'], x['ved'], x['ctx']))
-    print("pool %d ; %d lots de %d ecrits"%(len(fiches), min(lots,(len(fiches)+par-1)//par), par))
+    print("pool %d ; %d lots de %d ecrits"%(len(records), min(batches,(len(records)+per-1)//per), per))
 
-if __name__=="__main__": executer()
+if __name__=="__main__": run_step()

@@ -25,7 +25,7 @@ sys.path.insert(0, '/root/dicionario/outils')
 from cover import binariser_trait, SUR
 from scipy.ndimage import label, find_objects, rotate as ndrot
 
-RAC = "/root/dicionario"
+ROOT = "/root/dicionario"
 
 # Signatures surveyed on the x4 screen, in the frame of the whole image:
 #   label: (cx, cy, area)
@@ -52,7 +52,7 @@ def _prendre(l, obj, sig):
     not exactly one, we stop: better a script that refuses to run than a graft
     laid in the wrong place.
     """
-    _, cx, cy, aire = sig
+    _, cx, cy, area = sig
     cands = []
     for i, o in enumerate(obj):
         if o is None:
@@ -62,14 +62,14 @@ def _prendre(l, obj, sig):
         if abs(ccx - cx) > TOL_POS or abs(ccy - cy) > TOL_POS:
             continue
         a = int((l[o] == i + 1).sum())
-        if abs(a - aire) > TOL_AIRE * aire:
+        if abs(a - area) > TOL_AIRE * area:
             continue
         cands.append((i + 1, o))
     if len(cands) != 1:
         raise SystemExit(
             "signature (%d,%d,aire %d) : %d composantes candidates au lieu d'une.\n"
             "La binarisation a bouge : refaire les planches avant de continuer."
-            % (cx, cy, aire, len(cands)))
+            % (cx, cy, area, len(cands)))
     return cands[0]
 
 
@@ -86,7 +86,7 @@ def _axe(l, k, o):
     return a + 180 if a < 0 else a
 
 
-def appliquer(B):
+def apply_(B):
     """Repairs the word in place on an already binarised line layer."""
     l, nb = label(B, np.ones((3, 3), int))
     obj = find_objects(l)
@@ -116,7 +116,7 @@ def appliquer(B):
     #    vertical departure from the chord f-a is carried over as it stands.
     port_s = SRC_A[1] - SRC_F[1]
     port_c = CIB_A[1] - CIB_V[1]
-    ech = port_c / float(port_s)
+    scale = port_c / float(port_s)
     cibles = []
     for src in (SRC_I, SRC_T):
         f = (src[1] - SRC_F[1]) / float(port_s)          # relative position
@@ -138,16 +138,16 @@ def appliquer(B):
 
     print("  invitas : angle %+.1f deg, echelle d'espacement %.3f ; "
           "i en (%.0f,%.0f), t en (%.0f,%.0f)"
-          % (da, ech, cibles[0][0], cibles[0][1], cibles[1][0], cibles[1][1]))
+          % (da, scale, cibles[0][0], cibles[0][1], cibles[1][0], cibles[1][1]))
     return B
 
 
-def executer(sortie=f"{RAC}/work/couv/B_repare.npy"):
-    n = np.load(f"{RAC}/work/couv/niveaux.npy")
-    B = appliquer(binariser_trait(n))
-    np.save(sortie, B)
+def run_step(out_path=f"{ROOT}/work/couv/B_repare.npy"):
+    n = np.load(f"{ROOT}/work/couv/niveaux.npy")
+    B = apply_(binariser_trait(n))
+    np.save(out_path, B)
     return B
 
 
 if __name__ == "__main__":
-    executer()
+    run_step()

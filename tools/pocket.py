@@ -16,7 +16,7 @@ import json, os, re, sys, unicodedata
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import edition
 
-RAC = "/root/dicionario"; T = f"{RAC}/travail"; OUT = f"{RAC}/posho"
+ROOT = "/root/dicionario"; T = f"{ROOT}/travail"; OUT = f"{ROOT}/posho"
 SOURCE = f"{T}/edicioni/dicionario.jsonl"
 
 # The typescript notes the languages by a letter; the reading edition writes
@@ -40,7 +40,7 @@ def esc(t):
     return t
 
 
-def cle(v):
+def key_(v):
     """The sort key: the dictionary's own.
 
     `edition._klavo_ordino` is the BOOK's rule -- without the asterisk of the
@@ -148,30 +148,30 @@ def artiklo(e):
     return "\\artiklo{%s}%%\n" % esc(v) + "".join(L)
 
 
-def ecrire(source=SOURCE, dossier=OUT):
-    os.makedirs(dossier, exist_ok=True)
+def write_(source=SOURCE, folder=OUT):
+    os.makedirs(folder, exist_ok=True)
     ent = [json.loads(l) for l in open(source, encoding='utf-8')]
-    ent.sort(key=lambda e: (cle(e['vedetto']), e['image'], e['ligno']))
-    lignes = []
+    ent.sort(key=lambda e: (key_(e['vedetto']), e['image'], e['ligno']))
+    lines = []
     lettre = None
     for e in ent:
-        k = cle(e['vedetto'])
+        k = key_(e['vedetto'])
         c = k[0].upper() if k else '?'
         if c != lettre and c.isalpha():
             if lettre is not None:
-                lignes.append("\\end{multicols}")
+                lines.append("\\end{multicols}")
             lettre = c
-            lignes.append("\\sekciono{%s}" % c)
-            lignes.append("\\begin{multicols}{2}")
-        lignes.append(artiklo(e))
+            lines.append("\\sekciono{%s}" % c)
+            lines.append("\\begin{multicols}{2}")
+        lines.append(artiklo(e))
     if lettre is not None:
-        lignes.append("\\end{multicols}")
-    with open(f"{dossier}/enhavo.tex", "w", encoding='utf-8') as f:
-        f.write("\n".join(lignes) + "\n")
+        lines.append("\\end{multicols}")
+    with open(f"{folder}/enhavo.tex", "w", encoding='utf-8') as f:
+        f.write("\n".join(lines) + "\n")
     print("pocket/enhavo.tex : %d artikli, %d sekcioni"
-          % (len(ent), sum(1 for l in lignes if l.startswith("\\sekciono"))))
+          % (len(ent), sum(1 for l in lines if l.startswith("\\sekciono"))))
     return len(ent)
 
 
 if __name__ == "__main__":
-    ecrire()
+    write_()

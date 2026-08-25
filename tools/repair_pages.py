@@ -21,12 +21,12 @@ We therefore repair page by page:
 import numpy as np, os, sys, json, difflib
 sys.path.insert(0,'/root/dicionario/outils')
 from features2 import feature_vector2
-RAC="/root/dicionario"; T=f"{RAC}/travail"
+ROOT="/root/dicionario"; T=f"{ROOT}/travail"
 
-def _texte(cells_occ, kl_page, cols, lignes, tab, bav):
+def _texte(cells_occ, kl_page, cols, lines, tab, smudge):
     """Dictionary line -> string, one cell per column."""
     d={}
-    for (k,c),g,b in zip(cols, kl_page, bav):
+    for (k,c),g,b in zip(cols, kl_page, smudge):
         d.setdefault(int(k),{})[int(c)] = " " if b else str(tab[g])
     out={}
     for k,v in d.items():
@@ -47,19 +47,19 @@ def _decalage(anc, neu, dmax=16):
     return best[1], best[0]
 
 def reparer(pg, Q, tab, verbeux=True):
-    from cells import extraire
-    from decode import bavures
+    from cells import extract
+    from decode import smudges
     anc_npz=f"{T}/cellules/p-{pg:03d}.npz"
     z=np.load(anc_npz, allow_pickle=True)
     M=np.load(f"{T}/meta_all.npy"); kl=np.load(f"{T}/km_lab.npy")
     sel=np.where(M[:,0]==pg)[0]
-    bv=bavures()[sel]
+    bv=smudges()[sel]
     anc_txt=_texte(None, kl[sel], M[sel][:,1:], z['lignes'], tab, bv)
 
-    d=extraire(f"{RAC}/scan/p-{pg:03d}.jpg")
-    occ=d['occ']; lg=np.array(d['lignes']); nues=d['nues']
+    d=extract(f"{ROOT}/scan/p-{pg:03d}.jpg")
+    occ=d['occ']; lg=np.array(d['lignes']); bare=d['nues']
     ii,jj=np.where(occ)
-    A=(np.clip(nues[ii,jj],0,1)*255.0).round().astype(np.uint8)
+    A=(np.clip(bare[ii,jj],0,1)*255.0).round().astype(np.uint8)
     X=feature_vector2(A); X=X/np.maximum(np.linalg.norm(X,axis=1,keepdims=True),1e-6)
     gnew=(X@Q.T).argmax(1).astype(np.int32)
     knew=lg[ii,0].astype(np.int32)
@@ -67,9 +67,9 @@ def reparer(pg, Q, tab, verbeux=True):
     # smudges in the new cells: the same geometric criterion
     P=A.astype(np.float32)/255.
     tot=P.sum((1,2))
-    bord=(P[:,:,:2].sum((1,2))+P[:,:,-2:].sum((1,2)))/(tot+1e-6)
-    haut=P[:,:4,:].sum((1,2))/(tot+1e-6); bas=P[:,18:,:].sum((1,2))/(tot+1e-6)
-    bnew=((bord>0.55)|((tot<12)&(bord>0.25))|(haut>0.80)|(bas>0.85))
+    edge=(P[:,:,:2].sum((1,2))+P[:,:,-2:].sum((1,2)))/(tot+1e-6)
+    top=P[:,:4,:].sum((1,2))/(tot+1e-6); bottom=P[:,18:,:].sum((1,2))/(tot+1e-6)
+    bnew=((edge>0.55)|((tot<12)&(edge>0.25))|(top>0.80)|(bottom>0.85))
     neu_txt=_texte(None, gnew, Mnew[:,1:], lg, tab, bnew)
     dec, score = _decalage(anc_txt, neu_txt)
     # The block can extend to the left: the columns shift by as much.
@@ -78,12 +78,12 @@ def reparer(pg, Q, tab, verbeux=True):
         print(f"  p-{pg:03d} : {len(anc_txt)} lignes -> {len(neu_txt)} ; decalage {dec:+d} ligne, {scol:+d} colonne ; concordance {score:.3f}")
     # the cells already known keep their group
     cle_anc={(int(k)+dec, int(c)+scol): int(g) for (p,k,c),g in zip(M[sel], kl[sel])}
-    garde=0
+    kept=0
     for i in range(len(gnew)):
         v=cle_anc.get((int(Mnew[i,1]), int(Mnew[i,2])))
-        if v is not None: gnew[i]=v; garde+=1
+        if v is not None: gnew[i]=v; kept+=1
     if verbeux:
-        print(f"           cellules : {len(sel)} avant, {len(gnew)} apres ; {garde} conservees, {len(gnew)-garde} nouvelles")
+        print(f"           cellules : {len(sel)} avant, {len(gnew)} apres ; {kept} conservees, {len(gnew)-kept} nouvelles")
     # The corpus is in bytes 0-255; extraire() returns floats 0-1.
     # Mixing the two empties the cells on screen and falsifies the smudge
     # criterion, whose thresholds are absolute.
@@ -92,13 +92,13 @@ def reparer(pg, Q, tab, verbeux=True):
     # every one of its underlines.
     import pickle as _p
     if isinstance(d.get('sou'), dict): d['sou']=np.array(_p.dumps(d['sou']), dtype=object)
-    for cle in ('cells','nues'):
-        d[cle]=(np.clip(d[cle],0,1)*255.0).round().astype(np.uint8)
+    for key_ in ('cells','nues'):
+        d[key_]=(np.clip(d[key_],0,1)*255.0).round().astype(np.uint8)
     np.savez_compressed(anc_npz, **d)
     return dict(pagino=pg, decalage=int(dec), colonne=int(scol), score=float(score),
                 cells=A, meta=Mnew, groupes=gnew, avant=int(len(sel)))
 
-def executer(pages, sortie=f"{T}/reparation.json"):
+def run_step(pages, out_path=f"{T}/reparation.json"):
     Q=np.load(f"{T}/km_centres2.npy"); tab=np.load(f"{T}/cls_lab.npy",allow_pickle=True)
     res=[]
     for pg in pages:
@@ -109,9 +109,9 @@ def executer(pages, sortie=f"{T}/reparation.json"):
     np.save(f"{T}/reparation_meta.npy",  np.concatenate([r['meta'] for r in res]))
     np.save(f"{T}/reparation_grp.npy",   np.concatenate([r['groupes'] for r in res]))
     json.dump([{k:v for k,v in r.items() if k in ('pagino','decalage','colonne','score','avant')} for r in res],
-              open(sortie,'w'))
+              open(out_path,'w'))
     print("pages reparees :", len(res))
 
 if __name__=="__main__":
     pages=[int(x) for x in sys.argv[1:]]
-    executer(pages)
+    run_step(pages)

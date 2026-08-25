@@ -1,10 +1,10 @@
 import numpy as np, glob, os, pickle
 DIR="/root/dicionario/work/cellules"
-def charger(noms=None):
+def load_(names=None):
     """Returns cells (N,22,12) uint8, meta (page,line,col) and the list of pages."""
-    if noms is None: noms=[os.path.basename(p)[:-4] for p in sorted(glob.glob(DIR+"/*.npz"))]
+    if names is None: names=[os.path.basename(p)[:-4] for p in sorted(glob.glob(DIR+"/*.npz"))]
     C=[]; M=[]
-    for n in noms:
+    for n in names:
         z=np.load(f"{DIR}/{n}.npz", allow_pickle=True)
         c=z['cells']; lg=z['lignes']
         occ = c.reshape(c.shape[0],c.shape[1],-1).max(-1) > 90
@@ -12,7 +12,7 @@ def charger(noms=None):
         C.append(c[ii,jj])
         pg=int(n.split('-')[1])
         M.append(np.stack([np.full(len(ii),pg), lg[ii,0].astype(int), jj], axis=1))
-    return np.concatenate(C), np.concatenate(M), noms
+    return np.concatenate(C), np.concatenate(M), names
 
 def vecteurs(C):
     X=C.reshape(len(C),-1).astype(np.float32)
@@ -20,19 +20,19 @@ def vecteurs(C):
     n=np.linalg.norm(X,axis=1,keepdims=True); n[n<1e-6]=1
     return X/n
 
-def leaders(X, tau=0.90, ordre=None, chunk=20000):
+def leaders(X, tau=0.90, order_=None, chunk=20000):
     """Grouping by greedy leader. Returns the leaders' indices and the assignment."""
     N=len(X)
-    if ordre is None: ordre=np.arange(N)
+    if order_ is None: order_=np.arange(N)
     aff=np.full(N,-1,dtype=np.int32); sim=np.zeros(N,dtype=np.float32)
     chefs=[]
-    reste=ordre.copy()
-    while len(reste):
-        i=reste[0]; chefs.append(i); c=X[i]
-        s=X[reste]@c
-        pris=s>=tau
-        aff[reste[pris]]=len(chefs)-1; sim[reste[pris]]=s[pris]
-        reste=reste[~pris]
+    left_over=order_.copy()
+    while len(left_over):
+        i=left_over[0]; chefs.append(i); c=X[i]
+        s=X[left_over]@c
+        taken=s>=tau
+        aff[left_over[taken]]=len(chefs)-1; sim[left_over[taken]]=s[taken]
+        left_over=left_over[~taken]
     return np.array(chefs), aff, sim
 
 def affecter(X, Cn, tau, chunk=50000):

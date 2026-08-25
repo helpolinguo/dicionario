@@ -10,12 +10,12 @@ found in the one as in the other.
     python3 tools/all_editions.py --sen-baz  # without recomputing the base
 """
 import os, subprocess, sys
-RAC = "/root/dicionario"
+ROOT = "/root/dicionario"
 
 
 def _kurar(cmd, dosiero=None, timeout=1800):
     print("  $ %s" % " ".join(cmd), flush=True)
-    r = subprocess.run(cmd, cwd=dosiero or RAC, capture_output=True,
+    r = subprocess.run(cmd, cwd=dosiero or ROOT, capture_output=True,
                        text=True, timeout=timeout)
     if r.returncode:
         print(r.stdout[-1500:]); print(r.stderr[-1500:])
@@ -23,7 +23,7 @@ def _kurar(cmd, dosiero=None, timeout=1800):
     return r.stdout
 
 
-def executer(baz=True):
+def run_step(baz=True):
     if baz:
         print("1. bazo lexikala (edition.py)")
         print(_kurar([sys.executable, "-u", "tools/edition.py"])[-400:])
@@ -34,14 +34,14 @@ def executer(baz=True):
     print("4. kompozo di la posho-libro (lualatex, du pasi)")
     for _ in range(2):
         _kurar(["lualatex", "-interaction=nonstopmode", "-halt-on-error",
-                "posho.tex"], dosiero=f"{RAC}/posho")
+                "posho.tex"], dosiero=f"{ROOT}/posho")
     for f in ("index.html", "dicionario.tsv", "dicionario.jsonl"):
-        _kurar(["cp", f"{RAC}/work/edicioni/{f}", f"{RAC}/{f}"])
+        _kurar(["cp", f"{ROOT}/work/edicioni/{f}", f"{ROOT}/{f}"])
     # The pocket PDF takes at the root the name the page's button points at:
     # index.html and dicionario.pdf travel together.
-    _kurar(["cp", f"{RAC}/pocket/posho.pdf", f"{RAC}/dicionario.pdf"])
+    _kurar(["cp", f"{ROOT}/pocket/posho.pdf", f"{ROOT}/dicionario.pdf"])
     print("kompleta : index.html e pocket/posho.pdf venas de la sama fonto")
 
 
 if __name__ == "__main__":
-    executer(baz="--sen-baz" not in sys.argv)
+    run_step(baz="--sen-baz" not in sys.argv)

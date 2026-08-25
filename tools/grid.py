@@ -3,15 +3,15 @@ import numpy as np, sys
 from PIL import Image
 from scipy.ndimage import rotate as ndrotate, uniform_filter
 
-def charger(p):
+def load_(p):
     im = Image.open(p).convert("L")
     a = np.asarray(im).astype(np.float32)
     return a
 
-def normaliser(a, w=41):
+def normalise(a, w=41):
     """Local contrast: ground = wide mean filter, ink = negative departure."""
-    fond = uniform_filter(a, size=w)
-    d = fond - a                      # ink > 0
+    ground = uniform_filter(a, size=w)
+    d = ground - a                      # ink > 0
     d = np.clip(d, 0, None)
     m = np.percentile(d, 99.7)
     if m <= 1: m = 1
@@ -22,12 +22,12 @@ def score_angle(b, ang):
     prof = r.sum(axis=1)
     return prof.var(), prof
 
-def desincliner(b, plage=3.0, pas=0.05):
-    grossier = np.arange(-plage, plage+1e-9, 0.25)
+def deskew(b, range_=3.0, step=0.05):
+    grossier = np.arange(-range_, range_+1e-9, 0.25)
     sc = [(score_angle(b,a)[0], a) for a in grossier]
     _, a0 = max(sc)
-    fin = np.arange(a0-0.25, a0+0.25+1e-9, pas)
-    sc = [(score_angle(b,a)[0], a) for a in fin]
+    end_ = np.arange(a0-0.25, a0+0.25+1e-9, step)
+    sc = [(score_angle(b,a)[0], a) for a in end_]
     _, a1 = max(sc)
     return a1, ndrotate(b, a1, reshape=False, order=1, mode='constant', cval=0)
 
@@ -46,11 +46,11 @@ def pas_par_autocorr(prof, lo, hi):
 
 if __name__ == "__main__":
     for p in sys.argv[1:]:
-        a = charger(p); b = normaliser(a)
-        ang, r = desincliner(b)
+        a = load_(p); b = normalise(a)
+        ang, r = deskew(b)
         ph = r.sum(axis=1)   # horizontal profile (lines)
         pv = r.sum(axis=0)   # vertical profile (columns)
         pvY, cy = pas_par_autocorr(ph, 12, 60)
         pvX, cx = pas_par_autocorr(pv, 6, 40)
-        enc = (r>0.25).sum()
-        print(f"{p}: {a.shape[1]}x{a.shape[0]} angle={ang:+.2f} pasV={pvY:.3f}px ({150/pvY:.2f} lpi, r={cy:.2f})  pasH={pvX:.3f}px ({150/pvX:.2f} cpi, r={cx:.2f}) encre={enc}")
+        ink_ = (r>0.25).sum()
+        print(f"{p}: {a.shape[1]}x{a.shape[0]} angle={ang:+.2f} pasV={pvY:.3f}px ({150/pvY:.2f} lpi, r={cy:.2f})  pasH={pvX:.3f}px ({150/pvX:.2f} cpi, r={cx:.2f}) encre={ink_}")

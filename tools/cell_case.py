@@ -31,7 +31,7 @@ _ST = np.ones((3,3),int)
 
 def sommet_lettre(A):
     """The top of the connected component carrying the body of the letter."""
-    B=(A>60); n=len(A); som=np.full(n,np.nan)
+    B=(A>60); n=len(A); sum_=np.full(n,np.nan)
     for i in range(n):
         b=B[i]
         if b.sum()<4: continue
@@ -43,39 +43,39 @@ def sommet_lettre(A):
             if s>sc: sc=s; best=j
         if sc<=0: continue
         w=np.where((L==best).any(1))[0]
-        if len(w): som[i]=w[0]
-    return som
+        if len(w): sum_[i]=w[0]
+    return sum_
 
-def executer(sortie=f"{T}/exceptions_casse.txt"):
+def run_step(out_path=f"{T}/exceptions_casse.txt"):
     C=np.load(f"{T}/cells_all.npy", mmap_mode='r'); M=np.load(f"{T}/meta_all.npy")
     kl=np.load(f"{T}/km_lab.npy"); tab=np.load(f"{T}/cls_lab.npy",allow_pickle=True)
-    from decode import bavures
-    bv=bavures()
+    from decode import smudges
+    bv=smudges()
     car=np.array([str(tab[k]) for k in range(len(tab))], dtype=object)
     # grouping by line
-    cle = M[:,0].astype(np.int64)*10000 + M[:,1].astype(np.int64)
-    o=np.argsort(cle, kind='stable'); bornes=np.flatnonzero(np.r_[True, np.diff(cle[o])!=0, True])
-    ecrit=0; lignes=0
-    with open(sortie,"w",encoding='utf-8') as f:
+    key_ = M[:,0].astype(np.int64)*10000 + M[:,1].astype(np.int64)
+    o=np.argsort(key_, kind='stable'); bounds=np.flatnonzero(np.r_[True, np.diff(key_[o])!=0, True])
+    ecrit=0; lines=0
+    with open(out_path,"w",encoding='utf-8') as f:
         f.write("# Casse tranchee par comparaison aux hampes de la meme ligne.\n")
         f.write("# Priorite basse : toute correction a la main l'emporte.\n")
-        for a,b in zip(bornes[:-1], bornes[1:]):
+        for a,b in zip(bounds[:-1], bounds[1:]):
             g=o[a:b]
             g=g[~bv[g]]
             if len(g)<8: continue
             c=car[kl[g]]
             mx=np.array([x in XH for x in c]); mh=np.array([x in HAMPE for x in c])
             if mx.sum()<MINI or mh.sum()<MINI: continue
-            som=sommet_lettre(np.asarray(C[np.sort(g)]).astype(np.float32))
-            som=som[np.argsort(np.argsort(g))]      # put back into the order of g
-            sx=np.nanmedian(som[mx]); sh=np.nanmedian(som[mh])
+            sum_=sommet_lettre(np.asarray(C[np.sort(g)]).astype(np.float32))
+            sum_=sum_[np.argsort(np.argsort(g))]      # put back into the order of g
+            sx=np.nanmedian(sum_[mx]); sh=np.nanmedian(sum_[mh])
             if np.isnan(sx) or np.isnan(sh) or sx-sh < 1.5: continue
-            seuil = sh + PART*(sx-sh)
-            lignes+=1
+            threshold = sh + PART*(sx-sh)
+            lines+=1
             for i in np.where(mx)[0]:
-                if np.isnan(som[i]) or som[i]>seuil: continue
+                if np.isnan(sum_[i]) or sum_[i]>threshold: continue
                 pg,k,cc=M[g[i]]
                 f.write(f"{int(pg)}\t{int(k)}\t{int(cc)}\t{c[i].upper()}\n"); ecrit+=1
-    print("lignes calibrees :",lignes," cellules passees en capitale :",ecrit)
+    print("lignes calibrees :",lines," cellules passees en capitale :",ecrit)
 
-if __name__=="__main__": executer()
+if __name__=="__main__": run_step()
