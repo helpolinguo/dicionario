@@ -76,6 +76,29 @@ repository, and neither are the cut cells (295 MB) nor the corpus of
 features (256 MB): they are rebuilt from the scan by `tools/cells.py`.
 The transcription, both editions and every correction are.
 
+
+## The reading page's address
+
+A search is in the address: **`/dicionario/?q=amiko`** opens the page on the
+word. What is typed goes back into the address bar as one types, so the
+address of what is on screen can be copied, bookmarked or sent; the
+`replaceState` behind it is delayed by 400 ms, Safari refusing more than a
+hundred of them per thirty seconds.
+
+This is what lets the dictionary be reached from outside the site.
+`ido.help/opensearch.xml` — in the
+[root repository](https://github.com/helpolinguo/helpolinguo.github.io) —
+declares this address as the domain's search; Safari files it on the first
+visit, and **macOS 26 hands Safari's list to Spotlight**, where the site's
+name followed by Tab opens a field that lands here, the word already sought.
+Spotlight opens the page: it does not show the definition in its own window.
+
+The search field is therefore a real `<form method="get">` with a field
+named `q` — that declaration is Safari's second way of recognising a site's
+search when no OpenSearch document is there to be read. Nothing is
+submitted: the list is already filtered at the keystroke, and letting the
+form go would reload 2.1 MB to show what is on screen.
+
 ## The corrections
 
 Corrections are applied cell by cell, in this order, the last winning:
