@@ -1,22 +1,22 @@
 # -*- coding: utf-8 -*-
-"""Reparation chirurgicale des pages dont le masque de bord avait mange le haut.
+"""Surgical repair of the pages whose edge mask had eaten the top.
 
-Le masque des ombres de bord prenait une ligne de texte soulignee pour une
-ombre et effacait tout jusqu'a elle : sur quarante-huit pages, jusqu'a six
-lignes n'ont jamais ete decodees. Le masque est corrige, mais tout recalculer
-detruirait le travail accumule — 5 800 corrections indexees par page, ligne et
-colonne, et 3 495 groupes lus a l'oeil.
+The mask for edge shadows took an underlined line of text for a shadow and
+erased everything down to it: on forty-eight pages, as many as six lines were
+never decoded. The mask is corrected, but recomputing everything would destroy
+the work accumulated -- 5,800 corrections indexed by page, line and column,
+and 3,495 groups read by eye.
 
-On repare donc page par page :
-  1. on recoupe les cellules de la page avec le masque corrige ;
-  2. on aligne l'ancienne page sur la nouvelle, par le contenu des lignes, ce
-     qui donne le decalage de numerotation ;
-  3. les cellules qui existaient deja gardent leur groupe — tout le travail
-     de relecture reste valide ;
-  4. les cellules nouvelles, celles des lignes retrouvees, sont rattachees au
-     groupe dont le centre est le plus proche, dans l'espace de traits ou les
-     groupes ont ete formes (fidelite mesuree : 99 %) ;
-  5. les corrections de la page sont reindexees du meme decalage.
+We therefore repair page by page:
+  1. we re-cut the page's cells with the corrected mask;
+  2. we align the old page on the new, by the content of the lines, which
+     gives the shift in numbering;
+  3. the cells that already existed keep their group -- all the proofreading
+     work stays valid;
+  4. the new cells, those of the recovered lines, are attached to the group
+     whose centre is nearest, in the feature space where the groups were
+     formed (fidelity measured: 99 %);
+  5. the page's corrections are reindexed by the same shift.
 """
 import numpy as np, os, sys, json, difflib
 sys.path.insert(0,'/root/dicionario/outils')
@@ -24,7 +24,7 @@ from features2 import features2
 RAC="/root/dicionario"; T=f"{RAC}/travail"
 
 def _texte(cells_occ, kl_page, cols, lignes, tab, bav):
-    """Dictionnaire ligne -> chaine, une case par colonne."""
+    """Dictionary line -> string, one cell per column."""
     d={}
     for (k,c),g,b in zip(cols, kl_page, bav):
         d.setdefault(int(k),{})[int(c)] = " " if b else str(tab[g])
@@ -35,7 +35,7 @@ def _texte(cells_occ, kl_page, cols, lignes, tab, bav):
     return out
 
 def _decalage(anc, neu, dmax=16):
-    """Decalage d tel que la ligne k d'avant soit la ligne k+d de maintenant."""
+    """The shift d such that line k of before is line k+d of now."""
     ka=sorted(anc); best=(-1.0, 0)
     for d in range(-4, dmax+1):
         s=0.0; n=0
@@ -64,7 +64,7 @@ def reparer(pg, Q, tab, verbeux=True):
     gnew=(X@Q.T).argmax(1).astype(np.int32)
     knew=lg[ii,0].astype(np.int32)
     Mnew=np.stack([np.full(len(ii),pg,np.int32), knew, jj.astype(np.int32)],1)
-    # bavures des nouvelles cellules : meme critere geometrique
+    # smudges in the new cells: the same geometric criterion
     P=A.astype(np.float32)/255.
     tot=P.sum((1,2))
     bord=(P[:,:,:2].sum((1,2))+P[:,:,-2:].sum((1,2)))/(tot+1e-6)
@@ -72,11 +72,11 @@ def reparer(pg, Q, tab, verbeux=True):
     bnew=((bord>0.55)|((tot<12)&(bord>0.25))|(haut>0.80)|(bas>0.85))
     neu_txt=_texte(None, gnew, Mnew[:,1:], lg, tab, bnew)
     dec, score = _decalage(anc_txt, neu_txt)
-    # Le bloc peut s'etendre a gauche : les colonnes se decalent d'autant.
+    # The block can extend to the left: the columns shift by as much.
     scol = int(z['col0']) - int(d['col0'])
     if verbeux:
         print(f"  p-{pg:03d} : {len(anc_txt)} lignes -> {len(neu_txt)} ; decalage {dec:+d} ligne, {scol:+d} colonne ; concordance {score:.3f}")
-    # les cellules deja connues gardent leur groupe
+    # the cells already known keep their group
     cle_anc={(int(k)+dec, int(c)+scol): int(g) for (p,k,c),g in zip(M[sel], kl[sel])}
     garde=0
     for i in range(len(gnew)):
@@ -84,12 +84,12 @@ def reparer(pg, Q, tab, verbeux=True):
         if v is not None: gnew[i]=v; garde+=1
     if verbeux:
         print(f"           cellules : {len(sel)} avant, {len(gnew)} apres ; {garde} conservees, {len(gnew)-garde} nouvelles")
-    # Le corpus est en octets 0-255 ; extraire() rend des flottants 0-1.
-    # Melanger les deux vide les cellules a l'affichage et fausse le critere
-    # de bavure, qui a des seuils absolus.
-    # Les soulignements sont stockes en octets picklees dans le corpus ;
-    # y mettre un dictionnaire brut fait echouer la relecture et la page
-    # perd tous ses soulignements.
+    # The corpus is in bytes 0-255; extraire() returns floats 0-1.
+    # Mixing the two empties the cells on screen and falsifies the smudge
+    # criterion, whose thresholds are absolute.
+    # The underlines are stored as pickled bytes in the corpus; putting a
+    # bare dictionary there makes the proofreading fail and the page loses
+    # every one of its underlines.
     import pickle as _p
     if isinstance(d.get('sou'), dict): d['sou']=np.array(_p.dumps(d['sou']), dtype=object)
     for cle in ('cells','nues'):

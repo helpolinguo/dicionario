@@ -1,30 +1,29 @@
 # -*- coding: utf-8 -*-
-"""Rend les DEBUTS de ligne que le bloc coupait — le pendant gauche de
-restore_ends.py.
+"""Gives back the line STARTS the block was cutting off — the left-hand
+counterpart of restore_ends.py.
 
-Le bloc de texte est cerne par les colonnes encrees sur au moins trois lignes.
-A droite, cela coupait des fins de mots ; a gauche, cela coupe la premiere
-lettre des lignes que la dactylo a commencees une cellule plus tot que les
-autres. Le mal est plus grave de ce cote, parce que ces lignes-la sont
-justement les vedettes : « protezo » se lisait « rotezo », « protisto »
-« rotisto », « sorgumo » « orgumo ».
+The block of text is bounded by the columns inked on at least three lines. On
+the right, that cut off the ends of words; on the left, it cuts off the first
+letter of the lines the typist began one cell earlier than the others. The
+harm is worse on this side, because those lines are precisely the headwords:
+« protezo » read « rotezo », « protisto » « rotisto », « sorgumo » « orgumo ».
 
-On ne redecoupe pas le livre pour autant — l'elargissement du bloc oblige a
-tout recouper, ce qui avait fait perdre des vedettes a cent quarante-cinq
-pages. On recoupe donc chaque page EN MEMOIRE avec le bloc etendu a gauche, on
-rattache les cellules recuperees au groupe dont le centre est le plus proche
-dans l'espace traits2, et on les depose a part. Le decoupage enregistre ne
-bouge pas : aucune correction deja faite n'est invalidee.
+We do not re-cut the book for all that -- widening the block means re-cutting
+everything, which had lost headwords on a hundred and forty-five pages. We
+therefore re-cut each page IN MEMORY with the block extended to the left,
+attach the recovered cells to the group whose centre is nearest in the
+features2 space, and deposit them apart. The recorded cutting does not move:
+no correction already made is invalidated.
 
-La difference avec le cote droit tient a la numerotation. A droite, les
-cellules recuperees prennent les colonnes qui suivent le bloc : rien ne bouge.
-A gauche, elles tombent AVANT la colonne zero. Les renumeroter en decalant la
-seule ligne concernee serait faux — elle se retrouverait une cellule a droite
-de sa place reelle. On decale donc la PAGE ENTIERE d'autant de cellules qu'il
-en manque : les positions relatives sont conservees au caractere pres, et le
-bloc, dont la marge est fixee par ailleurs, retombe au meme endroit sur la
-feuille. C'est generer.lignes_page() qui applique ce decalage, en decalant
-aussi les plages de soulignement.
+The difference from the right-hand side lies in the numbering. On the right,
+the recovered cells take the columns that follow the block: nothing moves. On
+the left, they fall BEFORE column zero. Renumbering them by shifting the one
+line concerned would be wrong -- it would end up one cell to the right of its
+real place. We therefore shift the WHOLE PAGE by as many cells as are missing:
+the relative positions are kept to the character, and the block, whose margin
+is fixed elsewhere, falls in the same place on the sheet. It is
+generate.lignes_page() that applies that shift, shifting the underline ranges
+with it.
 """
 import sys, os, pickle, glob, re
 import numpy as np
@@ -35,7 +34,7 @@ RAC = "/root/dicionario"; T = f"{RAC}/travail"
 
 
 def une(pg, Q, tab):
-    """Caracteres recuperes a gauche du bloc : {ligne: {colonne negative: car}}."""
+    """Characters recovered left of the block: {line: {negative column: char}}."""
     z = np.load(f"{T}/cellules/p-{pg:03d}.npz", allow_pickle=True)
     col0 = int(z['col0'])
     cles = set(int(k) for k, _ in z['lignes'])

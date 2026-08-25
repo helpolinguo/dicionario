@@ -1,23 +1,21 @@
 #!/usr/bin/env python3
-"""Tire du Dicionario ses versions LISIBLES PAR LES MACHINES.
+"""Draws from the Dicionario its MACHINE-READABLE versions.
 
-POURQUOI CE SCRIPT EXISTE. La page du Dicionario est batie par du
-JavaScript : les 9473 articles vivent dans un tableau que le navigateur
-deroule au chargement. C'est excellent pour la recherche instantanee, et
-desastreux pour tout ce qui ne l'execute pas. Un robot d'indexation sans
-moteur JS, un aspirateur de site, un modele de langue qui va chercher
-l'adresse : tous ne voient que 213 caracteres, c'est-a-dire rien.
+WHY THIS SCRIPT EXISTS. The Dicionario's page is built by JavaScript: the
+9473 articles live in an array the browser unrolls at load. That is excellent
+for instant search, and disastrous for anything that does not run it. An
+indexing robot with no JS engine, a site mirror, a language model that goes to
+the address: all of them see 213 characters, which is to say nothing.
 
-Trois fichiers reparent cela, chacun pour un usage :
+Three files repair that, each for one use:
 
-  dicionario.json  les donnees telles quelles, sans le JavaScript autour.
-                   Pour qui veut interroger, filtrer, recompter.
-  dicionario.md    le livre a plat, un article apres l'autre. Pour qui lit.
-  vortlisto.md     vedette et premier sens seulement. Beaucoup plus court :
-                   de quoi tenir dans une fenetre de contexte quand le
-                   Dicionario entier n'y tiendrait pas.
+  dicionario.json  the data as they are, without the JavaScript around them.
+                   For whoever wants to query, filter, recount.
+  dicionario.md    the book laid flat, one article after another. For reading.
+  vortlisto.md     headword and first sense only. Far shorter: enough to fit
+                   in a context window when the whole Dicionario would not.
 
-Ils sont ENGENDRES, jamais edites a la main. La source reste index.html.
+They are GENERATED, never edited by hand. The source stays index.html.
 
     python3 tools/machine_readable.py
 """
@@ -31,11 +29,11 @@ RACINO = Path(__file__).resolve().parent.parent
 
 
 def lektar_datumi(html: str) -> list:
-    """Retrouve le tableau D dans le script, et le rend en objets Python.
+    """Finds the array D in the script, and returns it as Python objects.
 
-    On ne cherche pas la fin du tableau a la main — un crochet dans une
-    definition suffirait a tromper le compte. Le decodeur JSON s'arrete
-    de lui-meme au bon endroit et nous dit ou.
+    We do not look for the end of the array by hand -- one bracket in a
+    definition would be enough to fool the count. The JSON decoder stops of
+    itself in the right place and tells us where.
     """
     m = re.search(r'\bconst\s+D\s*=\s*\[', html)
     if not m:
@@ -46,11 +44,11 @@ def lektar_datumi(html: str) -> list:
 
 
 def texto(t: str) -> str:
-    """Le texte des definitions porte un balisage leger, propre au livre.
+    """The text of the definitions carries a light markup, peculiar to the book.
 
-    On le rend en Markdown plutot que de le jeter : les italiques du
-    Dicionario distinguent les exemples des gloses, et cette distinction
-    porte du sens.
+    We render it as Markdown rather than throw it away: the Dicionario's
+    italics distinguish the examples from the glosses, and that distinction
+    carries sense.
     """
     if not t:
         return ''
@@ -61,7 +59,7 @@ def texto(t: str) -> str:
 
 
 def artiklo(e: dict) -> str:
-    """Un article, en Markdown. Suit la meme forme que la page."""
+    """One article, in Markdown. Follows the same form as the page."""
     ved = f'« {e["v"]} »' if e.get('c') else e['v']
     lin = [f'## {ved}' + (f' *({e["f"]})*' if e.get('f') else '')]
 
@@ -96,7 +94,7 @@ def artiklo(e: dict) -> str:
 
 
 def unesma_senco(e: dict) -> str:
-    """Le premier sens, ampute de tout le reste. Sert la liste courte."""
+    """The first sense, shorn of all the rest. Serves the short list."""
     for b in e.get('b') or []:
         if b.get('t'):
             return texto(b['t'])
@@ -114,11 +112,11 @@ def main() -> None:
         '<!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->\n'
     )
 
-    # 1. Les donnees nues.
+    # 1. The bare data.
     (RACINO / 'dicionario.json').write_text(
         json.dumps(D, ensure_ascii=False, separators=(',', ':')), encoding='utf-8')
 
-    # 2. Le livre a plat.
+    # 2. The book laid flat.
     tuto = [ENTETE,
             '# Dicionario de la 10.000 radiki di la linguo universala Ido\n',
             'Marcelo Persiko (Marcel Pesch) · editio princeps 1934, '
@@ -129,7 +127,7 @@ def main() -> None:
     tuto += [artiklo(e) + '\n' for e in D]
     (RACINO / 'dicionario.md').write_text('\n'.join(tuto), encoding='utf-8')
 
-    # 3. La liste courte.
+    # 3. The short list.
     kurta = [ENTETE,
              '# Vortlisto — Dicionario de la 10.000 radiki\n',
              'Vedvorto e unesma senco nur. La kompleta artikli esas en '

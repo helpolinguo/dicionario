@@ -1,17 +1,17 @@
 # -*- coding: utf-8 -*-
-"""Releve des vedettes qui rompent l'ordre alphabetique du livre.
+"""A survey of the headwords that break the book's alphabetical order.
 
-Le livre est trie, et il l'est selon une regle qu'il n'enonce pas : LA
-DESINENCE NE COMPTE PAS. « aktinio » precede « aktinika » parce que l'auteur
-range « aktini » avant « aktinik ». L'edition garde les deux lectures — mot
-entier et racine — et ne signale que ce qui recule sur les DEUX (voir
-drapeli_ordino dans edition.py).
+The book is sorted, and it is sorted by a rule it does not state: THE ENDING
+DOES NOT COUNT. « aktinio » precedes « aktinika » because the author files
+« aktini » before « aktinik ». The edition keeps both readings -- whole word
+and root -- and reports only what goes backwards on BOTH (see drapeli_ordino
+in edition.py).
 
-Ce qui reste demande un oeil sur le fac-simile. Le fichier rendu prepare ce
-travail : pour chaque cas, il donne la page et la ligne de la grille, les
-vedettes voisines, la place ou la vedette aurait du aller, et — quand une
-mauvaise lecture expliquerait tout — les lectures qui tiendraient dans la place
-occupee, formees avec les confusions que le journal des corrections a relevees.
+What is left calls for an eye on the facsimile. The file returned prepares
+that work: for each case it gives the page and the line of the grid, the
+neighbouring headwords, the place the headword should have gone, and -- when a
+misreading would explain everything -- the readings that would fit the place
+occupied, formed with the confusions the log of corrections has recorded.
 
     python3 tools/survey_order.py
 """
@@ -23,9 +23,9 @@ SORTIE = f"{RAC}/ordino-ruptita.md"
 sys.path.insert(0, f"{RAC}/outils")
 import edition as E
 
-# Les confusions du decodage, relevees dans work/journal_complet.txt : la
-# lettre lue, la lettre retenue, et le nombre de fois. On ne garde que les plus
-# frequentes — ce sont elles qui expliquent une vedette fautive.
+# The decoding's confusions, surveyed in work/journal_complet.txt: the letter
+# read, the letter adopted, and how many times. We keep only the most frequent
+# -- they are the ones that explain a faulty headword.
 def konfuzoj(fichier=f"{RAC}/work/journal_complet.txt", minimo=15):
     c = collections.Counter()
     try:
@@ -49,11 +49,11 @@ VOKALI = 'aeiou'
 
 
 def plausibla(v, mot):
-    """La lecture a-t-elle la forme d'un mot ido ?
+    """Has the reading the shape of an Ido word?
 
-    On ecarte ce que la substitution fabrique de mecanique : une voyelle
-    doublee que l'original n'avait pas — « brooho » pour « brocho » —, et une
-    finale qui n'est pas celle d'un mot de la langue.
+    We set aside what the substitution manufactures mechanically: a doubled
+    vowel the original did not have -- « brooho » for « brocho » -- and an
+    ending that is not that of a word of the language.
     """
     if not any(v.endswith(f) for f in E.FINALES_OK) and not v.endswith(mot[-1]):
         return False
@@ -64,15 +64,15 @@ def plausibla(v, mot):
 
 
 def variantoj(mot, konf, lexiko=()):
-    """Les lectures voisines : une lettre confondue, ou deux interverties."""
+    """The neighbouring readings: one letter confused, or two transposed."""
     out = set()
     for i, c in enumerate(mot):
         for d in konf.get(c, ()):
             out.add(mot[:i] + d + mot[i+1:])
         if i + 1 < len(mot) and mot[i] != mot[i+1]:
             out.add(mot[:i] + mot[i+1] + mot[i] + mot[i+2:])
-        # La lettre de trop : la dactylo frappe deux fois, ou le decodage lit un
-        # signe dans une tache. « ostegomo » pour « osteomo ».
+        # The letter too many: the typist strikes twice, or the decoding reads a
+        # sign in a spot. « ostegomo » for « osteomo ».
         if len(mot) > 4:
             out.add(mot[:i] + mot[i+1:])
     out.discard(mot)
@@ -84,8 +84,8 @@ def ecrire(source=SOURCE, sortie=SORTIE):
     K = [E._klavo_ordino(e['vedetto']) for e in ent]
     R = [E._klavo_radiko(e['vedetto']) for e in ent]
     konf = konfuzoj()
-    # Le lexique du livre : ses vedettes et les mots de ses definitions. Une
-    # lecture qu'il atteste ailleurs vaut mieux qu'une forme fabriquee.
+    # The book's lexicon: its headwords and the words of its definitions. A
+    # reading it attests elsewhere is worth more than a manufactured form.
     import re as _re
     lexiko = {e['vedetto'].lower().lstrip('*') for e in ent}
     for e in ent:
@@ -102,7 +102,7 @@ def ecrire(source=SOURCE, sortie=SORTIE):
         return "f.%s (image %s, ligne %s)" % (e['pagino'], e['image'], e['ligno'])
 
     def place(k, r, saut):
-        """Ou cette cle irait-elle ? Rend l'indice du premier article qui la suit."""
+        """Where would this key go? Returns the index of the first article after it."""
         for j in range(len(ent)):
             if j in saut:
                 continue
@@ -179,9 +179,9 @@ def ecrire(source=SOURCE, sortie=SORTIE):
             elif avan is not None:
                 L += ["Sa place est juste avant « %s », sa voisine."
                       % ent[x-1]['vedetto'], ""]
-            # La lecture proposee ne peut pas etre celle d'une vedette voisine :
-            # le livre ne definit pas deux fois le meme mot a trois lignes de
-            # distance. « arterito » n'est pas « arterio », qui le precede.
+            # The reading proposed cannot be that of a neighbouring headword: the
+            # book does not define the same word twice three lines apart.
+            # « arterito » is not « arterio », which precedes it.
             proxima = {K[j] for j in range(max(0, x-3), min(len(ent), x+4))}
             var = [v for v in variantoj(K[x], konf)
                    if (x == 0 or K[x-1] <= v) and (x+1 >= len(ent) or v <= K[x+1])
