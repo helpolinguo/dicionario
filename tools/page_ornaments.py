@@ -78,7 +78,7 @@ def run_step():
     blobs=[(pg,L,None) for pg,L in sorted(SECTIONS.items())] + SECTIONS_MIDDLE
     for pg,L,band in sorted(blobs, key=lambda t:(t[0], t[1])):
         e=letter(pg, band=band)
-        if e is None: print("  lettre introuvable p%03d (%s)"%(pg,L)); continue
+        if e is None: print("  letter not found p%03d (%s)"%(pg,L)); continue
         e['litero']=L
         im=Image.open(f"{ROOT}/scan/p-{pg:03d}.jpg").convert('L')
         m=6

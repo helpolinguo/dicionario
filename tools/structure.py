@@ -65,6 +65,6 @@ if __name__=="__main__":
     print(f"  headword with a valid morphological ending: {good_} ({100*good_/len(ent):.1f} %)")
     v=[e['vedette'].lower() for e in ent if e['vedette']]
     breaks=sum(1 for a,b in zip(v,v[1:]) if a>b)
-    print(f"  ruptures de l'ordre alphabetique : {breaks} ({100*breaks/max(len(v)-1,1):.1f} %)")
+    print(f"  breaks in the alphabetical order: {breaks} ({100*breaks/max(len(v)-1,1):.1f} %)")
     for e in ent: e['code']=e['code'].group(1) if e['code'] else None
     pickle.dump(ent, open(f"{T}/entrees.pkl","wb"))

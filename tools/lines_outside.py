@@ -39,7 +39,7 @@ if __name__=="__main__":
         z,out=lattice(pg)
         print("=== p%03d  vstep %.2f  block %s  %d lines stored"%(pg,float(z['pasv']),list(z['bloc']),len(z['lines'])))
         for k,y,e,ink,known in out:
-            if ink and not known: print("   HORS  k=%3d  y=%6.1f  encre %.0f"%(k,y,e))
+            if ink and not known: print("   OUT   k=%3d  y=%6.1f  ink %.0f"%(k,y,e))
 
 def columns_(pg, ks):
     """For each line k, the first and the last inked column."""

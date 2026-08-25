@@ -48,7 +48,7 @@ def run_step():
     # level, before judging anything by size.
     _av=black.sum()
     black=drop_pale(black, u)
-    print("  composantes pales retirees : %.1f%% de l'encre"%(100*(1-black.sum()/max(_av,1))))
+    print("  pale components removed: %.1f%% of the ink"%(100*(1-black.sum()/max(_av,1))))
     # Final despeckling of the line layer.
     #
     # First attempt: remove the small components far from a large one. A bad
@@ -73,7 +73,7 @@ def run_step():
         _dust=np.where(_ink_of<1500)[0]; _dust=_dust[_dust>0]
         _alone=np.isin(_clusters,_dust) & black
         black &= ~_alone
-        print("  amas de poussiere retires :", len(_dust))
+        print("  clusters of dust removed:", len(_dust))
 
     # Second despeckling, finer.
     #
@@ -115,7 +115,7 @@ def run_step():
             dx=np.maximum(0,np.maximum(_X0[i]-_X1[_g], _X0[_g]-_X1[i]))
             if np.hypot(dy,dx).min() <= _FAR*OVERSAMPLE: continue
         black[o] &= ~(_l[o]==i+1); _done+=1
-    print("  taches isolees retirees :", _done)
+    print("  isolated blobs removed:", _done)
 
     for (x0,x1,y0,y1) in BOXES:
         m=6; a,b,c,d=(max(x0-m,0))*OVERSAMPLE,(min(x1+m,n.shape[1]))*OVERSAMPLE,(max(y0-m,0))*OVERSAMPLE,(min(y1+m,n.shape[0]))*OVERSAMPLE
@@ -162,4 +162,4 @@ def run_step():
         render(f"{ORN}/trait/bande{k:02d}.svg",f"{ORN}/trait/bande{k:02d}-x4.png",width_=s.shape[1]//OVERSAMPLE*4)
     return len(strips)
 if __name__=="__main__":
-    print(run_step(),"bandes de lettrage")
+    print(run_step(),"strips of lettering")

@@ -140,7 +140,7 @@ def main() -> None:
     (ROOT / 'vortlisto.md').write_text('\n'.join(brief) + '\n', encoding='utf-8')
 
     for n in ('dicionario.json', 'dicionario.md', 'vortlisto.md'):
-        print(f'  {n:<18} {(ROOT / n).stat().st_size:>10,} octets')
+        print(f'  {n:<18} {(ROOT / n).stat().st_size:>10,} bytes')
 
 
 if __name__ == '__main__':

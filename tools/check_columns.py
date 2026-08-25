@@ -41,5 +41,5 @@ if __name__=="__main__":
     r=measure_(sys.argv[1] if len(sys.argv)>1 else _ROOT + "/main.pdf")
     print("words checked: %d"%r['n'])
     print("departure from the whole column: mean %.4f, 99th centile %.4f, max %.4f cell"%(r['moyen'],r['q99'],r['max']))
-    print("hors tolerance 0,12 cellule : %d"%r['nb_hors'])
+    print("outside the 0.12-cell tolerance: %d"%r['nb_hors'])
     for p in r['pires']: print("   ",p)

@@ -33,7 +33,7 @@ if __name__=="__main__":
         if not os.path.exists(f"{T}/cellules/p-{pg:03d}.npz"): continue
         if pg in (0,1,3,7,87,111,577): continue
         try: out.append(one_(pg))
-        except Exception as e: print("ECHEC",pg,e, flush=True)
+        except Exception as e: print("FAILED",pg,e, flush=True)
     json.dump(out, open(f"{T}/fins_{a}.json","w"))
     p=sum(x['perdus'] for x in out); l=sum(x['lignes'] for x in out)
     print(f"{a}-{b} : {len(out)} pages, {l} lines touched, {p} characters cut off")

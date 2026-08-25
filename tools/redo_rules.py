@@ -61,7 +61,7 @@ def all_(out_path=f"{T}/filets.pkl", start_=0, end_=None):
         try:
             out[pg]=rules(pg)
         except Exception as e:
-            print("ECHEC p%03d : %s"%(pg,e), flush=True); continue
+            print("FAILED p%03d: %s"%(pg,e), flush=True); continue
         if i%25==0: print("  %d/%d (p%03d)"%(i,len(pages),pg), flush=True)
     with open(out_path,"wb") as f: pickle.dump(out,f)
     print("written %s : %d pages"%(out_path,len(out)))

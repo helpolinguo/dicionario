@@ -53,4 +53,4 @@ if __name__ == "__main__":
         pvY, cy = step_by_autocorr(ph, 12, 60)
         pvX, cx = step_by_autocorr(pv, 6, 40)
         ink_ = (r>0.25).sum()
-        print(f"{p}: {a.shape[1]}x{a.shape[0]} angle={angle_:+.2f} pasV={pvY:.3f}px ({150/pvY:.2f} lpi, r={cy:.2f})  pasH={pvX:.3f}px ({150/pvX:.2f} cpi, r={cx:.2f}) encre={ink_}")
+        print(f"{p}: {a.shape[1]}x{a.shape[0]} angle={angle_:+.2f} vstep={pvY:.3f}px ({150/pvY:.2f} lpi, r={cy:.2f})  hstep={pvX:.3f}px ({150/pvX:.2f} cpi, r={cx:.2f}) ink={ink_}")

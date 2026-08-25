@@ -32,7 +32,7 @@ if __name__=="__main__":
     for pg in range(a,b):
         if os.path.exists(f'{ROOT}/scan/p-{pg:03d}.jpg'):
             try: out.append(old_new(pg))
-            except Exception as e: print("ECHEC",pg,e)
+            except Exception as e: print("FAILED",pg,e)
     json.dump(out, open(f'{ROOT}/work/diag_masque_{a}.json','w'))
     import numpy as np
     dh=np.array([r['dh'] for r in out])

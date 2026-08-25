@@ -82,7 +82,7 @@ def run_step():
         if not os.path.exists(f"{T}/cellules/p-{pg:03d}.npz"): continue
         try: write_(pg,lab,M,tab)
         except Exception as e:
-            print("ECHEC p%03d : %s"%(pg,e), flush=True); continue
+            print("FAILED p%03d: %s"%(pg,e), flush=True); continue
         if pg in orn:
             L=open(path_,encoding='utf-8').read().split("\n")
             # All the page's ornaments, laid on the first line: their place is

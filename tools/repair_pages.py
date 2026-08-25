@@ -105,7 +105,7 @@ def run_step(pages, out_path=f"{T}/reparation.json"):
     for pg in pages:
         try: res.append(repair_(pg,Q,tab))
         except Exception as e:
-            print(f"  ECHEC p-{pg:03d} : {e}", flush=True)
+            print(f"  FAILED p-{pg:03d}: {e}", flush=True)
     np.save(f"{T}/reparation_cells.npy", np.concatenate([r['cells'] for r in res]))
     np.save(f"{T}/reparation_meta.npy",  np.concatenate([r['meta'] for r in res]))
     np.save(f"{T}/reparation_grp.npy",   np.concatenate([r['groupes'] for r in res]))

@@ -34,7 +34,7 @@ if __name__=="__main__":
         try:
             r=one_(pg)
             if r: out.append(r)
-        except Exception as e: print("ECHEC",pg,e)
+        except Exception as e: print("FAILED",pg,e)
     import json; json.dump(out, open(f"{T}/diag_haut_{a}.json","w"))
     mh=np.array([r['manque_haut'] for r in out]); mg=np.array([r['manque_gauche'] for r in out])
     print("pages:",len(out))

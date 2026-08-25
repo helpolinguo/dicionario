@@ -85,7 +85,7 @@ def all_(out_path=f"{T}/debuts.pkl", start_=0, end_=None):
         try:
             r, err = one_(pg, Q, tab)
         except Exception as e:
-            print("ECHEC p%03d : %s" % (pg, e), flush=True); continue
+            print("FAILED p%03d: %s" % (pg, e), flush=True); continue
         if r is None:
             refused += 1
         elif r:

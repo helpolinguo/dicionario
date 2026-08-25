@@ -2384,9 +2384,9 @@ def build():
     if len(raw)>n0: print("articles separated from a shared line: %d"%(len(raw)-n0))
     ent=[analyse_(e, lex) for e in raw]
     n=apply_judgements(ent)
-    if n: print("jugements lexicaux appliques : %d occurrences"%n)
+    if n: print("lexical judgements applied: %d occurrences"%n)
     n=typography(ent)
-    if n: print("sens retouches typographiquement : %d"%n)
+    if n: print("senses touched up typographically: %d"%n)
     n=correct_headwords(ent)
     if n: print("headwords corrected by hand: %d"%n)
     # The ending flag is read ON THE HEADWORD: corrected here, it must be read
@@ -2402,7 +2402,7 @@ def build():
             e['drapeli'].remove('finalo-nekustumala'); n+=1
         elif v and not ok and 'finalo-nekustumala' not in e['drapeli']:
             e['drapeli'].append('finalo-nekustumala'); n+=1
-    if n: print("drapeaux de finale relus apres correction : %d"%n)
+    if n: print("ending flags reread after correction: %d"%n)
     n=correct_words(ent)
     if n: print("words corrected in the definitions: %d"%n)
     import proofread as _rel
@@ -2563,7 +2563,7 @@ def build():
                 continue
             if t: fus.append(t)
         e['senci']=fus
-    if n_num: print("numeros de sens retires : %d"%n_num)
+    if n_num: print("sense numbers removed: %d"%n_num)
     # The author's underlines, surveyed on the grid: they give the phrases --
     # sub-entries in their own right -- and what goes into italic.
     n_caps=0
@@ -2575,7 +2575,7 @@ def build():
     if n_caps: print("senses given back their initial capital: %d"%n_caps)
     n_lat=sum(latins_inline(e) for e in ent)
     n_sym=sum(split_off_symbol(e) for e in ent)
-    if n_sym: print("symboles chimiques mis en champ : %d"%n_sym)
+    if n_sym: print("chemical symbols moved into the domain: %d"%n_sym)
     n_sub=sum(structure_(e) for e in ent)
     n_run=sum(1 for e in ent if e.get('kursiva'))
     print("phrases detached: %d ; articles with an underline: %d"%(n_sub, n_run))
@@ -3308,10 +3308,10 @@ if __name__=="__main__":
     with open(f"{T}/edicioni/dicionario.jsonl","w",encoding='utf-8') as f:
         for e in ent:
             f.write(json.dumps({k:v for k,v in e.items() if k!='lineoj'}, ensure_ascii=False)+"\n")
-    print(f"{len(ent)} enregistrements")
+    print(f"{len(ent)} records")
     c=collections.Counter(d for e in ent for d in e['drapeli'])
-    print("drapeaux :", c.most_common())
+    print("flags:", c.most_common())
     print("with no flag at all:", sum(1 for e in ent if not e['drapeli']))
     print("with fako:", sum(1 for e in ent if e['fako']),
           "| with a Latin name:", sum(1 for e in ent if e['latina']),
-          "| plusieurs sens :", sum(1 for e in ent if len(e['senci'])>1))
+          "| with several senses:", sum(1 for e in ent if len(e['senci'])>1))

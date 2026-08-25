@@ -398,5 +398,5 @@ def html_edition(ent):
 
 if __name__=="__main__":
     ent=load_(); tsv(ent); n=html_edition(ent)
-    print(len(ent),"enregistrements ; HTML", round(n/1e6,2),"Mo")
-    print("a verifier :", sum(1 for e in ent if e['drapeli']))
+    print(len(ent),"records ; HTML", round(n/1e6,2),"MB")
+    print("to check:", sum(1 for e in ent if e['drapeli']))

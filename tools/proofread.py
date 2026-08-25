@@ -104,7 +104,7 @@ def apply_(ent, folder=FOLDER):
         # characters, or several words. « lO », seen eleven times, stays refused.
         if not seen or (len(seen) > 1 and len(a) < 6 and ' ' not in a):
             refused += 1
-            print("  relire %s : «%s» vu %d fois — refuse" % (batch, a[:40], len(seen)))
+            print("  reread %s: «%s» seen %d times — refused" % (batch, a[:40], len(seen)))
             continue
         for e, k in seen:
             if k == 'fako':

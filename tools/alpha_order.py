@@ -84,4 +84,4 @@ if __name__=="__main__":
     with open(p,"w",encoding='utf-8') as f:
         f.write("\n".join(lines)+"\n")
         for (pg,k,c),v in sorted(fresh.items()): f.write(f"{pg}\t{k}\t{c}\t{v}\n")
-    print("exceptions.txt mis a jour")
+    print("exceptions.txt updated")
