@@ -1,16 +1,16 @@
 # -*- coding: utf-8 -*-
-"""Application des jugements lexicaux a l'edition de lecture.
+"""Applying the lexical judgements to the reading edition.
 
-Chaque correction est validee contre la fiche d'origine, puis appliquee au
-seul texte des definitions — jamais aux vedettes. Tout est journalise.
+Each correction is validated against the original record, then applied to the
+text of the definitions alone -- never to the headwords. Everything is logged.
 
-La plupart des corrections rendues sont des CESURES mal recollees :
-« re-cevar », « pro-duktita », « kom-batis », « fa-cile ». Le recollement
-automatique les avait ratees parce que son garde-fou gardait le trait quand le
-fragment de gauche etait lui-meme une racine attestee — or « re », « pro »,
-« kom », « des », « mi » sont justement des prefixes. Le remede est donc pose
-ici : quand la forme corrigee se termine par la forme lue, on efface le trait
-et l'on recolle, au lieu de remplacer un mot par un autre.
+Most of the corrections returned are badly reglued HYPHENATIONS:
+« re-cevar », « pro-duktita », « kom-batis », « fa-cile ». The automatic
+regluing had missed them because its safeguard kept the hyphen when the
+left-hand fragment was itself an attested root -- and « re », « pro », « kom »,
+« des », « mi » are precisely prefixes. The remedy is therefore laid here:
+when the corrected form ends with the form read, we erase the hyphen and
+reglue, instead of replacing one word by another.
 """
 import json, re, sys, collections
 T="/root/dicionario/travail"
@@ -27,7 +27,7 @@ def executer(rep=f"{T}/juger/reponses/r.txt", fic=f"{T}/juger/fiches.json"):
     ent=[json.loads(l) for l in open(f"{T}/edicioni/dicionario.jsonl",encoding='utf-8')]
     journal=[]
     for mot, bon in corr:
-        # cesure : « pro-duktita » -> « produktita »
+        # hyphenation: « pro-duktita » -> « produktita »
         if bon.lower().endswith(mot.lower()) and len(bon)>len(mot):
             tete=bon[:len(bon)-len(mot)]
             motif=re.compile(r'\b'+re.escape(tete)+r'[-\s]+'+re.escape(mot)+r'\b', re.I)

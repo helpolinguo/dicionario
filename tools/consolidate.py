@@ -1,26 +1,26 @@
-"""Consolidation des initiales de vedette par l'ordre alphabetique du livre.
+"""Consolidating the headwords' initials by the book's alphabetical order.
 
-Le dictionnaire est alphabetique : sur une page donnee, les vedettes commencent
-presque toutes par la meme lettre. Or c'est justement la que le decodage se
-trompe le plus (20 % de fautes sur les trois premieres colonnes, contre 2 %
-ailleurs), parce que l'initiale porte un soulignement souvent double.
+The dictionary is alphabetical: on a given page, the headwords nearly all
+begin with the same letter. And it is precisely there that the decoding goes
+wrong most (20 % of faults on the first three columns, against 2 % elsewhere),
+because the initial carries an underline that is often doubled.
 
-On releve donc, page par page, la lettre majoritaire des initiales de vedette,
-et on l'impose aux cellules qui la contredisent. Ce n'est pas une correction du
-tapuscrit : c'est la levee d'une ambiguite de lecture par une propriete
-structurelle du livre. Chaque intervention est journalisee.
+We therefore survey, page by page, the majority letter of the headwords'
+initials, and impose it on the cells that contradict it. This is not a
+correction of the typescript: it is the lifting of an ambiguity of reading by
+a structural property of the book. Every intervention is logged.
 """
 import numpy as np, pickle, collections, sys
 sys.path.insert(0,'/root/dicionario/outils')
 T="/root/dicionario/travail"
 
 def marge(occ, mini=3):
-    """Colonne de marge de la page : la premiere qui serve sur plusieurs lignes.
+    """The page's margin column: the first that serves on several lines.
 
-    La colonne 0 etait supposee etre la marge. Elle ne l'est pas toujours :
-    quarante-cinq pages commencent plus a droite — la 380 commence en 5 — et
-    aucune de leurs entrees n'etait alors reconnue comme vedette. Elles
-    disparaissaient entierement de l'edition structuree.
+    Column 0 was supposed to be the margin. It is not always: forty-five
+    pages begin further right -- page 380 begins at 5 -- and none of their
+    entries was then recognised as a headword. They disappeared entirely from
+    the structured edition.
     """
     n=occ.sum(axis=0)
     for c in range(occ.shape[1]):
@@ -28,7 +28,7 @@ def marge(occ, mini=3):
     return 0
 
 def vedettes(pg):
-    """Lignes de vedette : marge de la page encree et filet commencant la."""
+    """Headword lines: the page's margin inked and a rule beginning there."""
     z=np.load(f"{T}/cellules/p-{pg:03d}.npz", allow_pickle=True)
     occ=z['occ']; lg=z['lignes']; sou=pickle.loads(z['sou'].item())
     c0=marge(occ)
@@ -43,7 +43,7 @@ def vedettes(pg):
     return out
 
 def consolider(lab, M, tab, pages=None, seuil=0.6, mini=3):
-    """Retourne (nouvelle table, journal). La table n'est pas modifiee en place."""
+    """Returns (new table, log). The table is not modified in place."""
     import glob, os
     if pages is None:
         pages=[int(os.path.basename(p)[2:5]) for p in sorted(glob.glob(f"{T}/cellules/*.npz"))]

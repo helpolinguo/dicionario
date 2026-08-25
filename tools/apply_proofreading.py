@@ -1,18 +1,18 @@
 # -*- coding: utf-8 -*-
-"""Convertit les lignes relues en corrections cellule par cellule.
+"""Converts the proofread lines into corrections, cell by cell.
 
-Le relecteur rend des lignes de meme longueur que celles qu'il a recues : la
-comparaison se fait donc colonne par colonne, sans alignement ni ambiguite.
-Une ligne rendue d'une autre longueur est refusee et signalee — mieux vaut
-perdre une correction que decaler une ligne.
+The proofreader returns lines of the same length as those he received: the
+comparison is therefore made column by column, with no alignment and no
+ambiguity. A line returned at another length is refused and reported -- better
+to lose a correction than to shift a line.
 """
 import os, sys, glob, json
 T="/root/dicionario/travail"
 
 def executer(sortie=f"{T}/exceptions_relecture.txt"):
-    # On compare la ligne rendue a la ligne SOUMISE, telle qu'elle figure dans
-    # la planche — et non a un decodage recalcule, qui inclurait deja les
-    # corrections et se mordrait la queue.
+    # We compare the returned line with the line SUBMITTED, as it appears in the
+    # sheet -- and not with a recomputed decoding, which would already include
+    # the corrections and would bite its own tail.
     cor=[]; refus=[]; nlig=0; npage=0
     for f in sorted(glob.glob(f"{T}/relecture/rez/p*.txt")):
         pg=int(os.path.basename(f)[1:4]); npage+=1
@@ -27,8 +27,8 @@ def executer(sortie=f"{T}/exceptions_relecture.txt"):
             except ValueError: pass
         for l in open(f, encoding='utf-8'):
             l=l.rstrip("\n")
-            # La section « DOUTEUX » emploie le meme format : tout ce qui suit
-            # un croisillon en debut de ligne est du commentaire, pas du texte.
+            # The « DOUTEUX » section uses the same format: everything after a
+            # hash at the start of a line is comment, not text.
             if l.startswith("#"): break
             if "|" not in l: continue
             k,s=l.split("|",1)
@@ -39,11 +39,11 @@ def executer(sortie=f"{T}/exceptions_relecture.txt"):
             if len(s)!=len(a):
                 refus.append((pg,k,f"longueur {len(a)} -> {len(s)}")); continue
             nlig+=1
-            # On ecrit la ligne relue EN ENTIER, y compris les cases que le
-            # relecteur a laissees telles quelles. Sinon ces cases retombent
-            # sur le decodage courant, qui a pu changer depuis que la planche
-            # a ete tiree — c'est ainsi que « EXPRESO » etait redevenu
-            # « EEPRESO » apres coup.
+            # We write the proofread line IN FULL, including the cells the
+            # proofreader left as they stood. Otherwise those cells fall back on
+            # the current decoding, which may have changed since the sheet was
+            # drawn -- that is how « EXPRESO » had become « EEPRESO » again
+            # after the fact.
             for c,y in enumerate(s):
                 cor.append((pg,k,c,y))
     with open(sortie,"w",encoding='utf-8') as fo:

@@ -1,16 +1,16 @@
 # -*- coding: utf-8 -*-
-"""Rend les fins de ligne que le bloc coupait, sans redecouper le livre.
+"""Gives back the line ends the block was cutting off, without re-cutting the book.
 
-Le bloc de texte est cerne par les colonnes encrees sur au moins trois lignes :
-994 caracteres, en bout de 728 lignes, tombaient dehors. Les recuperer en
-elargissant le bloc obligeait a redecouper toutes les pages — ce qui faisait
-perdre des vedettes a cent quarante-cinq d'entre elles.
+The block of text is bounded by the columns inked on at least three lines:
+994 characters, at the end of 728 lines, fell outside. Recovering them by
+widening the block meant re-cutting every page -- which lost headwords on a
+hundred and forty-five of them.
 
-On les recupere donc autrement : la page est recoupee en memoire avec le bloc
-etendu, les cellules qui debordent sont rattachees au groupe dont le centre est
-le plus proche, et elles sont ajoutees au texte comme de simples corrections
-aux colonnes qui suivent le bloc. Le decoupage enregistre, lui, ne bouge pas :
-aucune correction deja faite n'est invalidee.
+We therefore recover them otherwise: the page is re-cut in memory with the
+extended block, the cells that overflow are attached to the group whose
+centre is nearest, and they are added to the text as plain corrections in the
+columns that follow the block. The recorded cutting does not move: no
+correction already made is invalidated.
 """
 import sys, os, json
 import numpy as np

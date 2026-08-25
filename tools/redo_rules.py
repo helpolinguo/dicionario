@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-"""Recalcule les filets de soulignement sans redecouper les pages.
+"""Recomputes the underline rules without re-cutting the pages.
 
-On rejoue exactement la sequence de extraire() jusqu'a soulignements() —
-analyser(), raffiner_pas(), soulignements() — puis on decale des colonnes par
-le col0 deja stocke. Sans changement de regle, le resultat doit etre
-identique a ce qui est dans le npz : c'est le controle de non-regression.
+We replay exactly the sequence of extraire() as far as soulignements() --
+analyser(), raffiner_pas(), soulignements() -- then shift the columns by the
+col0 already stored. With no change of rule, the result must be identical to
+what is in the npz: that is the non-regression check.
 """
 import numpy as np, sys, pickle, os, re
 sys.path.insert(0,'/root/dicionario/outils')
@@ -12,19 +12,19 @@ import cells as C
 T="/root/dicionario/travail"; RAC="/root/dicionario"
 
 def filets(pg, **kw):
-    """Filets d'une page, sur la geometrie DEJA STOCKEE.
+    """A page's rules, on the geometry ALREADY STORED.
 
-    On ne recalcule surtout pas le pas et la phase du lattis. raffiner_pas()
-    ne rend pas exactement la meme origine d'une fois sur l'autre, et une
-    cellule n'est retenue que si le filet la couvre a 60 % : au bord gauche
-    d'une vedette, le filet tombe pile sur ce seuil. Un xg different d'un
-    demi-pixel faisait donc passer la premiere cellule de 0 a 1 — et
-    generate.py, qui refuse un filet commencant au milieu d'un mot, jetait
-    alors le soulignement entier de la vedette. Huit vedettes d'affilee y sont
-    passees a la page 155.
+    We are careful not to recompute the lattice's pitch and phase.
+    raffiner_pas() does not return exactly the same origin from one run to
+    the next, and a cell is kept only if the rule covers 60 % of it: at the
+    left edge of a headword, the rule falls exactly on that threshold. An xg
+    differing by half a pixel therefore took the first cell from 0 to 1 --
+    and generate.py, which refuses a rule beginning in the middle of a word,
+    then threw away the headword's whole underline. Eight headwords in a row
+    went that way on page 155.
 
-    Seule l'image rectifiee vient de analyser() ; les lignes, le pas et
-    l'origine viennent du npz, comme au premier decoupage.
+    Only the rectified image comes from analyser(); the lines, the pitch and
+    the origin come from the npz, as at the first cutting.
     """
     z=np.load(f"{T}/cellules/p-{pg:03d}.npz", allow_pickle=True)
     d = C.analyser(f"{RAC}/scan/p-{pg:03d}.jpg")
@@ -44,12 +44,12 @@ if __name__=="__main__":
         print("p%03d : lignes avec filet anc=%d neuf=%d  identiques=%s"%(pg,len(ka),len(kn),egal and ka==kn))
 
 def tous(sortie=f"{T}/filets.pkl", debut=0, fin=None):
-    """Recalcule les filets de toutes les pages et les depose a part.
+    """Recomputes the rules of every page and deposits them apart.
 
-    On n'ecrit pas dans le corpus de cellules : il pese 295 Mo et une erreur
-    de format y a deja coute 144 pages. Le fichier produit ici est une couche
-    de correction, lue par generate.py apres le releve a l'oeil et avant la
-    detection d'origine.
+    We do not write into the corpus of cells: it weighs 295 MB and one error
+    of format has already cost 144 pages. The file produced here is a layer of
+    correction, read by generate.py after the survey by eye and before the
+    original detection.
     """
     import glob
     pages=sorted(int(re.search(r'p-(\d+)',f).group(1))

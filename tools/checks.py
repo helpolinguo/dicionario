@@ -1,20 +1,20 @@
-"""Controles automatiques du fac-simile compose contre le scan.
+"""Automatic checks of the composed facsimile against the scan.
 
-1. pagination        : nombre de pages du PDF = nombre de pages du scan
-2. caracteres/ligne  : longueur de chaque ligne composee = longueur relevee
-3. position colonne  : round((x - x0)/pas) = indice de colonne, pour chaque
-                       caractere, via pdftotext -bbox
-4. soulignements     : plages de colonnes composees = plages detectees
-5. surfrappes        : inventaire croise decodage <-> source LaTeX
-6. hors-grille       : inventaire croise
-7. comparaison visuelle a 300 dpi, page par page
+1. pagination        : number of pages in the PDF = number of pages in the scan
+2. characters/line   : length of each composed line = length surveyed
+3. column position   : round((x - x0)/pitch) = column index, for each
+                       character, via pdftotext -bbox
+4. underlines        : ranges of composed columns = ranges detected
+5. overstrikes       : cross-inventory decoding <-> LaTeX source
+6. off-grid          : cross-inventory
+7. visual comparison at 300 dpi, page by page
 """
 import subprocess, re, sys, os, json, numpy as np
 
 RAC = "/root/dicionario"
 
 def bbox_pdf(pdf):
-    """Retourne, par page, la liste des (mot, xmin, ymin, xmax, ymax)."""
+    """Returns, per page, the list of (word, xmin, ymin, xmax, ymax)."""
     xml = subprocess.run(["pdftotext","-bbox","-q",pdf,"-"],capture_output=True,text=True).stdout
     pages=[]
     for pg in re.split(r'<page ', xml)[1:]:
@@ -30,7 +30,7 @@ def ctrl_pagination(pdf, attendu):
     return n==attendu, n
 
 def ctrl_colonnes(pdf, pas_pt, orig_pt, tol=0.18):
-    """En chasse fixe, (xmin - orig)/pas doit etre un entier a tol pres."""
+    """In a fixed set, (xmin - orig)/pitch must be an integer to within tol."""
     ecarts=[]; pires=[]
     for ipg, mots in enumerate(bbox_pdf(pdf)):
         for t,x0,y0,x1,y1 in mots:
@@ -43,7 +43,7 @@ def ctrl_colonnes(pdf, pas_pt, orig_pt, tol=0.18):
                 hors_tolerance=pires[:50], nb_hors=len(pires))
 
 def ctrl_longueurs(decodage, source_dir):
-    """Compare la longueur de chaque ligne composee a celle relevee dans le scan."""
+    """Compares the length of each composed line with the one surveyed in the scan."""
     pbs=[]
     for pg, lignes in decodage.items():
         f=os.path.join(source_dir, f"p{pg:03d}.tex")

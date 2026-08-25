@@ -1,30 +1,30 @@
 # -*- coding: utf-8 -*-
-"""Planches de reetiquetage des groupes peu surs.
+"""Sheets for relabelling the least certain groups.
 
-Le classifieur etiquette non pas des cellules mais des groupes : une erreur
-d'etiquette sur un groupe se propage a tous ses membres. Corriger les groupes
-les moins surs corrige donc le livre entier d'un coup, la ou relire les lignes
-une a une couterait cent fois plus.
+The classifier labels not cells but groups: an error of label on a group
+propagates to all its members. Correcting the least certain groups therefore
+corrects the whole book at a stroke, where re-reading the lines one by one
+would cost a hundred times more.
 
-Une bande par groupe : la moyenne du groupe, puis seize membres tires au
-hasard (les plus proches du centre en tete, les plus lointains en queue, pour
-que le relecteur voie aussi ce que le groupe ramasse de douteux).
+One strip per group: the group's mean, then sixteen members drawn at random
+(those nearest the centre at the head, the furthest at the tail, so that the
+proofreader also sees what doubtful matter the group has picked up).
 """
 import numpy as np, os
 from PIL import Image, ImageDraw
 
 T = "/root/dicionario/travail"
-ZM   = 5     # grossissement de la moyenne
-ZS   = 3     # grossissement des membres
-NECH = 16    # membres montres
-PAR  = 11    # onze groupes : planche de 866 x 1400, aucun cote au-dela de 1500
+ZM   = 5     # magnification of the mean
+ZS   = 3     # magnification of the members
+NECH = 16    # members shown
+PAR  = 11    # eleven groups: a sheet of 866 x 1400, no side beyond 1500
 
 def _img(a, z):
     a = 255 - np.clip(a, 0, 255).astype(np.uint8)
     return Image.fromarray(a).resize((a.shape[1]*z, a.shape[0]*z), Image.LANCZOS)
 
 def planche(lot, sortie):
-    """lot : liste de (numero, etiquette, moyenne 22x12, liste de membres 22x12)."""
+    """batch: list of (number, label, mean 22x12, list of members 22x12)."""
     hm, wm = 22*ZM, 12*ZM
     hs, ws = 22*ZS, 12*ZS
     marge, gap = 150, 16
@@ -45,7 +45,7 @@ def planche(lot, sortie):
     return im.size
 
 def preparer(groupes, rep=f"{T}/groupes", par=PAR):
-    """groupes : liste de (numero, etiquette, moyenne, membres)."""
+    """groups: list of (number, label, mean, members)."""
     os.makedirs(rep, exist_ok=True)
     for f in os.listdir(rep):
         if f.startswith(("g","rez")) and f[-4:] in (".png",".txt"): os.remove(os.path.join(rep,f))

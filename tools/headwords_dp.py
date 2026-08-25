@@ -1,25 +1,26 @@
-"""Correction des vedettes par l'ordre alphabetique — formulation globale.
+"""Correcting the headwords by alphabetical order -- the global formulation.
 
-Ma premiere tentative corrigeait de proche en proche : quand une vedette rompait
-l'ordre, elle la forcait a se conformer a ses voisines. C'est faux, parce que la
-faute peut etre dans la voisine, et cela produisait des monstres.
+My first attempt corrected step by step: when a headword broke the order, it
+forced it to conform to its neighbours. That is wrong, because the fault may
+be in the neighbour, and it produced monsters.
 
-La bonne formulation est globale. Chaque vedette a un jeu de lectures possibles
-(l'originale, plus celles qu'on obtient en remplacant ses cellules ambigues par
-leurs voisines de groupe), chacune avec un cout egal au nombre de cellules
-changees. On cherche la suite de lectures qui **minimise le cout total** sous la
-contrainte d'ordre alphabetique croissant — par programmation dynamique.
+The right formulation is global. Each headword has a set of possible readings
+(the original, plus those obtained by replacing its ambiguous cells with their
+neighbours in the group), each with a cost equal to the number of cells
+changed. We look for the run of readings that **minimises the total cost**
+under the constraint of increasing alphabetical order -- by dynamic
+programming.
 
-La contrainte est souple : une rupture d'ordre coute PENALITE mais reste
-possible. Une vedette reellement mal classee dans le tapuscrit survit donc, si
-aucune lecture voisine ne rattrape l'ordre a moindre frais.
+The constraint is soft: a break in the order costs PENALITE but stays
+possible. A headword genuinely misfiled in the typescript therefore survives,
+if no neighbouring reading recovers the order more cheaply.
 """
 import numpy as np, pickle, itertools, sys, collections
 sys.path.insert(0,'/root/dicionario/outils')
 from consolidate import vedettes
 T="/root/dicionario/travail"
-PENALITE = 4.0        # cout d'une rupture d'ordre conservee
-MAXPOS   = 4          # cellules ambigues considerees par vedette
+PENALITE = 4.0        # cost of a break in the order that is kept
+MAXPOS   = 4          # ambiguous cells considered per headword
 MAXCAND  = 48
 
 def collecter(lab, M, tab, bav, exc):
@@ -72,7 +73,7 @@ def resoudre(lab, M, tab, bav, exc, alt):
             v=prev + np.array([0.0 if ka<=kb else PENALITE for ka in cles_p])
             j=int(np.argmin(v)); best[b]=v[j]+ci[b][2]; arg[b]=j
         cout.append(best); prec.append(arg)
-    # retour arriere
+    # backtracking
     j=int(np.argmin(cout[-1])); chemin=[j]
     for i in range(n-1,0,-1):
         j=int(prec[i][j]); chemin.append(j)

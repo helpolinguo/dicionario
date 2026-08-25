@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
-"""Neutralise les cellules recouvertes par un ornement.
+"""Neutralises the cells an ornament covers.
 
-Un ornement — la lettre de section, la signature — tombe dans la grille comme
-n'importe quelle encre : le decodeur y lit des caracteres, qui sont du bruit.
-On efface donc les cellules dont le centre tombe dans la boite de l'ornement.
-La boite est mesuree sur le scan d'origine ; la grille, elle, vit dans l'image
-remise a l'echelle. Le rapport des deux hauteurs donne le facteur.
+An ornament -- the section letter, the signature -- falls into the grid like
+any other ink: the decoder reads characters in it, and they are noise. We
+therefore erase the cells whose centre falls inside the ornament's box. The
+box is measured on the original scan; the grid lives in the rescaled image.
+The ratio of the two heights gives the factor.
 """
 import numpy as np, json, os, sys
 RAC="/root/dicionario"; T=f"{RAC}/travail"
@@ -24,13 +24,13 @@ def executer(sortie=f"{T}/exceptions_ornements.txt", marge=3, dilate=0.35):
             pasv=float(z['pasv']); pash=float(z['pash'])
             xg=float(z['xg']); col0=int(z['col0']); ncol=z['occ'].shape[1]
             lg=z['lignes']
-            # On masque d'apres la boite SERREE quand elle existe : la boite du
-            # decoupage, volontairement large pour ne rien rogner de l'image,
-            # mordrait sur le texte tape au-dessus.
+            # We mask by the TIGHT box where there is one: the cutting box,
+            # deliberately wide so as to crop nothing of the image, would bite
+            # into the text typed above.
             b=e.get('masque', e)
-            # Dilatee, car autour de la signature subsistaient des fragments de
-            # paraphe que le decodeur lisait en « ,F » — mais vers le bas et sur
-            # les cotes seulement, jamais vers le haut.
+            # Dilated, because around the signature there remained fragments of
+            # the flourish that the decoder read as « ,F » -- but downwards and
+            # sideways only, never upwards.
             dx=b['w']*ech*dilate; dh=b['h']*ech*0.12; db=b['h']*ech*dilate
             y0=b['y']*ech-dh; y1=(b['y']+b['h'])*ech+db
             x0=b['x']*ech-dx; x1=(b['x']+b['w'])*ech+dx

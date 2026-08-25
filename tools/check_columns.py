@@ -1,19 +1,18 @@
-"""Controle n. 3 : chaque caractere tombe-t-il sur sa colonne de grille ?
+"""Check no. 3: does each character fall on its column of the grid?
 
-pdftotext -bbox donne la boite d'encre du mot, pas l'origine de la cellule :
-xMin = origine + approche gauche du premier glyphe. L'approche ne depend que
-du caractere ; on la mesure sur le document lui-meme (mediane par caractere)
-et on verifie que le reste est un entier de cellules.
+pdftotext -bbox gives the ink box of the word, not the origin of the cell:
+xMin = origin + the left side bearing of the first glyph. The side bearing
+depends only on the character; we measure it on the document itself (a median
+per character) and check that what is left is a whole number of cells.
 """
 import subprocess, re, sys, numpy as np, collections
 
-# L'indication cachee portee sur chaque page (voir preamble.tex) n'est pas de
-# la frappe : elle est composee dans la police du document, hors grille, et
-# invisible a l'impression. pdftotext la rend comme n'importe quel mot, et elle
-# faisait echouer le controle sur 5 760 mots. On l'ecarte par sa position :
-# elle est posee a 6 mm du bord superieur, tres au-dessus du bloc de texte,
-# dont la marge de tete est de 11 mm.
-HAUT_CACHE = 24.0        # points PostScript ; le bloc commence plus bas
+# The hidden mark carried on every page (see preamble.tex) is not typing:
+# it is set in the document's font, off the grid, and invisible in print.
+# pdftotext returns it like any other word, and it made the check fail on
+# 5,760 words. We set it aside by its position: it is laid 6 mm from the top
+# edge, well above the block of text, whose head margin is 11 mm.
+HAUT_CACHE = 24.0        # PostScript points; the block starts lower
 
 def mesurer(pdf, pas_pouce=0.1, orig_mm=21.9):
     pas=pas_pouce*72; orig=orig_mm/25.4*72
@@ -23,7 +22,7 @@ def mesurer(pdf, pas_pouce=0.1, orig_mm=21.9):
         for m in re.finditer(r'<word xMin="([\d.]+)" yMin="([\d.]+)" xMax="([\d.]+)" yMax="([\d.]+)">(.*?)</word>', pg):
             x=float(m.group(1)); t=m.group(5)
             if not t: continue
-            if float(m.group(2)) < HAUT_CACHE: continue   # indication cachee
+            if float(m.group(2)) < HAUT_CACHE: continue   # hidden mark
             u=(x-orig)/pas
             U[t[0]].append(u); tout.append((ipg+1,t,u))
     appr={c: float(np.median(np.array(v)-np.round(np.array(v)))) for c,v in U.items()}

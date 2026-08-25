@@ -1,16 +1,15 @@
 # -*- coding: utf-8 -*-
-"""Inventaire de ce qui n'est pas dactylographie.
+"""An inventory of what is not typewritten.
 
-Le livre n'est pas tout entier une grille de caracteres. Il porte aussi :
-la couverture, qui est une lithographie ; des pages blanches ; la signature
-autographe de l'auteur sur la page de contrefacon ; et, en tete de chaque
-lettre de l'alphabet, cette lettre composee en grand corps dans une elzevir.
-Aucun de ces elements ne se decode : ils se reperent, se mesurent et se
-reproduisent tels quels.
+The book is not a grid of characters throughout. It also carries: the cover,
+which is a lithograph; blank pages; the author's autograph signature on the
+copyright page; and, at the head of each letter of the alphabet, that letter
+set in a large size in an Elzevir. None of these decodes: they are located,
+measured and reproduced as they stand.
 
-Le repere est sans echelle : sur une page dactylographiee, toutes les taches
-d'encre ont sensiblement la meme hauteur. Ce qui depasse nettement la hauteur
-mediane de la page n'appartient pas a la frappe.
+The cue needs no scale: on a typewritten page, every spot of ink is of much
+the same height. What clearly exceeds the page's median height does not
+belong to the typing.
 """
 import numpy as np, os, sys, json
 from scipy.ndimage import label as cclabel, find_objects
@@ -23,7 +22,7 @@ def analyser_page(pg):
     a=np.asarray(Image.open(f"{RAC}/scan/p-{pg:03d}.jpg").convert('L')).astype(np.float32)
     H,W=a.shape
     b = a < (a.mean()-0.28*a.std())
-    # on ignore la bande d'ombre des bords
+    # we ignore the band of shadow at the edges
     m=int(0.03*min(H,W)); b[:m]=False; b[-m:]=False; b[:,:m]=False; b[:,-m:]=False
     L,k=cclabel(b, structure=_ST)
     if k==0: return dict(pagino=pg, encre=0, blanka=True, elementi=[])

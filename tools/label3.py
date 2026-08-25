@@ -1,22 +1,23 @@
 # -*- coding: utf-8 -*-
-"""Reapprentissage de l'etiquetage sur la verite accumulee.
+"""Relearning the labelling on the truth accumulated.
 
-Le premier etiquetage apprenait sur une amorce de 7 070 cellules transcrites a
-la main sur cinq pages. On dispose maintenant de 60 768 cellules dont la
-transcription est verifiee — celles des 8 241 vedettes relues une par une, plus
-les corrections cellule par cellule — reparties sur tout le livre, et de 734
-groupes dont l'etiquette a ete lue a l'oeil sur planche.
+The first labelling learnt on a seed of 7,070 cells transcribed by hand over
+five pages. We now hold 60,768 cells whose transcription is verified -- those
+of the 8,241 headwords re-read one by one, plus the cell-by-cell corrections
+-- spread over the whole book, and 734 groups whose label has been read by eye
+on a sheet.
 
-L'amorce d'origine reste indispensable : la verite tiree des vedettes ne
-contient ni chiffre ni parenthese ni virgule. Les deux se completent.
+The original seed remains indispensable: the truth drawn from the headwords
+contains neither a figure nor a parenthesis nor a comma. The two complete each
+other.
 
-L'auto-apprentissage est conserve mais bride : seuls les groupes juges surs
-au-dela de 0,98 sont reinjectes, et six cellules au plus par groupe. C'est
-l'auto-apprentissage sans garde-fou qui avait fait etiqueter « espace » un
-groupe de « i » avec une confiance de 1,000.
+Self-learning is kept but curbed: only the groups judged sure beyond 0.98 are
+re-injected, and at most six cells per group. It was self-learning without a
+safeguard that had a group of « i » labelled « space » with a confidence of
+1.000.
 
-La classe « espace » reste hors de l'apprentissage : les cellules qui ne
-portent qu'une bavure sont reconnues par un critere geometrique au decodage.
+The « space » class stays out of the learning: the cells that carry nothing
+but a smudge are recognised by a geometric criterion at decoding time.
 """
 import sys, os, time, collections, pickle
 import numpy as np
@@ -26,14 +27,14 @@ from sklearn.neural_network import MLPClassifier
 T="/root/dicionario/travail"
 
 def _lots(C, idx, taille=20000):
-    """Traits par tranches : 1 M de cellules ne tiennent pas en memoire."""
+    """Features in slices: a million cells do not fit in memory."""
     out=[]
     for a in range(0,len(idx),taille):
         out.append(traits2(np.asarray(C[idx[a:a+taille]])))
     return np.concatenate(out) if out else np.empty((0,528),np.float32)
 
 def lire_planches():
-    """Etiquettes lues a l'oeil sur les planches de groupes."""
+    """Labels read by eye on the group sheets."""
     lus={}
     rep=f"{T}/groupes/rez"
     if not os.path.isdir(rep): return lus
@@ -51,19 +52,19 @@ def executer(tours=3, cache=20, seuil_auto=0.98, par_groupe=6):
     C=np.load(f"{T}/cells_all.npy", mmap_mode='r')
     kl=np.load(f"{T}/km_lab.npy"); K=int(kl.max())+1
 
-    # --- 1. la verite : vedettes relues + corrections cellule par cellule ---
+    # --- 1. the truth: headwords re-read + cell-by-cell corrections ---
     Iv=np.load(f"{T}/gt_idx.npy"); Yv=np.load(f"{T}/gt_lab.npy",allow_pickle=True)
-    # --- 2. l'amorce d'origine : chiffres, ponctuation, capitales ---
+    # --- 2. the original seed: figures, punctuation, capitals ---
     from seed import tout
     Ia,Ya,_=tout()
     reel = Ya!=' '; Ia,Ya = Ia[reel], Ya[reel]
-    # --- 3. les groupes lus a l'oeil sur planche ---
+    # --- 3. the groups read by eye on a sheet ---
     lus=lire_planches()
     ordre=np.argsort(kl,kind='stable'); bornes=np.searchsorted(kl[ordre],np.arange(K+1))
     rng=np.random.default_rng(0)
     Ip=[]; Yp=[]
     for g,v in lus.items():
-        if len(v)!=1 or v==' ': continue          # ni MIXITA ni ESPACO
+        if len(v)!=1 or v==' ': continue          # neither MIXITA nor ESPACO
         m=ordre[bornes[g]:bornes[g+1]]
         if not len(m): continue
         e = m if len(m)<=8 else rng.choice(m,8,replace=False)
@@ -73,7 +74,7 @@ def executer(tours=3, cache=20, seuil_auto=0.98, par_groupe=6):
 
     I=np.concatenate([Iv,Ia,Ip]); Y=np.concatenate([Yv,Ya,Yp])
     W=np.concatenate([np.full(len(Iv),1.0), np.full(len(Ia),1.0), np.full(len(Ip),0.6)])
-    # une cellule peut apparaitre deux fois : la verite l'emporte
+    # a cell can appear twice: the truth prevails
     vu={}; garde=[]
     for j,(i,w) in enumerate(zip(I,W)):
         if i not in vu or w>W[vu[i]]: vu[i]=j
@@ -83,7 +84,7 @@ def executer(tours=3, cache=20, seuil_auto=0.98, par_groupe=6):
           %(len(I),len(set(Y)),len(Iv),len(Ia),len(Ip)), flush=True)
 
     X=_lots(C,I)
-    # echantillon de vote, un par groupe
+    # voting sample, one per group
     ech=[]
     for k in range(K):
         m=ordre[bornes[k]:bornes[k+1]]

@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
-"""Releve des soulignements que l'edition n'a pas su placer.
+"""A survey of the underlines the edition could not place.
 
-Le tapuscrit n'a pas d'italique : la dactylo souligne. L'edition lit ces filets
-et en fait l'italique du domaine, le gras de la locution. Certains filets ne se
-laissent pas placer : le trait deborde sur la ponctuation, s'arrete a la moitie
-d'un mot, ou ne couvre qu'un mot-outil. Ce sont des artefacts du releve, non des
-intentions de l'auteur — mais il faut pouvoir en juger.
+The typescript has no italic: the typist underlines. The edition reads those
+rules and makes of them the italic of the domain, the bold of the phrase.
+Some rules will not be placed: the stroke runs over the punctuation, stops in
+the middle of a word, or covers a function word only. These are artefacts of
+the survey, not intentions of the author -- but one must be able to judge.
 
-Le fichier rendu les classe par famille, la plus douteuse en tete, avec la page
-et le mot-vedette pour aller voir le fac-simile.
+The file returned classes them by family, the most doubtful at the head, with
+the page and the headword so that the facsimile can be consulted.
 
     python3 tools/survey_rules.py
 """
@@ -21,14 +21,14 @@ RAC = "/root/dicionario"
 SOURCE = f"{RAC}/dicionario.jsonl"
 SORTIE = f"{RAC}/filets-dubinda.md"
 
-# La liste des mots-outils est celle de l'edition, `edition.MALGRANDA` : c'est
-# elle qui decide de ne PAS poser l'italique, et la liste de travail doit
-# classer d'apres la meme regle, sans quoi les fragments qu'elle ecarte se
-# retrouvent ici dans une autre famille que la leur.
+# The list of function words is the edition's own, `edition.MALGRANDA`: it is
+# that list which decides NOT to lay the italic, and this working list must
+# class by the same rule, failing which the fragments it sets aside turn up
+# here in a family other than their own.
 
 
 def famille(u):
-    """A quoi ressemble le fragment ?"""
+    """What does the fragment look like?"""
     mots = u.split()
     if len(u) <= 3:
         return "2. Fragment de trois lettres ou moins"

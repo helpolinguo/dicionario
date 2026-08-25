@@ -1,15 +1,14 @@
 # -*- coding: utf-8 -*-
-"""Table finale groupe -> caractere, par arbitrage de trois autorites.
+"""The final table group -> character, by arbitration between three authorities.
 
-1. La verite terrain : les cellules dont la transcription est verifiee a la
-   main. Quand un groupe en contient au moins trois et qu'elles s'accordent a
-   80 %, elle tranche — c'est la seule autorite qui ne soit pas une lecture.
-2. La lecture a l'oeil de la planche du groupe, pour les 1 352 groupes relus.
-3. Le modele reappris, partout ailleurs.
+1. The ground truth: the cells whose transcription is verified by hand. When a
+   group holds at least three of them and they agree to 80 %, it settles the
+   matter -- it is the only authority that is not a reading.
+2. The reading by eye of the group's sheet, for the 1,352 groups re-read.
+3. The re-learnt model, everywhere else.
 
-Les groupes declares « melanges » ne recoivent pas d'etiquette de groupe : ils
-sont decodes cellule par cellule, puisque c'est precisement leur defaut de ne
-pas etre homogenes.
+Groups declared « mixed » receive no group label: they are decoded cell by
+cell, since not being homogeneous is precisely their defect.
 """
 import numpy as np, os, sys, collections, pickle
 sys.path.insert(0,'/root/dicionario/outils')
@@ -57,7 +56,7 @@ def executer():
     return fin, mixtes
 
 def cellules_mixtes(mixtes, sortie=f"{T}/exceptions_modele.txt"):
-    """Decodage cellule par cellule des groupes melanges."""
+    """Cell-by-cell decoding of the mixed groups."""
     C=np.load(f"{T}/cells_all.npy", mmap_mode='r'); M=np.load(f"{T}/meta_all.npy")
     kl=np.load(f"{T}/km_lab.npy")
     from features2 import features2
@@ -74,7 +73,7 @@ def cellules_mixtes(mixtes, sortie=f"{T}/exceptions_modele.txt"):
             P=m.predict_proba(X); cls=m.classes_
             j=P.argmax(1); p=P.max(1)
             for i,jj,pp in zip(b,j,p):
-                if pp<0.55: continue          # trop incertain : on laisse le groupe decider
+                if pp<0.55: continue          # too uncertain: we let the group decide
                 ch=cls[jj]
                 if ch==' ': continue
                 pg,k,c=M[i]

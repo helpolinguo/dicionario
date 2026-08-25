@@ -1,21 +1,21 @@
 # -*- coding: utf-8 -*-
-"""Reperage des confusions c/o restantes, par le lexique du livre lui-meme.
+"""Locating the c/o confusions that remain, by the book's own lexicon.
 
-Les planches ont montre que les groupes etiquetes « c » et « o » sont bien
-etiquetes : la confusion signalee ne vient donc pas de l'etiquette du groupe
-mais de cellules isolees, tombees dans le mauvais groupe. On ne peut pas les
-voir groupe par groupe ; on les voit par le mot.
+The sheets have shown that the groups labelled « c » and « o » are labelled
+rightly: the confusion reported therefore comes not from the group's label
+but from isolated cells that have fallen into the wrong group. They cannot be
+seen group by group; they are seen through the word.
 
-Un mot du corps du texte qui n'existe nulle part ailleurs dans le livre, mais
-qui devient un mot atteste des qu'on echange un « c » et un « o », est une
-confusion. Le critere est severe : la forme corrigee doit etre nettement plus
-frequente que la forme fautive, faute de quoi on ne conclut pas.
+A word in the body of the text that exists nowhere else in the book, but that
+becomes an attested word as soon as a « c » and an « o » are exchanged, is a
+confusion. The criterion is severe: the corrected form must be markedly more
+frequent than the faulty one, failing which we draw no conclusion.
 """
 import numpy as np, sys, re, collections, json
 sys.path.insert(0,'/root/dicionario/outils')
 T="/root/dicionario/travail"
-MINI_ATTESTE = 6      # occurrences minimales de la forme corrigee
-MAXI_FAUTIF  = 2      # occurrences maximales de la forme fautive
+MINI_ATTESTE = 6      # minimum occurrences of the corrected form
+MAXI_FAUTIF  = 2      # maximum occurrences of the faulty form
 
 def executer():
     from edition import charger_texte

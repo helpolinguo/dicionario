@@ -1,20 +1,21 @@
-"""Deux regularites verifiables du livre, appliquees aux seules cellules
-ambigues des vedettes.
+"""Two verifiable regularities of the book, applied to the ambiguous cells of
+the headwords alone.
 
-1. **La section alphabetique de la page.** Sur une page donnee, les vedettes
-   commencent presque toutes par la meme lettre. Releve sur les 639 pages, cet
-   accord est ecrasant. Quand une initiale contredit la majorite de sa page et
-   que sa cellule est ambigue, on retient la majorite.
+1. **The page's alphabetical section.** On a given page, the headwords nearly
+   all begin with the same letter. Surveyed over the 639 pages, that agreement
+   is overwhelming. When an initial contradicts the majority of its page and
+   its cell is ambiguous, we keep the majority.
 
-2. **La finale des vedettes.** Sur 7 295 vedettes relevees, la derniere lettre
-   est un `o` dans 4 584 cas, `r` dans 1 527, `a` dans 613, `e` dans 52,
-   `i` dans 31 — la morphologie d'Ido (substantif -o, verbe -ar/-ir/-or,
-   adjectif -a, adverbe -e). La quatrieme valeur, `c` (269 cas), n'existe pas
-   comme finale en Ido : c'est la confusion `c`/`o`, la plus frequente du
-   decodage. Quand la finale d'une vedette est ambigue et sort de l'inventaire
-   morphologique alors qu'une de ses lectures voisines y entre, on la corrige.
+2. **The ending of the headwords.** Over 7,295 headwords surveyed, the last
+   letter is an `o` in 4,584 cases, `r` in 1,527, `a` in 613, `e` in 52,
+   `i` in 31 -- the morphology of Ido (noun -o, verb -ar/-ir/-or,
+   adjective -a, adverb -e). The fourth value, `c` (269 cases), does not exist
+   as an ending in Ido: it is the `c`/`o` confusion, the commonest of the
+   decoding. When a headword's ending is ambiguous and falls outside the
+   morphological inventory while one of its neighbouring readings falls
+   inside, we correct it.
 
-Rien n'est corrige sur une cellule que le decodage lit sans hesiter.
+Nothing is corrected on a cell the decoding reads without hesitating.
 """
 import numpy as np, pickle, collections, sys
 sys.path.insert(0,'/root/dicionario/outils')
@@ -51,7 +52,7 @@ def executer(seuil_maj=0.6, mini=3):
     ved=mots_vedette(lab,M,tab,bav,exc)
     nouv={}; journal=[]
     for pg,liste in ved.items():
-        # 1. initiale
+        # 1. initial
         if len(liste)>=mini:
             c=collections.Counter(mo[0][1] for _,mo in liste)
             (maj,n),=c.most_common(1)
@@ -61,7 +62,7 @@ def executer(seuil_maj=0.6, mini=3):
                     if ch!=maj and maj in ([ch]+list(alt[lab[i]])):
                         nouv[(pg,k,col)]=maj
                         journal.append((pg,k,col,ch,maj,"initiale de section","".join(x[1] for x in mo)))
-        # 2. finale
+        # 2. ending
         for k,mo in liste:
             col,ch,i=mo[-1]
             if ch in FINALES: continue

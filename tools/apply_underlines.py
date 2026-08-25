@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
-"""Soulignements releves a l'oeil : ils l'emportent sur la detection automatique.
+"""Underlines surveyed by eye: they prevail over the automatic detection.
 
-La detection mesure un filet au pixel pres, mais elle estime la ligne de base
-et s'y trompe parfois : sur la ligne d'« adjurar », elle a souligne « Sumnar »
-et « nomo » au lieu de la vedette et de la mention de domaine. Le relecteur,
-lui, voit la page. Ce qu'il releve remplace donc entierement les plages
-detectees, pour les lignes qu'il a relevees.
+The detection measures a rule to the pixel, but it estimates the baseline and
+sometimes gets it wrong: on the line of « adjurar » it underlined « Sumnar »
+and « nomo » instead of the headword and the domain label. The proofreader,
+for his part, sees the page. What he surveys therefore replaces the detected
+ranges entirely, for the lines he has surveyed.
 """
 import os, sys, glob, json
 T="/root/dicionario/travail"
@@ -17,7 +17,7 @@ def executer(sortie=f"{T}/sou_relus.txt"):
         fo.write("# Releve a l'oeil ; remplace la detection automatique pour ces lignes.\n")
         for f in sorted(glob.glob(f"{T}/relecture/rez/p*.sou")):
             pg=int(os.path.basename(f)[1:4])
-            # texte de reference : la ligne corrigee si elle existe, sinon celle soumise
+            # reference text: the corrected line if it exists, otherwise the one submitted
             soumis={}
             p=f"{T}/relecture/p{pg:03d}.txt"
             if os.path.exists(p):
@@ -47,9 +47,9 @@ def executer(sortie=f"{T}/sou_relus.txt"):
                 except ValueError: continue
                 texte=soumis.get(k)
                 if texte is None: perdus.append((pg,k,"ligne inconnue")); continue
-                # Le releveur a pu lire la ligne AVANT correction, ou apres :
-                # les deux versions ont la meme longueur, donc les memes
-                # colonnes. On cherche le segment dans l'une puis dans l'autre.
+                # The surveyor may have read the line BEFORE correction, or after:
+                # both versions have the same length, hence the same columns. We
+                # look for the segment in the one, then in the other.
                 brut=soumis_brut.get(k, texte)
                 pos=0; pl=[]
                 for seg in parts[1:]:

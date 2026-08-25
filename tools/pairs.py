@@ -1,18 +1,19 @@
 # -*- coding: utf-8 -*-
-"""Correction des sosies, par le lexique du livre lui-meme.
+"""Correcting the look-alikes, by the book's own lexicon.
 
-Les planches ont montre que les groupes sont bien etiquetes : les confusions
-qui restent sont des cellules isolees tombees dans le mauvais groupe. Elles ne
-se voient pas groupe par groupe — elles se voient par le mot.
+The sheets have shown that the groups are labelled rightly: the confusions
+that remain are isolated cells that have fallen into the wrong group. They
+cannot be seen group by group -- they are seen through the word.
 
-Un mot du texte qui n'existe pratiquement nulle part ailleurs dans le livre,
-mais qui devient un mot bien atteste des qu'on echange deux caracteres que la
-machine confond, est une confusion. On n'echange que des caracteres dont les
-relecteurs ont constate qu'ils se ressemblent : la correction ne peut donc pas
-inventer un mot, seulement retablir une forme que le livre emploie deja.
+A word in the text that exists practically nowhere else in the book, but that
+becomes a well-attested word as soon as two characters the machine confuses
+are exchanged, is a confusion. We exchange only characters the proofreaders
+have found to resemble one another: the correction therefore cannot invent a
+word, only restore a form the book already uses.
 
-Le critere est severe et symetrique : la forme corrigee doit compter au moins
-six occurrences et etre au moins huit fois plus frequente que la forme fautive.
+The criterion is severe and symmetrical: the corrected form must count at
+least six occurrences and be at least eight times more frequent than the
+faulty one.
 """
 import numpy as np, sys, re, collections, json
 sys.path.insert(0,'/root/dicionario/outils')

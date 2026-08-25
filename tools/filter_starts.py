@@ -1,16 +1,15 @@
 # -*- coding: utf-8 -*-
-"""Tri des debuts de ligne rendus.
+"""Sorting the line starts that were restored.
 
-L'elargissement force de deux colonnes ramene aussi le bord de la feuille :
-ombres de reliure et grain se decodent alors en suites de « m », de « " » ou
-de tirets. Le depart est simple — une dactylo qui commence une ligne une
-cellule trop tot le fait d'UNE cellule et d'UN caractere, et ce caractere est
-une lettre (ou le « + » des vedettes non officielles), jamais une rangee de
-guillemets.
+The forced widening by two columns also brings back the edge of the sheet:
+shadows of the binding and grain then decode into runs of « m », of « " » or
+of hyphens. The parting is simple -- a typist who begins a line one cell too
+early does so by ONE cell and ONE character, and that character is a letter
+(or the « + » of the unofficial headwords), never a row of quotation marks.
 
-On ne garde donc qu'une cellule, en colonne -1, portant une lettre ou un
-« + », et pas plus de deux lignes par page. Tout le reste est ecarte et doit
-etre verifie a l'oeil avant d'etre repris.
+We therefore keep only one cell, in column -1, carrying a letter or a « + »,
+and no more than two lines per page. All the rest is set aside and must be
+verified by eye before being taken back.
 """
 import pickle, sys
 T="/root/dicionario/travail"
@@ -35,13 +34,13 @@ if __name__=="__main__":
     for pg in sorted(net):
         print("   p%03d : %s"%(pg, sorted((k,v[-1]) for k,v in net[pg].items())))
 
-# Verification a l'oeil, planche par planche (work/debuts.png).
+# Verification by eye, sheet by sheet (work/debuts.png).
 #
-# Le tri automatique ne suffit pas : trois des cellules retenues portaient une
-# ANNOTATION MANUSCRITE — pages 18, 29 et 52, en cursive — et la consigne est
-# constante depuis le debut, les notes a la main sont ignorees. Quatre autres
-# restaient douteuses a l'examen. On ne garde donc que ce qui a ete reconnu
-# comme frappe ET completant un mot.
+# The automatic sort does not suffice: three of the cells kept carried a
+# HANDWRITTEN ANNOTATION -- pages 18, 29 and 52, in cursive -- and the rule has
+# been constant from the start, notes by hand are ignored. Four others stayed
+# doubtful on examination. We therefore keep only what was recognised as typing
+# AND as completing a word.
 RETENUS = {
     (63,2):'h', (86,3):'b', (114,42):'d', (133,43):'e', (141,41):'e',
     (351,33):'l', (456,31):'p', (474,50):'p', (474,53):'p',

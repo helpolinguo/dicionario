@@ -1,21 +1,22 @@
 # -*- coding: utf-8 -*-
-"""Relecture directe, page par page : l'image du scan contre le texte decode.
+"""Direct proofreading, page by page: the image of the scan against the
+decoded text.
 
-Toutes les methodes precedentes etaient indirectes — regrouper les formes,
-etiqueter les groupes, corriger par le lexique. Elles ont porte le livre de
-93 % a un peu plus de 99 %, mais 99 % laisse encore une dizaine de fautes par
-page. Pour aller au-dela il faut lire.
+Every preceding method was indirect -- grouping the shapes, labelling the
+groups, correcting by the lexicon. They carried the book from 93 % to a
+little over 99 %, but 99 % still leaves some ten faults a page. To go beyond
+that one must read.
 
-La grille rend la chose exacte : une cellule, un caractere. Le relecteur recoit
-donc chaque ligne decodee et doit rendre une ligne de **meme longueur**. Une
-lettre manquante remplace une espace, une lettre de trop redevient une espace,
-et le rapprochement se fait colonne par colonne, sans ambiguite.
+The grid makes the thing exact: one cell, one character. The proofreader
+therefore receives each decoded line and must return a line of the **same
+length**. A missing letter replaces a space, a letter too many becomes a
+space again, and the matching is done column by column, without ambiguity.
 """
 import numpy as np, os, sys, json
 from PIL import Image, ImageDraw
 sys.path.insert(0,'/root/dicionario/outils')
 RAC="/root/dicionario"; T=f"{RAC}/travail"
-ZOOM=1.7; BANDES=3; CHEV=2      # chevauchement, en lignes
+ZOOM=1.7; BANDES=3; CHEV=2      # overlap, in lines
 
 def texte_page(pg, pages=None):
     if pages is None:
@@ -24,7 +25,7 @@ def texte_page(pg, pages=None):
     return pages.get(pg, [])
 
 def bandes(pg, rep, lignes):
-    """Decoupe la page en bandes horizontales, chacune lisible d'un coup."""
+    """Cuts the page into horizontal strips, each legible at a glance."""
     z=np.load(f"{T}/cellules/p-{pg:03d}.npz", allow_pickle=True)
     ech=float(z['shape'][0])/Image.open(f"{RAC}/scan/p-{pg:03d}.jpg").size[1]
     pasv=float(z['pasv']); lg={int(k):float(y) for k,y in z['lignes']}
