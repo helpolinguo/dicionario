@@ -63,10 +63,19 @@ TEMPLATE = """<!DOCTYPE html><html lang="io"><meta charset="utf-8">
 
      The overall map is in /llms.txt, at the root, which speaks for all
      four pages at once.
+
+     /opensearch.xml, also at the root, says that the domain has a search
+     and that its address is THIS page's "?q=". Safari files the site on
+     the first visit, and macOS 26 hands Safari's list to Spotlight: the
+     site's name followed by Tab there opens a field that lands here with
+     the word already sought. It is declared on the home page as well —
+     Safari keeps one entry per domain — and repeated here so that a
+     reader who comes straight to the dictionary seeds it just the same.
      =================================================================== -->
 <meta name="description" content="Transskribo integra dil Dicionario de la 10.000 radiki di la linguo universala Ido (Marcel Pesch, editio princeps 1934, duesma editio 1964) : 9473 artikli, serchebla. Ofrata anke en formo lektebla da mashini (Markdown e JSON).">
 <link rel="canonical" href="https://ido.help/dicionario/">
 <link rel="alternate" type="text/markdown" href="dicionario.md" title="Texto pura, por lekto da mashini">
+<link rel="search" type="application/opensearchdescription+xml" href="/opensearch.xml" title="Ido">
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
@@ -143,7 +152,7 @@ header{position:sticky;top:0;background:var(--pap);border-bottom:1px solid var(-
 @media (max-width:560px){.dl span{display:none}.dl{padding:7px 9px}}
 h1{margin:0 0 2px;font-size:17px;font-weight:600;letter-spacing:.01em}
 .sub{color:var(--sub);font-size:12.5px;margin-bottom:10px}
-.bar{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.bar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:0}
 input[type=search]{flex:1 1 260px;min-width:200px;padding:8px 11px;border:1px solid var(--lin);
  border-radius:7px;background:var(--pap);color:var(--enk);font:inherit;font-size:16px}
 /* Exactly 16px, and not less: Safari on iPhone zooms automatically on any
@@ -180,9 +189,16 @@ mark{background:rgba(214,160,106,.34);color:inherit;border-radius:2px}
 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12"/><path d="M7 11l5 5 5-5"/><path d="M4 20h16"/></svg><span>Deskargar</span></a>
 </div>
 <div class="sub">Marcelo Persiko (Marcel Pesch) · editio princeps, 2 di agosto 1964 · __N__ artikli</div>
-<div class="bar">
- <input type="search" id="q" placeholder="Serchez radiko o vorto en la defino…" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false">
-</div>
+<!-- A REAL FORM, WITH A REAL NAME ON THE FIELD. The search is done at the
+     keystroke and the submission is stopped — nothing is sent. What the
+     form buys is the DECLARATION: the browser now knows this field is the
+     page's search and that it produces "?q=", which is the second way
+     Safari has of filing a site under Quick Website Search when it has no
+     OpenSearch document to read; and Enter, on a keyboard, does the
+     obvious thing instead of nothing. -->
+<form class="bar" role="search" method="get">
+ <input type="search" id="q" name="q" placeholder="Serchez radiko o vorto en la defino…" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false">
+</form>
 </header>
 <div id="kont"><p id="nombro"></p><div id="lst"></div></div>
 <!-- THE LIFEBUOY. This page is built by JavaScript: the 9473 articles
@@ -340,7 +356,40 @@ function montri(){
 //
 // L'appel de DEPART ne passe pas par la : au rechargement, le navigateur
 // rend sa position au lecteur, et il ne faut pas la lui reprendre.
-function serchis(){montri(); if(scrollY)scrollTo({top:0,behavior:'instant'});}
+function serchis(){montri(); adreso(); if(scrollY)scrollTo({top:0,behavior:'instant'});}
+
+// LA RECHERCHE EST DANS L'ADRESSE. « /dicionario/?q=amiko » ouvre la page sur
+// le mot ; et ce qu'on tape y retourne, de sorte que l'adresse de la barre est
+// a tout moment celle de ce qu'on lit : elle se copie, se met en signet,
+// s'envoie. C'est aussi ce qui rend la recherche atteignable du dehors —
+// /opensearch.xml donne cette adresse a Safari, qui la donne a Spotlight
+// (macOS 26), ou le nom du site suivi de Tab ouvre un champ qui aboutit ici,
+// le mot deja cherche.
+//
+// REMPLACER, NON EMPILER. Une entree d'historique par frappe, et le bouton
+// « precedent » remonterait le mot lettre par lettre au lieu de ramener a la
+// page d'ou l'on vient.
+//
+// ET PAS A CHAQUE FRAPPE. Safari borne replaceState a une centaine d'appels
+// par tranche de trente secondes — une frappe soutenue y arrive, et au-dela
+// l'appel leve une erreur. On attend donc 400 ms de silence ; la liste, elle,
+// est deja filtree.
+let minuto;
+function skribi(){
+ const r=q.value.trim();
+ const u=location.pathname+(r?'?q='+encodeURIComponent(r):'')+location.hash;
+ if(u!==location.pathname+location.search+location.hash)history.replaceState(null,'',u);}
+function adreso(){clearTimeout(minuto); minuto=setTimeout(skribi,400);}
+
+// Entree n'envoie rien. La page ne se recharge pas pour montrer ce qui est
+// deja a l'ecran — ce serait 2,1 Mo pour rien —, mais l'adresse s'ecrit tout
+// de suite, sans les 400 ms : qui frappe Entree veut tenir l'adresse.
+q.form.addEventListener('submit',function(ev){ev.preventDefault(); clearTimeout(minuto); skribi();});
+
+// Au chargement, le champ prend ce que porte l'adresse. Le montri() de depart
+// se passe de serchis() : rien a reecrire dans l'adresse, et rien a faire
+// defiler — au rechargement le navigateur rend sa position au lecteur.
+q.value=new URLSearchParams(location.search).get('q')||'';
 q.addEventListener('input',serchis); montri();
 
 // Le curseur arrive dans la barre de recherche : c'est la seule chose qu'on

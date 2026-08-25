@@ -1272,3 +1272,43 @@ qui garantit que le bouton est identique sur les trois, et que le retoucher
 se fait à un seul endroit. Le mot « Ido » est dans le lien et non dans la
 feuille : si celle-ci ne se charge pas, il reste un lien lisible en fin de
 document au lieu d'un carré vide.
+
+
+---
+
+## The search in the address (2026)
+
+**THE PAGE'S SEARCH HAD NO ADDRESS.** The field filtered 9,473 entries at
+the keystroke and the address bar never moved: no search could be copied,
+bookmarked or sent, and nothing outside the page could ask it for a word.
+
+`/dicionario/?q=amiko` now opens the page on the word, and what is typed
+goes back into the address. Three points settled on the way:
+
+- **`replaceState`, not `pushState`.** One history entry per keystroke and
+  the *back* button would climb back through the word letter by letter
+  instead of returning to the page one came from.
+- **After 400 ms of silence, not at each keystroke.** Safari allows about a
+  hundred `replaceState` calls per thirty seconds and throws past that — a
+  sustained typist reaches it. The list itself is filtered at once; it is
+  only the address that waits.
+- **Enter submits nothing.** The bar is a real `<form method="get">` with
+  the field named `q`, because that is how a browser is told what the field
+  *is* — and it is Safari's fallback for recognising a site's search. But
+  the search is already done: letting the form go would reload 2.1 MB to
+  display what is on the screen. The submission is stopped, and the address
+  is written at once, without the 400 ms.
+
+**WHAT THIS OPENS.** `ido.help/opensearch.xml`, in the root repository,
+declares this address as the domain's search. Safari files it on the first
+visit, and macOS 26 hands Safari's list to Spotlight: the site's name
+followed by Tab there opens a field that lands on this page with the word
+already sought. Spotlight opens the page — it does not show the definition
+in its own window; only a native application, through App Intents, could.
+
+Checked in Chromium, the page served with the site's root beside it:
+`?q=amiko` gives 67 entries with *amiko* at the head; typing writes the
+address and adds no history entry; Enter writes it without reloading; the
+cross empties the field and the address alike; no console error, no
+horizontal scroll at 1440x900 or 390x844, and the round home button still
+computes to 42 px.
