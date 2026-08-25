@@ -1,6 +1,7 @@
 import numpy as np, glob, os
 from scipy.ndimage import gaussian_filter, shift as ndshift
-DIR="/root/dicionario/work/cellules"
+_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+DIR=_ROOT + "/work/cellules"
 CH,CW=22,12
 def pages():
     return [os.path.basename(p)[:-4] for p in sorted(glob.glob(DIR+"/*.npz"))]

@@ -6,9 +6,10 @@
     without the veto.
     """
 import numpy as np, sys, os, pickle
-sys.path.insert(0,'/root/dicionario/outils')
+_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0,_ROOT + "/tools")
 import cells as C
-T="/root/dicionario/travail"; ROOT="/root/dicionario"
+T=_ROOT + "/work"; ROOT=_ROOT
 
 def verite():
     d={}

@@ -16,9 +16,11 @@ possible. A headword genuinely misfiled in the typescript therefore survives,
 if no neighbouring reading recovers the order more cheaply.
 """
 import numpy as np, pickle, itertools, sys, collections
-sys.path.insert(0,'/root/dicionario/outils')
+import os
+_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0,_ROOT + "/tools")
 from consolidate import headwords
-T="/root/dicionario/travail"
+T=_ROOT + "/work"
 PENALITE = 4.0        # cost of a break in the order that is kept
 MAXPOS   = 4          # ambiguous cells considered per headword
 MAXCAND  = 48

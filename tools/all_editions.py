@@ -10,7 +10,8 @@ found in the one as in the other.
     python3 tools/all_editions.py --sen-baz  # without recomputing the base
 """
 import os, subprocess, sys
-ROOT = "/root/dicionario"
+_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+ROOT = _ROOT
 
 
 def _kurar(cmd, dosiero=None, timeout=1800):

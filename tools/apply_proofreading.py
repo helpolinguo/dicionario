@@ -7,7 +7,8 @@ ambiguity. A line returned at another length is refused and reported -- better
 to lose a correction than to shift a line.
 """
 import os, sys, glob, json
-T="/root/dicionario/travail"
+_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+T=_ROOT + "/work"
 
 def run_step(out_path=f"{T}/exceptions_relecture.txt"):
     # We compare the returned line with the line SUBMITTED, as it appears in the

@@ -6,9 +6,10 @@ headword's line, over its first thirty cells, with its number. Forty
 headwords fit on one sheet.
 """
 import numpy as np, json, os, sys
-sys.path.insert(0,'/root/dicionario/outils')
+_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0,_ROOT + "/tools")
 from PIL import Image, ImageDraw
-T="/root/dicionario/travail"
+T=_ROOT + "/work"
 NCEL=30; ZOOM=5; PAR=40
 
 _cache={}

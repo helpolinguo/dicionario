@@ -1,6 +1,7 @@
 """Rebuilds every element of the cover."""
 import sys, numpy as np, os, re, shutil, subprocess
-sys.path.insert(0,'/root/dicionario/outils')
+_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0,_ROOT + "/tools")
 from cover import *
 from PIL import Image
 from scipy.ndimage import label, binary_closing, find_objects

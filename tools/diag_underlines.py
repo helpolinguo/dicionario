@@ -2,9 +2,11 @@
 """A strip of scan around a few lines, with the detected rules marked.
 Serves to see where the rule's ink actually is."""
 import numpy as np, sys, pickle
-sys.path.insert(0,'/root/dicionario/outils')
+import os
+_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0,_ROOT + "/tools")
 from PIL import Image, ImageDraw
-T="/root/dicionario/travail"; ROOT="/root/dicionario"
+T=_ROOT + "/work"; ROOT=_ROOT
 
 def band(pg, k0, k1, Z=3, out_path=None):
     z=np.load(f"{T}/cellules/p-{pg:03d}.npz", allow_pickle=True)

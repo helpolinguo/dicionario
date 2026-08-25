@@ -39,9 +39,11 @@ or a reading in context. This tool stays in PROPOSAL mode: it gives a list to
 be examined, it changes nothing.
 """
 import json, re, sys, collections
-sys.path.insert(0,'/root/dicionario/outils')
+import os
+_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0,_ROOT + "/tools")
 from pairs import PAIRES
-T="/root/dicionario/travail"
+T=_ROOT + "/work"
 
 LOOKALIKE=collections.defaultdict(set)
 for a,b in PAIRES:

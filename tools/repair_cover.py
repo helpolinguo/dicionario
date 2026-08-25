@@ -21,11 +21,13 @@ chose the component « nearest to a point »; it went and took an « o » and
 wrote « invoias ».
 """
 import numpy as np, sys
-sys.path.insert(0, '/root/dicionario/outils')
+import os
+_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, _ROOT + "/tools")
 from cover import binariser_trait, SUR
 from scipy.ndimage import label, find_objects, rotate as ndrot
 
-ROOT = "/root/dicionario"
+ROOT = _ROOT
 
 # Signatures surveyed on the x4 screen, in the frame of the whole image:
 #   label: (cx, cy, area)

@@ -1,14 +1,15 @@
 import numpy as np, sys, os, json
-sys.path.insert(0,'/root/dicionario/outils')
+_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0,_ROOT + "/tools")
 from cells import extract
-T='/root/dicionario/travail'
+T=_ROOT + "/work"
 a,b=int(sys.argv[1]),int(sys.argv[2]); out=[]
 for pg in range(a,b):
     f=f"{T}/cellules/p-{pg:03d}.npz"
     if not os.path.exists(f): continue
     try:
         z=np.load(f, allow_pickle=True)
-        d=extract(f'/root/dicionario/scan/p-{pg:03d}.jpg')
+        d=extract(f_ROOT + "/scan/p-{pg:03d}.jpg")
         out.append(dict(pg=pg, anc=int(z['col0']), neu=int(d['col0'])))
     except Exception as e: print("ECHEC",pg,e, flush=True)
 json.dump(out, open(f'{T}/col0_{a}.json','w'))

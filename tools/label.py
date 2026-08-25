@@ -1,10 +1,12 @@
 """Labelling the groups: a hand-made seed + propagation by classifier."""
 import sys, numpy as np, collections, pickle
-sys.path.insert(0,'/root/dicionario/outils')
+import os
+_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0,_ROOT + "/tools")
 from features import feature_vector
 from seed import everything
 from sklearn.linear_model import LogisticRegression
-T="/root/dicionario/travail"
+T=_ROOT + "/work"
 def run_step(rounds=3):
     C=np.load(f"{T}/cells_all.npy", mmap_mode='r')
     lab=np.load(f"{T}/km_lab.npy"); mean_=np.load(f"{T}/km_moy.npy")

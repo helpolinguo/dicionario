@@ -6,8 +6,9 @@ cells, the corpus of features, the proofreading sheets. All the rest fits in
 some fifteen megabytes.
 """
 import os, shutil, zipfile, glob
-ROOT="/root/dicionario"; T=f"{ROOT}/travail"
-OUT_PATH="/root/dicionario-source.zip"
+_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+ROOT=_ROOT; T=f"{ROOT}/travail"
+OUT_PATH=os.path.join(os.path.dirname(_ROOT), "dicionario-source.zip")
 
 FICHIERS = ["main.tex", "preamble.tex", "LISEZ-MOI.md", "main.pdf",
             "index.html", "dicionario.tsv", "dicionario.jsonl",

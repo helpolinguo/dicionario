@@ -27,10 +27,11 @@ with it.
 """
 import sys, os, pickle, glob, re
 import numpy as np
-sys.path.insert(0, '/root/dicionario/outils')
+_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, _ROOT + "/tools")
 import cells
 from features2 import feature_vector2
-ROOT = "/root/dicionario"; T = f"{ROOT}/travail"
+ROOT = _ROOT; T = f"{ROOT}/travail"
 
 
 def one_(pg, Q, tab):

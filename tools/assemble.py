@@ -11,8 +11,9 @@ Groups declared « mixed » receive no group label: they are decoded cell by
 cell, since not being homogeneous is precisely their defect.
 """
 import numpy as np, os, sys, collections, pickle
-sys.path.insert(0,'/root/dicionario/outils')
-T="/root/dicionario/travail"
+_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0,_ROOT + "/tools")
+T=_ROOT + "/work"
 
 def lire_planches():
     read_={}

@@ -1,6 +1,7 @@
 """Realigns the seed transcriptions after a change in line numbering."""
 import numpy as np, glob, os, sys
-T="/root/dicionario/travail"
+_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+T=_ROOT + "/work"
 def motif(s, n): return "".join("#" if c!=" " else "." for c in s).ljust(n,".")[:n]
 def recaler(f):
     pg=int(os.path.basename(f)[1:4])

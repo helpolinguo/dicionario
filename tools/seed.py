@@ -1,6 +1,7 @@
 """Building a hand-labelled set: one verified transcription per page."""
 import numpy as np, glob, os
-T="/root/dicionario/travail"
+_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+T=_ROOT + "/work"
 def lire(file_):
     d={}
     for l in open(file_, encoding='utf-8'):

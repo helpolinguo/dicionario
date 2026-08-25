@@ -1,9 +1,11 @@
 import numpy as np, sys
-sys.path.insert(0,'/root/dicionario/outils')
+import os
+_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0,_ROOT + "/tools")
 from cover import SUR
 from scipy.ndimage import label, find_objects, binary_dilation
 from PIL import Image, ImageDraw
-ROOT="/root/dicionario"
+ROOT=_ROOT
 LH,LV,AIRE,ENCRE,GROS,LOIN = 12,6,900,1500,900,12
 black=np.load(f"{ROOT}/work/couv/noir_cache.npy")
 BOITES=[(21,138,264,394),(188,288,218,359),(379,458,187,331),(546,638,175,323),

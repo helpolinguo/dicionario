@@ -13,7 +13,9 @@ when the corrected form ends with the form read, we erase the hyphen and
 reglue, instead of replacing one word by another.
 """
 import json, re, sys, collections
-T="/root/dicionario/travail"
+import os
+_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+T=_ROOT + "/work"
 
 def run_step(rep=f"{T}/juger/reponses/r.txt", fic=f"{T}/juger/fiches.json"):
     records={x['id']:x for x in json.load(open(fic))}

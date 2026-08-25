@@ -7,9 +7,10 @@ col0 already stored. With no change of rule, the result must be identical to
 what is in the npz: that is the non-regression check.
 """
 import numpy as np, sys, pickle, os, re
-sys.path.insert(0,'/root/dicionario/outils')
+_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0,_ROOT + "/tools")
 import cells as C
-T="/root/dicionario/travail"; ROOT="/root/dicionario"
+T=_ROOT + "/work"; ROOT=_ROOT
 
 def rules(pg, **kw):
     """A page's rules, on the geometry ALREADY STORED.

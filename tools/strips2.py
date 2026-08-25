@@ -8,7 +8,8 @@ the magnification. We therefore size the sheet so that no side exceeds
 """
 import numpy as np, json, os, sys
 from PIL import Image, ImageDraw
-T = "/root/dicionario/travail"
+_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+T = _ROOT + "/work"
 NCEL = 30      # thirty cells: the headword and the start of the definition
 ZOOM = 3       # 12x22 -> 36x66, legible without exceeding the useful width
 PAR  = 16      # sixteen strips: a sheet of 1180 x 1270

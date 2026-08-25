@@ -1,7 +1,8 @@
 import numpy as np, sys, os, json
-sys.path.insert(0,'/root/dicionario/outils')
+_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0,_ROOT + "/tools")
 from page import load_, normalise
-ROOT="/root/dicionario"
+ROOT=_ROOT
 def anc_neuf(pg):
     a=load_(f'{ROOT}/scan/p-{pg:03d}.jpg'); b=normalise(a)
     H,W=b.shape; frac=0.45

@@ -15,7 +15,8 @@ in the book: an ambiguous string is refused rather than laid at random. The
 strings returned run to several words, which is enough to distinguish them.
 """
 import os, re, glob
-T = "/root/dicionario/travail"
+_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+T = _ROOT + "/work"
 DOSSIER = f"{T}/relire/reponses"
 
 

@@ -11,7 +11,8 @@ We therefore write the book out in batches of pure text. No images: the
 transcription carries sense enough, and costs twenty times less.
 """
 import json, os, sys
-T = "/root/dicionario/travail"
+_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+T = _ROOT + "/work"
 LOT = 130
 
 

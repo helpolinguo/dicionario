@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 """Glues the repaired pages back into the global tables, and reindexes the corrections."""
 import numpy as np, json, os, sys
-T="/root/dicionario/travail"
+_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+T=_ROOT + "/work"
 
 def run_step():
     rep=json.load(open(f"{T}/reparation.json"))

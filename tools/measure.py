@@ -6,8 +6,9 @@
     served for learning.
     """
 import numpy as np, sys, os
-sys.path.insert(0,'/root/dicionario/outils')
-T="/root/dicionario/travail"
+_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0,_ROOT + "/tools")
+T=_ROOT + "/work"
 
 def reference(path_):
     ref={}

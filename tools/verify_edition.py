@@ -18,11 +18,13 @@ the book itself, not on my judgement:
   latina       the scientific name is extracted, not left in the sense
 """
 import sys
-sys.path.insert(0,'/root/dicionario/outils')
+import os
+_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0,_ROOT + "/tools")
 from edition import _lire_code
 import json, re, sys, collections
-sys.path.insert(0,'/root/dicionario/outils')
-T="/root/dicionario/travail"
+sys.path.insert(0,_ROOT + "/tools")
+T=_ROOT + "/work"
 FIN_OK = ("o","a","e","i","ar","ir","or")
 CODES  = set("DEFIRSLP")
 

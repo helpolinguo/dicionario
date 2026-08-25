@@ -10,10 +10,11 @@ exchanging look-alikes, and the strictly necessary context. The judge
 answers with the number and the form chosen, nothing else.
 """
 import json, re, sys, os, collections
-sys.path.insert(0,'/root/dicionario/outils')
+_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0,_ROOT + "/tools")
 from suspects import inventaire
 from clean import known, variants
-T="/root/dicionario/travail"; REP=f"{T}/juger"
+T=_ROOT + "/work"; REP=f"{T}/juger"
 
 def context_of(s, w, large=42):
     m=re.search(r'\b'+re.escape(w)+r'\b', s, re.I)

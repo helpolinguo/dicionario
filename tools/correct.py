@@ -13,8 +13,9 @@ Every substitution is logged in work/journal_corrections.txt and entered in
 work/exceptions.txt: it stays inspectable and reversible.
 """
 import numpy as np, pickle, collections, glob, os, sys, itertools
-sys.path.insert(0,'/root/dicionario/outils')
-T="/root/dicionario/travail"
+_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0,_ROOT + "/tools")
+T=_ROOT + "/work"
 LETTRES=set("abcdefghijklmnopqrstuvwxyz")
 MAJ=set("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
 TOUTES=LETTRES|MAJ

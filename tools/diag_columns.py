@@ -1,6 +1,7 @@
 import numpy as np, sys, os, json
-sys.path.insert(0,'/root/dicionario/outils')
-ROOT="/root/dicionario"; T=f"{ROOT}/travail"
+_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0,_ROOT + "/tools")
+ROOT=_ROOT; T=f"{ROOT}/travail"
 if __name__=="__main__":
     a,b=int(sys.argv[1]),int(sys.argv[2]); out=[]
     from cells import extract

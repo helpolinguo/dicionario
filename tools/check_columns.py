@@ -6,6 +6,8 @@ depends only on the character; we measure it on the document itself (a median
 per character) and check that what is left is a whole number of cells.
 """
 import subprocess, re, sys, numpy as np, collections
+import os
+_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # The hidden mark carried on every page (see preamble.tex) is not typing:
 # it is set in the document's font, off the grid, and invisible in print.
@@ -36,7 +38,7 @@ def mesurer(pdf, pas_pouce=0.1, orig_mm=21.9):
                 q99=float(np.percentile(ec,99)), nb_hors=len(worst), pires=worst[:20],
                 approches={c:round(v,3) for c,v in sorted(appr.items())})
 if __name__=="__main__":
-    r=mesurer(sys.argv[1] if len(sys.argv)>1 else "/root/dicionario/main.pdf")
+    r=mesurer(sys.argv[1] if len(sys.argv)>1 else _ROOT + "/main.pdf")
     print("words checked: %d"%r['n'])
     print("departure from the whole column: mean %.4f, 99th centile %.4f, max %.4f cell"%(r['moyen'],r['q99'],r['max']))
     print("hors tolerance 0,12 cellule : %d"%r['nb_hors'])

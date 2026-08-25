@@ -8,9 +8,11 @@ of the lines already read does not move, and no correction indexed by (page,
 line, column) is invalidated.
 """
 import sys, numpy as np
-sys.path.insert(0,'/root/dicionario/outils')
+import os
+_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0,_ROOT + "/tools")
 import page as P
-ROOT="/root/dicionario"; T=f"{ROOT}/travail"
+ROOT=_ROOT; T=f"{ROOT}/travail"
 
 def lattice(pg, threshold=0.02):
     z=np.load(f"{T}/cellules/p-{pg:03d}.npz", allow_pickle=True)

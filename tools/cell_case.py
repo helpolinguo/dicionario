@@ -21,8 +21,10 @@ towards the ascenders is a capital.
 """
 import numpy as np, sys
 from scipy.ndimage import label as cclabel
-sys.path.insert(0,'/root/dicionario/outils')
-T="/root/dicionario/travail"
+import os
+_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0,_ROOT + "/tools")
+T=_ROOT + "/work"
 XH  = "acemnorsuvwxz"     # x-height: it is on these that the doubt falls
 HAMPE = "bdfhklt"         # ascenders: they give the height of the capitals
 MINI = 4                  # minimum cues of each kind on the line

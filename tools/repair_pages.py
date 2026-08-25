@@ -19,9 +19,10 @@ We therefore repair page by page:
   5. the page's corrections are reindexed by the same shift.
 """
 import numpy as np, os, sys, json, difflib
-sys.path.insert(0,'/root/dicionario/outils')
+_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0,_ROOT + "/tools")
 from features2 import feature_vector2
-ROOT="/root/dicionario"; T=f"{ROOT}/travail"
+ROOT=_ROOT; T=f"{ROOT}/travail"
 
 def _texte(cells_occ, kl_page, cols, lines, tab, smudge):
     """Dictionary line -> string, one cell per column."""

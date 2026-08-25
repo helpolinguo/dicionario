@@ -21,10 +21,11 @@ but a smudge are recognised by a geometric criterion at decoding time.
 """
 import sys, os, time, collections, pickle
 import numpy as np
-sys.path.insert(0,'/root/dicionario/outils')
+_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0,_ROOT + "/tools")
 from features2 import feature_vector2
 from sklearn.neural_network import MLPClassifier
-T="/root/dicionario/travail"
+T=_ROOT + "/work"
 
 def _lots(C, idx, taille=20000):
     """Features in slices: a million cells do not fit in memory."""

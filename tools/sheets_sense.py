@@ -12,11 +12,12 @@ announced by « L. » and the proper nouns, recognised by their capital -- so
 as not to have judged what does not need judging.
 """
 import json, re, sys, os, collections
-sys.path.insert(0,'/root/dicionario/outils')
+_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0,_ROOT + "/tools")
 from suspects import inventaire
 from clean import known, variants
 from sheets_judge import context_of
-T="/root/dicionario/travail"; REP=f"{T}/sens"
+T=_ROOT + "/work"; REP=f"{T}/sens"
 
 def run_step(per=60, batches=10):
     ent,root,inc,ctx,freq=inventaire()

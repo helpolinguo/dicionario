@@ -1,8 +1,10 @@
 import numpy as np, sys
-sys.path.insert(0,'/root/dicionario/outils')
+import os
+_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0,_ROOT + "/tools")
 from features import feature_vector
 from seed import everything
-T="/root/dicionario/travail"
+T=_ROOT + "/work"
 def apprendre():
     I,C,_=everything()
     Cl=np.load(f"{T}/cells_all.npy", mmap_mode='r')

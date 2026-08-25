@@ -8,9 +8,11 @@ is attested nowhere as a headword, and which are not function words. The
 rest of the text does not need to be read to be judged sound.
 """
 import json, re, sys, collections
-sys.path.insert(0,'/root/dicionario/outils')
+import os
+_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0,_ROOT + "/tools")
 from clean import racines, known, MOT, variants
-T="/root/dicionario/travail"
+T=_ROOT + "/work"
 
 def inventaire():
     ent=[json.loads(l) for l in open(f"{T}/edicioni/dicionario.jsonl",encoding='utf-8')]

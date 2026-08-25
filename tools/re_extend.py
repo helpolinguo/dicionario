@@ -8,10 +8,11 @@ safe: it adds columns only after the others, without moving the origin. The
 numbering of the columns does not move, so no correction already made is
 invalidated.
 """
-import sys, json, numpy as np
-sys.path.insert(0,'/root/dicionario/outils')
+import os, sys, json, numpy as np
+_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0,_ROOT + "/tools")
 from repair_pages import run_step
-T='/root/dicionario/travail'
+T=_ROOT + "/work"
 a,b=int(sys.argv[1]), int(sys.argv[2])
 import os
 pgs=[p for p in range(a,b) if os.path.exists(f'{T}/cellules/p-{p:03d}.npz')

@@ -14,8 +14,9 @@ space again, and the matching is done column by column, without ambiguity.
 """
 import numpy as np, os, sys, json
 from PIL import Image, ImageDraw
-sys.path.insert(0,'/root/dicionario/outils')
-ROOT="/root/dicionario"; T=f"{ROOT}/travail"
+_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0,_ROOT + "/tools")
+ROOT=_ROOT; T=f"{ROOT}/travail"
 ZOOM=1.7; BANDES=3; CHEV=2      # overlap, in lines
 
 def texte_page(pg, pages=None):

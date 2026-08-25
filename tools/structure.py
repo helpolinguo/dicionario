@@ -8,9 +8,11 @@ parentheses, it divides into senses numbered in Roman figures, and it ends
 with a code of languages (a subset of D E F I R S L).
 """
 import numpy as np, pickle, re, collections, sys
-sys.path.insert(0,'/root/dicionario/outils')
+import os
+_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0,_ROOT + "/tools")
 from consolidate import headwords
-T="/root/dicionario/travail"
+T=_ROOT + "/work"
 CODES=re.compile(r'-\s*([DEFIRSL]{1,7})[.,]?\s*$')
 FINALES=("o","a","e","i","ar","ir","or","um","e")
 

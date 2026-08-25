@@ -7,11 +7,13 @@ We therefore measure the ink directly in the scan, in the top of the cell
 that precedes the headword.
 """
 import sys, numpy as np, glob, re
-sys.path.insert(0,'/root/dicionario/outils')
+import os
+_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0,_ROOT + "/tools")
 from decode import load_
 from generate import page_lines
 from PIL import Image
-T="/root/dicionario/travail"; ROOT="/root/dicionario"
+T=_ROOT + "/work"; ROOT=_ROOT
 
 def releve(threshold=0.20):
     lab,M=load_(); tab=np.load(f"{T}/cls_lab.npy",allow_pickle=True)

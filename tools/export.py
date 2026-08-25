@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 """Exporting the lexical base: JSONL, TSV, and a self-contained HTML edition."""
 import json, os, sys, html, collections
-T="/root/dicionario/travail"; SORT=f"{T}/edicioni"
+_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+T=_ROOT + "/work"; SORT=f"{T}/edicioni"
 
 def load_():
     return [json.loads(l) for l in open(f"{SORT}/dicionario.jsonl",encoding='utf-8')]

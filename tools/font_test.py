@@ -1,5 +1,6 @@
 import sys, os, subprocess, numpy as np
-sys.path.insert(0,'/root/dicionario/outils')
+_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0,_ROOT + "/tools")
 from PIL import Image
 from cells import extract
 LIGNES=["abcdefghijklmnopq","rstuvwxyzABCDEFGH","IJKLMNOPQRSTUVWXY",
@@ -16,7 +17,7 @@ I J K L M N O P Q R S T U V W X Y
 Z 0 1 2 3 4 5 6 7 8 9 . , ; : ! ?
 ( ) - + = / \textquotesingle{} \textquotedbl{} * \_ \%% \& \# \$ [ ]
 \end{document}"""
-def gabarits(name_, font, opt, taille, rep="/root/dicionario/work/polices"):
+def gabarits(name_, font, opt, taille, rep=_ROOT + "/work/polices"):
     os.makedirs(rep, exist_ok=True)
     tex=f"{rep}/{name_}.tex"
     open(tex,"w").write(GAB % dict(font=font,opt=opt,taille=taille))

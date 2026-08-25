@@ -12,7 +12,9 @@ and no more than two lines per page. All the rest is set aside and must be
 verified by eye before being taken back.
 """
 import pickle, sys
-T="/root/dicionario/travail"
+import os
+_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+T=_ROOT + "/work"
 
 def filtrer(raw, maxlignes=2):
     out={}

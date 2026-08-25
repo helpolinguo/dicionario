@@ -1,15 +1,16 @@
 """Recomputes the underline survey alone and re-injects it into the .npz,
 without touching the cells or their labelling."""
 import sys, os, glob, numpy as np, pickle
-sys.path.insert(0,'/root/dicionario/outils')
+_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0,_ROOT + "/tools")
 from multiprocessing import Pool
 from page import analyse
 from cells import underlines, raffiner_pas
-T="/root/dicionario/travail"
+T=_ROOT + "/work"
 def un(n):
     try:
         z=dict(np.load(f"{T}/cellules/{n}.npz", allow_pickle=True))
-        d=analyse(f"/root/dicionario/scan/{n}.jpg")
+        d=analyse(f_ROOT + "/scan/{n}.jpg")
         hstep, xg = raffiner_pas(d['norm'], d['bloc'], d['pash'], d['xg'])
         xg = xg % hstep
         ncol=int(np.floor((d['norm'].shape[1]-xg)/hstep))

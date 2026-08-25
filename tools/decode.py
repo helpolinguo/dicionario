@@ -1,5 +1,7 @@
 import numpy as np
-T="/root/dicionario/travail"
+import os
+_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+T=_ROOT + "/work"
 
 _bav=None
 def smudges():

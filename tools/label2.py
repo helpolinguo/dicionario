@@ -1,11 +1,13 @@
 """Labelling the groups: a hand-made seed, propagation by neural network,
 majority vote of the group's cells, then the primacy of the seed."""
 import sys, numpy as np, collections, pickle, time
-sys.path.insert(0,'/root/dicionario/outils')
+import os
+_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0,_ROOT + "/tools")
 from features2 import feature_vector2
 from seed import everything
 from sklearn.neural_network import MLPClassifier
-T="/root/dicionario/travail"
+T=_ROOT + "/work"
 
 def run_step(rounds=4, cache=30, by_group=12):
     t0=time.time()

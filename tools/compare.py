@@ -2,11 +2,12 @@
 and brought back to the scale of the restored grid (10 characters to the
 inch)."""
 import numpy as np, subprocess, os, sys
-sys.path.insert(0,'/root/dicionario/outils')
+_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0,_ROOT + "/tools")
 from PIL import Image
 from scipy.ndimage import rotate as ndrotate
 from page import load_, normalise, deskew, mask_edges
-ROOT="/root/dicionario"
+ROOT=_ROOT
 PASH_IN=0.1; PASV_IN=0.170128; ORIGX_MM=21.9; ORIGY_MM=14.3
 
 def scan_cale(pg, dpi=150):

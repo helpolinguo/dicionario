@@ -8,7 +8,8 @@ for his part, sees the page. What he surveys therefore replaces the detected
 ranges entirely, for the lines he has surveyed.
 """
 import os, sys, glob, json
-T="/root/dicionario/travail"
+_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+T=_ROOT + "/work"
 
 def run_step(out_path=f"{T}/sou_relus.txt"):
     lines=0; segs=0; lost=[]

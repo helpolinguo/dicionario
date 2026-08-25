@@ -3,12 +3,13 @@
 after despeckling 2. One row per stage, to read by eye the exact moment
 a stroke disappears."""
 import numpy as np, sys, os
-sys.path.insert(0,'/root/dicionario/outils')
+_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0,_ROOT + "/tools")
 from cover import binariser_trait, SUR
 from repair_cover import apply_
 from scipy.ndimage import label as _lab, binary_dilation as _dil, find_objects
 from PIL import Image, ImageDraw
-ROOT="/root/dicionario"
+ROOT=_ROOT
 BOITES=[(21,138,264,394),(188,288,218,359),(379,458,187,331),(546,638,175,323),
         (720,801,188,330),(877,974,218,358),(1034,1136,285,394)]
 

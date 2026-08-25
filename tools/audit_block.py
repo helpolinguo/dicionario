@@ -9,9 +9,10 @@ the cutting. This check looks for every page in that case.
 """
 import sys, os, json, glob, re
 import numpy as np
-sys.path.insert(0, '/root/dicionario/outils')
+_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, _ROOT + "/tools")
 import page as P
-ROOT = "/root/dicionario"; T = f"{ROOT}/travail"
+ROOT = _ROOT; T = f"{ROOT}/travail"
 OUT_PATH = f"{T}/audit_bloc.json"
 
 

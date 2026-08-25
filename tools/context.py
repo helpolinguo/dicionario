@@ -1,7 +1,9 @@
 """Shows occurrences of a group in the line they came from."""
 import numpy as np
 from PIL import Image, ImageDraw
-T="/root/dicionario/travail"
+import os
+_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+T=_ROOT + "/work"
 _cache={}
 def page(pg):
     if pg not in _cache:

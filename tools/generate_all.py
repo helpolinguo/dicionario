@@ -9,10 +9,11 @@ ornament is cut out of the scan and laid back in its place, measured as a
 fraction of the sheet, without taking up room in the grid.
 """
 import numpy as np, sys, os, json
-sys.path.insert(0,'/root/dicionario/outils')
+_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0,_ROOT + "/tools")
 from decode import load_
 from generate import write_
-T="/root/dicionario/travail"; ROOT="/root/dicionario"
+T=_ROOT + "/work"; ROOT=_ROOT
 LARG=210.0; HAUT=297.0; ORIGX=21.9; ORIGY=12.44
 MARGE={'signaturo':10}          # margin of the cutting, in pixels of the scan
 

@@ -1,11 +1,12 @@
 """Prepares a page's proofreading sheets: one line of the book per line of
 image, columns numbered, plus the current decoding alongside."""
 import sys, os, numpy as np
-sys.path.insert(0,'/root/dicionario/outils')
+_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0,_ROOT + "/tools")
 from line_images import image_lignes
 from decode import load_, page_text
 from generate import exceptions
-T="/root/dicionario/travail"
+T=_ROOT + "/work"
 
 def preparer(pg, rep=None, per=12, zoom=4):
     rep = rep or f"{T}/relecture/p{pg:03d}"

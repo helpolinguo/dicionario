@@ -12,8 +12,10 @@ confusion. The criterion is severe: the corrected form must be markedly more
 frequent than the faulty one, failing which we draw no conclusion.
 """
 import numpy as np, sys, re, collections, json
-sys.path.insert(0,'/root/dicionario/outils')
-T="/root/dicionario/travail"
+import os
+_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0,_ROOT + "/tools")
+T=_ROOT + "/work"
 MINI_ATTESTE = 6      # minimum occurrences of the corrected form
 MAXI_FAUTIF  = 2      # maximum occurrences of the faulty form
 

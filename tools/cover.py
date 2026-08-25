@@ -17,7 +17,8 @@ Three choices decide the fidelity:
 import numpy as np, os, subprocess, re
 from PIL import Image
 from scipy.ndimage import uniform_filter, label, binary_dilation, binary_closing, find_objects, maximum_filter
-ROOT="/root/dicionario"; TRV=f"{ROOT}/work/couv"; ORN=f"{ROOT}/ornements"
+_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+ROOT=_ROOT; TRV=f"{ROOT}/work/couv"; ORN=f"{ROOT}/ornements"
 SUR=4                      # oversampling factor
 SEUIL_GRIS=0.28            # grey layer : everything that carries ink
 SEUIL_NOIR=0.62            # black layer: the solids

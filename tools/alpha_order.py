@@ -7,9 +7,11 @@ of the typescript, it is the use of a verifiable property of the book.
 Everything is logged.
 """
 import numpy as np, pickle, itertools, sys, collections
-sys.path.insert(0,'/root/dicionario/outils')
+import os
+_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0,_ROOT + "/tools")
 from consolidate import headwords
-T="/root/dicionario/travail"
+T=_ROOT + "/work"
 
 def collecter(lab, M, tab, smudge, exc):
     """The book's run of headwords: (page, line, [(col, char, index)])."""

@@ -18,9 +18,11 @@ the headwords alone.
 Nothing is corrected on a cell the decoding reads without hesitating.
 """
 import numpy as np, pickle, collections, sys
-sys.path.insert(0,'/root/dicionario/outils')
+import os
+_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0,_ROOT + "/tools")
 from consolidate import headwords
-T="/root/dicionario/travail"
+T=_ROOT + "/work"
 FINALES = set("oarei")
 
 def mots_vedette(lab, M, tab, smudge, exc):

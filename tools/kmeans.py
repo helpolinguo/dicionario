@@ -1,7 +1,9 @@
-import sys,time,numpy as np; sys.path.insert(0,'/root/dicionario/outils')
+import os
+_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+import sys,time,numpy as np; sys.path.insert(0,_ROOT + "/tools")
 from features import feature_vector
 from sklearn.cluster import MiniBatchKMeans
-T="/root/dicionario/travail"
+T=_ROOT + "/work"
 C=np.load(f"{T}/cells_all.npy", mmap_mode='r'); N=len(C)
 K=int(sys.argv[1]) if len(sys.argv)>1 else 1200
 rng=np.random.default_rng(0); idx=np.sort(rng.choice(N,min(N,200000),replace=False))

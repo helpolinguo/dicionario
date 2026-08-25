@@ -10,7 +10,8 @@ a fraction of the sheet.
 import numpy as np, json, os, sys
 from scipy.ndimage import label as cclabel, find_objects
 from PIL import Image
-ROOT="/root/dicionario"; T=f"{ROOT}/travail"
+_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+ROOT=_ROOT; T=f"{ROOT}/travail"
 SECTIONS = {8:'A',60:'B',88:'C',102:'D',133:'E',164:'F',192:'G',213:'H',
             258:'K',333:'L',355:'M',396:'N',407:'O',422:'P',481:'Q',
             486:'R',514:'S',609:'U',614:'V',630:'W',631:'X'}

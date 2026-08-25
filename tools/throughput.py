@@ -7,7 +7,8 @@ empty, and they were faulty. We therefore watch the count, rather than
 discover it through the reader.
 """
 import os, glob, sys
-T="/root/dicionario/work/relecture"
+_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+T=_ROOT + "/work/relecture"
 
 def run_step(threshold=3):
     lines={}; underline={}

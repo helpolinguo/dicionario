@@ -10,8 +10,9 @@
 7. visual comparison at 300 dpi, page by page
 """
 import subprocess, re, sys, os, json, numpy as np
+_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-ROOT = "/root/dicionario"
+ROOT = _ROOT
 
 def bbox_pdf(pdf):
     """Returns, per page, the list of (word, xmin, ymin, xmax, ymax)."""

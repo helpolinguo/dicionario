@@ -12,9 +12,10 @@ line of the grid -- and its **flags of quality**. Nothing is erased: what is
 doubtful is reported, not hidden.
 """
 import numpy as np, os, pickle, re, collections, sys, json, os, unicodedata
-sys.path.insert(0,'/root/dicionario/outils')
+_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0,_ROOT + "/tools")
 from consolidate import headwords
-T="/root/dicionario/travail"
+T=_ROOT + "/work"
 DECALAGE_FOLIO = 7          # page number of the book = image index - 7
 
 LANGUI = {'D':'Germana','E':'Angla','F':'Franca','I':'Italiana','R':'Rusa',

@@ -16,8 +16,10 @@ least six occurrences and be at least eight times more frequent than the
 faulty one.
 """
 import numpy as np, sys, re, collections, json
-sys.path.insert(0,'/root/dicionario/outils')
-T="/root/dicionario/travail"
+import os
+_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0,_ROOT + "/tools")
+T=_ROOT + "/work"
 PAIRES = [('c','o'),('c','e'),('e','o'),('i','l'),('i','1'),('l','1'),('n','u'),
           ('r','v'),('b','h'),('s','z'),('s','8'),('m','n'),('a','o'),('a','u'),
           ('t','l'),('g','q'),('f','t'),('d','a'),('p','t'),('k','c'),('x','s'),

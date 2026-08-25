@@ -16,8 +16,10 @@ occupied, formed with the confusions the log of corrections has recorded.
     python3 tools/survey_order.py
 """
 import json, sys, collections
+import os
+_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-ROOT = "/root/dicionario"
+ROOT = _ROOT
 SOURCE = f"{ROOT}/dicionario.jsonl"
 OUT_PATH = f"{ROOT}/ordino-ruptita.md"
 sys.path.insert(0, f"{ROOT}/outils")

@@ -8,9 +8,11 @@ recompute each group's centre from its members, in the two-view feature
 space.
 """
 import numpy as np, sys
-sys.path.insert(0,'/root/dicionario/outils')
+import os
+_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0,_ROOT + "/tools")
 from features2 import feature_vector2
-T="/root/dicionario/travail"
+T=_ROOT + "/work"
 def run_step(block=20000):
     C=np.load(f"{T}/cells_all.npy", mmap_mode='r'); kl=np.load(f"{T}/km_lab.npy")
     K=12000; D=None; S=None; n=np.zeros(K)

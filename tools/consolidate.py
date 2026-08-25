@@ -11,8 +11,10 @@ correction of the typescript: it is the lifting of an ambiguity of reading by
 a structural property of the book. Every intervention is logged.
 """
 import numpy as np, pickle, collections, sys
-sys.path.insert(0,'/root/dicionario/outils')
-T="/root/dicionario/travail"
+import os
+_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0,_ROOT + "/tools")
+T=_ROOT + "/work"
 
 def margin(occ, mini=3):
     """The page's margin column: the first that serves on several lines.

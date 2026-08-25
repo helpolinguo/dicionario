@@ -1,8 +1,9 @@
 import sys, os, numpy as np, pickle, glob
-sys.path.insert(0,'/root/dicionario/outils')
+_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0,_ROOT + "/tools")
 from cells import extract
 from multiprocessing import Pool
-SCAN="/root/dicionario/scan"; OUT="/root/dicionario/work/cellules"
+SCAN=_ROOT + "/scan"; OUT=_ROOT + "/work/cellules"
 os.makedirs(OUT, exist_ok=True)
 def un(n):
     dst=f"{OUT}/{n}.npz"

@@ -2,7 +2,8 @@
 """Does the lattice of lines catch the top of the page properly?"""
 import numpy as np, os, sys
 from PIL import Image
-ROOT="/root/dicionario"; T=f"{ROOT}/travail"
+_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+ROOT=_ROOT; T=f"{ROOT}/travail"
 def one_(pg):
     z=np.load(f"{T}/cellules/p-{pg:03d}.npz", allow_pickle=True)
     forme=tuple(z['shape']); lg=z['lignes']; vstep=float(z['pasv'])

@@ -12,8 +12,9 @@ proofreader also sees what doubtful matter the group has picked up).
 """
 import numpy as np, os
 from PIL import Image, ImageDraw
+_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-T = "/root/dicionario/travail"
+T = _ROOT + "/work"
 ZM   = 5     # magnification of the mean
 ZS   = 3     # magnification of the members
 NECH = 16    # members shown

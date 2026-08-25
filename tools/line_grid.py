@@ -2,9 +2,11 @@
 """A strip of scan of one line, with the grid of cells and the column
 indices: to read off the scan which cell carries which character."""
 import numpy as np, sys
-sys.path.insert(0,'/root/dicionario/outils')
+import os
+_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0,_ROOT + "/tools")
 from PIL import Image, ImageDraw
-T="/root/dicionario/travail"; ROOT="/root/dicionario"
+T=_ROOT + "/work"; ROOT=_ROOT
 
 def band(pg, k, c0v=0, c1v=None, Z=6, out_path=None):
     z=np.load(f"{T}/cellules/p-{pg:03d}.npz", allow_pickle=True)

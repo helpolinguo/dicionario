@@ -3,9 +3,10 @@
 text zone by text zone. Serves to check by eye that no letter has been lost
 to the thresholding or the despeckling."""
 import numpy as np, sys, os
-sys.path.insert(0,'/root/dicionario/outils')
+_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0,_ROOT + "/tools")
 from PIL import Image, ImageDraw
-ROOT="/root/dicionario"
+ROOT=_ROOT
 ZONES=[
  ("banniere",        0,1205, 112, 150),
  ("cap-beaufront",   10, 250, 380, 500),

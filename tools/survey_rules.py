@@ -16,8 +16,9 @@ import json, os, re, sys, collections
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import edition
+_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-ROOT = "/root/dicionario"
+ROOT = _ROOT
 SOURCE = f"{ROOT}/dicionario.jsonl"
 OUT_PATH = f"{ROOT}/filets-dubinda.md"
 

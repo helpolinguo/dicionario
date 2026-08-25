@@ -1,7 +1,8 @@
 """Generating the LaTeX content files, one line of source per line of the book."""
 import numpy as np, os, pickle, sys
-sys.path.insert(0,'/root/dicionario/outils')
-T="/root/dicionario/travail"; ROOT="/root/dicionario"
+_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0,_ROOT + "/tools")
+T=_ROOT + "/work"; ROOT=_ROOT
 
 
 # --- the pages' layout, in millimetres ---------------------------------
