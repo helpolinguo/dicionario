@@ -20,14 +20,14 @@ def tsv(ent):
                 ",".join(e['drapeli'])]).replace("\n"," ")+"\n")
 
 # The button back to ido.help, the door of the three books, holds in two lines
-# of the template: the sheet `/pordo.css` and the anchor `ido-pordo`. Its
-# appearance is NOT here -- pordo.css and emblemo.svg are served from the root
+# of the template: the sheet `/shared.css` and the anchor `ido-home`. Its
+# appearance is NOT here -- shared.css and emblem.svg are served from the root
 # of the site, which the three books share, so that retouching it is done in
 # one place. The word « Ido » is in the anchor and not in the sheet: if the
 # sheet does not load, a legible link is left at the end of the document
 # instead of an empty square.
 #
-# `/pordo.js` draws the cross that empties the search field. The field has none
+# `/shared.js` draws the cross that empties the search field. The field has none
 # on iPhone and cannot have one: WebKit renders
 # « ::-webkit-search-cancel-button » on macOS only. Without the script, the
 # field stays what it was -- one empties it from the keyboard.
@@ -100,8 +100,8 @@ TEMPLATE = """<!DOCTYPE html><html lang="io"><meta charset="utf-8">
 }
 </script>
 
-<link rel="stylesheet" href="/pordo.css">
-<script src="/pordo.js" defer></script>
+<link rel="stylesheet" href="/shared.css">
+<script src="/shared.js" defer></script>
 <style>
 :root{--enk:#1a1a1a;--pap:#fbfaf7;--sub:#6b6560;--acc:#7A3D00;--lin:#e2ddd5;--flag:var(--acc)}
 @media(prefers-color-scheme:dark){:root{--enk:#e8e4de;--pap:#16161a;--sub:#9a938c;--acc:#D6A06A;--lin:#2c2c33}}
@@ -375,7 +375,7 @@ addEventListener('keydown',function(ev){
  }else q.setRangeText(ev.key,a,b,'end');
  q.focus({preventScroll:true}); ev.preventDefault(); serchis();
 });
-</script><a class="ido-pordo" href="/">Ido</a>
+</script><a class="ido-home" href="/">Ido</a>
 </html>"""
 
 def html_edition(ent):
