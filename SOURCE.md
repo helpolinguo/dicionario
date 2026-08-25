@@ -5,11 +5,11 @@ editio princeps du 2 aout 1964, etabli a partir du scan de l'exemplaire.
 
 ## Ce que contient l'archive
 
-    outils/            les programmes, du decoupage des cellules a l'edition
-    contenu/           les 639 pages du fac-simile, une par fichier LaTeX
-    preambule.tex      la trame : pas de la machine, macros, assiette des pages
+    tools/            les programmes, du decoupage des cellules a l'edition
+    content/           les 639 pages du fac-simile, une par fichier LaTeX
+    preamble.tex      la trame : pas de la machine, macros, assiette des pages
     main.tex           le document
-    ornements/         couverture vectorisee, portraits, lettres de section
+    ornaments/         couverture vectorisee, portraits, lettres de section
     corrections/       tout ce qui a ete corrige a la main, cellule par cellule
     relecture/         la consigne des relecteurs et leurs 631 releves
     edicioni/          l'edition structuree : JSONL, TSV, HTML consultable
@@ -19,17 +19,17 @@ editio princeps du 2 aout 1964, etabli a partir du scan de l'exemplaire.
 
 Le scan (171 Mo), les cellules decoupees (295 Mo) et le corpus de traits
 (256 Mo) sont des donnees intermediaires, reconstructibles a partir du scan par
-`outils/cellules.py`. Les planches de relecture (564 Mo d'images) le sont par
-`outils/relecture.py`.
+`tools/cells.py`. Les planches de relecture (564 Mo d'images) le sont par
+`tools/proofreading.py`.
 
 ## Comment recomposer le fac-simile
 
     xelatex main.tex && xelatex main.tex
 
-Les fichiers de `contenu/` sont deja generes. Pour les regenerer depuis les
+Les fichiers de `content/` sont deja generes. Pour les regenerer depuis les
 cellules — ce qui suppose d'avoir refait le decoupage :
 
-    python3 outils/tout_generer.py
+    python3 tools/generate_all.py
 
 ## L'ordre des corrections
 

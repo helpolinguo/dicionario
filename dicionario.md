@@ -1,4 +1,4 @@
-<!-- Engendre par outils/robotoj.py depuis index.html. Ne pas editer. -->
+<!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 # Dicionario de la 10.000 radiki di la linguo universala Ido
 

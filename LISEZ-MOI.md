@@ -114,7 +114,7 @@ Aucun OCR page par page. La chaîne est la suivante :
    planches d'images moyennes. Une transcription manuelle vérifiée colonne par
    colonne sert d'amorce ; un classifieur entraîné sur cette amorce propage
    l'étiquetage, et les groupes incertains sont examinés un à un dans leur
-   contexte (le programme `outils/contexte.py` affiche des occurrences d'un
+   contexte (le programme `tools/context.py` affiche des occurrences d'un
    groupe dans leur ligne d'origine).
 9. **Décodage** — chaque cellule reçoit le caractère de son groupe. La
    correspondance cellule → groupe est conservée : c'est la pièce
@@ -141,12 +141,12 @@ détection par plage.
 ```
 dicionario/
   main.tex               document maitre
-  preambule.tex          grille, police, macros — une constante par reglage
-  contenu/pNNN.tex       une page = une suite de \l{...}, une ligne de source
+  preamble.tex          grille, police, macros — une constante par reglage
+  content/pNNN.tex       une page = une suite de \l{...}, une ligne de source
                          par ligne du livre, dans l'ordre de la grille
-  ornements/             elements detoures du scan (couverture)
-  outils/                decoupage, regroupement, decodage, verification
-  travail/               fichiers intermediaires (cellules, groupes, releves)
+  ornaments/             elements detoures du scan (couverture)
+  tools/                decoupage, regroupement, decodage, verification
+  work/               fichiers intermediaires (cellules, groupes, releves)
   LISEZ-MOI.md
 ```
 
@@ -206,7 +206,7 @@ soulignements internes au texte.
 
 ### Arbitrages a l'oeil
 
-`travail/exceptions_manuel.txt` recueille les lectures tranchees a l'oeil sur le
+`work/exceptions_manuel.txt` recueille les lectures tranchees a l'oeil sur le
 fac-simile. **Ce fichier l'emporte sur tous les correcteurs automatiques et
 n'est jamais reecrit par un programme** — la lecon d'une version ou mes
 arbitrages avaient ete effaces par la passe suivante. Il contient a ce jour les
@@ -276,9 +276,9 @@ en concurrence, on s'abstient. Les formes portant une majuscule — noms propres
 sigles — sont exclues : *Bally* n'a pas à devenir *ali*.
 
 **915 cellules** ont été corrigées ainsi, dans 758 lignes. Toutes sont
-journalisées dans `travail/journal_corrections.txt`, avec la forme lue, la forme
+journalisées dans `work/journal_corrections.txt`, avec la forme lue, la forme
 retenue et leurs fréquences respectives, et inscrites dans
-`travail/exceptions.txt` : chacune est inspectable et réversible d'une ligne.
+`work/exceptions.txt` : chacune est inspectable et réversible d'une ligne.
 
 Exemples : `kuh` → `kun` (791 attestations), `ksnde` → `kande` (183),
 `generc` → `genero` (92), `eskluzive` → `exkluzive`, `mulierc` → `muliero`.
@@ -289,7 +289,7 @@ Et **`zobl.` → `zool.`** : la forme `zobl` est lue une fois dans tout le livre
 alphabétique du livre. La logique est fausse : quand une vedette rompt l'ordre,
 la faute peut être dans sa voisine, et forcer la vedette à se conformer produit
 des monstres (*advento* → *adventc*, *aero* → *aere*). Le journal de cette
-tentative est conservé sous `travail/journal_ordre_alpha_ABANDONNE.txt` à titre
+tentative est conservé sous `work/journal_ordre_alpha_ABANDONNE.txt` à titre
 d'avertissement. Seule subsiste la consolidation de l'**initiale** de vedette,
 qui elle est sûre : sur une page, les vedettes commencent par la même lettre.
 
@@ -314,7 +314,7 @@ lettres accentuées** (citations latines, françaises, allemandes) — tréma, a
 aigu, cédille, circonflexe. Un relevé automatique en trouve environ 3 900 dans
 l'ouvrage. Elles ne sont pas encore toutes traitées.
 
-**3. Un mécanisme d'exceptions.** `travail/exceptions.txt` permet de fixer le
+**3. Un mécanisme d'exceptions.** `work/exceptions.txt` permet de fixer le
 contenu d'une cellule précise, en LaTeX brut :
 
 ```
@@ -367,7 +367,7 @@ Sur l'amorce elle-même (7 006 cellules vérifiées à la main sur cinq pages) :
    gênant : **534 initiales** ont été consolidées ainsi, par 68 groupes
    réétiquetés. Ce n'est pas une correction du tapuscrit — c'est une lecture
    appuyée sur la structure du livre — et chaque intervention est journalisée
-   dans `travail/journal_initiales.txt`.
+   dans `work/journal_initiales.txt`.
 
 ### Les deux pages hors échelle
 
@@ -416,7 +416,7 @@ transcription-amorce propre.
 ## 7. La couverture
 
 **Il n'y a pas de trame à défaire.** Le spectre de Fourier de la couverture ne
-présente **aucun pic périodique** (`travail/couv/spectre.png`) : l'image n'est
+présente **aucun pic périodique** (`work/couv/spectre.png`) : l'image n'est
 pas une similigravure. C'est une **lithographie en une seule encre bleue**, dont
 les portraits sont des conversions au trait — du noir et du blanc purs, pas des
 demi-teintes. La vectorisation des portraits est donc **légitime** : elle ne
@@ -435,7 +435,7 @@ postérise rien, elle restitue exactement les formes imprimées.
 5. `potrace` (turdsize 1, alphamax 1,0, opttolerance 0,2), sortie SVG **et** PDF
    vectoriel directement utilisable dans LaTeX.
 
-**Livrables** (`ornements/`)
+**Livrables** (`ornaments/`)
 
 - `couverture/couverture.svg`, `.pdf` — la couverture entière vectorisée
 - `couverture/couverture-nettoyee.png`, `-x3.png` — la version tramée nettoyée
@@ -579,7 +579,7 @@ des caracteres — du bruit pur. Six pages du livre sont blanches (images 1, 3,
 7, 87, 111, 577) et recevaient elles aussi des caracteres fantomes.
 
 Ces sept pages sont desormais declarees hors frappe dans
-`travail/pages_non_dactylo.txt`. Le fac-simile pose la couverture vectorisee
+`work/pages_non_dactylo.txt`. Le fac-simile pose la couverture vectorisee
 en pleine page et laisse les pages blanches blanches ; l'edition ne les
 decoupe plus en entrees.
 
@@ -1002,7 +1002,7 @@ souligne a tort.
 
 Les filets recalcules ne sont pas reecrits dans le corpus de cellules : il
 pese 295 Mo et un accident de format y a deja coute 144 pages. Ils forment une
-couche a part (`travail/filets.pkl`), lue apres le releve a l'oeil et avant la
+couche a part (`work/filets.pkl`), lue apres le releve a l'oeil et avant la
 detection d'origine.
 
 **Le releve a l'oeil n'est pas infaillible non plus.** A la page 33, il portait
@@ -1016,13 +1016,13 @@ mais elles meritent un jour d'etre revues une a une.
 ### Les debuts de ligne coupes a gauche
 
 Le bloc de texte est cerne par les colonnes encrees sur plusieurs lignes. A
-droite, cela coupait des fins de mots — `rendre_fins.py` les a rendues. A
+droite, cela coupait des fins de mots — `restore_ends.py` les a rendues. A
 gauche, cela coupe la premiere lettre des lignes que la dactylo a commencees
 une cellule plus tot que les autres, et le mal y est plus grave : ces
 lignes-la sont justement des vedettes. « protezo » se lisait « rotezo »,
 « protisto » « rotisto ».
 
-`rendre_debuts.py` est le pendant gauche. Chaque page est recoupee EN MEMOIRE
+`restore_starts.py` est le pendant gauche. Chaque page est recoupee EN MEMOIRE
 avec le bloc elargi, les cellules recuperees sont rattachees au groupe dont le
 centre est le plus proche dans l'espace traits2, et deposees a part. Le corpus
 de cellules ne bouge pas.
@@ -1047,7 +1047,7 @@ la consigne est constante depuis le debut : les notes a la main sont ignorees.
 Quatre autres restaient douteuses. La verification s'est donc faite planche par
 planche, et seules **quinze cellules sur treize pages** ont ete retenues,
 reconnues comme frappees et completant un mot. Les ecartees sont listees dans
-`filtrer_debuts.py`, avec leur motif.
+`filter_starts.py`, avec leur motif.
 
 Deux des « + » des vedettes non officielles sont revenus par ce chemin —
 « +takigrafar » entre autres : le signe tombait lui aussi hors du bloc.
@@ -1084,7 +1084,7 @@ titre que l'espace et la parenthese ouvrante.
 Le fac-simile garde la moindre coquille ; l'edition HTML doit donner le
 contenu de l'oeuvre. Deux passes automatiques ont echoue avant qu'on trouve la
 bonne methode, et leurs echecs sont instructifs — ils sont conserves dans
-l'en-tete de `netigar.py`. La correction par frequence rendait « papuli »
+l'en-tete de `clean.py`. La correction par frequence rendait « papuli »
 (papules) par « populi » (peuples) ; la correction par les racines du livre
 rendait « falko » par « talko ». Un dictionnaire de 10 000 racines n'est pas la
 liste de tous les mots de la langue : son lexique interne ne peut pas arbitrer.
@@ -1106,7 +1106,7 @@ futur. J'ai refuse une correction vers `preparor` en croyant qu'un verbe finit
 en `-ar` : le motif etait faux, meme si le refus restait bon pour une autre
 raison (apres « devas », le sens demandait le present). Le livre compte 46
 formes en `-or`, toutes intactes ; la consigne de jugement porte desormais la
-regle, dans `travail/juger/CONSIGNE.md`.
+regle, dans `work/juger/CONSIGNE.md`.
 
 **La couche des jugements est durable.** Les corrections etaient d'abord
 ecrites dans le JSONL — et `edition.py`, qui le reconstruit depuis le

@@ -1,0 +1,46 @@
+# -*- coding: utf-8 -*-
+"""Planches de comparaison : le scan original en haut, la couverture finale en
+bas, zone de texte par zone de texte. Sert a verifier a l'oeil qu'aucune lettre
+n'a ete perdue au seuillage ou au depoussierage."""
+import numpy as np, sys, os
+sys.path.insert(0,'/root/dicionario/outils')
+from PIL import Image, ImageDraw
+RAC="/root/dicionario"
+ZONES=[
+ ("banniere",        0,1205, 112, 150),
+ ("cap-beaufront",   10, 250, 380, 500),
+ ("cap-couturat",   150, 400, 340, 470),
+ ("cap-jespersen",  330, 560, 300, 420),
+ ("cap-lalande",    500, 700, 290, 400),
+ ("cap-lorenz",     680, 880, 300, 410),
+ ("cap-ostwald",    840,1060, 320, 430),
+ ("cap-pfaundler",  990,1205, 360, 480),
+ ("pleyado",        230, 960, 415, 460),
+ ("invitas",        180, 950, 450, 500),
+ ("embleme",        480, 720, 470, 580),
+ ("preciza",        380, 830, 585, 620),
+ ("titre",          150,1060, 735, 800),
+ ("dila",           380, 860, 845, 895),
+ ("linguo",         330, 900, 930, 990),
+ ("da",             500, 700,1120,1180),
+ ("persiko",        330, 900,1195,1250),
+ ("pesch",          400, 800,1250,1290),
+ ("akademio",       380, 830,1295,1335),
+ ("bas",              0,1205,1560,1620),
+]
+def executer():
+    n=np.load(f"{RAC}/work/couv/niveaux.npy")
+    fin=Image.open(f"{RAC}/ornaments/couverture/couverture-x2.png").convert("L")
+    os.makedirs(f"{RAC}/work/audit",exist_ok=True)
+    for nom,x0,x1,y0,y1 in ZONES:
+        Z=max(2, min(5, 1500//max(1,(x1-x0))))
+        o=np.clip(1-n[y0:y1, x0:x1],0,1)*255
+        oi=Image.fromarray(o.astype(np.uint8)).resize(((x1-x0)*Z,(y1-y0)*Z),Image.LANCZOS)
+        fi=fin.crop((x0*2,y0*2,x1*2,y1*2)).resize(((x1-x0)*Z,(y1-y0)*Z),Image.LANCZOS)
+        W=oi.width; H=oi.height
+        pl=Image.new('L',(W, H*2+34),255); d=ImageDraw.Draw(pl)
+        d.text((4,2),"SCAN  "+nom,fill=0); pl.paste(oi,(0,16))
+        d.text((4,H+20),"FINAL "+nom,fill=0); pl.paste(fi,(0,H+34))
+        pl.save(f"{RAC}/work/audit/{nom}.png")
+        print(nom, pl.size)
+if __name__=="__main__": executer()

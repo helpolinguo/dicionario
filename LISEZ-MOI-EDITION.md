@@ -13,12 +13,12 @@ Transcription établie à partir du fac-similé fourni (639 pages photographiée
 | `dicionario.jsonl` | **la base** : un enregistrement JSON par entrée, un par ligne |
 | `dicionario.tsv` | la même chose en tableur, pour qui n'écrit pas de code |
 | `index.html` | l'**édition consultable**, un seul fichier, hors ligne, avec recherche |
-| `dicionario.pdf` | le **dictionnaire de poche**, vers lequel pointe le bouton « Deskargar » ; copie de `posho/posho.pdf` |
-| `main.pdf` | le fac-similé LaTeX, page à page, grille à grille (`main.tex` + `contenu/`) |
+| `dicionario.pdf` | le **dictionnaire de poche**, vers lequel pointe le bouton « Deskargar » ; copie de `pocket/posho.pdf` |
+| `main.pdf` | le fac-similé LaTeX, page à page, grille à grille (`main.tex` + `content/`) |
 | `filets-dubinda.md` | les soulignements de l'auteur que l'édition n'a pas su placer |
 | `ordino-ruptita.md` | les vedettes qui rompent l'ordre alphabétique, avec la place où elles auraient dû aller |
-| `travail/journal_complet.txt` | **toutes** les corrections : ce qui a été lu, ce qui a été retenu, et si c'est un correcteur ou l'œil qui a tranché |
-| `outils/` | la chaîne complète, de l'image au JSON |
+| `work/journal_complet.txt` | **toutes** les corrections : ce qui a été lu, ce qui a été retenu, et si c'est un correcteur ou l'œil qui a tranché |
+| `tools/` | la chaîne complète, de l'image au JSON |
 
 **9 473 entrées** extraites de 632 pages de corps d'ouvrage.
 5 272 portent une marque de domaine (*bot.*, *zool.*, *arkitekt.*…),
@@ -159,7 +159,7 @@ ligne** : il finit le premier. Quand ce qui suit ne se présente pas comme une
 vedette — une virgule au lieu du point chez *asasinar*, un tiret d'affixe chez
 *ko-*, une parenthèse égarée entre les deux chez *tino*, rien du tout chez
 *warfo* —, le second restait noyé dans le premier, et lui donnait son code.
-`travail/dividi.txt` porte ces coupures, relevées à l'œil ; la dactylo, elle,
+`work/dividi.txt` porte ces coupures, relevées à l'œil ; la dactylo, elle,
 avait souligné chacune de ces vedettes, comme elle souligne celles qu'elle pose
 au milieu d'une ligne. **Six** racines ont ainsi été rendues au dictionnaire —
 *shovar*, *asasinar*, *ko-*, *tino*, *warfo*, et *\*si*.
@@ -174,7 +174,7 @@ croix. Il admet les deux.
 
 Un cas particulier : l'auteur a marqué d'un double tiret marginal un article
 qu'il fait dépendre du précédent — *protestanto* sous *protestar*. Ce signe est
-unique dans les six cent quarante pages du livre. `travail/subvorti.txt` porte
+unique dans les six cent quarante pages du livre. `work/subvorti.txt` porte
 ce rattachement ; l'article rattaché devient une sous-entrée de son voisin, sans
 rien perdre — ni domaine, ni code de langues, ni page.
 
@@ -227,7 +227,7 @@ tout code qui répète une langue, et les quatre articles retrouvent leurs sens 
 *-ajo* en avait cinq, il n'en montrait plus que quatre.
 
 Le même ordre répare deux codes mal lus : `EFIES` et `DEFIES` répètent l'anglais
-là où la place, entre `I` et `S`, ne peut être que `R`. `travail/texti.txt`
+là où la place, entre `I` et `S`, ne peut être que `R`. `work/texti.txt`
 porte les deux lectures, `EFIRS` et `DEFIRS`.
 
 ### Le domaine (`fako`)
@@ -238,7 +238,7 @@ les remettent. L'auteur ne s'étant uniformisé ni sur la majuscule ni sur le
 point, l'édition le fait pour lui : minuscule initiale — sauf les noms propres,
 *Italia*, *Voltaire*, *Diana*, et les adjectifs de langue, listés dans `PROPRA`
 —, et point rendu à l'abréviation d'après une liste explicite (`MALLONGIGI`
-dans `outils/edition.py`), non d'après une règle sur la finale, car le même
+dans `tools/edition.py`), non d'après une règle sur la finale, car le même
 champ contient des prépositions, des verbes et jusqu'à une formule chimique.
 
 Deux parenthèses de suite — *pensar. (trans. e netrans.) (ulo, ad ulo, pri ulu
@@ -264,7 +264,7 @@ les deux sont à moins du double l'une de l'autre, l'abrégée l'emporte : le
 livre abrège ses domaines 2 463 fois contre 746 où il les écrit au long, et
 l'abréviation est donc sa manière. La table est explicite, une ligne par
 variante avec les deux comptes en regard — `DOMENI_UNIFORMA` dans
-`outils/edition.py` —, et elle vaut aussi pour les domaines écrits **dans** un
+`tools/edition.py` —, et elle vaut aussi pour les domaines écrits **dans** un
 sens, hors du champ. 158 entrées et 67 sens y ont changé de forme.
 
 Ne sont **pas** dans cette table les formes que rien ne dit équivalentes :
@@ -314,7 +314,7 @@ rencontrés :
   et le trait d'union final le dit ; le rognage des fins de ligne l'emportait ;
 - la dactylo coupe parfois un mot en deux : *capparia spi nosa* pour *capparia
   spinosa*. Ni `spi` ni `nosa` n'étant des mots latins, la machine ne peut pas
-  le savoir. `travail/latinaji.txt` porte les noms redressés à l'œil, avec la
+  le savoir. `work/latinaji.txt` porte les noms redressés à l'œil, avec la
   clé de `simboli.txt` — `vedetto@image:ligno` — et l'emporte sur le décodage.
 
 #### Le nom lu pour un autre
@@ -384,13 +384,13 @@ dessus et rendait *ostrea edulis e gryphea*.
 **Deux annonces manquées.** Le nom n'est pas toujours introduit par un `L.` net.
 Chez `eringo`, le tapuscrit le pose **seul sur sa ligne**, souligné, sans rien
 devant : *Genero de planto umbelifera, pikantoza.* puis *eryngium.* Le `L.` que
-l'auteur omet est rendu par `travail/texti.txt`, et la règle fait le reste.
+l'auteur omet est rendu par `work/texti.txt`, et la règle fait le reste.
 
 Chez `askarido`, l'annotation porte un **deux-points** — *L. ascaridae genus :
 ascaris*, la famille *Ascaridae*, genre *Ascaris* — et la règle s'arrête dessus,
 laissant *: ascaris* dans la définition. C'est le seul `L.` du livre à porter un
 deux-points, et la règle ne change pas pour un cas : le nom entier est posé par
-`travail/latinaji.txt`, le reste ôté par `travail/vorti.txt`. Les articles à nom
+`work/latinaji.txt`, le reste ôté par `work/vorti.txt`. Les articles à nom
 scientifique passent à **837**.
 
 **Deux points, deux lectures.** Le `L.` du nom scientifique prend son espace :
@@ -399,7 +399,7 @@ chez `akaro`. Mais on ne touche à aucun autre point collé à une minuscule : i
 en a huit dans le livre, et chacun demande sa lecture. *ex.en* chez `grava` veut
 l'espace ; *viburnum.tinus* chez `tinlauro` veut **perdre son point**, le binôme
 étant *Viburnum tinus*, le laurier-tin. Celui-là est corrigé dans
-`travail/vorti.txt`.
+`work/vorti.txt`.
 
 ### Le symbole chimique (`simbolo`)
 
@@ -421,7 +421,7 @@ penchée se lisant mal. **90 articles** le portent — les 89 que le livre annon
 Onze articles portaient l'étiquette sans son symbole : le décodage l'avait
 perdue. Ces onze-là, plus un douzième que le décodage n'avait lu qu'à moitié
 (`fluorino` : `Ca` pour `Ca F²`), ont été **relevés à l'œil sur le fac-similé**
-et posés dans `travail/simboli.txt`, avec le folio imprimé en regard pour qu'on
+et posés dans `work/simboli.txt`, avec le folio imprimé en regard pour qu'on
 puisse y retourner. La clé y est celle de `subvorti.txt` — `vedetto@image:ligno`
 —, et une valeur posée là l'emporte sur ce que le décodage aurait lu.
 
@@ -485,7 +485,7 @@ tel quel — sa vedette porte déjà la marque.
 
 Un quarante-sixième emploi demandait d'abord une lecture : chez `tuberkulo`,
 la croix est frappée **derrière** le mot — *(kartofli+ - terpomi - patati…* —
-là où le livre la pose partout ailleurs devant. Corrigé par `travail/texti.txt`.
+là où le livre la pose partout ailleurs devant. Corrigé par `work/texti.txt`.
 
 Le filet de la dactylo, lui, a été relevé avant que l'astérisque soit posée :
 *pri grandoro* ne se retrouvait plus dans *(pri \*grandoro)*. La recherche du
@@ -494,7 +494,7 @@ fragment souligné la laisse donc passer entre les mots.
 **La croix que la dactylo n'a pas frappée.** Elle manque parfois là où le mot
 est bien non officiel : le livre le donne alors nu, et rien dans le texte ne le
 signale. Sept vedettes ont ainsi reçu leur marque, chacune dans
-`travail/vedetti.txt` avec son motif — cinq sur la foi d'une **citation
+`work/vedetti.txt` avec son motif — cinq sur la foi d'une **citation
 marquée ailleurs** dans le livre (*\*pliz* cité dans `*prei`, *\*sesiono* dans
 `prorogar`, *\*siejo* dans `rezidar`, *\*ultima* dans `lasta`, *\*niuzo*), et
 deux sur la seule lecture de l'éditeur, le mot ne paraissant nulle part
@@ -504,7 +504,7 @@ des mises au net, et le fichier le dit.
 Une croix restait, qui n'était ni l'une ni l'autre : chez `ecentrika`, *de pn +n
 donita*. Cinq caractères pour un mot de cinq lettres — c'est **punto**, et la
 définition le dit : *Di qua la centro eskartesas de punto donita*, le centre qui
-s'écarte d'un point donné. La correction est dans `travail/texti.txt`.
+s'écarte d'un point donné. La correction est dans `work/texti.txt`.
 
 ### Le trait coupé court
 
@@ -537,7 +537,7 @@ beaucoup, et souvent un seul mot — *Ido* chez `logiko`, *ohm* chez `volto`,
 Cent quarante-deux italiques ne couvrent qu'un mot, et la grande majorité sont
 légitimes.
 
-Ils s'écartent donc **un par un**, dans `travail/filetoj.txt`, avec le motif en
+Ils s'écartent donc **un par un**, dans `work/filetoj.txt`, avec le motif en
 regard. Un troisième cas s'y est ajouté : *disto* chez `longitudo`, dans *…sur
 la surfaco di la Terglobo : disto de ta loko a la meridiano determinita*. Le mot
 y est employé, non cité, et il paraît **deux fois** dans l'article sans que rien
@@ -545,7 +545,7 @@ distingue l'un de l'autre.
 
 **Pourquoi il en reste.** L'édition prend les plages de soulignement **telles
 que la mesure les a rendues**, sans retouche. Le fac-similé, lui, leur applique
-quatre règles réglées sur 1 698 lignes relues à l'œil (voir `outils/generer.py`)
+quatre règles réglées sur 1 698 lignes relues à l'œil (voir `tools/generate.py`)
 — ébarbage des extrémités, recollement d'un filet que l'usure du ruban a coupé,
 et le rejet d'un filet qui commence au milieu d'un mot. Ces règles écartent
 **1 045** fragments que l'édition conserve.
@@ -594,7 +594,7 @@ Chez `posturar`, le fac-similé porte le trait d'un bout à l'autre de la
 parenthèse ; la mesure a sauté le `n` d'*avan* et la fin de ligne a coupé le
 reste, d'où trois fragments dont deux seulement se posaient. Les trois sont
 écartés et le trait entier posé, par la direction à accolades de
-`travail/filetoj.txt`.
+`work/filetoj.txt`.
 
 Chez `harmoniko`, le trait de *(muzik.)* s'est arrêté avant le point. Le domaine
 étant parti au champ, le fragment n'avait plus de place et s'est posé sur
@@ -604,7 +604,7 @@ Chez `harmoniko`, le trait de *(muzik.)* s'est arrêté avant le point. Le domai
 tapuscrit coupe *kontingenti* au bord droit, `kontin` finissant une ligne et
 `genti` ouvrant la suivante, le tout souligné d'un seul trait. La fiche lexicale
 225 avait rendu le mot entier à la place de `kontin` sans ôter la seconde
-moitié. `travail/vorti.txt` l'ôte, les deux moitiés du filet s'écartent, et le
+moitié. `work/vorti.txt` l'ôte, les deux moitiés du filet s'écartent, et le
 sens II rend enfin ses **deux locutions** — *moneto-kontingento* et
 *la kontingenti*, chacune avec son domaine. Les sous-entrées passent de 108
 à **110**.
@@ -740,7 +740,7 @@ et la dactylo a souligné les trois. Le relevé n'en a rendu que deux : la mesur
 du troisième a glissé d'une colonne et rend *elka*, quatre lettres qui ne
 répondent à aucun mot. La parenthèse ouvrante manquait aussi, la dactylo ayant
 frappé un tiret à sa place, et la fermante — *nur « du »)* — restait orpheline et
-tombait. `travail/texti.txt` rend la parenthèse, `filetoj.txt` l'italique.
+tombait. `work/texti.txt` rend la parenthèse, `filetoj.txt` l'italique.
 
 Chez `sekundara`, le relevé ne mesure qu'un *primara*, ligne 48 colonne 3 : celui
 de l'incise du sens II, *kontraste kun la doco primara, agata en la skoli
@@ -821,7 +821,7 @@ cirkonstanco*, et non un *a* accentué. Restent les trois que rien ne voyait :
 
 Les deux derniers sont **entre guillemets**, ce qui interdit d'en faire une
 règle — la citation est justement ce qui autorise l'accent ailleurs. On les
-relève donc un à un, dans `travail/texti.txt`. Après quoi il ne reste, dans les
+relève donc un à un, dans `work/texti.txt`. Après quoi il ne reste, dans les
 deux éditions, que des accents qui se justifient.
 
 ### La croix oubliée
@@ -868,7 +868,7 @@ l'article, **après le code de langues**, sur une note : *(pri cinemo e tel. :
 
 Autrement dit, le troisième sens n'est pas celui de `skreno` : c'est la
 définition d'un autre mot, que l'auteur nomme en fin d'article faute de lui
-avoir donné son entrée. `travail/texti.txt` le porte en tête de son sens, avec
+avoir donné son entrée. `work/texti.txt` le porte en tête de son sens, avec
 le deux-points de la locution et son domaine devant lui —
 
 ```
@@ -903,12 +903,12 @@ le `i` sont voisins au clavier.
 
 C'est le meilleur cas de figure pour une correction à l'œil : l'auteur se
 corrige lui-même, ailleurs, en écrivant la même phrase. La ligne va dans
-`travail/vorti.txt` avec les deux renvois en regard.
+`work/vorti.txt` avec les deux renvois en regard.
 
 ### Le pronom indéfini : *onu*, et jamais *on*
 
 L'auteur écrit **1 342 fois `onu`** contre **9 fois `on`**. C'est assez pour
-faire une règle, et `travail/vorti.txt` la tenait déjà, ligne par ligne, avec le
+faire une règle, et `work/vorti.txt` la tenait déjà, ligne par ligne, avec le
 motif écrit au premier cas — `nova` p. 404, *quan on jus komencis*. Sept lignes
 la portaient : `espineto`, `gipso`, `ironio`, `kapistro`, `karburar`, `tu`,
 `mineralogio`.
@@ -976,7 +976,7 @@ tout point suivi d'une capitale les couperait en deux.
 **Et un numéro de sens lu de travers.** `diezo` portait *- Ii.Signo (#)*. Le
 second `I` du numéro a été lu `i` ; *Ii* n'est un mot ni en ido ni en latin, et
 il n'apparaît qu'**une fois dans tout le livre**, là. L'article porte déjà un
-`I.` plus haut, dont ce numéro est la suite. `travail/texti.txt` le redresse, et
+`I.` plus haut, dont ce numéro est la suite. `work/texti.txt` le redresse, et
 le sens II — le dièse, le signe `#` lui-même — s'ouvre enfin au lieu de rester
 soudé à la définition de l'intervalle.
 
@@ -1109,7 +1109,7 @@ la cassure :
 
 La règle générale, elle, **n'a pas été retouchée** : `recoller` tranche sur le
 lexique des vedettes, et son jugement ne peut se remesurer sans le fac-similé,
-absent du dépôt. Les trois corrections passent donc par `travail/texti.txt`,
+absent du dépôt. Les trois corrections passent donc par `work/texti.txt`,
 chacune avec sa preuve.
 
 Deux domaines composés restaient soudés là où le livre écrit tous les autres
@@ -1206,7 +1206,7 @@ Dix sites prennent le tiret, dans huit articles — `-ig-`, `-ind-`, `min`,
 `\*pliz`, `plusquamperfekto`, `pronta`, `quadri-`, et le champ `fako`
 d'`elektar`. Un seul demandait d'abord une lecture : chez `\*pliz`, *ke
 lu....+ez* portait la croix là où le tiret devait être, et l'édition imprimait
-*lu....\*ez*. Corrigé par `travail/texti.txt`.
+*lu....\*ez*. Corrigé par `work/texti.txt`.
 
 Les points **finissent** parfois l'article — ils tiennent la place du
 complément que la définition appelle : *Kambie di…* (`po`), *Qua havas tri…*
@@ -1288,7 +1288,7 @@ teksto_k : Pikanta ed atakema \ue000(metaf.)\ue001
 douteuse en tête, avec la page et la vedette pour aller voir le fac-similé. Une
 seule famille demande un arbitrage — 18 fragments qui ressemblent à un
 qualificatif ou à une locution ; les autres sont des artefacts du relevé, où le
-trait déborde ou s'arrête trop tôt. `python3 outils/releve_filets.py` le
+trait déborde ou s'arrête trop tôt. `python3 tools/survey_rules.py` le
 reconstruit.
 
 ---
@@ -1363,7 +1363,7 @@ Les 55 qui restent sont une liste qu'un lecteur peut tenir dans la main.
 `ordino-ruptita.md` la classe en deux familles — les deux vedettes voisines
 qu'il suffit d'intervertir (35), et la vedette posée loin de sa place (20) —
 avec le folio, l'image, la ligne de la grille, et les lectures qui tiendraient
-dans la place occupée. `python3 outils/releve_ordino.py` le reconstruit.
+dans la place occupée. `python3 tools/survey_order.py` le reconstruit.
 
 **1 166 entrées portent au moins un drapeau.** L'édition HTML ne les filtre plus
 — elle n'offre que la recherche ; le tri se fait sur `drapeli`, dans le JSONL ou
@@ -1375,13 +1375,13 @@ dans la colonne du même nom du TSV.
 
 Rien n'est corrigé en silence. **2 333 cellules** ont été redressées — 2 319 par
 un correcteur, 14 à l'œil —, chacune journalisée dans
-`travail/journal_complet.txt` avec la forme lue, la forme retenue et la raison :
+`work/journal_complet.txt` avec la forme lue, la forme retenue et la raison :
 
-- **le lexique du livre** (`travail/journal_corrections.txt`) — 137 758 occurrences pour
+- **le lexique du livre** (`work/journal_corrections.txt`) — 137 758 occurrences pour
   34 620 formes : une forme lue une fois, quand une variante obtenue en changeant
   une cellule *ambiguë* est attestée huit fois et huit fois plus souvent, est une
   faute de lecture. Ainsi `zobl.` → `zool.` : une occurrence contre 334 ;
-- **la morphologie des vedettes** (`travail/journal_vedettes.txt`) — la finale d'une
+- **la morphologie des vedettes** (`work/journal_vedettes.txt`) — la finale d'une
   vedette est `o`, `r`, `a`, `e` ou `i` ; la quatrième valeur observée, `c`,
   n'existe pas en Ido : c'est la confusion `c`/`o` ;
 - **la section alphabétique de la page** — sur une page, les vedettes commencent
@@ -1402,17 +1402,17 @@ lu. Elles se relisent comme un apparat critique :
 
 | couche | ce qu'elle corrige |
 |---|---|
-| `travail/texti.txt` | le texte **brut**, avant toute analyse |
-| `travail/vedetti.txt` | la vedette |
-| `travail/vorti.txt` | un mot dans une définition |
-| `travail/subvorti.txt` | le rattachement d'un article à son voisin |
-| `travail/simboli.txt` | le symbole chimique relevé sur la page |
-| `travail/latinaji.txt` | le nom scientifique relevé sur la page |
-| `travail/filetoj.txt` | le **soulignement** : un relevé que l'œil écarte, une italique qu'il pose, ou un filet qu'il rend au relevé |
-| `travail/dividi.txt` | **deux articles frappés sur une même ligne**, que le repérage automatique ne sait pas séparer faute de code de langues entre eux : *shovar* était noyé dans *shokar*, à la fin d'une note |
-| `travail/lignes_plus.txt` | une ligne de grille perdue, restituée |
-| `travail/exceptions_manuel.txt` | la cellule elle-même |
-| `travail/relire/reponses/` | les corrections rendues par la relecture, article par article |
+| `work/texti.txt` | le texte **brut**, avant toute analyse |
+| `work/vedetti.txt` | la vedette |
+| `work/vorti.txt` | un mot dans une définition |
+| `work/subvorti.txt` | le rattachement d'un article à son voisin |
+| `work/simboli.txt` | le symbole chimique relevé sur la page |
+| `work/latinaji.txt` | le nom scientifique relevé sur la page |
+| `work/filetoj.txt` | le **soulignement** : un relevé que l'œil écarte, une italique qu'il pose, ou un filet qu'il rend au relevé |
+| `work/dividi.txt` | **deux articles frappés sur une même ligne**, que le repérage automatique ne sait pas séparer faute de code de langues entre eux : *shovar* était noyé dans *shokar*, à la fin d'une note |
+| `work/lignes_plus.txt` | une ligne de grille perdue, restituée |
+| `work/exceptions_manuel.txt` | la cellule elle-même |
+| `work/relire/reponses/` | les corrections rendues par la relecture, article par article |
 
 **Le trait vertical.** Sur un tapuscrit, le `I` capitale, le `l` minuscule et
 le chiffre `1` sont le même jambage nu, et le `T` le devient dès que sa barre
@@ -1446,39 +1446,39 @@ Trois de ses cinq réponses sont d'ailleurs **déjà rendues** sous le bon numé
 par les fichiers de la seconde numérotation — *instruktar* pour `misiono`,
 *jeleo* pour `gelatino`, *Agar* pour `ludar` : le fichier était redondant autant
 que nuisible. Il est conservé hors du dossier de lecture,
-`travail/juger/r04_NUMEROTACION_ANCIENNE.txt`, avec le relevé de ce qu'il
+`work/juger/r04_NUMEROTACION_ANCIENNE.txt`, avec le relevé de ce qu'il
 faisait.
 
 Une piste a été essayée puis abandonnée — corriger les vedettes par l'ordre
 alphabétique global : sans contrainte de langue elle produit *adiar* → *adiao*.
-Son journal est conservé sous `travail/journal_vedettes_DP_ABANDONNE.txt`.
+Son journal est conservé sous `work/journal_vedettes_DP_ABANDONNE.txt`.
 
 ---
 
 ## Reprendre le travail
 
 ```
-python3 outils/tout_edituri.py            # toute la chaîne, dans l'ordre
-python3 outils/tout_edituri.py --sen-baz  # sans recalculer la base
+python3 tools/all_editions.py            # toute la chaîne, dans l'ordre
+python3 tools/all_editions.py --sen-baz  # sans recalculer la base
 ```
 
 C'est l'entrée normale. Elle enchaîne les quatre étapes, qui se lancent aussi
 une à une :
 
 ```
-python3 outils/edition.py     # image decodee   -> enregistrements structures
-python3 outils/exportar.py    # enregistrements -> JSONL, TSV, HTML
-python3 outils/posho.py       # enregistrements -> posho/enhavo.tex
-lualatex posho.tex            # dans posho/, deux passes -> posho.pdf
+python3 tools/edition.py     # image decodee   -> enregistrements structures
+python3 tools/export.py    # enregistrements -> JSONL, TSV, HTML
+python3 tools/pocket.py       # enregistrements -> pocket/enhavo.tex
+lualatex posho.tex            # dans pocket/, deux passes -> posho.pdf
 ```
 
 La page HTML et le dictionnaire de poche sortent du **même fichier**,
-`travail/edicioni/dicionario.jsonl` : les reconstruire ensemble est la seule
+`work/edicioni/dicionario.jsonl` : les reconstruire ensemble est la seule
 façon qu'ils ne divergent pas. La dernière étape recopie à la racine
 `index.html`, `dicionario.tsv`, `dicionario.jsonl` et `dicionario.pdf`.
 
 `lualatex` demande les polices **Charis SIL** et **Inter**. La couverture
-demande **Jost\***, qui voyage avec le dépôt dans `posho/polices/` et se charge
+demande **Jost\***, qui voyage avec le dépôt dans `pocket/polices/` et se charge
 par chemin : elle n'a pas à être installée.
 
 ### La couverture, la page de titre, le plat verso
@@ -1669,7 +1669,7 @@ travail ailleurs, le plus court est de l'y rendre :
 `ln -s /chemin/vers/le/depot /root/dicionario`.
 
 Pour corriger une lecture : ajouter une ligne
-`page<TAB>ligne<TAB>colonne<TAB>caractère` à `travail/exceptions_manuel.txt`,
+`page<TAB>ligne<TAB>colonne<TAB>caractère` à `work/exceptions_manuel.txt`,
 puis relancer la chaîne. La correction se propage au fac-similé, à la base et
 aux deux éditions.
 
@@ -1678,7 +1678,7 @@ Le fac-similé reste la pièce à conviction ; l'édition est ce qui s'utilise.
 
 Les corrections posées à la relecture ne vivent pas dans le JSONL — `edition.py`
 le reconstruit depuis le fac-similé et les effacerait sans bruit. Elles sont
-gardées dans leurs couches de réponses, aujourd'hui `travail/juger/`, et
+gardées dans leurs couches de réponses, aujourd'hui `work/juger/`, et
 rejouées en fin de chaîne ; la liste des couches est la constante `JUGEMENTS`
 d'`edition.py`, et une couche absente est simplement sautée. **Une correction
 posée une fois est acquise.**
