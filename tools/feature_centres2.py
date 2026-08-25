@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
-"""Centre de chaque groupe dans l'espace de traits a deux vues.
+"""The centre of each group in the two-view feature space.
 
-Pour rattacher une cellule nouvelle a un groupe existant, il faut comparer
-dans l'espace ou les groupes ont ete formes. Les moyennes d'images (km_moy)
-ne suffisent pas : elles rendent 90 a 97 % des caracteres seulement. On
-recalcule donc le centre de chaque groupe a partir de ses membres, dans
-l'espace des traits a deux vues.
+To attach a new cell to an existing group, the comparison must be made in
+the space where the groups were formed. Means of images (km_moy) do not
+suffice: they return only 90 to 97 % of the characters. We therefore
+recompute each group's centre from its members, in the two-view feature
+space.
 """
 import numpy as np, sys
 sys.path.insert(0,'/root/dicionario/outils')

@@ -1,0 +1,1622 @@
+[
+ {
+  "id": 0,
+  "kind": "docstring",
+  "text": "\"\"\"Extraction d'une base lexicale structuree a partir du tapuscrit decode.\n\nLe tapuscrit suit une grammaire stricte, qui se lit dans la mise en page :\n\n    vedetto. (fako.) Senco unesma. - II. Senco duesma. - L. nomo latina. - DEFIS.\n    ^^^^^^^  ^^^^^^                    ^^^                ^^^^^^^^^^^^^   ^^^^^\n    soulignee, colonne 0                sens               nomo cientifika  lingui\n\nChaque enregistrement porte sa **provenance** — image du scan, page du livre,\nligne de la grille — et ses **drapeaux de qualite**. Rien n'est efface : ce qui\nest douteux est signale, pas masque.\n\"\"\""
+ },
+ {
+  "id": 1,
+  "kind": "comment",
+  "text": "# numero de page du livre = index d'image - 7"
+ },
+ {
+  "id": 2,
+  "kind": "comment",
+  "text": "# Certaines notations epellent la langue : « FDSued » = Franca, Germana, Sueda."
+ },
+ {
+  "id": 3,
+  "kind": "comment",
+  "text": "# Quelques notations epellent la langue au long, separees par des virgules —\n# « Jap.,Sanskr. » pour « ka(d) ». Elles n'entrent pas dans le code a lettres :\n# lues comme du texte, l'article passait pour « sen-lingua »."
+ },
+ {
+  "id": 4,
+  "kind": "docstring",
+  "text": "\"\"\"Le jeton final est-il un code de langues ? Retourne la liste, ou None.\n\n    Le discriminant est la CASSE : un code est en capitales. Sans elle, tout mot\n    terminant une phrase — « gamo », « radii », « korpo » — passait pour un code.\n    On tolere une capitale abimee par le decodage (« dEFIRS ») et le « l » lu\n    pour « I » (« DEFlS »), mais on exige que le jeton soit majoritairement haut\n    de casse.\n    \"\"\""
+ },
+ {
+  "id": 5,
+  "kind": "comment",
+  "text": "# abreviation epelee, en fin"
+ },
+ {
+  "id": 6,
+  "kind": "comment",
+  "text": "# Aucun vrai code ne nomme deux fois la meme langue. « II » et « III » sont\n# des numeros de sens que la fin d'article laisse pendre — chez « forsan »,\n# « xenio », « -ajo », « ek » —, et l'edition les donnait pour « Italiana,\n# Italiana ». Le decoupage en articles (dividar) posait deja cette regle ;\n# elle vaut ici aussi."
+ },
+ {
+  "id": 7,
+  "kind": "comment",
+  "text": "# Le code de langues est parfois colle au point qui le precede — « agar\n# lo.DEFIS. » — faute de l'original. On accepte donc le point comme separateur\n# au meme titre que le tiret.\n# Le code final n'est pas toujours precede d'un tiret : il se colle au point\n# — « agar lo.DEFIS. » — ou a la parenthese fermante — « (anke metaf.)DEFIRS ».\n# Il n'est pas toujours suivi d'un point non plus."
+ },
+ {
+  "id": 8,
+  "kind": "comment",
+  "text": "# La parenthese ouvrante manque parfois dans l'original : « abduktar.-trans.) »\n# se lit ainsi au scan, verifie. On tolere donc son absence, mais seulement si\n# rien n'est deja ouvert et si le contenu est court, pour ne pas avaler une\n# phrase entiere. Le point qui suit la parenthese fermante est consomme : sans\n# cela la definition commencait par « . » — « ablegato », « abulio »."
+ },
+ {
+  "id": 9,
+  "kind": "comment",
+  "text": "# Le nom scientifique est annonce par « L. ». Le tiret qui le precede manque\n# souvent : « ... kompozaji\". L. artemisia absinthium ». On accepte donc le\n# point et le debut de segment au meme titre que le tiret.\n# La virgule appartient au nom scientifique quand il donne deux formes —\n# « L. anas, anatis ». Sans elle dans la classe, le nom restait dans le sens.\n# La SECONDE forme peut faire plusieurs mots — « L. rubus caesius, rubus\n# fructicosus » chez rovo, « L. dalbergia nigra, jacarania mimosifolia » chez\n# palisandro, et jusqu'a la glose de l'auteur, « L. conium maculatum, e speco di\n# cicuta » chez cikuto. N'en prendre qu'un laissait le reste dans la definition,\n# precede de la virgule orpheline du nom : « ... (rovbero). , rubus\n# fructicosus ». On admet donc la seconde forme entiere, quatre mots comme la\n# premiere.\n# Le nom scientifique ne finit pas toujours sur un tiret ou en fin de segment :\n# il est souvent suivi d'une parenthese fermante — « (L. triticum caninum) » —\n# d'une virgule qui reprend la phrase, ou du numero du sens suivant —\n# « L. aquila II. ». Ancre sur le seul tiret, il restait dans la definition de\n# soixante-sept articles. On borne donc le nom par sa FORME — quatre mots\n# latins au plus, plus une seconde forme apres virgule pour « anas, anatis » —\n# au lieu de le borner par ce qui le suit.\n# Le point du « L. » manque parfois — « ...puteo-kordegi.- L tilia. - FISL. »\n# chez tilio. On l'admet sans son point, mais alors seulement devant une\n# MINUSCULE : « - La persono qua... », « - Longa bastono... » ouvrent une\n# definition, et le L y prendrait la premiere lettre du mot.\n# Le nom se termine souvent sur « .- » sans espace — « L. viverra genetis.- II.\n# (tekn.) ... » chez jineto. Sans le tiret dans la classe qui suit le point, le\n# nom restait dans la definition de soixante-huit articles.\n# Un « L. » qui introduit un EXEMPLE n'annonce pas le nom scientifique de\n# l'article : « enklitiko. ... Kom ex.: L. que en neque ; ne en venisne ; F. ce\n# en est-ce ». Pris pour un binome, il quittait la definition — qui restait sur\n# « Kom ex.; » — pour aller s'afficher en nom latin de l'article. Le « F. » qui\n# suit, lui, n'a jamais ete pris : seul le « L. » preteait a confusion."
+ },
+ {
+  "id": 10,
+  "kind": "comment",
+  "text": "# Les sens se separent par « - II. », mais le tiret manque souvent : « ...\n# komenco-punto e fino-parto. II. (gram.) ... ». On coupe donc aussi sur un\n# point suivi du numero de sens, ce qui vaut pour 107 articles.\n# Six articles numerotent leurs sens en chiffres ARABES — « grapino »,\n# « kapelo », « koliaro », « kondamnar », « konfliktar » — et « iambo » melange\n# les deux niveaux. Sans cette branche, tout leur contenu restait dans un seul\n# sens. On exige la majuscule ou la parenthese apres le numero, ce qui ecarte\n# « 1.000 » et les formules chimiques. Le « l » lu pour « 1 » est admis : la\n# confusion est constante dans ce tapuscrit.\n# La parenthese FERMANTE vaut le point : « elaborar. ... per laborado. (anke\n# metaf.) II. (fiziol.) Igar absorbebla... ». Le numero suit alors une\n# parenthese, non un point, et le sens ne se coupait pas — onze articles\n# gardaient deux sens en un. Le garde-fou tient : « pos I. K. » chez « hejiro »\n# et « rejo Francisko I. » chez « legiono » ne suivent ni point ni parenthese,\n# et ne se coupent pas.\n# Le point du numero manque parfois : « ...di elektro-lampo. III veziketo\n# produktata... » chez « ampulo », « ...kontenar aquo. – II Mar-baseno... »\n# chez « baseno ». Le livre n'en compte que deux, et les deux sont de vrais\n# sens ; on admet donc le numero suivi d'une simple espace, a condition qu'une\n# lettre suive. Une PARENTHESE la vaut : le sens s'ouvre tres souvent sur son\n# qualificatif, « reklamacar. I(netrans.) ... ne-equitatoza.II (trans.)\n# Postular... », et le numero se retrouvait alors dans le texte du sens, ou il\n# doublait celui que les editions posent elles-memes — « 1. I (zool.) Mamifero\n# karnivora... » chez « leono ». L'espace y est facultative : la dactylo colle\n# le numero a la parenthese aussi souvent qu'elle l'en separe.\n# Le livre numerote jusqu'a VIII — « modo » a huit sens, « exemplo », « lineo »\n# et « punto » en ont sept. La suite s'arretait a VI : « -VII.(tipogr.) » chez\n# « punto » restait dans le sens VI, son numero au milieu du texte.\n# « VI{0,3} » couvre V, VI, VII et VIII d'un seul tenant, comme le fait deja la\n# regle qui OTE le numero en tete de sens. Le livre ne va pas au-dela : aucun\n# article ne porte de IX."
+ },
+ {
+  "id": 11,
+  "kind": "comment",
+  "text": "# L'auteur numerote parfois ses sens ENTRE PARENTHESES : « (1) ... (2) ... ».\n# Ecrits ainsi, ils tiennent le plus souvent en une seule phrase — les morceaux\n# se suivent apres un point-virgule ou deux-points, « (1) Garnisar ye ulo...;\n# (2) Garnisar per esar pozita sur... » chez « kovrar » — et le livre les rend\n# tels quels : on les laisse.\n#\n# Mais le PREMIER de ces numeros suit la vedette, la ou l'analyse cherche le\n# domaine : il partait au champ `fako`, d'ou il etait ecarte comme numero.\n# L'article perdait alors son « (1) » en gardant son « (2) » — « ramo », «\n# romano », « vice », les trois seuls du livre. La numerotation orpheline ne\n# renseigne plus personne ; on coupe le sens a sa place, et les editions\n# renumerotent comme elles le font des autres. La coupure ne se fait qu'apres\n# une phrase CLOSE, pour ne pas defaire les enumerations d'un seul souffle."
+ },
+ {
+  "id": 12,
+  "kind": "comment",
+  "text": "# Signe de coupure pose dans le texte par l'analyse, la ou un sens finit sans\n# que le livre l'ait numerote — le code de langues qui le clot, par exemple.\n# Invisible, il est lu par le decoupage en sens, et n'en sort jamais."
+ },
+ {
+  "id": 13,
+  "kind": "docstring",
+  "text": "\"\"\"Lignes de bas (ou de haut) de page perdues par une RE-COUPE ulterieure.\n\n    La page 290 l'a montre : son extraction a ete refaite le 13 aout, et le\n    nouveau bloc s'arretait quatre lignes plus haut que l'ancien. Le fac-simile,\n    compose avant la re-coupe, garde ces lignes ; l'edition de lecture, batie\n    sur le .npz, les avait perdues — « koklusho » finissait sur « precipue la »\n    et « kokono » manquait au livre. Plutot que de re-couper la page, ce qui\n    deplacerait toutes les corrections indexees par (page, ligne, colonne), on\n    rend ici les lignes telles que le fac-simile les porte.\n\n    Une ligne du fichier : page<TAB>numero de ligne<TAB>texte.\n    Le texte est celui de la grille, espaces de tete comprises.\n    \"\"\""
+ },
+ {
+  "id": 14,
+  "kind": "docstring",
+  "text": "\"\"\"Empreinte des fichiers dont depend le texte decode.\"\"\""
+ },
+ {
+  "id": 15,
+  "kind": "comment",
+  "text": "# Une correction peut allonger la ligne : une vedette relue peut\n# compter plus de cellules que la lecture automatique. On complete\n# la ligne au lieu de laisser tomber la correction."
+ },
+ {
+  "id": 16,
+  "kind": "comment",
+  "text": "# Les filets de soulignement de la page, tels que le decoupage des\n# cellules les a releves : une liste de plages de COLONNES par ligne,\n# dans la meme numerotation que le texte rendu ci-dessus. C'est la\n# marque que l'auteur a portee lui-meme sur son tapuscrit ; elle\n# designe le domaine, la locution, le nom latin, le mot cite."
+ },
+ {
+  "id": 17,
+  "kind": "docstring",
+  "text": "\"\"\"Pages qui ne sont pas dactylographiees : couverture, pages blanches.\"\"\""
+ },
+ {
+  "id": 18,
+  "kind": "comment",
+  "text": "# Un folio, tel que le decodeur le rend : « 113 », mais aussi « lOO », « 2Ol »,\n# « ll2 » — le un et le zero de la machine a ecrire se lisent l et O. Deux\n# folios se suivent parfois, « 173/175 », quand la page porte les deux."
+ },
+ {
+  "id": 19,
+  "kind": "comment",
+  "text": "# Le folio, en fin de ligne de texte, se distingue par le blanc qui le precede :\n# « ... sen shancelar   563 ». Il n'appartient pas a la phrase."
+ },
+ {
+  "id": 20,
+  "kind": "comment",
+  "text": "# liminaires : titre, preface, rezumo di gramatiko"
+ },
+ {
+  "id": 21,
+  "kind": "comment",
+  "text": "# pages blanches : rien a decouper"
+ },
+ {
+  "id": 22,
+  "kind": "comment",
+  "text": "# Marge de la page, lue sur le TEXTE DECODE et non sur l'occupation des\n# cellules : quarante-cinq pages commencent plus a droite — la 380\n# commence en 5 — et occ() y voit de l'encre en colonne 0 la ou le\n# decodage ne voit rien. Toutes leurs entrees etaient perdues."
+ },
+ {
+  "id": 23,
+  "kind": "comment",
+  "text": "# Une vedette non soulignee reste une vedette : elle commence a la\n# marge, apres une ligne blanche, et se presente comme « mot. ».\n# Une vedette non soulignee reste une vedette. On ne lui impose pas la\n# marge : « +quoniam » est en colonne 17, « milieto » en 5. Ce qui la\n# designe, c'est de suivre une ligne blanche et de se presenter comme\n# « mot. ». Le « + » qui marque les mots non officiels en fait partie.\n# « - oz-. », « - as. », « + prei. » : la dactylo a laisse une espace\n# entre le signe et le mot. Sans cette tolerance, « -oz- » et « -as »\n# n'etaient pas des vedettes du tout et tombaient dans l'article\n# precedent.\n# « .heliko », « .hipofizo » : la dactylo a frappe un point avant le\n# mot. Sans cette tolerance, ces deux articles n'etaient pas des\n# vedettes du tout et tombaient dans le precedent — « hipofizo » se\n# lisait a la fin de « hipodromo ».\n# « \"dis\" », « \"hidalgo\" » : un emprunt cite est une vedette a part\n# entiere, et l'auteur l'entoure de guillemets. « ha ! » : une\n# interjection se termine par son point d'exclamation, non par un\n# point. « o (d). » : la vedette porte sa variante entre parentheses,\n# comme « a(d). », mais separee par une espace.\n# « rutino, » : la dactylo a frappe la VIRGULE au lieu du point. Le\n# filet est bien la, la ligne blanche aussi ; seule la ponctuation\n# manquait, et l'article entier tombait dans « ruteno », dont il\n# avalait le symbole chimique. Sur les six cent trente-neuf pages, une\n# seule ligne suit une ligne blanche en se presentant « mot, » : celle-\n# la. Admettre la virgule ne coute donc aucun faux positif.\n# « -- protestanto. » : l'auteur a marque d'un double tiret l'article\n# qu'il inserait apres coup. « +intrenar (trans.) » : il a omis le\n# point, et c'est le qualificatif entre parentheses qui clot la\n# vedette. Sans ces deux tolerances, « protestanto » tombait dans\n# « protestar » et « +intrenar » dans « intramolekula »."
+ },
+ {
+  "id": 24,
+  "kind": "comment",
+  "text": "# La ligne blanche ne se lit pas dans le texte : elle N'EST PAS dans la\n# grille. page_texte() ne rend que les lignes detectees, et leurs\n# numeros sautent — 2, 3, puis 5. C'est ce SAUT qui marque le blanc.\n# A chercher une chaine vide, la regle ne se declenchait que sur la\n# premiere ligne de chaque page : la 536 ne rendait qu'un article sur\n# quatorze, et « simpla », « utila », « granda » manquaient au livre.\n# Le folio, et les lignes qui ne portent aucune lettre — les chiffres\n# en exposant d'une formule, poses au-dessus de leur ligne —, ne\n# rompent pas le blanc : ils ne sont pas du texte suivi. Sans cette\n# transparence, « smalto » (folio colle a la vedette) et « morfino »\n# (les indices de sa formule au-dessus) n'etaient pas des vedettes du\n# tout, et leurs articles tombaient hors du livre."
+ },
+ {
+  "id": 25,
+  "kind": "comment",
+  "text": "# Un mot TOUT en capitales n'est pas une vedette : c'est le code de\n# langues, que l'auteur a parfois rejete sur une ligne a part apres\n# un interligne — « DEFIR. » sous « sodo ». « Direktorio », « Usa »,\n# « Venus » gardent leur capitale initiale et restent des vedettes."
+ },
+ {
+  "id": 26,
+  "kind": "comment",
+  "text": "# Les indices d'une formule, frappes sur une ligne a part JUSTE AVANT\n# la vedette qui les porte : « 12  22  11 » au-dessus de « laktoso ».\n# La machine ne descend pas les chiffres ; la dactylo remonte donc la\n# ligne. Quatre formules du livre sont dans ce cas — laktoso, morfino,\n# saponino, fenacetino — et leur ligne d'indices se rattachait a\n# l'article PRECEDENT, ou elle n'a rien a faire. Meme sort pour le\n# point isole qui precede « deciliono »."
+ },
+ {
+  "id": 27,
+  "kind": "comment",
+  "text": "# Article commence en bas d'une page et poursuivi en tete de la suivante.\n# « tamburo » (folio 567) s'arretait sur « kovrita ye » : ses deux dernieres\n# lignes ouvrent la page 568, avant « tamburino », et le decoupage, qui\n# repart de zero a chaque page, les jetait. On ne les rattache que si\n# l'article precedent est reste EN SUSPENS — sans code de langues finale —,\n# ce qui est la marque meme de la coupure."
+ },
+ {
+  "id": 28,
+  "kind": "comment",
+  "text": "# L'article precedent porte deja son code : il est clos, la tete de\n# page ne le prolonge pas."
+ },
+ {
+  "id": 29,
+  "kind": "comment",
+  "text": "# Il se termine sur un tiret seul : ce n'est pas la phrase qui manque,\n# c'est le code de langues. « \"nirvana\" » finit ainsi, et la tete de la\n# page suivante appartient a « nivar », article que le livre a perdu."
+ },
+ {
+  "id": 30,
+  "kind": "comment",
+  "text": "# Une lettre esseulee, un signe : un accident de frappe, non un texte."
+ },
+ {
+  "id": 31,
+  "kind": "docstring",
+  "text": "\"\"\"Ce que l'auteur a SOULIGNE dans l'article, remis bout a bout.\n\n    Le tapuscrit n'a pas d'italique : la dactylo souligne. Elle souligne le\n    mot-vedette, le nom latin, le domaine — « (matem.) » — et la locution qui\n    porte sa propre definition — « Proporciono geometriala : ... ». Le releve\n    des filets donne, ligne par ligne, des plages de colonnes ; il suffit d'y\n    lire le texte.\n\n    Une locution coupee en fin de ligne se recolle : « Proporciono geome- »\n    puis « triala ». Le trait d'union est celui de la coupure, non du mot.\n    \"\"\""
+ },
+ {
+  "id": 32,
+  "kind": "comment",
+  "text": "# (texte, coupe_a_la_fin)"
+ },
+ {
+  "id": 33,
+  "kind": "comment",
+  "text": "# Le filet mord parfois sur la ponctuation voisine."
+ },
+ {
+  "id": 34,
+  "kind": "comment",
+  "text": "# Coupure de fin de ligne : le trait d'union suit immediatement."
+ },
+ {
+  "id": 35,
+  "kind": "comment",
+  "text": "# Le mot-vedette est souligne comme le reste : il n'apprend rien ici."
+ },
+ {
+  "id": 36,
+  "kind": "docstring",
+  "text": "\"\"\"Le mot, ou sa racine une fois la finale grammaticale otee, est-il vedette ?\"\"\""
+ },
+ {
+  "id": 37,
+  "kind": "docstring",
+  "text": "\"\"\"Recolle les lignes d'un article en rendant les mots coupes en fin de ligne.\n\n    Le tapuscrit coupe les mots au bord droit : « por rezis- » puis « tar ».\n    Les joindre par une espace donnait « rezis- tar ». On les recolle donc sans\n    espace et sans le trait.\n\n    Un compose qui tombe pile sur la coupure est ambigu — « homo-korpo » coupe\n    apres le trait devrait garder son trait. On tranche par le lexique : si le\n    On teste le mot RECOLLE, non le fragment de gauche. La premiere version\n    testait la gauche : « re », « pro », « kom », « fa », « mi » sont des\n    prefixes, donc toujours attestes comme vedettes, et le trait restait —\n    « re-cevar », « pro-duktita », « kom-batis » sortaient coupes en deux. Le\n    jugement lexical de la premiere vague n'a quasiment trouve que cela.\n    \"\"\""
+ },
+ {
+  "id": 38,
+  "kind": "comment",
+  "text": "# le mot recolle existe : c'etait une cesure"
+ },
+ {
+  "id": 39,
+  "kind": "comment",
+  "text": "# deux mots attestes : compose, on garde le trait"
+ },
+ {
+  "id": 40,
+  "kind": "comment",
+  "text": "# dans le doute, la cesure est le cas courant"
+ },
+ {
+  "id": 41,
+  "kind": "comment",
+  "text": "# Deux articles frappes a la suite sur une meme ligne. Le decoupage se fait sur\n# la ligne blanche qui precede la vedette ; quand la dactylo n'en a pas laisse,\n# le second article se retrouve avale dans la definition du premier —\n# « cerebelo » dans « cereala », « asepta » dans « asentar ». Ce qui les separe\n# est sur : chaque article FINIT par son code de langues. Tout ce qui suit\n# « - DEFIS. » et se presente comme « mot : » ou « mot. » est donc un article\n# neuf. On exige un vrai code — « L. » (nom latin) et « Simb. » (symbole\n# chimique) n'en sont pas — pour ne pas couper « - L. saponaria. » en deux."
+ },
+ {
+  "id": 42,
+  "kind": "comment",
+  "text": "# Emprunt cite pris pour vedette : « \"argus\" », « \"inch\" ».\n# Onze articles se trouvaient ainsi noyes dans leur voisin."
+ },
+ {
+  "id": 43,
+  "kind": "docstring",
+  "text": "\"\"\"Coupures relevees a l'oeil : image:ligno -> chaine ou couper.\n\n    Le reperage automatique s'appuie sur le code de langues qui finit chaque\n    article. Quand une note s'est glissee entre les deux — « shokar. ... II.\n    (Ref. \"Adjuntenda\", fine di ca verko) shovar. (trans.) Glitigar per\n    pulso. - DE. » —, il n'y a plus de code a l'endroit de la couture, et le\n    second article — une racine entiere, absente du reste du livre — restait\n    noye dans le premier.\n    \"\"\""
+ },
+ {
+  "id": 44,
+  "kind": "docstring",
+  "text": "\"\"\"Scinde les entrees qui en contiennent deux. Rend la liste elargie.\"\"\""
+ },
+ {
+  "id": 45,
+  "kind": "comment",
+  "text": "# La couche de correction du texte brut doit s'appliquer AVANT le\n# decoupage : c'est elle qui retablit le point du code de langues,\n# sur lequel la coupure s'appuie (« - DEFIR. shut! »)."
+ },
+ {
+  "id": 46,
+  "kind": "comment",
+  "text": "# La coupure relevee a l'oeil passe la premiere : elle porte la ou le\n# code de langues manque, et le reperage automatique ne voit rien."
+ },
+ {
+  "id": 47,
+  "kind": "comment",
+  "text": "# « - II. » n'est pas un code mais un numero de sens : lu comme\n# « Italiana, Italiana », il coupait « seniora » en deux. Aucun\n# vrai code ne repete une langue."
+ },
+ {
+  "id": 48,
+  "kind": "comment",
+  "text": "# « - S. stachys. » : ce qui suit le code est le nom latin de la\n# plante, pas un article. Un article a une definition.\n# Un article peut etre tres bref : « \"kilowatt\". 1000 \"watt\" »\n# tient en vingt-trois signes. Le seuil ecarte surtout le nom\n# latin isole, plus court encore."
+ },
+ {
+  "id": 49,
+  "kind": "docstring",
+  "text": "\"\"\"Corrections du TEXTE BRUT, avant toute analyse.\n\n    Certaines fautes doivent se reparer avant que le code de langues, le\n    domaine et les sens soient lus — sinon la reparation arrive trop tard.\n    Ainsi « autoritato » : l'auteur a ajoute « pensala. » en marge, tres a\n    droite, pour completer « verko » a la ligne suivante ; le mot s'est\n    retrouve APRES le « - DEFIRS. » de l'article precedent, dont le code ne\n    s'ancrait donc plus en fin de chaine.\n    \"\"\""
+ },
+ {
+  "id": 50,
+  "kind": "docstring",
+  "text": "\"\"\"Coupe la queue d'un segment, SANS toucher a l'ellipse finale.\n\n    L'auteur marque d'un « ... » la place du complement que le mot regit :\n    « de la instanto kande onu agnoskas kom valida ke... » pour quoniam, et de\n    meme pour for, jus, kande, kovrar, pasar, proxim. Le rognage ordinaire des\n    points la faisait disparaitre, alors qu'elle porte du sens — le livre en\n    garde cinquante-cinq autres ailleurs.\n    \"\"\""
+ },
+ {
+  "id": 51,
+  "kind": "comment",
+  "text": "# Le code de langues se colle parfois a l'ellipse — « ... gradale) de...EFIRS »\n# chez proxim — et la recherche du code en emporte un point. Deux points\n# suffisent donc a la reconnaitre ; on la retablit a trois."
+ },
+ {
+  "id": 52,
+  "kind": "comment",
+  "text": "# « e c. » abrege « e cetere » : ce point appartient au mot, non a la\n# phrase, et ne doit pas tomber avec la ponctuation finale."
+ },
+ {
+  "id": 53,
+  "kind": "comment",
+  "text": "# Abreviations employees dans le champ du domaine. L'original les pointe\n# irregulierement — « (ajuro) » ecrit « bot. », d'autres « bot » tout court.\n# On uniformise en les pointant toutes. La liste est EXPLICITE, et non deduite\n# d'une regle sur la finale : le meme champ contient des prepositions qui\n# finissent aussi par une consonne (« trans., ad », « netrans., pri »), des\n# verbes (« qua agas »), des numeraux (« un »), et jusqu'a une formule chimique\n# — une regle generale y mettait « C.8 H.8 » et « Natur.-historio »."
+ },
+ {
+  "id": 54,
+  "kind": "docstring",
+  "text": "\"\"\"Ajoute le point aux abreviations du domaine, et a elles seules.\"\"\""
+ },
+ {
+  "id": 55,
+  "kind": "comment",
+  "text": "# Les noms propres qui ouvrent une parenthese dans le livre — pays, personnes,\n# divinites, peuples, et les adjectifs de langue et de nation, qui gardent leur\n# majuscule en ido. Sans cette liste la regle de minuscule les abimait :\n# « (Italia) » devenait « (italia) », « (Voltaire) » « (voltaire) », et\n# « (Diana chasera, Tetis, e c.) » chez nimfo perdait sa deesse. La liste a ete\n# relevee sur le texte brut, en cherchant toute parenthese ouverte par un mot\n# capitalise dont l'edition avait fait une minuscule."
+ },
+ {
+  "id": 56,
+  "kind": "docstring",
+  "text": "\"\"\"La majuscule initiale d'un domaine n'a pas lieu d'etre : « (Muziko) »\n    s'ecrit « (muziko) ». L'auteur ne s'est pas uniformise. On epargne les noms\n    propres et les formules chimiques, reconnues a leur chiffre.\"\"\""
+ },
+ {
+  "id": 57,
+  "kind": "comment",
+  "text": "# Un symbole chimique — « M », « M' », « Na » — n'est pas un domaine :\n# « (M : natro, o kalio...) », dans la formule de l'alun, dit ce que la\n# lettre M represente. Un domaine du livre est un mot, non une lettre."
+ },
+ {
+  "id": 58,
+  "kind": "comment",
+  "text": "# Le nom propre peut porter une queue : « Roentgen-radii » n'est pas\n# « Roentgen » pour le test, et les rayons X de radiografar sortaient\n# « roentgen-radii ». On interroge aussi ce qui precede le trait."
+ },
+ {
+  "id": 59,
+  "kind": "comment",
+  "text": "# Le chiffre peut n'arriver qu'au mot SUIVANT, et le premier symbole\n# n'etre ni une capitale seule ni un nom propre : « (Si O3)2n », le\n# silicium de l'amiante, devenait « (si O3)2n ». La formule ne se\n# reconnait alors qu'ENTIERE, et c'est le motif qui pose deja les indices\n# qu'on interroge, avec ses deux garde-fous — au moins deux symboles et un\n# chiffre. Une phrase qui ouvre par une capitale et porte un nombre n'y\n# passe pas : « (Dicesas precipue pri la homo qua evas plu kam 20 yari) »."
+ },
+ {
+  "id": 60,
+  "kind": "docstring",
+  "text": "\"\"\"La chaine est-elle une FORMULE chimique, et rien d'autre ?\n\n    Les indices sont ramenes sur la ligne avant le test : la chaine pose\n    d'abord les majuscules, ensuite les indices, mais la meme fonction se\n    rejoue sur un texte deja rendu, ou « Si O3 » s'ecrit « Si O\\u2083 ».\n    \"\"\""
+ },
+ {
+  "id": 61,
+  "kind": "comment",
+  "text": "# Le meme domaine, ecrit de deux facons par l'auteur — « (anatom.) » une fois\n# contre « (anat.) » deux cent vingt-neuf, « (kem.) » deux fois contre\n# « (kemio) » cent quatre-vingts. Ce n'est pas une mauvaise lecture : c'est\n# l'auteur qui ne s'est pas uniformise, sur quarante ans de fiches. L'edition\n# retient LA FORME QU'IL EMPLOIE LE PLUS. Quand les deux sont a moins du double\n# l'une de l'autre, c'est l'abregee qui l'emporte : le livre abrege ses domaines\n# 2 463 fois contre 746 ou il les ecrit au long, et l'abreviation est donc sa\n# maniere. Chaque ligne porte les deux comptes.\n#\n# Ce qui n'est PAS ici : les formes que rien ne dit equivalentes. « tekn. » et\n# « teknol. », « fiz. » et « fiziol. », « paleont. » et « paleogr. », « milit. »\n# et « milit-arto », « elektro » et « elektrotekniko » sont des domaines\n# distincts, et « (religio kristana) », « (armeo-chefo) » des locutions."
+ },
+ {
+  "id": 62,
+  "kind": "comment",
+  "text": "#   3 / 446"
+ },
+ {
+  "id": 63,
+  "kind": "comment",
+  "text": "#   1 / 229"
+ },
+ {
+  "id": 64,
+  "kind": "comment",
+  "text": "#   1 / 424"
+ },
+ {
+  "id": 65,
+  "kind": "comment",
+  "text": "#   1 / 580"
+ },
+ {
+  "id": 66,
+  "kind": "comment",
+  "text": "#   1 / 233"
+ },
+ {
+  "id": 67,
+  "kind": "comment",
+  "text": "#   2 / 180"
+ },
+ {
+  "id": 68,
+  "kind": "comment",
+  "text": "#   1 / 117"
+ },
+ {
+  "id": 69,
+  "kind": "comment",
+  "text": "#   1 /  84"
+ },
+ {
+  "id": 70,
+  "kind": "comment",
+  "text": "#   1 /  84"
+ },
+ {
+  "id": 71,
+  "kind": "comment",
+  "text": "#   2 /  88"
+ },
+ {
+  "id": 72,
+  "kind": "comment",
+  "text": "#   1 /  83"
+ },
+ {
+  "id": 73,
+  "kind": "comment",
+  "text": "#   6 /  61"
+ },
+ {
+  "id": 74,
+  "kind": "comment",
+  "text": "#   2 /  27"
+ },
+ {
+  "id": 75,
+  "kind": "comment",
+  "text": "#   1 /  20"
+ },
+ {
+  "id": 76,
+  "kind": "comment",
+  "text": "#   1 /  20"
+ },
+ {
+  "id": 77,
+  "kind": "comment",
+  "text": "#   2 /  37"
+ },
+ {
+  "id": 78,
+  "kind": "comment",
+  "text": "#   1 /  13"
+ },
+ {
+  "id": 79,
+  "kind": "comment",
+  "text": "#   2 /  35"
+ },
+ {
+  "id": 80,
+  "kind": "comment",
+  "text": "#   2 /  14"
+ },
+ {
+  "id": 81,
+  "kind": "comment",
+  "text": "#   5 /  33"
+ },
+ {
+  "id": 82,
+  "kind": "comment",
+  "text": "#   3 /  33"
+ },
+ {
+  "id": 83,
+  "kind": "comment",
+  "text": "#   1 /   9"
+ },
+ {
+  "id": 84,
+  "kind": "comment",
+  "text": "#   2 /   9"
+ },
+ {
+  "id": 85,
+  "kind": "comment",
+  "text": "#   1 /  32"
+ },
+ {
+  "id": 86,
+  "kind": "comment",
+  "text": "#  13 /  32"
+ },
+ {
+  "id": 87,
+  "kind": "comment",
+  "text": "#   3 /  38"
+ },
+ {
+  "id": 88,
+  "kind": "comment",
+  "text": "#   1 /   6  (« teolo » n'est pas un mot)"
+ },
+ {
+  "id": 89,
+  "kind": "comment",
+  "text": "#   1 /   7"
+ },
+ {
+  "id": 90,
+  "kind": "comment",
+  "text": "#   1 /   7  (le point d'un mot entier)"
+ },
+ {
+  "id": 91,
+  "kind": "comment",
+  "text": "#   1 /   4"
+ },
+ {
+  "id": 92,
+  "kind": "comment",
+  "text": "#   2 /   5"
+ },
+ {
+  "id": 93,
+  "kind": "comment",
+  "text": "#   7 /   5  — a moins du double : l'abrege"
+ },
+ {
+  "id": 94,
+  "kind": "comment",
+  "text": "#   8 /  13"
+ },
+ {
+  "id": 95,
+  "kind": "comment",
+  "text": "#   7 /   6  — a moins du double : l'abrege"
+ },
+ {
+  "id": 96,
+  "kind": "comment",
+  "text": "#   3 /   4"
+ },
+ {
+  "id": 97,
+  "kind": "comment",
+  "text": "#   2 /   6"
+ },
+ {
+  "id": 98,
+  "kind": "comment",
+  "text": "#   4 /   5"
+ },
+ {
+  "id": 99,
+  "kind": "comment",
+  "text": "#   1 /   5"
+ },
+ {
+  "id": 100,
+  "kind": "comment",
+  "text": "#   9 /  20"
+ },
+ {
+  "id": 101,
+  "kind": "comment",
+  "text": "#   6 /  10"
+ },
+ {
+  "id": 102,
+  "kind": "comment",
+  "text": "#   1 /   3  — le trait d'union, maniere"
+ },
+ {
+  "id": 103,
+  "kind": "comment",
+  "text": "#   2 /   1    du livre pour ses domaines"
+ },
+ {
+  "id": 104,
+  "kind": "comment",
+  "text": "#   4 /   8    composes : il l'ecrit ainsi"
+ },
+ {
+  "id": 105,
+  "kind": "comment",
+  "text": "#   1 /   1    dans TOUS les autres —"
+ },
+ {
+  "id": 106,
+  "kind": "comment",
+  "text": "#   1 /   1    « banko-komerco », « natur-"
+ },
+ {
+  "id": 107,
+  "kind": "comment",
+  "text": "#  24 /  15    historio », « politiko-yuro »."
+ },
+ {
+  "id": 108,
+  "kind": "comment",
+  "text": "#   1 /   1  — egalite : l'abrege"
+ },
+ {
+  "id": 109,
+  "kind": "comment",
+  "text": "#   1 /   1"
+ },
+ {
+  "id": 110,
+  "kind": "comment",
+  "text": "#   1 /   1"
+ },
+ {
+  "id": 111,
+  "kind": "comment",
+  "text": "#   1 /   1"
+ },
+ {
+  "id": 112,
+  "kind": "comment",
+  "text": "#   1 /   1"
+ },
+ {
+  "id": 113,
+  "kind": "comment",
+  "text": "#   1 /   1"
+ },
+ {
+  "id": 114,
+  "kind": "comment",
+  "text": "#   1 /   1  — « prozodio » est vedette du"
+ },
+ {
+  "id": 115,
+  "kind": "comment",
+  "text": "#             livre, « prosodio » non"
+ },
+ {
+  "id": 116,
+  "kind": "comment",
+  "text": "# l'espace perdue entre deux domaines"
+ },
+ {
+  "id": 117,
+  "kind": "comment",
+  "text": "#   1 /   6"
+ },
+ {
+  "id": 118,
+  "kind": "comment",
+  "text": "#   1 / 119"
+ },
+ {
+  "id": 119,
+  "kind": "comment",
+  "text": "#   1 /   1"
+ },
+ {
+  "id": 120,
+  "kind": "comment",
+  "text": "# Le soulignement releve sur la page porte la forme QUE L'AUTEUR A ECRITE ; le\n# champ porte celle que l'edition retient. Pour reconnaitre qu'un souligne est\n# le domaine — et ne pas l'envoyer a la liste des filets non places —, il faut\n# donc connaitre les deux. Table inverse, pour cet usage seul."
+ },
+ {
+  "id": 121,
+  "kind": "docstring",
+  "text": "\"\"\"La chaine reduite a ses lettres : « netrans.,an » et « netrans., an »\n    sont le meme domaine, « yuro-cienco » et « yurocienco » aussi.\"\"\""
+ },
+ {
+  "id": 122,
+  "kind": "docstring",
+  "text": "\"\"\"La forme RETENUE d'un domaine que la page ecrit autrement.\n\n    Le filet de la dactylo couvre « medicino » ; le texte rendu porte\n    « medic. ». Cherche tel quel, le filet ne se retrouvait plus, et le domaine\n    perdait son italique. Le trait se rompt aussi en fin de ligne, et il ne\n    reste qu'un morceau — « cienco » pour « yuro-cienco » : on accepte donc\n    aussi le morceau, a partir de quatre lettres.\n    \"\"\""
+ },
+ {
+  "id": 123,
+  "kind": "comment",
+  "text": "# On ne remplace que la composante ENTIERE : le champ enumere parfois deux\n# domaines — « (arit., algeb.) », « (fiz. e geom.) » —, et chacun compte pour\n# une composante. Une composante de plusieurs mots est une phrase de l'auteur,\n# non un domaine : « ante la milito universala di 1914-18 », « en la filozofio\n# olima », « olima geometrio » gardent leur mot."
+ },
+ {
+  "id": 124,
+  "kind": "docstring",
+  "text": "\"\"\"Rend au domaine la forme que l'auteur emploie le plus souvent.\"\"\""
+ },
+ {
+  "id": 125,
+  "kind": "comment",
+  "text": "# La forme cherchee l'est a la ponctuation et a la casse pres :\n# « Medicino », « kem » sans son point et « kem. » sont le meme mot."
+ },
+ {
+  "id": 126,
+  "kind": "comment",
+  "text": "# La virgule qui separe deux domaines prend son espace, comme les\n# quatre cents autres : « (netrans.,an) » s'ecrit « (netrans., an) ».\n# Sauf entre deux chiffres : « (en Paris = 1,18 metro) », chez\n# « ulno », porte une decimale et non une enumeration."
+ },
+ {
+  "id": 127,
+  "kind": "comment",
+  "text": "# Une abreviation, ou le « e c. » de l'auteur, ne finit pas une phrase."
+ },
+ {
+  "id": 128,
+  "kind": "docstring",
+  "text": "\"\"\"La parenthese CLOT-elle le sens, apres un point ?\n\n    Alors ce n'est pas un qualificatif de domaine mais une REMARQUE, et elle\n    garde la capitale que l'auteur lui a donnee : « (Dicesas precipue pri la\n    homo qua evas plu kam 20 yari) » chez adulta, « (Uzesas ordinare en\n    pluralo.) » chez litanio, « (Anke metaf.) » chez sept articles.\n\n    Le point ne suffit pas, ni la place : le domaine du sens SUIVANT se pose\n    lui aussi apres un point — « Kontrea. (en lukto) La persono qua\n    opozesas... » chez adversa, « ...kombatis en lico. (metaf.) La persono\n    qua... » chez championo. Ce qui separe les deux, c'est que la remarque ne\n    laisse rien derriere elle, tandis que le qualificatif annonce ce qui suit.\n    Sur tout le dictionnaire la regle leve 47 parentheses, et aucune n'est un\n    domaine.\n    \"\"\""
+ },
+ {
+  "id": 129,
+  "kind": "docstring",
+  "text": "\"\"\"Meme regle DANS les parentheses d'un sens : tous les qualificatifs ne\n    sont pas dans le champ du domaine — « ajuro » porte les siens dans ses deux\n    sens, « (arkitekt.) » pointe et « (stofo) » non, ce dernier etant un mot\n    entier et non une abreviation.\"\"\""
+ },
+ {
+  "id": 130,
+  "kind": "comment",
+  "text": "# La parenthese qui CITE un signe de ponctuation n'est pas un\n# qualificatif : « komo. Puntuo-signo (,) qua indikas... »,\n# « cirkonflexo... signo (^) », « diezo... Signo (#) ». Le rognage de\n# la virgule finale, pose pour les domaines a rallonge —\n# « (netrans.,) » —, videait la parenthese de komo tout entiere, et\n# l'article definissait la virgule sans la montrer."
+ },
+ {
+  "id": 131,
+  "kind": "docstring",
+  "text": "\"\"\"Le balayage de fin de chaine, qui s'arrete aux points de suspension.\"\"\""
+ },
+ {
+  "id": 132,
+  "kind": "comment",
+  "text": "# Idempotence : la couche passe une fois au decoupage et une fois a\n# l'analyse. Quand la cle est un prefixe de son remplacement — ajouter\n# un guillemet fermant, par exemple — la seconde passe l'ajoutait une\n# seconde fois. On s'abstient si le remplacement est deja pose."
+ },
+ {
+  "id": 133,
+  "kind": "comment",
+  "text": "# Le fac-simile garde l'espace que la dactylo a laissee autour du tiret\n# d'affixe ; l'edition de lecture recolle. « - as. » est « -as », « - at\n# - . » est « -at- », « bo - . » est « bo- ». Sans quoi la vedette etait\n# vide et l'article introuvable.\n# « -- protestanto. » : le double tiret annonce un article insere apres\n# coup, il n'appartient pas a la vedette. Un tiret SEUL, lui, est l'affixe\n# (« -a », « -oz- ») et reste."
+ },
+ {
+  "id": 134,
+  "kind": "comment",
+  "text": "# Vedette espacee lettre a lettre — « l a t i r o » pour « latiro » : la\n# dactylo mettait ainsi en valeur, faute d'italique."
+ },
+ {
+  "id": 135,
+  "kind": "comment",
+  "text": "# Ligne barree a coups de guillemets et de tirets : la dactylo annulait\n# ainsi une ligne entiere. Ce qui suit le code de langues et ne porte ni\n# lettre ni chiffre ne dit rien — mais laisse la, cette queue empechait le\n# code de s'ancrer en fin de chaine, et « exotera » passait pour\n# « sen-lingua », son DEFIRS reste au milieu de la definition."
+ },
+ {
+  "id": 136,
+  "kind": "comment",
+  "text": "# La rature porte parfois des LETTRES — « myelito. ... - DEFIS. vm-----m- ».\n# La regle ci-dessus, qui exige une queue sans lettre ni chiffre, la\n# laissait passer : la definition gardait le barbouillage, et le code, qui\n# ne s'ancrait plus en fin de chaine, etait perdu — l'article passait pour\n# « sen-lingua ». Un jeton qui porte trois tirets de suite n'est aucun mot\n# de la langue ; le livre n'en compte que cinq, tous des ratures."
+ },
+ {
+  "id": 137,
+  "kind": "comment",
+  "text": "# Le tapuscrit marque les mots non officiels d'un « + » en exposant ; la\n# tradition ido ecrit une asterisque. On la restitue ici — le fac-simile,\n# lui, garde le signe frappe.\n#\n# PARTOUT, non a la seule vedette : le signe marque aussi la variante qui\n# la suit — « timbro (+tembro) », « tarda (+retarda) » — et les mots cites\n# dans les definitions — « +Seancar », « +Kluzajo », « +Asiejo-mashino ».\n# Deux contextes en sont exclus, ou le « + » est le signe de l'addition et\n# non une marque : « 6 +1, o 4 +3 » chez « sep », et les points d'une\n# figure « AA'+BB'+CC' » chez « involuciono ». On exige donc une LETTRE\n# apres le signe, et rien d'alphanumerique avant lui.\n#\n# Effet de bord voulu : « augmentar » finissait sur « +DEFIS », et son code\n# de langues ne s'ancrait pas — l'article passait pour « sen-lingua ». Avec\n# l'asterisque, que la lecture du code admet deja, il s'ancre."
+ },
+ {
+  "id": 138,
+  "kind": "comment",
+  "text": "# La vedette peut etre entre guillemets — « \"alpari\" », « \"amen\" » — ou\n# precedee d'un point parasite. On les admet, puis on les retire du mot."
+ },
+ {
+  "id": 139,
+  "kind": "comment",
+  "text": "# Emprunt cite : le tapuscrit encadre de guillemets les mots pris tels\n# quels a une autre langue — « amen », « alpari », « angelus », « avoue ».\n# On retient le fait, sans le mettre dans la vedette : la recherche doit\n# continuer de trouver « amen » frappe sans guillemets.\n# Encore faut-il que les guillemets tiennent TOUT le mot. « \"brokoli\"-kaulo »\n# n'est pas un emprunt cite : c'est un mot ido dont le premier element seul\n# est emprunte, et les editions, qui encadrent de chevrons la vedette citee,\n# en mettaient une seconde paire autour de la premiere. On refuse donc la\n# fermante suivie d'une minuscule ou d'un tiret — le mot continue. Suivie\n# d'une capitale, elle ouvre la definition : « \"madras\"Kapovesto », ou\n# l'espace a manque a la frappe."
+ },
+ {
+  "id": 140,
+  "kind": "comment",
+  "text": "# Les lettres accentuees appartiennent au mot : sans elles « ampere » se\n# coupait en « amp » et le reste tombait dans la definition.\n# Locution latine ou anglaise prise pour vedette : le tapuscrit l'encadre de\n# guillemets — « \"a posteriori\" », « \"high life\" ». Le mot-vedette est alors\n# la locution ENTIERE ; sans cette regle « a posteriori » se reduisait a\n# « a » et sa definition commencait par « posteriori\" »."
+ },
+ {
+  "id": 141,
+  "kind": "comment",
+  "text": "# L'asterisque autant que la croix : la marque du mot non officiel est\n# deja rendue plus haut quand elle touche son mot — « +si » devient\n# « *si » —, et la vedette ne se reconnaissait plus. « si » porte deux\n# articles, et le second, l'adverbe, perdait le sien."
+ },
+ {
+  "id": 142,
+  "kind": "comment",
+  "text": "# Le bruit qui suit parfois le code — « - DEFIRS. --- » — empechait\n# l'ancrage en fin de chaine, et l'entree passait pour « sen-lingua ».\n# Les POINTS DE SUSPENSION, eux, appartiennent au texte : ils tiennent la\n# place du complement, et huit articles finissent dessus — « Kambie di... »\n# chez « po », « Qua havas tri... » chez « tri- », « Profite da... Destine\n# di... » chez « por ». Le balayage les emportait, sauf quand un guillemet\n# fermant les protegeait (« qua tendencas a... »). On garde donc le dernier\n# groupe de points du balayage et on ne retire que ce qui le suit."
+ },
+ {
+  "id": 143,
+  "kind": "comment",
+  "text": "# Le code n'est pas toujours precede d'un tiret. Il se colle au point\n# (« agar lo.DEFIS. »), a la parenthese fermante (« (anke metaf.)DEFIRS »),\n# mais aussi a une parenthese OUVRANTE restee ouverte (« ...alambiko.\n# (DEFIRS »), a une virgule (« ...deliberita, DEFIS ») ou a rien du tout\n# (« ...kavalrio DEFIRS »). Vingt-et-un articles gardaient ainsi leur code\n# au milieu de la definition et passaient pour « sen-lingua ». La casse\n# protege : _lire_code exige un jeton majoritairement haut de casse, et le\n# dernier mot d'une definition ne l'est jamais.\n# L'auteur ajoute parfois une remarque APRES le code : « ... - DEFIS. (Ta\n# vorto ne esas sinonimo di mariajar... ) ». Le code n'etant plus en fin de\n# chaine, il n'etait pas lu, et l'article passait pour « sen-lingua ». On\n# met donc la remarque de cote le temps de lire le code, puis on la remet."
+ },
+ {
+  "id": 144,
+  "kind": "comment",
+  "text": "# Le point final doit tomber : la recherche du code exige des\n# lettres en toute fin de chaine."
+ },
+ {
+  "id": 145,
+  "kind": "comment",
+  "text": "# Le code de langues qui n'est PAS au bout. L'auteur l'a parfois pose apres\n# un premier sens et a continue — « cilio. (anat.) Pilo... - F. (bot.) Sorto\n# di pilo... - F. » —, ou la frappe a laisse une scorie derriere lui :\n# « - DE. s q c i » chez hidranto, « - DEFIS. pre- » chez studiar. Le code\n# restait alors AU MILIEU de la definition, ou il n'a rien a faire, et\n# l'article passait pour « sen-lingua ».\n#\n# On ne touche qu'a deux cas surs : l'article n'a pas de code, ou il porte\n# deja le MEME. Un code different au milieu du texte est autre chose — chez\n# « staciono », « (autofiakri - F. taxi - autobusi, e c.) » donne le mot\n# francais, il ne clot pas l'article.\n#\n# Quand ce qui suit ouvre un sens — un domaine entre parentheses, ou un\n# tiret suivi d'une capitale —, la coupure se fait la : le code marquait la\n# fin d'un sens. On la note d'un signe que le decoupage lira."
+ },
+ {
+  "id": 146,
+  "kind": "comment",
+  "text": "# Le numero de sens qui pend au bout de l'article, sans rien apres lui :\n# « forsan. Adverbo qua signifikas \"...\" - II. » — la dactylo a annonce un\n# second sens qu'elle n'a pas frappe. Seul, le numero ne dit rien, et\n# l'edition ecarte deja ses pareils au milieu du texte. On exige le tiret\n# qui l'annonce, pour ne pas rogner « la rejo Francisko I »."
+ },
+ {
+  "id": 147,
+  "kind": "comment",
+  "text": "# « ed. (Videz \"e\"). » : la parenthese porte un RENVOI, pas un domaine. Prise\n# pour un domaine, elle laissait l'article sans definition du tout."
+ },
+ {
+  "id": 148,
+  "kind": "comment",
+  "text": "# Le domaine porte souvent une ponctuation parasite, heritee de la frappe :\n# « zool, », « .trans », « patol, ». Et il peut contenir une date, dont les\n# chiffres sont a redresser comme ailleurs — « olim, ante l9l5 »."
+ },
+ {
+  "id": 149,
+  "kind": "comment",
+  "text": "# Deux parentheses de suite : la seconde precise la premiere et non le\n# sens. « pensar. (trans. e netrans.) (ulo, ad ulo, pri ulu od ulo) » —\n# le regime appartient au marqueur de transitivite, pas a la definition,\n# qui commencait donc par une parenthese orpheline."
+ },
+ {
+  "id": 150,
+  "kind": "comment",
+  "text": "# La seconde parenthese est un renseignement de meme nature que la\n# premiere, et lui revient le meme traitement : minuscule initiale,\n# chiffres redresses, POINT rendu a l'abreviation. Recollee telle\n# quelle, elle ressortait nue quand ses voisines etaient pointees —\n# « (trans.) (tekn) », « (netrans.) (patol) », « (netrans.) (Kemio) »."
+ },
+ {
+  "id": 151,
+  "kind": "comment",
+  "text": "# Elision : « ka(d) », « on(u) », « a(d) ». La lettre entre parentheses\n# appartient au mot — elle ne s'ajoute que devant une voyelle. Elle etait\n# lue comme un domaine, et s'affichait separee de la vedette, dans une\n# autre couleur.\n#\n# Ce n'en est une que si la vedette est breve ET la parenthese d'UNE\n# lettre. Sans cette double condition on happerait « afina (ad) »,\n# « plena (de) », ou la parenthese porte une preposition regie et non une\n# lettre elidee.\n# Interjection : le point d'exclamation appartient au mot, non a la\n# definition. « he » se lit « he! », et sa definition commence apres."
+ },
+ {
+  "id": 152,
+  "kind": "comment",
+  "text": "# Un nom releve a l'oeil l'emporte : la machine ne peut pas savoir que\n# « capparia spi nosa » est « capparia spinosa », aucun des deux morceaux\n# n'etant un mot latin."
+ },
+ {
+  "id": 153,
+  "kind": "comment",
+  "text": "# Un NUMERO de sens entre parentheses n'est pas un domaine : « romano. (I)\n# Verko literaturala... », « vice. (l) qua pre-nominesis... » — le « l »\n# etant le 1 de la dactylo. Les editions renumerotent les sens elles-memes ;\n# garde comme domaine, le numero s'affichait a la place du domaine."
+ },
+ {
+  "id": 154,
+  "kind": "comment",
+  "text": "# Le numero peut PRECEDER un vrai domaine : « ramo. (l) (bot.) Mikra\n# brancho... ». La fusion des deux parentheses gardait alors les deux, et\n# l'article s'annoncait « (1) (bot.) ». On ne jette que le numero."
+ },
+ {
+  "id": 155,
+  "kind": "comment",
+  "text": "# Une FORMULE chimique posee juste apres la vedette — « asparagino. (C8 H8\n# AZ2 O6). Substanco... » — n'est pas un domaine non plus : c'est le meme\n# renseignement que « Simbolo kemiala : ... » ailleurs dans le livre, et il\n# va au meme champ, pour se rendre de la meme facon."
+ },
+ {
+  "id": 156,
+  "kind": "comment",
+  "text": "# La numerotation entre parentheses dont le « (1) » est parti au domaine :\n# on coupe a la place des numeros restes (voir RE_ORFA_NUM)."
+ },
+ {
+  "id": 157,
+  "kind": "comment",
+  "text": "# Rattrapage : le code peut rester au bout du DERNIER sens quand une note\n# le suivait dans l'original et que le decoupage en sens l'a isole. On le\n# releve la aussi — et s'il double celui deja lu, on le retire du texte."
+ },
+ {
+  "id": 158,
+  "kind": "comment",
+  "text": "# Le drapeau « korektigita » disait « au moins une cellule corrigee\n# automatiquement » — une information de provenance, non un doute. Toutes\n# les definitions ayant ete relues une a une, il ne designait plus de\n# travail restant : il est retire. Le compte reste dans e['korektita'],\n# pour qui veut mesurer."
+ },
+ {
+  "id": 159,
+  "kind": "comment",
+  "text": "# Les deux dernieres pages du livre portent une liste a part, annoncee par son\n# propre titre : « LISTO de vorti qui, pro lia teknikaleso e probiteso multa-\n# yara, probable adoptesos da la Akademio di Ido ». Ce sont donc, par\n# definition, des mots non encore officiels — l'asterisque leur revient, mais\n# la dactylo ne l'a pas frappee, le titre valant pour toute la liste."
+ },
+ {
+  "id": 160,
+  "kind": "docstring",
+  "text": "\"\"\"La vedette telle qu'elle se RANGE, sa marque de tete otee.\n\n    L'asterisque du mot non officiel et le tiret de l'affixe ne sont pas des\n    lettres, et le livre ne les range pas : « -acho » est entre « acetono » et\n    « aciano », « -eyo » entre « exutorio » et « ez ». Compares tels quels, ils\n    passaient avant toute lettre — chacun des 126 affixes et mots non officiels\n    rompait donc l'ordre par sa seule marque, et entrainait son voisin avec\n    lui. Quatre-vingt-cinq drapeaux ne disaient que cela.\n\n    Le point d'exclamation de l'interjection ne se range pas davantage :\n    « ah! » se cherche a « ah ». Ni le tiret FINAL du suffixe — « -an- » se\n    range avec « an » —, ni l'espace de la locution latine : le livre pose\n    « a posteriori » entre « apostata » et « apostemo », donc a « aposteriori ».\n    \"\"\""
+ },
+ {
+  "id": 161,
+  "kind": "comment",
+  "text": "# L'accent ne se range pas non plus : « ampèremetro » precede « ampla »\n# dans le livre, ce que seul un « e » sans accent explique. Le tapuscrit\n# n'en porte que sur des noms empruntes — ampère, Roentgen."
+ },
+ {
+  "id": 162,
+  "kind": "comment",
+  "text": "# Les guillemets ne se rangent pas davantage, ou qu'ils soient : le livre\n# range « \"brokoli\"-kaulo » a « brokoli-kaulo ». L'espace insecable qui les\n# accompagne dans l'edition part avec eux."
+ },
+ {
+  "id": 163,
+  "kind": "comment",
+  "text": "# La DESINENCE ne compte pas dans le rangement du livre. C'est une regle qu'il\n# n'enonce pas, mais qu'il suit : « aktinio » precede « aktinika » parce que\n# l'auteur range « aktini » avant « aktinik », le -o et le -a n'y entrant pas.\n# Comparees mot entier, ces deux vedettes passaient pour un desordre, et neuf\n# cents autres avec elles.\n#\n# L'auteur ne s'y tient pas toujours : il ecrit « astrakano » puis « astro »,\n# ou la racine seule voudrait l'inverse — « astr » avant « astrakan ». Les deux\n# lectures sont donc gardees, et le drapeau ne se leve que si TOUTES DEUX sont\n# rompues : ce qu'aucune des deux conventions n'explique."
+ },
+ {
+  "id": 164,
+  "kind": "docstring",
+  "text": "\"\"\"La vedette rangee, sa desinence otee en plus.\"\"\""
+ },
+ {
+  "id": 165,
+  "kind": "comment",
+  "text": "# Le suffixe ne compte pas plus que la desinence, et pour la meme raison : le\n# rangement suit la RACINE. « venerala » precede « veneracar » parce que le\n# premier est vener-al-a et le second venerac-ar ; « inventariar » precede\n# « inventar » parce que les deux sortent de invent-. C'est ainsi que plusieurs\n# dictionnaires de l'ido les analysent, et le livre les range de meme.\n#\n# Le depouillement s'arrete a UN suffixe, et ne descend jamais sous cinq\n# lettres : sans cette borne « metalo » deviendrait « met- » et « histerio »\n# « hist- ». Cette troisieme lecture ne peut qu'OTER des drapeaux — il en faut\n# trois pour en poser un —, jamais en ajouter."
+ },
+ {
+  "id": 166,
+  "kind": "docstring",
+  "text": "\"\"\"La vedette rangee, sa desinence et UN suffixe otes.\"\"\""
+ },
+ {
+  "id": 167,
+  "kind": "comment",
+  "text": "# Le livre se termine par deux listes a part, qui recommencent chacune\n# l'alphabet : un addendum de cinq articles (image 636) et la « LISTO de vorti\n# qui... probable adoptesos da la Akademio di Ido » (images 637-638). Leur\n# premiere vedette recule forcement dans l'alphabet ; ce n'est pas un desordre."
+ },
+ {
+  "id": 168,
+  "kind": "comment",
+  "text": "# La nature grammaticale, telle que le livre l'annonce lui-meme en tete de\n# definition : « Prepoziciono qua indikas... », « Interjeciono qua expresas... »"
+ },
+ {
+  "id": 169,
+  "kind": "docstring",
+  "text": "\"\"\"La finale de la vedette est-elle celle d'un mot ido ?\n\n    La question n'a de sens que pour un MOT DE LA LANGUE. Trois familles y\n    echappent, et les signaler etait une erreur de categorie :\n\n      * l'AFFIXE — « -eyo », « poli- », « bo- » —, dont le tiret dit\n        precisement qu'il n'est pas un mot. 78 cas ;\n      * le mot que le livre declare lui-meme GRAMMATICAL : « an.\n        Prepoziciono qua indikas relato di kontigueso », « fi! Interjeciono\n        qua expresas la desprizo di ulo ». L'ido ne donne pas de finale en\n        -o/-a/-e/-i a ses prepositions, pronoms et interjections. 51 cas ;\n      * l'EMPRUNT CITE — « amen », « angelus », « cambium » —, que l'auteur\n        entoure de guillemets parce qu'il n'est pas ido. 50 cas.\n\n    Ce qui reste — les numeraux « cent », « dek », les noms de notes « b »,\n    « c », « d », et les prepositions que le livre ne qualifie pas — est\n    legitime aussi, mais rien dans le texte ne permet de le dire.\n    \"\"\""
+ },
+ {
+  "id": 170,
+  "kind": "comment",
+  "text": "# L'ordre des lettres du code est celui du livre : D E F I R S, puis L — le\n# latin, que quatre-vingt-douze codes mettent en dernier —, puis les langues\n# rares. Vingt-deux codes le rompent : « DEFSR » chez alibio, « ED » chez\n# sendar, « FISDE » chez grano, « dEFIRS » ou « DEFlS » ou la capitale et le I\n# ont ete abimes a la lecture. Rien ne s'y repete — c'est l'ordre seul qui\n# differe —, et l'edition le remet, la ligne brute gardant la graphie de la\n# page. Les notations qui EPELLENT la langue en sont exemptes : « FDSued »,\n# « DERPol », « Gr », « Ned » ne sont pas des suites de lettres."
+ },
+ {
+  "id": 171,
+  "kind": "docstring",
+  "text": "\"\"\"Remet les lettres du code dans l'ordre du livre. Rend le nombre pose.\"\"\""
+ },
+ {
+  "id": 172,
+  "kind": "docstring",
+  "text": "\"\"\"Pose le drapeau d'ordre sur toute la liste, et rend le nombre pose.\n\n    Le drapeau se lit sur la SUITE des vedettes : il se repose donc en entier\n    des qu'une vedette change, ou qu'un article s'ajoute. Une vedette rompt\n    l'ordre quand elle recule sur les TROIS lectures — mot entier, racine, et\n    racine depouillee de son suffixe (voir _klavo_radiko et _klavo_radikalo) —,\n    et qu'elle n'ouvre pas une des listes finales.\n    \"\"\""
+ },
+ {
+  "id": 173,
+  "kind": "comment",
+  "text": "# Les quatre locutions latines — « a posteriori », « ex libris » — sont\n# rangees tantot comme un seul mot, « aposteriori » entre « apostata »\n# et « apostemo », tantot comme deux, « ex libris » avant « exajerar ».\n# Le livre ne dit pas laquelle des deux ; on ne les compte donc pas."
+ },
+ {
+  "id": 174,
+  "kind": "comment",
+  "text": "# Une vedette d'une seule lettre est legitime : « a », « b », « c »... sont\n# les notes de la gamme. Seule la vedette VIDE n'est pas un article."
+ },
+ {
+  "id": 175,
+  "kind": "comment",
+  "text": "# « p. 83, an-pos \"cetato\" : » n'est pas un article mais un renvoi de\n# l'errata, qui dit ou inserer l'article suivant."
+ },
+ {
+  "id": 176,
+  "kind": "comment",
+  "text": "# Le folio courant, lu comme du texte : « 110 » se decode « llO », « 111 »\n# « lll ». Un tel jeton, sans definition, n'est pas un mot."
+ },
+ {
+  "id": 177,
+  "kind": "comment",
+  "text": "# La locution se presente toujours de la meme maniere : un groupe qui commence\n# par une capitale et que suit un deux-points. Le soulignement de l'auteur la\n# confirme ; la forme la trouve, meme la ou la relecture a corrige une coquille\n# et ou la chaine relevee sur la grille ne se retrouve plus telle quelle.\n# La VIRGULE fait partie de la locution : l'auteur empile parfois des locutions\n# paralleles qui partagent une definition — « Extraktar radiko, quadrata,\n# kubala, di nombro : ... », c'est-a-dire la racine carree et la racine cubique\n# en une seule fois ; « La matematiki pura, la mekaniko pura : ... ». Sans elle,\n# la definition qui suit grossissait le corps de la locution PRECEDENTE, qui\n# n'en pouvait mais.\n# La MINUSCULE est admise, sous condition. La capitale n'etait qu'un indice :\n# ce qui annonce une locution, c'est le soulignement et le deux-points. Quand\n# le sens s'ouvre sur son domaine, le mot qui suit garde sa minuscule —\n# « agregar. ... III. (en la universitato di Francia) agregito : la persono\n# qua... » —, et la locution passait inapercue. On l'accepte donc, mais une\n# locution en minuscule doit CITER la vedette, comme le fait deja toute\n# locution d'un seul mot : « agregito » sous « agregar ». Sans quoi les\n# exemples que l'auteur enumere apres un « Exemple : » — « krucagar : agar per\n# kruco » sous « -agar » — et ses conditions d'emploi — « kun radiko nomala : »\n# sous « -ig- » — se seraient detachees comme des sous-entrees, alors qu'elles\n# appartiennent a la phrase.\n# La locution porte parfois la CROIX du mot non officiel : « *skrino » est le\n# mot du cinema, et l'auteur le nomme comme tel sous « skreno ». La marque se\n# lit donc avec elle, et les deux garde-fous qui suivent — la capitale, le lien\n# avec la vedette — n'ont pas a s'y appliquer : un mot marque de la croix EST\n# un mot que l'auteur nomme, jamais l'adverbe d'une glose."
+ },
+ {
+  "id": 178,
+  "kind": "comment",
+  "text": "# Un qualificatif de tete : « (matem.) », « (kemio) ». Une lettre ou un chiffre\n# seul entre parentheses est un numero d'enumeration, non un domaine."
+ },
+ {
+  "id": 179,
+  "kind": "comment",
+  "text": "# Le meme qualificatif, mais en TETE : « *botono. (elektr.) Mikra cilindro... »\n# porte son domaine apres la vedette, non avant elle comme « (geom.) arko\n# inflexita : ... ». Il va au champ `fako` dans les deux cas."
+ },
+ {
+  "id": 180,
+  "kind": "comment",
+  "text": "# La locution ouvre parfois une PARENTHESE : « estado. Eso mentala... (estado\n# civila : la situeso di persono kom filio legitima o ne-legitima...) ». C'est\n# la meme chose qu'ailleurs — soulignee, suivie du deux-points, portant sa\n# propre definition —, et la parenthese ne la degrade pas : « estado civila » se\n# cherche comme « estado ». Elle s'y ecrit souvent en minuscule, la parenthese\n# tenant lieu d'ouverture ; on n'exige donc pas la capitale ici.\n# Un ARTICLE ENTIER glisse entre parentheses dans la definition d'un autre :\n# « butono. ... (*botono. (elektr.) Mikra cilindro, ek materio elektro-ne-\n# konduktiva...) ». Ce n'est pas une locution mais un mot a part, avec son\n# domaine et sa definition — et l'asterisque, dont l'auteur marque le mot non\n# encore officiel, le distingue de l'abreviation de domaine qui a la meme\n# forme : « (trans. ... », « (anat. ... », « (metaf. ... ». Le livre n'en\n# compte qu'un ; sans lui, « botono » ne se cherchait pas."
+ },
+ {
+  "id": 181,
+  "kind": "comment",
+  "text": "# Les desinences grammaticales de l'Ido : participes, verbe, substantif,\n# adjectif, adverbe, pluriel. On les ote pour comparer deux mots par leur\n# RACINE — « inflexar » et « arko inflexita » n'ont pas la meme fin, mais le\n# meme mot. De la PLUS LONGUE a la plus courte : « inflexita » doit rendre\n# « inflex », non « inflexit », faute de quoi le verbe ne s'y reconnait pas."
+ },
+ {
+  "id": 182,
+  "kind": "docstring",
+  "text": "\"\"\"La racine du mot, sa desinence otee.\n\n    On n'ote rien qui laisserait moins de quatre lettres : sur un radical si\n    court, deux mots sans rapport se ressemblent trop — « bear » n'est pas\n    « be- », et « arko » n'est pas « ark- ».\n    \"\"\""
+ },
+ {
+  "id": 183,
+  "kind": "docstring",
+  "text": "\"\"\"La locution reprend-elle le mot de l'article ?\n\n    Dans une parenthese, le deux-points introduit aussi la GLOSE, qui n'est pas\n    une locution : « (antonimo : inflaco) », « (analogie : sur la kapo di ula\n    repteri) », « (simbolo kemiala : Ir) ». L'auteur les souligne comme les\n    locutions — le soulignement ne les separe donc pas. Ce qui les separe, c'est\n    que la locution CITE le mot de l'article, sous une forme ou une autre :\n    « estado civila » sous « estado », « arko inflexita » sous « inflexar »,\n    « relate » sous « relatar ». La glose, elle, parle d'autre chose.\n\n    Hors parenthese, la capitale distinguait les deux ; entre parentheses la\n    locution perd sa capitale, et cette citation en tient lieu.\n    \"\"\""
+ },
+ {
+  "id": 184,
+  "kind": "comment",
+  "text": "# On compare par le DEBUT : « konstanta » rend « konst » — la desinence\n# -anta y passe pour un participe qu'elle n'est pas — la ou « konstanto »\n# rend « konstant ». Exiger l'egalite separait les deux ; le prefixe les\n# reunit, sans rapprocher pour autant « nun » de « moloso »."
+ },
+ {
+  "id": 185,
+  "kind": "docstring",
+  "text": "\"\"\"L'index de la parenthese qui ferme celle ouverte en `i`, ou None.\n\n    Le tapuscrit ne ferme pas toujours : « inflexar » ouvre une parenthese que\n    la ligne suivante, tronquee, n'a jamais close. Compter les niveaux le dit\n    sans se tromper, et ne prend pas la fermeture d'une parenthese INTERIEURE —\n    « ... tangenta per olia somiti (quale la embracilo tipografiala) » — pour\n    celle de la locution.\n    \"\"\""
+ },
+ {
+  "id": 186,
+  "kind": "docstring",
+  "text": "\"\"\"`parto` est-il un morceau de `tuto`, aux mots entiers ?\n\n    La comparaison se fait mot a mot, ponctuation otee : le filet releve\n    « quadrata » la ou la locution ecrit « quadrata, ».\n    \"\"\""
+ },
+ {
+  "id": 187,
+  "kind": "docstring",
+  "text": "\"\"\"Deux chaines designent-elles la meme locution ?\"\"\""
+ },
+ {
+  "id": 188,
+  "kind": "comment",
+  "text": "# La croix du mot non officiel ne separe pas deux ecritures du meme mot :\n# le releve rend « +skrino », le texte typographie « *skrino »."
+ },
+ {
+  "id": 189,
+  "kind": "comment",
+  "text": "# Mot a mot, la ponctuation de fin otee : le filet de « radiko » s'arrete\n# sur « Extraktar radiko, quadrata » quand la locution ecrit « quadrata, ».\n# Sans cela la virgule, presente d'un cote et pas de l'autre, faisait\n# echouer la comparaison des debuts."
+ },
+ {
+  "id": 190,
+  "kind": "comment",
+  "text": "# Le premier mot suffit s'il est long : « Prpporciono » relu\n# « Proporciono » reste reconnaissable, et la suite est identique."
+ },
+ {
+  "id": 191,
+  "kind": "comment",
+  "text": "# Le filet s'arrete parfois avant la fin de la locution — « Elektro » pour\n# « Elektro pozitiva ». Un debut assez long vaut identification."
+ },
+ {
+  "id": 192,
+  "kind": "comment",
+  "text": "# bornes de l'italique, invisibles au texte"
+ },
+ {
+  "id": 193,
+  "kind": "docstring",
+  "text": "\"\"\"Encadre de bornes chaque passage a mettre en italique.\n\n    On pose les plus longs d'abord : « (aludante persono) » contient\n    « persono », et l'ordre inverse aurait coupe la parenthese en deux.\n    \"\"\""
+ },
+ {
+  "id": 194,
+  "kind": "comment",
+  "text": "# Les italiques posees a l'oeil : le contexte donne la place, les accolades\n# disent ce qui la prend. Elles passent AVANT les filets, qui ne doivent pas\n# recouper un passage deja borne."
+ },
+ {
+  "id": 195,
+  "kind": "comment",
+  "text": "# Une locution qui est un NOM PROPRE garde sa capitale. Le livre n'en compte\n# qu'une : le Grand Orient de la franc-maconnerie."
+ },
+ {
+  "id": 196,
+  "kind": "docstring",
+  "text": "\"\"\"La locution s'ecrit comme une vedette : en minuscule.\"\"\""
+ },
+ {
+  "id": 197,
+  "kind": "docstring",
+  "text": "\"\"\"Initiale capitale, comme les dix mille autres definitions du livre.\n\n    On ne touche qu'a une definition qui COMMENCE par une lettre minuscule :\n    celle qui s'ouvre sur une parenthese — « (bot.) ... » — porte un domaine,\n    et le domaine s'ecrit en minuscule. Un renvoi d'un seul mot tres court —\n    « ica : ca » — n'est pas une phrase et garde le sien.\n    \"\"\""
+ },
+ {
+  "id": 198,
+  "kind": "comment",
+  "text": "# --- Le symbole chimique ----------------------------------------------------\n#\n# Le livre l'ecrit de dix facons : « . – Simbolo kemiala : Al », « . Simbolo\n# kemiala : Al » sans tiret, « . – Simbolo kem. Rh » abrege et sans deux-points,\n# en minuscule, ou en incise entre parentheses. Pire que l'inegalite : la ou\n# l'auteur a souligne l'etiquette, « Simbolo kemiala : » a exactement la forme\n# d'une locution — capitale, deux-points, definition — et s'en allait ouvrir un\n# alinea de sous-entree, dans SOIXANTE articles sur soixante-quinze. Or ce n'est\n# pas un mot de la langue : c'est une etiquette, de meme nature que le nom\n# latin. On la sort donc du texte, dans son propre champ, et les deux editions\n# la rendent d'une seule facon."
+ },
+ {
+  "id": 199,
+  "kind": "comment",
+  "text": "# Les quatre graphies du libelle, pour reconnaitre le filet qui le couvrait :\n# le trait le coupe court — « Simb. kem », « Simbolo kemial » — aussi souvent\n# qu'il le prend en entier."
+ },
+ {
+  "id": 200,
+  "kind": "comment",
+  "text": "# « Simbolo » s'abrege lui aussi — « Simb. kem. Au » chez « oro », « Simb.\n# kemiala : Br » chez « bromo » —, et « kem » se rencontre nu. Les quatre\n# libelles se croisent librement ; le motif les prend tous."
+ },
+ {
+  "id": 201,
+  "kind": "comment",
+  "text": "# Un symbole ou une formule tient en peu de signes — le plus long du livre est\n# « C₁₆, H₂₆, N₂, O₁₀ ». Au-dela, ce n'est plus un symbole : chez « ruteno »\n# l'article suivant, « rutino », s'est fondu dans le texte au decodage. On\n# n'extrait alors RIEN, et le defaut reste visible plutot que d'etre maquille."
+ },
+ {
+  "id": 202,
+  "kind": "docstring",
+  "text": "\"\"\"Les symboles releves a l'oeil sur le fac-simile, la ou le decodage les\n    a perdus. Meme cle que subvorti.txt : vedetto@image:ligno.\"\"\""
+ },
+ {
+  "id": 203,
+  "kind": "docstring",
+  "text": "\"\"\"Les noms scientifiques redresses a l'oeil. Meme cle que simboli.txt.\"\"\""
+ },
+ {
+  "id": 204,
+  "kind": "docstring",
+  "text": "\"\"\"Un code de langues qui EGALE le symbole chimique n'est pas un code.\n\n    Le symbole ferme parfois l'article, sans rien derriere lui : « palado. ...\n    Simbolo kemiala : Pd. » Le decodage a lu ce « Pd. » comme un code de\n    langues et en a tire « portugalana, germana ». L'article n'en porte aucun.\n    \"\"\""
+ },
+ {
+  "id": 205,
+  "kind": "docstring",
+  "text": "\"\"\"Le nom scientifique que la PHRASE retient.\n\n    RE_LATINA prend le nom que l'auteur pose a part — « ... kompozaji\". L.\n    artemisia absinthium » — et l'ote du texte pour le porter au champ. Mais le\n    nom se glisse aussi DANS la phrase, ou la syntaxe le retient : « Familio de\n    insekti di qui la tipo esas L. acarus, kun korpo... » ne se lit plus si on\n    l'en retire. Treize articles sont dans ce cas, et leur champ restait vide —\n    le nom ne se cherchait pas, et les deux editions ne l'annoncaient pas.\n\n    On le COPIE donc, sans toucher au texte. Deux « L. » n'annoncent pas un\n    nom : celui qui ouvre un exemple — « Kom ex. : L. que en neque » chez\n    enklitiko — et celui qui nomme la langue — « ica vice ca, en L. iscala vice\n    scala » chez prostezo. L'un se reconnait a son « ex. », l'autre a son\n    « en ».\n\n    Les binomes vont par deux — « L. ostrea edulis e gryphea angulata » — et la\n    conjonction n'est pas un mot du nom : sans l'exclure, le premier binome\n    mordait dessus et rendait « ostrea edulis e gryphea ».\n    \"\"\""
+ },
+ {
+  "id": 206,
+  "kind": "comment",
+  "text": "# On lit les SENS, non la structure : celle-ci se reconstruit en fin de\n# chaine, et la lire ici rendrait la passe dependante de son rang."
+ },
+ {
+  "id": 207,
+  "kind": "docstring",
+  "text": "\"\"\"Sort le symbole chimique du texte et le met dans son champ.\n\n    Rend 1 si un symbole a ete pose. La ou la dactylo a bien frappe l'etiquette\n    mais ou le symbole ne s'est pas decode, on va le chercher dans simboli.txt,\n    releve a l'oeil sur la page ; faute de l'y trouver, l'article garde son\n    texte tel quel — l'etiquette sans symbole ne dit rien, mais l'effacer\n    effacerait aussi la trace du manque.\n    \"\"\""
+ },
+ {
+  "id": 208,
+  "kind": "comment",
+  "text": "# Etiquette en incise — « ..., (simbolo kemiala : Ir) quan onu\n# renkontras... » : elle s'arrete a sa parenthese, et la phrase\n# reprend apres."
+ },
+ {
+  "id": 209,
+  "kind": "comment",
+  "text": "# Un texte contamine ne se laisse pas couper : chez « ruteno »\n# l'article suivant s'est fondu dans le sien, et ce qui suit\n# l'etiquette n'est pas un symbole mais des lignes entieres. On n'y\n# touche pas, meme pour y poser une lecture faite a l'oeil."
+ },
+ {
+  "id": 210,
+  "kind": "comment",
+  "text": "# L'etiquette n'est plus dans le texte : ou bien la dactylo ne l'a pas\n# frappee, ou bien un passage precedent l'en a deja sortie. Une lecture\n# faite a l'oeil s'y pose tout de meme, et corrige au besoin un symbole\n# que le decodage n'avait lu qu'a moitie — « Ca » pour « Ca F² »."
+ },
+ {
+  "id": 211,
+  "kind": "docstring",
+  "text": "\"\"\"Les filets releves que l'oeil ecarte : vedetto@image:ligno -> fragments.\n\n    Le releve prend aussi ce qui n'est pas une intention — le trait d'une ligne\n    voisine, un trait qui deborde d'un mot sur le suivant. L'edition ne peut pas\n    toujours le savoir : un mot plein souligne au milieu d'une definition\n    ressemble a un mot cite, et le livre en cite beaucoup. Ce fichier ne fait que\n    RETIRER un releve, jamais en poser un.\n    \"\"\""
+ },
+ {
+  "id": 212,
+  "kind": "comment",
+  "text": "# POSE : filetoj_pozita, filetoj_rendita"
+ },
+ {
+  "id": 213,
+  "kind": "docstring",
+  "text": "\"\"\"Les filets RENDUS au releve : vedetto@image:ligno -> fragments.\n\n    Le trait etait la, le releve ne l'a pas vu. Rendu ici, il reprend le chemin\n    ordinaire : la locution qui porte sa propre definition ouvre son alinea, le\n    reste passe en italique. C'est ce dont « pseudonima » avait besoin —\n    « Pseudonimo : Nomo ne-exakta » est une sous-entree, mais aucun filet ne la\n    designait, et rien ne la distinguait d'une phrase.\n\n    La ligne commence par « > » : aucun releve du livre ne porte ce signe.\n    \"\"\""
+ },
+ {
+  "id": 214,
+  "kind": "docstring",
+  "text": "\"\"\"Les italiques posees A L'OEIL : vedetto@image:ligno -> (contexte, spans).\n\n    L'auteur met en italique le mot qu'il CITE. Quand le releve du filet n'a rien\n    rendu, l'edition ne peut pas le deviner — mais le lecteur, lui, bute :\n    « La omiso di ta avan qua esas anakoluto » ne se lit pas sans savoir que\n    « ta » et « qua » y sont cites, non employes.\n\n    Le fragment porte alors des ACCOLADES autour de ce qui prend l'italique, et\n    le reste est du contexte : « La omiso di {ta} avan {qua} esas anakoluto ».\n    Sans lui, « qua » serait mis en italique aux trois endroits ou il parait dans\n    l'article, dont deux ou il est un pronom ordinaire.\n    \"\"\""
+ },
+ {
+  "id": 215,
+  "kind": "docstring",
+  "text": "\"\"\"Le filet coupe par une fin de ligne : ses deux moities n'en font qu'une.\n\n    La dactylo souligne « Kreto-krayono » ; la ligne casse au milieu du mot, et\n    le releve rend « Kreto-kra- » puis « yono ». Cherches tels quels, aucun des\n    deux ne se retrouve dans le texte recolle : la locution qu'ils designent\n    n'etait plus reconnue, et les deux moities finissaient parmi les fragments\n    non places. On les recolle quand la forme jointe, elle, se trouve dans le\n    texte — avec ou sans le trait d'union, selon ce que le recollage a decide.\n\n    Un tiret final n'annonce pas toujours une coupure : « -ez- » et « auto - »\n    en portent un qui leur appartient. La condition est donc la MEME que pour\n    poser l'italique — le morceau joint doit se retrouver dans le texte —, et\n    ce qui ne s'y retrouve pas reste tel quel.\n    \"\"\""
+ },
+ {
+  "id": 216,
+  "kind": "docstring",
+  "text": "\"\"\"Le filet a perdu son premier mot, et ce mot etait LA VEDETTE.\n\n    Le releve rend les filets ligne par ligne. Quand la dactylo souligne une\n    locution que la fin de ligne coupe — « ... - II. Licenco » puis\n    « poeziala : su-liberigo... » —, il en rend deux morceaux ; et celui qui\n    porte la vedette est ecarte, parce qu'un filet egal a la vedette est\n    justement celui du mot-vedette, qui n'apprend rien. La locution se\n    retrouvait donc reduite a sa fin, et n'etait plus reconnue.\n\n    « tribono » le montre en deux lignes voisines : « Tribono di la soldati »,\n    dont le filet a tenu sur une ligne, ouvre sa sous-entree ; « Tribono di la\n    plebeyi », son exact parallele, n'en ouvrait pas, son filet ayant perdu le\n    mot « Tribono ». Le livre traite les deux de la meme facon.\n\n    On exige que le mot manquant soit UN seul, et qu'il cite la vedette. Sans\n    cette condition, le suffixe seul rattachait « Kun radiko di verbo\n    netransitiva » a « -ig- », ou « Testamento » au filet « Olda Testamento ».\n    Sur tout le dictionnaire la regle leve trois locutions : « Licenco\n    poeziala », « Puteo arteza », « Tribono di la plebeyi ».\n    \"\"\""
+ },
+ {
+  "id": 217,
+  "kind": "docstring",
+  "text": "\"\"\"Decoupe chaque sens en un corps et, s'il y a lieu, ses sous-entrees.\n\n    « proporciono » porte quatre locutions dans son second sens, chacune avec\n    sa propre definition. Les couler dans un seul paragraphe les rendait\n    introuvables ; on les detache, avec leur qualificatif de domaine.\n    \"\"\""
+ },
+ {
+  "id": 218,
+  "kind": "comment",
+  "text": "# Voir RE_LOKUCO : hors parenthese, une locution qui n'ouvre pas\n# par une capitale doit etre un derive de la vedette."
+ },
+ {
+  "id": 219,
+  "kind": "comment",
+  "text": "# Un seul mot, sans trait d'union, etranger a la vedette : ce n'est\n# pas une locution mais une GLOSE — « moloso. ... – Nun : grosa\n# gardo-hundo », ou « Nun » est l'adverbe « maintenant ». La\n# capitale et le deux-points ne suffisent pas a la distinguer ; le\n# lien avec la vedette, si. Les vraies locutions d'un seul mot sont\n# soit des composes — « mar-baseno », « dento-krono » —, soit des\n# derives de la vedette — « acido » sous « acida »."
+ },
+ {
+  "id": 220,
+  "kind": "comment",
+  "text": "# Une locution entre parentheses commence a sa parenthese OUVRANTE : le\n# signe appartient a la locution, non au texte qui la precede."
+ },
+ {
+  "id": 221,
+  "kind": "comment",
+  "text": "# La sous-entree s'arrete a la parenthese qui la ferme. Ce qui\n# suit reprend la phrase du sens — « (en vehilo publika : ...)\n# La komizo di qua la rolo... » — et retourne donc au corps."
+ },
+ {
+  "id": 222,
+  "kind": "comment",
+  "text": "# Le qualificatif colle a la locution qui suit, non au sens precedent."
+ },
+ {
+  "id": 223,
+  "kind": "comment",
+  "text": "# Un numero d'enumeration reste seul en tete : il ouvre la premiere\n# sous-entree plutot que de faire un sens vide."
+ },
+ {
+  "id": 224,
+  "kind": "comment",
+  "text": "# Le texte qui suivait la parenthese se recolle au corps du sens, la\n# parenthese otee. On le fait EN DERNIER : le qualificatif de tete et le\n# numero d'enumeration se lisent a la fin du texte qui PRECEDE, et une\n# reprise collee avant les aurait caches."
+ },
+ {
+  "id": 225,
+  "kind": "comment",
+  "text": "# Le tiret qui introduisait la locution SUIVANTE reste au bout du\n# corps de la precedente — « ... relate Suno. – ». Il n'annonce\n# plus rien, la locution ayant pris son alinea."
+ },
+ {
+  "id": 226,
+  "kind": "comment",
+  "text": "# Le qualificatif est garde NU, comme le champ `fako` de l'article :\n# ce sont les editions qui posent les parentheses. Sans cela le\n# domaine d'une locution — pris entre parentheses dans le texte —\n# et celui d'un article rattache — pris dans le champ — ne\n# s'ecrivaient pas de la meme facon."
+ },
+ {
+  "id": 227,
+  "kind": "comment",
+  "text": "# Ce qui reste souligne sans etre une locution : le domaine, le nom latin,\n# le mot cite. L'edition le rend en italique, la ou il se retrouve."
+ },
+ {
+  "id": 228,
+  "kind": "comment",
+  "text": "# Le filet DU DOMAINE, pour la meme raison que celui de la locution : il a\n# deja fait son travail. « (elektro) » est parti au champ `fako`, que les\n# deux editions rendent en italique a leur maniere ; le fragment n'a pas a\n# se reposer sur le premier « elektro » venu de la definition. Il le\n# faisait dans 31 articles — « fonto di ELEKTRO » chez akumulatoro, « la\n# ponto di NAVO » chez swabro, « komandas ARMEO » chez generalo —, ou le\n# mot est employe, non cite.\n#\n# Le livre porte 4 109 filets egaux a un domaine, et pas un seul hors de sa\n# parenthese : la dactylo souligne le domaine la ou il est, jamais son\n# echo. Le garde-fou est donc sans faux frere."
+ },
+ {
+  "id": 229,
+  "kind": "comment",
+  "text": "# Le filet ampute dont la locution est nee : il la designe deja, et\n# n'a pas a se poser une seconde fois en italique dans le corps."
+ },
+ {
+  "id": 230,
+  "kind": "comment",
+  "text": "# Le releve est BRUT, le texte est typographie : les points de\n# suspension y sont devenus le caractere unique, et l'affixe qui les\n# suit s'en est detache. « lore...lore » (lor), « trans., por...-eso »\n# (elektar) ne s'y retrouvaient plus, et le filet passait pour non\n# place. On cherche donc aussi la forme typographiee du releve."
+ },
+ {
+  "id": 231,
+  "kind": "comment",
+  "text": "# Le trait coupe court : le releve ne rend que le DEBUT du qualificatif\n# — « met » pour « (metaf.) », « alud » pour « (aludante homo od animalo\n# vivanta) », « aci » pour « (acioni, obligacioni) ». Cherche tel quel,\n# il ne se retrouve nulle part, et le domaine perdait son italique quand\n# ses voisins l'avaient. Vingt cas dans le livre, tous des qualificatifs\n# entre parentheses du meme article ; on exige trois lettres, pour qu'un\n# fragment plus court ne designe pas n'importe quelle parenthese."
+ },
+ {
+  "id": 232,
+  "kind": "comment",
+  "text": "# Le filet ne couvre souvent qu'une PARTIE de la parenthese : la\n# dactylo souligne « aludante persono » mais coupe son trait au\n# bout de la ligne. On met en italique la parenthese entiere —\n# c'est elle, le qualificatif — et les deux moities se recollent."
+ },
+ {
+  "id": 233,
+  "kind": "comment",
+  "text": "# Le domaine deja parti au champ ne se repose pas NU dans le corps.\n# « (elektro) » est le domaine de akumulatoro ; l'italique retombait\n# sur le « elektro » de « fonto di elektro », ou le mot est employe,\n# non cite. On exige donc que le fragment soit encore une\n# PARENTHESE dans le texte : la ou il l'est — « (bot.) » ouvrant le\n# sens II de lotuso, « (fiziol.) » celui de sero, « (ica) » cite par\n# ca —, il garde son italique ; la ou il ne l'est plus, il l'a\n# laissee au champ."
+ },
+ {
+  "id": 234,
+  "kind": "comment",
+  "text": "# Un fragment absent du corps n'est pas douteux s'il a trouve sa place\n# ailleurs : domaine, nom latin, locution — fut-ce une PART de locution.\n# Le filet de « radiko » se rompt en fin de ligne et rend « Extraktar\n# radiko, quadrata » puis « kubala, di nombro » : la seconde moitie ne se\n# retrouve nulle part telle quelle, et pourtant elle est placee, la\n# locution ayant pris son alinea.\n# Le souligne porte la forme que l'auteur a ECRITE, le champ celle que\n# l'edition retient : « medicino » sur la page, « medic. » dans le champ. On\n# compare donc a la ponctuation pres, chaque moitie du champ et chaque\n# domaine enumere comptant a part — et de part et d'autre, car le souligne\n# peut etre plus court que le domaine (le filet s'est rompu en fin de ligne)\n# comme plus long (l'edition a abrege). Dans ce second sens on exige quatre\n# lettres, pour qu'un domaine bref — « per », « pri » — ne couvre pas\n# n'importe quel fragment."
+ },
+ {
+  "id": 235,
+  "kind": "comment",
+  "text": "# « prosodio » et « prozodio » ne se contiennent pas l'un l'autre : la table\n# des variantes le dit, la comparaison ne peut pas le deviner."
+ },
+ {
+  "id": 236,
+  "kind": "comment",
+  "text": "# Le nom scientifique donne parfois DEUX formes en une : « rubus caesius,\n# rubus fructicosus », « conium maculatum, e speco di cicuta ». Le filet, lui,\n# couvre chaque nom a part : cherche au caractere pres, le second passait\n# pour un souligne non place. On accepte donc le MORCEAU, a partir de quatre\n# lettres."
+ },
+ {
+  "id": 237,
+  "kind": "comment",
+  "text": "# L'etiquette du symbole chimique a quitte le texte pour son\n# champ : le filet qui la couvrait est place, non douteux.\n# Le trait la coupe souvent court — « Simbolo kem »,\n# « Simbolo kemial » — ou n'en prend que la fin —\n# « kemiala » : on accepte donc tout morceau de l'etiquette,\n# a partir de trois lettres pour ne pas happer n'importe quoi."
+ },
+ {
+  "id": 238,
+  "kind": "comment",
+  "text": "# Mots-outils : un filet qui ne couvre qu eux est un artefact du releve des\n# soulignements, non une intention de l auteur.\n# Les mots-outils : ceux qu'un filet ne designe jamais pour eux-memes. Un\n# soulignement qui ne couvre QUE ceux-la n'est pas une marque de l'auteur mais\n# une trace — le trait d'une ligne voisine, ou un releve qui a deborde.\n# « absinto » portait « ek la » en italique au milieu de sa definition.\n#\n# La liste est CLOSE : articles, prepositions, conjonctions, pronoms et\n# correlatifs, plus les formes de « esar ». Un mot plein n'y entre pas, meme\n# court : « Ido » chez « logiko », « ohm » chez « volto », « tri » chez\n# « tri- » sont des mots cites, et gardent leur italique.\n#\n# Quatre mots-outils en sont retires, parce que le livre les CITE quelque part\n# et que le filet y est une vraie marque : « ante » chez « avan » (« kontre ke\n# ante relatas tempo »), « avan » et « dop » chez « retro- » (« movo de avan ad\n# dop »), et « que » chez « enklitiko », ou il est latin — « L. que en neque »."
+ },
+ {
+  "id": 239,
+  "kind": "docstring",
+  "text": "\"\"\"Le fragment ne couvre-t-il QUE des mots-outils ?\"\"\""
+ },
+ {
+  "id": 240,
+  "kind": "comment",
+  "text": "# « e c » — « e cetera » — s'ecrit en deux morceaux dont le second n'est\n# pas un mot : on l'admet entier."
+ },
+ {
+  "id": 241,
+  "kind": "docstring",
+  "text": "\"\"\"Le fragment se retrouve-t-il dans f, a UNE lettre pres ?\n\n    Le releve du filet porte la lecture de la MACHINE ; le champ `latina`, lui,\n    a pu etre redresse a l'oeil — « myrmedophaga » rendu « myrmecophaga », que\n    la vedette « mirmekofago » prouve. Cherche au caractere pres, le filet ne se\n    retrouvait plus, et le nom scientifique passait pour un souligne non place.\n    Une lettre d'ecart, c'est exactement ce qu'une correction de lecture change ;\n    on exige quatre lettres pour qu'un fragment bref ne couvre pas n'importe quoi.\n\n    Un nom LONG peut en porter deux — « gamelopardalis giraffz » rendu\n    « camelopardalis giraffa » chez « jirafo », le c lu g et le a lu z. On admet\n    donc une lettre par tranche de douze : deux pour vingt-quatre caracteres,\n    une pour les fragments courts, ou la moindre tolerance de plus ferait se\n    ressembler n'importe quoi.\n    \"\"\""
+ },
+ {
+  "id": 242,
+  "kind": "docstring",
+  "text": "\"\"\"L occurrence du fragment souligne dans le texte, l espacement libre.\"\"\""
+ },
+ {
+  "id": 243,
+  "kind": "comment",
+  "text": "# Sans egard a la casse : l'auteur ecrit « (Anke metaf.) », l'edition\n# abaisse l'initiale des domaines, et le fragment releve sur la grille ne\n# se retrouverait plus dans le texte.\n# L'asterisque du mot non officiel se pose APRES le releve du filet, et\n# le trait de la dactylo la couvre sans la connaitre : « pri grandoro » ne\n# se retrouvait plus dans « (pri *grandoro) ». On la laisse donc passer\n# entre les mots — devant le premier, la borne de gauche l'admet deja.\n# _tuti(), qui POSE l'italique, suit la meme regle."
+ },
+ {
+  "id": 244,
+  "kind": "docstring",
+  "text": "\"\"\"Si le fragment est dans une parenthese, cette parenthese entiere.\"\"\""
+ },
+ {
+  "id": 245,
+  "kind": "docstring",
+  "text": "\"\"\"Rattache un article a celui dont l'auteur l'a fait dependre.\n\n    Le rattachement ne DEGRADE pas l'article : il garde son domaine, son code\n    de langues et sa page. Il change seulement de place — au lieu d'ouvrir sa\n    propre entree, il se range sous celle dont il derive, comme les locutions.\n    Il reste trouvable par son nom : les exportations rangent les locutions\n    parmi les formes cherchables, au meme rang qu'une vedette.\n    \"\"\""
+ },
+ {
+  "id": 246,
+  "kind": "comment",
+  "text": "# Deux passes : la premiere donne le lexique des vedettes, la seconde s'en\n# sert pour trancher les traits d'union tombes sur une fin de ligne.\n# Le lexique sert a trancher les traits d'union de fin de ligne : une\n# vedette d'une lettre y attesterait n'importe quel fragment."
+ },
+ {
+  "id": 247,
+  "kind": "comment",
+  "text": "# Le drapeau de finale se lit SUR LA VEDETTE : corrigee ici, il doit se\n# relire. « borc » devenu « boro », « fenikulc » devenu « fenikulo », la\n# finale impossible a disparu — mais le drapeau qui la signalait restait,\n# et la liste de travail designait un travail deja fait. Le drapeau d'ordre,\n# lui, se recalcule deja en fin de chaine, pour la meme raison."
+ },
+ {
+  "id": 248,
+  "kind": "comment",
+  "text": "# La relecture rend le domaine tel qu'il se LIT sur la page — avec sa\n# majuscule, et sans le point que le tapuscrit n'a pas frappe. Le champ, lui,\n# est mis en minuscules et son abreviation pointee bien plus haut, AVANT\n# cette correction : « (ariktekt.) » corrige en « arkitekt » ressortait donc\n# nu quand ses trente voisins etaient pointes. On repasse les deux\n# normalisations derriere la correction ; elles sont idempotentes."
+ },
+ {
+  "id": 249,
+  "kind": "comment",
+  "text": "# La relecture pose des chaines relevees avant la typographie : on repasse\n# l'espacement derriere elle. espacar() est idempotente."
+ },
+ {
+  "id": 250,
+  "kind": "comment",
+  "text": "# Ponctuation orpheline en tete de sens : elle vient d'une coupure\n# de l'original, non du texte. « titrar » commencait par un point."
+ },
+ {
+  "id": 251,
+  "kind": "comment",
+  "text": "# (cifri et formuli n'interviennent qu'ici, une fois la relecture posee)\n# Second passage des corrections a l'oeil. Une ligne de vorti.txt ecrite\n# d'apres le texte RENDU ne pouvait pas s'appliquer plus haut : « de l til\n# 10 litri » (bidono) porte un 10 que cifri n'avait pas encore tire du\n# « lO » de la dactylo, et la correction ne prenait jamais — en silence.\n# La fonction est idempotente : une correction deja posee ne trouve plus sa\n# forme fautive et ne fait rien."
+ },
+ {
+  "id": 252,
+  "kind": "comment",
+  "text": "# Second rattrapage du code de langues. Celui de l'analyse passe AVANT la\n# typographie ; quand la fin de ligne portait encore une scorie — un point\n# isole chez « ganso », une ponctuation manquante chez « rodar » — le code\n# ne s'ancrait pas, et l'article passait pour « sen-lingua » en gardant son\n# code dans le texte. Repasse ici, il s'ancre."
+ },
+ {
+  "id": 253,
+  "kind": "comment",
+  "text": "# Le code n'est pas toujours au bout du DERNIER sens. L'auteur l'a parfois\n# pose, puis a ajoute un sens apres coup : « arniko. I. Planto aromata...\n# - L. arnica montana. - DEFIS. II. Medikamento liquida... ». Le code reste\n# alors au milieu de l'article, l'article passe pour « sen-lingua », et le\n# lecteur voit « DEFIS » dans une definition. On le releve la aussi — sur le\n# DERNIER sens qui en porte un, et pour les seuls articles qui n'en ont pas."
+ },
+ {
+  "id": 254,
+  "kind": "comment",
+  "text": "# Article commence en bas de page, abandonne, puis RECOMMENCE en tete de la\n# page suivante. « ampère » est le seul cas du livre : la premiere version\n# s'arrete net, sans code de langues ; la seconde est complete. L'edition de\n# lecture ne garde que celle-ci — le fac-simile, lui, conserve les deux,\n# puisqu'il rend la page telle qu'elle fut frappee."
+ },
+ {
+  "id": 255,
+  "kind": "comment",
+  "text": "# Definition coupee net en bas de page : le scan a rogne la derniere ligne.\n# Quatre articles finissent ainsi sur un mot-outil, sans code de langues, et\n# leur suite n'est sur aucune page. On ne l'invente pas — on le dit."
+ },
+ {
+  "id": 256,
+  "kind": "comment",
+  "text": "# Numerotation des sens. L'edition de lecture les numerote elle-meme, 1, 2,\n# 3 : garder « I. », « II. » dans le texte ferait double emploi, et\n# l'original est irregulier — « iambo » melange deux niveaux, « tribono »\n# melange chiffres romains et arabes. On retire donc le numero de tete.\n# Trois sens ne contiennent QUE leur etiquette de domaine, sans definition\n# (« (metriko antiqua) ») : elle se rattache au sens suivant, qu'elle\n# qualifie, plutot que de rester seule.\n# La virgule remplace parfois le point apres le numero — « I, (olim). ».\n# Elle n'est admise QU'APRES un chiffre romain suivi d'une majuscule ou\n# d'une parenthese : « l, OOO, OOO » (biliono) et « 10 , od oktiliono »\n# (noniliono) sont des nombres, non des numeros de sens.\n# « 1.000 » n'est pas un sens numerote mais le nombre mille : sans cette\n# garde, « mil » perdait son « 1. » et se definissait par « 000 ».\n# Le numero sans son point — « III veziketo » — se retire aussi, sinon il\n# ouvrirait le sens que la coupure vient d'isoler."
+ },
+ {
+  "id": 257,
+  "kind": "comment",
+  "text": "# Le numero suivi de la parenthese du qualificatif —\n# « I (zool.) Mamifero... » chez « leono », six articles.\n# L'espace y est facultative : « reklamacar.I(netrans.) »."
+ },
+ {
+  "id": 258,
+  "kind": "comment",
+  "text": "# Numerotation IMBRIQUEE : « III. 1. Deklarar... ». Un seul retrait\n# n'ote que le niveau superieur. On boucle, borne a trois tours."
+ },
+ {
+  "id": 259,
+  "kind": "comment",
+  "text": "# « I » ou « II » seuls, sans definition : un numero orphelin que le\n# decoupage a pris pour un sens. Il ne dit rien."
+ },
+ {
+  "id": 260,
+  "kind": "comment",
+  "text": "# Point double apres le numero — « titrar. I..(teknol.) ». Le\n# retrait du numero laisse le second, orphelin en tete de sens.\n# Le tiret separait les sens dans l'original — « vunduro. II. -\n# (religio kristana). Marko... ». Le numero ote, il reste en tete\n# et n'annonce plus rien. Il empechait en outre les editions de\n# reconnaitre la parenthese de tete comme un domaine, et « stigmato\n# » perdait l'italique de « (religio kristana) »."
+ },
+ {
+  "id": 261,
+  "kind": "comment",
+  "text": "# Les soulignements de l'auteur, releves sur la grille : ils donnent les\n# locutions — sous-entrees a part entiere — et ce qui va en italique."
+ },
+ {
+  "id": 262,
+  "kind": "comment",
+  "text": "# ---------------------------------------------------------------------------\n# Couche des jugements lexicaux.\n#\n# Les corrections rendues par le jugement etaient ecrites dans le JSONL. Or\n# edition.py le reconstruit depuis le fac-simile : la reconstruction suivante\n# les effacait toutes, sans bruit. On les applique donc EN FIN DE CHAINE, a\n# partir des fichiers de reponses, comme filets.pkl et debuts.pkl le sont pour\n# le fac-simile. Une correction posee une fois est ainsi acquise."
+ },
+ {
+  "id": 263,
+  "kind": "docstring",
+  "text": "\"\"\"Chiffres lus comme des lettres : « lOO » pour « 100 », « 2O » pour 20.\n\n    La machine n'avait pas de touche 1 ni de touche 0 distinctes du « l » et du\n    « O » — usage courant des dactylos de l'epoque. Mais on ne peut pas\n    convertir a l'aveugle : dans « Al2O3 », « Fe2 O3 », « C6 H10 O5 », le O est\n    l'OXYGENE, et dans « De punto fixa O » c'est le nom d'un point. On ne\n    convertit donc que dans un contexte sans ambiguite : jeton commencant par\n    « l », chiffre suivi de « O » ou de « l » sans espace, et suite d'au moins\n    trois « O » — que nulle formule ne porte.\n    \"\"\""
+ },
+ {
+  "id": 264,
+  "kind": "comment",
+  "text": "# Numero d'enumeration isole : « ... indikar : l. objekto plu proxima ».\n# Le « l » y tient lieu de 1. On exige le deux-points qui ouvre la liste."
+ },
+ {
+  "id": 265,
+  "kind": "comment",
+  "text": "# « (l) » ouvre une enumeration entre parentheses : c'est le chiffre 1."
+ },
+ {
+  "id": 266,
+  "kind": "comment",
+  "text": "# Le degre : la machine n'avait pas le signe et frappait un « o »."
+ },
+ {
+  "id": 267,
+  "kind": "comment",
+  "text": "# « lOOOmetri » : la dactylo a soude le nombre a son unite. On exige trois\n# chiffres et trois minuscules, ce qui epargne les formules — « C6H4 » n'a\n# qu'une lettre, et elle est capitale."
+ },
+ {
+  "id": 268,
+  "kind": "comment",
+  "text": "# L'algebre s'annonce par son enonce, non par ses signes : « M' = aluminio »\n# chez aluno est une legende, pas une equation."
+ },
+ {
+  "id": 269,
+  "kind": "docstring",
+  "text": "\"\"\"Indices des formules chimiques : « H2 O » devient « H\\u2082O ».\n\n    La machine ne descendait pas les chiffres : elle les frappait sur la ligne,\n    et separait souvent les symboles d'une espace pour la lisibilite. On rend\n    l'indice et on recolle. Deux garde-fous : il faut au moins deux symboles et\n    un chiffre — sans quoi « DEFIRS » ou « I. La » passeraient pour une\n    formule — et un « La » initial suivi d'une espace est l'article ido, non\n    le lanthane : « La C5 H4 N4 O2 quan kontenas... ».\n    \"\"\""
+ },
+ {
+  "id": 270,
+  "kind": "comment",
+  "text": "# Cas que le motif principal ne prend pas, faute de deux symboles voisins :\n# le chiffre qui suit une parenthese — « (CH\\u2083)2 », « (OH)3 » — celui\n# qui suit un symbole amorce — « M'2 » — et le symbole isole precede d'un\n# coefficient — « 24 H2 ». On epargne l'algebre, ou le chiffre est un\n# EXPOSANT et non un indice : « ax2 + bx + c = 0 » chez diskriminanto,\n# « Ax2 + 2 Bxy » chez koniko. Les deux se reconnaissent a leur enonce."
+ },
+ {
+  "id": 271,
+  "kind": "comment",
+  "text": "# En algebre le chiffre est un EXPOSANT : « ax2 + bx + c = 0 » se lit\n# ax\\u00b2. Meme chose pour l'unite elevee a une puissance, « metro3 »."
+ },
+ {
+  "id": 272,
+  "kind": "docstring",
+  "text": "\"\"\"Le fac-simile note la surcharge par \\\\sur{signo}{litero} — la dactylo\n    frappait l'accent PAR-DESSUS la voyelle, faute de touche accentuee. Ce\n    balisage n'a rien a faire dans l'edition de lecture, ou la lettre accentuee\n    existe : « \\\\sur{\\\\textasciicircum{}}{a} » se lit « \\u00e2 ».\"\"\""
+ },
+ {
+  "id": 273,
+  "kind": "docstring",
+  "text": "\"\"\"Retire la parenthese fermante orpheline en fin de definition.\n\n    L'original en compte trente : l'ouvrante a ete perdue a la frappe, ou bien\n    consommee par l'extraction du domaine. Fermer ce qui n'a jamais ete ouvert\n    n'apporte rien. On ne touche QUE la derniere, et seulement si le compte des\n    autres est equilibre — sinon on ignore ou serait la faute.\n    \"\"\""
+ },
+ {
+  "id": 274,
+  "kind": "docstring",
+  "text": "\"\"\"Ferme le qualificatif de tete dont la parenthese est restee ouverte.\n\n    « transmisar. ... II. (biol. Igar pasar a la decendanti. » — la fermante\n    manque apres l'abreviation, et le livre l'ecrit « (biol.) » des centaines\n    de fois : sa place ne fait aucun doute.\n\n    Cette regle doit passer AVANT fermi_parentezon, qui fermerait au BOUT du\n    sens : « (biol. Igar pasar a la decendanti) », ou le domaine avale toute la\n    definition. C'est le meme signe, pose a deux places, et une seule est\n    juste.\n    \"\"\""
+ },
+ {
+  "id": 275,
+  "kind": "docstring",
+  "text": "\"\"\"Ferme la parenthese restee ouverte en fin de definition.\n\n    Le pendant exact d'orfa_parentezo. La fermante s'est perdue a la frappe et\n    le sens s'acheve au milieu d'une incise — « ... (anke metaf », « ...\n    (aludante penso, cienco, e c. », « ... (Ex. : la fragmento obskura ». Le\n    livre en compte soixante-cinq. Laissee ouverte, la parenthese pend dans les\n    deux editions, et la regle qui reconnait le domaine de tete s'y egare.\n\n    On ne ferme QUE si la derniere ouvrante n'a aucune fermante apres elle et\n    si tout ce qui la precede est equilibre. Ailleurs — chez « arachar », ou\n    c'est la PREMIERE parenthese qui est restee ouverte — on ignore ou serait\n    la faute, et fermer au bout deplacerait l'incise au lieu de la reparer.\n    \"\"\""
+ },
+ {
+  "id": 276,
+  "kind": "comment",
+  "text": "# « (anke metaf) » : le point de l'abreviation s'est perdu avec la parenthese\n# fermante, en bout de ligne. Le livre ecrit « (anke metaf.) » cinquante fois\n# contre dix-huit sans point — la forme n'est pas douteuse."
+ },
+ {
+  "id": 277,
+  "kind": "docstring",
+  "text": "\"\"\"Rend son point a l'abreviation que la coupure de ligne a ecourtee.\"\"\""
+ },
+ {
+  "id": 278,
+  "kind": "comment",
+  "text": "# Un qualificatif de tete dont la fermante s'est perdue : « (trans. Kustumigar\n# animalo... », « (anat. Saliajo mi-sferatra... ». Le livre ferme celle-la des\n# centaines de fois ; sa place ne fait aucun doute, juste apres l'abreviation.\n#\n# L'espace a pu tomber avec elle : « (bot.Frukto kapsula... » chez « folikulo ».\n# Une CAPITALE collee au point de l'abreviation ouvre la definition ; elle ne\n# continue pas le mot abrege. Sans cela la parenthese se fermait au bout du\n# sens, et le domaine avalait toute la definition."
+ },
+ {
+  "id": 279,
+  "kind": "docstring",
+  "text": "\"\"\"Retire les parentheses orphelines, faute de savoir ou serait leur paire.\n\n    Le tapuscrit en laisse cinquante-cinq : « Gumo ek arboro) di India »,\n    « Deprenar (per violento, koakto, de ulu to quon lu retenas. » Le\n    fac-simile ne les rendra pas — l'original ne les a pas non plus. Il faut\n    donc trancher, et la regle est celle qu'orfa_parentezo posait deja pour la\n    fermante de fin : ON RETIRE LE SIGNE ORPHELIN. Le retirer ne fabrique aucun\n    groupement que l'auteur n'a pas fait ; en inventer un le ferait.\n\n    Deux exceptions, ou la place du conjoint ne fait aucun doute :\n\n      * le qualificatif de tete — « (trans. » se ferme apres l'abreviation ;\n      * la locution entre parentheses — « (arko inflexita : ... » chez\n        « inflexar », que la page tronquee n'a jamais close. Elle ouvre une\n        sous-entree ; oter sa parenthese la ferait disparaitre. On laisse alors\n        le sens tel quel, desequilibre mais entier.\n    \"\"\""
+ },
+ {
+  "id": 280,
+  "kind": "docstring",
+  "text": "\"\"\"Les scories de frappe : virgule doublee, point double, virgule-point.\n\n    La dactylo a parfois frappe deux fois. Onze articles portent un point\n    double — « ...e tonizala. . – DEFIS » chez « arniko », « (trans. .) » chez\n    « reklamacar » —, quatre une virgule doublee, un une virgule suivie d'un\n    point. Le fac-simile les garde ; l'edition de lecture, non.\n\n    Le point double n'est retire que SEPARE d'une espace. Colles, « ie.. » et\n    « venenifanta.. » sont deux cas contraires — une ellipse ecourtee et un\n    point de trop — que rien ne distingue mecaniquement : ils sont traites un a\n    un dans vorti.txt. Et l'ellipse de l'auteur, « ... », reste intacte.\n    \"\"\""
+ },
+ {
+  "id": 281,
+  "kind": "comment",
+  "text": "# Le point separe de sa virgule : « fuzebla ye 201° C. , kontenata en la\n# kortico » chez salicino — le point est celui de l'abreviation, la virgule\n# celle de la phrase, et l'espace entre les deux n'est de personne."
+ },
+ {
+  "id": 282,
+  "kind": "comment",
+  "text": "# L'espace AVANT la virgule : « rimo nekompleta , quan » chez « asonancar »,\n# « la religiani , ekleziani » chez « sinagogo ». Elle n'est de personne non\n# plus. On exige une lettre devant et une lettre derriere : chez\n# « *puntuar », « la signi ,; . : ? ! » enumere les signes eux-memes, et la\n# virgule y est le premier de la liste, non une ponctuation de phrase."
+ },
+ {
+  "id": 283,
+  "kind": "comment",
+  "text": "# Les affixes que le livre donne comme VEDETTES, plus ceux que SUFIXI porte\n# pour le rangement. SUFIXI seul ne suffit pas ici : bati pour oter UN suffixe\n# d'un radical, il ignore « -im- », le suffixe de la fraction, qui est\n# justement celui de « 1/10.000.000-ima ». Les affixes d'UNE lettre — « -e »,\n# « -i » — n'y sont pas : ils se confondent avec les mots-outils."
+ },
+ {
+  "id": 284,
+  "kind": "docstring",
+  "text": "\"\"\"Espacement de la ponctuation, usage franco-canadien.\n\n    Isolee pour etre rejouable : la couche de relecture pose des chaines\n    relevees AVANT la typographie, et les reposer telles quelles mangeait\n    les espaces insecables — « familio«labiacei» ». On repasse donc ici\n    apres elle. La fonction est idempotente.\n    \"\"\""
+ },
+ {
+  "id": 285,
+  "kind": "comment",
+  "text": "# Le « L. » qui annonce le nom scientifique prend son espace : le livre\n# l'ecrit ainsi partout, et une seule fois sans — « la tipo esas L.acarus »\n# chez akaro. On ne touche a aucun autre point colle a une minuscule : il y\n# en a huit dans le livre, et chacun demande sa lecture — « ex.en » veut\n# l'espace, « viburnum.tinus » veut perdre son point."
+ },
+ {
+  "id": 286,
+  "kind": "comment",
+  "text": "# Le tiret d'affixe ne se detache pas de son affixe : « 1/10.000.000- ima »\n# chez « metro » est « 1/10.000.000-ima », la dix-millionieme partie. C'est\n# la meme espace parasite que la vedette connait — « - as. » pour « -as »,\n# « bo - . » pour « bo- » —, posee cette fois dans le corps.\n# On exige un SUFFIXE suivi de sa desinence : sans quoi « radio- o\n# televizionorecevili » (megafono), ou le tiret reste en suspens devant la\n# conjonction, se recollait en « radio-o ». Les quatre autres tirets isoles\n# du livre — « ekirar- per », « perforuro- e », « implikas- kontre »,\n# « establisita- ube » — n'en sont pas davantage."
+ },
+ {
+  "id": 287,
+  "kind": "comment",
+  "text": "# La parenthese fermante collee au mot suivant prend une espace — mais pas\n# celle qui fait CORPS avec le mot. L'auteur note ainsi l'element facultatif\n# : « leon(in)o » dit le lion et la lionne, « formac(es)o » la formation et\n# le fait de se former, « -(ant)ajo » le suffixe compose. Le mot continue\n# apres la parenthese, et l'espace le couperait en deux. On la reconnait au\n# tiret d'affixe qui la precede, ou a la lettre SEULE qui la suit — la\n# finale du mot. Trois cas dans le livre, et aucun faux frere : « F(z) esas\n# monodroma » porte deja son espace, « (aludante persono)Definuro » n'est\n# pas un element mais une incise."
+ },
+ {
+  "id": 288,
+  "kind": "comment",
+  "text": "# « (olim).Vaporo-mashino » : le point qui suit la parenthese\n# fermante colle au mot suivant. 88 cas. On ne touche qu'apres une\n# parenthese : ailleurs, « CH3CO.CH3 » est une formule chimique."
+ },
+ {
+  "id": 289,
+  "kind": "comment",
+  "text": "# Le meme point colle, cette fois derriere le GUILLEMET fermant : « ... kom\n# nomo \"prolonguro\".On plulongigas » chez prolongar. Trois cas dans le\n# livre, et les trois veulent l'espace — « \"kancero\".DEFIRS » chez\n# karcinomo, « \"paria\".En India » chez paria. Les deux derniers s'en\n# tiraient sans elle, le code de langues et la vedette se detachant seuls ;\n# le premier gardait la phrase suivante soudee a la precedente. Aucun faux\n# frere : un guillemet fermant ne fait jamais corps avec le mot d'apres."
+ },
+ {
+  "id": 290,
+  "kind": "comment",
+  "text": "# L'asterisque du mot non officiel prend l'espace qui la separe du mot\n# PRECEDENT. La dactylo collait sa croix au mot qu'elle marque — c'est\n# voulu, « +stencilo » est un seul mot —, mais elle la collait aussi,\n# six fois, a celui d'avant : « per perforo, sur+stencilo » chez\n# hektografar, « di omna+itemi » chez *seancar, « la+chevaliere » chez\n# barono, « la+asiejo-mashini » chez traino, « adolecanti,+konvokata »\n# chez klaso, « en vazo+kluza » chez koko. Le livre porte 189 asterisques\n# deja detachees et 50 en tete de fragment ; ces six sont les seules\n# soudees, et la marque y appartient au mot qui SUIT."
+ },
+ {
+  "id": 291,
+  "kind": "comment",
+  "text": "# Espace parasite CONTRE la parenthese : « ( fig.) » pour\n# « (fig.) », « hundo-herbo )» pour « hundo-herbo) ». La dactylo\n# espacait pour caler sa ligne. 15 ouvrantes et 33 fermantes.\n# « Igar(ulo) » : le mot colle a la parenthese ouvrante. Mais toutes ne se\n# detachent pas — « il(u) », « dea(la) », « a(ta) » notent une finale\n# facultative qui fait corps avec le mot, et « F(z) » est une fonction.\n# On separe donc seulement quand le contenu compte trois lettres ou plus,\n# ou porte autre chose que des lettres : c'est alors un complement ou un\n# domaine, non une desinence."
+ },
+ {
+  "id": 292,
+  "kind": "comment",
+  "text": "# Ponctuation collee a une parenthese ouvrante : « Patrino homa.(Equivalanto\n# sentimentala... » chez matro. 30 cas. On epargne les formules : chez\n# stearino, « CH3.(CH2)16 » est une chaine carbonee, et l'espace y serait\n# fautive. Le signe distinctif d'une formule est le chiffre qui termine le\n# symbole precedent."
+ },
+ {
+  "id": 293,
+  "kind": "comment",
+  "text": "# Point orphelin apres la parenthese fermante — « (aludante la hari...) .\n# Di qua la koloro... ». Justifie, il ouvre un blanc dans la ligne."
+ },
+ {
+  "id": 294,
+  "kind": "comment",
+  "text": "# Point superflu apres la parenthese de tete — « (komerco). Inter-egalesi ».\n# La parenthese ferme deja le qualificatif ; le point fait double emploi."
+ },
+ {
+  "id": 295,
+  "kind": "comment",
+  "text": "# Deux qualificatifs de suite — « (netrans.) (aludante vari). » chez\n# transitar : le point tombe apres le SECOND, et la regle ci-dessus ne\n# voyait que le premier."
+ },
+ {
+  "id": 296,
+  "kind": "comment",
+  "text": "# Deux-points superflu apres le qualificatif de tete — « (bruiso) : Poke\n# sonora ». La parenthese suffit ; le deux-points annoncerait une liste."
+ },
+ {
+  "id": 297,
+  "kind": "comment",
+  "text": "# « e c » abrege « e cetere » : il prend le point. 325 occurrences le\n# perdaient, 455 l'avaient deja."
+ },
+ {
+  "id": 298,
+  "kind": "comment",
+  "text": "# Espacement des ponctuations doubles, usage FRANCO-CANADIEN :\n# le point-virgule, le point d'exclamation et le point\n# d'interrogation ne prennent PAS d'espace devant — c'est la\n# difference d'avec l'usage de France, qui y met une espace fine.\n# Le deux-points, lui, en prend une, et elle est insecable pour\n# qu'il ne parte pas seul en tete de ligne. Idem dans les\n# chevrons. On recolle d'abord le deux-points a son mot suivant,\n# sinon la regle d'espace insecable le laisserait colle."
+ },
+ {
+  "id": 299,
+  "kind": "comment",
+  "text": "# Le chevron colle au mot voisin par le DEHORS : « familio«labiacei» ».\n# La regle suivante traite l'interieur ; celle-ci, l'exterieur."
+ },
+ {
+  "id": 300,
+  "kind": "comment",
+  "text": "# Le numero de sens colle a son premier mot — « I.Tereno »,\n# « II.Alveolo ». On ne touche qu'aux chiffres romains : un point\n# suivi d'une majuscule est ailleurs une abreviation legitime."
+ },
+ {
+  "id": 301,
+  "kind": "comment",
+  "text": "# Ligne de bruit en fin de definition : la dactylo a barre une\n# ligne entiere a coups de guillemets et de tirets. Ce qui n'a\n# aucune lettre ni aucun chiffre ne dit rien.\n# _kupar plutot qu'un rstrip nu : l'ellipse finale qui marque le complement\n# regi — « ...kom valida ke... » — doit survivre au rognage du bruit.\n# La queue de bruit ne doit pas engloutir une ellipse suivie de sa\n# fermeture : « multa-... » compte six signes tous membres de la classe,\n# et y passait entierement. On l'epargne explicitement."
+ },
+ {
+  "id": 302,
+  "kind": "comment",
+  "text": "# Les points de suspension. La machine n'avait pas le caractere unique :\n# l'auteur frappe trois points, parfois quatre. 96 occurrences.\n#\n# Quand une desinence ou un suffixe suit les points, il s'en detache par une\n# espace et prend le tiret d'affixe. C'est la forme que le livre ecrit\n# lui-meme chez « min » — « ne tam multe ...-a » — et chez « quadri- » —\n# « Qua havas quar...-i » ; ailleurs le tiret, l'espace, ou les deux sont\n# tombes : « quik...onta », « esar...ata », « t. e. ...is...inta ».\n#\n# Un MOT qui suit n'est pas un affixe et ne prend que l'espace : « lasas\n# ...efikar », « preferar...kam », « lore...lore », « ...esante prezenta ».\n# On s'en remet donc a la liste CLOSE des desinences, et au tiret que l'auteur\n# a lui-meme frappe — « por...-eso » —, jamais a une ressemblance de forme :\n# « esante » se decoupe en « es- » plus « -ante » sans etre pour autant un\n# suffixe suivi d'une desinence.\n#\n# Les desinences d'UNE lettre — « -o », « -a », « -e », « -i » — n'y sont pas :\n# ce sont aussi les mots-outils les plus courants du livre. « Esar prezenta\n# ye... e regardar » (asistar), « domeno qua dependas de... e, konseque »\n# (-i-) portent la conjonction, non la desinence. Ou l'auteur veut la\n# desinence d'une lettre, il a frappe le tiret lui-meme : « ...-a » chez\n# « min », « ...-i » chez « quadri- »."
+ },
+ {
+  "id": 303,
+  "kind": "comment",
+  "text": "# Les composes que le livre ecrit tantot avec le trait d'union, tantot soudes.\n# Il pose le trait a TOUS ses autres composes — « banko-komerco »,\n# « natur-historio », « politiko-yuro », « milit-arto », « skerm-arto » — et a\n# la grande majorite des emplois de ceux-ci ; on aligne les formes soudees qui\n# restent hors du champ `fako`, ou la table des domaines s'en charge deja."
+ },
+ {
+  "id": 304,
+  "kind": "docstring",
+  "text": "\"\"\"Le « x » de la machine rendu au signe de la multiplication.\n\n    La machine n'avait pas de croix : la dactylo frappe la lettre. Deux fois\n    dans le livre, et deux fois devant un NOMBRE — « ... x 1000 » chez « kilo- »,\n    « oktiliono x 1.000.000 » chez « noniliono ». C'est la condition : les trois\n    autres « x » isoles sont des inconnues, et aucune n'est suivie d'un chiffre —\n    « inter x, y, z » chez « konexo », « 2 D x + 2 Ey » chez « koniko »,\n    « y = sin. x » chez « sinusoido ».\n\n    Se pose APRES cifri(), qui rend au « lOOO » de la dactylo ses chiffres.\n    \"\"\""
+ },
+ {
+  "id": 305,
+  "kind": "docstring",
+  "text": "\"\"\"Le compose soude rendu au trait d'union du livre.\"\"\""
+ },
+ {
+  "id": 306,
+  "kind": "docstring",
+  "text": "\"\"\"Trois ou quatre points rendus par le caractere unique, et l'affixe qui\n    les suit detache par une espace et pointe d'un tiret.\"\"\""
+ },
+ {
+  "id": 307,
+  "kind": "comment",
+  "text": "# Le mot ordinaire qui suit ne prend que l'espace."
+ },
+ {
+  "id": 308,
+  "kind": "comment",
+  "text": "# La finale sous laquelle un mot se laisse citer : desinence nominale,\n# adjectivale, adverbiale, verbale, ou participe."
+ },
+ {
+  "id": 309,
+  "kind": "docstring",
+  "text": "\"\"\"La marque du mot non officiel, portee PARTOUT ou le mot est cite.\n\n    Le livre declare ses mots non officiels a leur place alphabetique — la\n    vedette porte l'asterisque — et les marque aussi quand il les cite dans une\n    definition. Mais pas toujours : « werar » est marque cinquante fois et nu\n    six fois, « publico » cinq fois et nu une fois, « grandoro » quatre fois et\n    nu six fois. Le lecteur voyait le meme mot tantot signale, tantot non.\n\n    On aligne sur la marque, et seulement pour les mots ou l'auteur l'a lui-meme\n    posee au moins une fois : la ou il ne l'a jamais posee — « pondar »,\n    « niuzo », « golfo », « tarda », « intrenar » —, l'ajouter serait une\n    affirmation neuve, non une mise au net. Quatorze mots, 45 emplois.\n\n    L'article du mot lui-meme est laisse tel quel : sa vedette porte deja la\n    marque, et la redoubler dans sa propre definition n'apprend rien.\n    \"\"\""
+ },
+ {
+  "id": 310,
+  "kind": "docstring",
+  "text": "\"\"\"Typographie de l'edition de lecture.\n\n    Le fac-simile garde les tirets tels que la machine les a frappes — elle\n    n'avait qu'une seule touche. L'edition de lecture, elle, peut les rendre.\n    Trois regles, mesurees avant d'etre posees pour ne pas deborder sur les\n    4 240 traits d'union internes, qui eux appartiennent aux mots :\n\n      « elektro- -grandori »  -> « elektro-grandori »   (1 cas)\n      « -- » ou « - » double  -> tiret cadratin         (20 cas)\n      « mot - mot »           -> tiret demi-cadratin    (829 cas)\n    \"\"\""
+ },
+ {
+  "id": 311,
+  "kind": "comment",
+  "text": "# Les chevrons de la VEDETTE prennent leur espace, comme partout ailleurs\n# dans le livre. « \"brokoli\"-kaulo » est le seul cas ou ils restent DANS la\n# chaine : le mot ido n'y est cite qu'en partie, et le drapeau `citita`,\n# qui fait poser aux editions « \\u00ab\\u00a0amen\\u00a0\\u00bb », ne peut pas le porter."
+ },
+ {
+  "id": 312,
+  "kind": "comment",
+  "text": "# Le tiret de separation colle a la parenthese du domaine :\n# « granda. -(cinemo) » chez « skreno », « direte.- (metaf.) » chez\n# « intuicar ». Le livre l'ecrit avec ses deux espaces quatre-vingt-\n# cinq fois ; treize fois l'une des deux manque. La parenthese d'un\n# AFFIXE n'en est pas une — « = -(at)ajo », « equivalas -(ant)ajo » :\n# la le mot continue apres la fermante, et le tiret lui appartient."
+ },
+ {
+  "id": 313,
+  "kind": "comment",
+  "text": "# trait redouble d'une coupure"
+ },
+ {
+  "id": 314,
+  "kind": "comment",
+  "text": "# Le « + » du tapuscrit marque les mots non officiels ; la\n# tradition ido ecrit une asterisque. 214 occurrences.\n# Un mot non officiel est un mot ido, donc en minuscule : « +H₂O »,\n# dans la formule de la morphine, est le plus de la chimie et non\n# la marque de l'auteur.\n#\n# La marque est COLLEE au mot qu'elle marque — la dactylo ne laissait\n# pas d'espace : « pri+grandoro », « sur+stencilo », « vazo+kluza »,\n# « o+sesiono ». Le livre donne bien « *grandoro », « *stencilo »,\n# « *kluza », « *sesiono » comme vedettes non officielles."
+ },
+ {
+  "id": 315,
+  "kind": "comment",
+  "text": "# Detachee du mot, elle ne l'est que si elle OUVRE le fragment ou\n# suit une parenthese ouvrante : « legi (+ leyi) » chez « cienco ».\n# Entre deux termes, c'est le plus de l'algebre, que la regle\n# precedente prenait pour la marque : « ax² + bx + c = 0 » chez\n# « diskriminanto », « a + b i e a' + b' i » chez « konjugar »,\n# « a² = b² + c » chez « pitagorala » — quatre asterisques posees\n# sur des inconnues."
+ },
+ {
+  "id": 316,
+  "kind": "comment",
+  "text": "# Le plus de l'arithmetique prend ses deux espaces, comme le livre\n# les lui donne partout ailleurs — « Ax² + 2 Bxy + Cy² » chez\n# « koniko », « a² = b² + c » chez « pitagorala ». Un seul endroit\n# les perd : « Sis plus un (6 +1, o 4 +3) » chez « sep »."
+ },
+ {
+  "id": 317,
+  "kind": "comment",
+  "text": "# Guillemets : la machine n'avait que la double apostrophe droite.\n# On ne convertit que les PAIRES — 834 sur 1 690 apostrophes ; les\n# orphelines restent droites plutot que d'ouvrir un chevron qui ne\n# se refermerait jamais."
+ },
+ {
+  "id": 318,
+  "kind": "comment",
+  "text": "# Espaces manquantes apres la ponctuation : la dactylo serrait pour\n# tenir la ligne. 258 virgules et 136 parentheses fermantes.\n# cifri() et formuli() ne sont PAS ici : ce sont des transformations\n# de rendu, et la couche de relecture cherche des chaines relevees\n# sur le texte brut. « H2 Hg3 Si4 O12 » ne se retrouve plus une fois\n# les indices poses ; on les pose donc APRES elle."
+ },
+ {
+  "id": 319,
+  "kind": "docstring",
+  "text": "\"\"\"Corrections de vedettes, relevees a l'oeil.\n\n    La couche des jugements ne touche que les definitions : une vedette est un\n    article, pas une occurrence, et la corriger par regle a deja mal tourne.\n    Elle se corrige donc a la main, une ligne par cas, avec le motif ecrit en\n    regard. Le fac-simile, lui, garde la graphie de l'original.\n    \"\"\""
+ },
+ {
+  "id": 320,
+  "kind": "comment",
+  "text": "# Cible precise : « tri@600:23 » ne touche que l'article de la page 600\n# ligne 23. Le livre porte DEUX « tri » — le chiffre 3 et le prefixe —\n# et seul le second prend le trait d'union."
+ },
+ {
+  "id": 321,
+  "kind": "docstring",
+  "text": "\"\"\"Corrections de mots dans les definitions, relevees a l'oeil.\n\n    Le pendant de vedetti.txt pour le corps des articles. Deux passes\n    automatiques ont deja ete rejetees ici — la frequence donnait « papuli »\n    pour « populi », la racine « falko » pour « talko » — parce qu'un\n    dictionnaire de dix mille racines n'est pas tout le lexique de la langue.\n    On ecrit donc les cas un par un, avec leur motif.\n    \"\"\""
+ },
+ {
+  "id": 322,
+  "kind": "comment",
+  "text": "# Une correction peut porter sur PLUSIEURS mots — « en decen danto » pour\n# « en decendanto », « ii aDom » pour « di mikra » : la machine a coupe ou\n# soude la ou il ne fallait pas, et le mot fautif n'a pas de frontiere\n# propre. On accepte donc une suite de mots a gauche comme a droite."
+ },
+ {
+  "id": 323,
+  "kind": "comment",
+  "text": "# Deux motifs, essayes dans l'ordre. Le premier recolle une\n# cesure — « pro-duktita » -> « produktita ». Il ne doit pas\n# etre le seul : « uaze » corrige en « quaze » n'est pas une\n# cesure mais une lettre tombee, et le motif de cesure y\n# cherchait « q-uaze » sans rien trouver, en silence."
+ }
+]

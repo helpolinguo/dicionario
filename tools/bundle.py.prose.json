@@ -1,0 +1,17 @@
+[
+ {
+  "id": 0,
+  "kind": "docstring",
+  "text": "\"\"\"Paquet de livraison : les sources du projet + le PDF compose.\n\nOn exclut ce qui est reconstructible et lourd — le scan, le corpus de\ncellules, le corpus de traits, les planches de relecture. Tout le reste tient\nen une quinzaine de megaoctets.\n\"\"\""
+ },
+ {
+  "id": 1,
+  "kind": "comment",
+  "text": "# Le PDF de poche voyage A COTE de la page : le bouton de\n# telechargement pointe vers lui par un lien relatif, et le site\n# se publie en copiant les deux fichiers dans le meme dossier."
+ },
+ {
+  "id": 2,
+  "kind": "comment",
+  "text": "# Le releve de relecture, page par page — le TEXTE seulement. Le dossier\n# contient aussi les planches images : 550 Mo, reconstructibles a la\n# demande par tools/proofreading.py, et sans interet pour qui lit le code."
+ }
+]

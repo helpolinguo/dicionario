@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-"""Taux d'exactitude mesure sur les pages transcrites a la main.
+"""The rate of exactness measured on the pages transcribed by hand.
 
-On compare caractere par caractere, cellule par cellule, la transcription
-automatique et la transcription de reference. Les pages de test n'ont jamais
-servi a l'apprentissage.
-"""
+    We compare character by character, cell by cell, the automatic
+    transcription and the reference transcription. The test pages have never
+    served for learning.
+    """
 import numpy as np, sys, os
 sys.path.insert(0,'/root/dicionario/outils')
 T="/root/dicionario/travail"

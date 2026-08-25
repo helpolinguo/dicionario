@@ -1,0 +1,17 @@
+[
+ {
+  "id": 0,
+  "kind": "docstring",
+  "text": "\"\"\"Constitution d'un jeu etiquete a la main : une transcription verifiee par page.\"\"\""
+ },
+ {
+  "id": 1,
+  "kind": "docstring",
+  "text": "\"\"\"Retourne (indices de cellules dans meta_all, caracteres).\"\"\""
+ },
+ {
+  "id": 2,
+  "kind": "comment",
+  "text": "# cellule encree : soit un caractere, soit une bavure -> classe espace"
+ }
+]

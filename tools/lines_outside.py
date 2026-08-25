@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
-"""Ou tombent, sur le lattis de la page, les lignes que le bloc a laissees dehors ?
+"""Where do the lines the block left outside fall on the page's lattice?
 
-Le lattis d'une page est une droite : y(k) = y0 + k*pasv, ou y0 est la premiere
-ligne STOCKEE, d'indice 0. Une ligne perdue au-dessus prend donc un indice
-negatif, une ligne perdue en bas un indice au-dela du dernier. Ainsi la
-numerotation des lignes deja lues ne bouge pas, et aucune correction indexee
-par (page, ligne, colonne) n'est invalidee.
+A page's lattice is a straight line: y(k) = y0 + k*pasv, where y0 is the
+first STORED line, of index 0. A line lost above therefore takes a negative
+index, a line lost below an index beyond the last. In this way the numbering
+of the lines already read does not move, and no correction indexed by (page,
+line, column) is invalidated.
 """
 import sys, numpy as np
 sys.path.insert(0,'/root/dicionario/outils')
@@ -40,7 +40,7 @@ if __name__=="__main__":
             if encre and not connu: print("   HORS  k=%3d  y=%6.1f  encre %.0f"%(k,y,e))
 
 def colonnes(pg, ks):
-    """Pour chaque ligne k, la premiere et la derniere colonne encree."""
+    """For each line k, the first and the last inked column."""
     z=np.load(f"{T}/cellules/p-{pg:03d}.npz", allow_pickle=True)
     lg=np.array(z['lignes']); pasv=float(z['pasv']); pash=float(z['pash'])
     xg=float(z['xg']); col0=int(z['col0'])

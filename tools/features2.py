@@ -1,9 +1,10 @@
-"""Traits d'une cellule : deux vues concatenees.
+"""The features of a cell: two views concatenated.
 
-- vue recalee : le tremblement de la frappe (+-2 px) est absorbe ;
-- vue brute   : la position dans la cellule est conservee, ce qui distingue
-  ce que le recalage confond (le point, l'apostrophe, la virgule, le tiret).
-"""
+    - registered view: the tremble of the typing (+-2 px) is absorbed;
+    - raw view:        the position within the cell is kept, which
+      distinguishes what registration confuses (the full stop, the
+      apostrophe, the comma, the hyphen).
+    """
 import numpy as np
 from scipy.ndimage import gaussian_filter, shift as ndshift
 CH,CW=22,12

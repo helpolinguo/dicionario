@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
-"""Planches de relecture ciblees : une bande d'image par vedette signalee.
+"""Targeted proofreading sheets: one strip of image per reported headword.
 
-Au lieu de faire relire des pages entieres, on ne montre que ce qui est en
-cause : la ligne de la vedette, sur ses trente premieres cellules, avec son
-numero. Quarante vedettes tiennent sur une planche.
+Instead of having whole pages re-read, we show only what is at issue: the
+headword's line, over its first thirty cells, with its number. Forty
+headwords fit on one sheet.
 """
 import numpy as np, json, os, sys
 sys.path.insert(0,'/root/dicionario/outils')
@@ -20,7 +20,7 @@ def cellules(pg):
     return _cache[pg]
 
 def planche(lot, sortie):
-    """lot : liste de (identifiant, image, ligne, vedette_proposee)."""
+    """batch: list of (identifier, image, line, proposed_headword)."""
     h,w=22,12; tw,th=w*ZOOM,h*ZOOM
     marge=118
     W=marge+NCEL*(tw+2)+10; H=10+len(lot)*(th+13)

@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
-"""Le bas du bloc stocke est-il celui que le code rend aujourd'hui ?
+"""Is the foot of the stored block the one the code returns today?
 
-La page 116 a revele que son extraction datait d'une version anterieure de
-bloc_texte() : le bloc s'y arretait a y=994 quand le code actuel rend 1071, et
-quatre lignes de texte — dont la fin de la definition de « dicionario » et
-l'article « diciplinar » — tombaient hors du decoupage. Ce controle cherche
-toutes les pages dans ce cas.
+Page 116 revealed that its extraction dated from an earlier version of
+bloc_texte(): the block stopped there at y=994 where the present code
+returns 1071, and four lines of text -- among them the end of the
+definition of « dicionario » and the article « diciplinar » -- fell outside
+the cutting. This check looks for every page in that case.
 """
 import sys, os, json, glob, re
 import numpy as np

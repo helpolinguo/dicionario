@@ -1,0 +1,7 @@
+[
+ {
+  "id": 0,
+  "kind": "docstring",
+  "text": "\"\"\"Le bas du bloc stocke est-il celui que le code rend aujourd'hui ?\n\nLa page 116 a revele que son extraction datait d'une version anterieure de\nbloc_texte() : le bloc s'y arretait a y=994 quand le code actuel rend 1071, et\nquatre lignes de texte — dont la fin de la definition de « dicionario » et\nl'article « diciplinar » — tombaient hors du decoupage. Ce controle cherche\ntoutes les pages dans ce cas.\n\"\"\""
+ }
+]

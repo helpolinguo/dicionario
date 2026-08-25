@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
-"""Inventaire des mots a soumettre au jugement, et rien d'autre.
+"""An inventory of the words to be put to judgement, and nothing else.
 
-Le scan ne tranche pas — il est trop use — et le relire coute cher. Ce qui
-tranche, c'est de savoir si un mot fait sens en ido. On ne soumet donc pas le
-livre entier : on soumet les seuls mots dont la racine n'est attestee nulle
-part comme vedette, et qui ne sont pas des mots grammaticaux. Le reste du
-texte n'a pas besoin d'etre lu pour etre juge bon.
+The scan does not settle it -- it is too worn -- and re-reading it is
+expensive. What settles it is knowing whether a word makes sense in Ido. We
+therefore do not submit the whole book: we submit only the words whose root
+is attested nowhere as a headword, and which are not function words. The
+rest of the text does not need to be read to be judged sound.
 """
 import json, re, sys, collections
 sys.path.insert(0,'/root/dicionario/outils')

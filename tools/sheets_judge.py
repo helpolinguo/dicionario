@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
-"""Planches de jugement, en texte seul.
+"""Judgement sheets, in text alone.
 
-Le scan est use et cher a lire ; la transcription, elle, se lit pour rien. On
-ne soumet donc ni images ni pages entieres, mais la seule question qui reste
-ouverte : ce mot fait-il sens en ido a cet endroit ?
+The scan is worn and expensive to read; the transcription reads for nothing.
+We therefore submit neither images nor whole pages, but the one question
+left open: does this word make sense in Ido in this place?
 
-Une ligne par candidat : numero, forme lue, formes voisines obtenues par
-echange de sosies, et le contexte strictement necessaire. Le juge repond par
-le numero et la forme retenue, rien d'autre.
+One line per candidate: number, form read, neighbouring forms obtained by
+exchanging look-alikes, and the strictly necessary context. The judge
+answers with the number and the form chosen, nothing else.
 """
 import json, re, sys, os, collections
 sys.path.insert(0,'/root/dicionario/outils')

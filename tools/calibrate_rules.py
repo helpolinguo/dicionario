@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-"""Calibration du veto « du blanc sous le filet » contre le releve a l'oeil.
+"""Calibration of the « white beneath the rule » veto against the survey by eye.
 
-Les 91 pages relevees servent de verite : une ligne listee porte les plages
-indiquees, une ligne absente n'en porte aucune. On compare la detection avec
-et sans veto.
-"""
+    The 91 surveyed pages serve as truth: a line listed carries the ranges
+    indicated, a line absent carries none. We compare the detection with and
+    without the veto.
+    """
 import numpy as np, sys, os, pickle
 sys.path.insert(0,'/root/dicionario/outils')
 import cells as C

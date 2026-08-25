@@ -1,0 +1,27 @@
+[
+ {
+  "id": 0,
+  "kind": "docstring",
+  "text": "\"\"\"Planches de jugement, seconde espece : le mot fait-il sens ici ?\n\nLa premiere espece proposait une forme voisine obtenue par echange de sosies.\nElle ne voit donc que les coquilles qui ont un voisin atteste. Celle-ci ne\npropose rien : elle donne le mot et son contexte, et demande si le mot existe\nen ido a cet endroit. C'est le seul moyen d'attraper une coquille isolee.\n\nOn ecarte d'avance ce qui est manifestement legitime — les noms scientifiques\nannonces par « L. » et les noms propres, reconnus a leur capitale — pour ne pas\nfaire juger ce qui n'a pas besoin de l'etre.\n\"\"\""
+ },
+ {
+  "id": 1,
+  "kind": "comment",
+  "text": "# vu par l'autre planche"
+ },
+ {
+  "id": 2,
+  "kind": "comment",
+  "text": "# nom scientifique"
+ },
+ {
+  "id": 3,
+  "kind": "comment",
+  "text": "# nom propre"
+ },
+ {
+  "id": 4,
+  "kind": "comment",
+  "text": "# hapax d'abord"
+ }
+]

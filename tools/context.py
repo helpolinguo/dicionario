@@ -1,4 +1,4 @@
-"""Montre des occurrences d'un groupe dans leur ligne d'origine."""
+"""Shows occurrences of a group in the line they came from."""
 import numpy as np
 from PIL import Image, ImageDraw
 T="/root/dicionario/travail"

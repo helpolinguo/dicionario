@@ -1,0 +1,7 @@
+[
+ {
+  "id": 0,
+  "kind": "docstring",
+  "text": "\"\"\"Taux d'exactitude mesure sur les pages transcrites a la main.\n\nOn compare caractere par caractere, cellule par cellule, la transcription\nautomatique et la transcription de reference. Les pages de test n'ont jamais\nservi a l'apprentissage.\n\"\"\""
+ }
+]

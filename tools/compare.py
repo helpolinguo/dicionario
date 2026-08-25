@@ -1,5 +1,6 @@
-"""Comparaison visuelle : page composee contre page scannee redressee et remise
-a l'echelle de la grille restauree (10 caracteres au pouce)."""
+"""Visual comparison: the composed page against the scanned page deskewed
+and brought back to the scale of the restored grid (10 characters to the
+inch)."""
 import numpy as np, subprocess, os, sys
 sys.path.insert(0,'/root/dicionario/outils')
 from PIL import Image
@@ -9,9 +10,9 @@ RAC="/root/dicionario"
 PASH_IN=0.1; PASV_IN=0.170128; ORIGX_MM=21.9; ORIGY_MM=14.3
 
 def scan_cale(pg, dpi=150):
-    """Scan redresse, remis a l'echelle de la grille et cale sur l'origine du
-    document compose. La photographie varie d'echelle et de cadrage : ces deux
-    variations ne sont pas des proprietes du livre."""
+    """The scan deskewed, brought back to the grid's scale and set on the origin
+    of the composed document. The photograph varies in scale and in framing:
+    neither variation is a property of the book."""
     a=charger(f"{RAC}/scan/p-{pg:03d}.jpg")
     ang,_=desincliner(masquer_bords(normaliser(a)))
     r=np.clip(ndrotate(a, ang, reshape=False, order=1, mode='constant', cval=255),0,255)
@@ -35,7 +36,7 @@ def rendre_compose(pdf, page, dpi=150, pre="/tmp/cmp"):
     raise FileNotFoundError
 
 def superposer(pdf, page, pg, sortie, dpi=150, crop=None, zoom=1):
-    """Scan en vert, composition en rouge ; noir = les deux coincident."""
+    """Scan in green, composition in red; black = the two coincide."""
     a=np.asarray(Image.open(rendre_compose(pdf,page,dpi)).convert("L"))
     b=np.asarray(scan_cale(pg,dpi))
     H=min(a.shape[0],b.shape[0]); W=min(a.shape[1],b.shape[1])

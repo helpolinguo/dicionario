@@ -1,0 +1,12 @@
+[
+ {
+  "id": 0,
+  "kind": "docstring",
+  "text": "\"\"\"Releve des « + » en exposant devant les vedettes non officielles.\n\nLe signe est frappe une demi-hauteur au-dessus de la ligne. La cellule qui le\nporte n'est pas marquee occupee — c'est pourquoi un releve fonde sur occ ne le\nvoit pas. On mesure donc l'encre directement dans le scan, dans le haut de la\ncellule qui precede la vedette.\n\"\"\""
+ },
+ {
+  "id": 1,
+  "kind": "comment",
+  "text": "# haut de la cellule 0 : de -1,0 a -0,35 interligne sous la ligne de base"
+ }
+]

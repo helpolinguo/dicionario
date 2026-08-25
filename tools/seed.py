@@ -1,4 +1,4 @@
-"""Constitution d'un jeu etiquete a la main : une transcription verifiee par page."""
+"""Building a hand-labelled set: one verified transcription per page."""
 import numpy as np, glob, os
 T="/root/dicionario/travail"
 def lire(fichier):
@@ -9,7 +9,7 @@ def lire(fichier):
         k,_,s=l.partition("\t"); d[int(k)]=s
     return d
 def paires(pg, txt):
-    """Retourne (indices de cellules dans meta_all, caracteres)."""
+    """Returns (indices of cells in meta_all, characters)."""
     z=np.load(f"{T}/cellules/p-{pg:03d}.npz", allow_pickle=True)
     occ=z['occ']; lg=z['lignes']
     M=np.load(f"{T}/meta_all.npy")
@@ -24,7 +24,7 @@ def paires(pg, txt):
             if (k,c) not in pos:
                 if ch!=" ": manques.append((k,c,ch))
                 continue
-            # cellule encree : soit un caractere, soit une bavure -> classe espace
+            # inked cell: either a character, or a smudge -> space class
             idx.append(pos[(k,c)]); car.append(ch)
     return np.array(idx), np.array(car, dtype=object), manques
 def tout(reps=(f"{T}/amorce", f"{T}/amorce_folios")):

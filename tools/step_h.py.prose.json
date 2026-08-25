@@ -1,0 +1,12 @@
+[
+ {
+  "id": 0,
+  "kind": "docstring",
+  "text": "\"\"\"Pas et phase par maximisation du module de la composante de Fourier.\"\"\""
+ },
+ {
+  "id": 1,
+  "kind": "comment",
+  "text": "# x0 : position du minimum d'encre (gouttiere) la plus proche de 0\n# profil ~ A cos(wx - ph) ; maximum d'encre en x = ph/w ; gouttiere a +p/2"
+ }
+]

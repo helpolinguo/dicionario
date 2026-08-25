@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
-"""Paquet de livraison : les sources du projet + le PDF compose.
+"""The delivery bundle: the project's sources + the composed PDF.
 
-On exclut ce qui est reconstructible et lourd — le scan, le corpus de
-cellules, le corpus de traits, les planches de relecture. Tout le reste tient
-en une quinzaine de megaoctets.
+We leave out what is reconstructible and heavy -- the scan, the corpus of
+cells, the corpus of features, the proofreading sheets. All the rest fits in
+some fifteen megabytes.
 """
 import os, shutil, zipfile, glob
 RAC="/root/dicionario"; T=f"{RAC}/travail"
@@ -11,9 +11,9 @@ SORTIE="/root/dicionario-source.zip"
 
 FICHIERS = ["main.tex", "preamble.tex", "LISEZ-MOI.md", "main.pdf",
             "index.html", "dicionario.tsv", "dicionario.jsonl",
-            # Le PDF de poche voyage A COTE de la page : le bouton de
-            # telechargement pointe vers lui par un lien relatif, et le site
-            # se publie en copiant les deux fichiers dans le meme dossier.
+            # The pocket PDF travels BESIDE the page: the download button points at
+            # it by a relative link, and the site is published by copying the two
+            # files into the same folder.
             "dicionario.pdf"]
 DOSSIERS = ["outils", "contenu", "ornements", "posho"]
 CORRECTIONS = ["exceptions.txt", "exceptions_manuel.txt", "exceptions_fins.txt",
@@ -35,9 +35,9 @@ def executer(sortie=SORTIE):
     for f in CORRECTIONS+BINAIRES:
         p=os.path.join(T,f)
         if os.path.exists(p): z.write(p, f"dicionario/corrections/{f}")
-    # Le releve de relecture, page par page — le TEXTE seulement. Le dossier
-    # contient aussi les planches images : 550 Mo, reconstructibles a la
-    # demande par tools/proofreading.py, et sans interet pour qui lit le code.
+    # The proofreading survey, page by page -- the TEXT only. The folder also
+    # holds the image sheets: 550 MB, reconstructible on demand by
+    # tools/proofreading.py, and of no interest to whoever reads the code.
     for p in sorted(glob.glob(f"{T}/relecture/*")):
         if os.path.isfile(p) and os.path.splitext(p)[1].lower() in (".txt", ".md"):
             z.write(p, "dicionario/relecture/"+os.path.basename(p))

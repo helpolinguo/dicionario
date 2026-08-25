@@ -1,14 +1,15 @@
 # -*- coding: utf-8 -*-
-"""Planches de jugement, seconde espece : le mot fait-il sens ici ?
+"""Judgement sheets, the second kind: does the word make sense here?
 
-La premiere espece proposait une forme voisine obtenue par echange de sosies.
-Elle ne voit donc que les coquilles qui ont un voisin atteste. Celle-ci ne
-propose rien : elle donne le mot et son contexte, et demande si le mot existe
-en ido a cet endroit. C'est le seul moyen d'attraper une coquille isolee.
+The first kind proposed a neighbouring form obtained by exchanging
+look-alikes. It therefore sees only the slips that have an attested
+neighbour. This one proposes nothing: it gives the word and its context, and
+asks whether the word exists in Ido in that place. It is the only way to
+catch an isolated slip.
 
-On ecarte d'avance ce qui est manifestement legitime — les noms scientifiques
-annonces par « L. » et les noms propres, reconnus a leur capitale — pour ne pas
-faire juger ce qui n'a pas besoin de l'etre.
+We set aside in advance what is plainly legitimate -- the scientific names
+announced by « L. » and the proper nouns, recognised by their capital -- so
+as not to have judged what does not need judging.
 """
 import json, re, sys, os, collections
 sys.path.insert(0,'/root/dicionario/outils')
@@ -22,13 +23,13 @@ def executer(par=60, lots=10):
     pool=[]
     for w,n in inc.items():
         if n>2: continue
-        if any(connu(v,rac) for v in set(variantes(w))): continue   # vu par l'autre planche
+        if any(connu(v,rac) for v in set(variantes(w))): continue   # seen by the other sheet
         ved,img,lig,idx,s = ctx[w]
-        if re.search(r'\bL\.\s*[A-Za-z]', s): continue              # nom scientifique
+        if re.search(r'\bL\.\s*[A-Za-z]', s): continue              # scientific name
         o=re.search(re.escape(w), s, re.I)
-        if o and s[o.start():o.start()+1].isupper(): continue       # nom propre
+        if o and s[o.start():o.start()+1].isupper(): continue       # proper noun
         pool.append((n, w, ved, img, lig, s))
-    pool.sort(key=lambda x:(x[0], x[1]))                            # hapax d'abord
+    pool.sort(key=lambda x:(x[0], x[1]))                            # hapax first
     os.makedirs(REP, exist_ok=True)
     fiches=[dict(id=i, mot=w, ved=ved, img=img, lig=lig, ctx=contexte(s,w))
             for i,(n,w,ved,img,lig,s) in enumerate(pool)]

@@ -1,0 +1,42 @@
+[
+ {
+  "id": 0,
+  "kind": "docstring",
+  "text": "\"\"\"Tire du Dicionario ses versions LISIBLES PAR LES MACHINES.\n\nPOURQUOI CE SCRIPT EXISTE. La page du Dicionario est batie par du\nJavaScript : les 9473 articles vivent dans un tableau que le navigateur\nderoule au chargement. C'est excellent pour la recherche instantanee, et\ndesastreux pour tout ce qui ne l'execute pas. Un robot d'indexation sans\nmoteur JS, un aspirateur de site, un modele de langue qui va chercher\nl'adresse : tous ne voient que 213 caracteres, c'est-a-dire rien.\n\nTrois fichiers reparent cela, chacun pour un usage :\n\n  dicionario.json  les donnees telles quelles, sans le JavaScript autour.\n                   Pour qui veut interroger, filtrer, recompter.\n  dicionario.md    le livre a plat, un article apres l'autre. Pour qui lit.\n  vortlisto.md     vedette et premier sens seulement. Beaucoup plus court :\n                   de quoi tenir dans une fenetre de contexte quand le\n                   Dicionario entier n'y tiendrait pas.\n\nIls sont ENGENDRES, jamais edites a la main. La source reste index.html.\n\n    python3 tools/machine_readable.py\n\"\"\""
+ },
+ {
+  "id": 1,
+  "kind": "docstring",
+  "text": "\"\"\"Retrouve le tableau D dans le script, et le rend en objets Python.\n\n    On ne cherche pas la fin du tableau a la main — un crochet dans une\n    definition suffirait a tromper le compte. Le decodeur JSON s'arrete\n    de lui-meme au bon endroit et nous dit ou.\n    \"\"\""
+ },
+ {
+  "id": 2,
+  "kind": "docstring",
+  "text": "\"\"\"Le texte des definitions porte un balisage leger, propre au livre.\n\n    On le rend en Markdown plutot que de le jeter : les italiques du\n    Dicionario distinguent les exemples des gloses, et cette distinction\n    porte du sens.\n    \"\"\""
+ },
+ {
+  "id": 3,
+  "kind": "docstring",
+  "text": "\"\"\"Un article, en Markdown. Suit la meme forme que la page.\"\"\""
+ },
+ {
+  "id": 4,
+  "kind": "docstring",
+  "text": "\"\"\"Le premier sens, ampute de tout le reste. Sert la liste courte.\"\"\""
+ },
+ {
+  "id": 5,
+  "kind": "comment",
+  "text": "# 1. Les donnees nues."
+ },
+ {
+  "id": 6,
+  "kind": "comment",
+  "text": "# 2. Le livre a plat."
+ },
+ {
+  "id": 7,
+  "kind": "comment",
+  "text": "# 3. La liste courte."
+ }
+]

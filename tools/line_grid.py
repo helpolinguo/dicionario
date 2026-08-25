@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-"""Bande de scan d'une ligne, avec la grille de cellules et les indices de
-colonne : pour lire au scan quelle cellule porte quel caractere."""
+"""A strip of scan of one line, with the grid of cells and the column
+indices: to read off the scan which cell carries which character."""
 import numpy as np, sys
 sys.path.insert(0,'/root/dicionario/outils')
 from PIL import Image, ImageDraw

@@ -1,5 +1,5 @@
-"""Recalcule les seuls releves de soulignement et les reinjecte dans les .npz,
-sans toucher aux cellules ni a leur etiquetage."""
+"""Recomputes the underline survey alone and re-injects it into the .npz,
+without touching the cells or their labelling."""
 import sys, os, glob, numpy as np, pickle
 sys.path.insert(0,'/root/dicionario/outils')
 from multiprocessing import Pool

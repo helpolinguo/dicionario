@@ -1,0 +1,7 @@
+[
+ {
+  "id": 0,
+  "kind": "docstring",
+  "text": "\"\"\"Le bloc stocke couvre-t-il tout le texte que la page porte, a DROITE et en BAS ?\n\naudit_block.py ne regardait que le bas. Les pages photographiees de biais sont\nrognees a droite : « smalto » se lit « Vitro blua, obtenat » au lieu de\n« obtenata per la fuzo di materio ». On mesure donc les deux bords, en pas de\nla grille de la page — une colonne, une ligne —, et non en pixels.\n\"\"\""
+ }
+]

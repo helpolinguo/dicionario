@@ -3,16 +3,16 @@ T="/root/dicionario/travail"
 
 _bav=None
 def bavures():
-    """Cellules qui ne contiennent qu'une bavure : l'encre y est plaquee contre
-    un bord de la cellule.
+    """Cells that contain nothing but a smudge: the ink there is pressed against
+    an edge of the cell.
 
-    - bord gauche/droit : debordement du caractere voisin ;
-    - bord haut : hampe d'une parenthese ou d'une majuscule de la ligne
-      SUIVANTE, qui depasse dans la cellule vide au-dessus d'elle ;
-    - bord bas : jambage ou filet de la ligne precedente.
+    - left/right edge: overflow from the neighbouring character;
+    - top edge: the ascender of a parenthesis or a capital of the FOLLOWING
+      line, which reaches up into the empty cell above it;
+    - bottom edge: a descender or a rule from the previous line.
 
-    Les trois seuils sont calibres sur la transcription-amorce : aucun des
-    7 006 caracteres reels verifies a la main n'est perdu."""
+    The three thresholds are calibrated on the seed transcription: not one of
+    the 7,006 real characters verified by hand is lost."""
     global _bav
     if _bav is None:
         C=np.load(f"{T}/cells_all.npy", mmap_mode='r')
@@ -30,7 +30,7 @@ def charger():
     lab=np.load(f"{T}/km_lab.npy"); M=np.load(f"{T}/meta_all.npy")
     return lab,M
 def table(fichier=f"{T}/etiquettes.txt", n=None):
-    """Table groupe -> caractere. Fichier : une ligne 'idx car' (car vide = espace)."""
+    """Table group -> character. File: one line 'idx char' (empty char = space)."""
     props=np.load(f"{T}/proposition.npy")
     tab=np.array(props, dtype=object).copy()
     import os

@@ -1,0 +1,7 @@
+[
+ {
+  "id": 0,
+  "kind": "docstring",
+  "text": "\"\"\"Inventaire des mots a soumettre au jugement, et rien d'autre.\n\nLe scan ne tranche pas — il est trop use — et le relire coute cher. Ce qui\ntranche, c'est de savoir si un mot fait sens en ido. On ne soumet donc pas le\nlivre entier : on soumet les seuls mots dont la racine n'est attestee nulle\npart comme vedette, et qui ne sont pas des mots grammaticaux. Le reste du\ntexte n'a pas besoin d'etre lu pour etre juge bon.\n\"\"\""
+ }
+]

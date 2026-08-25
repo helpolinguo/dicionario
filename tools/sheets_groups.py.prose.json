@@ -1,0 +1,37 @@
+[
+ {
+  "id": 0,
+  "kind": "docstring",
+  "text": "\"\"\"Planches de reetiquetage des groupes peu surs.\n\nLe classifieur etiquette non pas des cellules mais des groupes : une erreur\nd'etiquette sur un groupe se propage a tous ses membres. Corriger les groupes\nles moins surs corrige donc le livre entier d'un coup, la ou relire les lignes\nune a une couterait cent fois plus.\n\nUne bande par groupe : la moyenne du groupe, puis seize membres tires au\nhasard (les plus proches du centre en tete, les plus lointains en queue, pour\nque le relecteur voie aussi ce que le groupe ramasse de douteux).\n\"\"\""
+ },
+ {
+  "id": 1,
+  "kind": "comment",
+  "text": "# grossissement de la moyenne"
+ },
+ {
+  "id": 2,
+  "kind": "comment",
+  "text": "# grossissement des membres"
+ },
+ {
+  "id": 3,
+  "kind": "comment",
+  "text": "# membres montres"
+ },
+ {
+  "id": 4,
+  "kind": "comment",
+  "text": "# onze groupes : planche de 866 x 1400, aucun cote au-dela de 1500"
+ },
+ {
+  "id": 5,
+  "kind": "docstring",
+  "text": "\"\"\"lot : liste de (numero, etiquette, moyenne 22x12, liste de membres 22x12).\"\"\""
+ },
+ {
+  "id": 6,
+  "kind": "docstring",
+  "text": "\"\"\"groupes : liste de (numero, etiquette, moyenne, membres).\"\"\""
+ }
+]

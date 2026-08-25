@@ -1,6 +1,6 @@
 import numpy as np
 def pitch_dft(prof, lo=9.0, hi=12.0, n=2001):
-    """Pas et phase par maximisation du module de la composante de Fourier."""
+    """Pitch and phase by maximising the modulus of the Fourier component."""
     x = np.arange(len(prof)); s = prof - prof.mean()
     best=None
     for p in np.linspace(lo,hi,n):
@@ -10,8 +10,8 @@ def pitch_dft(prof, lo=9.0, hi=12.0, n=2001):
         if best is None or m>best[0]:
             best=(m,p,np.arctan2(d,c))
     m,p,ph = best
-    # x0 : position du minimum d'encre (gouttiere) la plus proche de 0
-    # profil ~ A cos(wx - ph) ; maximum d'encre en x = ph/w ; gouttiere a +p/2
+    # x0: position of the minimum of ink (gutter) nearest to 0
+    # profile ~ A cos(wx - ph); maximum of ink at x = ph/w; gutter at +p/2
     x0 = (ph/(2*np.pi/p)) + p/2
     x0 = x0 % p
     return p, x0, m/ (np.abs(s).sum()+1e-9)

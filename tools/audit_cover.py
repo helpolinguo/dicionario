@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-"""Planches de comparaison : le scan original en haut, la couverture finale en
-bas, zone de texte par zone de texte. Sert a verifier a l'oeil qu'aucune lettre
-n'a ete perdue au seuillage ou au depoussierage."""
+"""Comparison sheets: the original scan above, the finished cover below,
+text zone by text zone. Serves to check by eye that no letter has been lost
+to the thresholding or the despeckling."""
 import numpy as np, sys, os
 sys.path.insert(0,'/root/dicionario/outils')
 from PIL import Image, ImageDraw

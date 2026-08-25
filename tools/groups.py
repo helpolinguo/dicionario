@@ -1,7 +1,7 @@
 import numpy as np, glob, os, pickle
 DIR="/root/dicionario/work/cellules"
 def charger(noms=None):
-    """Retourne cells (N,22,12) uint8, meta (page,ligne,col) et la liste des pages."""
+    """Returns cells (N,22,12) uint8, meta (page,line,col) and the list of pages."""
     if noms is None: noms=[os.path.basename(p)[:-4] for p in sorted(glob.glob(DIR+"/*.npz"))]
     C=[]; M=[]
     for n in noms:
@@ -21,7 +21,7 @@ def vecteurs(C):
     return X/n
 
 def leaders(X, tau=0.90, ordre=None, chunk=20000):
-    """Regroupement par chef de file glouton. Retourne indices des chefs et affectation."""
+    """Grouping by greedy leader. Returns the leaders' indices and the assignment."""
     N=len(X)
     if ordre is None: ordre=np.arange(N)
     aff=np.full(N,-1,dtype=np.int32); sim=np.zeros(N,dtype=np.float32)

@@ -1,0 +1,52 @@
+[
+ {
+  "id": 0,
+  "kind": "docstring",
+  "text": "\"\"\"Reconstruit tous les elements de la couverture.\"\"\""
+ },
+ {
+  "id": 1,
+  "kind": "comment",
+  "text": "# --- portraits : deux tons ---"
+ },
+ {
+  "id": 2,
+  "kind": "comment",
+  "text": "# --- couverture complete : lettrages au trait + portraits a deux tons ---"
+ },
+ {
+  "id": 3,
+  "kind": "comment",
+  "text": "# Le mot « invitas » est efface au scan : on lui rend son « i » et son « t »,\n# pris dans « profitar ». Voir tools/repair_cover.py."
+ },
+ {
+  "id": 4,
+  "kind": "comment",
+  "text": "# Le grain du papier n'est jamais vraiment noir : on le retire par le\n# niveau d'encre, avant de juger quoi que ce soit par la taille."
+ },
+ {
+  "id": 5,
+  "kind": "comment",
+  "text": "# Depoussierage final du calque de trait.\n#\n# Premier essai : retirer les petites composantes loin d'une grosse. Mauvais\n# critere — les legendes sous les portraits n'ont aucune grosse composante,\n# leurs points sur les i n'etaient donc ancres a rien et disparaissaient :\n# « PRECIZA, KONC ZA, FACILA » devenait « PREC ZA KONC ZA FAC LA ».\n#\n# Ce qui distingue la poussiere, ce n'est pas la taille, c'est l'isolement.\n# On dilate donc l'encre : les lettres d'un meme mot se rejoignent en un\n# amas, une salissure reste seule. Un amas qui, dilatation defaite, ne pese\n# pas 1 500 pixels d'encre est de la poussiere.\n#\n# Le rayon compte autant que le seuil. A huit pixels, un mot forme un amas\n# mais une ligne n'en forme pas : « vu », « lia », « ZA », « di la » ont\n# ete pris pour des salissures et effaces. A vingt-deux, les mots d'une\n# meme ligne se rejoignent, et seule une tache vraiment seule reste seule."
+ },
+ {
+  "id": 6,
+  "kind": "comment",
+  "text": "# Second depoussierage, plus fin.\n#\n# Le rayon de vingt-deux pixels est genereux : une salissure posee a dix\n# pixels d'un mot rejoint son amas et survit. Il en restait une cinquantaine,\n# bien visibles dans les blancs de la page. On ne peut pas simplement\n# resserrer le rayon — c'est ce qui effacait « vu » et « di la ».\n#\n# On dilate donc de facon anisotrope : large en largeur (les mots d'une meme\n# ligne se rejoignent), etroite en hauteur (une tache posee au-dessus d'une\n# ligne ne la rejoint pas). Puis on n'efface une composante que si les trois\n# conditions tiennent ensemble :\n#   - elle est petite (moins de 900 pixels d'encre) ;\n#   - la ligne a laquelle elle appartiendrait est pauvre en encre ;\n#   - aucune vraie lettre ne se tient a moins de douze pixels d'elle.\n# La derniere condition est un veto, jamais un motif : le point d'un i, une\n# virgule, un accent touchent presque leur lettre et sont donc epargnes,\n# meme quand leur legende n'a aucune grosse composante — c'est ce qui avait\n# fait disparaitre les points de « PRECIZA, KONCIZA, FACILA »."
+ },
+ {
+  "id": 7,
+  "kind": "comment",
+  "text": "# --- elements de trait ---"
+ },
+ {
+  "id": 8,
+  "kind": "comment",
+  "text": "# embleme"
+ },
+ {
+  "id": 9,
+  "kind": "comment",
+  "text": "# bandes de lettrage"
+ }
+]

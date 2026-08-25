@@ -1,0 +1,7 @@
+[
+ {
+  "id": 0,
+  "kind": "docstring",
+  "text": "\"\"\"Prepare les planches de relecture d'une page : une ligne du livre par ligne\nd'image, colonnes numerotees, plus le decodage courant en regard.\"\"\""
+ }
+]

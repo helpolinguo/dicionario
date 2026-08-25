@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-"""Releve des « + » en exposant devant les vedettes non officielles.
+"""Survey of the superscript « + » before the unofficial headwords.
 
-Le signe est frappe une demi-hauteur au-dessus de la ligne. La cellule qui le
-porte n'est pas marquee occupee — c'est pourquoi un releve fonde sur occ ne le
-voit pas. On mesure donc l'encre directement dans le scan, dans le haut de la
-cellule qui precede la vedette.
+The sign is struck half a height above the line. The cell that carries it is
+not marked occupied -- which is why a survey founded on occ does not see it.
+We therefore measure the ink directly in the scan, in the top of the cell
+that precedes the headword.
 """
 import sys, numpy as np, glob, re
 sys.path.insert(0,'/root/dicionario/outils')
@@ -30,7 +30,7 @@ def releve(seuil=0.20):
         H,W=z['shape']; ech=img.shape[0]/float(H)
         for k,t in cands:
             if k not in lg: continue
-            # haut de la cellule 0 : de -1,0 a -0,35 interligne sous la ligne de base
+            # top of cell 0: from -1.0 to -0.35 of the leading below the baseline
             ya=int((lg[k]-1.00*pasv)*ech); yb=int((lg[k]-0.30*pasv)*ech)
             xa=int((xg+(0+c0)*pash)*ech); xb=int((xg+(1+c0)*pash)*ech)
             if yb<=ya or xb<=xa or yb>img.shape[0]: continue

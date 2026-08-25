@@ -11,7 +11,7 @@ def apercu(nom, sortie, zoom=3, crop=None):
     px = im.load()
     W,H = im.size
     y0,y1,x0,x1 = d['bloc']
-    # colonnes
+    # columns
     j = 0
     while d['xg'] + j*d['pash'] < W:
         x = int(round(d['xg'] + j*d['pash']))
@@ -19,7 +19,7 @@ def apercu(nom, sortie, zoom=3, crop=None):
             for y in range(y0,min(y1+1,H)):
                 r,g,b = px[x,y]; px[x,y] = (255, min(255,g//2), min(255,b//2))
         j += 1
-    # lignes de base
+    # baselines
     for k,y in d['lignes']:
         yy = int(round(y + d['pasv']*0.40))
         if 0<=yy<H:

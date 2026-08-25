@@ -1,0 +1,7 @@
+[
+ {
+  "id": 0,
+  "kind": "docstring",
+  "text": "\"\"\"Bande de scan autour de quelques lignes, avec les filets detectes marques.\nSert a voir ou l'encre du filet se trouve reellement.\"\"\""
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "id": 0,
+  "kind": "docstring",
+  "text": "\"\"\"Bande de scan d'une ligne, avec la grille de cellules et les indices de\ncolonne : pour lire au scan quelle cellule porte quel caractere.\"\"\""
+ }
+]

@@ -1,0 +1,197 @@
+[
+ {
+  "id": 0,
+  "kind": "docstring",
+  "text": "\"\"\"Generation des fichiers de contenu LaTeX, une ligne de source par ligne du livre.\"\"\""
+ },
+ {
+  "id": 1,
+  "kind": "comment",
+  "text": "# --- assiette des pages, en millimetres ---------------------------------"
+ },
+ {
+  "id": 2,
+  "kind": "comment",
+  "text": "# pas de la machine : un dixieme de pouce"
+ },
+ {
+  "id": 3,
+  "kind": "comment",
+  "text": "# interligne mesure"
+ },
+ {
+  "id": 4,
+  "kind": "comment",
+  "text": "# origine de la zone de texte composee"
+ },
+ {
+  "id": 5,
+  "kind": "comment",
+  "text": "# Le bloc de texte est pose au meme endroit sur toutes les pages de meme main.\n# La ligne la plus longue du livre fait 190,5 mm sur une feuille de 210 : il\n# reste 19,5 mm de marges, que l'on partage en donnant plus au cote de la\n# couture, ou l'ouvrage — 639 pages — perd de la place a la reliure.\n# Le bloc est cale sur la TRANCHE, et non sur la couture.\n#\n# Il l'etait sur la couture jusqu'ici : marge gauche fixe, bord droit libre.\n# Les marges gauches etaient donc parfaitement regulieres — 13,5 mm au recto,\n# 8,0 mm au verso — mais les marges droites allaient de 6 a 72 millimetres,\n# puisque le bord droit suivait la ligne la plus longue de la page. A\n# l'ouverture, deux pages en regard n'avaient aucun bord commun.\n#\n# On cale desormais sur le cote exterieur : le verso par sa gauche, le recto\n# par sa droite. La marge de tranche est alors la meme partout, et tout le\n# jeu des longueurs de ligne se reporte du cote de la couture — ou il est le\n# bienvenu, un ouvrage de 640 pages perdant beaucoup de place a la reliure."
+ },
+ {
+  "id": 6,
+  "kind": "comment",
+  "text": "# marge exterieure (tranche) : la meme des deux mains"
+ },
+ {
+  "id": 7,
+  "kind": "comment",
+  "text": "# jamais moins, du cote de la couture"
+ },
+ {
+  "id": 8,
+  "kind": "comment",
+  "text": "# marge de tete, la meme partout"
+ },
+ {
+  "id": 9,
+  "kind": "comment",
+  "text": "# butee absolue pour les pages hors norme"
+ },
+ {
+  "id": 10,
+  "kind": "docstring",
+  "text": "\"\"\"Echappe une SUITE de contenus de cellules. Un contenu de plus d'un\n    caractere commencant par une contre-oblique est du LaTeX brut (surfrappe,\n    caractere compose) et passe tel quel.\"\"\""
+ },
+ {
+  "id": 11,
+  "kind": "docstring",
+  "text": "\"\"\"Table (page, ligne, colonne) -> lecture retenue.\n\n    Deux fichiers : `exceptions.txt`, ecrit par les correcteurs automatiques,\n    et `exceptions_manuel.txt`, arbitre a l'oeil. Le second l'emporte toujours\n    et n'est jamais reecrit par un programme.\n    \"\"\""
+ },
+ {
+  "id": 12,
+  "kind": "docstring",
+  "text": "\"\"\"Premieres lettres rendues par restore_starts.py, par page.\"\"\""
+ },
+ {
+  "id": 13,
+  "kind": "docstring",
+  "text": "\"\"\"Filets recalcules par redo_rules.py, par page.\"\"\""
+ },
+ {
+  "id": 14,
+  "kind": "docstring",
+  "text": "\"\"\"Plages de soulignement relevees a l'oeil, par (page, ligne).\n\n    Elles remplacent entierement les plages detectees : le relecteur a vu la\n    page, la detection ne fait que mesurer un filet dont elle situe mal la\n    ligne de base.\n    \"\"\""
+ },
+ {
+  "id": 15,
+  "kind": "docstring",
+  "text": "\"\"\"Ebarbe une plage de soulignement.\n\n    Le filet est mesure au pixel pres, mais il lui arrive de deborder d'une ou\n    deux cellules sur le mot suivant. Un filet ne souligne pas une lettre isolee\n    a son extremite : on retranche donc les groupes de une ou deux cellules\n    separes du corps de la plage par une espace. Les espaces interieures, elles,\n    sont conservees — le tapuscrit souligne bien « historio di Italia » d'un\n    seul trait. Un filet isole d'une ou deux cellules est du bruit.\n    \"\"\""
+ },
+ {
+  "id": 16,
+  "kind": "comment",
+  "text": "# Filets recalcules : voir tools/redo_rules.py. La detection d'origine\n# prenait les empattements superieurs alignes des capitales de DEFIRS pour\n# un soulignement, et les rapportait a la ligne du dessus. On ne reecrit pas\n# le corpus de cellules pour autant — 295 Mo, et un accident de format y a\n# deja coute 144 pages : la correction est une couche par-dessus."
+ },
+ {
+  "id": 17,
+  "kind": "comment",
+  "text": "# Debuts de ligne rendus (voir tools/restore_starts.py). Ils tombent AVANT\n# la colonne zero : on decale la PAGE ENTIERE d'autant de cellules qu'il en\n# manque. Decaler la seule ligne concernee la poserait une cellule a droite\n# de sa place reelle ; en decalant tout, les positions relatives sont\n# conservees au caractere pres, et le bloc, dont la marge est fixee\n# ailleurs, retombe au meme endroit sur la feuille.\n#\n# Le decalage s'applique AVANT les exceptions : celles-ci sont relevees a\n# l'oeil sur le fac-simile decale, donc deja dans la nouvelle numerotation."
+ },
+ {
+  "id": 18,
+  "kind": "comment",
+  "text": "# Une correction peut porter au-dela du bloc : ce sont les fins de ligne\n# que le decoupage avait coupees. On elargit la ligne pour les accueillir,\n# sans avoir a redecouper la page."
+ },
+ {
+  "id": 19,
+  "kind": "comment",
+  "text": "# Releve a l'oeil : on prend tel quel, sans fusion ni ebarbage —\n# ces corrections-la visent justement a redresser ce que la mesure\n# automatique avait mal place."
+ },
+ {
+  "id": 20,
+  "kind": "comment",
+  "text": "# Le ruban saute : un filet interrompu sur une ou deux cellules\n# reste le meme filet. Deux plages separees de plus de deux\n# cellules, elles, sont bien deux soulignements distincts\n# (« cinocefalo » et « zool. » sont a trois cellules l'une de\n# l'autre)."
+ },
+ {
+  "id": 21,
+  "kind": "comment",
+  "text": "# Deux regles reglees sur 1 698 lignes relevees a l'oeil :\n# un filet ne commence ni ne finit sur une case vide, et deux\n# troncons separes seulement par des cases pleines sont le meme\n# filet, interrompu par l'usure du ruban."
+ },
+ {
+  "id": 22,
+  "kind": "comment",
+  "text": "# Troisieme regle : un filet ne commence pas au milieu d'un mot.\n# La detection produisait « ritato » sous « autoritato » et « as, »\n# sous « esas, ». Si le debut n'est pas a une frontiere de mot — une\n# espace, une parenthese ouvrante, un guillemet — on le ramene au\n# debut du mot ; et si le filet ne couvre pas au moins les trois\n# cinquiemes de ce mot, c'est du bruit et on le jette.\n# Le « + » qui marque les vedettes non officielles est un signe,\n# pas une lettre : le filet commence apres lui, sous la vedette.\n# Sans l'admettre comme frontiere, « +quoniam » perdait son\n# soulignement — le filet, pourtant bien mesure, etait juge\n# commencant au milieu d'un mot et jete."
+ },
+ {
+  "id": 23,
+  "kind": "comment",
+  "text": "# Un filet qui commence au milieu d'un mot est un fantome de\n# la mesure : on le jette. L'etendre au mot entier notait aussi\n# bien sur la verite terrain (84,5 % contre 83,9 % de lignes\n# exactes), mais c'est le mauvais echec — mieux vaut un\n# soulignement manquant qu'un mot souligne a tort, qui saute\n# aux yeux : « autoritato » et « esas, » l'ont montre."
+ },
+ {
+  "id": 24,
+  "kind": "docstring",
+  "text": "\"\"\"Compose une ligne : espaces -> \\\\cel{n}, plages soulignees -> \\\\sou{...}.\"\"\""
+ },
+ {
+  "id": 25,
+  "kind": "comment",
+  "text": "# on tronque les espaces de fin"
+ },
+ {
+  "id": 26,
+  "kind": "comment",
+  "text": "# on garde les espaces simples internes en clair pour la lisibilite"
+ },
+ {
+  "id": 27,
+  "kind": "docstring",
+  "text": "\"\"\"Lignes qu'une RE-COUPE ulterieure de la page a laissees hors du bloc.\n\n    Vingt-et-une pages ont ete decoupees par une version de bloc_texte() qui\n    arretait le bloc trop haut ; leur .npz ne porte donc plus les dernieres\n    lignes de la page, alors que le scan, lui, les porte. Ce fichier les rend,\n    telles que le scan les donne, et il sert AUX DEUX editions : le fac-simile\n    les recompose, l'edition de lecture les lit. Une seule source, donc pas de\n    divergence possible.\n\n    Une ligne du fichier : page<TAB>numero de ligne<TAB>texte de la grille.\n    \"\"\""
+ },
+ {
+  "id": 28,
+  "kind": "comment",
+  "text": "# Ligne deja lue mais TRONQUEE a droite : on garde ses filets de\n# soulignement, qui portent sur le debut, et on rend le texte\n# entier. Ligne absente : on la cree, sans filet."
+ },
+ {
+  "id": 29,
+  "kind": "comment",
+  "text": "# Le lattis est DENSE : une entree par interligne, blanche ou non.\n# Les lignes rendues peuvent laisser un trou — l'interligne vide qui\n# separe deux articles —, qu'il faut recreer, sinon les articles se\n# touchent et la page se decale d'une ligne. Un indice NEGATIF rend une\n# ligne perdue au-dessus de la premiere : le lattis s'etend vers le\n# haut, et la numerotation des lignes deja lues ne bouge pas."
+ },
+ {
+  "id": 30,
+  "kind": "comment",
+  "text": "# Le lattis de lignes couvre toute la hauteur de l'image pour attraper les\n# folios ; en bas de page il produit donc des lignes fantomes, vides. Une\n# ligne vide APRES la derniere ligne encree ne porte aucune information et\n# ferait deborder la page composee (\\vbox trop haute). On les retranche."
+ },
+ {
+  "id": 31,
+  "kind": "comment",
+  "text": "# Assiette de la page : on la centre sur sa propre largeur, avec un peu\n# plus de marge du cote de la couture. Une origine fixe laissait jusqu'a\n# 66 mm de blanc d'un cote et faisait deborder l'autre.\n# Une moucheture isolee loin a droite — un « - » seul apres vingt-quatre\n# espaces — n'est pas du texte : elle elargissait la page de trente\n# millimetres. On la retranche, sous condition stricte : un seul caractere,\n# de ponctuation, separe du reste par dix cases au moins."
+ },
+ {
+  "id": 32,
+  "kind": "comment",
+  "text": "# Un filet qui depasse le dernier caractere de sa ligne est un artefact\n# de mesure : il ne doit pas elargir la page."
+ },
+ {
+  "id": 33,
+  "kind": "comment",
+  "text": "# Origine FIXE, et non centrage page par page. Centrer chaque page sur sa\n# propre largeur la rendait equilibree isolement, mais faisait sauter le\n# bord gauche d'une page a l'autre : sur 631 pages, 199 sautaient de plus de\n# cinq millimetres, jusqu'a vingt-huit. Un livre ne fait pas cela — son bloc\n# de texte est a la meme place sur toutes les pages de meme main, et les\n# lignes courtes laissent simplement du blanc a droite."
+ },
+ {
+  "id": 34,
+  "kind": "comment",
+  "text": "# page de droite dans le fac-simile"
+ },
+ {
+  "id": 35,
+  "kind": "comment",
+  "text": "# cale sur la tranche de droite"
+ },
+ {
+  "id": 36,
+  "kind": "comment",
+  "text": "# cale sur la tranche de gauche"
+ },
+ {
+  "id": 37,
+  "kind": "comment",
+  "text": "# Les rares pages tres larges — six passent 74 colonnes — ne tiennent ni\n# la tranche ni la gouttiere. On leur laisse la butee absolue."
+ },
+ {
+  "id": 38,
+  "kind": "comment",
+  "text": "# Le decalage est quantifie sur la grille : un nombre entier de pas en\n# largeur, un nombre entier d'interlignes en hauteur. Sans cela les\n# caracteres ne tombent plus sur une colonne entiere, et le controle de\n# position — qui garantit la fidelite de la trame — echoue."
+ }
+]

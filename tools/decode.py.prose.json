@@ -1,0 +1,12 @@
+[
+ {
+  "id": 0,
+  "kind": "docstring",
+  "text": "\"\"\"Cellules qui ne contiennent qu'une bavure : l'encre y est plaquee contre\n    un bord de la cellule.\n\n    - bord gauche/droit : debordement du caractere voisin ;\n    - bord haut : hampe d'une parenthese ou d'une majuscule de la ligne\n      SUIVANTE, qui depasse dans la cellule vide au-dessus d'elle ;\n    - bord bas : jambage ou filet de la ligne precedente.\n\n    Les trois seuils sont calibres sur la transcription-amorce : aucun des\n    7 006 caracteres reels verifies a la main n'est perdu.\"\"\""
+ },
+ {
+  "id": 1,
+  "kind": "docstring",
+  "text": "\"\"\"Table groupe -> caractere. Fichier : une ligne 'idx car' (car vide = espace).\"\"\""
+ }
+]

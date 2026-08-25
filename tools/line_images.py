@@ -1,4 +1,4 @@
-"""Rend une page sous forme de lignes de cellules separees, avec reperes de colonnes."""
+"""Renders a page as separated lines of cells, with column marks."""
 import numpy as np
 from PIL import Image, ImageDraw
 def image_lignes(cells, occ=None, k0=0, zoom=4, ecart=2, marge=54, lignes_ids=None, pas_rep=5):

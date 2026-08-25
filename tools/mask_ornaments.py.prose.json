@@ -1,0 +1,17 @@
+[
+ {
+  "id": 0,
+  "kind": "docstring",
+  "text": "\"\"\"Neutralise les cellules recouvertes par un ornement.\n\nUn ornement — la lettre de section, la signature — tombe dans la grille comme\nn'importe quelle encre : le decodeur y lit des caracteres, qui sont du bruit.\nOn efface donc les cellules dont le centre tombe dans la boite de l'ornement.\nLa boite est mesuree sur le scan d'origine ; la grille, elle, vit dans l'image\nremise a l'echelle. Le rapport des deux hauteurs donne le facteur.\n\"\"\""
+ },
+ {
+  "id": 1,
+  "kind": "comment",
+  "text": "# On masque d'apres la boite SERREE quand elle existe : la boite du\n# decoupage, volontairement large pour ne rien rogner de l'image,\n# mordrait sur le texte tape au-dessus."
+ },
+ {
+  "id": 2,
+  "kind": "comment",
+  "text": "# Dilatee, car autour de la signature subsistaient des fragments de\n# paraphe que le decodeur lisait en « ,F » — mais vers le bas et sur\n# les cotes seulement, jamais vers le haut."
+ }
+]

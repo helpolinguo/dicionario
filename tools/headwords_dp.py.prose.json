@@ -1,0 +1,22 @@
+[
+ {
+  "id": 0,
+  "kind": "docstring",
+  "text": "\"\"\"Correction des vedettes par l'ordre alphabetique — formulation globale.\n\nMa premiere tentative corrigeait de proche en proche : quand une vedette rompait\nl'ordre, elle la forcait a se conformer a ses voisines. C'est faux, parce que la\nfaute peut etre dans la voisine, et cela produisait des monstres.\n\nLa bonne formulation est globale. Chaque vedette a un jeu de lectures possibles\n(l'originale, plus celles qu'on obtient en remplacant ses cellules ambigues par\nleurs voisines de groupe), chacune avec un cout egal au nombre de cellules\nchangees. On cherche la suite de lectures qui **minimise le cout total** sous la\ncontrainte d'ordre alphabetique croissant — par programmation dynamique.\n\nLa contrainte est souple : une rupture d'ordre coute PENALITE mais reste\npossible. Une vedette reellement mal classee dans le tapuscrit survit donc, si\naucune lecture voisine ne rattrape l'ordre a moindre frais.\n\"\"\""
+ },
+ {
+  "id": 1,
+  "kind": "comment",
+  "text": "# cout d'une rupture d'ordre conservee"
+ },
+ {
+  "id": 2,
+  "kind": "comment",
+  "text": "# cellules ambigues considerees par vedette"
+ },
+ {
+  "id": 3,
+  "kind": "comment",
+  "text": "# retour arriere"
+ }
+]

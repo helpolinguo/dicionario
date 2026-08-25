@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
-"""Combien de caracteres le bloc coupe-t-il en fin de ligne ? Mesure, pas avis.
+"""How many characters does the block cut off at the end of a line?
+A measurement, not an opinion.
 
-On recoupe chaque page avec le bloc etendu a droite — sans rien enregistrer —
-et on compte les cellules occupees qui tombent au-dela du bloc actuel. Ce sont
-exactement les caracteres perdus.
+We re-cut each page with the block extended to the right -- recording
+nothing -- and count the occupied cells that fall beyond the current block.
+Those are exactly the lost characters.
 """
 import sys, os, json
 import numpy as np
@@ -17,7 +18,7 @@ def une(pg):
     cellules.ETENDRE=False; cellules.ETENDRE_D=True
     d=cellules.extraire(f"{RAC}/scan/p-{pg:03d}.jpg")
     occ=d['occ']; c0=int(d['col0'])
-    # colonnes de l'extension : au-dela de (col0-c0) + ncol dans le repere etendu
+    # columns of the extension: beyond (col0-c0) + ncol in the extended frame
     debut=(col0-c0)+ncol
     if debut >= occ.shape[1]: return dict(pagino=pg, perdus=0, lignes=0, colonnes=0)
     sup=occ[:, debut:]

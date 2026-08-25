@@ -1,17 +1,17 @@
 # -*- coding: utf-8 -*-
-"""Planches de relecture ciblees, version calibree pour la lecture par agent.
+"""Targeted proofreading sheets, the version calibrated for reading by an agent.
 
-Contrainte : une image transmise a un modele est reduite pour tenir dans
-environ 1500 px. La version precedente faisait 1988 x 4930 : la reduction
-annulait tout le grossissement. On dimensionne donc la planche pour qu'aucun
-cote ne depasse ~1400 px, quitte a mettre moins de vedettes par planche.
+The constraint: an image passed to a model is reduced to fit within about
+1500 px. The previous version was 1988 x 4930: the reduction cancelled all
+the magnification. We therefore size the sheet so that no side exceeds
+~1400 px, at the cost of fewer headwords per sheet.
 """
 import numpy as np, json, os, sys
 from PIL import Image, ImageDraw
 T = "/root/dicionario/travail"
-NCEL = 30      # trente cellules : la vedette et le debut de la definition
-ZOOM = 3       # 12x22 -> 36x66, lisible sans depasser la largeur utile
-PAR  = 16      # seize bandes : planche de 1180 x 1270
+NCEL = 30      # thirty cells: the headword and the start of the definition
+ZOOM = 3       # 12x22 -> 36x66, legible without exceeding the useful width
+PAR  = 16      # sixteen strips: a sheet of 1180 x 1270
 
 _cache = {}
 def cellules(pg):

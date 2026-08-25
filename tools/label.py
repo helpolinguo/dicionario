@@ -1,4 +1,4 @@
-"""Etiquetage des groupes : amorce manuelle + propagation par classifieur."""
+"""Labelling the groups: a hand-made seed + propagation by classifier."""
 import sys, numpy as np, collections, pickle
 sys.path.insert(0,'/root/dicionario/outils')
 from features import features
@@ -38,7 +38,7 @@ def executer(tours=3):
     for k,c in vote.items():
         (b,n),=c.most_common(1); p[k]=b
         if len(c)>1: imp.append((k,dict(c)))
-    # etiquettes manuelles explicites (fichier facultatif)
+    # explicit hand labels (optional file)
     import os
     man=f"{T}/etiquettes.txt"
     nman=0

@@ -1,0 +1,12 @@
+[
+ {
+  "id": 0,
+  "kind": "docstring",
+  "text": "\"\"\"Ou tombent, sur le lattis de la page, les lignes que le bloc a laissees dehors ?\n\nLe lattis d'une page est une droite : y(k) = y0 + k*pasv, ou y0 est la premiere\nligne STOCKEE, d'indice 0. Une ligne perdue au-dessus prend donc un indice\nnegatif, une ligne perdue en bas un indice au-dela du dernier. Ainsi la\nnumerotation des lignes deja lues ne bouge pas, et aucune correction indexee\npar (page, ligne, colonne) n'est invalidee.\n\"\"\""
+ },
+ {
+  "id": 1,
+  "kind": "docstring",
+  "text": "\"\"\"Pour chaque ligne k, la premiere et la derniere colonne encree.\"\"\""
+ }
+]

@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
-"""Rekonstruktas la du edituri de la texto epurita, en la justa ordino.
+"""Rebuilds the two editions of the cleaned text, in the right order.
 
-La pagino HTML e la dicionario de posho venas de la SAMA dosiero,
-work/edicioni/dicionario.jsonl. Rekonstruktar li kune esas la sola maniero
-por ke li ne divergez : irga korekto pozita en la kushi di relekto trovesas
-en l'una kam en l'altra.
+The HTML page and the pocket dictionary come from the SAME file,
+work/edicioni/dicionario.jsonl. Rebuilding them together is the only way to
+keep them from diverging: any correction laid in the proofreading layers is
+found in the one as in the other.
 
-    python3 tools/all_editions.py            # omno
-    python3 tools/all_editions.py --sen-baz  # sen rekalkular la bazo
+    python3 tools/all_editions.py            # everything
+    python3 tools/all_editions.py --sen-baz  # without recomputing the base
 """
 import os, subprocess, sys
 RAC = "/root/dicionario"
@@ -37,8 +37,8 @@ def executer(baz=True):
                 "posho.tex"], dosiero=f"{RAC}/posho")
     for f in ("index.html", "dicionario.tsv", "dicionario.jsonl"):
         _kurar(["cp", f"{RAC}/work/edicioni/{f}", f"{RAC}/{f}"])
-    # Le PDF de poche prend a la racine le nom vers lequel pointe le bouton de
-    # la pagino : index.html e dicionario.pdf voyajas kune.
+    # The pocket PDF takes at the root the name the page's button points at:
+    # index.html and dicionario.pdf travel together.
     _kurar(["cp", f"{RAC}/pocket/posho.pdf", f"{RAC}/dicionario.pdf"])
     print("kompleta : index.html e pocket/posho.pdf venas de la sama fonto")
 

@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
-"""Le bloc stocke couvre-t-il tout le texte que la page porte, a DROITE et en BAS ?
+"""Does the stored block cover all the text the page carries, on the RIGHT
+and at the FOOT?
 
-audit_block.py ne regardait que le bas. Les pages photographiees de biais sont
-rognees a droite : « smalto » se lit « Vitro blua, obtenat » au lieu de
-« obtenata per la fuzo di materio ». On mesure donc les deux bords, en pas de
-la grille de la page — une colonne, une ligne —, et non en pixels.
+audit_block.py looked only at the foot. Pages photographed askew are
+trimmed on the right: « smalto » reads « Vitro blua, obtenat » instead of
+« obtenata per la fuzo di materio ». We therefore measure both edges, in
+steps of the page's grid -- one column, one line -- and not in pixels.
 """
 import sys, os, json, glob, re
 import numpy as np

@@ -1,0 +1,17 @@
+[
+ {
+  "id": 0,
+  "kind": "docstring",
+  "text": "\"\"\"Exportation de la base lexicale : JSONL, TSV, et edition HTML autonome.\"\"\""
+ },
+ {
+  "id": 1,
+  "kind": "comment",
+  "text": "# Le bouton de retour vers ido.help, la porte des trois livres, tient en deux\n# lignes du gabarit : la feuille `/pordo.css` et l'ancre `ido-pordo`. Son\n# apparence n'est PAS ici — pordo.css et emblemo.svg sont servis depuis la\n# racine du site, que les trois livres partagent, pour que le retoucher se\n# fasse a un seul endroit. Le mot « Ido » est dans l'ancre et non dans la\n# feuille : si celle-ci ne se charge pas, il reste un lien lisible en fin de\n# document au lieu d'un carre vide.\n#\n# `/pordo.js` dessine la croix qui vide le champ de recherche. Le champ n'en a\n# pas sur iPhone et ne peut pas en avoir : WebKit ne rend\n# « ::-webkit-search-cancel-button » que sur macOS. Sans le script, le champ\n# reste ce qu'il etait — on le vide au clavier.\n#\n# Le champ de recherche porte enfin autocapitalize=\"none\", autocorrect=\"off\" et\n# spellcheck=\"false\" : sur iPhone, iOS met d'office une capitale a la premiere\n# lettre d'un champ de texte, remplace un mot ido par le mot anglais ou francais\n# qu'il croit reconnaitre, et le souligne en rouge. Ici, ce qu'on tape EST le\n# terme cherche.\n#\n# Toute retouche de la page se pose ICI et non a la main dans index.html : la\n# page est un produit de fabrication, et la reconstruction suivante l'effacerait\n# sans bruit. C'est vrai du gabarit comme de la feuille de style qu'il porte —\n# l'ecart lateral de l'en-tete, entre autres, est venu par ce chemin."
+ },
+ {
+  "id": 2,
+  "kind": "comment",
+  "text": "# index.html, e ne dicionario.html : la pagino publikigesas tale quale sur\n# GitHub Pages, ube « index.html » esas la nomo qua sequesas automate."
+ }
+]

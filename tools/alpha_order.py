@@ -1,10 +1,10 @@
-"""Correction des vedettes par l'ordre alphabetique du livre.
+"""Correcting the headwords by the book's alphabetical order.
 
-Les vedettes se suivent dans l'ordre alphabetique. Une vedette qui rompt cet
-ordre est une faute de lecture : on essaie de la retablir en remplacant ses
-cellules ambigues par leurs voisines de groupe. Ce n'est pas une correction du
-tapuscrit, c'est l'emploi d'une propriete verifiable du livre. Tout est
-journalise.
+The headwords follow one another in alphabetical order. A headword that
+breaks that order is a misreading: we try to restore it by replacing its
+ambiguous cells with their neighbours in the group. This is not a correction
+of the typescript, it is the use of a verifiable property of the book.
+Everything is logged.
 """
 import numpy as np, pickle, itertools, sys, collections
 sys.path.insert(0,'/root/dicionario/outils')
@@ -12,7 +12,7 @@ from consolidate import vedettes
 T="/root/dicionario/travail"
 
 def collecter(lab, M, tab, bav, exc):
-    """Suite des vedettes du livre : (page, ligne, [(col, car, indice)])."""
+    """The book's run of headwords: (page, line, [(col, char, index)])."""
     out=[]
     pages=sorted(set(M[:,0].tolist()))
     par_page={}

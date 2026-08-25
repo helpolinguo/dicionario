@@ -1,4 +1,4 @@
-"""Recale les transcriptions-amorce apres un changement de numerotation des lignes."""
+"""Realigns the seed transcriptions after a change in line numbering."""
 import numpy as np, glob, os, sys
 T="/root/dicionario/travail"
 def motif(s, n): return "".join("#" if c!=" " else "." for c in s).ljust(n,".")[:n]

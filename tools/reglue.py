@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Recolle les pages reparees dans les tableaux globaux, et reindexe les corrections."""
+"""Glues the repaired pages back into the global tables, and reindexes the corrections."""
 import numpy as np, json, os, sys
 T="/root/dicionario/travail"
 
@@ -11,7 +11,7 @@ def executer():
     M=np.load(f"{T}/meta_all.npy"); G=np.load(f"{T}/km_lab.npy")
     C=np.load(f"{T}/cells_all.npy", mmap_mode='r')
     S=np.load(f"{T}/km_sim.npy")
-    # index des tranches nouvelles, par page
+    # index of the new slices, by page
     npg={}
     for pg in np.unique(Mn[:,0]):
         w=np.where(Mn[:,0]==pg)[0]; npg[int(pg)]=(w[0], w[-1]+1)
@@ -31,7 +31,7 @@ def executer():
     print("cellules :", len(M), "->", len(M2))
     np.save(f"{T}/meta_all.npy", M2); np.save(f"{T}/km_lab.npy", G2)
     np.save(f"{T}/cells_all.npy", C2); np.save(f"{T}/km_sim.npy", S2)
-    # reindexation des corrections
+    # reindexing of the corrections
     for nom in ("exceptions.txt","exceptions_manuel.txt","exceptions_paires.txt"):
         p=f"{T}/{nom}"
         if not os.path.exists(p): continue

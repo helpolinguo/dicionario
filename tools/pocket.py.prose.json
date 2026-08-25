@@ -1,0 +1,62 @@
+[
+ {
+  "id": 0,
+  "kind": "docstring",
+  "text": "\"\"\"Dicionario de posho — edituro moderna, en LaTeX.\n\nCe n'est pas le fac-simile : c'est le TEXTE EPURE, celui de la page HTML,\ncompose comme un dictionnaire de poche d'aujourd'hui — deux colonnes, titre\ncourant donnant le premier mot-vedette a gauche et le dernier a droite,\nlettrines de section.\n\nLa source est le meme fichier que la page HTML,\nwork/edicioni/dicionario.jsonl. Les deux editions ne peuvent donc pas\ndiverger : toute correction posee dans les couches de relecture se retrouve\ndans l'une comme dans l'autre des la reconstruction suivante.\n\"\"\""
+ },
+ {
+  "id": 1,
+  "kind": "comment",
+  "text": "# Le tapuscrit note les langues par une lettre ; l'edition de lecture les\n# ecrit au long. En poche, la place manque : on revient a l'abrege, mais\n# lisible."
+ },
+ {
+  "id": 2,
+  "kind": "docstring",
+  "text": "\"\"\"Texte vers LaTeX. La source contient des chevrons, des tirets longs et\n    des espaces insecables qu'il faut garder tels quels.\"\"\""
+ },
+ {
+  "id": 3,
+  "kind": "docstring",
+  "text": "\"\"\"Cle de classement : celle du dictionnaire lui-meme.\n\n    `edition._klavo_ordino` est la regle du LIVRE — sans l'asterisque du mot\n    non officiel, sans le tiret de l'affixe, sans accent, sans le point\n    d'exclamation de l'interjection, sans les guillemets ni les espaces : le\n    livre range « a posteriori » entre « apostata » et « apostemo ». C'est\n    aussi la cle sur laquelle le drapeau `ordino-ruptita` mesure le desordre ;\n    le classement de poche et la liste de travail ne peuvent plus diverger.\n\n    La cle locale d'avant ne connaissait ni les guillemets ni l'espace :\n    « \"brokoli\"-kaulo » se rangeait APRES « z », et l'article se composait tout\n    a la fin du livre, derriere « zumar » — a cent cinquante pages de sa place.\n    Cent une vedettes changeaient ainsi de rang : les affixes a tiret final,\n    les interjections a point d'exclamation, et les locutions latines.\n    \"\"\""
+ },
+ {
+  "id": 4,
+  "kind": "comment",
+  "text": "# Une parenthese de tete qui ne contient qu'UNE lettre ou UN chiffre n'est pas\n# un qualificatif mais un numero d'enumeration — « (a) », « (b) », « (1) ». Elle\n# reste droite, et arrete la serie : dans « (metaf.)(a) Profundegajo... », seul\n# « (metaf.) » prend l'italique."
+ },
+ {
+  "id": 5,
+  "kind": "docstring",
+  "text": "\"\"\"Les bornes que l'edition a posees deviennent l'italique de LaTeX.\n\n    A appliquer APRES esc() : la contre-oblique de \\\\textit serait sinon\n    echappee a son tour, et la commande s'imprimerait en toutes lettres.\n    \"\"\""
+ },
+ {
+  "id": 6,
+  "kind": "docstring",
+  "text": "\"\"\"Applique APRES esc() : sinon la contre-oblique de \\\\textit serait elle-meme\n    echappee, et la commande s'imprimerait en toutes lettres.\n\n    La parenthese de TETE d'un sens est un qualificatif — domaine, epoque,\n    regime : « (aludante la hari...) », « (olim) », « (muziko) ». Le domaine de\n    l'article est deja en italique ; celle-ci doit l'etre aussi, sinon deux\n    marques de meme nature s'ecrivent de deux facons dans la meme colonne.\"\"\""
+ },
+ {
+  "id": 7,
+  "kind": "comment",
+  "text": "# Formule chimique : « (CH\\u2083)\\u2082. CH... ». L'italique la couperait de son\n# indice, et l'espace que la commande introduit ouvrirait un blanc entre la\n# parenthese et le chiffre. On la laisse droite et entiere."
+ },
+ {
+  "id": 8,
+  "kind": "docstring",
+  "text": "\"\"\"Un article, en LaTeX.\"\"\""
+ },
+ {
+  "id": 9,
+  "kind": "comment",
+  "text": "# Emprunt cite : le tapuscrit l'encadre de guillemets. On les rend."
+ },
+ {
+  "id": 10,
+  "kind": "comment",
+  "text": "# le numero ira sur la sous-entree"
+ },
+ {
+  "id": 11,
+  "kind": "comment",
+  "text": "# Le code de langues clot la definition de l'article, non ses sous-entrees :\n# rejete apres elles, il pendait seul sous un bloc en retrait et semblait\n# leur appartenir. On le remonte au dernier morceau qui soit de l'article."
+ }
+]

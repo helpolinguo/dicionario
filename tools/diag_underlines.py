@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-"""Bande de scan autour de quelques lignes, avec les filets detectes marques.
-Sert a voir ou l'encre du filet se trouve reellement."""
+"""A strip of scan around a few lines, with the detected rules marked.
+Serves to see where the rule's ink actually is."""
 import numpy as np, sys, pickle
 sys.path.insert(0,'/root/dicionario/outils')
 from PIL import Image, ImageDraw

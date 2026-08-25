@@ -1,0 +1,42 @@
+[
+ {
+  "id": 0,
+  "kind": "docstring",
+  "text": "\"\"\"Releve des vedettes qui rompent l'ordre alphabetique du livre.\n\nLe livre est trie, et il l'est selon une regle qu'il n'enonce pas : LA\nDESINENCE NE COMPTE PAS. « aktinio » precede « aktinika » parce que l'auteur\nrange « aktini » avant « aktinik ». L'edition garde les deux lectures — mot\nentier et racine — et ne signale que ce qui recule sur les DEUX (voir\ndrapeli_ordino dans edition.py).\n\nCe qui reste demande un oeil sur le fac-simile. Le fichier rendu prepare ce\ntravail : pour chaque cas, il donne la page et la ligne de la grille, les\nvedettes voisines, la place ou la vedette aurait du aller, et — quand une\nmauvaise lecture expliquerait tout — les lectures qui tiendraient dans la place\noccupee, formees avec les confusions que le journal des corrections a relevees.\n\n    python3 tools/survey_order.py\n\"\"\""
+ },
+ {
+  "id": 1,
+  "kind": "comment",
+  "text": "# Les confusions du decodage, relevees dans work/journal_complet.txt : la\n# lettre lue, la lettre retenue, et le nombre de fois. On ne garde que les plus\n# frequentes — ce sont elles qui expliquent une vedette fautive."
+ },
+ {
+  "id": 2,
+  "kind": "docstring",
+  "text": "\"\"\"La lecture a-t-elle la forme d'un mot ido ?\n\n    On ecarte ce que la substitution fabrique de mecanique : une voyelle\n    doublee que l'original n'avait pas — « brooho » pour « brocho » —, et une\n    finale qui n'est pas celle d'un mot de la langue.\n    \"\"\""
+ },
+ {
+  "id": 3,
+  "kind": "docstring",
+  "text": "\"\"\"Les lectures voisines : une lettre confondue, ou deux interverties.\"\"\""
+ },
+ {
+  "id": 4,
+  "kind": "comment",
+  "text": "# La lettre de trop : la dactylo frappe deux fois, ou le decodage lit un\n# signe dans une tache. « ostegomo » pour « osteomo »."
+ },
+ {
+  "id": 5,
+  "kind": "comment",
+  "text": "# Le lexique du livre : ses vedettes et les mots de ses definitions. Une\n# lecture qu'il atteste ailleurs vaut mieux qu'une forme fabriquee."
+ },
+ {
+  "id": 6,
+  "kind": "docstring",
+  "text": "\"\"\"Ou cette cle irait-elle ? Rend l'indice du premier article qui la suit.\"\"\""
+ },
+ {
+  "id": 7,
+  "kind": "comment",
+  "text": "# La lecture proposee ne peut pas etre celle d'une vedette voisine :\n# le livre ne definit pas deux fois le meme mot a trois lignes de\n# distance. « arterito » n'est pas « arterio », qui le precede."
+ }
+]

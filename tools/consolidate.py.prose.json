@@ -1,0 +1,22 @@
+[
+ {
+  "id": 0,
+  "kind": "docstring",
+  "text": "\"\"\"Consolidation des initiales de vedette par l'ordre alphabetique du livre.\n\nLe dictionnaire est alphabetique : sur une page donnee, les vedettes commencent\npresque toutes par la meme lettre. Or c'est justement la que le decodage se\ntrompe le plus (20 % de fautes sur les trois premieres colonnes, contre 2 %\nailleurs), parce que l'initiale porte un soulignement souvent double.\n\nOn releve donc, page par page, la lettre majoritaire des initiales de vedette,\net on l'impose aux cellules qui la contredisent. Ce n'est pas une correction du\ntapuscrit : c'est la levee d'une ambiguite de lecture par une propriete\nstructurelle du livre. Chaque intervention est journalisee.\n\"\"\""
+ },
+ {
+  "id": 1,
+  "kind": "docstring",
+  "text": "\"\"\"Colonne de marge de la page : la premiere qui serve sur plusieurs lignes.\n\n    La colonne 0 etait supposee etre la marge. Elle ne l'est pas toujours :\n    quarante-cinq pages commencent plus a droite — la 380 commence en 5 — et\n    aucune de leurs entrees n'etait alors reconnue comme vedette. Elles\n    disparaissaient entierement de l'edition structuree.\n    \"\"\""
+ },
+ {
+  "id": 2,
+  "kind": "docstring",
+  "text": "\"\"\"Lignes de vedette : marge de la page encree et filet commencant la.\"\"\""
+ },
+ {
+  "id": 3,
+  "kind": "docstring",
+  "text": "\"\"\"Retourne (nouvelle table, journal). La table n'est pas modifiee en place.\"\"\""
+ }
+]

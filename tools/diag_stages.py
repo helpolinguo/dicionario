@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-"""Ou meurent les lettres : scan / binarisation / apres depoussierage 1 /
-apres depoussierage 2. Une ligne par etape, pour lire a l'oeil le moment
-exact ou un trait disparait."""
+"""Where the letters die: scan / binarisation / after despeckling 1 /
+after despeckling 2. One row per stage, to read by eye the exact moment
+a stroke disappears."""
 import numpy as np, sys, os
 sys.path.insert(0,'/root/dicionario/outils')
 from cover import binariser_trait, SUR

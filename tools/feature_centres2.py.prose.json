@@ -1,0 +1,7 @@
+[
+ {
+  "id": 0,
+  "kind": "docstring",
+  "text": "\"\"\"Centre de chaque groupe dans l'espace de traits a deux vues.\n\nPour rattacher une cellule nouvelle a un groupe existant, il faut comparer\ndans l'espace ou les groupes ont ete formes. Les moyennes d'images (km_moy)\nne suffisent pas : elles rendent 90 a 97 % des caracteres seulement. On\nrecalcule donc le centre de chaque groupe a partir de ses membres, dans\nl'espace des traits a deux vues.\n\"\"\""
+ }
+]

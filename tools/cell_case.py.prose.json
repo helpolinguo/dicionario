@@ -1,0 +1,42 @@
+[
+ {
+  "id": 0,
+  "kind": "docstring",
+  "text": "\"\"\"Decision de casse, cellule par cellule, par comparaison a la ligne elle-meme.\n\nDeux tentatives ont echoue avant celle-ci, et elles disent pourquoi celle-ci\ntient.\n\n1. Sommet de l'encre, seuil absolu. Desastreux : la fenetre d'une cellule mord\n   sur ses voisines, une moucheture suffit a faire passer un « a » pour un « A ».\n2. Sommet de la composante connexe portant le corps de la lettre, seuil absolu.\n   Toujours perdant. En regardant enfin les cellules fautives, la raison saute\n   aux yeux : sur certaines pages les bas de casse montent aussi haut, en\n   rangees de la trame, que les capitales d'autres pages. L'echelle du scan\n   n'est pas constante ; un seuil absolu ne mesure donc rien.\n\nD'ou la regle retenue : on ne compare pas une lettre a un seuil, on la compare\naux lettres de sa propre ligne. Toute ligne de ce dictionnaire contient des\nhampes — « b d f h k l t » — qui montent a la hauteur des capitales, et des\nlettres a hauteur d'x — « a c e m n o r s u v w x z » — qui s'arretent a\nmi-corps. Ces deux reperes donnent l'echelle de la ligne. Une lettre a hauteur\nd'x qui monte du cote des hampes est une capitale.\n\"\"\""
+ },
+ {
+  "id": 1,
+  "kind": "comment",
+  "text": "# hauteur d'x : c'est sur elles que porte le doute"
+ },
+ {
+  "id": 2,
+  "kind": "comment",
+  "text": "# hampes : elles donnent la hauteur des capitales"
+ },
+ {
+  "id": 3,
+  "kind": "comment",
+  "text": "# reperes minimaux de chaque sorte sur la ligne"
+ },
+ {
+  "id": 4,
+  "kind": "comment",
+  "text": "# fraction du chemin hampe -> hauteur d'x"
+ },
+ {
+  "id": 5,
+  "kind": "docstring",
+  "text": "\"\"\"Sommet de la composante connexe qui porte le corps de la lettre.\"\"\""
+ },
+ {
+  "id": 6,
+  "kind": "comment",
+  "text": "# regroupement par ligne"
+ },
+ {
+  "id": 7,
+  "kind": "comment",
+  "text": "# remettre dans l'ordre de g"
+ }
+]

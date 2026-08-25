@@ -1,0 +1,12 @@
+[
+ {
+  "id": 0,
+  "kind": "docstring",
+  "text": "\"\"\"Rend les DEBUTS de ligne que le bloc coupait — le pendant gauche de\nrestore_ends.py.\n\nLe bloc de texte est cerne par les colonnes encrees sur au moins trois lignes.\nA droite, cela coupait des fins de mots ; a gauche, cela coupe la premiere\nlettre des lignes que la dactylo a commencees une cellule plus tot que les\nautres. Le mal est plus grave de ce cote, parce que ces lignes-la sont\njustement les vedettes : « protezo » se lisait « rotezo », « protisto »\n« rotisto », « sorgumo » « orgumo ».\n\nOn ne redecoupe pas le livre pour autant — l'elargissement du bloc oblige a\ntout recouper, ce qui avait fait perdre des vedettes a cent quarante-cinq\npages. On recoupe donc chaque page EN MEMOIRE avec le bloc etendu a gauche, on\nrattache les cellules recuperees au groupe dont le centre est le plus proche\ndans l'espace traits2, et on les depose a part. Le decoupage enregistre ne\nbouge pas : aucune correction deja faite n'est invalidee.\n\nLa difference avec le cote droit tient a la numerotation. A droite, les\ncellules recuperees prennent les colonnes qui suivent le bloc : rien ne bouge.\nA gauche, elles tombent AVANT la colonne zero. Les renumeroter en decalant la\nseule ligne concernee serait faux — elle se retrouverait une cellule a droite\nde sa place reelle. On decale donc la PAGE ENTIERE d'autant de cellules qu'il\nen manque : les positions relatives sont conservees au caractere pres, et le\nbloc, dont la marge est fixee par ailleurs, retombe au meme endroit sur la\nfeuille. C'est generer.lignes_page() qui applique ce decalage, en decalant\naussi les plages de soulignement.\n\"\"\""
+ },
+ {
+  "id": 1,
+  "kind": "docstring",
+  "text": "\"\"\"Caracteres recuperes a gauche du bloc : {ligne: {colonne negative: car}}.\"\"\""
+ }
+]

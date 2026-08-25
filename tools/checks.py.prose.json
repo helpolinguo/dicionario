@@ -1,0 +1,22 @@
+[
+ {
+  "id": 0,
+  "kind": "docstring",
+  "text": "\"\"\"Controles automatiques du fac-simile compose contre le scan.\n\n1. pagination        : nombre de pages du PDF = nombre de pages du scan\n2. caracteres/ligne  : longueur de chaque ligne composee = longueur relevee\n3. position colonne  : round((x - x0)/pas) = indice de colonne, pour chaque\n                       caractere, via pdftotext -bbox\n4. soulignements     : plages de colonnes composees = plages detectees\n5. surfrappes        : inventaire croise decodage <-> source LaTeX\n6. hors-grille       : inventaire croise\n7. comparaison visuelle a 300 dpi, page par page\n\"\"\""
+ },
+ {
+  "id": 1,
+  "kind": "docstring",
+  "text": "\"\"\"Retourne, par page, la liste des (mot, xmin, ymin, xmax, ymax).\"\"\""
+ },
+ {
+  "id": 2,
+  "kind": "docstring",
+  "text": "\"\"\"En chasse fixe, (xmin - orig)/pas doit etre un entier a tol pres.\"\"\""
+ },
+ {
+  "id": 3,
+  "kind": "docstring",
+  "text": "\"\"\"Compare la longueur de chaque ligne composee a celle relevee dans le scan.\"\"\""
+ }
+]

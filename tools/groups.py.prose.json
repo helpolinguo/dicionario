@@ -1,0 +1,12 @@
+[
+ {
+  "id": 0,
+  "kind": "docstring",
+  "text": "\"\"\"Retourne cells (N,22,12) uint8, meta (page,ligne,col) et la liste des pages.\"\"\""
+ },
+ {
+  "id": 1,
+  "kind": "docstring",
+  "text": "\"\"\"Regroupement par chef de file glouton. Retourne indices des chefs et affectation.\"\"\""
+ }
+]

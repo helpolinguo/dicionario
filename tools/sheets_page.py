@@ -1,5 +1,5 @@
-"""Prepare les planches de relecture d'une page : une ligne du livre par ligne
-d'image, colonnes numerotees, plus le decodage courant en regard."""
+"""Prepares a page's proofreading sheets: one line of the book per line of
+image, columns numbered, plus the current decoding alongside."""
 import sys, os, numpy as np
 sys.path.insert(0,'/root/dicionario/outils')
 from line_images import image_lignes

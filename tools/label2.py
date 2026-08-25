@@ -1,5 +1,5 @@
-"""Etiquetage des groupes : amorce manuelle, propagation par reseau de neurones,
-vote majoritaire des cellules du groupe, puis primaute de l'amorce."""
+"""Labelling the groups: a hand-made seed, propagation by neural network,
+majority vote of the group's cells, then the primacy of the seed."""
 import sys, numpy as np, collections, pickle, time
 sys.path.insert(0,'/root/dicionario/outils')
 from features2 import features2
@@ -12,16 +12,16 @@ def executer(tours=4, cache=30, par_groupe=12):
     C=np.load(f"{T}/cells_all.npy", mmap_mode='r')
     lab=np.load(f"{T}/km_lab.npy"); K=int(lab.max())+1
     I,Y,_=tout(); o=np.argsort(I); I=I[o]; Y=Y[o]
-    # La classe « espace » est retiree de l'apprentissage : les cellules qui ne
-    # contiennent qu'une bavure sont reconnues par un critere geometrique sur
-    # dans le decodage. Laisser le classifieur apprendre une classe « espace »
-    # a partir d'une vingtaine d'exemples fait s'effondrer l'auto-apprentissage :
-    # un groupe de « i » a ete etiquete « espace » avec une confiance de 1,000.
+    # The « space » class is withdrawn from the learning: the cells that
+    # contain nothing but a smudge are recognised by a geometric criterion in
+    # the decoding. Letting the classifier learn a « space » class from a score
+    # of examples makes the self-learning collapse: a group of « i » was
+    # labelled « space » with a confidence of 1.000.
     reel = Y != ' '
     I, Y = I[reel], Y[reel]
     X=traits2(np.asarray(C[I]))
     ordre=np.argsort(lab,kind='stable'); bornes=np.searchsorted(lab[ordre],np.arange(K+1))
-    # echantillon representatif de chaque groupe, pour le vote
+    # a representative sample of each group, for the vote
     rng=np.random.default_rng(0)
     ech=[]; app=[]
     for k in range(K):
@@ -38,7 +38,7 @@ def executer(tours=4, cache=30, par_groupe=12):
     for tour in range(tours):
         m.fit(Xa, Ya)
         P=m.predict_proba(Xe); cls=m.classes_
-        # vote par groupe
+        # vote by group
         etiq=np.empty(K,dtype=object); conf=np.zeros(K)
         for k in range(K):
             e=ech[k]
@@ -58,7 +58,7 @@ def executer(tours=4, cache=30, par_groupe=12):
         oo=np.argsort(idx)
         Xa=np.concatenate([X, Xe[[pos[v] for v in idx[oo]]]])
         Ya=np.concatenate([Y, l2[oo]])
-    # primaute de l'amorce
+    # primacy of the seed
     vote=collections.defaultdict(collections.Counter)
     for k,y in zip(lab[I],Y): vote[k][y]+=1
     imp=0

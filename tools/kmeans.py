@@ -11,7 +11,7 @@ km=MiniBatchKMeans(n_clusters=K,batch_size=4096,n_init=1,max_iter=400,init=init,
 km.fit(Xs); print("fit %.0fs"%(time.time()-t),flush=True)
 Cn=km.cluster_centers_.astype(np.float32); Cn/=np.maximum(np.linalg.norm(Cn,axis=1,keepdims=True),1e-6)
 lab=np.empty(N,np.int32); sim=np.empty(N,np.float32)
-CH=20000; KB=1500     # blocs de cellules x blocs de centres : memoire bornee
+CH=20000; KB=1500     # blocks of cells x blocks of centres: bounded memory
 for a in range(0,N,CH):
     X=traits(np.asarray(C[a:a+CH])); m=len(X)
     meil=np.full(m,-2.0,np.float32); arg=np.zeros(m,np.int32)

@@ -1,4 +1,4 @@
-"""Mesure de la grille d'un tapuscrit : desinclinaison, pas vertical, pas horizontal."""
+"""Measuring a typescript's grid: deskewing, vertical pitch, horizontal pitch."""
 import numpy as np, sys
 from PIL import Image
 from scipy.ndimage import rotate as ndrotate, uniform_filter
@@ -9,9 +9,9 @@ def charger(p):
     return a
 
 def normaliser(a, w=41):
-    """Contraste local : fond = filtre moyen large, encre = ecart negatif."""
+    """Local contrast: ground = wide mean filter, ink = negative departure."""
     fond = uniform_filter(a, size=w)
-    d = fond - a                      # encre > 0
+    d = fond - a                      # ink > 0
     d = np.clip(d, 0, None)
     m = np.percentile(d, 99.7)
     if m <= 1: m = 1
@@ -32,7 +32,7 @@ def desincliner(b, plage=3.0, pas=0.05):
     return a1, ndrotate(b, a1, reshape=False, order=1, mode='constant', cval=0)
 
 def pas_par_autocorr(prof, lo, hi):
-    """Pas dominant d'un profil par autocorrelation, avec interpolation parabolique."""
+    """Dominant pitch of a profile by autocorrelation, with parabolic interpolation."""
     x = prof - prof.mean()
     ac = np.correlate(x, x, mode='full')[len(x)-1:]
     ac = ac / (ac[0] + 1e-9)
@@ -48,8 +48,8 @@ if __name__ == "__main__":
     for p in sys.argv[1:]:
         a = charger(p); b = normaliser(a)
         ang, r = desincliner(b)
-        ph = r.sum(axis=1)   # profil horizontal (lignes)
-        pv = r.sum(axis=0)   # profil vertical (colonnes)
+        ph = r.sum(axis=1)   # horizontal profile (lines)
+        pv = r.sum(axis=0)   # vertical profile (columns)
         pvY, cy = pas_par_autocorr(ph, 12, 60)
         pvX, cx = pas_par_autocorr(pv, 6, 40)
         enc = (r>0.25).sum()

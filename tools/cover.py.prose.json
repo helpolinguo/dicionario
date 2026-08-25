@@ -1,0 +1,77 @@
+[
+ {
+  "id": 0,
+  "kind": "docstring",
+  "text": "\"\"\"Couverture : extraction, nettoyage, separation et vectorisation.\n\nTrois choix decident de la fidelite :\n\n1. **Sur-echantillonnage x4 avant le seuillage.** Les lettrages de la couverture\n   ont 5 px de haut ; seuiller a la definition native colle les lettres entre\n   elles et casse les traits fins. L'interpolation conserve la rampe de gris et\n   potrace en tire des contours justes.\n2. **Retrait des taches, mais seulement des taches ISOLEES.** Une petite tache\n   collee a un trait est un point d'i, un accent ou une ponctuation : elle est\n   conservee. Seul le grain du papier, isole, est retire.\n3. **Deux tons pour les portraits.** Les visages sont dessines en deux valeurs :\n   un aplat noir et un pointille moyen. Un trace a un seul niveau doit choisir\n   entre les deux et perd le modele. On trace donc deux calques — un gris et un\n   noir — et on les superpose.\n\"\"\""
+ },
+ {
+  "id": 1,
+  "kind": "comment",
+  "text": "# facteur de sur-echantillonnage"
+ },
+ {
+  "id": 2,
+  "kind": "comment",
+  "text": "# calque gris  : tout ce qui porte de l'encre"
+ },
+ {
+  "id": 3,
+  "kind": "comment",
+  "text": "# calque noir  : les aplats"
+ },
+ {
+  "id": 4,
+  "kind": "comment",
+  "text": "# plancher du seuil local pour les lettrages"
+ },
+ {
+  "id": 5,
+  "kind": "docstring",
+  "text": "\"\"\"La couverture est imprimee en une seule encre : on projette le RVB sur\n    son axe principal, ce qui separe l'encre du papier mieux qu'un canal isole.\"\"\""
+ },
+ {
+  "id": 6,
+  "kind": "docstring",
+  "text": "\"\"\"Retire les taches isolees ; garde celles qui touchent le voisinage d'un\n    trait (points d'i, accents, ponctuation).\"\"\""
+ },
+ {
+  "id": 7,
+  "kind": "comment",
+  "text": "# les aires sont exprimees en pixels de l'image d'origine"
+ },
+ {
+  "id": 8,
+  "kind": "comment",
+  "text": "# trait douteux : garde s'il touche du trait sur"
+ },
+ {
+  "id": 9,
+  "kind": "comment",
+  "text": "# une composante qui ne noircit jamais n'est pas du texte"
+ },
+ {
+  "id": 10,
+  "kind": "docstring",
+  "text": "\"\"\"Retire les composantes qui ne contiennent aucun pixel vraiment noir.\n\n    Le seuil a hysteresis est *relatif* a un maximum local : dans une plage\n    blanche, le maximum local est une moucheture du papier, et la moucheture\n    passe. C'est ainsi que le grain du papier remontait par nuages entiers des\n    que l'on cessait de le raboter a la taille.\n\n    Le depart est pourtant physique et net : les caracteres sont encres, le\n    grain ne l'est pas. Mesure sur les huit lettres qu'on avait perdues — le\n    « FI » de FILOZOFIO, le « L » de DIL, le « S » de PARIS, le point de\n    « A. LALANDE », le « I » de KONCIZA, le point de « 10.000 », le « L » de\n    LINGUIST., la parenthese de (FRANCIA) — toutes culminent entre 0,90 et\n    1,00. Les trois quarts des composantes, elles, plafonnent sous 0,40.\n    Couper a 0,55 laisse aux lettres une marge considerable.\n    \"\"\""
+ },
+ {
+  "id": 11,
+  "kind": "docstring",
+  "text": "\"\"\"Lettrages et filets : seuil local a hysteresis.\n\n    La regle simple — garder ce qui depasse la moitie du maximum local —\n    perdait les traits fins voisins d'une lettre grasse : sous le premier\n    portrait, « PROF. DE TEOLOGIO / UNIV. PARIS / (FRANCIA) » se reduisait a\n    « EO OG O / PAR S / RAN A », et « lia laboro linguistikala » a\n    « l a laboro l nguistikala ».\n\n    On procede donc en deux temps, comme pour un contour : un seuil haut donne\n    le trait sur, un seuil bas le trait douteux, et l'on garde du douteux tout\n    ce qui touche du sur. Un delie pale rattache a une lettre nette survit ;\n    une moucheture isolee, non.\n\n    `grain` est faux par defaut, et il faut qu'il le reste. Cette fonction se\n    terminait par un enlever_grain() qui retire toute composante de moins de\n    25 pixels a plus de trois pixels d'une gross composante — c'est-a-dire la\n    regle « petit et loin d'un gros » dont on sait qu'elle est fausse : les\n    legendes n'ont pas de grosse composante a portee. Elle effacait, avant\n    meme tout depoussierage, le point de « A. LALANDE », le « FI » de\n    « FILOZOFIO », le « L » de « DIL », le « S » de « PARIS », le « L » de\n    « LINGUIST. », les parentheses de « (FRANCIA) », le « I » de\n    « KONCIZA » et le point de « 10.000 » — soixante et une zones d'encre en\n    tout, toutes presentes et franches dans le scan.\n\n    Le depoussierage appartient aux deux passes de faire_couverture(), qui\n    jugent par l'isolement et non par la taille. Une seule instance decide de\n    ce qu'est une salissure, et c'est celle qui a le bon critere.\n    \"\"\""
+ },
+ {
+  "id": 12,
+  "kind": "docstring",
+  "text": "\"\"\"potrace -> SVG et PDF. dpi : definition de reference du bitmap fourni.\"\"\""
+ },
+ {
+  "id": 13,
+  "kind": "docstring",
+  "text": "\"\"\"Trace un element a deux valeurs : calque gris dessous, calque noir dessus.\n    Retourne le chemin du SVG.\"\"\""
+ },
+ {
+  "id": 14,
+  "kind": "docstring",
+  "text": "\"\"\"largeur : largeur voulue en pixels (prioritaire sur echelle).\"\"\""
+ }
+]

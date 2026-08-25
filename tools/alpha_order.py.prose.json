@@ -1,0 +1,12 @@
+[
+ {
+  "id": 0,
+  "kind": "docstring",
+  "text": "\"\"\"Correction des vedettes par l'ordre alphabetique du livre.\n\nLes vedettes se suivent dans l'ordre alphabetique. Une vedette qui rompt cet\nordre est une faute de lecture : on essaie de la retablir en remplacant ses\ncellules ambigues par leurs voisines de groupe. Ce n'est pas une correction du\ntapuscrit, c'est l'emploi d'une propriete verifiable du livre. Tout est\njournalise.\n\"\"\""
+ },
+ {
+  "id": 1,
+  "kind": "docstring",
+  "text": "\"\"\"Suite des vedettes du livre : (page, ligne, [(col, car, indice)]).\"\"\""
+ }
+]

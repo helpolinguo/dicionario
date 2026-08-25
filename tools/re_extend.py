@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
-"""Propage l'extension du bloc a droite sur tout le livre.
+"""Propagates the block's extension to the right over the whole book.
 
-Le bloc de texte etait cerne par les colonnes occupees sur au moins trois
-lignes : les fins de ligne qu'une seule ligne atteint tombaient dehors —
-« preciz », « apa », « anoni- ». L'extension a droite les recupere, et elle est
-sans danger : elle n'ajoute des colonnes qu'apres les autres, sans deplacer
-l'origine. La numerotation des colonnes ne bouge pas, donc aucune correction
-deja faite n'est invalidee.
+The block of text was bounded by the columns occupied on at least three
+lines: the line ends that only one line reaches fell outside -- « preciz »,
+« apa », « anoni- ». The extension to the right recovers them, and it is
+safe: it adds columns only after the others, without moving the origin. The
+numbering of the columns does not move, so no correction already made is
+invalidated.
 """
 import sys, json, numpy as np
 sys.path.insert(0,'/root/dicionario/outils')

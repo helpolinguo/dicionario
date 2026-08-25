@@ -1,0 +1,97 @@
+[
+ {
+  "id": 0,
+  "kind": "docstring",
+  "text": "\"\"\"Restitution du mot « invitas » sur la couverture.\n\nDans le scan, ce mot est presque efface : « inv » subsiste, puis « as », et\nentre les deux le papier est nu — le niveau d'encre y plafonne a 0,146 et le\n95e centile a 0,014. Aucun seuil ne fera apparaitre ce qui n'a pas ete\nimprime. Ne restent, dans l'intervalle, que trois salissures.\n\nOn ne dessine pourtant rien. Les deux lettres manquantes, un « i » et un\n« t », figurent a quelques centimetres de la, dans « profitar » — meme ligne,\nmeme main, meme corps, et dans le meme ordre. On les y prend, on les tourne de\nla difference d'inclinaison entre les deux endroits de l'arc, et on les repose\na la place que l'espacement de « profitar » leur assigne. Chaque trait de la\ncouverture reste donc de la couverture.\n\nLe choix des composantes s'est fait a l'oeil, sur planche (work/cv_zone.png\net work/cv_inv.png). On les designe ici par leur numero d'etiquette, mais on\nverifie leur signature (centre, surface) avant de s'en servir : si la\nbinarisation change, le script s'arrete au lieu de transplanter n'importe quoi.\nUne premiere version choisissait la composante « la plus proche d'un point » ;\nelle est allee prendre un « o » et a ecrit « invoias ».\n\"\"\""
+ },
+ {
+  "id": 1,
+  "kind": "comment",
+  "text": "# Signatures relevees sur la trame x4, repere de l'image entiere :\n#   etiquette : (cx, cy, surface)"
+ },
+ {
+  "id": 2,
+  "kind": "comment",
+  "text": "# le « i » de profitar"
+ },
+ {
+  "id": 3,
+  "kind": "comment",
+  "text": "# le « t » de profitar"
+ },
+ {
+  "id": 4,
+  "kind": "comment",
+  "text": "# le « f » de profitar (repere gauche)"
+ },
+ {
+  "id": 5,
+  "kind": "comment",
+  "text": "# le « a » de profitar (repere droit)"
+ },
+ {
+  "id": 6,
+  "kind": "comment",
+  "text": "# le « v » de invitas (repere gauche)"
+ },
+ {
+  "id": 7,
+  "kind": "comment",
+  "text": "# le « a » de invitas (repere droit)"
+ },
+ {
+  "id": 8,
+  "kind": "comment",
+  "text": "# le « i » de invitas : donne l'inclinaison"
+ },
+ {
+  "id": 9,
+  "kind": "comment",
+  "text": "# tolerance de verification"
+ },
+ {
+  "id": 10,
+  "kind": "docstring",
+  "text": "\"\"\"Composante retrouvee par sa signature : centre et surface.\n\n    On ne se fie pas au numero d'etiquette — il change des que la binarisation\n    bouge. On cherche donc, parmi toutes les composantes, celle dont le centre\n    et la surface repondent a la signature relevee sur planche. S'il n'y en a\n    pas exactement une, on s'arrete : mieux vaut un script qui refuse de\n    tourner qu'une greffe posee au mauvais endroit.\n    \"\"\""
+ },
+ {
+  "id": 11,
+  "kind": "docstring",
+  "text": "\"\"\"Inclinaison du fut d'une lettre, par son axe principal (degres, 0-180).\"\"\""
+ },
+ {
+  "id": 12,
+  "kind": "docstring",
+  "text": "\"\"\"Repare le mot en place sur un calque de trait deja binarise.\"\"\""
+ },
+ {
+  "id": 13,
+  "kind": "comment",
+  "text": "# 1. effacer les trois salissures de l'intervalle"
+ },
+ {
+  "id": 14,
+  "kind": "comment",
+  "text": "# 2. inclinaison a donner aux lettres.\n#\n# Premiere version : la difference des angles de corde entre les deux\n# endroits de l'arc. C'etait faux deux fois — de valeur (la corde n'est pas\n# l'inclinaison des lettres, qui se redressent sur l'arc) et de signe\n# (ndimage.rotate tourne dans le sens oppose a celui suppose). Les lettres\n# penchaient a droite au lieu de pencher a gauche.\n#\n# On mesure donc directement, sur la meme lettre : l'axe principal du « i »\n# de profitar et celui du « i » de invitas, quatre lettres plus tot. Leur\n# difference est exactement ce qu'il faut tourner, signe compris."
+ },
+ {
+  "id": 15,
+  "kind": "comment",
+  "text": "# 3. positions : l'espacement de « profitar », mis a l'echelle de l'ecart\n#    disponible. f->i et f->t donnent les deux abscisses ; l'ecart vertical\n#    de chaque lettre a la corde f-a est reporte tel quel."
+ },
+ {
+  "id": 16,
+  "kind": "comment",
+  "text": "# position relative"
+ },
+ {
+  "id": 17,
+  "kind": "comment",
+  "text": "# ecart a la corde"
+ },
+ {
+  "id": 18,
+  "kind": "comment",
+  "text": "# 4. prendre, tourner, reposer"
+ }
+]

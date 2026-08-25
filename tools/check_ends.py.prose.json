@@ -1,0 +1,12 @@
+[
+ {
+  "id": 0,
+  "kind": "docstring",
+  "text": "\"\"\"Combien de caracteres le bloc coupe-t-il en fin de ligne ? Mesure, pas avis.\n\nOn recoupe chaque page avec le bloc etendu a droite — sans rien enregistrer —\net on compte les cellules occupees qui tombent au-dela du bloc actuel. Ce sont\nexactement les caracteres perdus.\n\"\"\""
+ },
+ {
+  "id": 1,
+  "kind": "comment",
+  "text": "# colonnes de l'extension : au-dela de (col0-c0) + ncol dans le repere etendu"
+ }
+]

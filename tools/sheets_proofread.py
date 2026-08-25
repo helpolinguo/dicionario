@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
-"""Lots de relecture d'ARTICLES ENTIERS.
+"""Proofreading batches of WHOLE ARTICLES.
 
-Les planches de jugement existantes portent sur un jeton isole, tire d'un
-detecteur. Les detecteurs structurels sont epuises : consonne doublee, finale
-impossible, groupe initial impossible, lettre perdue en tete de ligne — tous
-ont rendu ce qu'ils avaient. Ce qui reste demande de LIRE la definition et de
-juger sur le sens, article par article.
+The existing judgement sheets bear on an isolated token, drawn from a
+detector. The structural detectors are exhausted: doubled consonant,
+impossible ending, impossible initial group, letter lost at the head of a
+line -- every one has given what it had. What is left calls for READING the
+definition and judging on the sense, article by article.
 
-On ecrit donc le livre en lots de texte pur. Aucune image : la transcription
-porte assez de sens, et coute vingt fois moins.
+We therefore write the book out in batches of pure text. No images: the
+transcription carries sense enough, and costs twenty times less.
 """
 import json, os, sys
 T = "/root/dicionario/travail"

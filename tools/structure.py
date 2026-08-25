@@ -1,11 +1,11 @@
-"""Analyse structurelle du dictionnaire decode.
+"""Structural analysis of the decoded dictionary.
 
-Le tapuscrit suit une grammaire stricte, et c'est elle qui permet de mesurer la
-qualite du decodage sans transcription temoin : une entree commence par une
-vedette soulignee en colonne 0, ses lignes de suite sont en retrait de trois,
-elle porte souvent une categorie entre parentheses soulignee, elle se decoupe en
-sens numerotes en chiffres romains, et elle se termine par un code de langues
-(sous-ensemble de D E F I R S L).
+The typescript follows a strict grammar, and it is that grammar which allows
+the quality of the decoding to be measured without a control transcription:
+an entry begins with an underlined headword in column 0, its continuation
+lines are indented by three, it often carries a part of speech in underlined
+parentheses, it divides into senses numbered in Roman figures, and it ends
+with a code of languages (a subset of D E F I R S L).
 """
 import numpy as np, pickle, re, collections, sys
 sys.path.insert(0,'/root/dicionario/outils')

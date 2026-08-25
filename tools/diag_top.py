@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Le lattis de lignes attrape-t-il bien le haut de la page ?"""
+"""Does the lattice of lines catch the top of the page properly?"""
 import numpy as np, os, sys
 from PIL import Image
 RAC="/root/dicionario"; T=f"{RAC}/travail"
@@ -16,7 +16,7 @@ def une(pg):
     if not len(w) or not len(lg): return None
     haut_encre = w[0]*ech; bas_encre = w[-1]*ech
     y0=float(lg[0,1]); y1=float(lg[-1,1])
-    # colonnes
+    # columns
     profc=b.sum(0); sc=max(profc.max()*0.06, 4)
     wc=np.where(profc>=sc)[0]
     gauche_encre = wc[0]*ech

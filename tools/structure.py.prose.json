@@ -1,0 +1,7 @@
+[
+ {
+  "id": 0,
+  "kind": "docstring",
+  "text": "\"\"\"Analyse structurelle du dictionnaire decode.\n\nLe tapuscrit suit une grammaire stricte, et c'est elle qui permet de mesurer la\nqualite du decodage sans transcription temoin : une entree commence par une\nvedette soulignee en colonne 0, ses lignes de suite sont en retrait de trois,\nelle porte souvent une categorie entre parentheses soulignee, elle se decoupe en\nsens numerotes en chiffres romains, et elle se termine par un code de langues\n(sous-ensemble de D E F I R S L).\n\"\"\""
+ }
+]

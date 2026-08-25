@@ -1,0 +1,7 @@
+[
+ {
+  "id": 0,
+  "kind": "docstring",
+  "text": "\"\"\"Lots de relecture d'ARTICLES ENTIERS.\n\nLes planches de jugement existantes portent sur un jeton isole, tire d'un\ndetecteur. Les detecteurs structurels sont epuises : consonne doublee, finale\nimpossible, groupe initial impossible, lettre perdue en tete de ligne — tous\nont rendu ce qu'ils avaient. Ce qui reste demande de LIRE la definition et de\njuger sur le sens, article par article.\n\nOn ecrit donc le livre en lots de texte pur. Aucune image : la transcription\nporte assez de sens, et coute vingt fois moins.\n\"\"\""
+ }
+]

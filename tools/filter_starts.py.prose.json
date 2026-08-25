@@ -1,0 +1,12 @@
+[
+ {
+  "id": 0,
+  "kind": "docstring",
+  "text": "\"\"\"Tri des debuts de ligne rendus.\n\nL'elargissement force de deux colonnes ramene aussi le bord de la feuille :\nombres de reliure et grain se decodent alors en suites de « m », de « \" » ou\nde tirets. Le depart est simple — une dactylo qui commence une ligne une\ncellule trop tot le fait d'UNE cellule et d'UN caractere, et ce caractere est\nune lettre (ou le « + » des vedettes non officielles), jamais une rangee de\nguillemets.\n\nOn ne garde donc qu'une cellule, en colonne -1, portant une lettre ou un\n« + », et pas plus de deux lignes par page. Tout le reste est ecarte et doit\netre verifie a l'oeil avant d'etre repris.\n\"\"\""
+ },
+ {
+  "id": 1,
+  "kind": "comment",
+  "text": "# Verification a l'oeil, planche par planche (work/debuts.png).\n#\n# Le tri automatique ne suffit pas : trois des cellules retenues portaient une\n# ANNOTATION MANUSCRITE — pages 18, 29 et 52, en cursive — et la consigne est\n# constante depuis le debut, les notes a la main sont ignorees. Quatre autres\n# restaient douteuses a l'examen. On ne garde donc que ce qui a ete reconnu\n# comme frappe ET completant un mot."
+ }
+]

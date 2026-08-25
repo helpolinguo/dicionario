@@ -1,0 +1,7 @@
+[
+ {
+  "id": 0,
+  "kind": "docstring",
+  "text": "\"\"\"Correction des sosies, par le lexique du livre lui-meme.\n\nLes planches ont montre que les groupes sont bien etiquetes : les confusions\nqui restent sont des cellules isolees tombees dans le mauvais groupe. Elles ne\nse voient pas groupe par groupe — elles se voient par le mot.\n\nUn mot du texte qui n'existe pratiquement nulle part ailleurs dans le livre,\nmais qui devient un mot bien atteste des qu'on echange deux caracteres que la\nmachine confond, est une confusion. On n'echange que des caracteres dont les\nrelecteurs ont constate qu'ils se ressemblent : la correction ne peut donc pas\ninventer un mot, seulement retablir une forme que le livre emploie deja.\n\nLe critere est severe et symetrique : la forme corrigee doit compter au moins\nsix occurrences et etre au moins huit fois plus frequente que la forme fautive.\n\"\"\""
+ }
+]
