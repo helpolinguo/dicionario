@@ -37,12 +37,12 @@ def rules(pg, **kw):
 
 if __name__=="__main__":
     for pg in (25,33):
-        neuf=rules(pg)
+        new_one=rules(pg)
         z=np.load(f"{T}/cellules/p-{pg:03d}.npz", allow_pickle=True)
-        anc=pickle.loads(z['sou'].item())
-        ka=set(k for k,v in anc.items() if v[1]); kn=set(k for k,v in neuf.items() if v[1])
-        egal=all(sorted(anc[k][1])==sorted(neuf[k][1]) for k in ka|kn if k in anc and k in neuf)
-        print("p%03d : lines with a rule old=%d new=%d  identical=%s"%(pg,len(ka),len(kn),egal and ka==kn))
+        old=pickle.loads(z['sou'].item())
+        ka=set(k for k,v in old.items() if v[1]); kn=set(k for k,v in new_one.items() if v[1])
+        equal_=all(sorted(old[k][1])==sorted(new_one[k][1]) for k in ka|kn if k in old and k in new_one)
+        print("p%03d : lines with a rule old=%d new=%d  identical=%s"%(pg,len(ka),len(kn),equal_ and ka==kn))
 
 def all_(out_path=f"{T}/filets.pkl", start_=0, end_=None):
     """Recomputes the rules of every page and deposits them apart.

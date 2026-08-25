@@ -24,7 +24,7 @@ sys.path.insert(0,_ROOT + "/tools")
 from features2 import feature_vector2
 ROOT=_ROOT; T=f"{ROOT}/work"
 
-def _texte(cells_occ, kl_page, cols, lines, tab, smudge):
+def _text(cells_occ, kl_page, cols, lines, tab, smudge):
     """Dictionary line -> string, one cell per column."""
     d={}
     for (k,c),g,b in zip(cols, kl_page, smudge):
@@ -35,27 +35,27 @@ def _texte(cells_occ, kl_page, cols, lines, tab, smudge):
         out[k]="".join(v.get(i," ") for i in range(n)).rstrip()
     return out
 
-def _decalage(anc, neu, dmax=16):
+def _offset(old, new_, dmax=16):
     """The shift d such that line k of before is line k+d of now."""
-    ka=sorted(anc); best=(-1.0, 0)
+    ka=sorted(old); best=(-1.0, 0)
     for d in range(-4, dmax+1):
         s=0.0; n=0
         for k in ka:
-            a=anc[k]; b=neu.get(k+d)
+            a=old[k]; b=new_.get(k+d)
             if not a.strip() or b is None: continue
             s+=difflib.SequenceMatcher(None, a, b).ratio(); n+=1
         if n>=8 and s/n>best[0]: best=(s/n, d)
     return best[1], best[0]
 
-def reparer(pg, Q, tab, verbeux=True):
+def repair_(pg, Q, tab, verbose=True):
     from cells import extract
     from decode import smudges
-    anc_npz=f"{T}/cellules/p-{pg:03d}.npz"
-    z=np.load(anc_npz, allow_pickle=True)
+    old_npz=f"{T}/cellules/p-{pg:03d}.npz"
+    z=np.load(old_npz, allow_pickle=True)
     M=np.load(f"{T}/meta_all.npy"); kl=np.load(f"{T}/km_lab.npy")
     sel=np.where(M[:,0]==pg)[0]
     bv=smudges()[sel]
-    anc_txt=_texte(None, kl[sel], M[sel][:,1:], z['lignes'], tab, bv)
+    old_txt=_text(None, kl[sel], M[sel][:,1:], z['lignes'], tab, bv)
 
     d=extract(f"{ROOT}/scan/p-{pg:03d}.jpg")
     occ=d['occ']; lg=np.array(d['lignes']); bare=d['nues']
@@ -71,19 +71,19 @@ def reparer(pg, Q, tab, verbeux=True):
     edge=(P[:,:,:2].sum((1,2))+P[:,:,-2:].sum((1,2)))/(tot+1e-6)
     top=P[:,:4,:].sum((1,2))/(tot+1e-6); bottom=P[:,18:,:].sum((1,2))/(tot+1e-6)
     bnew=((edge>0.55)|((tot<12)&(edge>0.25))|(top>0.80)|(bottom>0.85))
-    neu_txt=_texte(None, gnew, Mnew[:,1:], lg, tab, bnew)
-    dec, score = _decalage(anc_txt, neu_txt)
+    new_txt=_text(None, gnew, Mnew[:,1:], lg, tab, bnew)
+    dec, score = _offset(old_txt, new_txt)
     # The block can extend to the left: the columns shift by as much.
-    scol = int(z['col0']) - int(d['col0'])
-    if verbeux:
-        print(f"  p-{pg:03d} : {len(anc_txt)} lines -> {len(neu_txt)} ; shift {dec:+d} line, {scol:+d} column ; concordance {score:.3f}")
+    col_score = int(z['col0']) - int(d['col0'])
+    if verbose:
+        print(f"  p-{pg:03d} : {len(old_txt)} lines -> {len(new_txt)} ; shift {dec:+d} line, {col_score:+d} column ; concordance {score:.3f}")
     # the cells already known keep their group
-    cle_anc={(int(k)+dec, int(c)+scol): int(g) for (p,k,c),g in zip(M[sel], kl[sel])}
+    old_key={(int(k)+dec, int(c)+col_score): int(g) for (p,k,c),g in zip(M[sel], kl[sel])}
     kept=0
     for i in range(len(gnew)):
-        v=cle_anc.get((int(Mnew[i,1]), int(Mnew[i,2])))
+        v=old_key.get((int(Mnew[i,1]), int(Mnew[i,2])))
         if v is not None: gnew[i]=v; kept+=1
-    if verbeux:
+    if verbose:
         print(f"           cells: {len(sel)} before, {len(gnew)} after ; {kept} kept, {len(gnew)-kept} new")
     # The corpus is in bytes 0-255; extraire() returns floats 0-1.
     # Mixing the two empties the cells on screen and falsifies the smudge
@@ -95,15 +95,15 @@ def reparer(pg, Q, tab, verbeux=True):
     if isinstance(d.get('sou'), dict): d['sou']=np.array(_p.dumps(d['sou']), dtype=object)
     for key_ in ('cells','nues'):
         d[key_]=(np.clip(d[key_],0,1)*255.0).round().astype(np.uint8)
-    np.savez_compressed(anc_npz, **d)
-    return dict(pagino=pg, decalage=int(dec), colonne=int(scol), score=float(score),
+    np.savez_compressed(old_npz, **d)
+    return dict(pagino=pg, decalage=int(dec), colonne=int(col_score), score=float(score),
                 cells=A, meta=Mnew, groupes=gnew, avant=int(len(sel)))
 
 def run_step(pages, out_path=f"{T}/reparation.json"):
     Q=np.load(f"{T}/km_centres2.npy"); tab=np.load(f"{T}/cls_lab.npy",allow_pickle=True)
     res=[]
     for pg in pages:
-        try: res.append(reparer(pg,Q,tab))
+        try: res.append(repair_(pg,Q,tab))
         except Exception as e:
             print(f"  ECHEC p-{pg:03d} : {e}", flush=True)
     np.save(f"{T}/reparation_cells.npy", np.concatenate([r['cells'] for r in res]))

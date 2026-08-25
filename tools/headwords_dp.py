@@ -21,11 +21,11 @@ _ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0,_ROOT + "/tools")
 from consolidate import headwords
 T=_ROOT + "/work"
-PENALITE = 4.0        # cost of a break in the order that is kept
+PENALTY = 4.0        # cost of a break in the order that is kept
 MAXPOS   = 4          # ambiguous cells considered per headword
 MAXCAND  = 48
 
-def collecter(lab, M, tab, smudge, exc):
+def collect(lab, M, tab, smudge, exc):
     out=[]
     order_=np.argsort(M[:,0],kind='stable')
     bounds=np.searchsorted(M[order_,0], np.arange(M[:,0].max()+2))
@@ -44,13 +44,13 @@ def collecter(lab, M, tab, smudge, exc):
             if len(mo)>=3: out.append((pg,k,mo))
     return out
 
-def candidats(mo, lab, alt):
+def candidates(mo, lab, alt):
     f="".join(ch for _,ch,_ in mo)
     pos=[j for j,(_,_,i) in enumerate(mo) if alt[lab[i]]][:MAXPOS]
     if not pos: return [(f, (), 0.0)]
-    choix=[[mo[j][1]]+list(alt[lab[mo[j][2]]]) for j in pos]
+    choices=[[mo[j][1]]+list(alt[lab[mo[j][2]]]) for j in pos]
     out=[]
-    for combi in itertools.product(*choix):
+    for combi in itertools.product(*choices):
         l=list(f); d=0
         for a,j in zip(combi,pos):
             if a!=l[j]: l[j]=a; d+=1
@@ -59,24 +59,24 @@ def candidats(mo, lab, alt):
     out.sort(key=lambda x:x[2])
     return out
 
-def resoudre(lab, M, tab, smudge, exc, alt):
-    hw=collecter(lab,M,tab,smudge,exc)
-    C=[candidats(mo,lab,alt) for _,_,mo in hw]
+def resolve_(lab, M, tab, smudge, exc, alt):
+    hw=collect(lab,M,tab,smudge,exc)
+    C=[candidates(mo,lab,alt) for _,_,mo in hw]
     n=len(hw)
     INF=1e18
-    cout=[np.array([c[2] for c in C[0]], float)]
+    cost=[np.array([c[2] for c in C[0]], float)]
     preceding=[None]
     for i in range(1,n):
         ci=C[i]; cp=C[i-1]
-        cles_p=[c[0].lower() for c in cp]; cles_i=[c[0].lower() for c in ci]
-        prev=cout[-1]
+        keys_p=[c[0].lower() for c in cp]; keys_i=[c[0].lower() for c in ci]
+        prev=cost[-1]
         best=np.full(len(ci), INF); arg=np.zeros(len(ci), int)
-        for b,kb in enumerate(cles_i):
-            v=prev + np.array([0.0 if ka<=kb else PENALITE for ka in cles_p])
+        for b,kb in enumerate(keys_i):
+            v=prev + np.array([0.0 if ka<=kb else PENALTY for ka in keys_p])
             j=int(np.argmin(v)); best[b]=v[j]+ci[b][2]; arg[b]=j
-        cout.append(best); preceding.append(arg)
+        cost.append(best); preceding.append(arg)
     # backtracking
-    j=int(np.argmin(cout[-1])); path_=[j]
+    j=int(np.argmin(cost[-1])); path_=[j]
     for i in range(n-1,0,-1):
         j=int(preceding[i][j]); path_.append(j)
     path_.reverse()
@@ -87,9 +87,9 @@ def resoudre(lab, M, tab, smudge, exc, alt):
         orig="".join(ch for _,ch,_ in mo)
         for j,a in subs:
             if a!=mo[j][1]:
-                col,anc,_=mo[j]
+                col,old,_=mo[j]
                 fresh[(pg,k,col)]=a
-                log_.append((pg,k,col,anc,a,orig,f))
+                log_.append((pg,k,col,old,a,orig,f))
     return fresh, log_, hw, C, path_
 
 if __name__=="__main__":
@@ -99,7 +99,7 @@ if __name__=="__main__":
     tab=np.load(f"{T}/cls_lab.npy",allow_pickle=True)
     alt=pickle.load(open(f"{T}/cls_alternatives.pkl","rb"))
     exc=dict(exceptions())
-    fresh,log_,hw,C,ch=resoudre(lab,M,tab,smudges(),exc,alt)
+    fresh,log_,hw,C,ch=resolve_(lab,M,tab,smudges(),exc,alt)
     print(len(hw),"headwords ;",len(log_),"cells corrected")
     with open(f"{T}/journal_vedettes.txt","w",encoding='utf-8') as f:
         f.write("page\tligne\tcol\tlu\tcorrige\tvedette lue\tvedette retenue\n")

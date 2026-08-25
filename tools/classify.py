@@ -5,7 +5,7 @@ sys.path.insert(0,_ROOT + "/tools")
 from features import feature_vector
 from seed import everything
 T=_ROOT + "/work"
-def apprendre():
+def learn():
     I,C,_=everything()
     Cl=np.load(f"{T}/cells_all.npy", mmap_mode='r')
     X=feature_vector(np.asarray(Cl[np.sort(I)]))
@@ -15,7 +15,7 @@ def apprendre():
     m=LogisticRegression(max_iter=3000, C=20.0)
     m.fit(X,y)
     return m
-def etiqueter_groupes(m):
+def label_groups(m):
     mean_=np.load(f"{T}/km_moy.npy")
     Xm=feature_vector(np.clip(mean_,0,255).astype(np.uint8))
     p=m.predict(Xm); pr=m.predict_proba(Xm).max(1)

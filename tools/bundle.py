@@ -10,30 +10,30 @@ _ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ROOT=_ROOT; T=f"{ROOT}/work"
 OUT_PATH=os.path.join(os.path.dirname(_ROOT), "dicionario-source.zip")
 
-FICHIERS = ["main.tex", "preamble.tex", "LISEZ-MOI.md", "main.pdf",
+FILES = ["main.tex", "preamble.tex", "LISEZ-MOI.md", "main.pdf",
             "index.html", "dicionario.tsv", "dicionario.jsonl",
             # The pocket PDF travels BESIDE the page: the download button points at
             # it by a relative link, and the site is published by copying the two
             # files into the same folder.
             "dicionario.pdf"]
-DOSSIERS = ["tools", "content", "ornaments", "pocket"]
+FOLDERS = ["tools", "content", "ornaments", "pocket"]
 CORRECTIONS = ["exceptions.txt", "exceptions_manuel.txt", "exceptions_fins.txt",
                "exceptions_paires.txt", "exceptions_relecture.txt",
                "exceptions_ornements.txt", "sou_relus.txt",
                "ornements.json", "pages_non_dactylo.txt"]
-BINAIRES = ["filets.pkl", "debuts.pkl"]
+BINARIES = ["filets.pkl", "debuts.pkl"]
 
 def run_step(out_path=OUT_PATH):
     if os.path.exists(out_path): os.remove(out_path)
     z=zipfile.ZipFile(out_path, "w", zipfile.ZIP_DEFLATED, compresslevel=9)
-    for f in FICHIERS:
+    for f in FILES:
         p=os.path.join(ROOT,f)
         if os.path.exists(p): z.write(p, f"dicionario/{f}")
-    for d in DOSSIERS:
+    for d in FOLDERS:
         for p in glob.glob(f"{ROOT}/{d}/**/*", recursive=True):
             if os.path.isfile(p) and "__pycache__" not in p:
                 z.write(p, "dicionario/"+os.path.relpath(p, ROOT))
-    for f in CORRECTIONS+BINAIRES:
+    for f in CORRECTIONS+BINARIES:
         p=os.path.join(T,f)
         if os.path.exists(p): z.write(p, f"dicionario/corrections/{f}")
     # The proofreading survey, page by page -- the TEXT only. The folder also

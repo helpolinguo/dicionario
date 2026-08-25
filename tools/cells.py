@@ -4,20 +4,20 @@ from scipy.ndimage import map_coordinates
 from page import analyse
 
 CW, CH = 12, 22
-ETENDRE   = False      # extension of the block to the LEFT: moves the origin, case by case
-ETENDRE_FORCE = 0       # forced widening to the left: see restore_starts.py
-PROFONDEUR_MAX = 0.56  # a rule is not looked for lower, in units of leading.
+EXTEND   = False      # extension of the block to the LEFT: moves the origin, case by case
+EXTEND_FORCE = 0       # forced widening to the left: see restore_starts.py
+MAX_DEPTH = 0.56  # a rule is not looked for lower, in units of leading.
                        # Calibrated on the 1,697 lines surveyed by eye: at 0.52 we lost
                        # 7 true rules and 85.2 % of exact ranges; at 0.56, 3 missing and
                        # 89.6 %. Beyond that the DEFIRS ghosts come back -- 11 at 0.60,
                        # 22 at 0.64.
-ETENDRE_D = False      # extension of the block to the RIGHT: tried, set aside.
+EXTEND_RIGHT = False      # extension of the block to the RIGHT: tried, set aside.
                        # It recovers a few line ends, but the re-cutting it
                        # entails loses headwords on 145 pages. The gain does not
                        # pay for the breakage.                        # raster of one cell
-HAUT, BAS = 0.545, 0.50   # vertical extension of the cell, in fractions of the pitch
+TOP, BOTTOM = 0.545, 0.50   # vertical extension of the cell, in fractions of the pitch
 
-def runs_binaire(row, mini):
+def binary_runs(row, mini):
     out=[]; i=0; n=len(row)
     while i<n:
         if row[i]:
@@ -28,7 +28,7 @@ def runs_binaire(row, mini):
         else: i+=1
     return out
 
-def underlines(r, lines, vstep, hstep, xg, ncol, couv_min=0.50):
+def underlines(r, lines, vstep, hstep, xg, ncol, cover_min=0.50):
     """Underline rules: horizontal runs, thin and solid, below the baseline.
     The typescript also uses DOUBLE underlines: we therefore survey every row
     of rule in the band, not the best one alone. Returns (rows, ranges of
@@ -39,9 +39,9 @@ def underlines(r, lines, vstep, hstep, xg, ncol, couv_min=0.50):
     res = {}
     for k, y in lines:
         a0=max(int(round(y-0.10*vstep)),0); a1=min(int(round(y+0.45*vstep)),H)
-        prof = r[a0:a1].sum(axis=1)
-        if len(prof) < 4: res[k]=(None,[],0); continue
-        base = a0 + int(np.argmin(np.diff(prof))) + 1
+        depth = r[a0:a1].sum(axis=1)
+        if len(depth) < 4: res[k]=(None,[],0); continue
+        base = a0 + int(np.argmin(np.diff(depth))) + 1
         cands=[]
         for yy in range(base+1, min(base+int(round(0.30*vstep))+2, H)):
             # A rule belongs to the zone of its OWN baseline.
@@ -66,8 +66,8 @@ def underlines(r, lines, vstep, hstep, xg, ncol, couv_min=0.50):
             # below the baseline -- measured on alineo, informar, injektar,
             # anakoluto. A false one appears only from 0.55, since it belongs to
             # the line below. We therefore stop the search at 0.52.
-            if (yy - y) > PROFONDEUR_MAX*vstep: break
-            rs=[(a,b) for a,b in runs_binaire(B[yy], 3) if r[yy, a:b].mean() > 0.40]
+            if (yy - y) > MAX_DEPTH*vstep: break
+            rs=[(a,b) for a,b in binary_runs(B[yy], 3) if r[yy, a:b].mean() > 0.40]
             # The ribbon wears: a rule breaks over one or two cells without
             # ceasing to be a rule. We reglue the pieces separated by less than
             # one cell before applying the minimum length.
@@ -80,10 +80,10 @@ def underlines(r, lines, vstep, hstep, xg, ncol, couv_min=0.50):
             if tot: cands.append((tot, yy, rs))
         if not cands: res[k]=(None,[],0); continue
         tmax=max(c[0] for c in cands)
-        retenus=[c for c in cands if c[0] >= 0.35*tmax]
-        rows_=[c[1] for c in retenus]
+        held=[c for c in cands if c[0] >= 0.35*tmax]
+        rows_=[c[1] for c in held]
         ranges=set()
-        for tot,yy,rs in retenus:
+        for tot,yy,rs in held:
             for a,b in rs:
                 if B[yy, a:b].mean() < 0.80: continue
                 # A cell is underlined if the rule covers enough of it.
@@ -102,8 +102,8 @@ def underlines(r, lines, vstep, hstep, xg, ncol, couv_min=0.50):
                 inside=[]
                 for j in range(max(j0,0), min(j1+1, ncol)):
                     g=xg+j*hstep; d=g+hstep
-                    couv=(min(b,d)-max(a,g))/hstep
-                    if couv >= couv_min: inside.append(j)
+                    cover=(min(b,d)-max(a,g))/hstep
+                    if cover >= cover_min: inside.append(j)
                 if not inside: continue
                 # we keep only contiguous runs
                 beg=inside[0]; prev=inside[0]
@@ -119,13 +119,13 @@ def underlines(r, lines, vstep, hstep, xg, ncol, couv_min=0.50):
         res[k]=(rows_, fus, tmax)
     return res
 
-def _phase_locale(pv, x0, x1, p):
+def _local_phase(pv, x0, x1, p):
     """Phase of the Fourier component of period p over [x0,x1]."""
     x = np.arange(x0, x1); s = pv[x0:x1] - pv[x0:x1].mean()
     w = 2*np.pi/p
     return np.arctan2((s*np.sin(w*x)).sum(), (s*np.cos(w*x)).sum())
 
-def raffiner_pas(r, block, hstep, xg, rounds=4):
+def refine_step(r, block, hstep, xg, rounds=4):
     """Refines (pitch, phase). Two stages:
 
     1. minimising the ink falling on the cell boundaries;
@@ -147,18 +147,18 @@ def raffiner_pas(r, block, hstep, xg, rounds=4):
     L = x1-x0
     if L > 12*p:
         for _ in range(rounds):
-            W = max(int(10*p), 60); pas_f = max(W//2, 1)
+            W = max(int(10*p), 60); step_f = max(W//2, 1)
             cs=[]; phs=[]
-            for a in range(x0, x1-W, pas_f):
+            for a in range(x0, x1-W, step_f):
                 seg = pv[a:a+W]
                 if seg.max() <= 0: continue
-                cs.append(a+W/2); phs.append(_phase_locale(pv, a, a+W, p))
+                cs.append(a+W/2); phs.append(_local_phase(pv, a, a+W, p))
             if len(cs) < 4: break
             cs=np.array(cs); phs=np.unwrap(np.array(phs))
             A=np.vstack([cs, np.ones(len(cs))]).T
-            pente,_ = np.linalg.lstsq(A, phs, rcond=None)[0]
-            if not np.isfinite(pente) or abs(pente) < 1e-7: break
-            inv = 1.0/p - pente/(2*np.pi)
+            slope,_ = np.linalg.lstsq(A, phs, rcond=None)[0]
+            if not np.isfinite(slope) or abs(slope) < 1e-7: break
+            inv = 1.0/p - slope/(2*np.pi)
             if inv <= 0: break
             p2 = 1.0/inv
             if abs(p2-p) > 0.05*p: break
@@ -172,10 +172,10 @@ def raffiner_pas(r, block, hstep, xg, rounds=4):
         ph = best_[1]
     return p, ph
 
-def extract(path_, garder_image=False):
+def extract(path_, keep_image=False):
     d = analyse(path_)
     r = d['norm']; vstep=d['pasv']; hstep=d['pash']; xg=d['xg']
-    hstep, xg = raffiner_pas(r, d['bloc'], hstep, xg)
+    hstep, xg = refine_step(r, d['bloc'], hstep, xg)
     H, W = r.shape
     xg = xg % hstep                       # origin of the lattice brought back to the left edge
     ncol = int(np.floor((W - xg)/hstep))
@@ -197,16 +197,16 @@ def extract(path_, garder_image=False):
             # But a descender (g, p, q, y, j) crosses it; we keep it where there
             # is ink just above AND just below the band, or we gut the letters.
             rule_ = grey_opening(band, size=(1,19))
-            dessus = rc[max(t0-2,0):t0, a:b].max(axis=0) if t0>0 else np.zeros(b-a, np.float32)
-            dessous = rc[t1:min(t1+2,H), a:b].max(axis=0) if t1<H else np.zeros(b-a, np.float32)
-            traverse = (dessus > 0.30) & (dessous > 0.30)
-            oté = np.clip(band - rule_, 0, 1)
-            oté[:, traverse] = band[:, traverse]
-            rc[t0:t1, a:b] = oté
+            above = rc[max(t0-2,0):t0, a:b].max(axis=0) if t0>0 else np.zeros(b-a, np.float32)
+            below = rc[t1:min(t1+2,H), a:b].max(axis=0) if t1<H else np.zeros(b-a, np.float32)
+            traverse = (above > 0.30) & (below > 0.30)
+            removed = np.clip(band - rule_, 0, 1)
+            removed[:, traverse] = band[:, traverse]
+            rc[t0:t1, a:b] = removed
     # A horizontal offset peculiar to each line. The paper has cockled: the
     # grid's phase slides from one line to the next, sometimes by a third of a
     # cell at the foot of a page. We take it up line by line, at constant pitch.
-    def phase_ligne(y):
+    def line_phase(y):
         i0=max(int(round(y-0.45*vstep)),0); i1=min(int(round(y+0.45*vstep)),H)
         if i1-i0 < 4: return 0.0
         pv=r[i0:i1].sum(axis=0)
@@ -217,16 +217,16 @@ def extract(path_, garder_image=False):
             s_=pv[idx].mean()
             if best_[0] is None or s_ < best_[0]: best_=(s_,dxx)
         return best_[1]
-    decal = np.array([phase_ligne(y) for k,y in d['lignes']])
+    offset = np.array([line_phase(y) for k,y in d['lignes']])
 
     # extraction of the cells
     ky = np.array([y for k,y in d['lignes']])
     kk = np.array([k for k,y in d['lignes']])
-    fy = (np.arange(CH)+0.5)/CH*(HAUT+BAS)*vstep - HAUT*vstep
+    fy = (np.arange(CH)+0.5)/CH*(TOP+BOTTOM)*vstep - TOP*vstep
     fx = (np.arange(CW)+0.5)/CW*hstep
     nl = len(ky)
     Y = (ky[:,None,None,None] + fy[None,None,:,None] + 0*fx[None,None,None,:])
-    X = (xg + decal[:,None,None,None] + np.arange(ncol)[None,:,None,None]*hstep
+    X = (xg + offset[:,None,None,None] + np.arange(ncol)[None,:,None,None]*hstep
          + fx[None,None,None,:] + 0*fy[None,None,:,None])
     Y = np.broadcast_to(Y,(nl,ncol,CH,CW)).ravel()
     X = np.broadcast_to(X,(nl,ncol,CH,CW)).ravel()
@@ -242,19 +242,19 @@ def extract(path_, garder_image=False):
             rz[t0:t1, a:b]=0.0
     cells = map_coordinates(r,  [Y,X], order=1, mode='constant', cval=0.0).reshape(nl,ncol,CH,CW)
     bare  = map_coordinates(rc, [Y,X], order=1, mode='constant', cval=0.0).reshape(nl,ncol,CH,CW)
-    horsf = map_coordinates(rz, [Y,X], order=1, mode='constant', cval=0.0).reshape(nl,ncol,CH,CW)
+    out_of_frame = map_coordinates(rz, [Y,X], order=1, mode='constant', cval=0.0).reshape(nl,ncol,CH,CW)
     # renumbering: column 0 = the page's first inked column
     # A cell is occupied if it carries enough ink AND if that ink is not a
     # mere smudge from the neighbouring character. The smudge criterion (ink
     # pressed against the edge of the cell) is calibrated on the cases
     # surveyed by hand; it allows the ink threshold to be lowered to 5 pixels,
     # which catches the very pale full stops.
-    plat = horsf.reshape(nl, ncol, -1)
-    ink = (plat > 0.35).sum(-1)
-    somme = plat.sum(-1)
-    bordg = horsf[:,:,:,:2].sum((2,3)) + horsf[:,:,:,-2:].sum((2,3))
-    partbord = bordg/(somme+1e-6)
-    smudge_ = (partbord > 0.55) | ((somme < 12) & (partbord > 0.25))
+    flat = out_of_frame.reshape(nl, ncol, -1)
+    ink = (flat > 0.35).sum(-1)
+    total_ = flat.sum(-1)
+    edge_l = out_of_frame[:,:,:,:2].sum((2,3)) + out_of_frame[:,:,:,-2:].sum((2,3))
+    edge_share = edge_l/(total_+1e-6)
+    smudge_ = (edge_share > 0.55) | ((total_ < 12) & (edge_share > 0.25))
     occ = (ink >= 5) & ~smudge_
     frac = occ.mean(axis=0)
     # a column occupied on nearly every line at the edge of the page is the
@@ -284,12 +284,12 @@ def extract(path_, garder_image=False):
         # others, without moving the origin -- the numbering of the columns does
         # not move, so no correction already made is invalidated. It gives back
         # the line ends the block was cutting off: « preciz », « apa », « anon ».
-        if ETENDRE_D:
+        if EXTEND_RIGHT:
             while dte < ncol-1 and use1[dte+1] and not edge[dte+1]: dte += 1
         # On the LEFT, it moves the origin and shifts everything: it lost eight
         # pages of the body every one of their headwords. Reserved, by the flag
         # below, for the pages where the text is sparse and headword-free.
-        if ETENDRE:
+        if EXTEND:
             while g > 0 and use1[g-1] and not edge[g-1]: g -= 1
         # FORCED widening to the left, with no condition of use. The rule above
         # requires that a column serve on several lines; but the first letter of
@@ -299,8 +299,8 @@ def extract(path_, garder_image=False):
         # touch the corpus: what it brings back in excess is set aside afterwards
         # by the smudge filter and by the decoding, which must return a real
         # character.
-        if ETENDRE_FORCE:
-            g = max(0, g - int(ETENDRE_FORCE))
+        if EXTEND_FORCE:
+            g = max(0, g - int(EXTEND_FORCE))
         c0, cmax = g, dte
     else:
         c0, cmax = 0, ncol-1
@@ -309,7 +309,7 @@ def extract(path_, garder_image=False):
     kk = kk - kk.min()
     underline = {k:(yy,[(a-c0,b-c0) for a,b in pl],t) for k,(yy,pl,t) in underline.items()}
     out = dict(pasv=vstep, pash=hstep, xg=xg, col0=c0, angle=d['angle'], bloc=d['bloc'],
-               lignes=list(zip(kk.tolist(), ky.tolist())), ncol=ncol, decal=decal,
+               lignes=list(zip(kk.tolist(), ky.tolist())), ncol=ncol, decal=offset,
                cells=cells, nues=bare, occ=occ, sou=underline, shape=(H,W))
-    if garder_image: out['norm']=r; out['nettoye']=rc
+    if keep_image: out['norm']=r; out['nettoye']=rc
     return out

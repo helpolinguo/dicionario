@@ -20,12 +20,12 @@ def one_(pg):
     z = np.load(f"{T}/cellules/p-{pg:03d}.npz", allow_pickle=True)
     a = P.load_(f"{ROOT}/scan/p-{pg:03d}.jpg")
     b = P.mask_edges(P.normalise(a)); _, r = P.deskew(b)
-    y0, y1, x0, x1 = P.bloc_texte(r)
+    y0, y1, x0, x1 = P.text_block(r)
     lg = np.array(z['lignes']); vstep = float(z['pasv'])
-    perdu = (int(y1) - int(z['bloc'][1])) / vstep
+    lost_ = (int(y1) - int(z['bloc'][1])) / vstep
     return dict(stocke=int(z['bloc'][1]), neuf=int(y1), pasv=vstep,
                 lignes=len(lg), derniere=float(lg[-1, 1]),
-                lignes_perdues=round(perdu, 2))
+                lignes_perdues=round(lost_, 2))
 
 
 def all_(start_=0, end_=None):
@@ -41,10 +41,10 @@ def all_(start_=0, end_=None):
         except Exception as e: out[pg] = dict(erreur=str(e))
         if i % 40 == 0: print("  %d/%d (p%03d)" % (i, len(pages), pg), flush=True)
     json.dump(out, open(OUT_PATH, "w"), indent=0)
-    graves = {p: v for p, v in out.items() if v.get('lignes_perdues', 0) >= 0.8}
+    engraved = {p: v for p, v in out.items() if v.get('lignes_perdues', 0) >= 0.8}
     print("pages audited: %d ; pages losing at least one line: %d"
-          % (len(out), len(graves)))
-    return graves
+          % (len(out), len(engraved)))
+    return engraved
 
 
 if __name__ == "__main__":

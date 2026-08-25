@@ -26,12 +26,12 @@ _ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0,_ROOT + "/tools")
 T=_ROOT + "/work"
 XH  = "acemnorsuvwxz"     # x-height: it is on these that the doubt falls
-HAMPE = "bdfhklt"         # ascenders: they give the height of the capitals
+STEM = "bdfhklt"         # ascenders: they give the height of the capitals
 MINI = 4                  # minimum cues of each kind on the line
 PART = 0.35               # fraction of the way from ascender to x-height
 _ST = np.ones((3,3),int)
 
-def sommet_lettre(A):
+def letter_top(A):
     """The top of the connected component carrying the body of the letter."""
     B=(A>60); n=len(A); sum_=np.full(n,np.nan)
     for i in range(n):
@@ -53,11 +53,11 @@ def run_step(out_path=f"{T}/exceptions_casse.txt"):
     kl=np.load(f"{T}/km_lab.npy"); tab=np.load(f"{T}/cls_lab.npy",allow_pickle=True)
     from decode import smudges
     bv=smudges()
-    car=np.array([str(tab[k]) for k in range(len(tab))], dtype=object)
+    char_=np.array([str(tab[k]) for k in range(len(tab))], dtype=object)
     # grouping by line
     key_ = M[:,0].astype(np.int64)*10000 + M[:,1].astype(np.int64)
     o=np.argsort(key_, kind='stable'); bounds=np.flatnonzero(np.r_[True, np.diff(key_[o])!=0, True])
-    ecrit=0; lines=0
+    written=0; lines=0
     with open(out_path,"w",encoding='utf-8') as f:
         f.write("# Casse tranchee par comparaison aux hampes de la meme ligne.\n")
         f.write("# Priorite basse : toute correction a la main l'emporte.\n")
@@ -65,10 +65,10 @@ def run_step(out_path=f"{T}/exceptions_casse.txt"):
             g=o[a:b]
             g=g[~bv[g]]
             if len(g)<8: continue
-            c=car[kl[g]]
-            mx=np.array([x in XH for x in c]); mh=np.array([x in HAMPE for x in c])
+            c=char_[kl[g]]
+            mx=np.array([x in XH for x in c]); mh=np.array([x in STEM for x in c])
             if mx.sum()<MINI or mh.sum()<MINI: continue
-            sum_=sommet_lettre(np.asarray(C[np.sort(g)]).astype(np.float32))
+            sum_=letter_top(np.asarray(C[np.sort(g)]).astype(np.float32))
             sum_=sum_[np.argsort(np.argsort(g))]      # put back into the order of g
             sx=np.nanmedian(sum_[mx]); sh=np.nanmedian(sum_[mh])
             if np.isnan(sx) or np.isnan(sh) or sx-sh < 1.5: continue
@@ -77,7 +77,7 @@ def run_step(out_path=f"{T}/exceptions_casse.txt"):
             for i in np.where(mx)[0]:
                 if np.isnan(sum_[i]) or sum_[i]>threshold: continue
                 pg,k,cc=M[g[i]]
-                f.write(f"{int(pg)}\t{int(k)}\t{int(cc)}\t{c[i].upper()}\n"); ecrit+=1
-    print("lines calibrated:",lines," cells raised to a capital:",ecrit)
+                f.write(f"{int(pg)}\t{int(k)}\t{int(cc)}\t{c[i].upper()}\n"); written+=1
+    print("lines calibrated:",lines," cells raised to a capital:",written)
 
 if __name__=="__main__": run_step()

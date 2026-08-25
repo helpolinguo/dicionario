@@ -44,7 +44,7 @@ def sheet_(batch, out_path):
     im.save(out_path)
     return im.size
 
-def preparer(entries, rep=f"{T}/bandes2", per=PAR):
+def prepare(entries, rep=f"{T}/bandes2", per=PAR):
     os.makedirs(rep, exist_ok=True)
     for f in os.listdir(rep): os.remove(os.path.join(rep, f))
     batches = [entries[i:i+per] for i in range(0, len(entries), per)]

@@ -15,9 +15,9 @@ from generate import page_lines
 from PIL import Image
 T=_ROOT + "/work"; ROOT=_ROOT
 
-def releve(threshold=0.20):
+def survey_(threshold=0.20):
     lab,M=load_(); tab=np.load(f"{T}/cls_lab.npy",allow_pickle=True)
-    trouves=[]
+    found_ones=[]
     for f in sorted(glob.glob(f"{T}/cellules/p-*.npz")):
         pg=int(re.search(r'p-(\d+)',f).group(1))
         z=np.load(f, allow_pickle=True)
@@ -38,10 +38,10 @@ def releve(threshold=0.20):
             if yb<=ya or xb<=xa or yb>img.shape[0]: continue
             ink_=1.0-img[ya:yb, xa:xb]
             if ink_.max()>0.55 and ink_.mean()>threshold*0.5:
-                trouves.append((pg,k,round(float(ink_.mean()),3),t[1:18].rstrip()))
-    return trouves
+                found_ones.append((pg,k,round(float(ink_.mean()),3),t[1:18].rstrip()))
+    return found_ones
 
 if __name__=="__main__":
-    t=releve()
+    t=survey_()
     print("headwords preceded by an inked sign in column 0:",len(t))
     for pg,k,e,word in t: print("   p%03d k=%-3d encre %.3f  %s"%(pg,k,e,word))

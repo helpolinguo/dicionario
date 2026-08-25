@@ -21,11 +21,11 @@ import sys
 import os
 _ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0,_ROOT + "/tools")
-from edition import _lire_code
+from edition import _read_code
 import json, re, sys, collections
 sys.path.insert(0,_ROOT + "/tools")
 T=_ROOT + "/work"
-FIN_OK = ("o","a","e","i","ar","ir","or")
+END_OK = ("o","a","e","i","ar","ir","or")
 CODES  = set("DEFIRSLP")
 
 def load_(p=f"{T}/edicioni/dicionario.jsonl"):
@@ -35,7 +35,7 @@ def keys_(v):
     """Sort key: without the asterisk of the unofficial words, without the hyphen."""
     return v.lower().lstrip("*+-").replace("-","")
 
-def controler(ent):
+def check_(ent):
     pb=collections.defaultdict(list)
     for e in ent:
         v=e.get('vedetto') or ""
@@ -49,7 +49,7 @@ def controler(ent):
         if not re.fullmatch(r"[A-Za-zÀ-ÿ'’-]+(?:\([a-z]\))?!?"
                             r"(?: [A-Za-zÀ-ÿ'’-]+){0,2}", nu):
             pb['vedette-caracteres'].append(n)
-        elif not (nu.endswith(FIN_OK) or nu.startswith("-") or nu.endswith("-")):
+        elif not (nu.endswith(END_OK) or nu.startswith("-") or nu.endswith("-")):
             pb['finale-non-ido'].append(n)
         if not senses: pb['sans-senco'].append(n)
         for s in senses:
@@ -61,7 +61,7 @@ def controler(ent):
         # spelled out (« Ned », « FDSued », « Jap.,Sanskr »). Compared with a
         # plain set of letters, all of that passed for invalid.
         k=e.get('kodo')
-        if k and not all(_lire_code(x.strip(' .')) for x in str(k).split(',')):
+        if k and not all(_read_code(x.strip(' .')) for x in str(k).split(',')):
             pb['code-invalide'].append(n)
         if re.search(r'(?<![A-Za-z])L\.\s*[a-z]', txt): pb['latina-dans-le-senco'].append(n)
         if re.search(r'\b[DEFIRS]{3,7}\b\s*\.?\s*$', txt): pb['code-dans-le-senco'].append(n)
@@ -77,7 +77,7 @@ def controler(ent):
 
 if __name__=="__main__":
     ent=load_()
-    pb=controler(ent)
+    pb=check_(ent)
     print("articles: %d"%len(ent))
     tot=0
     for f,l in sorted(pb.items(), key=lambda x:-len(x[1])):

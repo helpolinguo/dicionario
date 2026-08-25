@@ -19,7 +19,7 @@ sys.path.insert(0,_ROOT + "/tools")
 ROOT=_ROOT; T=f"{ROOT}/work"
 _ST=np.ones((3,3),int)
 
-def analyser_page(pg):
+def analyse_page(pg):
     a=np.asarray(Image.open(f"{ROOT}/scan/p-{pg:03d}.jpg").convert('L')).astype(np.float32)
     H,W=a.shape
     b = a < (a.mean()-0.28*a.std())
@@ -50,7 +50,7 @@ def run_step(out_path=f"{T}/horsgrille.json"):
     out=[]
     for pg in range(639):
         if not os.path.exists(f"{ROOT}/scan/p-{pg:03d}.jpg"): continue
-        try: out.append(analyser_page(pg))
+        try: out.append(analyse_page(pg))
         except Exception as e: out.append(dict(pagino=pg, erreur=str(e)))
         if pg%50==0: print("  ...p%03d"%pg, flush=True)
     json.dump(out, open(out_path,'w'), ensure_ascii=False)

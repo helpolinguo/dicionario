@@ -19,8 +19,8 @@ def run_step(rounds=4, cache=30, by_group=12):
     # the decoding. Letting the classifier learn a « space » class from a score
     # of examples makes the self-learning collapse: a group of « i » was
     # labelled « space » with a confidence of 1.000.
-    reel = Y != ' '
-    I, Y = I[reel], Y[reel]
+    actual = Y != ' '
+    I, Y = I[actual], Y[actual]
     X=feature_vector2(np.asarray(C[I]))
     order_=np.argsort(lab,kind='stable'); bounds=np.searchsorted(lab[order_],np.arange(K+1))
     # a representative sample of each group, for the vote
@@ -37,7 +37,7 @@ def run_step(rounds=4, cache=30, by_group=12):
     m=MLPClassifier(hidden_layer_sizes=(256,), alpha=1e-4, max_iter=40,
                     random_state=0, early_stopping=False)
     Xa, Ya, Wa = X, Y, np.full(len(Y),1.0)
-    for tour in range(rounds):
+    for round_ in range(rounds):
         m.fit(Xa, Ya)
         P=m.predict_proba(Xe); cls=m.classes_
         # vote by group
@@ -48,11 +48,11 @@ def run_step(rounds=4, cache=30, by_group=12):
             idx=[pos[v] for v in e]
             mean_=P[idx].mean(0)
             j=int(mean_.argmax()); label_[k]=cls[j]; conf[k]=mean_[j]
-        surs=np.where(conf>0.90)[0]
-        print(f"  round {tour}: {len(surs)} sure groups, median conf {np.median(conf):.3f}  ({time.time()-t0:.0f}s)", flush=True)
-        if tour==rounds-1: break
+        sure_ones=np.where(conf>0.90)[0]
+        print(f"  round {round_}: {len(sure_ones)} sure groups, median conf {np.median(conf):.3f}  ({time.time()-t0:.0f}s)", flush=True)
+        if round_==rounds-1: break
         idx=[];l2=[]
-        for k in surs:
+        for k in sure_ones:
             e=scale[k]
             if len(e)>by_group: e=rng.choice(e,by_group,replace=False)
             idx.append(e); l2.append(np.full(len(e),label_[k]))
@@ -68,15 +68,15 @@ def run_step(rounds=4, cache=30, by_group=12):
         (b,n),=c.most_common(1); label_[k]=b
         if len(c)>1: imp+=1
     import os
-    missing_=f"{T}/etiquettes.txt"; nman=0
+    missing_=f"{T}/etiquettes.txt"; n_manual=0
     if os.path.exists(missing_):
         for l in open(missing_,encoding='utf-8'):
             l=l.rstrip("\n")
             if not l.strip() or l.startswith("#"): continue
-            i,_,ch=l.partition("\t"); label_[int(i)]=ch; nman+=1
+            i,_,ch=l.partition("\t"); label_[int(i)]=ch; n_manual+=1
     np.save(f"{T}/cls_lab.npy", label_); np.save(f"{T}/cls_conf.npy", conf)
     pickle.dump(m, open(f"{T}/modele.pkl","wb"))
     ex=(label_[lab[I]]==Y).mean()
     print(f"exactness on the seed: {100*ex:.3f}%  ({len(I)} cells)", flush=True)
-    print(f"groups covered: {len(vote)} ; impure: {imp} ; manual: {nman}", flush=True)
+    print(f"groups covered: {len(vote)} ; impure: {imp} ; manual: {n_manual}", flush=True)
 if __name__=="__main__": run_step()

@@ -20,7 +20,7 @@ def one_(pg):
     z = np.load(f"{T}/cellules/p-{pg:03d}.npz", allow_pickle=True)
     a = P.load_(f"{ROOT}/scan/p-{pg:03d}.jpg")
     b = P.mask_edges(P.normalise(a)); _, r = P.deskew(b)
-    y0, y1, x0, x1 = P.bloc_texte(r)
+    y0, y1, x0, x1 = P.text_block(r)
     by0, by1, bx0, bx1 = [int(v) for v in z['bloc']]
     vstep = float(z['pasv']); hstep = float(z['pash'])
     return dict(bas_stocke=by1, bas_neuf=int(y1), lignes_perdues=round((y1-by1)/vstep, 2),
@@ -48,8 +48,8 @@ def all_():
 
 if __name__ == "__main__":
     d = all_()
-    def graves(key_, threshold=0.8):
+    def engraved(key_, threshold=0.8):
         return sorted(p for p, v in d.items() if v.get(key_, 0) >= threshold)
     for key_ in ('lignes_perdues', 'colonnes_perdues', 'colonnes_gauche', 'lignes_haut'):
-        g = graves(key_)
+        g = engraved(key_)
         print("%-18s : %3d pages  %s" % (key_, len(g), g[:60]))

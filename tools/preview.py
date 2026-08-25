@@ -6,7 +6,7 @@ from PIL import Image
 from page import analyse
 from scipy.ndimage import rotate as ndrotate
 
-def apercu(name_, out_path, zoom=3, crop=None):
+def preview(name_, out_path, zoom=3, crop=None):
     d = analyse(_ROOT + f"/scan/{name_}.jpg")
     base = ndrotate(d['img'], d['angle'], reshape=False, order=1, mode='constant', cval=255)
     im = Image.fromarray(np.clip(base,0,255).astype(np.uint8)).convert("RGB")
@@ -32,6 +32,6 @@ def apercu(name_, out_path, zoom=3, crop=None):
     im.save(out_path)
     return d
 if __name__=="__main__":
-    d=apercu(sys.argv[1], sys.argv[2], int(sys.argv[3]) if len(sys.argv)>3 else 3,
+    d=preview(sys.argv[1], sys.argv[2], int(sys.argv[3]) if len(sys.argv)>3 else 3,
              eval(sys.argv[4]) if len(sys.argv)>4 else None)
     print(d['pasv'], d['pash'], d['xg'])

@@ -42,14 +42,14 @@ import json, re, sys, collections
 import os
 _ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0,_ROOT + "/tools")
-from pairs import PAIRES
+from pairs import PAIRS
 T=_ROOT + "/work"
 
 LOOKALIKE=collections.defaultdict(set)
-for a,b in PAIRES:
+for a,b in PAIRS:
     if len(a)==1 and len(b)==1: LOOKALIKE[a].add(b); LOOKALIKE[b].add(a)
-MOT=re.compile(r"[A-Za-zÀ-ÿ]{4,}")
-FINALES=("ar","ir","or","as","is","os","us","o","a","e","i")
+WORD=re.compile(r"[A-Za-zÀ-ÿ]{4,}")
+ENDINGS=("ar","ir","or","as","is","os","us","o","a","e","i")
 # Function words: they have no headword root and must undergo nothing.
 GRAM=set("""la le lo li ed od ma nam kad ka ke ke qua quo qui quan quin kande ube
 pro por per pri sen sub sur tra trans ye da de di del dil en inter kun dum kontre
@@ -58,39 +58,39 @@ il ilu el elu lu li ni vi me tu su ta ti ica ita ca co to omna ula nula multa po
 plu min maxim tre ne yes se do lore nun hike ibe kad esas esis esos esez havas
 kom kad e a an al ek for pos segun malgre exter extere intre""".split())
 
-def racines(ent):
+def roots(ent):
     r=set()
     for e in ent:
         v=(e.get('vedetto') or "").lower().lstrip("*+-").rstrip("-")
         if not v: continue
         r.add(v)
-        for f in FINALES:
+        for f in ENDINGS:
             if v.endswith(f) and len(v)-len(f)>=2: r.add(v[:-len(f)]); break
     return r
 
-def _racine(w):
-    for f in FINALES:
+def _root(w):
+    for f in ENDINGS:
         if w.endswith(f) and len(w)-len(f)>=2: return w[:-len(f)]
     return w
 
 def known(w, root):
     w=w.lower()
-    return w in root or _racine(w) in root or w in GRAM
+    return w in root or _root(w) in root or w in GRAM
 
 def variants(w):
     """Exchanges of look-alikes, never on the grammatical ending."""
-    n=len(w); end_=len(w)-len(_racine(w))
+    n=len(w); end_=len(w)-len(_root(w))
     for i,c in enumerate(w):
         if i >= n-max(end_,1): break
         for d in LOOKALIKE.get(c,()):
             yield w[:i]+d+w[i+1:]
 
-def proposer(ent):
-    root=racines(ent)
+def propose(ent):
+    root=roots(ent)
     freq=collections.Counter()
     for e in ent:
         for t in (e.get('senci') or []):
-            for w in MOT.findall(t): freq[w.lower()]+=1
+            for w in WORD.findall(t): freq[w.lower()]+=1
     prop={}
     for w,n in freq.items():
         if known(w, root): continue
@@ -100,6 +100,6 @@ def proposer(ent):
 
 if __name__=="__main__":
     ent=[json.loads(l) for l in open(f"{T}/edicioni/dicionario.jsonl",encoding='utf-8')]
-    prop,root=proposer(ent)
+    prop,root=propose(ent)
     print("roots known: %d ; corrections proposed: %d"%(len(root),len(prop)))
     for w,v in sorted(prop.items())[:40]: print("   %-22s -> %s"%(w,v))

@@ -16,7 +16,7 @@ ROOT=_ROOT; T=f"{ROOT}/work"
 def one_(pg):
     z=np.load(f"{T}/cellules/p-{pg:03d}.npz", allow_pickle=True)
     ncol=z['occ'].shape[1]; col0=int(z['col0'])
-    cells.ETENDRE=False; cells.ETENDRE_D=True
+    cells.EXTEND=False; cells.EXTEND_RIGHT=True
     d=cells.extract(f"{ROOT}/scan/p-{pg:03d}.jpg")
     occ=d['occ']; c0=int(d['col0'])
     # columns of the extension: beyond (col0-c0) + ncol in the extended frame

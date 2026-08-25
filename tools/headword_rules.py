@@ -23,9 +23,9 @@ _ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0,_ROOT + "/tools")
 from consolidate import headwords
 T=_ROOT + "/work"
-FINALES = set("oarei")
+ENDINGS = set("oarei")
 
-def mots_vedette(lab, M, tab, smudge, exc):
+def headwords_(lab, M, tab, smudge, exc):
     order_=np.argsort(M[:,0],kind='stable')
     bounds=np.searchsorted(M[order_,0], np.arange(M[:,0].max()+2))
     out=collections.defaultdict(list)
@@ -44,31 +44,31 @@ def mots_vedette(lab, M, tab, smudge, exc):
             if len(mo)>=3: out[pg].append((k,mo))
     return out
 
-def run_step(seuil_maj=0.6, mini=3):
+def run_step(caps_threshold=0.6, mini=3):
     lab=np.load(f"{T}/km_lab.npy"); M=np.load(f"{T}/meta_all.npy")
     tab=np.load(f"{T}/cls_lab.npy",allow_pickle=True)
     alt=pickle.load(open(f"{T}/cls_alternatives.pkl","rb"))
     from decode import smudges
     from generate import exceptions
     smudge=smudges(); exc=dict(exceptions())
-    hw=mots_vedette(lab,M,tab,smudge,exc)
+    hw=headwords_(lab,M,tab,smudge,exc)
     fresh={}; log_=[]
-    for pg,liste in hw.items():
+    for pg,list_ in hw.items():
         # 1. initial
-        if len(liste)>=mini:
-            c=collections.Counter(mo[0][1] for _,mo in liste)
+        if len(list_)>=mini:
+            c=collections.Counter(mo[0][1] for _,mo in list_)
             (upper_,n),=c.most_common(1)
-            if n/len(liste)>=seuil_maj:
-                for k,mo in liste:
+            if n/len(list_)>=caps_threshold:
+                for k,mo in list_:
                     col,ch,i=mo[0]
                     if ch!=upper_ and upper_ in ([ch]+list(alt[lab[i]])):
                         fresh[(pg,k,col)]=upper_
                         log_.append((pg,k,col,ch,upper_,"initiale de section","".join(x[1] for x in mo)))
         # 2. ending
-        for k,mo in liste:
+        for k,mo in list_:
             col,ch,i=mo[-1]
-            if ch in FINALES: continue
-            cands=[a for a in alt[lab[i]] if a in FINALES]
+            if ch in ENDINGS: continue
+            cands=[a for a in alt[lab[i]] if a in ENDINGS]
             if not cands: continue
             pref=[a for a in ("o","a","r","e","i") if a in cands]
             v=pref[0]

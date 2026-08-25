@@ -16,8 +16,8 @@ import os
 _ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0,_ROOT + "/tools")
 T=_ROOT + "/work"
-MINI_ATTESTE = 6      # minimum occurrences of the corrected form
-MAXI_FAUTIF  = 2      # maximum occurrences of the faulty form
+MIN_ATTESTED = 6      # minimum occurrences of the corrected form
+MAX_FAULTY  = 2      # maximum occurrences of the faulty form
 
 def run_step():
     from edition import load_text
@@ -34,13 +34,13 @@ def run_step():
     for pg,k,s in lines:
         for m in re.finditer(r"[A-Za-z]{3,}", s):
             w=m.group(0); n=freq[w]
-            if n>MAXI_FAUTIF: continue
+            if n>MAX_FAULTY: continue
             for i,ch in enumerate(w):
                 if ch not in "co": continue
                 other = 'o' if ch=='c' else 'c'
                 v = w[:i]+other+w[i+1:]
                 nv=freq.get(v,0)
-                if nv>=MINI_ATTESTE and nv>=8*max(n,1):
+                if nv>=MIN_ATTESTED and nv>=8*max(n,1):
                     prop.append(dict(pagino=pg, ligno=k, kolumno=m.start()+i,
                                      fautiva=w, korektita=v, n_fautiva=n, n_korektita=nv))
                     break

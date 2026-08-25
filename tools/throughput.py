@@ -24,15 +24,15 @@ def run_step(threshold=3):
     import statistics as st
     v=sorted(lines.values())
     print(f"pages proofread: {len(lines)} ; lines corrected: median {st.median(v)}, total {sum(v)}")
-    maigres=[(p,n,underline.get(p,0)) for p,n in sorted(lines.items()) if n<threshold]
-    sans_sou=[p for p in lines if p not in underline]
-    print(f"pages with fewer than {threshold} corrections: {len(maigres)}")
-    for p,n,s in maigres: print(f"   p-{p:03d} : {n} lines corrected, {s} lines underlined")
+    thin=[(p,n,underline.get(p,0)) for p,n in sorted(lines.items()) if n<threshold]
+    without_underline=[p for p in lines if p not in underline]
+    print(f"pages with fewer than {threshold} corrections: {len(thin)}")
+    for p,n,s in thin: print(f"   p-{p:03d} : {n} lines corrected, {s} lines underlined")
     # Since page 96, the underlines are no longer surveyed by hand:
     # the automatic detection takes care of them. Their absence is therefore
     # not a defect.
     pass
-    return [p for p,_,_ in maigres]+sans_sou
+    return [p for p,_,_ in thin]+without_underline
 
 if __name__=="__main__":
     a=run_step()

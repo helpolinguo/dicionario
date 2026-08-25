@@ -25,10 +25,10 @@ import re
 import sys
 from pathlib import Path
 
-RACINO = Path(__file__).resolve().parent.parent
+ROOT = Path(__file__).resolve().parent.parent
 
 
-def lektar_datumi(html: str) -> list:
+def read_data(html: str) -> list:
     """Finds the array D in the script, and returns it as Python objects.
 
     We do not look for the end of the array by hand -- one bracket in a
@@ -38,12 +38,12 @@ def lektar_datumi(html: str) -> list:
     m = re.search(r'\bconst\s+D\s*=\s*\[', html)
     if not m:
         raise SystemExit('array D not found in index.html')
-    debuto = html.index('[', m.start())
-    datumi, _ = json.JSONDecoder().raw_decode(html[debuto:])
-    return datumi
+    start_of = html.index('[', m.start())
+    data_, _ = json.JSONDecoder().raw_decode(html[start_of:])
+    return data_
 
 
-def texto(t: str) -> str:
+def text_(t: str) -> str:
     """The text of the definitions carries a light markup, peculiar to the book.
 
     We render it as Markdown rather than throw it away: the Dicionario's
@@ -58,7 +58,7 @@ def texto(t: str) -> str:
     return re.sub(r'\s+', ' ', t).strip()
 
 
-def artiklo(e: dict) -> str:
+def entry(e: dict) -> str:
     """One article, in Markdown. Follows the same form as the page."""
     hw = f'« {e["v"]} »' if e.get('c') else e['v']
     lin = [f'## {hw}' + (f' *({e["f"]})*' if e.get('f') else '')]
@@ -67,13 +67,13 @@ def artiklo(e: dict) -> str:
     for i, b in enumerate(senses):
         num = f'{i + 1}. ' if len(senses) > 1 else ''
         if b.get('t') or not b.get('u'):
-            lin.append(num + texto(b.get('t', '')))
+            lin.append(num + text_(b.get('t', '')))
             num = ''
         for x in b.get('u') or []:
             part = [num + f'**{x["k"]}**']
             if x.get('q'):
                 part.append(f'*({x["q"]})*')
-            part.append(texto(x.get('t', '')))
+            part.append(text_(x.get('t', '')))
             if x.get('n'):
                 part.append(f'[{", ".join(x["n"])}]')
             lin.append(' '.join(p for p in part if p))
@@ -84,63 +84,63 @@ def artiklo(e: dict) -> str:
     if e.get('y'):
         lin.append(f'*Simb. kem.* **{e["y"]}**')
 
-    meto = [f'p. {e["p"]}, l. {e["g"]}']
+    method_ = [f'p. {e["p"]}, l. {e["g"]}']
     if e.get('n'):
-        meto.append(', '.join(e['n']))
+        method_.append(', '.join(e['n']))
     if e.get('d'):
-        meto.append(' · '.join(e['d']))
-    lin.append(f'<!-- {" | ".join(meto)} -->')
+        method_.append(' · '.join(e['d']))
+    lin.append(f'<!-- {" | ".join(method_)} -->')
     return '\n'.join(lin)
 
 
-def unesma_senco(e: dict) -> str:
+def first_sense(e: dict) -> str:
     """The first sense, shorn of all the rest. Serves the short list."""
     for b in e.get('b') or []:
         if b.get('t'):
-            return texto(b['t'])
+            return text_(b['t'])
         for x in b.get('u') or []:
             if x.get('t'):
-                return texto(x['t'])
+                return text_(x['t'])
     return ''
 
 
 def main() -> None:
-    html = (RACINO / 'index.html').read_text(encoding='utf-8')
-    D = lektar_datumi(html)
+    html = (ROOT / 'index.html').read_text(encoding='utf-8')
+    D = read_data(html)
 
-    ENTETE = (
+    HEADER = (
         '<!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->\n'
     )
 
     # 1. The bare data.
-    (RACINO / 'dicionario.json').write_text(
+    (ROOT / 'dicionario.json').write_text(
         json.dumps(D, ensure_ascii=False, separators=(',', ':')), encoding='utf-8')
 
     # 2. The book laid flat.
-    tuto = [ENTETE,
+    whole = [HEADER,
             '# Dicionario de la 10.000 radiki di la linguo universala Ido\n',
             'Marcelo Persiko (Marcel Pesch) · editio princeps 1934, '
             'duesma editio 1964 · ' + f'{len(D):,}'.replace(',', '\u202f')
             + ' artikli\n',
             'Transskribita de https://ido.help/dicionario/\n',
             '---\n']
-    tuto += [artiklo(e) + '\n' for e in D]
-    (RACINO / 'dicionario.md').write_text('\n'.join(tuto), encoding='utf-8')
+    whole += [entry(e) + '\n' for e in D]
+    (ROOT / 'dicionario.md').write_text('\n'.join(whole), encoding='utf-8')
 
     # 3. The short list.
-    kurta = [ENTETE,
+    brief = [HEADER,
              '# Vortlisto — Dicionario de la 10.000 radiki\n',
              'Vedvorto e unesma senco nur. La kompleta artikli esas en '
              'dicionario.md ; la datumi en dicionario.json.\n',
              'Transskribita de https://ido.help/dicionario/\n']
     for e in D:
-        s = unesma_senco(e)
-        kurta.append(f'{e["v"]}' + (f' ({e["f"]})' if e.get('f') else '')
+        s = first_sense(e)
+        brief.append(f'{e["v"]}' + (f' ({e["f"]})' if e.get('f') else '')
                      + (f' — {s}' if s else ''))
-    (RACINO / 'vortlisto.md').write_text('\n'.join(kurta) + '\n', encoding='utf-8')
+    (ROOT / 'vortlisto.md').write_text('\n'.join(brief) + '\n', encoding='utf-8')
 
     for n in ('dicionario.json', 'dicionario.md', 'vortlisto.md'):
-        print(f'  {n:<18} {(RACINO / n).stat().st_size:>10,} octets')
+        print(f'  {n:<18} {(ROOT / n).stat().st_size:>10,} octets')
 
 
 if __name__ == '__main__':

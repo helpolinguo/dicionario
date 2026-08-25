@@ -2,8 +2,8 @@
 import numpy as np, glob, os, sys
 _ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 T=_ROOT + "/work"
-def motif(s, n): return "".join("#" if c!=" " else "." for c in s).ljust(n,".")[:n]
-def recaler(f):
+def pattern(s, n): return "".join("#" if c!=" " else "." for c in s).ljust(n,".")[:n]
+def realign(f):
     pg=int(os.path.basename(f)[1:4])
     z=np.load(f"{T}/cellules/p-{pg:03d}.npz", allow_pickle=True)
     occ=z['occ']; lg=z['lignes']
@@ -19,7 +19,7 @@ def recaler(f):
         for k,s in lines:
             m=ref.get(k+dk)
             if m is None: continue
-            t=motif(s,len(m)); nb+=1
+            t=pattern(s,len(m)); nb+=1
             sc+=sum(1 for a,b in zip(t,m) if a=="#" and b==".")
         if nb==len(lines) and (best is None or sc<best[0]): best=(sc,dk)
     if best is None: return None
@@ -29,4 +29,4 @@ def recaler(f):
     return dk, sc
 if __name__=="__main__":
     for f in sorted(glob.glob(f"{T}/amorce/p*.txt")):
-        print(os.path.basename(f), recaler(f))
+        print(os.path.basename(f), realign(f))

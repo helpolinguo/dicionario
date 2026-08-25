@@ -20,11 +20,11 @@ def reference(path_):
         except ValueError: pass
     return ref
 
-def mesurer(pg, path_, avec_exceptions=True):
+def measure_(pg, path_, with_exceptions=True):
     from decode import load_, page_text
     lab,M=load_(); tab=np.load(f"{T}/cls_lab.npy",allow_pickle=True)
     lines=dict(page_text(pg,lab,M,tab))
-    if avec_exceptions:
+    if with_exceptions:
         from generate import exceptions
         for (pp,kk,cc),v in exceptions().items():
             if pp!=pg or kk not in lines: continue
@@ -32,7 +32,7 @@ def mesurer(pg, path_, avec_exceptions=True):
             if cc>=len(l): l.extend(" "*(cc-len(l)+1))
             l[cc]=v; lines[kk]="".join(l)
     ref=reference(path_)
-    good=tot=0; fautes=[]
+    good=tot=0; faults=[]
     for k,s in ref.items():
         d=lines.get(k,"")
         n=max(len(s),len(d))
@@ -41,12 +41,12 @@ def mesurer(pg, path_, avec_exceptions=True):
             b=d[i] if i<len(d) else " "
             tot+=1
             if a==b: good+=1
-            elif a!=" " or b!=" ": fautes.append((k,i,a,b))
-    return good, tot, fautes
+            elif a!=" " or b!=" ": faults.append((k,i,a,b))
+    return good, tot, faults
 
 if __name__=="__main__":
     for pg,ch in [(560,f"{T}/amorce_test_p560.txt"), (450,f"{T}/amorce_test_p450.txt")]:
         if not os.path.exists(ch): continue
-        b,t,f=mesurer(pg,ch)
+        b,t,f=measure_(pg,ch)
         print(f"page image {pg} : {b}/{t} = {100*b/t:.2f} %   ({len(f)} departures)")
         for x in f[:25]: print("   ", x)

@@ -9,9 +9,9 @@ def page(pg):
     if pg not in _cache:
         _cache[pg]=np.load(f"{T}/cellules/p-{pg:03d}.npz", allow_pickle=True)
     return _cache[pg]
-def contexte(groups, lab, M, k, n=8, before_=10, after_=10, zoom=4, graine=0):
+def context(groups, lab, M, k, n=8, before_=10, after_=10, zoom=4, seed=0):
     idx=np.where(lab==k)[0]
-    rng=np.random.default_rng(graine)
+    rng=np.random.default_rng(seed)
     if len(idx)>n: idx=rng.choice(idx,n,replace=False)
     strips=[]
     for i in idx:

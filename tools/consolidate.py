@@ -44,7 +44,7 @@ def headwords(pg):
         if any(a<=c0<=b for a,b in ranges): out.append((k,i))
     return out
 
-def consolider(lab, M, tab, pages=None, threshold=0.6, mini=3):
+def consolidate_(lab, M, tab, pages=None, threshold=0.6, mini=3):
     """Returns (new table, log). The table is not modified in place."""
     import glob, os
     if pages is None:
@@ -57,16 +57,16 @@ def consolider(lab, M, tab, pages=None, threshold=0.6, mini=3):
         if len(hw)<mini: continue
         sel=np.where(M[:,0]==pg)[0]
         pos={(int(k),int(c)):i for i,(p,k,c) in zip(sel,M[sel])}
-        lettres=[]
+        letters=[]
         for k,i in hw:
             j=pos.get((k,0))
             if j is None: continue
-            lettres.append((k,j,tab[lab[j]]))
-        if not lettres: continue
-        c=collections.Counter(x[2] for x in lettres)
+            letters.append((k,j,tab[lab[j]]))
+        if not letters: continue
+        c=collections.Counter(x[2] for x in letters)
         (upper_,n),=c.most_common(1)
-        if n/len(lettres) < threshold: continue
-        for k,j,ch in lettres:
+        if n/len(letters) < threshold: continue
+        for k,j,ch in letters:
             if ch!=upper_:
                 by_group[int(lab[j])][upper_]+=1
                 log_.append((pg,k,ch,upper_))

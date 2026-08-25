@@ -12,7 +12,7 @@ answers with the number and the form chosen, nothing else.
 import json, re, sys, os, collections
 _ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0,_ROOT + "/tools")
-from suspects import inventaire
+from suspects import inventory
 from clean import known, variants
 T=_ROOT + "/work"; REP=f"{T}/juger"
 
@@ -23,15 +23,15 @@ def context_of(s, w, large=42):
     return ("…" if a else "")+s[a:b]+("…" if b<len(s) else "")
 
 def run_step(per=60):
-    ent,root,inc,ctx,freq=inventaire()
+    ent,root,inc,ctx,freq=inventory()
     pool=sorted((w,n) for w,n in inc.items()
                 if n<=2 and any(known(v,root) for v in set(variants(w))))
     os.makedirs(REP, exist_ok=True)
     records=[]
     for i,(w,n) in enumerate(pool):
         hw,img,ln,idx,s = ctx[w]
-        vois=sorted({v for v in set(variants(w)) if known(v,root)})[:4]
-        records.append(dict(id=i, mot=w, vois=vois, ved=hw, img=img, lig=ln,
+        neigh=sorted({v for v in set(variants(w)) if known(v,root)})[:4]
+        records.append(dict(id=i, mot=w, vois=neigh, ved=hw, img=img, lig=ln,
                            ctx=context_of(s, w)))
     json.dump(records, open(f"{REP}/fiches.json","w"), ensure_ascii=False)
     n=0

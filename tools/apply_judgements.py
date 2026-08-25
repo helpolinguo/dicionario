@@ -32,13 +32,13 @@ def run_step(rep=f"{T}/juger/reponses/r.txt", fic=f"{T}/juger/fiches.json"):
         # hyphenation: « pro-duktita » -> « produktita »
         if good.lower().endswith(word.lower()) and len(good)>len(word):
             head=good[:len(good)-len(word)]
-            motif=re.compile(r'\b'+re.escape(head)+r'[-\s]+'+re.escape(word)+r'\b', re.I)
+            pattern=re.compile(r'\b'+re.escape(head)+r'[-\s]+'+re.escape(word)+r'\b', re.I)
         else:
-            motif=re.compile(r'\b'+re.escape(word)+r'\b', re.I)
+            pattern=re.compile(r'\b'+re.escape(word)+r'\b', re.I)
         for e in ent:
             s=e.get('senci') or []
             for k,t in enumerate(s):
-                nt,n=motif.subn(good, t)
+                nt,n=pattern.subn(good, t)
                 if n: log_.append((e['image'],e['ligno'],word,good)); s[k]=nt
     with open(f"{T}/edicioni/dicionario.jsonl","w",encoding='utf-8') as f:
         for e in ent: f.write(json.dumps(e,ensure_ascii=False)+"\n")

@@ -19,19 +19,19 @@ from PIL import Image
 from scipy.ndimage import uniform_filter, label, binary_dilation, binary_closing, find_objects, maximum_filter
 _ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ROOT=_ROOT; TRV=f"{ROOT}/work/couv"; ORN=f"{ROOT}/ornaments"
-SUR=4                      # oversampling factor
-SEUIL_GRIS=0.28            # grey layer : everything that carries ink
-SEUIL_NOIR=0.62            # black layer: the solids
-SEUIL_TRAIT=0.16           # floor of the local threshold for the lettering
+OVERSAMPLE=4                      # oversampling factor
+THRESHOLD_GREY=0.28            # grey layer : everything that carries ink
+THRESHOLD_BLACK=0.62            # black layer: the solids
+THRESHOLD_STROKE=0.16           # floor of the local threshold for the lettering
 
-def encre_monochrome(path_):
+def monochrome_ink(path_):
     """The cover is printed in a single ink: we project the RGB onto its
     principal axis, which separates ink from paper better than any single
     channel."""
     a=np.asarray(Image.open(path_).convert("RGB")).astype(np.float32)
     X=a.reshape(-1,3); mu=X.mean(0); Xc=X-mu
-    w,v=np.linalg.eigh(np.cov(Xc.T)); axe=v[:,np.argmax(w)]
-    p=Xc@axe; p=(p-p.min())/(p.max()-p.min())
+    w,v=np.linalg.eigh(np.cov(Xc.T)); main_axis=v[:,np.argmax(w)]
+    p=Xc@main_axis; p=(p-p.min())/(p.max()-p.min())
     if p[X.sum(1).argmin()]>0.5: p=1-p
     return (p.reshape(a.shape[:2])*255).astype(np.uint8)
 
@@ -40,36 +40,36 @@ def normalise(g, w=81, q=99.5):
     d=np.clip(ground-g,0,None)
     return np.clip(d/np.percentile(d,q),0,1)
 
-def surechantillonner(a, k=SUR):
+def oversample(a, k=OVERSAMPLE):
     im=Image.fromarray((np.clip(a,0,1)*255).astype(np.uint8))
     return np.asarray(im.resize((a.shape[1]*k,a.shape[0]*k),Image.LANCZOS)).astype(np.float32)/255.
 
-def _disque(r):
+def _disc(r):
     y,x=np.mgrid[-r:r+1,-r:r+1]; return (x*x+y*y)<=r*r
 
-def enlever_grain(B, k=SUR, aire_gros=25, aire_min=2, rayon=13):
+def remove_grain(B, k=OVERSAMPLE, area_thick=25, area_min=2, radius=13):
     """Removes the isolated spots; keeps those that touch the neighbourhood of a
     stroke (dots of i's, accents, punctuation)."""
     scale=float(k*k)   # the areas are expressed in pixels of the original image
     lab,nb=label(B)
     if nb==0: return B
     t=np.bincount(lab.ravel())
-    big=np.where(t>=aire_gros*scale)[0]; big=big[big>0]
+    big=np.where(t>=area_thick*scale)[0]; big=big[big>0]
     res=np.isin(lab,big)
-    voisin=binary_dilation(res,_disque(max(int(rayon*k/4),1)))
-    moyennes=np.where((t>=aire_min*scale)&(t<aire_gros*scale))[0]; moyennes=moyennes[moyennes>0]
-    if len(moyennes):
-        m=np.isin(lab,moyennes)
-        kept=np.unique(lab[m&voisin]); kept=kept[kept>0]
+    neighbour=binary_dilation(res,_disc(max(int(radius*k/4),1)))
+    means=np.where((t>=area_min*scale)&(t<area_thick*scale))[0]; means=means[means>0]
+    if len(means):
+        m=np.isin(lab,means)
+        kept=np.unique(lab[m&neighbour]); kept=kept[kept>0]
         res|=np.isin(lab,kept)
     return res
 
-SEUIL_FAIBLE=0.26          # doubtful stroke: kept if it touches a sure stroke
-PLANCHER_FAIBLE=0.09
-SEUIL_PALE=0.55            # a component that never blackens is not text
+THRESHOLD_WEAK=0.26          # doubtful stroke: kept if it touches a sure stroke
+WEAK_FLOOR=0.09
+THRESHOLD_PALE=0.55            # a component that never blackens is not text
 
 
-def retirer_pale(B, u, threshold=SEUIL_PALE):
+def drop_pale(B, u, threshold=THRESHOLD_PALE):
     """Removes the components that contain no truly black pixel.
 
     The hysteresis threshold is *relative* to a local maximum: in a white
@@ -88,12 +88,12 @@ def retirer_pale(B, u, threshold=SEUIL_PALE):
     lab, nb = label(B, np.ones((3, 3), int))
     if not nb:
         return B
-    fort = np.zeros(nb + 1, bool)
-    fort[lab[u > threshold]] = True
-    fort[0] = False
-    return fort[lab]
+    strong = np.zeros(nb + 1, bool)
+    strong[lab[u > threshold]] = True
+    strong[0] = False
+    return strong[lab]
 
-def binariser_trait(a, k=SUR, fort=0.50, faible=SEUIL_FAIBLE, fen=5, grain=False):
+def binarise_stroke(a, k=OVERSAMPLE, strong=0.50, weak=THRESHOLD_WEAK, window_=5, grain=False):
     """Lettering and rules: a local hysteresis threshold.
 
     The simple rule -- keep what exceeds half the local maximum -- lost the
@@ -121,19 +121,19 @@ def binariser_trait(a, k=SUR, fort=0.50, faible=SEUIL_FAIBLE, fen=5, grain=False
     isolation and not by size. One instance alone decides what a smut is, and
     it is the one with the right criterion.
     """
-    u=surechantillonner(a,k)
-    loc=maximum_filter(u,size=fen*k)
-    F=u>np.maximum(fort*loc, SEUIL_TRAIT)
-    W=u>np.maximum(faible*loc, PLANCHER_FAIBLE)
+    u=oversample(a,k)
+    loc=maximum_filter(u,size=window_*k)
+    F=u>np.maximum(strong*loc, THRESHOLD_STROKE)
+    W=u>np.maximum(weak*loc, WEAK_FLOOR)
     lab,nb=label(W, np.ones((3,3),int))
     if nb:
         kept=np.unique(lab[F]); kept=kept[kept>0]
         W=np.isin(lab,kept)
-    return enlever_grain(W,k) if grain else W
+    return remove_grain(W,k) if grain else W
 
-def binariser_deux_tons(a, k=SUR, bottom=SEUIL_GRIS, top=SEUIL_NOIR):
-    u=surechantillonner(a,k)
-    return enlever_grain(u>bottom,k), enlever_grain(u>top,k,aire_gros=18)
+def binarise_two_tones(a, k=OVERSAMPLE, bottom=THRESHOLD_GREY, top=THRESHOLD_BLACK):
+    u=oversample(a,k)
+    return remove_grain(u>bottom,k), remove_grain(u>top,k,area_thick=18)
 
 def _pbm(B, path_):
     h,w=B.shape
@@ -144,32 +144,32 @@ def draw(B, out_path, turd=0, alpha=1.0, opttol=0.2, dpi=None):
     """potrace -> SVG and PDF. dpi: reference resolution of the bitmap supplied."""
     os.makedirs(os.path.dirname(out_path) or ".", exist_ok=True)
     pbm=out_path+".pbm"; _pbm(B,pbm)
-    dpi = dpi if dpi else 150*SUR
+    dpi = dpi if dpi else 150*OVERSAMPLE
     for fmt,ext in (("svg",".svg"),("pdf",".pdf")):
         subprocess.run(["potrace","-b",fmt,"-t",str(turd),"-a",str(alpha),
                         "-O",str(opttol),"-r",str(dpi),"-o",
                         os.path.splitext(out_path)[0]+ext, pbm], check=True)
     os.remove(pbm)
 
-def tracer_deux_tons(a, out_path, gris="#8c8c8c"):
+def draw_two_tones(a, out_path, grey="#8c8c8c"):
     """Traces a two-value element: grey layer beneath, black layer above.
     Returns the path of the SVG."""
-    Bg,Bn=binariser_deux_tons(a)
+    Bg,Bn=binarise_two_tones(a)
     base=os.path.splitext(out_path)[0]
     draw(Bg, base+"-gris.svg"); draw(Bn, base+"-noir.svg")
     def extract(f):
         s=open(f).read()
         m=re.search(r'(<svg[^>]*>)(.*?)(</svg>)', s, re.S)
-        entete=m.group(1); body=m.group(2)
-        return entete, body
+        header=m.group(1); body=m.group(2)
+        return header, body
     e1,c1=extract(base+"-gris.svg"); e2,c2=extract(base+"-noir.svg")
-    c1=c1.replace('fill="#000000"', f'fill="{gris}"')
+    c1=c1.replace('fill="#000000"', f'fill="{grey}"')
     open(out_path,"w").write(e1 + c1 + c2 + "</svg>")
     for f in (base+"-gris.svg",base+"-noir.svg",base+"-gris.pdf",base+"-noir.pdf"):
         if os.path.exists(f): os.remove(f)
     return out_path
 
-def rendre(svg, png, width_=None, scale_=1):
+def render(svg, png, width_=None, scale_=1):
     """largeur: the width wanted in pixels (takes precedence over echelle)."""
     cmd=["rsvg-convert","-b","white","-o",png]
     cmd += (["-w",str(int(width_))] if width_ else ["-z",str(scale_)])

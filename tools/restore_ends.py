@@ -20,11 +20,11 @@ import cells
 from features2 import feature_vector2
 ROOT=_ROOT; T=f"{ROOT}/work"
 
-def one_(pg, Q, tab, bav_seuils=True):
+def one_(pg, Q, tab, bleed_thresholds=True):
     z=np.load(f"{T}/cellules/p-{pg:03d}.npz", allow_pickle=True)
     ncol=z['occ'].shape[1]; col0=int(z['col0'])
     keys_=set(int(k) for k,_ in z['lignes'])
-    cells.ETENDRE=False; cells.ETENDRE_D=True
+    cells.EXTEND=False; cells.EXTEND_RIGHT=True
     d=cells.extract(f"{ROOT}/scan/p-{pg:03d}.jpg")
     c0=int(d['col0']); lg=np.array(d['lignes'])
     if c0!=col0: return None, "origine des colonnes deplacee"
@@ -54,14 +54,14 @@ def one_(pg, Q, tab, bav_seuils=True):
 if __name__=="__main__":
     a,b=int(sys.argv[1]), int(sys.argv[2])
     Q=np.load(f"{T}/km_centres2.npy"); tab=np.load(f"{T}/cls_lab.npy",allow_pickle=True)
-    cor=[]; refused=[]
+    corr_=[]; refused=[]
     for pg in range(a,b):
         if not os.path.exists(f"{T}/cellules/p-{pg:03d}.npz"): continue
         if pg in (0,1,3,7,87,111,577): continue
         try:
             r,err=one_(pg,Q,tab)
             if err: refused.append((pg,err))
-            else: cor+=r
+            else: corr_+=r
         except Exception as e: refused.append((pg,str(e)))
-    json.dump(dict(cor=cor, refus=refused), open(f"{T}/fins_cor_{a}.json","w"))
-    print(f"{a}-{b} : {len(cor)} characters given back ; {len(refused)} pages refused")
+    json.dump(dict(cor=corr_, refus=refused), open(f"{T}/fins_cor_{a}.json","w"))
+    print(f"{a}-{b} : {len(corr_)} characters given back ; {len(refused)} pages refused")

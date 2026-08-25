@@ -16,11 +16,11 @@ import numpy as np, pickle, collections, glob, os, sys, itertools
 _ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0,_ROOT + "/tools")
 T=_ROOT + "/work"
-LETTRES=set("abcdefghijklmnopqrstuvwxyz")
-MAJ=set("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
-TOUTES=LETTRES|MAJ
+LETTERS=set("abcdefghijklmnopqrstuvwxyz")
+CAPS=set("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+ALL_PAGES=LETTERS|CAPS
 
-def decoder_livre(lab, M, tab, smudge, exc=None):
+def decode_book(lab, M, tab, smudge, exc=None):
     """Returns {page: [(k, [(column, character, cell_index), ...])]}"""
     pages={}
     order_=np.argsort(M[:,0], kind='stable')
@@ -52,20 +52,20 @@ def words(line_):
     for g in out:
         j=0
         while j < len(g):
-            while j<len(g) and g[j][1] not in TOUTES: j+=1
+            while j<len(g) and g[j][1] not in ALL_PAGES: j+=1
             d=j
-            while j<len(g) and g[j][1] in TOUTES: j+=1
+            while j<len(g) and g[j][1] in ALL_PAGES: j+=1
             if j>d: res.append(g[d:j])
     return res
 
-def run_step(mini_atteste=8, maxi_fautif=5, max_pos=3, margin=8, marge_ngram=6.0):
+def run_step(min_attested=8, max_faulty=5, max_pos=3, margin=8, ngram_margin=6.0):
     lab=np.load(f"{T}/km_lab.npy"); M=np.load(f"{T}/meta_all.npy")
     tab=np.load(f"{T}/cls_lab.npy", allow_pickle=True)
     from decode import smudges
     from generate import exceptions
     smudge=smudges(); exc=dict(exceptions())
     alt=pickle.load(open(f"{T}/cls_alternatives.pkl","rb"))
-    pages=decoder_livre(lab, M, tab, smudge, exc)
+    pages=decode_book(lab, M, tab, smudge, exc)
     # 1. the book's lexicon
     freq=collections.Counter()
     all_=[]
@@ -78,24 +78,24 @@ def run_step(mini_atteste=8, maxi_fautif=5, max_pos=3, margin=8, marge_ngram=6.0
     # 2. correction
     log_=[]; exc={}
     for pg,k,mo,f in all_:
-        if freq[f] > maxi_fautif: continue
+        if freq[f] > max_faulty: continue
         # we do not touch proper nouns or initialisms: a form that carries a
         # capital anywhere but at the start, or whose initial is a capital, has no
         # business being brought back to the common lexicon.
-        if any(c in MAJ for c in f[1:]): continue   # initialisms: we do not touch
-        key_ = f[0].lower()+f[1:] if f[0] in MAJ else f
+        if any(c in CAPS for c in f[1:]): continue   # initialisms: we do not touch
+        key_ = f[0].lower()+f[1:] if f[0] in CAPS else f
         pos=[j for j,(c0,_,i) in enumerate(mo) if alt[lab[i]] and (pg,k,c0) not in exc]
         if not pos or len(pos)>max_pos: continue
         cands=[]
-        choix=[[mo[j][1]]+alt[lab[mo[j][2]]] for j in pos]
-        for combi in itertools.product(*choix):
+        choices=[[mo[j][1]]+alt[lab[mo[j][2]]] for j in pos]
+        for combi in itertools.product(*choices):
             if all(a==mo[j][1] for a,j in zip(combi,pos)): continue
             l=list(f)
             for a,j in zip(combi,pos): l[j]=a
             v="".join(l)
-            vv = v[0].lower()+v[1:] if v[0] in MAJ else v
+            vv = v[0].lower()+v[1:] if v[0] in CAPS else v
             n = freq.get(v,0)+ (freq.get(vv,0) if vv!=v else 0)
-            if n >= mini_atteste: cands.append((n, v, combi))
+            if n >= min_attested: cands.append((n, v, combi))
         if not cands: continue
         cands.sort(reverse=True)
         n1,v1,c1=cands[0]
@@ -103,9 +103,9 @@ def run_step(mini_atteste=8, maxi_fautif=5, max_pos=3, margin=8, marge_ngram=6.0
         if n1 < margin*max(freq[f],1): continue            # the gap must be clear
         for a,j in zip(c1,pos):
             if a!=mo[j][1]:
-                col,ancien,i=mo[j]
+                col,former,i=mo[j]
                 exc[(pg,k,col)]=a
-                log_.append((pg,k,col,ancien,a,f,v1,freq[f],n1))
+                log_.append((pg,k,col,former,a,f,v1,freq[f],n1))
     # --- second stage: a model of character n-grams -------------------------
     # Some forms have no attestation at all: a headword often appears only once.
     # We then apply to them a model of order 4 learnt on the book's vocabulary
@@ -127,11 +127,11 @@ def run_step(mini_atteste=8, maxi_fautif=5, max_pos=3, margin=8, marge_ngram=6.0
     n2=0
     for pg,k,mo,f in all_:
         if freq[f] > 1: continue
-        if any(c in MAJ for c in f[1:]): continue
+        if any(c in CAPS for c in f[1:]): continue
         if any((pg,k,c0) in exc for c0,_,_ in mo): continue
         pos=[j for j,(c0,_,i) in enumerate(mo) if alt[lab[i]] and (pg,k,c0) not in exc]
         if not pos or len(pos)>2: continue
-        base=score(f); best=(base+marge_ngram, None)
+        base=score(f); best=(base+ngram_margin, None)
         for combi in itertools.product(*[[mo[j][1]]+alt[lab[mo[j][2]]] for j in pos]):
             l=list(f)
             for a,j in zip(combi,pos): l[j]=a
@@ -143,9 +143,9 @@ def run_step(mini_atteste=8, maxi_fautif=5, max_pos=3, margin=8, marge_ngram=6.0
         v,combi=best[1]
         for a,j in zip(combi,pos):
             if a!=mo[j][1]:
-                col,anc,i=mo[j]
+                col,old,i=mo[j]
                 exc[(pg,k,col)]=a
-                log_.append((pg,k,col,anc,a,f,v,freq[f],-1))
+                log_.append((pg,k,col,old,a,f,v,freq[f],-1))
                 n2+=1
     print(f"{len(log_)} cells corrected in {len(set((j[0],j[1]) for j in log_))} lines "
           f"(of which {n2} by the n-gram model)", flush=True)
@@ -157,14 +157,14 @@ if __name__=="__main__":
         f.write("page\tligne\tcol\tlu\tcorrige\tforme lue\tforme retenue\tfreq lue\tfreq retenue\n")
         for j in log_: f.write("\t".join(map(str,j))+"\n")
     # merged into exceptions.txt, preserving the manual entries
-    manuel=[]
+    manual=[]
     p=f"{T}/exceptions.txt"
     if os.path.exists(p):
         for l in open(p,encoding='utf-8'):
-            if l.startswith("#") or not l.strip(): manuel.append(l.rstrip("\n")); continue
+            if l.startswith("#") or not l.strip(): manual.append(l.rstrip("\n")); continue
             a,b,c,d=l.rstrip("\n").split("\t")
-            if (int(a),int(b),int(c)) not in exc: manuel.append(l.rstrip("\n"))
+            if (int(a),int(b),int(c)) not in exc: manual.append(l.rstrip("\n"))
     with open(p,"w",encoding='utf-8') as f:
-        f.write("\n".join(manuel)+"\n")
+        f.write("\n".join(manual)+"\n")
         for (pg,k,c),v in sorted(exc.items()): f.write(f"{pg}\t{k}\t{c}\t{v}\n")
     print("exceptions.txt :", len(exc), "entrees automatiques")

@@ -13,11 +13,11 @@ sys.path.insert(0,_ROOT + "/tools")
 from consolidate import headwords
 T=_ROOT + "/work"
 
-def collecter(lab, M, tab, smudge, exc):
+def collect(lab, M, tab, smudge, exc):
     """The book's run of headwords: (page, line, [(col, char, index)])."""
     out=[]
     pages=sorted(set(M[:,0].tolist()))
-    par_page={}
+    by_page={}
     order_=np.argsort(M[:,0],kind='stable')
     bounds=np.searchsorted(M[order_,0], np.arange(M[:,0].max()+2))
     for pg in pages:
@@ -34,19 +34,19 @@ def collecter(lab, M, tab, smudge, exc):
             if len(mo)>=3: out.append((pg,k,mo))
     return out
 
-def corriger(lab, M, tab, smudge, exc, alt, maxpos=3):
-    hw=collecter(lab,M,tab,smudge,exc)
-    formes=["".join(ch for _,ch,_ in m).lower() for _,_,m in hw]
+def correct_(lab, M, tab, smudge, exc, alt, maxpos=3):
+    hw=collect(lab,M,tab,smudge,exc)
+    forms=["".join(ch for _,ch,_ in m).lower() for _,_,m in hw]
     log_=[]; fresh={}
     for n in range(1,len(hw)-1):
-        before_, after_ = formes[n-1], formes[n+1]
-        if before_ <= formes[n] <= after_: continue
+        before_, after_ = forms[n-1], forms[n+1]
+        if before_ <= forms[n] <= after_: continue
         pg,k,mo = hw[n]
         pos=[j for j,(_,_,i) in enumerate(mo) if alt[lab[i]]]
         if not pos or len(pos)>maxpos: continue
         best=None
         for combi in itertools.product(*[[mo[j][1]]+alt[lab[mo[j][2]]] for j in pos]):
-            l=list(formes[n])
+            l=list(forms[n])
             for a,j in zip(combi,pos): l[j]=a.lower()
             v="".join(l)
             if before_ <= v <= after_:
@@ -56,9 +56,9 @@ def corriger(lab, M, tab, smudge, exc, alt, maxpos=3):
         d,combi,v = best
         for a,j in zip(combi,pos):
             if a!=mo[j][1]:
-                col,anc,i=mo[j]
+                col,old,i=mo[j]
                 fresh[(pg,k,col)]=a
-                log_.append((pg,k,col,anc,a,formes[n],v,before_,after_))
+                log_.append((pg,k,col,old,a,forms[n],v,before_,after_))
     return fresh, log_
 
 if __name__=="__main__":
@@ -68,7 +68,7 @@ if __name__=="__main__":
     tab=np.load(f"{T}/cls_lab.npy",allow_pickle=True)
     alt=pickle.load(open(f"{T}/cls_alternatives.pkl","rb"))
     exc=dict(exceptions())
-    fresh,log_=corriger(lab,M,tab,smudges(),exc,alt)
+    fresh,log_=correct_(lab,M,tab,smudges(),exc,alt)
     print(len(log_),"headword cells corrected by alphabetical order")
     with open(f"{T}/journal_ordre_alpha.txt","w",encoding='utf-8') as f:
         f.write("page\tligne\tcol\tlu\tcorrige\tvedette lue\tvedette retenue\tprecedente\tsuivante\n")

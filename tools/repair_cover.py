@@ -24,7 +24,7 @@ import numpy as np, sys
 import os
 _ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, _ROOT + "/tools")
-from cover import binariser_trait, SUR
+from cover import binarise_stroke, OVERSAMPLE
 from scipy.ndimage import label, find_objects, rotate as ndrot
 
 ROOT = _ROOT
@@ -42,10 +42,10 @@ CIB_I  = (558,  978, 2003,  661)   # the « i » of invitas: gives the inclinati
 
 DEBRIS = [(554, 1088, 1969, 175), (550, 1122, 1946, 123), (556, 1125, 1974, 295)]
 
-TOL_POS, TOL_AIRE = 6, 0.15        # tolerance of the verification
+TOL_POS, TOL_AREA = 6, 0.15        # tolerance of the verification
 
 
-def _prendre(l, obj, sig):
+def _take(l, obj, sig):
     """A component found again by its signature: centre and area.
 
     We do not trust the label number -- it changes as soon as the binarisation
@@ -64,7 +64,7 @@ def _prendre(l, obj, sig):
         if abs(ccx - cx) > TOL_POS or abs(ccy - cy) > TOL_POS:
             continue
         a = int((l[o] == i + 1).sum())
-        if abs(a - area) > TOL_AIRE * area:
+        if abs(a - area) > TOL_AREA * area:
             continue
         cands.append((i + 1, o))
     if len(cands) != 1:
@@ -95,7 +95,7 @@ def apply_(B):
 
     # 1. erase the three smuts in the gap
     for sig in DEBRIS:
-        k, o = _prendre(l, obj, sig)
+        k, o = _take(l, obj, sig)
         B[o] &= ~(l[o] == k)
 
     # 2. the inclination to give the letters.
@@ -109,8 +109,8 @@ def apply_(B):
     # We therefore measure directly, on the same letter: the principal axis of
     # the « i » of profitar and that of the « i » of invitas, four letters
     # earlier. Their difference is exactly what must be turned, sign included.
-    ki, oi = _prendre(l, obj, SRC_I)
-    kc, oc = _prendre(l, obj, CIB_I)
+    ki, oi = _take(l, obj, SRC_I)
+    kc, oc = _take(l, obj, CIB_I)
     da = _axe(l, ki, oi) - _axe(l, kc, oc)
 
     # 3. positions: the spacing of « profitar », brought to the scale of the
@@ -119,17 +119,17 @@ def apply_(B):
     port_s = SRC_A[1] - SRC_F[1]
     port_c = CIB_A[1] - CIB_V[1]
     scale = port_c / float(port_s)
-    cibles = []
+    targets = []
     for src in (SRC_I, SRC_T):
         f = (src[1] - SRC_F[1]) / float(port_s)          # relative position
         dy = src[2] - (SRC_F[2] + f * (SRC_A[2] - SRC_F[2]))   # departure from the chord
         x = CIB_V[1] + f * port_c
         y = CIB_V[2] + f * (CIB_A[2] - CIB_V[2]) + dy
-        cibles.append((x, y))
+        targets.append((x, y))
 
     # 4. take, turn, lay back
-    for src, (cx, cy) in zip((SRC_I, SRC_T), cibles):
-        k, o = _prendre(l, obj, src)
+    for src, (cx, cy) in zip((SRC_I, SRC_T), targets):
+        k, o = _take(l, obj, src)
         g = (l[o] == k)
         g = ndrot(g.astype(np.float32), da, order=1, reshape=True, cval=0.0) > 0.5
         h, w = g.shape
@@ -140,13 +140,13 @@ def apply_(B):
 
     print("  invitas : angle %+.1f deg, echelle d'espacement %.3f ; "
           "i en (%.0f,%.0f), t en (%.0f,%.0f)"
-          % (da, scale, cibles[0][0], cibles[0][1], cibles[1][0], cibles[1][1]))
+          % (da, scale, targets[0][0], targets[0][1], targets[1][0], targets[1][1]))
     return B
 
 
 def run_step(out_path=f"{ROOT}/work/couv/B_repare.npy"):
     n = np.load(f"{ROOT}/work/couv/niveaux.npy")
-    B = apply_(binariser_trait(n))
+    B = apply_(binarise_stroke(n))
     np.save(out_path, B)
     return B
 

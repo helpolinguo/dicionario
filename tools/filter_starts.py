@@ -16,7 +16,7 @@ import os
 _ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 T=_ROOT + "/work"
 
-def filtrer(raw, maxlignes=2):
+def filter_(raw, max_lines=2):
     out={}
     for pg,d in raw.items():
         kept={}
@@ -25,12 +25,12 @@ def filtrer(raw, maxlignes=2):
             ch=v[-1]
             if not (ch.isalpha() or ch=='+'): continue
             kept[k]={-1:ch}
-        if kept and len(kept)<=maxlignes: out[pg]=kept
+        if kept and len(kept)<=max_lines: out[pg]=kept
     return out
 
 if __name__=="__main__":
     raw=pickle.load(open(f"{T}/debuts_brut.pkl","rb"))
-    clean_=filtrer(raw)
+    clean_=filter_(raw)
     pickle.dump(clean_, open(f"{T}/debuts.pkl","wb"))
     print("pages kept: %d (out of %d)"%(len(clean_), len(raw)))
     for pg in sorted(clean_):
@@ -43,19 +43,19 @@ if __name__=="__main__":
 # been constant from the start, notes by hand are ignored. Four others stayed
 # doubtful on examination. We therefore keep only what was recognised as typing
 # AND as completing a word.
-RETENUS = {
+KEPT = {
     (63,2):'h', (86,3):'b', (114,42):'d', (133,43):'e', (141,41):'e',
     (351,33):'l', (456,31):'p', (474,50):'p', (474,53):'p',
     (533,16):'+', (570,1):'d', (570,2):'d', (573,29):'+',
     (576,5):'t', (638,9):'L',
 }
-ECARTES = {
+SET_ASIDE = {
     (18,5):"cursive", (29,12):"cursive", (52,30):"cursive",
     (236,48):"douteux", (457,57):"douteux", (577,0):"douteux", (621,3):"douteux",
     (621,6):"douteux",
 }
 
-def retenus():
+def held():
     out={}
-    for (pg,k),ch in RETENUS.items(): out.setdefault(pg,{})[k]={-1:ch}
+    for (pg,k),ch in KEPT.items(): out.setdefault(pg,{})[k]={-1:ch}
     return out

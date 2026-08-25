@@ -32,7 +32,7 @@ def sheet_(batch, out_path):
     W = margin + wm + 24 + NECH*(ws+3) + 8
     H = 8 + len(batch)*(hm+gap)
     im = Image.new("RGB", (W, H), (255,255,255)); d = ImageDraw.Draw(im)
-    for i,(num, eti, mean_, membres) in enumerate(batch):
+    for i,(num, eti, mean_, members) in enumerate(batch):
         y = 6 + i*(hm+gap)
         d.text((4, y+hm//2-14), f"{num}", fill=(200,0,0))
         d.text((4, y+hm//2+2),  f"[{eti}]", fill=(0,0,190))
@@ -40,12 +40,12 @@ def sheet_(batch, out_path):
         im.paste(_img(mean_, ZM), (margin, y))
         d.line([(margin+wm+11, y), (margin+wm+11, y+hm)], fill=(180,180,180))
         x0 = margin+wm+24
-        for j,c in enumerate(membres[:NECH]):
+        for j,c in enumerate(members[:NECH]):
             im.paste(_img(c, ZS), (x0+j*(ws+3), y+(hm-hs)//2))
     im.save(out_path)
     return im.size
 
-def preparer(groups, rep=f"{T}/groupes", per=PAR):
+def prepare(groups, rep=f"{T}/groupes", per=PAR):
     """groups: list of (number, label, mean, members)."""
     os.makedirs(rep, exist_ok=True)
     for f in os.listdir(rep):

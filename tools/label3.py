@@ -27,14 +27,14 @@ from features2 import feature_vector2
 from sklearn.neural_network import MLPClassifier
 T=_ROOT + "/work"
 
-def _lots(C, idx, taille=20000):
+def _batches(C, idx, size=20000):
     """Features in slices: a million cells do not fit in memory."""
     out=[]
-    for a in range(0,len(idx),taille):
-        out.append(feature_vector2(np.asarray(C[idx[a:a+taille]])))
+    for a in range(0,len(idx),size):
+        out.append(feature_vector2(np.asarray(C[idx[a:a+size]])))
     return np.concatenate(out) if out else np.empty((0,528),np.float32)
 
-def lire_planches():
+def read_sheets():
     """Labels read by eye on the group sheets."""
     read_={}
     rep=f"{T}/groupes/rez"
@@ -48,7 +48,7 @@ def lire_planches():
             except ValueError: pass
     return read_
 
-def run_step(rounds=3, cache=20, seuil_auto=0.98, by_group=6):
+def run_step(rounds=3, cache=20, auto_threshold=0.98, by_group=6):
     t0=time.time()
     C=np.load(f"{T}/cells_all.npy", mmap_mode='r')
     kl=np.load(f"{T}/km_lab.npy"); K=int(kl.max())+1
@@ -58,9 +58,9 @@ def run_step(rounds=3, cache=20, seuil_auto=0.98, by_group=6):
     # --- 2. the original seed: figures, punctuation, capitals ---
     from seed import everything
     Ia,Ya,_=everything()
-    reel = Ya!=' '; Ia,Ya = Ia[reel], Ya[reel]
+    actual = Ya!=' '; Ia,Ya = Ia[actual], Ya[actual]
     # --- 3. the groups read by eye on a sheet ---
-    read_=lire_planches()
+    read_=read_sheets()
     order_=np.argsort(kl,kind='stable'); bounds=np.searchsorted(kl[order_],np.arange(K+1))
     rng=np.random.default_rng(0)
     Ip=[]; Yp=[]
@@ -84,7 +84,7 @@ def run_step(rounds=3, cache=20, seuil_auto=0.98, by_group=6):
     print("learning: %d cells, %d classes (truth %d, seed %d, sheets %d)"
           %(len(I),len(set(Y)),len(Iv),len(Ia),len(Ip)), flush=True)
 
-    X=_lots(C,I)
+    X=_batches(C,I)
     # voting sample, one per group
     scale=[]
     for k in range(K):
@@ -92,13 +92,13 @@ def run_step(rounds=3, cache=20, seuil_auto=0.98, by_group=6):
         scale.append(m if len(m)<=cache else rng.choice(m,cache,replace=False))
     flats=np.sort(np.concatenate([e for e in scale if len(e)]))
     pos={v:i for i,v in enumerate(flats)}
-    Xe=_lots(C,flats)
+    Xe=_batches(C,flats)
     print("feature_vector computed: %.0fs, %d voting cells"%(time.time()-t0,len(flats)), flush=True)
 
     m=MLPClassifier(hidden_layer_sizes=(256,), alpha=1e-4, max_iter=40,
                     random_state=0, early_stopping=False)
     Xa,Ya2=X,Y
-    for tour in range(rounds):
+    for round_ in range(rounds):
         m.fit(Xa,Ya2)
         P=m.predict_proba(Xe); cls=m.classes_
         label_=np.empty(K,dtype=object); conf=np.zeros(K)
@@ -107,11 +107,11 @@ def run_step(rounds=3, cache=20, seuil_auto=0.98, by_group=6):
             if not len(e): label_[k]=' '; continue
             mean_=P[[pos[v] for v in e]].mean(0)
             j=int(mean_.argmax()); label_[k]=cls[j]; conf[k]=mean_[j]
-        surs=np.where(conf>seuil_auto)[0]
-        print(f"  round {tour}: {len(surs)} sure groups (>{seuil_auto}), median conf {np.median(conf):.3f}  ({time.time()-t0:.0f}s)", flush=True)
-        if tour==rounds-1: break
+        sure_ones=np.where(conf>auto_threshold)[0]
+        print(f"  round {round_}: {len(sure_ones)} sure groups (>{auto_threshold}), median conf {np.median(conf):.3f}  ({time.time()-t0:.0f}s)", flush=True)
+        if round_==rounds-1: break
         ii=[];ll=[]
-        for k in surs:
+        for k in sure_ones:
             e=scale[k]
             if len(e)>by_group: e=rng.choice(e,by_group,replace=False)
             ii.append(e); ll.append(np.full(len(e),label_[k],dtype=object))

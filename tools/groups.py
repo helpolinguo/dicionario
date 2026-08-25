@@ -15,7 +15,7 @@ def load_(names=None):
         M.append(np.stack([np.full(len(ii),pg), lg[ii,0].astype(int), jj], axis=1))
     return np.concatenate(C), np.concatenate(M), names
 
-def vecteurs(C):
+def vectors(C):
     X=C.reshape(len(C),-1).astype(np.float32)
     X-=X.mean(1,keepdims=True)
     n=np.linalg.norm(X,axis=1,keepdims=True); n[n<1e-6]=1
@@ -26,17 +26,17 @@ def leaders(X, tau=0.90, order_=None, chunk=20000):
     N=len(X)
     if order_ is None: order_=np.arange(N)
     aff=np.full(N,-1,dtype=np.int32); sim=np.zeros(N,dtype=np.float32)
-    chefs=[]
+    leaders_=[]
     left_over=order_.copy()
     while len(left_over):
-        i=left_over[0]; chefs.append(i); c=X[i]
+        i=left_over[0]; leaders_.append(i); c=X[i]
         s=X[left_over]@c
         taken=s>=tau
-        aff[left_over[taken]]=len(chefs)-1; sim[left_over[taken]]=s[taken]
+        aff[left_over[taken]]=len(leaders_)-1; sim[left_over[taken]]=s[taken]
         left_over=left_over[~taken]
-    return np.array(chefs), aff, sim
+    return np.array(leaders_), aff, sim
 
-def affecter(X, Cn, tau, chunk=50000):
+def assign(X, Cn, tau, chunk=50000):
     aff=np.empty(len(X),dtype=np.int32); sim=np.empty(len(X),dtype=np.float32)
     for a in range(0,len(X),chunk):
         s=X[a:a+chunk]@Cn.T

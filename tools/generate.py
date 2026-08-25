@@ -6,9 +6,9 @@ T=_ROOT + "/work"; ROOT=_ROOT
 
 
 # --- the pages' layout, in millimetres ---------------------------------
-PASH_MM = 2.540          # the machine's pitch: a tenth of an inch
-PASV_MM = 4.321          # measured leading
-LARG_MM, HAUT_MM = 210.0, 297.0
+HSTEP_MM = 2.540          # the machine's pitch: a tenth of an inch
+VSTEP_MM = 4.321          # measured leading
+WIDTH_MM, TOP_MM = 210.0, 297.0
 ORIGX_MM, ORIGY_MM = 21.9, 12.44      # origin of the composed text area
 # The block of text is laid in the same place on every page of the same hand.
 # The longest line of the book is 190.5 mm on a sheet of 210: 19.5 mm of
@@ -26,13 +26,13 @@ ORIGX_MM, ORIGY_MM = 21.9, 12.44      # origin of the composed text area
 # The fore-edge margin is then the same everywhere, and all the play in the
 # line lengths is thrown to the sewing side -- where it is welcome, a work of
 # 640 pages losing a great deal of room to the binding.
-BORD_EXT  = 8.0          # outer margin (fore-edge): the same on both hands
-GOUTTIERE_MIN = 12.0     # never less, on the sewing side
-BORD_HAUT = 11.0         # head margin, the same everywhere
-MARGE_BAS_MIN = 6.0
-MARGE_EXTREME = 3.0      # an absolute stop for the pages outside the norm
+OUTER_EDGE  = 8.0          # outer margin (fore-edge): the same on both hands
+GUTTER_MIN = 12.0     # never less, on the sewing side
+TOP_EDGE = 11.0         # head margin, the same everywhere
+MARGIN_BOTTOM_MIN = 6.0
+MARGIN_EXTREME = 3.0      # an absolute stop for the pages outside the norm
 
-ECHAP={'\\':r'\textbackslash{}', '{':r'\{', '}':r'\}', '%':r'\%', '#':r'\#',
+ESCAPES={'\\':r'\textbackslash{}', '{':r'\{', '}':r'\}', '%':r'\%', '#':r'\#',
        '_':r'\_', '&':r'\&', '$':r'\$', '^':r'\textasciicircum{}',
        '~':r'\textasciitilde{}', '"':r'\textquotedbl{}', "'":r'\textquotesingle{}',
        '<':r'\textless{}', '>':r'\textgreater{}', '|':r'\textbar{}'}
@@ -42,7 +42,7 @@ def esc(cells_of):
     character) and passes as it stands."""
     out=[]
     for c in cells_of:
-        out.append(c if (len(c)>1 and c.startswith("\\")) else ECHAP.get(c,c))
+        out.append(c if (len(c)>1 and c.startswith("\\")) else ESCAPES.get(c,c))
     return "".join(out)
 
 _EXC=None
@@ -67,45 +67,45 @@ def exceptions():
     return _EXC
 
 
-_SOU=None
-_DEBUTS=None
-def debuts_rendus():
+_UNDERLINE=None
+_STARTS=None
+def starts_rendered():
     """First letters given back by restore_starts.py, by page."""
-    global _DEBUTS
-    if _DEBUTS is None:
+    global _STARTS
+    if _STARTS is None:
         p=os.path.join(T,"debuts.pkl")
-        _DEBUTS=pickle.load(open(p,"rb")) if os.path.exists(p) else {}
-    return _DEBUTS
+        _STARTS=pickle.load(open(p,"rb")) if os.path.exists(p) else {}
+    return _STARTS
 
-_FILETS=None
-def filets_neufs():
+_RULES=None
+def fresh_rules():
     """Rules recomputed by redo_rules.py, by page."""
-    global _FILETS
-    if _FILETS is None:
+    global _RULES
+    if _RULES is None:
         p=os.path.join(T,"filets.pkl")
-        _FILETS=pickle.load(open(p,"rb")) if os.path.exists(p) else {}
-    return _FILETS
+        _RULES=pickle.load(open(p,"rb")) if os.path.exists(p) else {}
+    return _RULES
 
-def sou_relus():
+def underlines_reread():
     """Underline ranges surveyed by eye, by (page, line).
 
     They replace the detected ranges entirely: the proofreader has seen the
     page, the detection only measures a rule whose baseline it places badly.
     """
-    global _SOU
-    if _SOU is None:
-        _SOU={}
+    global _UNDERLINE
+    if _UNDERLINE is None:
+        _UNDERLINE={}
         p=os.path.join(T,"sou_relus.txt")
         if os.path.exists(p):
             for l in open(p, encoding='utf-8'):
                 l=l.rstrip("\n")
                 if not l.strip() or l.startswith("#"): continue
                 a,b,c=l.split("\t")
-                _SOU[(int(a),int(b))]=[tuple(int(x) for x in seg.split("-"))
+                _UNDERLINE[(int(a),int(b))]=[tuple(int(x) for x in seg.split("-"))
                                        for seg in c.split(",") if seg]
-    return _SOU
+    return _UNDERLINE
 
-def _ebarber(range_, cells_of):
+def _trim(range_, cells_of):
     """Trims an underline range.
 
     The rule is measured to the pixel, but it happens to run over onto the next
@@ -143,8 +143,8 @@ def page_lines(pg, lab, M, tab):
     # them to the line above. We do not rewrite the corpus of cells for all that
     # -- 295 MB, and one accident of format has already cost 144 pages: the
     # correction is a layer laid over it.
-    neufs=filets_neufs().get(pg)
-    if neufs: underline=neufs
+    new_ones=fresh_rules().get(pg)
+    if new_ones: underline=new_ones
     from decode import smudges
     sel=np.where(M[:,0]==pg)[0]
     bv=smudges()[sel]
@@ -160,7 +160,7 @@ def page_lines(pg, lab, M, tab):
     #
     # The shift is applied BEFORE the exceptions: those are surveyed by eye on
     # the shifted facsimile, hence already in the new numbering.
-    beg=debuts_rendus().get(pg)
+    beg=starts_rendered().get(pg)
     dec=0
     if beg:
         dec=-min(c for d0 in beg.values() for c in d0)
@@ -184,12 +184,12 @@ def page_lines(pg, lab, M, tab):
         s=[d.get(c," ") for c in range(ncol)]
         s=[(c if c not in ("", None) else " ") for c in s]
         ranges=[]
-        relu = sou_relus().get((pg,k))
-        if relu is not None:
+        reread = underlines_reread().get((pg,k))
+        if reread is not None:
             # Surveyed by eye: we take it as it stands, with no merging and no
             # trimming -- those corrections aim precisely at putting right what the
             # automatic measurement had placed badly.
-            ranges=[(a,b) for a,b in relu if b>=a]
+            ranges=[(a,b) for a,b in reread if b>=a]
         elif k in underline:
             yy,pl,tot=underline[k]
             ranges=sorted((a,b) for a,b in pl if b>=a)
@@ -201,7 +201,7 @@ def page_lines(pg, lab, M, tab):
             for a,b in ranges:
                 if fus and a-fus[-1][1] <= 2: fus[-1]=(fus[-1][0], max(fus[-1][1],b))
                 else: fus.append((a,b))
-            ranges=[p for p in (_ebarber(p, s) for p in fus) if p]
+            ranges=[p for p in (_trim(p, s) for p in fus) if p]
             # Two rules set on 1,698 lines surveyed by eye: a rule neither begins
             # nor ends on an empty cell, and two stretches separated only by full
             # cells are the same rule, interrupted by the wear of the ribbon.
@@ -239,7 +239,7 @@ def page_lines(pg, lab, M, tab):
         out.append((k, s, ranges))
     return out, ncol
 
-def texifier(cells, ranges):
+def texify(cells, ranges):
     """Sets a line: spaces -> \\cel{n}, underlined ranges -> \\sou{...}."""
     n=len(cells)
     mark=[False]*n
@@ -249,11 +249,11 @@ def texifier(cells, ranges):
     end_=n
     while end_>0 and cells[end_-1]==" " and not mark[end_-1]: end_-=1
     if end_==0: return ""
-    res=[]; i=0; vide=0
+    res=[]; i=0; empty_=0
     while i<end_:
         if cells[i]==" " and not mark[i]:
-            vide+=1; i+=1; continue
-        if vide: res.append(f"\\cel{{{vide}}}"); vide=0
+            empty_+=1; i+=1; continue
+        if empty_: res.append(f"\\cel{{{empty_}}}"); empty_=0
         if mark[i]:
             j=i
             while j<end_ and mark[j]: j+=1
@@ -270,7 +270,7 @@ def texifier(cells, ranges):
     return "".join(res)
 
 _LP=None
-def lignes_plus(file_=f"{T}/lignes_plus.txt"):
+def extra_lines(file_=f"{T}/lignes_plus.txt"):
     """Lines that a later RE-CUTTING of the page left outside the block.
 
     Twenty-one pages were cut by a version of bloc_texte() that stopped the
@@ -297,7 +297,7 @@ def lignes_plus(file_=f"{T}/lignes_plus.txt"):
 def write_(pg, lab, M, tab, rep=f"{ROOT}/content"):
     os.makedirs(rep, exist_ok=True)
     lines, ncol = page_lines(pg, lab, M, tab)
-    sup=lignes_plus().get(pg)
+    sup=extra_lines().get(pg)
     if sup:
         per={t[0]:t for t in lines}
         for k,txt in sorted(sup.items()):
@@ -319,10 +319,10 @@ def write_(pg, lab, M, tab, rep=f"{ROOT}/content"):
     # the folios; at the foot of a page it therefore produces ghost lines, empty.
     # An empty line AFTER the last inked line carries no information and would
     # overflow the composed page (a \vbox too tall). We subtract them.
-    def _vide(t):
+    def _blank(t):
         k,cells,ranges = t
         return not ranges and all(c==" " for c in cells)
-    while lines and _vide(lines[-1]): lines.pop()
+    while lines and _blank(lines[-1]): lines.pop()
     # The page's layout: we centre it on its own width, with a little more
     # margin on the sewing side. A fixed origin left as much as 66 mm of white
     # on one side and overflowed the other.
@@ -330,28 +330,28 @@ def write_(pg, lab, M, tab, rep=f"{ROOT}/content"):
     # spaces -- is not text: it widened the page by thirty millimetres. We
     # subtract it, under a strict condition: a single character, of punctuation,
     # separated from the rest by ten cells at least.
-    ISOLES=set("-.,'\"")
+    ISOLATED=set("-.,'\"")
     for k,cells,ranges in lines:
         end_=-1
         for j in range(len(cells)-1,-1,-1):
             if cells[j]!=" ": end_=j; break
-        if end_<1 or cells[end_] not in ISOLES: continue
+        if end_<1 or cells[end_] not in ISOLATED: continue
         if any(b>=end_ for a,b in ranges): continue
-        vide=0; j=end_-1
-        while j>=0 and cells[j]==" ": vide+=1; j-=1
-        if vide>=10: cells[end_]=" "
-    dernier=0
+        empty_=0; j=end_-1
+        while j>=0 and cells[j]==" ": empty_+=1; j-=1
+        if empty_>=10: cells[end_]=" "
+    last_one=0
     for k,cells,ranges in lines:
         end_=-1
         for j in range(len(cells)-1, -1, -1):
             if cells[j] != " ": end_=j; break
         if end_<0: continue
-        dernier=max(dernier, end_)
+        last_one=max(last_one, end_)
         # A rule that runs past the last character of its line is an artefact of
         # measurement: it must not widen the page.
-        for a,b in ranges: dernier=max(dernier, min(b, end_))
-    wide=(dernier+1)*PASH_MM
-    top=len(lines)*PASV_MM
+        for a,b in ranges: last_one=max(last_one, min(b, end_))
+    wide=(last_one+1)*HSTEP_MM
+    top=len(lines)*VSTEP_MM
     # A FIXED origin, and not a page-by-page centring. Centring each page on
     # its own width made it balanced in isolation, but made the left edge jump
     # from one page to the next: over 631 pages, 199 jumped by more than five
@@ -360,31 +360,31 @@ def write_(pg, lab, M, tab, rep=f"{ROOT}/content"):
     # lines simply leave white on the right.
     recto = (pg % 2 == 0)                    # a right-hand page in the facsimile
     if recto:
-        x = LARG_MM - BORD_EXT - wide        # set on the right fore-edge
-        if x < GOUTTIERE_MIN: x = GOUTTIERE_MIN
+        x = WIDTH_MM - OUTER_EDGE - wide        # set on the right fore-edge
+        if x < GUTTER_MIN: x = GUTTER_MIN
     else:
-        x = BORD_EXT                         # set on the left fore-edge
-        if LARG_MM - x - wide < GOUTTIERE_MIN:
-            x = LARG_MM - GOUTTIERE_MIN - wide
+        x = OUTER_EDGE                         # set on the left fore-edge
+        if WIDTH_MM - x - wide < GUTTER_MIN:
+            x = WIDTH_MM - GUTTER_MIN - wide
     # The few very wide pages -- six pass 74 columns -- hold neither the
     # fore-edge nor the gutter. We leave them the absolute stop.
-    if x + wide > LARG_MM - MARGE_EXTREME:
-        x = max(LARG_MM - MARGE_EXTREME - wide, MARGE_EXTREME)
-    x = max(x, MARGE_EXTREME)
-    y = BORD_HAUT
-    if y + top > HAUT_MM - MARGE_BAS_MIN:
-        y = max(HAUT_MM - MARGE_BAS_MIN - top, MARGE_EXTREME)
+    if x + wide > WIDTH_MM - MARGIN_EXTREME:
+        x = max(WIDTH_MM - MARGIN_EXTREME - wide, MARGIN_EXTREME)
+    x = max(x, MARGIN_EXTREME)
+    y = TOP_EDGE
+    if y + top > TOP_MM - MARGIN_BOTTOM_MIN:
+        y = max(TOP_MM - MARGIN_BOTTOM_MIN - top, MARGIN_EXTREME)
     # The shift is quantised on the grid: a whole number of pitches in width,
     # a whole number of leadings in height. Without that the characters no
     # longer fall on a whole column, and the position check -- which guarantees
     # the fidelity of the screen -- fails.
-    dx=round((x-ORIGX_MM)/PASH_MM)*PASH_MM
-    dy=round((y-ORIGY_MM)/PASV_MM)*PASV_MM
+    dx=round((x-ORIGX_MM)/HSTEP_MM)*HSTEP_MM
+    dy=round((y-ORIGY_MM)/VSTEP_MM)*VSTEP_MM
     L=["% page "+str(pg+1)+" du fac-simile (image p-%03d du scan)"%pg,
        "%% bloc %.1f x %.1f mm ; marge gauche %.1f mm"%(wide,top,x),
        "\\pgc{%.3fmm}{%.3fmm}{"%(dx,dy)]
     for k,cells,ranges in lines:
-        L.append("\\l{"+texifier(cells,ranges)+"}")
+        L.append("\\l{"+texify(cells,ranges)+"}")
     L.append("}")
     open(f"{rep}/p{pg:03d}.tex","w",encoding='utf-8').write("\n".join(L)+"\n")
     return len(lines)

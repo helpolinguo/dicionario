@@ -21,7 +21,7 @@ def run_step(out_path=f"{T}/exceptions_ornements.txt", margin=3, dilate=0.35):
             p=f"{T}/cellules/p-{pg:03d}.npz"
             if not os.path.exists(p): continue
             z=np.load(p, allow_pickle=True)
-            forme=tuple(z['shape']); scale=forme[0]/e['H']
+            shape_=tuple(z['shape']); scale=shape_[0]/e['H']
             vstep=float(z['pasv']); hstep=float(z['pash'])
             xg=float(z['xg']); col0=int(z['col0']); ncol=z['occ'].shape[1]
             lg=z['lignes']

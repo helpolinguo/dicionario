@@ -14,12 +14,12 @@ def run_step(out_path=f"{T}/exceptions_relecture.txt"):
     # We compare the returned line with the line SUBMITTED, as it appears in the
     # sheet -- and not with a recomputed decoding, which would already include
     # the corrections and would bite its own tail.
-    cor=[]; refused=[]; nlig=0; npage=0
+    corr_=[]; refused=[]; n_lines=0; page_n=0
     for f in sorted(glob.glob(f"{T}/relecture/rez/p*.txt")):
-        pg=int(os.path.basename(f)[1:4]); npage+=1
+        pg=int(os.path.basename(f)[1:4]); page_n+=1
         submitted=f"{T}/relecture/p{pg:03d}.txt"
         if not os.path.exists(submitted): refused.append((pg,-1,"planche absente")); continue
-        npage_ok=True; cur={}
+        page_n_ok=True; cur={}
         for l in open(submitted, encoding='utf-8'):
             l=l.rstrip("\n")
             if l.startswith("==") or "|" not in l: continue
@@ -39,24 +39,24 @@ def run_step(out_path=f"{T}/exceptions_relecture.txt"):
             if a is None: refused.append((pg,k,"ligne inconnue")); continue
             if len(s)!=len(a):
                 refused.append((pg,k,f"longueur {len(a)} -> {len(s)}")); continue
-            nlig+=1
+            n_lines+=1
             # We write the proofread line IN FULL, including the cells the
             # proofreader left as they stood. Otherwise those cells fall back on
             # the current decoding, which may have changed since the sheet was
             # drawn -- that is how « EXPRESO » had become « EEPRESO » again
             # after the fact.
             for c,y in enumerate(s):
-                cor.append((pg,k,c,y))
+                corr_.append((pg,k,c,y))
     with open(out_path,"w",encoding='utf-8') as fo:
         fo.write("# Relecture directe : l'image du scan lue contre le texte decode.\n")
         fo.write("# Une case, un caractere ; les lignes relues ont la meme longueur que\n")
         fo.write("# celles qui ont ete soumises, donc la comparaison est exacte.\n")
-        for pg,k,c,v in cor:
+        for pg,k,c,v in corr_:
             fo.write(f"{pg}\t{k}\t{c}\t{v if v!=' ' else ' '}\n")
-    print(f"pages proofread: {npage} ; lines applied: {nlig} ; cells corrected: {len(cor)}")
+    print(f"pages proofread: {page_n} ; lines applied: {n_lines} ; cells corrected: {len(corr_)}")
     if refused:
         print(f"lines refused: {len(refused)}")
         for r in refused[:10]: print("   ", r)
-    return len(cor)
+    return len(corr_)
 
 if __name__=="__main__": run_step()

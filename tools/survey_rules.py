@@ -35,7 +35,7 @@ def family(u):
         return "2. Fragment of three letters or fewer"
     if not re.fullmatch(r"[A-Za-zÀ-ÿ'’ .,()-]+", u):
         return "2. Fragment of three letters or fewer"
-    if edition._nur_motouti(u):
+    if edition._function_words_only(u):
         return "3. Function words alone"
     if u[0].isupper() and len(words) <= 4:
         return "1. Looks like a qualifier or a phrase"

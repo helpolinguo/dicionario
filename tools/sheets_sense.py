@@ -14,13 +14,13 @@ as not to have judged what does not need judging.
 import json, re, sys, os, collections
 _ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0,_ROOT + "/tools")
-from suspects import inventaire
+from suspects import inventory
 from clean import known, variants
 from sheets_judge import context_of
 T=_ROOT + "/work"; REP=f"{T}/sens"
 
 def run_step(per=60, batches=10):
-    ent,root,inc,ctx,freq=inventaire()
+    ent,root,inc,ctx,freq=inventory()
     pool=[]
     for w,n in inc.items():
         if n>2: continue

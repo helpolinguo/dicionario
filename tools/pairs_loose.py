@@ -20,15 +20,15 @@ import os
 _ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0,_ROOT + "/tools")
 T=_ROOT + "/work"
-PAIRES = [('c','o'),('c','e'),('e','o'),('i','l'),('i','1'),('l','1'),('n','u'),
+PAIRS = [('c','o'),('c','e'),('e','o'),('i','l'),('i','1'),('l','1'),('n','u'),
           ('r','v'),('b','h'),('s','z'),('s','8'),('m','n'),('a','o'),('a','u'),
           ('t','l'),('g','q'),('f','t'),('d','a'),('p','t'),('k','c'),('x','s'),
           ('m','a'),('h','n'),('v','y'),('j','i'),('O','0'),('I','l'),('S','5'),
           ('m','rn'),('d','cl')]
 LOOKALIKE=collections.defaultdict(set)
-for a,b in PAIRES:
+for a,b in PAIRS:
     if len(a)==1 and len(b)==1: LOOKALIKE[a].add(b); LOOKALIKE[b].add(a)
-MINI_ATTESTE=4; MAXI_FAUTIF=2; RAPPORT=5
+MIN_ATTESTED=4; MAX_FAULTY=2; RATIO=5
 
 def run_step(out_path=f"{T}/paires_souple.json"):
     from edition import load_text
@@ -45,13 +45,13 @@ def run_step(out_path=f"{T}/paires_souple.json"):
     for pg,k,s in lines:
         for m in re.finditer(r"[A-Za-z0-9]{3,}", s):
             w=m.group(0); n=freq[w]
-            if n>MAXI_FAUTIF: continue
+            if n>MAX_FAULTY: continue
             best=None
             for i,ch in enumerate(w):
                 for other in LOOKALIKE.get(ch,()):
                     v=w[:i]+other+w[i+1:]
                     nv=freq.get(v,0)
-                    if nv>=MINI_ATTESTE and nv>=RAPPORT*max(n,1):
+                    if nv>=MIN_ATTESTED and nv>=RATIO*max(n,1):
                         if best is None or nv>best[2]: best=(i,other,nv,v)
             if best:
                 i,other,nv,v=best

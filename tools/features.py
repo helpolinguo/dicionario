@@ -5,7 +5,7 @@ DIR=_ROOT + "/work/cellules"
 CH,CW=22,12
 def pages():
     return [os.path.basename(p)[:-4] for p in sorted(glob.glob(DIR+"/*.npz"))]
-def charger_tout():
+def load_all():
     C=[];M=[]
     for n in pages():
         z=np.load(f"{DIR}/{n}.npz", allow_pickle=True)

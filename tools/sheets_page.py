@@ -3,18 +3,18 @@ image, columns numbered, plus the current decoding alongside."""
 import sys, os, numpy as np
 _ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0,_ROOT + "/tools")
-from line_images import image_lignes
+from line_images import line_images_
 from decode import load_, page_text
 from generate import exceptions
 T=_ROOT + "/work"
 
-def preparer(pg, rep=None, per=12, zoom=4):
+def prepare(pg, rep=None, per=12, zoom=4):
     rep = rep or f"{T}/relecture/p{pg:03d}"
     os.makedirs(rep, exist_ok=True)
     z=np.load(f"{T}/cellules/p-{pg:03d}.npz", allow_pickle=True)
     c=z['cells']; lg=z['lignes']; occ=z['occ']
     for a in range(0, c.shape[0], per):
-        image_lignes(c[a:a+per], lignes_ids=[int(x) for x in lg[a:a+per,0]], zoom=zoom
+        line_images_(c[a:a+per], line_ids=[int(x) for x in lg[a:a+per,0]], zoom=zoom
                      ).save(f"{rep}/planche{a//per:02d}.png")
     lab,M=load_(); tab=np.load(f"{T}/cls_lab.npy", allow_pickle=True)
     exc=exceptions()
@@ -35,4 +35,4 @@ def preparer(pg, rep=None, per=12, zoom=4):
 
 if __name__=="__main__":
     for a in sys.argv[1:]:
-        print(preparer(int(a)))
+        print(prepare(int(a)))

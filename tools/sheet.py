@@ -1,15 +1,15 @@
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont
-def sheet_(tuiles, etiquettes_lignes=True, cols=20, zoom=4, marge_g=70, titre=""):
-    n=len(tuiles); h,w=tuiles[0].shape
+def sheet_(tiles_, line_labels=True, cols=20, zoom=4, margin_l=70, titre=""):
+    n=len(tiles_); h,w=tiles_[0].shape
     rows=(n+cols-1)//cols
     tw,th=w*zoom, h*zoom
-    W=marge_g+cols*(tw+6)+6; H=26+rows*(th+16)+8
+    W=margin_l+cols*(tw+6)+6; H=26+rows*(th+16)+8
     im=Image.new("RGB",(W,H),(255,255,255)); d=ImageDraw.Draw(im)
     d.text((6,6), titre, fill=(0,0,160))
-    for i,t in enumerate(tuiles):
+    for i,t in enumerate(tiles_):
         r,c=divmod(i,cols)
-        x=marge_g+c*(tw+6)+3; y=26+r*(th+16)+3
+        x=margin_l+c*(tw+6)+3; y=26+r*(th+16)+3
         g=Image.fromarray(255-np.clip(t,0,255).astype(np.uint8)).resize((tw,th),Image.LANCZOS)
         im.paste(g,(x,y))
         d.rectangle([x-1,y-1,x+tw,y+th], outline=(220,220,220))
@@ -17,6 +17,6 @@ def sheet_(tuiles, etiquettes_lignes=True, cols=20, zoom=4, marge_g=70, titre=""
         y=26+r*(th+16)+3
         d.text((4,y+th//2-6), f"L{r:02d}", fill=(200,0,0))
     for c in range(cols):
-        x=marge_g+c*(tw+6)+3
+        x=margin_l+c*(tw+6)+3
         d.text((x+2,20), f"{c}", fill=(0,150,0))
     return im

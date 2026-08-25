@@ -1,7 +1,7 @@
 import numpy as np
-def pitch_dft(prof, lo=9.0, hi=12.0, n=2001):
+def pitch_dft(depth, lo=9.0, hi=12.0, n=2001):
     """Pitch and phase by maximising the modulus of the Fourier component."""
-    x = np.arange(len(prof)); s = prof - prof.mean()
+    x = np.arange(len(depth)); s = depth - depth.mean()
     best=None
     for p in np.linspace(lo,hi,n):
         w = 2*np.pi/p

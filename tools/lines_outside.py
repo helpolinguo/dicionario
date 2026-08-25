@@ -24,14 +24,14 @@ def lattice(pg, threshold=0.02):
     known_={int(k) for k in lg[:,0]}
     H=len(ph)
     kmin=int(np.floor((0-y0)/vstep))-1; kmax=int(np.ceil((H-1-y0)/vstep))+1
-    seuilv=max(ph.max()*threshold, 3.0)
+    vthreshold=max(ph.max()*threshold, 3.0)
     out=[]
     for k in range(kmin, kmax+1):
         y=y0+(k-k0)*vstep
         i0=max(int(round(y-0.45*vstep)),0); i1=min(int(round(y+0.45*vstep)),H)
         if i1-i0<3: continue
         ink_=float(ph[i0:i1].max())
-        out.append((k, round(y,1), round(ink_,1), ink_>seuilv, k in known_))
+        out.append((k, round(y,1), round(ink_,1), ink_>vthreshold, k in known_))
     return z, out
 
 if __name__=="__main__":
@@ -41,7 +41,7 @@ if __name__=="__main__":
         for k,y,e,ink,known in out:
             if ink and not known: print("   HORS  k=%3d  y=%6.1f  encre %.0f"%(k,y,e))
 
-def colonnes(pg, ks):
+def columns_(pg, ks):
     """For each line k, the first and the last inked column."""
     z=np.load(f"{T}/cellules/p-{pg:03d}.npz", allow_pickle=True)
     lg=np.array(z['lignes']); vstep=float(z['pasv']); hstep=float(z['pash'])

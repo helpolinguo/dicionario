@@ -26,16 +26,16 @@ def bbox_pdf(pdf):
         pages.append(words)
     return pages
 
-def ctrl_pagination(pdf, attendu):
+def check_pagination(pdf, expected):
     n=int(re.search(r"Pages:\s+(\d+)", subprocess.run(["pdfinfo",pdf],capture_output=True,text=True).stdout).group(1))
-    return n==attendu, n
+    return n==expected, n
 
-def ctrl_colonnes(pdf, pas_pt, orig_pt, tol=0.18):
+def check_columns_(pdf, step_pt, orig_pt, tol=0.18):
     """In a fixed set, (xmin - orig)/pitch must be an integer to within tol."""
     gaps=[]; worst=[]
     for ipg, words in enumerate(bbox_pdf(pdf)):
         for t,x0,y0,x1,y1 in words:
-            u=(x0-orig_pt)/pas_pt
+            u=(x0-orig_pt)/step_pt
             e=abs(u-round(u))
             gaps.append(e)
             if e>tol: worst.append((ipg+1,t,round(u,3)))
@@ -43,15 +43,15 @@ def ctrl_colonnes(pdf, pas_pt, orig_pt, tol=0.18):
     return dict(n=len(gaps), max=float(gaps.max()), moyen=float(gaps.mean()),
                 hors_tolerance=worst[:50], nb_hors=len(worst))
 
-def ctrl_longueurs(decodage, source_dir):
+def check_lengths(decoding, source_dir):
     """Compares the length of each composed line with the one surveyed in the scan."""
     pbs=[]
-    for pg, lines in decodage.items():
+    for pg, lines in decoding.items():
         f=os.path.join(source_dir, f"p{pg:03d}.tex")
         if not os.path.exists(f): pbs.append((pg,"fichier absent")); continue
     return pbs
 
-def comparer_images(png_compose, jpg_scan, out_path=None):
+def compare_images(png_compose, jpg_scan, out_path=None):
     from PIL import Image
     a=np.asarray(Image.open(png_compose).convert("L")).astype(np.float32)
     b=np.asarray(Image.open(jpg_scan).convert("L")).astype(np.float32)

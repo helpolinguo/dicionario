@@ -20,8 +20,8 @@ for a in range(0,N,CH):
     for b in range(0,K,KB):
         s=X@Cn[b:b+KB].T
         j=s.argmax(1); v=s[np.arange(m),j]
-        mieux=v>best_
-        best_[mieux]=v[mieux]; arg[mieux]=j[mieux]+b
+        better=v>best_
+        best_[better]=v[better]; arg[better]=j[better]+b
         del s,j,v
     lab[a:a+CH]=arg; sim[a:a+CH]=best_
     del X

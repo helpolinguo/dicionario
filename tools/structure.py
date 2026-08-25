@@ -14,9 +14,9 @@ sys.path.insert(0,_ROOT + "/tools")
 from consolidate import headwords
 T=_ROOT + "/work"
 CODES=re.compile(r'-\s*([DEFIRSL]{1,7})[.,]?\s*$')
-FINALES=("o","a","e","i","ar","ir","or","um","e")
+ENDINGS=("o","a","e","i","ar","ir","or","um","e")
 
-def texte_livre():
+def book_text():
     from decode import load_, page_text
     from generate import exceptions
     lab,M=load_(); tab=np.load(f"{T}/cls_lab.npy",allow_pickle=True); exc=exceptions()
@@ -56,15 +56,15 @@ def entries(pages):
         e['code']=CODES.search(t)
     return ent
 if __name__=="__main__":
-    pages=texte_livre()
+    pages=book_text()
     ent=entries(pages)
     print(f"{len(ent)} entries located over {len(pages)} pages")
-    avec=sum(1 for e in ent if e['code'])
-    print(f"  final language code recognised: {avec} ({100*avec/len(ent):.1f} %)")
-    bonne=sum(1 for e in ent if e['vedette'] and e['vedette'][-1] in "oaeir")
-    print(f"  headword with a valid morphological ending: {bonne} ({100*bonne/len(ent):.1f} %)")
+    with_arg=sum(1 for e in ent if e['code'])
+    print(f"  final language code recognised: {with_arg} ({100*with_arg/len(ent):.1f} %)")
+    good_=sum(1 for e in ent if e['vedette'] and e['vedette'][-1] in "oaeir")
+    print(f"  headword with a valid morphological ending: {good_} ({100*good_/len(ent):.1f} %)")
     v=[e['vedette'].lower() for e in ent if e['vedette']]
-    ruptures=sum(1 for a,b in zip(v,v[1:]) if a>b)
-    print(f"  ruptures de l'ordre alphabetique : {ruptures} ({100*ruptures/max(len(v)-1,1):.1f} %)")
+    breaks=sum(1 for a,b in zip(v,v[1:]) if a>b)
+    print(f"  ruptures de l'ordre alphabetique : {breaks} ({100*breaks/max(len(v)-1,1):.1f} %)")
     for e in ent: e['code']=e['code'].group(1) if e['code'] else None
     pickle.dump(ent, open(f"{T}/entrees.pkl","wb"))

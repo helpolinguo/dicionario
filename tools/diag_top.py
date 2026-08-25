@@ -6,26 +6,26 @@ _ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ROOT=_ROOT; T=f"{ROOT}/work"
 def one_(pg):
     z=np.load(f"{T}/cellules/p-{pg:03d}.npz", allow_pickle=True)
-    forme=tuple(z['shape']); lg=z['lignes']; vstep=float(z['pasv'])
+    shape_=tuple(z['shape']); lg=z['lignes']; vstep=float(z['pasv'])
     a=np.asarray(Image.open(f"{ROOT}/scan/p-{pg:03d}.jpg").convert('L')).astype(np.float32)
-    H,W=a.shape; scale=forme[0]/H
+    H,W=a.shape; scale=shape_[0]/H
     b = a < (a.mean()-0.30*a.std())
     m=int(0.035*min(H,W)); b[:m]=False; b[-m:]=False; b[:,:m]=False; b[:,-m:]=False
-    prof=b.sum(1)
-    threshold=max(prof.max()*0.10, 6)
-    w=np.where(prof>=threshold)[0]
+    depth=b.sum(1)
+    threshold=max(depth.max()*0.10, 6)
+    w=np.where(depth>=threshold)[0]
     if not len(w) or not len(lg): return None
-    haut_encre = w[0]*scale; bas_encre = w[-1]*scale
+    top_ink = w[0]*scale; bottom_ink = w[-1]*scale
     y0=float(lg[0,1]); y1=float(lg[-1,1])
     # columns
-    profc=b.sum(0); sc=max(profc.max()*0.06, 4)
-    wc=np.where(profc>=sc)[0]
-    gauche_encre = wc[0]*scale
+    depth_c=b.sum(0); sc=max(depth_c.max()*0.06, 4)
+    wc=np.where(depth_c>=sc)[0]
+    left_ink = wc[0]*scale
     xg=float(z['xg']); col0=int(z['col0']); hstep=float(z['pash'])
     x0 = xg + col0*hstep
     return dict(pg=pg, lignes=len(lg), pasv=vstep,
-                manque_haut=(y0-haut_encre)/vstep, manque_bas=(bas_encre-y1)/vstep,
-                manque_gauche=(x0-gauche_encre)/hstep)
+                manque_haut=(y0-top_ink)/vstep, manque_bas=(bottom_ink-y1)/vstep,
+                manque_gauche=(x0-left_ink)/hstep)
 if __name__=="__main__":
     a,b=int(sys.argv[1]), int(sys.argv[2])
     out=[]

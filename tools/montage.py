@@ -1,6 +1,6 @@
 import numpy as np
 from PIL import Image
-def montage(cells, cols=32, zoom=3, sep=1, ground=255):
+def assembly(cells, cols=32, zoom=3, sep=1, ground=255):
     n=len(cells); h,w=cells[0].shape
     rows=(n+cols-1)//cols
     W=cols*(w+sep)+sep; H=rows*(h+sep)+sep

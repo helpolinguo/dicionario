@@ -39,11 +39,11 @@ def one_(pg, Q, tab):
     z = np.load(f"{T}/cellules/p-{pg:03d}.npz", allow_pickle=True)
     col0 = int(z['col0'])
     keys_ = set(int(k) for k, _ in z['lignes'])
-    cells.ETENDRE = True; cells.ETENDRE_D = False; cells.ETENDRE_FORCE = 2
+    cells.EXTEND = True; cells.EXTEND_RIGHT = False; cells.EXTEND_FORCE = 2
     try:
         d = cells.extract(f"{ROOT}/scan/p-{pg:03d}.jpg")
     finally:
-        cells.ETENDRE = False; cells.ETENDRE_FORCE = 0
+        cells.EXTEND = False; cells.EXTEND_FORCE = 0
     lg = np.array(d['lignes'])
     if set(int(k) for k in lg[:, 0]) != keys_:
         return None, "lignes differentes"

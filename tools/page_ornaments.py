@@ -21,21 +21,21 @@ SECTIONS = {8:'A',60:'B',88:'C',102:'D',133:'E',164:'F',192:'G',213:'H',
 # the book therefore stayed without a large capital for I, J, T, Y and Z. For
 # those we give the vertical band to search in, as a fraction of the page
 # height. The list is of pairs, and not a dictionary: X and Y share page 631.
-SECTIONS_MILIEU = [(233,'I',(0.04,0.32)), (253,'J',(0.02,0.26)),
+SECTIONS_MIDDLE = [(233,'I',(0.04,0.32)), (253,'J',(0.02,0.26)),
                    (572,'T',(0.28,0.62)), (631,'Y',(0.55,0.92)),
                    (633,'Z',(0.35,0.78))]
 _ST=np.ones((3,3),int)
 
-def _composantes(a, threshold=0.28):
+def _components(a, threshold=0.28):
     b = a < (a.mean()-threshold*a.std())
     m=int(0.03*min(a.shape)); b[:m]=False; b[-m:]=False; b[:,:m]=False; b[:,-m:]=False
     L,k=cclabel(b,structure=_ST)
     return L,k,find_objects(L)
 
-def lettre(pg, hmax=0.28, band=None):
+def letter(pg, hmax=0.28, band=None):
     a=np.asarray(Image.open(f"{ROOT}/scan/p-{pg:03d}.jpg").convert('L')).astype(np.float32)
     H,W=a.shape
-    L,k,obj=_composantes(a)
+    L,k,obj=_components(a)
     best=None
     for i,o in enumerate(obj):
         h=o[0].stop-o[0].start; w=o[1].stop-o[1].start
@@ -60,7 +60,7 @@ def lettre(pg, hmax=0.28, band=None):
 def signature(pg=2):
     a=np.asarray(Image.open(f"{ROOT}/scan/p-{pg:03d}.jpg").convert('L')).astype(np.float32)
     H,W=a.shape
-    L,k,obj=_composantes(a)
+    L,k,obj=_components(a)
     best=None
     for i,o in enumerate(obj):
         h=o[0].stop-o[0].start; w=o[1].stop-o[1].start
@@ -75,9 +75,9 @@ def signature(pg=2):
 def run_step():
     rep=f"{ROOT}/ornaments/letroj"; os.makedirs(rep, exist_ok=True)
     out=[]
-    taches=[(pg,L,None) for pg,L in sorted(SECTIONS.items())] + SECTIONS_MILIEU
-    for pg,L,band in sorted(taches, key=lambda t:(t[0], t[1])):
-        e=lettre(pg, band=band)
+    blobs=[(pg,L,None) for pg,L in sorted(SECTIONS.items())] + SECTIONS_MIDDLE
+    for pg,L,band in sorted(blobs, key=lambda t:(t[0], t[1])):
+        e=letter(pg, band=band)
         if e is None: print("  lettre introuvable p%03d (%s)"%(pg,L)); continue
         e['litero']=L
         im=Image.open(f"{ROOT}/scan/p-{pg:03d}.jpg").convert('L')

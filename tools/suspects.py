@@ -11,16 +11,16 @@ import json, re, sys, collections
 import os
 _ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0,_ROOT + "/tools")
-from clean import racines, known, MOT, variants
+from clean import roots, known, WORD, variants
 T=_ROOT + "/work"
 
-def inventaire():
+def inventory():
     ent=[json.loads(l) for l in open(f"{T}/edicioni/dicionario.jsonl",encoding='utf-8')]
-    root=racines(ent)
+    root=roots(ent)
     freq=collections.Counter(); ctx={}
     for e in ent:
         for i,s in enumerate(e.get('senci') or []):
-            for w in MOT.findall(s):
+            for w in WORD.findall(s):
                 b=w.lower()
                 freq[b]+=1
                 if b not in ctx: ctx[b]=(e['vedetto'], e['image'], e['ligno'], i, s)
@@ -28,7 +28,7 @@ def inventaire():
     return ent, root, inc, ctx, freq
 
 if __name__=="__main__":
-    ent,root,inc,ctx,freq=inventaire()
+    ent,root,inc,ctx,freq=inventory()
     print("articles %d | roots known %d"%(len(ent),len(root)))
     print("distinct forms in the definitions: %d"%len(freq))
     print("formes a racine inconnue : %d (occurrences %d)"%(len(inc),sum(inc.values())))
@@ -36,5 +36,5 @@ if __name__=="__main__":
     for w,n in inc.items(): per[min(n,4)]+=1
     print("  dont hapax : %d | 2 fois : %d | 3 fois : %d | 4+ : %d"
           %(per[1],per[2],per[3],per[4]))
-    avec=sum(1 for w in inc if any(known(v,root) for v in set(variants(w))))
-    print("  of which one exchange of look-alikes makes known: %d"%avec)
+    with_arg=sum(1 for w in inc if any(known(v,root) for v in set(variants(w))))
+    print("  of which one exchange of look-alikes makes known: %d"%with_arg)

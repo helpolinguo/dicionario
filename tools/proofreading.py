@@ -17,9 +17,9 @@ from PIL import Image, ImageDraw
 _ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0,_ROOT + "/tools")
 ROOT=_ROOT; T=f"{ROOT}/work"
-ZOOM=1.7; BANDES=3; CHEV=2      # overlap, in lines
+ZOOM=1.7; STRIPS=3; CHEV=2      # overlap, in lines
 
-def texte_page(pg, pages=None):
+def page_text_(pg, pages=None):
     if pages is None:
         from edition import load_text
         pages,_,_=load_text()
@@ -33,26 +33,26 @@ def strips(pg, rep, lines):
     im=Image.open(f"{ROOT}/scan/p-{pg:03d}.jpg").convert('L')
     W,H=im.size
     ks=sorted(lg)
-    n=max(1,(len(ks)+BANDES-1)//BANDES)
+    n=max(1,(len(ks)+STRIPS-1)//STRIPS)
     out=[]
     for b in range(0, len(ks), n):
-        sous=ks[max(b-CHEV,0): b+n+CHEV]
-        if not sous: continue
-        y0=max(int((lg[sous[0]]-1.2*vstep)/scale), 0)
-        y1=min(int((lg[sous[-1]]+1.2*vstep)/scale), H)
+        under=ks[max(b-CHEV,0): b+n+CHEV]
+        if not under: continue
+        y0=max(int((lg[under[0]]-1.2*vstep)/scale), 0)
+        y1=min(int((lg[under[-1]]+1.2*vstep)/scale), H)
         c=im.crop((0,y0,W,y1))
         c=c.resize((int(W*ZOOM), int((y1-y0)*ZOOM)), Image.LANCZOS)
         name_=f"{rep}/p{pg:03d}b{b//n}.png"; c.save(name_)
         out.append(dict(fichier=os.path.basename(name_), lignes=[k for k in ks[b:b+n]]))
     return out
 
-def preparer(pgs, rep=f"{T}/relecture"):
+def prepare(pgs, rep=f"{T}/relecture"):
     os.makedirs(rep, exist_ok=True)
     from edition import load_text
     pages,_,_=load_text()
     records=[]
     for pg in pgs:
-        lines=dict(texte_page(pg, pages))
+        lines=dict(page_text_(pg, pages))
         bs=strips(pg, rep, lines)
         with open(f"{rep}/p{pg:03d}.txt","w",encoding='utf-8') as f:
             for b in bs:
@@ -65,5 +65,5 @@ def preparer(pgs, rep=f"{T}/relecture"):
 
 if __name__=="__main__":
     pgs=[int(x) for x in sys.argv[1:]]
-    f=preparer(pgs)
+    f=prepare(pgs)
     print("pages prepared:", len(f), " bandes :", sum(len(x['bandes']) for x in f))

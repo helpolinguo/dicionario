@@ -17,10 +17,10 @@ strings returned run to several words, which is enough to distinguish them.
 import os, re, glob
 _ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 T = _ROOT + "/work"
-DOSSIER = f"{T}/relire/reponses"
+FOLDER = f"{T}/relire/reponses"
 
 
-def lire(folder=DOSSIER):
+def read_(folder=FOLDER):
     """Every correction returned: a list of (faulty, correct, batch)."""
     out = []
     for p in sorted(glob.glob(f"{folder}/*.txt")):
@@ -44,43 +44,43 @@ def lire(folder=DOSSIER):
     return out
 
 
-_ESP = r"[\s\u00a0]*"
+_SPACE = r"[\s\u00a0]*"
 
-def _motif(a):
+def _pattern(a):
     """Regex of the faulty string, indifferent to spacing."""
     out = []
     n = len(a)
     for i, c in enumerate(a):
         edge = (i == 0 or i == n - 1)
         if c.isspace():
-            if out and out[-1] == _ESP + "+":
+            if out and out[-1] == _SPACE + "+":
                 continue
-            out.append(_ESP + "+")
+            out.append(_SPACE + "+")
         elif c in "\u00ab\u00bb:;!?()":
             # At the EDGES of the string, do not absorb the neighbouring space: it
             # would not be returned by the replacement, and two words would stick
             # together.
-            g = "" if i == 0 else _ESP
-            d = "" if i == n - 1 else _ESP
+            g = "" if i == 0 else _SPACE
+            d = "" if i == n - 1 else _SPACE
             out.append(g + re.escape(c) + d)
         else:
             out.append(re.escape(c))
     return re.compile("".join(out))
 
 
-def apply_(ent, folder=DOSSIER):
+def apply_(ent, folder=FOLDER):
     """Lays the proofreading corrections. Returns (laid, refused)."""
-    cor = lire(folder)
-    if not cor:
+    corr_ = read_(folder)
+    if not corr_:
         return 0, 0
     laid = 0; refused = 0
-    for a, b, batch in cor:
+    for a, b, batch in corr_:
         # The faulty string was surveyed BEFORE the typography was laid: the
         # guillemets and the colon have since gained a non-breaking space,
         # « grande » is written « \u00ab\u00a0grande\u00a0\u00bb ». Sought to
         # the character, the correction was no longer found. We therefore make
         # the search indifferent to the spacing around the punctuation.
-        word = _motif(a)
+        word = _pattern(a)
         seen = []
         for e in ent:
             for k, t in enumerate(e.get('senci') or []):

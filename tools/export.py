@@ -2,13 +2,13 @@
 """Exporting the lexical base: JSONL, TSV, and a self-contained HTML edition."""
 import json, os, sys, html, collections
 _ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-T=_ROOT + "/work"; SORT=f"{T}/edicioni"
+T=_ROOT + "/work"; OUT_DIR=f"{T}/edicioni"
 
 def load_():
-    return [json.loads(l) for l in open(f"{SORT}/dicionario.jsonl",encoding='utf-8')]
+    return [json.loads(l) for l in open(f"{OUT_DIR}/dicionario.jsonl",encoding='utf-8')]
 
 def tsv(ent):
-    with open(f"{SORT}/dicionario.tsv","w",encoding='utf-8') as f:
+    with open(f"{OUT_DIR}/dicionario.tsv","w",encoding='utf-8') as f:
         f.write("vedetto\tfako\tsenci\tnomi_latina\tsimbolo_kemiala\tlingui\tkodo\tpagino\tligno\timago\tdrapeli\n")
         for e in ent:
             f.write("\t".join([
@@ -42,7 +42,7 @@ def tsv(ent):
 # page is a manufactured product, and the next build would erase it without a
 # sound. That is true of the template as of the style sheet it carries -- the
 # header's side inset, among others, came by that road.
-GABARITO = """<!DOCTYPE html><html lang="io"><meta charset="utf-8">
+TEMPLATE = """<!DOCTYPE html><html lang="io"><meta charset="utf-8">
 <title>Dicionario de la 10.000 radiki di la linguo universala Ido</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -389,12 +389,12 @@ def html_edition(ent):
         "n":e['lingui'],"p":e['pagino'],"g":e['ligno'],"d":e['drapeli'],
         **({"y":e['simbolo']} if e.get('simbolo') else {}),
         **({"c":1} if e.get('citita') else {})} for e in ent]
-    s=GABARITO.replace("__DATA__", json.dumps(D, ensure_ascii=False, separators=(',',':')))
+    s=TEMPLATE.replace("__DATA__", json.dumps(D, ensure_ascii=False, separators=(',',':')))
     s=s.replace("__N__", f"{len(ent)} ")
     # index.html, and not dicionario.html: the page is published as it stands on
     # GitHub Pages, where « index.html » is the name that is followed automatically.
-    open(f"{SORT}/index.html","w",encoding='utf-8').write(s)
-    return os.path.getsize(f"{SORT}/index.html")
+    open(f"{OUT_DIR}/index.html","w",encoding='utf-8').write(s)
+    return os.path.getsize(f"{OUT_DIR}/index.html")
 
 if __name__=="__main__":
     ent=load_(); tsv(ent); n=html_edition(ent)

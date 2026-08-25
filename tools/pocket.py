@@ -23,7 +23,7 @@ SOURCE = f"{T}/edicioni/dicionario.jsonl"
 # The typescript notes the languages by a letter; the reading edition writes
 # them out. In the pocket edition there is no room: we return to the
 # abbreviation, but a legible one.
-ABREGE = {'Germana': 'D', 'Angla': 'E', 'Franca': 'F', 'Italiana': 'I',
+ABBREV = {'Germana': 'D', 'Angla': 'E', 'Franca': 'F', 'Italiana': 'I',
           'Rusa': 'R', 'Hispana': 'S', 'Latina': 'L', 'Portugalana': 'P',
           'Greka': 'G', 'Nederlandana': 'N'}
 
@@ -59,29 +59,29 @@ def key_(v):
     with a final hyphen, the interjections with an exclamation mark, and the
     Latin phrases.
     """
-    return edition._klavo_ordino(v)
+    return edition._order_key(v)
 
 
 # A leading parenthesis containing only ONE letter or ONE figure is not a
 # qualifier but an enumeration number -- « (a) », « (b) », « (1) ». It stays
 # upright, and stops the series: in « (metaf.)(a) Profundegajo... », only
 # « (metaf.) » takes the italic.
-RE_TETO = re.compile(r'^((?:\((?![a-zA-Z0-9]\))[^()]{1,120}\)\s*)+)')
+RE_HEAD = re.compile(r'^((?:\((?![a-zA-Z0-9]\))[^()]{1,120}\)\s*)+)')
 
 
-KOMENCO = "\ue000"; FINO = "\ue001"
+START = "\ue000"; END = "\ue001"
 
 
-def _borni(t):
+def _bound_to(t):
     """The bounds the edition laid become LaTeX's italic.
 
     To be applied AFTER esc(): the backslash of \\textit would otherwise be
     escaped in its turn, and the command would print out in full.
     """
-    return t.replace(KOMENCO, "\\textit{").replace(FINO, "}")
+    return t.replace(START, "\\textit{").replace(END, "}")
 
 
-def _kursiva(t):
+def _italic(t):
     """Applied AFTER esc(): otherwise the backslash of \\textit would itself be
     escaped, and the command would print out in full.
 
@@ -91,7 +91,7 @@ def _kursiva(t):
     of the same nature are written two ways in the same column."""
     if t.startswith("\\textit{"):
         return t
-    m = RE_TETO.match(t)
+    m = RE_HEAD.match(t)
     if not m:
         return t
     # A chemical formula: « (CH\u2083)\u2082. CH... ». The italic would cut it
@@ -102,7 +102,7 @@ def _kursiva(t):
     return "\\textit{%s} %s" % (m.group(1).rstrip(), t[m.end():].lstrip())
 
 
-def artiklo(e):
+def entry(e):
     """One article, in LaTeX."""
     v = e['vedetto']
     # A quoted borrowing: the typescript frames it in quotation marks. We render them.
@@ -113,26 +113,26 @@ def artiklo(e):
     B = e.get('strukt') or [{"teksto": t, "teksto_k": t, "sub": []}
                             for t in (e.get('senci') or [])]
     for i, b in enumerate(B):
-        t = _borni(esc(b.get('teksto_k') or b.get('teksto') or ''))
+        t = _bound_to(esc(b.get('teksto_k') or b.get('teksto') or ''))
         sub = b.get('sub') or []
         num = ""
         if len(B) > 1:
-            if t: L.append("\\senco{%d}{%s}" % (i + 1, _kursiva(t)))
+            if t: L.append("\\senco{%d}{%s}" % (i + 1, _italic(t)))
             else: num = str(i + 1)     # the number will go on the sub-entry
         elif t:
-            L.append(" " + _kursiva(t))
+            L.append(" " + _italic(t))
         for j, x in enumerate(sub):
-            kod = ''.join(ABREGE.get(y, '') for y in (x.get('lingui') or []))
+            code_ = ''.join(ABBREV.get(y, '') for y in (x.get('lingui') or []))
             L.append("\\subvorto{%s}{%s}{%s}{%s}{%s}" % (
                 esc(x.get('fako') or ''), esc(x['loko']),
-                _borni(esc(x.get('teksto_k') or x.get('teksto') or '')),
-                num if j == 0 else "", esc(kod)))
+                _bound_to(esc(x.get('teksto_k') or x.get('teksto') or '')),
+                num if j == 0 else "", esc(code_)))
     if e.get('simbolo'):
         L.append("\\simbolo{%s}" % esc(e['simbolo']))
     if e.get('latina'):
         L.append("\\latina{%s}" % esc('; '.join(e['latina'])))
     if e.get('lingui'):
-        code = ''.join(ABREGE.get(x, '') for x in e['lingui'])
+        code = ''.join(ABBREV.get(x, '') for x in e['lingui'])
         if code:
             L.append("\\lingui{%s}" % esc(code))
     # The language code closes the article's definition, not its sub-entries:
@@ -154,18 +154,18 @@ def write_(source=SOURCE, folder=OUT):
     ent = [json.loads(l) for l in open(source, encoding='utf-8')]
     ent.sort(key=lambda e: (key_(e['vedetto']), e['image'], e['ligno']))
     lines = []
-    lettre = None
+    letter = None
     for e in ent:
         k = key_(e['vedetto'])
         c = k[0].upper() if k else '?'
-        if c != lettre and c.isalpha():
-            if lettre is not None:
+        if c != letter and c.isalpha():
+            if letter is not None:
                 lines.append("\\end{multicols}")
-            lettre = c
+            letter = c
             lines.append("\\sekciono{%s}" % c)
             lines.append("\\begin{multicols}{2}")
-        lines.append(artiklo(e))
-    if lettre is not None:
+        lines.append(entry(e))
+    if letter is not None:
         lines.append("\\end{multicols}")
     with open(f"{folder}/enhavo.tex", "w", encoding='utf-8') as f:
         f.write("\n".join(lines) + "\n")

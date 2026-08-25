@@ -14,10 +14,10 @@ sys.path.insert(0,_ROOT + "/tools")
 from decode import load_
 from generate import write_
 T=_ROOT + "/work"; ROOT=_ROOT
-LARG=210.0; HAUT=297.0; ORIGX=21.9; ORIGY=12.44
-MARGE={'signaturo':10}          # margin of the cutting, in pixels of the scan
+WIDTH=210.0; TOP=297.0; ORIGX=21.9; ORIGY=12.44
+MARGIN={'signaturo':10}          # margin of the cutting, in pixels of the scan
 
-def non_dactylo():
+def not_typed():
     d={}
     p=f"{T}/pages_non_dactylo.txt"
     if os.path.exists(p):
@@ -26,7 +26,7 @@ def non_dactylo():
             a,b=l.rstrip('\n').split('\t'); d[int(a)]=b
     return d
 
-def ornements():
+def ornaments():
     """Ornaments by page — a LIST per page, and not a single ornament.
 
     The dictionary {page: ornament} lost the second ornament of a page that
@@ -40,9 +40,9 @@ def ornements():
     for e in json.load(open(p)): d.setdefault(e['pagino'], []).append(e)
     return d
 
-PASH_MM=2.540; PASV_MM=4.321      # the machine's pitch, in millimetres
+HSTEP_MM=2.540; VSTEP_MM=4.321      # the machine's pitch, in millimetres
 
-def _latex_ornement(e):
+def _latex_ornament(e):
     """The ornament's position in GRID coordinates, not as a fraction of the sheet.
 
     First version: the position was expressed as a fraction of the scanned
@@ -52,7 +52,7 @@ def _latex_ornement(e):
     machine's pitch. It is the same invariant as the text, hence the same
     registration.
     """
-    m=MARGE.get(e['litero'], 6)
+    m=MARGIN.get(e['litero'], 6)
     pg=e['pagino']
     z=np.load(f"{T}/cellules/p-{pg:03d}.npz", allow_pickle=True)
     scale=float(z['shape'][0])/e['H']
@@ -61,14 +61,14 @@ def _latex_ornement(e):
     y0=float(lg[0][1])
     col=((e['x']-m)*scale - xg)/hstep - col0
     ln=(((e['y']+e['h']+m)*scale) - y0)/vstep
-    lar=((e['w']+2*m)*scale)/hstep
+    wid=((e['w']+2*m)*scale)/hstep
     return ("\\marge[%.3fmm]{%.3fmm}{\\ornamento{%.3fmm}{%s}}"
-            % (col*PASH_MM, ln*PASV_MM, lar*PASH_MM, e['dosiero']))
+            % (col*HSTEP_MM, ln*VSTEP_MM, wid*HSTEP_MM, e['dosiero']))
 
 def run_step():
     lab,M=load_(); tab=np.load(f"{T}/cls_lab.npy",allow_pickle=True)
-    nd=non_dactylo(); orn=ornements()
-    n=int(M[:,0].max())+1; faites=[]
+    nd=not_typed(); orn=ornaments()
+    n=int(M[:,0].max())+1; done_=[]
     for pg in range(n):
         path_=f"{ROOT}/content/p{pg:03d}.tex"
         if pg in nd:
@@ -78,7 +78,7 @@ def run_step():
             open(path_,"w",encoding='utf-8').write(
                 "%% page %d du fac-simile (image p-%03d) — %s, pas de frappe\n%s\n"
                 % (pg+1, pg, note, body))
-            faites.append(pg); continue
+            done_.append(pg); continue
         if not os.path.exists(f"{T}/cellules/p-{pg:03d}.npz"): continue
         try: write_(pg,lab,M,tab)
         except Exception as e:
@@ -88,7 +88,7 @@ def run_step():
             # All the page's ornaments, laid on the first line: their place is
             # given in grid coordinates by \marge, so each falls where it must,
             # whatever the line that receives it.
-            head="".join(_latex_ornement(e) for e in orn[pg])
+            head="".join(_latex_ornament(e) for e in orn[pg])
             for i,l in enumerate(L):
                 if l.startswith("\\l{"):
                     L[i]="\\l{"+head+l[3:]
@@ -98,7 +98,7 @@ def run_step():
                     if l=="\\pg{":
                         L.insert(i+1,"\\l{"+head+"}"); break
             open(path_,"w",encoding='utf-8').write("\n".join(L))
-        faites.append(pg)
+        done_.append(pg)
         if pg%100==0: print("  ...p%03d"%pg, flush=True)
     # Endpaper. The book ends on « F I N O », at page 639 -- an odd number,
     # and with no endpaper. One more blank page brings it to 640, that is,
@@ -107,9 +107,9 @@ def run_step():
     open(f"{ROOT}/content/garde.tex","w",encoding='utf-8').write(
         "%% feuillet de garde final : porte le livre a 640 pages, quarante cahiers de seize\n\\pgvakua\n")
     with open(f"{ROOT}/content/toutes.tex","w",encoding='utf-8') as f:
-        for pg in faites: f.write("\\input{content/p%03d}\n"%pg)
+        for pg in done_: f.write("\\input{content/p%03d}\n"%pg)
         f.write("\\input{content/garde}\n")
-    print("pages written:", len(faites), "| not typewritten:", len(nd),
-          "| ornees :", len([p for p in orn if p in faites]))
+    print("pages written:", len(done_), "| not typewritten:", len(nd),
+          "| ornees :", len([p for p in orn if p in done_]))
 
 if __name__=="__main__": run_step()
