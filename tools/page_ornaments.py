@@ -73,7 +73,7 @@ def signature(pg=2):
                 fx=(o[1].start+w/2)/W, fy=(o[0].start+h/2)/H, W=int(W), H=int(H))
 
 def run_step():
-    rep=f"{ROOT}/ornaments/letroj"; os.makedirs(rep, exist_ok=True)
+    rep=f"{ROOT}/ornaments/letters"; os.makedirs(rep, exist_ok=True)
     out=[]
     blobs=[(pg,L,None) for pg,L in sorted(SECTIONS.items())] + SECTIONS_MIDDLE
     for pg,L,band in sorted(blobs, key=lambda t:(t[0], t[1])):
@@ -85,7 +85,7 @@ def run_step():
         c=im.crop((e['x']-m, e['y']-m, e['x']+e['w']+m, e['y']+e['h']+m))
         c=c.resize((c.size[0]*4, c.size[1]*4), Image.LANCZOS)
         c=c.point(lambda v: 0 if v< c.getextrema()[0]+ (c.getextrema()[1]-c.getextrema()[0])*0.55 else 255)
-        name_=f"litero-{L}.png"; c.save(f"{rep}/{name_}"); e['dosiero']=f"ornaments/letroj/{name_}"
+        name_=f"letter-{L}.png"; c.save(f"{rep}/{name_}"); e['dosiero']=f"ornaments/letters/{name_}"
         out.append(e)
     s=signature()
     if s:
@@ -104,10 +104,10 @@ def run_step():
         c=im.crop((max(s['x']-mg,0), max(s['y']-mh,0), s['x']+s['w']+m, s['y']+s['h']+m))
         s['x']-=mg; s['w']+=mg; s['y']-=mh; s['h']+=mh
         c=c.resize((c.size[0]*4,c.size[1]*4), Image.LANCZOS)
-        c.save(f"{rep}/signaturo.png"); s['dosiero']="ornaments/letroj/signaturo.png"; s['litero']='signaturo'
+        c.save(f"{rep}/signature.png"); s['dosiero']="ornaments/letters/signature.png"; s['litero']='signaturo'
         out.append(s)
     json.dump(out, open(f"{T}/ornaments.json","w"), ensure_ascii=False, indent=1)
-    print("ornements extraits :", len(out))
+    print("ornaments extracted:", len(out))
     for e in out: print(f"   {e['litero']:>10} p{e['pagino']:03d}  {e['w']}x{e['h']} px  centre ({e['fx']:.3f}, {e['fy']:.3f})")
 
 if __name__=="__main__": run_step()

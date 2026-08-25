@@ -167,9 +167,9 @@ def write_(source=SOURCE, folder=OUT):
         lines.append(entry(e))
     if letter is not None:
         lines.append("\\end{multicols}")
-    with open(f"{folder}/enhavo.tex", "w", encoding='utf-8') as f:
+    with open(f"{folder}/content.tex", "w", encoding='utf-8') as f:
         f.write("\n".join(lines) + "\n")
-    print("pocket/enhavo.tex : %d artikli, %d sekcioni"
+    print("pocket/content.tex : %d artikli, %d sekcioni"
           % (len(ent), sum(1 for l in lines if l.startswith("\\sekciono"))))
     return len(ent)
 

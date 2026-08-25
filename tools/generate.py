@@ -380,8 +380,8 @@ def write_(pg, lab, M, tab, rep=f"{ROOT}/content"):
     # the fidelity of the screen -- fails.
     dx=round((x-ORIGX_MM)/HSTEP_MM)*HSTEP_MM
     dy=round((y-ORIGY_MM)/VSTEP_MM)*VSTEP_MM
-    L=["% page "+str(pg+1)+" du fac-simile (image p-%03d du scan)"%pg,
-       "%% bloc %.1f x %.1f mm ; marge gauche %.1f mm"%(wide,top,x),
+    L=["% page "+str(pg+1)+" of the facsimile (image p-%03d of the scan)"%pg,
+       "%% block %.1f x %.1f mm ; left margin %.1f mm"%(wide,top,x),
        "\\pgc{%.3fmm}{%.3fmm}{"%(dx,dy)]
     for k,cells,ranges in lines:
         L.append("\\l{"+texify(cells,ranges)+"}")

@@ -72,9 +72,9 @@ def run_step():
     for pg in range(n):
         path_=f"{ROOT}/content/p{pg:03d}.tex"
         if pg in nd:
-            body=("\\pgimago{ornaments/couverture/couverture.pdf}"
-                   if nd[pg]=='kovrilo' else "\\pgvakua")
-            note = "couverture, lithographie" if nd[pg]=='kovrilo' else "page blanche"
+            body=("\\pgimago{ornaments/cover/cover.pdf}"
+                   if nd[pg]=='cover' else "\\pgvakua")
+            note = "cover, lithograph" if nd[pg]=='cover' else "blank page"
             open(path_,"w",encoding='utf-8').write(
                 "%% page %d of the facsimile (image p-%03d) — %s, not typed\n%s\n"
                 % (pg+1, pg, note, body))
@@ -104,12 +104,12 @@ def run_step():
     # and with no endpaper. One more blank page brings it to 640, that is,
     # forty gatherings of sixteen: what is needed to bind it. The endpaper at
     # the head already exists in the book (the blank pages of the scan).
-    open(f"{ROOT}/content/garde.tex","w",encoding='utf-8').write(
-        "%% feuillet de garde final : porte le livre a 640 pages, quarante cahiers de seize\n\\pgvakua\n")
-    with open(f"{ROOT}/content/toutes.tex","w",encoding='utf-8') as f:
+    open(f"{ROOT}/content/flyleaf.tex","w",encoding='utf-8').write(
+        "%% final flyleaf: brings the book to 640 pages, forty gatherings of sixteen\n\\pgvakua\n")
+    with open(f"{ROOT}/content/all.tex","w",encoding='utf-8') as f:
         for pg in done_: f.write("\\input{content/p%03d}\n"%pg)
-        f.write("\\input{content/garde}\n")
+        f.write("\\input{content/flyleaf}\n")
     print("pages written:", len(done_), "| not typewritten:", len(nd),
-          "| ornees :", len([p for p in orn if p in done_]))
+          "| with an ornament:", len([p for p in orn if p in done_]))
 
 if __name__=="__main__": run_step()

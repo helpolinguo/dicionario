@@ -1,0 +1,235 @@
+% =====================================================================
+%  Cover, title page and back cover of the pocket dictionary.
+%
+%  The model is the mock-up supplied by the publisher of this edition
+%  (Dicionario.pages, A4): front cover blue with black lettering and a
+%  white star, title page white with black lettering and a blue star,
+%  back cover plain blue. Everything that follows -- type sizes, line
+%  heights, diameter of the emblem -- is SURVEYED on that model to the
+%  300th of an inch, then carried over to the pocket page. The measured
+%  values are given alongside, so that the calculation can be redone.
+% =====================================================================
+
+\usepackage{tikz}
+\usepackage{eso-pic}
+
+% The blue is AZURE, #007FFF -- the reference blue, exactly halfway
+% between blue and cyan on the sRGB wheel (hue 210 degrees, saturation
+% and value full). It is the blue of the two covers, of the disc and of
+% the ID lettering of the title page: one single colour for the whole
+% book.
+%
+% It does not come from a survey of the mock-up: that one is written in
+% the Display P3 space, where its blue is (0.2549 ; 0.5728 ; 0.9688),
+% that is #0094FF once converted to sRGB by the profile enclosed in the
+% file. Azure is close to it -- twenty-one points of green lower -- and
+% it is a NAMED colour, not the residue of a conversion.
+\definecolor{idoblua}{RGB}{0,127,255}
+
+% Futura is not free; Jost* is its revival under an open licence.
+% Loaded BY PATH, not by name: the document sets identically on a
+% machine where the font is not installed. See fonts/README.md.
+\newfontfamily\kovrilfonto{Jost}[Path=fonts/, Extension=.ttf,
+  UprightFont=*-Medium, BoldFont=*-Bold, ItalicFont=*-MediumItalic]
+
+% --- Type sizes -------------------------------------------------------
+% The model is set in Futura on an A4 page (595.28 pt): 62 pt for
+% DICIONARIO, 38 pt for the subtitle, 204 pt for IDO, 29 pt for the
+% signature. Two corrections carry them over to the pocket page:
+%
+%   1. the ratio of the page widths, 110 mm / 210 mm;
+%   2. the ratio of the capital heights, Futura 0.754 em against
+%      Jost 0.700 em, that is 1.0770 -- without which the lettering, on
+%      a cover that is almost nothing but capitals, would look smaller
+%      than the model at equal size.
+%
+% The two compose into a single factor, applied to \paperwidth.
+\newcommand{\korpDICIONARIO}{0.11217\paperwidth}   % 62 pt sur A4
+\newcommand{\korpSUBTITOLO} {0.06875\paperwidth}   % 38 pt
+\newcommand{\korpIDO}       {0.36908\paperwidth}   % 204 pt
+\newcommand{\korpNOMO}      {0.05247\paperwidth}   % 29 pt
+
+% --- Line heights -----------------------------------------------------
+% Position of the TOP of the ink of each line, counted from the top edge
+% of the sheet. Three decisions fix them.
+%
+% 1. THE SCALE. The vertical distances follow the ratio of the page
+%    WIDTHS, 110/210 = 0.5238, and not that of the type sizes. The two
+%    differ: the size was enlarged by 1.0770 to equalise the capital
+%    height of Jost* and that of Futura, and it is the capital, not the
+%    em, that the eye measures. A vertical distance scaled to the
+%    capitals is therefore scaled to the widths -- the two factors
+%    cancel exactly, and the diameter of the emblem confirms it:
+%    204 x 0.5641 x 0.700 = 153.8 x 0.5238.
+%
+% 2. THE LEADING OF THE SUBTITLE. The model carries 50.1 pt between the
+%    first and the second line, 56.2 between the second and the third,
+%    where all three are of the same size. That is a paragraph setting
+%    left uneven, not an intention: we take the mean, 53.15 pt, and
+%    « di la » comes down 3.05 pt on the A4 template, that is 1.6 pt on
+%    the pocket page.
+%
+% 3. THE PLACING OF THE BLOCK. The two margins that remain are divided
+%    in GOLDEN SECTION, the small one at the top: 81.75 pt against
+%    132.27, whose ratio is 1/phi = 0.6180. The model divided them 87.8
+%    against 188.6, that is 0.466 -- a proportion that suited an A4 page
+%    but which, carried over to a page taller than it is wide, pushed
+%    the composition too high.
+%
+%    The check comes from the emblem, which is what the eye weighs: its
+%    golden section centres it at 0.5297 of the page height, where the
+%    model places it at 0.5323 -- two thousandths apart. The old placing
+%    put it at 0.5034, that is, at the dead middle of the page.
+\newcommand{\posTITOLO}  {0.160218\paperheight}
+\newcommand{\posRADIKI}  {0.235673\paperheight}
+\newcommand{\posDILA}    {0.290237\paperheight}
+\newcommand{\posLINGUO}  {0.344801\paperheight}
+\newcommand{\posIDO}     {0.445613\paperheight}
+\newcommand{\posNOMO}    {0.675162\paperheight}
+\newcommand{\posAKADEMIO}{0.715404\paperheight}
+
+% --- The emblem -------------------------------------------------------
+% A disc and a six-pointed star. The star is REGULAR, and is built:
+%
+%   1. an equilateral triangle at the centre, one point down -- its
+%      three vertices are the three short points;
+%   2. on each of its sides, a long point raised outwards, whose tip
+%      touches the circle;
+%   3. the long point at the top has the same height as the triangle;
+%   4. each long point has for its base ONE THIRD of the side that
+%      carries it.
+%
+% Rule 4 covers another, more telling, and probably the rule of the
+% original symbol: the edge of a long point, EXTENDED inwards, passes
+% through the middle of one of the other two sides of the triangle. The
+% two rules give the same figure, and it is again t = 1/2 that reconciles
+% them -- the construction by the midpoints gives the base (2-t)/(4+t) of
+% the side, that is exactly a third when t is one half.
+%
+% Condition 3 alone fixes everything. Taking the radius of the disc for
+% the unit and t for the circumscribed radius of the triangle, the height
+% of the triangle is 3t/2 and that of a point is 1 minus the inscribed
+% radius, that is 1 - t/2; equating them gives t = 1/2. The triangle
+% therefore fits in the half-disc, its side is V3/2, its inscribed radius
+% 1/4, and a third of its side V3/6 -- whence all the numbers below,
+% which are multiples of V3/12 and of 1/4.
+%
+% The figure is invariant under a rotation of a third of a turn: the
+% three long points are on the circle, the three short ones at half the
+% radius.
+%
+% Set against the mock-up, whose star is drawn by hand, the constructed
+% figure departs from it by 2.4 % of the radius at most -- the star of
+% the mock-up sits 1.4 % too low in its disc, and its long points have at
+% the base 0.30 times the side and not a third.
+%
+% Coordinates in units of RADIUS, origin at the centre of the disc, y
+% upwards. The baseline of the figure passes through the centre of the
+% disc.
+\newlength{\stelrayo}
+\newcommand{\idoemblemo}[3]{% #1 diametre, #2 couleur du disque, #3 de l'etoile
+  \setlength{\stelrayo}{0.5\dimexpr#1\relax}%
+  \begin{tikzpicture}[x=\stelrayo, y=\stelrayo, baseline={(0,0)}]
+    \fill[#2] (0,0) circle[radius=1];
+    \fill[#3]
+         (            0 ,  1   )   % longue pointe du haut
+      -- ({-sqrt(3)/12 },  0.25)   % base de la pointe du haut
+      -- ({-sqrt(3)/4  },  0.25)   % sommet gauche du triangle
+      -- ({-sqrt(3)/6  },  0   )   % base de la pointe bas-gauche
+      -- ({-sqrt(3)/2  }, -0.5 )   % longue pointe bas-gauche
+      -- ({-sqrt(3)/12 }, -0.25)   % base de la pointe bas-gauche
+      -- (            0 , -0.5 )   % sommet bas du triangle
+      -- ({ sqrt(3)/12 }, -0.25)
+      -- ({ sqrt(3)/2  }, -0.5 )   % longue pointe bas-droite
+      -- ({ sqrt(3)/6  },  0   )
+      -- ({ sqrt(3)/4  },  0.25)   % sommet droit du triangle
+      -- ({ sqrt(3)/12 },  0.25)
+      -- cycle;
+  \end{tikzpicture}}
+
+% The word IDO: the first two letters are set, the third is the emblem.
+% On the model the disc is 1.0651 times the capital height and centres on
+% it, and it follows the D at 1.4 pt.
+%
+% The letters take the colour of the DISC and not that of the text: on
+% the cover they are white when the title is black, on the title page
+% they are blue. The word makes one block with the emblem, it does not
+% make one block with the lettering.
+\newlength{\kapalto}
+% The diameter, measured once and for all at the opening of the
+% document: the two covers and the title page carry the SAME emblem, and
+% it must not depend on where one lays it.
+\newlength{\emblemdiam}
+\AtBeginDocument{{\kovrilfonto\bfseries\fontsize{\korpIDO}{\korpIDO}\selectfont
+  \settoheight{\kapalto}{ID}\global\emblemdiam=1.0651\kapalto}}
+\newcommand{\idogrupo}[2]{% #1 couleur du disque, #2 couleur de l'etoile
+  {\kovrilfonto\bfseries\fontsize{\korpIDO}{\korpIDO}\selectfont
+   \settoheight{\kapalto}{ID}%
+   \textcolor{#1}{ID}\kern0.0045\paperwidth
+   \raisebox{0.5\kapalto}{\idoemblemo{\emblemdiam}{#1}{#2}}}}
+
+% --- Placing the lines ------------------------------------------------
+% \supre{height}{content}: the content centred on the width of the
+% sheet, the TOP of its ink at the stated height. \raisebox{-\height}
+% lowers the box by its own height, which brings its top onto the
+% baseline of the \put.
+\newcommand{\supre}[2]{%
+  \put(0,-#1){\makebox[\paperwidth][c]{\raisebox{-\height}{#2}}}}
+
+% The lettering, identical on both pages; only the colours change.
+\newcommand{\kovrilteksto}[3]{% #1 encre, #2 disque, #3 etoile
+  \AddToShipoutPictureFG*{\AtPageUpperLeft{%
+    \setlength{\unitlength}{1pt}\color{#1}\kovrilfonto
+    \supre{\posTITOLO}{\bfseries\fontsize{\korpDICIONARIO}{\korpDICIONARIO}
+      \selectfont DICIONARIO}%
+    \supre{\posRADIKI}{\bfseries\fontsize{\korpSUBTITOLO}{\korpSUBTITOLO}
+      \selectfont de la 10.000 RADIKI}%
+    \supre{\posDILA}{\bfseries\fontsize{\korpSUBTITOLO}{\korpSUBTITOLO}
+      \selectfont di la}%
+    \supre{\posLINGUO}{\bfseries\fontsize{\korpSUBTITOLO}{\korpSUBTITOLO}
+      \selectfont linguo universala}%
+    \supre{\posIDO}{\idogrupo{#2}{#3}}%
+    \supre{\posNOMO}{\fontsize{\korpNOMO}{\korpNOMO}\selectfont
+      Marcelo Persiko \textit{(Marcel Pesch)}}%
+    \supre{\posAKADEMIO}{\fontsize{\korpNOMO}{\korpNOMO}\selectfont
+      ex-membro di la Akademio}%
+  }}}
+
+\newcommand{\fondo}[1]{%
+  \AddToShipoutPictureBG*{\AtPageLowerLeft{%
+    \color{#1}\rule{\paperwidth}{\paperheight}}}}
+
+% --- The three pages --------------------------------------------------
+% The front cover: blue ground, black lettering, white disc, blue star.
+\newcommand{\platrekto}{%
+  \fondo{idoblua}\kovrilteksto{black}{white}{idoblua}%
+  \thispagestyle{empty}\null\clearpage}
+
+% The title page: white ground, black lettering, blue disc, white star.
+\newcommand{\titolpagino}{%
+  \kovrilteksto{black}{idoblua}{white}%
+  \thispagestyle{empty}\null\clearpage}
+
+% The back cover: the emblem alone on the blue. The same diameter as on
+% the front -- it is the same mark, and repeating it at the same size
+% makes the two covers rhyme. The disc is white and the star blue, as on
+% the front: on a blue ground it is the disc that must carry the light.
+%
+% The height is not the geometric middle: a sign on its own looks LOW
+% there, and the optical centre is wanted. The one the eye asks for here
+% happens to be the MIRROR of the centre of the emblem of the front cover
+% about the horizontal axis of the page -- 0.5297 on the front, 1 minus
+% 0.5297 on the back. The two covers therefore hold the mark at
+% symmetrical heights: a little below the middle when a composition
+% accompanies it, a little above when it is alone.
+\newcommand{\posVERSO}{0.470298\paperheight}
+\newlength{\posverso}
+\newcommand{\platverso}{%
+  \fondo{idoblua}%
+  \AddToShipoutPictureFG*{\AtPageUpperLeft{%
+    \setlength{\unitlength}{1pt}%
+    \setlength{\posverso}{\posVERSO}%
+    \addtolength{\posverso}{-0.5\emblemdiam}%
+    \put(0,-\posverso){\makebox[\paperwidth][c]{\raisebox{-\height}{%
+      \idoemblemo{\emblemdiam}{white}{idoblua}}}}}}%
+  \thispagestyle{empty}\null\clearpage}

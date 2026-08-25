@@ -35,13 +35,13 @@ def run_step(base_=True):
     print("4. typesetting the pocket book (lualatex, two passes)")
     for _ in range(2):
         _run(["lualatex", "-interaction=nonstopmode", "-halt-on-error",
-                "posho.tex"], folder=f"{ROOT}/pocket")
+                "pocket.tex"], folder=f"{ROOT}/pocket")
     for f in ("index.html", "dicionario.tsv", "dicionario.jsonl"):
         _run(["cp", f"{ROOT}/work/editions/{f}", f"{ROOT}/{f}"])
     # The pocket PDF takes at the root the name the page's button points at:
     # index.html and dicionario.pdf travel together.
-    _run(["cp", f"{ROOT}/pocket/posho.pdf", f"{ROOT}/dicionario.pdf"])
-    print("done: index.html and pocket/posho.pdf come from the same source")
+    _run(["cp", f"{ROOT}/pocket/pocket.pdf", f"{ROOT}/dicionario.pdf"])
+    print("done: index.html and pocket/pocket.pdf come from the same source")
 
 
 if __name__ == "__main__":

@@ -31,7 +31,7 @@ ZONES=[
 ]
 def run_step():
     n=np.load(f"{ROOT}/work/cover/levels.npy")
-    end_=Image.open(f"{ROOT}/ornaments/couverture/couverture-x2.png").convert("L")
+    end_=Image.open(f"{ROOT}/ornaments/cover/cover-x2.png").convert("L")
     os.makedirs(f"{ROOT}/work/audit",exist_ok=True)
     for name_,x0,x1,y0,y1 in ZONES:
         Z=max(2, min(5, 1500//max(1,(x1-x0))))

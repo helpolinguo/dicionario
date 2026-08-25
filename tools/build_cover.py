@@ -36,7 +36,7 @@ def run_step():
         merge_(f"{ORN}/portraits/{name_}-g.svg",f"{ORN}/portraits/{name_}-n.svg",f"{ORN}/portraits/{name_}.svg")
         render(f"{ORN}/portraits/{name_}.svg",f"{ORN}/portraits/{name_}-x6.png",width_=(b-a)*6)
         Image.fromarray((np.clip(1-z,0,1)*255).astype(np.uint8)).resize(((b-a)*6,(d-c)*6),Image.LANCZOS)\
-             .save(f"{ORN}/portraits/{name_}-gris-x6.png")
+             .save(f"{ORN}/portraits/{name_}-grey-x6.png")
 
     # --- the whole cover: line lettering + two-tone portraits ---
     black=binarise_stroke(n); grey=np.zeros_like(black)
@@ -122,13 +122,13 @@ def run_step():
         z=u[c:d,a:b]
         black[c:d,a:b]=remove_grain(z>THRESHOLD_BLACK,area_thick=18)
         grey[c:d,a:b]=remove_grain(z>THRESHOLD_GREY)
-    os.makedirs(f"{ORN}/couverture",exist_ok=True)
-    draw(grey,f"{ORN}/couverture/_g.svg"); draw(black,f"{ORN}/couverture/_n.svg")
-    merge_(f"{ORN}/couverture/_g.svg",f"{ORN}/couverture/_n.svg",f"{ORN}/couverture/couverture.svg")
-    render(f"{ORN}/couverture/couverture.svg",f"{ORN}/couverture/couverture-x2.png",width_=1205*2)
-    Image.fromarray((np.clip(1-n,0,1)*255).astype(np.uint8)).save(f"{ORN}/couverture/couverture-nettoyee.png")
+    os.makedirs(f"{ORN}/cover",exist_ok=True)
+    draw(grey,f"{ORN}/cover/_g.svg"); draw(black,f"{ORN}/cover/_n.svg")
+    merge_(f"{ORN}/cover/_g.svg",f"{ORN}/cover/_n.svg",f"{ORN}/cover/cover.svg")
+    render(f"{ORN}/cover/cover.svg",f"{ORN}/cover/cover-x2.png",width_=1205*2)
+    Image.fromarray((np.clip(1-n,0,1)*255).astype(np.uint8)).save(f"{ORN}/cover/cover-cleaned.png")
     Image.fromarray((np.clip(1-n,0,1)*255).astype(np.uint8)).resize((1205*3,1636*3),Image.LANCZOS)\
-         .save(f"{ORN}/couverture/couverture-nettoyee-x3.png")
+         .save(f"{ORN}/cover/cover-cleaned-x3.png")
 
     # --- line elements ---
     shutil.rmtree(f"{ORN}/trait",ignore_errors=True); os.makedirs(f"{ORN}/trait")
@@ -142,8 +142,8 @@ def run_step():
     lab,nb=label(C); objs=find_objects(lab)
     k=max(range(nb),key=lambda i:(lab[objs[i]]==i+1).sum()); sl=objs[k]
     sub=T[440*OVERSAMPLE+sl[0].start-4*OVERSAMPLE:440*OVERSAMPLE+sl[0].stop+4*OVERSAMPLE, 460*OVERSAMPLE+sl[1].start-4*OVERSAMPLE:460*OVERSAMPLE+sl[1].stop+4*OVERSAMPLE]
-    draw(sub,f"{ORN}/trait/embleme-ido.svg")
-    render(f"{ORN}/trait/embleme-ido.svg",f"{ORN}/trait/embleme-ido-x6.png",width_=sub.shape[1]//OVERSAMPLE*6)
+    draw(sub,f"{ORN}/trait/emblem-ido.svg")
+    render(f"{ORN}/trait/emblem-ido.svg",f"{ORN}/trait/emblem-ido-x6.png",width_=sub.shape[1]//OVERSAMPLE*6)
     # bands of lettering
     row=T.sum(1); strips=[];i=0
     while i<len(row):
@@ -158,8 +158,8 @@ def run_step():
         xs=np.where(s.sum(0)>0)[0]
         if not len(xs): continue
         s=s[:,max(xs.min()-4*OVERSAMPLE,0):min(xs.max()+5*OVERSAMPLE,s.shape[1])]
-        draw(s,f"{ORN}/trait/bande{k:02d}.svg")
-        render(f"{ORN}/trait/bande{k:02d}.svg",f"{ORN}/trait/bande{k:02d}-x4.png",width_=s.shape[1]//OVERSAMPLE*4)
+        draw(s,f"{ORN}/trait/strip{k:02d}.svg")
+        render(f"{ORN}/trait/strip{k:02d}.svg",f"{ORN}/trait/strip{k:02d}-x4.png",width_=s.shape[1]//OVERSAMPLE*4)
     return len(strips)
 if __name__=="__main__":
     print(run_step(),"strips of lettering")

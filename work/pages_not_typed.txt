@@ -1,9 +1,9 @@
-# Pages qui ne sont pas dactylographiees : elles ne se decodent pas.
-# 0 : couverture, lithographie a un seul encrage (portraits + titre)
-0	kovrilo
-1	vakua
-3	vakua
-7	vakua
-87	vakua
-111	vakua
-577	vakua
+# Pages that are not typewritten: they do not decode.
+# 0: cover, lithograph in a single ink (portraits + title)
+0	cover
+1	blank
+3	blank
+7	blank
+87	blank
+111	blank
+577	blank
