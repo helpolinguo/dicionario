@@ -5,7 +5,7 @@ from PIL import Image
 _ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ROOT=_ROOT; T=f"{ROOT}/work"
 def one_(pg):
-    z=np.load(f"{T}/cellules/p-{pg:03d}.npz", allow_pickle=True)
+    z=np.load(f"{T}/cells/p-{pg:03d}.npz", allow_pickle=True)
     shape_=tuple(z['shape']); lg=z['lignes']; vstep=float(z['pasv'])
     a=np.asarray(Image.open(f"{ROOT}/scan/p-{pg:03d}.jpg").convert('L')).astype(np.float32)
     H,W=a.shape; scale=shape_[0]/H
@@ -30,12 +30,12 @@ if __name__=="__main__":
     a,b=int(sys.argv[1]), int(sys.argv[2])
     out=[]
     for pg in range(a,b):
-        if not os.path.exists(f"{T}/cellules/p-{pg:03d}.npz"): continue
+        if not os.path.exists(f"{T}/cells/p-{pg:03d}.npz"): continue
         try:
             r=one_(pg)
             if r: out.append(r)
         except Exception as e: print("FAILED",pg,e)
-    import json; json.dump(out, open(f"{T}/diag_haut_{a}.json","w"))
+    import json; json.dump(out, open(f"{T}/diag_top_{a}.json","w"))
     mh=np.array([r['manque_haut'] for r in out]); mg=np.array([r['manque_gauche'] for r in out])
     print("pages:",len(out))
     print("lines missing at the top: mean %.2f, median %.2f, p90 %.2f, max %.2f"

@@ -15,7 +15,7 @@ from clean import roots, known, WORD, variants
 T=_ROOT + "/work"
 
 def inventory():
-    ent=[json.loads(l) for l in open(f"{T}/edicioni/dicionario.jsonl",encoding='utf-8')]
+    ent=[json.loads(l) for l in open(f"{T}/editions/dicionario.jsonl",encoding='utf-8')]
     root=roots(ent)
     freq=collections.Counter(); ctx={}
     for e in ent:

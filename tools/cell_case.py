@@ -59,8 +59,8 @@ def run_step(out_path=f"{T}/exceptions_casse.txt"):
     o=np.argsort(key_, kind='stable'); bounds=np.flatnonzero(np.r_[True, np.diff(key_[o])!=0, True])
     written=0; lines=0
     with open(out_path,"w",encoding='utf-8') as f:
-        f.write("# Casse tranchee par comparaison aux hampes de la meme ligne.\n")
-        f.write("# Priorite basse : toute correction a la main l'emporte.\n")
+        f.write("# Case decided by comparison with the stems of the same line.\n")
+        f.write("# Low priority: any correction by hand wins.\n")
         for a,b in zip(bounds[:-1], bounds[1:]):
             g=o[a:b]
             g=g[~bv[g]]

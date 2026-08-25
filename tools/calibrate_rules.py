@@ -13,7 +13,7 @@ T=_ROOT + "/work"; ROOT=_ROOT
 
 def truth():
     d={}
-    for l in open(f"{T}/sou_relus.txt", encoding='utf-8'):
+    for l in open(f"{T}/underlines_reread.txt", encoding='utf-8'):
         l=l.rstrip("\n")
         if not l.strip() or l.startswith("#"): continue
         a,b,c=l.split("\t")
@@ -32,7 +32,7 @@ def measure_(pages, veto):
         hstep,xg=C.refine_step(r,d['bloc'],hstep,xg); xg=xg%hstep
         ncol=int(np.floor((r.shape[1]-xg)/hstep))
         underline=C.underlines(r,d['lignes'],vstep,hstep,xg,ncol,veto_sous=veto)
-        z=np.load(f"{T}/cellules/p-{pg:03d}.npz",allow_pickle=True); c0=int(z['col0'])
+        z=np.load(f"{T}/cells/p-{pg:03d}.npz",allow_pickle=True); c0=int(z['col0'])
         for k,(yy,pl,tot) in underline.items():
             pl=[(a-c0,b-c0) for a,b in pl]
             att=V.get((pg,k))

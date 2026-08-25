@@ -106,7 +106,7 @@ def run_step():
         c=c.resize((c.size[0]*4,c.size[1]*4), Image.LANCZOS)
         c.save(f"{rep}/signaturo.png"); s['dosiero']="ornaments/letroj/signaturo.png"; s['litero']='signaturo'
         out.append(s)
-    json.dump(out, open(f"{T}/ornements.json","w"), ensure_ascii=False, indent=1)
+    json.dump(out, open(f"{T}/ornaments.json","w"), ensure_ascii=False, indent=1)
     print("ornements extraits :", len(out))
     for e in out: print(f"   {e['litero']:>10} p{e['pagino']:03d}  {e['w']}x{e['h']} px  centre ({e['fx']:.3f}, {e['fy']:.3f})")
 

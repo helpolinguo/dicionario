@@ -1,18 +1,19 @@
-# Soulignements non places
+# Underlines that could not be placed
 
-L'auteur souligne ce qu'une imprimerie mettrait en italique : le
-domaine, la locution qui porte sa propre definition, le nom
-scientifique. L'edition epuree lit ces filets et les rend. Voici ceux
-qu'elle n'a pas su placer : le fragment releve ne se retrouve pas tel
-quel dans le texte, ou ne couvre que des mots-outils.
+The author underlines what a printing house would set in italic:
+the domain, the phrase that carries its own definition, the
+scientific name. The clean edition reads those rules and renders
+them. Here are the ones it could not place: the fragment surveyed
+is not found as it stands in the text, or covers function words
+only.
 
-**1531 fragments**, sur 9473 articles. La premiere famille est
-la seule qui demande un arbitrage : les autres sont des artefacts du
-releve des filets, ou le trait deborde ou s'arrete trop tot.
+**1525 fragments**, over 9473 entries. The first family is
+the only one that calls for a judgement: the others are artefacts of
+the survey of the rules, where the stroke runs over or stops short.
 
-## Ressemble a un qualificatif ou a une locution — 14
+## Looks like a qualifier or a phrase — 14
 
-| page | mot-vedette | fragment souligne |
+| page | headword | underlined fragment |
 |---:|---|---|
 | 135 | emiro | `II. Ti` |
 | 289 | komodoro | `Navaro B` |
@@ -29,9 +30,9 @@ releve des filets, ou le trait deborde ou s'arrete trop tot.
 | 523 | shaloto | `EFRS` |
 | 527 | signifikar | `Progres` |
 
-## Fragment de trois lettres ou moins — 543
+## Fragment of three letters or fewer — 542
 
-| page | mot-vedette | fragment souligne |
+| page | headword | underlined fragment |
 |---:|---|---|
 | 1 | a(d) | `a(d` |
 | 3 | aborijena | `pop` |
@@ -500,7 +501,6 @@ releve des filets, ou le trait deborde ou s'arrete trop tot.
 | 535 | skeptika | `ono` |
 | 536 | skolio | `eom` |
 | 537 | skopso | `elo` |
-| 537 | skreno | `+skrino` |
 | 537 | skreno | `pro` |
 | 538 | skrubo | `ixi` |
 | 538 | slamo | `nas` |
@@ -577,9 +577,9 @@ releve des filets, ou le trait deborde ou s'arrete trop tot.
 | 623 | *wishar | `+wishar` |
 | 629 | cerebelo | `bot` |
 
-## Mots-outils seuls — 49
+## Function words alone — 49
 
-| page | mot-vedette | fragment souligne |
+| page | headword | underlined fragment |
 |---:|---|---|
 | 4 | absinto | `ek la` |
 | 4 | abutmento | `a su` |
@@ -631,9 +631,9 @@ releve des filets, ou le trait deborde ou s'arrete trop tot.
 | 605 | urtiko | `a la` |
 | 611 | vektoro | `esas` |
 
-## Coupe au milieu d'un mot, ou reste du mot-vedette — 925
+## Cut in the middle of a word, or left over from the headword — 920
 
-| page | mot-vedette | fragment souligne |
+| page | headword | underlined fragment |
 |---:|---|---|
 | 1 | abasar | `er s` |
 | 2 | abdikar | `ritato` |
@@ -1117,7 +1117,6 @@ releve des filets, ou le trait deborde ou s'arrete trop tot.
 | 299 | konsonancar | `aludante silabi, e pre` |
 | 299 | konsonanto | `onsonanto` |
 | 299 | konsorto | `onsorto` |
-| 301 | kontingento | `a kontin` |
 | 301 | kontrabaso | `ntrabaso` |
 | 302 | kontradanso | `ta s` |
 | 303 | konvento | `mblit` |
@@ -1166,11 +1165,11 @@ releve des filets, ou le trait deborde ou s'arrete trop tot.
 | 335 | letro | `or k` |
 | 335 | levriero | `levrier` |
 | 336 | liano | `apta` |
+| 337 | *liguo | `iguo` |
 | 337 | lienterio | `lienteri` |
 | 337 | lietnanto | `la gra` |
 | 337 | lignino | `ignino` |
 | 337 | lignito | `ignito` |
-| 337 | liguo | `iguo` |
 | 339 | linchar | `lincha` |
 | 339 | linealo | `inealo` |
 | 339 | lineamento | `ineamento` |
@@ -1354,7 +1353,6 @@ releve des filets, ou le trait deborde ou s'arrete trop tot.
 | 452 | pompono | `pondar` |
 | 454 | portreto | `pikt` |
 | 454 | portuo | `ta p` |
-| 455 | posturar | `aludante persono qua esas ava` |
 | 459 | pretoro | `irek` |
 | 460 | primadono | `ntist` |
 | 461 | prismato | `u, re` |
@@ -1373,7 +1371,6 @@ releve des filets, ou le trait deborde ou s'arrete trop tot.
 | 469 | pseudo- | `pseudo` |
 | 471 | pudlar | `ar l` |
 | 471 | pudro | `reme` |
-| 473 | purpuro | `murex brancari` |
 | 474 | quadranto | `quadrant` |
 | 474 | quadri- | `quadri` |
 | 476 | quaza | `leso` |
@@ -1523,8 +1520,6 @@ releve des filets, ou le trait deborde ou s'arrete trop tot.
 | 577 | termino | `atem` |
 | 578 | termometro | `rmometro` |
 | 581 | timbro | `timbalo` |
-| 582 | tinlauro | `vibur` |
-| 582 | tirozimazo | `russu-` |
 | 583 | titrar | `emio` |
 | 584 | tono | `mana` |
 | 585 | topologio | `ri es` |

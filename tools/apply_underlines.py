@@ -11,16 +11,16 @@ import os, sys, glob, json
 _ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 T=_ROOT + "/work"
 
-def run_step(out_path=f"{T}/sou_relus.txt"):
+def run_step(out_path=f"{T}/underlines_reread.txt"):
     lines=0; segs=0; lost=[]
     with open(out_path,"w",encoding='utf-8') as fo:
-        fo.write("# page\tligne\tplages (a-b, inclusives, en colonnes)\n")
-        fo.write("# Releve a l'oeil ; remplace la detection automatique pour ces lignes.\n")
-        for f in sorted(glob.glob(f"{T}/relecture/rez/p*.sou")):
+        fo.write("# page\tline\tranges (a-b, inclusive, in columns)\n")
+        fo.write("# Surveyed by eye; replaces the automatic detection for these lines.\n")
+        for f in sorted(glob.glob(f"{T}/proofreading/rez/p*.sou")):
             pg=int(os.path.basename(f)[1:4])
             # reference text: the corrected line if it exists, otherwise the one submitted
             submitted={}
-            p=f"{T}/relecture/p{pg:03d}.txt"
+            p=f"{T}/proofreading/p{pg:03d}.txt"
             if os.path.exists(p):
                 for l in open(p,encoding='utf-8'):
                     l=l.rstrip("\n")
@@ -29,7 +29,7 @@ def run_step(out_path=f"{T}/sou_relus.txt"):
                     try: submitted[int(k)]=t
                     except ValueError: pass
             submitted_raw=dict(submitted)
-            r=f"{T}/relecture/rez/p{pg:03d}.txt"
+            r=f"{T}/proofreading/rez/p{pg:03d}.txt"
             if os.path.exists(r):
                 for l in open(r,encoding='utf-8'):
                     l=l.rstrip("\n")

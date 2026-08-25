@@ -167,7 +167,7 @@ ENDINGS_OK = ("o","a","e","i","ar","ir","or")
 CUT = "\ue002"
 
 _LP=None
-def _extra_lines(file_=f"{T}/lignes_plus.txt"):
+def _extra_lines(file_=f"{T}/extra_lines.txt"):
     """Lines from the foot (or the head) of a page lost to a later RE-CUTTING.
 
     Page 290 showed it: its extraction was redone on 13 August, and the new
@@ -195,17 +195,17 @@ def _extra_lines(file_=f"{T}/lignes_plus.txt"):
 
 def _signature():
     """Fingerprint of the files the decoded text depends on."""
-    names=["cls_lab.npy","cls_alternatives.pkl","lignes_plus.txt",
-          "exceptions_fins.txt","exceptions_ornements.txt","exceptions_paires.txt",
-          "exceptions.txt","exceptions_relecture.txt","exceptions_manuel.txt",
-          "pages_non_dactylo.txt"]
+    names=["cls_lab.npy","cls_alternatives.pkl","extra_lines.txt",
+          "exceptions_ends.txt","exceptions_ornaments.txt","exceptions_pairs.txt",
+          "exceptions.txt","exceptions_proofreading.txt","exceptions_manual.txt",
+          "pages_not_typed.txt"]
     sig=[]
     for n in names:
         p=f"{T}/{n}"
         sig.append((n, os.path.getmtime(p) if os.path.exists(p) else 0))
-    d=f"{T}/cellules"
+    d=f"{T}/cells"
     if os.path.isdir(d):
-        sig.append(("cellules", max((os.path.getmtime(os.path.join(d,f))
+        sig.append(("cells", max((os.path.getmtime(os.path.join(d,f))
                                      for f in os.listdir(d)), default=0)))
     return sig
 
@@ -257,7 +257,7 @@ def _load_text():
         # typescript; it designates the domain, the phrase, the Latin name, the
         # quoted word.
         try:
-            z=np.load(f"{T}/cellules/p-{pg:03d}.npz", allow_pickle=True)
+            z=np.load(f"{T}/cells/p-{pg:03d}.npz", allow_pickle=True)
             import pickle as _pk
             underline=_pk.loads(z['sou'].item())
             rules_[pg]={int(k): [(int(a),int(b)) for a,b in v[1]]
@@ -272,7 +272,7 @@ def _not_typed():
     """Pages that are not typewritten: cover, blank pages."""
     global _ND
     if _ND is None:
-        _ND=set(); p=f"{T}/pages_non_dactylo.txt"
+        _ND=set(); p=f"{T}/pages_not_typed.txt"
         if os.path.exists(p):
             for l in open(p,encoding='utf-8'):
                 if l.startswith('#') or not l.strip(): continue
@@ -526,7 +526,7 @@ RE_SPLIT = re.compile(r'[-–]\s*([A-Za-z]{1,12})\.\s+'
                        r'|["\u00ab]\s*[+*]?[a-zà-ÿ]))')
 
 _SPLITS=None
-def _split(file_=f"{T}/dividi.txt"):
+def _split(file_=f"{T}/splits.txt"):
     """Cuts surveyed by eye: image:line -> the string to cut at.
 
     The automatic location relies on the language code that ends each article.
@@ -598,7 +598,7 @@ def split_at(raw, lexicon=None):
     return out
 
 _TEXTS=None
-def _texts_of(file_=f"{T}/texti.txt"):
+def _texts_of(file_=f"{T}/texts.txt"):
     """Corrections to the RAW TEXT, before any analysis.
 
     Some faults must be repaired before the language code, the domain and the
@@ -1676,9 +1676,9 @@ SYMBOL_LENGTH = 40
 _SYMBOLS = None
 
 
-def symbols_manual(file_=f"{T}/simboli.txt"):
+def symbols_manual(file_=f"{T}/symbols.txt"):
     """The symbols surveyed by eye on the facsimile, where the decoding lost
-    them. The same key as subvorti.txt: vedetto@image:ligno."""
+    them. The same key as subwords.txt: vedetto@image:ligno."""
     global _SYMBOLS
     if _SYMBOLS is None:
         _SYMBOLS = {}
@@ -1696,8 +1696,8 @@ def symbols_manual(file_=f"{T}/simboli.txt"):
 _LATINS = None
 
 
-def latins_manual(file_=f"{T}/latinaji.txt"):
-    """The scientific names put right by eye. The same key as simboli.txt."""
+def latins_manual(file_=f"{T}/latins.txt"):
+    """The scientific names put right by eye. The same key as symbols.txt."""
     global _LATINS
     if _LATINS is None:
         _LATINS = {}
@@ -1782,7 +1782,7 @@ def split_off_symbol(e):
 
     Returns 1 if a symbol has been laid. Where the typist struck the label
     properly but the symbol did not decode, we go and fetch it from
-    simboli.txt, surveyed by eye on the page; failing to find it there, the
+    symbols.txt, surveyed by eye on the page; failing to find it there, the
     article keeps its text as it stands -- a label without a symbol says
     nothing, but erasing it would erase the trace of the lack as well.
     """
@@ -1830,7 +1830,7 @@ def split_off_symbol(e):
 _RULES = None
 
 
-def rules_set_aside(file_=f"{T}/filetoj.txt"):
+def rules_set_aside(file_=f"{T}/rules.txt"):
     """The surveyed rules the eye sets aside: vedetto@image:ligno -> fragments.
 
     The survey also takes what is not an intention -- the stroke of a
@@ -1860,7 +1860,7 @@ def rules_set_aside(file_=f"{T}/filetoj.txt"):
 _RENDERED = None
 
 
-def rules_rendered(file_=f"{T}/filetoj.txt"):
+def rules_rendered(file_=f"{T}/rules.txt"):
     """The rules GIVEN BACK to the survey: vedetto@image:ligno -> fragments.
 
     The stroke was there, the survey did not see it. Given back here, it takes
@@ -1891,7 +1891,7 @@ def rules_rendered(file_=f"{T}/filetoj.txt"):
 _PLACED = None
 
 
-def rules_placed(file_=f"{T}/filetoj.txt"):
+def rules_placed(file_=f"{T}/rules.txt"):
     """The italics laid BY EYE: vedetto@image:ligno -> (context, spans).
 
     The author sets in italic the word he QUOTES. When the survey of the rule
@@ -2329,7 +2329,7 @@ def _bracket(t, a, b):
     if j-i > 70: return None
     return t[i:j+1]
 
-def reattach_subwords(ent, file_=f"{T}/subvorti.txt"):
+def reattach_subwords(ent, file_=f"{T}/subwords.txt"):
     """Attaches an article to the one the author made it depend on.
 
     The attachment does not DEGRADE the article: it keeps its domain, its
@@ -2427,7 +2427,7 @@ def build():
                 close_qualifier(orphan_bracket(formulas(to_digits(point_senses(
                     overload(space_out(tidy_punctuation(t)))))))))).lstrip('.,;:) ').strip()))))
     # (cifri and formuli come in here alone, once the proofreading is laid)
-    # A second pass of the corrections by eye. A line of vorti.txt written from
+    # A second pass of the corrections by eye. A line of words.txt written from
     # the RENDERED text could not apply higher up: « de l til 10 litri » (bidono)
     # carries a 10 that cifri had not yet drawn from the typist's « lO », and the
     # correction never took -- in silence. The function is idempotent: a correction
@@ -2591,10 +2591,10 @@ def build():
 # The corrections returned by the judgement used to be written into the JSONL.
 # But edition.py rebuilds it from the facsimile: the next rebuild erased them
 # all, without a sound. We therefore apply them AT THE END OF THE CHAIN, from
-# the answer files, as filets.pkl and debuts.pkl are for the facsimile. A
+# the answer files, as rules.pkl and starts.pkl are for the facsimile. A
 # correction laid once is thus acquired.
-JUDGEMENTS = [(f"{T}/juger/fiches.json",  f"{T}/juger/reponses"),
-             (f"{T}/sens/fiches.json",   f"{T}/sens/reponses")]
+JUDGEMENTS = [(f"{T}/judge/records.json",  f"{T}/judge/answers"),
+             (f"{T}/senses/records.json",   f"{T}/senses/answers")]
 
 def to_digits(t):
     """Figures read as letters: « lOO » for « 100 », « 2O » for 20.
@@ -2834,7 +2834,7 @@ def tidy_punctuation(t):
     The doubled full stop is removed only when SEPARATED by a space. Stuck
     together, « ie.. » and « venenifanta.. » are two contrary cases -- a
     shortened ellipsis and one stop too many -- that nothing distinguishes
-    mechanically: they are dealt with one by one in vorti.txt. And the author's
+    mechanically: they are dealt with one by one in words.txt. And the author's
     ellipsis, « ... », stays intact.
     """
     t = re.sub(r',\s*,', ',', t)
@@ -3210,7 +3210,7 @@ def typography(ent):
             if t!=o: s[k]=t; n+=1
     return n
 
-def correct_headwords(ent, file_=f"{T}/vedetti.txt"):
+def correct_headwords(ent, file_=f"{T}/headwords.txt"):
     """Corrections to headwords, surveyed by eye.
 
     The layer of judgements touches the definitions alone: a headword is an
@@ -3236,10 +3236,10 @@ def correct_headwords(ent, file_=f"{T}/vedetti.txt"):
         if c is not None: e['vedetto']=c; n+=1
     return n
 
-def correct_words(ent, file_=f"{T}/vorti.txt"):
+def correct_words(ent, file_=f"{T}/words.txt"):
     """Corrections to words in the definitions, surveyed by eye.
 
-    The counterpart of vedetti.txt for the body of the articles. Two automatic
+    The counterpart of headwords.txt for the body of the articles. Two automatic
     passes have already been rejected here -- frequency gave « papuli » for
     « populi », the root « falko » for « talko » -- because a dictionary of ten
     thousand roots is not the whole lexicon of the language. We therefore write
@@ -3304,8 +3304,8 @@ def apply_judgements(ent):
 
 if __name__=="__main__":
     ent=build()
-    os.makedirs(f"{T}/edicioni", exist_ok=True)
-    with open(f"{T}/edicioni/dicionario.jsonl","w",encoding='utf-8') as f:
+    os.makedirs(f"{T}/editions", exist_ok=True)
+    with open(f"{T}/editions/dicionario.jsonl","w",encoding='utf-8') as f:
         for e in ent:
             f.write(json.dumps({k:v for k,v in e.items() if k!='lineoj'}, ensure_ascii=False)+"\n")
     print(f"{len(ent)} records")

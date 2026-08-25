@@ -17,11 +17,11 @@ FILES = ["main.tex", "preamble.tex", "LISEZ-MOI.md", "main.pdf",
             # files into the same folder.
             "dicionario.pdf"]
 FOLDERS = ["tools", "content", "ornaments", "pocket"]
-CORRECTIONS = ["exceptions.txt", "exceptions_manuel.txt", "exceptions_fins.txt",
-               "exceptions_paires.txt", "exceptions_relecture.txt",
-               "exceptions_ornements.txt", "sou_relus.txt",
-               "ornements.json", "pages_non_dactylo.txt"]
-BINARIES = ["filets.pkl", "debuts.pkl"]
+CORRECTIONS = ["exceptions.txt", "exceptions_manual.txt", "exceptions_ends.txt",
+               "exceptions_pairs.txt", "exceptions_proofreading.txt",
+               "exceptions_ornaments.txt", "underlines_reread.txt",
+               "ornaments.json", "pages_not_typed.txt"]
+BINARIES = ["rules.pkl", "starts.pkl"]
 
 def run_step(out_path=OUT_PATH):
     if os.path.exists(out_path): os.remove(out_path)
@@ -39,9 +39,9 @@ def run_step(out_path=OUT_PATH):
     # The proofreading survey, page by page -- the TEXT only. The folder also
     # holds the image sheets: 550 MB, reconstructible on demand by
     # tools/proofreading.py, and of no interest to whoever reads the code.
-    for p in sorted(glob.glob(f"{T}/relecture/*")):
+    for p in sorted(glob.glob(f"{T}/proofreading/*")):
         if os.path.isfile(p) and os.path.splitext(p)[1].lower() in (".txt", ".md"):
-            z.write(p, "dicionario/relecture/"+os.path.basename(p))
+            z.write(p, "dicionario/proofreading/"+os.path.basename(p))
     z.close()
     return out_path, os.path.getsize(out_path)
 

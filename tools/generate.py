@@ -50,13 +50,13 @@ def exceptions():
     """Table (page, line, column) -> the reading adopted.
 
     Two files: `exceptions.txt`, written by the automatic correctors, and
-    `exceptions_manuel.txt`, arbitrated by eye. The second always prevails and
+    `exceptions_manual.txt`, arbitrated by eye. The second always prevails and
     is never rewritten by a program.
     """
     global _EXC
     if _EXC is None:
         _EXC={}
-        for name_ in ("exceptions_fins.txt","exceptions_ornements.txt","exceptions_paires.txt","exceptions.txt","exceptions_relecture.txt","exceptions_manuel.txt"):
+        for name_ in ("exceptions_ends.txt","exceptions_ornaments.txt","exceptions_pairs.txt","exceptions.txt","exceptions_proofreading.txt","exceptions_manual.txt"):
             p=os.path.join(T, name_)
             if not os.path.exists(p): continue
             for l in open(p, encoding='utf-8'):
@@ -73,7 +73,7 @@ def starts_rendered():
     """First letters given back by restore_starts.py, by page."""
     global _STARTS
     if _STARTS is None:
-        p=os.path.join(T,"debuts.pkl")
+        p=os.path.join(T,"starts.pkl")
         _STARTS=pickle.load(open(p,"rb")) if os.path.exists(p) else {}
     return _STARTS
 
@@ -82,7 +82,7 @@ def fresh_rules():
     """Rules recomputed by redo_rules.py, by page."""
     global _RULES
     if _RULES is None:
-        p=os.path.join(T,"filets.pkl")
+        p=os.path.join(T,"rules.pkl")
         _RULES=pickle.load(open(p,"rb")) if os.path.exists(p) else {}
     return _RULES
 
@@ -95,7 +95,7 @@ def underlines_reread():
     global _UNDERLINE
     if _UNDERLINE is None:
         _UNDERLINE={}
-        p=os.path.join(T,"sou_relus.txt")
+        p=os.path.join(T,"underlines_reread.txt")
         if os.path.exists(p):
             for l in open(p, encoding='utf-8'):
                 l=l.rstrip("\n")
@@ -135,7 +135,7 @@ def _trim(range_, cells_of):
     return (a2,b2)
 
 def page_lines(pg, lab, M, tab):
-    z=np.load(f"{T}/cellules/p-{pg:03d}.npz", allow_pickle=True)
+    z=np.load(f"{T}/cells/p-{pg:03d}.npz", allow_pickle=True)
     lg=z['lignes']; ncol=z['occ'].shape[1]
     underline=pickle.loads(z['sou'].item()) if 'sou' in z else {}
     # Recomputed rules: see tools/redo_rules.py. The original detection took the
@@ -270,7 +270,7 @@ def texify(cells, ranges):
     return "".join(res)
 
 _LP=None
-def extra_lines(file_=f"{T}/lignes_plus.txt"):
+def extra_lines(file_=f"{T}/extra_lines.txt"):
     """Lines that a later RE-CUTTING of the page left outside the block.
 
     Twenty-one pages were cut by a version of bloc_texte() that stopped the

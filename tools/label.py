@@ -9,7 +9,7 @@ from sklearn.linear_model import LogisticRegression
 T=_ROOT + "/work"
 def run_step(rounds=3):
     C=np.load(f"{T}/cells_all.npy", mmap_mode='r')
-    lab=np.load(f"{T}/km_lab.npy"); mean_=np.load(f"{T}/km_moy.npy")
+    lab=np.load(f"{T}/km_lab.npy"); mean_=np.load(f"{T}/km_mean.npy")
     I,Y,_=everything(); o=np.argsort(I); I=I[o]; Y=Y[o]
     X=feature_vector(np.asarray(C[I]))
     m=LogisticRegression(max_iter=4000,C=20.).fit(X,Y)
@@ -42,7 +42,7 @@ def run_step(rounds=3):
         if len(c)>1: imp.append((k,dict(c)))
     # explicit hand labels (optional file)
     import os
-    missing_=f"{T}/etiquettes.txt"
+    missing_=f"{T}/labels.txt"
     n_manual=0
     if os.path.exists(missing_):
         for l in open(missing_, encoding='utf-8'):
@@ -50,7 +50,7 @@ def run_step(rounds=3):
             if not l.strip() or l.startswith("#"): continue
             i,_,ch=l.partition("\t"); p[int(i)]=ch; n_manual+=1
     np.save(f"{T}/cls_lab.npy",p); np.save(f"{T}/cls_conf.npy",pc)
-    pickle.dump(m,open(f"{T}/modele.pkl","wb"))
+    pickle.dump(m,open(f"{T}/model.pkl","wb"))
     exact=(p[lab[I]]==Y).mean()
     return dict(exactitude=float(exact), amorce=len(I), groupes_amorces=len(vote),
                 impurs=imp, manuels=n_manual, conf_med=float(np.median(pc)),

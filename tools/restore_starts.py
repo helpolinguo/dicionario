@@ -36,7 +36,7 @@ ROOT = _ROOT; T = f"{ROOT}/work"
 
 def one_(pg, Q, tab):
     """Characters recovered left of the block: {line: {negative column: char}}."""
-    z = np.load(f"{T}/cellules/p-{pg:03d}.npz", allow_pickle=True)
+    z = np.load(f"{T}/cells/p-{pg:03d}.npz", allow_pickle=True)
     col0 = int(z['col0'])
     keys_ = set(int(k) for k, _ in z['lignes'])
     cells.EXTEND = True; cells.EXTEND_RIGHT = False; cells.EXTEND_FORCE = 2
@@ -74,11 +74,11 @@ def one_(pg, Q, tab):
     return out, None
 
 
-def all_(out_path=f"{T}/debuts.pkl", start_=0, end_=None):
+def all_(out_path=f"{T}/starts.pkl", start_=0, end_=None):
     Q = np.load(f"{T}/km_centres2.npy")
     tab = np.load(f"{T}/cls_lab.npy", allow_pickle=True)
     pages = sorted(int(re.search(r'p-(\d+)', f).group(1))
-                   for f in glob.glob(f"{T}/cellules/p-*.npz"))
+                   for f in glob.glob(f"{T}/cells/p-*.npz"))
     pages = [p for p in pages if p >= start_ and (end_ is None or p < end_)]
     out = {}; refused = 0
     for i, pg in enumerate(pages):

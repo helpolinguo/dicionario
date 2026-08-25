@@ -2,7 +2,7 @@
 """Rebuilds the two editions of the cleaned text, in the right order.
 
 The HTML page and the pocket dictionary come from the SAME file,
-work/edicioni/dicionario.jsonl. Rebuilding them together is the only way to
+work/editions/dicionario.jsonl. Rebuilding them together is the only way to
 keep them from diverging: any correction laid in the proofreading layers is
 found in the one as in the other.
 
@@ -37,7 +37,7 @@ def run_step(base_=True):
         _run(["lualatex", "-interaction=nonstopmode", "-halt-on-error",
                 "posho.tex"], folder=f"{ROOT}/pocket")
     for f in ("index.html", "dicionario.tsv", "dicionario.jsonl"):
-        _run(["cp", f"{ROOT}/work/edicioni/{f}", f"{ROOT}/{f}"])
+        _run(["cp", f"{ROOT}/work/editions/{f}", f"{ROOT}/{f}"])
     # The pocket PDF takes at the root the name the page's button points at:
     # index.html and dicionario.pdf travel together.
     _run(["cp", f"{ROOT}/pocket/posho.pdf", f"{ROOT}/dicionario.pdf"])

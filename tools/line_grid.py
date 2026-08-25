@@ -9,7 +9,7 @@ from PIL import Image, ImageDraw
 T=_ROOT + "/work"; ROOT=_ROOT
 
 def band(pg, k, c0v=0, c1v=None, Z=6, out_path=None):
-    z=np.load(f"{T}/cellules/p-{pg:03d}.npz", allow_pickle=True)
+    z=np.load(f"{T}/cells/p-{pg:03d}.npz", allow_pickle=True)
     lg=dict((int(a),float(b)) for a,b in z['lignes'])
     vstep=float(z['pasv']); hstep=float(z['pash']); xg=float(z['xg']); c0=int(z['col0'])
     ncol=z['occ'].shape[1]

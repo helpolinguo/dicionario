@@ -144,8 +144,8 @@ def apply_(B):
     return B
 
 
-def run_step(out_path=f"{ROOT}/work/couv/B_repare.npy"):
-    n = np.load(f"{ROOT}/work/couv/niveaux.npy")
+def run_step(out_path=f"{ROOT}/work/cover/B_repaired.npy"):
+    n = np.load(f"{ROOT}/work/cover/levels.npy")
     B = apply_(binarise_stroke(n))
     np.save(out_path, B)
     return B

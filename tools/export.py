@@ -2,7 +2,7 @@
 """Exporting the lexical base: JSONL, TSV, and a self-contained HTML edition."""
 import json, os, sys, html, collections
 _ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-T=_ROOT + "/work"; OUT_DIR=f"{T}/edicioni"
+T=_ROOT + "/work"; OUT_DIR=f"{T}/editions"
 
 def load_():
     return [json.loads(l) for l in open(f"{OUT_DIR}/dicionario.jsonl",encoding='utf-8')]

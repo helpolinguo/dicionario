@@ -21,14 +21,13 @@ _ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 ROOT = _ROOT
 SOURCE = f"{ROOT}/dicionario.jsonl"
-OUT_PATH = f"{ROOT}/ordino-ruptita.md"
-sys.path.insert(0, f"{ROOT}/tools")
+OUT_PATH = f"{ROOT}/docs/order-broken.md"
 import edition as E
 
-# The decoding's confusions, surveyed in work/journal_complet.txt: the letter
+# The decoding's confusions, surveyed in work/journal_full.txt: the letter
 # read, the letter adopted, and how many times. We keep only the most frequent
 # -- they are the ones that explain a faulty headword.
-def confusions(file_=f"{ROOT}/work/journal_complet.txt", minimum_=15):
+def confusions(file_=f"{ROOT}/work/journal_full.txt", minimum_=15):
     c = collections.Counter()
     try:
         for l in open(file_, encoding='utf-8'):
@@ -101,7 +100,7 @@ def write_(source=SOURCE, out_path=OUT_PATH):
         return all(not breaks_at(idx[t-1], idx[t]) for t in range(1, len(idx)))
 
     def spot(e):
-        return "f.%s (image %s, ligne %s)" % (e['pagino'], e['image'], e['ligno'])
+        return "f.%s (image %s, line %s)" % (e['pagino'], e['image'], e['ligno'])
 
     def place(k, r, skip):
         """Where would this key go? Returns the index of the first article after it."""
@@ -124,27 +123,27 @@ def write_(source=SOURCE, out_path=OUT_PATH):
         else:
             astray.append(i)
 
-    L = ["# Vedettes qui rompent l'ordre alphabetique", "",
-         "Le livre est trie, et il l'est selon une regle qu'il n'enonce pas : **la",
-         "desinence ne compte pas**. « aktinio » precede « aktinika » parce que",
-         "l'auteur range « aktini » avant « aktinik ». L'auteur ne s'y tient pas",
-         "partout — il ecrit « astrakano » puis « astro » —, et le drapeau ne se",
-         "leve donc que si la vedette recule sur LES DEUX lectures, mot entier et",
-         "racine.",
+    L = ["# Headwords that break the alphabetical order", "",
+         "The book is sorted, and sorted by a rule it never states: **the",
+         "ending does not count**. « aktinio » precedes « aktinika » because",
+         "the author files « aktini » before « aktinik ». He does not hold to",
+         "it everywhere -- he writes « astrakano » and then « astro » -- so the",
+         "flag is raised only when the headword goes backwards on BOTH",
+         "readings, whole word and root.",
          "",
-         f"**{len(swapped) + len(astray)} cas**, sur {len(ent)} articles. Deux familles :",
-         "les deux vedettes voisines qu'il suffit d'intervertir, et la vedette",
-         "posee loin de sa place — celle-la est souvent une mauvaise lecture.",
+         f"**{len(swapped) + len(astray)} cases**, over {len(ent)} entries. Two families:",
+         "the two neighbouring headwords one need only swap, and the headword",
+         "laid far from its place -- that one is often a misreading.",
          "",
-         "Chaque cas donne le folio imprime, l'image du fac-simile et la ligne de",
-         "la grille, pour aller voir.",
+         "Each case gives the printed folio, the facsimile image and the line",
+         "of the grid, so that it can be looked up.",
          ""]
 
-    L += [f"## Deux vedettes voisines interverties — {len(swapped)}", "",
-          "L'ordre du livre voudrait la seconde d'abord. Rien d'autre ne cloche :",
-          "les deux vedettes sont a leur page, et leurs voisines sont en ordre.",
+    L += [f"## Two neighbouring headwords swapped — {len(swapped)}", "",
+          "The book's order would have the second first. Nothing else is wrong:",
+          "both headwords are on their page, and their neighbours are in order.",
           "",
-          "| folio | image:ligne | telles qu'ecrites | dans l'ordre |",
+          "| folio | image:line | as written | in order |",
           "|---|---|---|---|"]
     for i in swapped:
         a, b = ent[i-1], ent[i]
@@ -153,7 +152,7 @@ def write_(source=SOURCE, out_path=OUT_PATH):
                     a['vedetto'], b['vedetto'], b['vedetto'], a['vedetto']))
     L.append("")
 
-    L += [f"## Une vedette loin de sa place — {len(astray)}", ""]
+    L += [f"## A headword far from its place — {len(astray)}", ""]
     for i in astray:
         window_ = list(range(max(0, i-3), min(len(ent), i+4)))
         withoutB = [j for j in window_ if j != i]
@@ -170,16 +169,16 @@ def write_(source=SOURCE, out_path=OUT_PATH):
             j = place(K[x], R[x], {x})
             ahead = ent[j-1] if j > 0 else None
             L += ["### %s — %s" % (e['vedetto'], spot(e)), "",
-                  "Ecrite entre « %s » et « %s »." % (
-                      ent[x-1]['vedetto'] if x else '(debut)',
-                      ent[x+1]['vedetto'] if x+1 < len(ent) else '(fin)'),
+                  "Written between « %s » and « %s »." % (
+                      ent[x-1]['vedetto'] if x else '(start)',
+                      ent[x+1]['vedetto'] if x+1 < len(ent) else '(end)'),
                   ""]
             if ahead is not None and abs(j - x) > 1:
-                L += ["Sa place est apres « %s », %s — %d articles plus %s."
+                L += ["Its place is after « %s », %s — %d entries further %s."
                       % (ahead['vedetto'], spot(ahead), abs(j - x),
-                         "loin" if j > x else "haut"), ""]
+                         "down" if j > x else "up"), ""]
             elif ahead is not None:
-                L += ["Sa place est juste avant « %s », sa voisine."
+                L += ["Its place is just before « %s », its neighbour."
                       % ent[x-1]['vedetto'], ""]
             # The reading proposed cannot be that of a neighbouring headword: the
             # book does not define the same word twice three lines apart.
@@ -189,8 +188,8 @@ def write_(source=SOURCE, out_path=OUT_PATH):
                    if (x == 0 or K[x-1] <= v) and (x+1 >= len(ent) or v <= K[x+1])
                    and v not in nearest]
             if var:
-                L += ["Lectures qui tiendraient dans la place occupee : %s."
-                      % ", ".join("**%s**%s" % (v, " (mot atteste ailleurs)"
+                L += ["Readings that would fit the place occupied: %s."
+                      % ", ".join("**%s**%s" % (v, " (word attested elsewhere)"
                                                 if v in lexicon else "")
                                   for v in var[:8]), ""]
             L += ["```", (e.get('teksto_brut') or '')[:200], "```", ""]

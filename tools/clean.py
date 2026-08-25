@@ -99,7 +99,7 @@ def propose(ent):
     return prop, root
 
 if __name__=="__main__":
-    ent=[json.loads(l) for l in open(f"{T}/edicioni/dicionario.jsonl",encoding='utf-8')]
+    ent=[json.loads(l) for l in open(f"{T}/editions/dicionario.jsonl",encoding='utf-8')]
     prop,root=propose(ent)
     print("roots known: %d ; corrections proposed: %d"%(len(root),len(prop)))
     for w,v in sorted(prop.items())[:40]: print("   %-22s -> %s"%(w,v))

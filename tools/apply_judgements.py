@@ -17,7 +17,7 @@ import os
 _ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 T=_ROOT + "/work"
 
-def run_step(rep=f"{T}/juger/reponses/r.txt", fic=f"{T}/juger/fiches.json"):
+def run_step(rep=f"{T}/judge/answers/r.txt", fic=f"{T}/judge/records.json"):
     records={x['id']:x for x in json.load(open(fic))}
     corr=[]
     for l in open(rep,encoding='utf-8'):
@@ -26,7 +26,7 @@ def run_step(rep=f"{T}/juger/reponses/r.txt", fic=f"{T}/juger/fiches.json"):
         x=records.get(int(i))
         if x is None: continue
         corr.append((x['mot'], v.strip()))
-    ent=[json.loads(l) for l in open(f"{T}/edicioni/dicionario.jsonl",encoding='utf-8')]
+    ent=[json.loads(l) for l in open(f"{T}/editions/dicionario.jsonl",encoding='utf-8')]
     log_=[]
     for word, good in corr:
         # hyphenation: « pro-duktita » -> « produktita »
@@ -40,10 +40,10 @@ def run_step(rep=f"{T}/juger/reponses/r.txt", fic=f"{T}/juger/fiches.json"):
             for k,t in enumerate(s):
                 nt,n=pattern.subn(good, t)
                 if n: log_.append((e['image'],e['ligno'],word,good)); s[k]=nt
-    with open(f"{T}/edicioni/dicionario.jsonl","w",encoding='utf-8') as f:
+    with open(f"{T}/editions/dicionario.jsonl","w",encoding='utf-8') as f:
         for e in ent: f.write(json.dumps(e,ensure_ascii=False)+"\n")
-    with open(f"{T}/jugements.txt","w",encoding='utf-8') as f:
-        f.write("# image\tligne\tforme lue\tforme retenue\n")
+    with open(f"{T}/judgements.txt","w",encoding='utf-8') as f:
+        f.write("# image\tline\tform read\tform kept\n")
         for x in log_: f.write("%s\t%s\t%s\t%s\n"%x)
     print("corrections kept: %d ; occurrences replaced: %d"%(len(corr),len(log_)))
     return log_

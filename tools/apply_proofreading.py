@@ -10,14 +10,14 @@ import os, sys, glob, json
 _ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 T=_ROOT + "/work"
 
-def run_step(out_path=f"{T}/exceptions_relecture.txt"):
+def run_step(out_path=f"{T}/exceptions_proofreading.txt"):
     # We compare the returned line with the line SUBMITTED, as it appears in the
     # sheet -- and not with a recomputed decoding, which would already include
     # the corrections and would bite its own tail.
     corr_=[]; refused=[]; n_lines=0; page_n=0
-    for f in sorted(glob.glob(f"{T}/relecture/rez/p*.txt")):
+    for f in sorted(glob.glob(f"{T}/proofreading/rez/p*.txt")):
         pg=int(os.path.basename(f)[1:4]); page_n+=1
-        submitted=f"{T}/relecture/p{pg:03d}.txt"
+        submitted=f"{T}/proofreading/p{pg:03d}.txt"
         if not os.path.exists(submitted): refused.append((pg,-1,"planche absente")); continue
         page_n_ok=True; cur={}
         for l in open(submitted, encoding='utf-8'):
@@ -49,8 +49,8 @@ def run_step(out_path=f"{T}/exceptions_relecture.txt"):
                 corr_.append((pg,k,c,y))
     with open(out_path,"w",encoding='utf-8') as fo:
         fo.write("# Relecture directe : l'image du scan lue contre le texte decode.\n")
-        fo.write("# Une case, un caractere ; les lignes relues ont la meme longueur que\n")
-        fo.write("# celles qui ont ete soumises, donc la comparaison est exacte.\n")
+        fo.write("# One box, one character; the reread lines have the same length as\n")
+        fo.write("# those submitted, so the comparison is exact.\n")
         for pg,k,c,v in corr_:
             fo.write(f"{pg}\t{k}\t{c}\t{v if v!=' ' else ' '}\n")
     print(f"pages proofread: {page_n} ; lines applied: {n_lines} ; cells corrected: {len(corr_)}")

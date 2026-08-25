@@ -37,7 +37,7 @@ def _batches(C, idx, size=20000):
 def read_sheets():
     """Labels read by eye on the group sheets."""
     read_={}
-    rep=f"{T}/groupes/rez"
+    rep=f"{T}/groups/rez"
     if not os.path.isdir(rep): return read_
     for f in sorted(os.listdir(rep)):
         for l in open(os.path.join(rep,f),encoding='utf-8'):
@@ -119,8 +119,8 @@ def run_step(rounds=3, cache=20, auto_threshold=0.98, by_group=6):
         oo=np.argsort(ii)
         Xa=np.concatenate([X, Xe[[pos[v] for v in ii[oo]]]])
         Ya2=np.concatenate([Y, ll[oo]])
-    np.save(f"{T}/cls_lab_modele.npy", label_); np.save(f"{T}/cls_conf3.npy", conf)
-    pickle.dump(m, open(f"{T}/modele3.pkl","wb"))
+    np.save(f"{T}/cls_lab_model.npy", label_); np.save(f"{T}/cls_conf3.npy", conf)
+    pickle.dump(m, open(f"{T}/model3.pkl","wb"))
     ex=(label_[kl[I]]==Y).mean()
     print(f"exactness of the model on the known cells: {100*ex:.3f}%", flush=True)
     return label_, conf

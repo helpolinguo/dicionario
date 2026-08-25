@@ -27,7 +27,7 @@ def rules(pg, **kw):
     Only the rectified image comes from analyser(); the lines, the pitch and
     the origin come from the npz, as at the first cutting.
     """
-    z=np.load(f"{T}/cellules/p-{pg:03d}.npz", allow_pickle=True)
+    z=np.load(f"{T}/cells/p-{pg:03d}.npz", allow_pickle=True)
     d = C.analyse(f"{ROOT}/scan/p-{pg:03d}.jpg")
     r=d['norm']
     vstep=float(z['pasv']); hstep=float(z['pash']); xg=float(z['xg']); c0=int(z['col0'])
@@ -38,13 +38,13 @@ def rules(pg, **kw):
 if __name__=="__main__":
     for pg in (25,33):
         new_one=rules(pg)
-        z=np.load(f"{T}/cellules/p-{pg:03d}.npz", allow_pickle=True)
+        z=np.load(f"{T}/cells/p-{pg:03d}.npz", allow_pickle=True)
         old=pickle.loads(z['sou'].item())
         ka=set(k for k,v in old.items() if v[1]); kn=set(k for k,v in new_one.items() if v[1])
         equal_=all(sorted(old[k][1])==sorted(new_one[k][1]) for k in ka|kn if k in old and k in new_one)
         print("p%03d : lines with a rule old=%d new=%d  identical=%s"%(pg,len(ka),len(kn),equal_ and ka==kn))
 
-def all_(out_path=f"{T}/filets.pkl", start_=0, end_=None):
+def all_(out_path=f"{T}/rules.pkl", start_=0, end_=None):
     """Recomputes the rules of every page and deposits them apart.
 
     We do not write into the corpus of cells: it weighs 295 MB and one error
@@ -54,7 +54,7 @@ def all_(out_path=f"{T}/filets.pkl", start_=0, end_=None):
     """
     import glob
     pages=sorted(int(re.search(r'p-(\d+)',f).group(1))
-                 for f in glob.glob(f"{T}/cellules/p-*.npz"))
+                 for f in glob.glob(f"{T}/cells/p-*.npz"))
     pages=[p for p in pages if p>=start_ and (end_ is None or p<end_)]
     out={}
     for i,pg in enumerate(pages):

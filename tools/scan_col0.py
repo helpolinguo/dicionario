@@ -5,7 +5,7 @@ from cells import extract
 T=_ROOT + "/work"
 a,b=int(sys.argv[1]),int(sys.argv[2]); out=[]
 for pg in range(a,b):
-    f=f"{T}/cellules/p-{pg:03d}.npz"
+    f=f"{T}/cells/p-{pg:03d}.npz"
     if not os.path.exists(f): continue
     try:
         z=np.load(f, allow_pickle=True)

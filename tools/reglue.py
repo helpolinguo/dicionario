@@ -5,10 +5,10 @@ _ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 T=_ROOT + "/work"
 
 def run_step():
-    rep=json.load(open(f"{T}/reparation.json"))
+    rep=json.load(open(f"{T}/repair.json"))
     dec={r['pagino']: (r['decalage'], r.get('colonne',0)) for r in rep}
-    Mn=np.load(f"{T}/reparation_meta.npy"); Gn=np.load(f"{T}/reparation_grp.npy")
-    Cn=np.load(f"{T}/reparation_cells.npy")
+    Mn=np.load(f"{T}/repair_meta.npy"); Gn=np.load(f"{T}/repair_grp.npy")
+    Cn=np.load(f"{T}/repair_cells.npy")
     M=np.load(f"{T}/meta_all.npy"); G=np.load(f"{T}/km_lab.npy")
     C=np.load(f"{T}/cells_all.npy", mmap_mode='r')
     S=np.load(f"{T}/km_sim.npy")
@@ -33,7 +33,7 @@ def run_step():
     np.save(f"{T}/meta_all.npy", M2); np.save(f"{T}/km_lab.npy", G2)
     np.save(f"{T}/cells_all.npy", C2); np.save(f"{T}/km_sim.npy", S2)
     # reindexing of the corrections
-    for name_ in ("exceptions.txt","exceptions_manuel.txt","exceptions_paires.txt"):
+    for name_ in ("exceptions.txt","exceptions_manual.txt","exceptions_pairs.txt"):
         p=f"{T}/{name_}"
         if not os.path.exists(p): continue
         out=[]; n=0

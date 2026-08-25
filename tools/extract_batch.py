@@ -3,7 +3,7 @@ _ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0,_ROOT + "/tools")
 from cells import extract
 from multiprocessing import Pool
-SCAN=_ROOT + "/scan"; OUT=_ROOT + "/work/cellules"
+SCAN=_ROOT + "/scan"; OUT=_ROOT + "/work/cells"
 os.makedirs(OUT, exist_ok=True)
 def un(n):
     dst=f"{OUT}/{n}.npz"

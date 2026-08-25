@@ -30,7 +30,7 @@ ZONES=[
  ("bas",              0,1205,1560,1620),
 ]
 def run_step():
-    n=np.load(f"{ROOT}/work/couv/niveaux.npy")
+    n=np.load(f"{ROOT}/work/cover/levels.npy")
     end_=Image.open(f"{ROOT}/ornaments/couverture/couverture-x2.png").convert("L")
     os.makedirs(f"{ROOT}/work/audit",exist_ok=True)
     for name_,x0,x1,y0,y1 in ZONES:

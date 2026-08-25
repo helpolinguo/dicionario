@@ -28,7 +28,7 @@ T=_ROOT + "/work"
 END_OK = ("o","a","e","i","ar","ir","or")
 CODES  = set("DEFIRSLP")
 
-def load_(p=f"{T}/edicioni/dicionario.jsonl"):
+def load_(p=f"{T}/editions/dicionario.jsonl"):
     return [json.loads(l) for l in open(p,encoding='utf-8')]
 
 def keys_(v):

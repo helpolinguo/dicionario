@@ -18,7 +18,7 @@ T=_ROOT + "/work"; ROOT=_ROOT
 def survey_(threshold=0.20):
     lab,M=load_(); tab=np.load(f"{T}/cls_lab.npy",allow_pickle=True)
     found_ones=[]
-    for f in sorted(glob.glob(f"{T}/cellules/p-*.npz")):
+    for f in sorted(glob.glob(f"{T}/cells/p-*.npz")):
         pg=int(re.search(r'p-(\d+)',f).group(1))
         z=np.load(f, allow_pickle=True)
         try: lines,ncol=page_lines(pg,lab,M,tab)

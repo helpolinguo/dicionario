@@ -16,7 +16,7 @@ def learn():
     m.fit(X,y)
     return m
 def label_groups(m):
-    mean_=np.load(f"{T}/km_moy.npy")
+    mean_=np.load(f"{T}/km_mean.npy")
     Xm=feature_vector(np.clip(mean_,0,255).astype(np.uint8))
     p=m.predict(Xm); pr=m.predict_proba(Xm).max(1)
     return p, pr

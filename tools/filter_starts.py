@@ -31,7 +31,7 @@ def filter_(raw, max_lines=2):
 if __name__=="__main__":
     raw=pickle.load(open(f"{T}/debuts_brut.pkl","rb"))
     clean_=filter_(raw)
-    pickle.dump(clean_, open(f"{T}/debuts.pkl","wb"))
+    pickle.dump(clean_, open(f"{T}/starts.pkl","wb"))
     print("pages kept: %d (out of %d)"%(len(clean_), len(raw)))
     for pg in sorted(clean_):
         print("   p%03d : %s"%(pg, sorted((k,v[-1]) for k,v in clean_[pg].items())))

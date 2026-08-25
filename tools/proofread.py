@@ -17,7 +17,7 @@ strings returned run to several words, which is enough to distinguish them.
 import os, re, glob
 _ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 T = _ROOT + "/work"
-FOLDER = f"{T}/relire/reponses"
+FOLDER = f"{T}/proofread/answers"
 
 
 def read_(folder=FOLDER):

@@ -17,7 +17,7 @@ I J K L M N O P Q R S T U V W X Y
 Z 0 1 2 3 4 5 6 7 8 9 . , ; : ! ?
 ( ) - + = / \textquotesingle{} \textquotedbl{} * \_ \%% \& \# \$ [ ]
 \end{document}"""
-def templates(name_, font, opt, size, rep=_ROOT + "/work/polices"):
+def templates(name_, font, opt, size, rep=_ROOT + "/work/fonts"):
     os.makedirs(rep, exist_ok=True)
     tex=f"{rep}/{name_}.tex"
     open(tex,"w").write(TEMPLATE % dict(font=font,opt=opt,taille=size))

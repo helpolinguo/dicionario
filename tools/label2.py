@@ -68,14 +68,14 @@ def run_step(rounds=4, cache=30, by_group=12):
         (b,n),=c.most_common(1); label_[k]=b
         if len(c)>1: imp+=1
     import os
-    missing_=f"{T}/etiquettes.txt"; n_manual=0
+    missing_=f"{T}/labels.txt"; n_manual=0
     if os.path.exists(missing_):
         for l in open(missing_,encoding='utf-8'):
             l=l.rstrip("\n")
             if not l.strip() or l.startswith("#"): continue
             i,_,ch=l.partition("\t"); label_[int(i)]=ch; n_manual+=1
     np.save(f"{T}/cls_lab.npy", label_); np.save(f"{T}/cls_conf.npy", conf)
-    pickle.dump(m, open(f"{T}/modele.pkl","wb"))
+    pickle.dump(m, open(f"{T}/model.pkl","wb"))
     ex=(label_[lab[I]]==Y).mean()
     print(f"exactness on the seed: {100*ex:.3f}%  ({len(I)} cells)", flush=True)
     print(f"groups covered: {len(vote)} ; impure: {imp} ; manual: {n_manual}", flush=True)

@@ -17,7 +17,7 @@ PAR  = 16      # sixteen strips: a sheet of 1180 x 1270
 _cache = {}
 def cells_of(pg):
     if pg not in _cache:
-        z = np.load(f"{T}/cellules/p-{pg:03d}.npz", allow_pickle=True)
+        z = np.load(f"{T}/cells/p-{pg:03d}.npz", allow_pickle=True)
         _cache[pg] = (z['cells'], {int(k): i for i, k in enumerate(z['lignes'][:, 0])})
         if len(_cache) > 40: _cache.pop(next(iter(_cache)))
     return _cache[pg]

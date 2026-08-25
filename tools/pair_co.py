@@ -47,6 +47,6 @@ def run_step():
     print("confusions c/o proposees :", len(prop), flush=True)
     c=collections.Counter((p['fautiva'],p['korektita']) for p in prop)
     for (a,b),n in c.most_common(25): print(f"   {a} -> {b}  ({n} fois)")
-    json.dump(prop, open(f"{T}/paire_co.json","w"), ensure_ascii=False)
+    json.dump(prop, open(f"{T}/pair_co.json","w"), ensure_ascii=False)
 
 if __name__=="__main__": run_step()

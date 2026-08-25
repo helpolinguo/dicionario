@@ -5,7 +5,7 @@ T=_ROOT + "/work"
 def pattern(s, n): return "".join("#" if c!=" " else "." for c in s).ljust(n,".")[:n]
 def realign(f):
     pg=int(os.path.basename(f)[1:4])
-    z=np.load(f"{T}/cellules/p-{pg:03d}.npz", allow_pickle=True)
+    z=np.load(f"{T}/cells/p-{pg:03d}.npz", allow_pickle=True)
     occ=z['occ']; lg=z['lignes']
     ref={int(k):"".join("#" if o else "." for o in occ[i]) for i,k in enumerate(lg[:,0])}
     lines=[]

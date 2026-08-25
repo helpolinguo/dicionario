@@ -14,10 +14,10 @@ BOXES=[(21,138,264,394),(188,288,218,359),(379,458,187,331),(546,638,175,323),
         (720,801,188,330),(877,974,218,358),(1034,1136,285,394)]
 
 def stages():
-    c=f"{ROOT}/work/couv/etapes.npz"
+    c=f"{ROOT}/work/cover/stages.npz"
     if os.path.exists(c):
         z=np.load(c); return z['b'],z['d1'],z['d2']
-    n=np.load(f"{ROOT}/work/couv/niveaux.npy")
+    n=np.load(f"{ROOT}/work/cover/levels.npy")
     b=apply_(binarise_stroke(n))
     d1=b.copy()
     R=22*OVERSAMPLE
@@ -50,7 +50,7 @@ def stages():
     return b,d1,d2
 
 def sheet_(name_,x0,x1,y0,y1,Z=5):
-    n=np.load(f"{ROOT}/work/couv/niveaux.npy")
+    n=np.load(f"{ROOT}/work/cover/levels.npy")
     b,d1,d2=stages()
     W=(x1-x0)*Z; H=(y1-y0)*Z
     views=[("SCAN", np.clip(1-n[y0:y1,x0:x1],0,1)*255)]
@@ -61,7 +61,7 @@ def sheet_(name_,x0,x1,y0,y1,Z=5):
         im=Image.fromarray(a.astype(np.uint8)).resize((W,H),Image.LANCZOS)
         d.text((4,i*(H+22)+4),t,fill=0); pl.paste(im,(0,i*(H+22)+20))
     os.makedirs(f"{ROOT}/work/audit",exist_ok=True)
-    pl.save(f"{ROOT}/work/audit/etapes-{name_}.png"); print(name_,pl.size)
+    pl.save(f"{ROOT}/work/audit/stages-{name_}.png"); print(name_,pl.size)
 
 if __name__=="__main__":
     sheet_("lalande",546,800,415,505,Z=6)

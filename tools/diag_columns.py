@@ -6,7 +6,7 @@ if __name__=="__main__":
     a,b=int(sys.argv[1]),int(sys.argv[2]); out=[]
     from cells import extract
     for pg in range(a,b):
-        f=f"{T}/cellules/p-{pg:03d}.npz"
+        f=f"{T}/cells/p-{pg:03d}.npz"
         if not os.path.exists(f): continue
         z=np.load(f, allow_pickle=True)
         occ=z['occ']; 

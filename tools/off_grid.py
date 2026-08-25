@@ -46,7 +46,7 @@ def analyse_page(pg):
     return dict(pagino=pg, encre=int(area.sum()), blanka=False,
                 hauteur_mediane=round(hm,1), elementi=el[:12])
 
-def run_step(out_path=f"{T}/horsgrille.json"):
+def run_step(out_path=f"{T}/off_grid.json"):
     out=[]
     for pg in range(639):
         if not os.path.exists(f"{ROOT}/scan/p-{pg:03d}.jpg"): continue

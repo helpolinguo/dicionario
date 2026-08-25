@@ -11,14 +11,14 @@ import numpy as np, json, os, sys
 _ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ROOT=_ROOT; T=f"{ROOT}/work"
 
-def run_step(out_path=f"{T}/exceptions_ornements.txt", margin=3, dilate=0.35):
-    orn=json.load(open(f"{T}/ornements.json"))
+def run_step(out_path=f"{T}/exceptions_ornaments.txt", margin=3, dilate=0.35):
+    orn=json.load(open(f"{T}/ornaments.json"))
     n=0
     with open(out_path,"w",encoding='utf-8') as f:
-        f.write("# Cellules recouvertes par un ornement : ce n'est pas de la frappe.\n")
+        f.write("# Cells covered by an ornament: this is not typing.\n")
         for e in orn:
             pg=e['pagino']
-            p=f"{T}/cellules/p-{pg:03d}.npz"
+            p=f"{T}/cells/p-{pg:03d}.npz"
             if not os.path.exists(p): continue
             z=np.load(p, allow_pickle=True)
             shape_=tuple(z['shape']); scale=shape_[0]/e['H']

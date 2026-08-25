@@ -9,9 +9,9 @@ from generate import exceptions
 T=_ROOT + "/work"
 
 def prepare(pg, rep=None, per=12, zoom=4):
-    rep = rep or f"{T}/relecture/p{pg:03d}"
+    rep = rep or f"{T}/proofreading/p{pg:03d}"
     os.makedirs(rep, exist_ok=True)
-    z=np.load(f"{T}/cellules/p-{pg:03d}.npz", allow_pickle=True)
+    z=np.load(f"{T}/cells/p-{pg:03d}.npz", allow_pickle=True)
     c=z['cells']; lg=z['lignes']; occ=z['occ']
     for a in range(0, c.shape[0], per):
         line_images_(c[a:a+per], line_ids=[int(x) for x in lg[a:a+per,0]], zoom=zoom

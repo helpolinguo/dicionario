@@ -16,13 +16,13 @@ T = _ROOT + "/work"
 LOT = 130
 
 
-def write_(source=f"{T}/edicioni/dicionario.jsonl", folder=f"{T}/relire/loti"):
+def write_(source=f"{T}/editions/dicionario.jsonl", folder=f"{T}/proofread/batches"):
     os.makedirs(folder, exist_ok=True)
     ent = [json.loads(l) for l in open(source, encoding='utf-8')]
     n = 0
     for i in range(0, len(ent), LOT):
         n += 1
-        with open(f"{folder}/l{n:03d}.txt", "w", encoding='utf-8') as f:
+        with open(f"{folder}/b{n:03d}.txt", "w", encoding='utf-8') as f:
             for j, e in enumerate(ent[i:i+LOT]):
                 idx = i + j
                 fa = f"({e['fako']}) " if e['fako'] else ""

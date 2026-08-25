@@ -31,7 +31,7 @@ def margin(occ, mini=3):
 
 def headwords(pg):
     """Headword lines: the page's margin inked and a rule beginning there."""
-    z=np.load(f"{T}/cellules/p-{pg:03d}.npz", allow_pickle=True)
+    z=np.load(f"{T}/cells/p-{pg:03d}.npz", allow_pickle=True)
     occ=z['occ']; lg=z['lignes']; underline=pickle.loads(z['sou'].item())
     c0=margin(occ)
     out=[]
@@ -48,7 +48,7 @@ def consolidate_(lab, M, tab, pages=None, threshold=0.6, mini=3):
     """Returns (new table, log). The table is not modified in place."""
     import glob, os
     if pages is None:
-        pages=[int(os.path.basename(p)[2:5]) for p in sorted(glob.glob(f"{T}/cellules/*.npz"))]
+        pages=[int(os.path.basename(p)[2:5]) for p in sorted(glob.glob(f"{T}/cells/*.npz"))]
     tab=np.array(tab, dtype=object).copy()
     log_=[]
     by_group=collections.defaultdict(collections.Counter)

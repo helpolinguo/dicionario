@@ -17,7 +17,7 @@ def scan_wedged(pg, dpi=150):
     a=load_(f"{ROOT}/scan/p-{pg:03d}.jpg")
     angle_,_=deskew(mask_edges(normalise(a)))
     r=np.clip(ndrotate(a, angle_, reshape=False, order=1, mode='constant', cval=255),0,255)
-    z=np.load(f"{ROOT}/work/cellules/p-{pg:03d}.npz", allow_pickle=True)
+    z=np.load(f"{ROOT}/work/cells/p-{pg:03d}.npz", allow_pickle=True)
     kx=(dpi*HSTEP_IN)/float(z['pash']); ky=(dpi*VSTEP_IN)/float(z['pasv'])
     x0=(float(z['xg'])+int(z['col0'])*float(z['pash']))*kx
     y0=float(z['lignes'][0,1])*ky

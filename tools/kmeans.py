@@ -34,5 +34,5 @@ for k in range(K):
     if not len(m): continue
     if len(m)>50: m=m[np.argsort(-sim[m])[:50]]
     mean_[k]=np.asarray(C[np.sort(m)]).mean(0)
-np.save(f"{T}/km_moy.npy",mean_)
+np.save(f"{T}/km_mean.npy",mean_)
 print("fini %.0fs"%(time.time()-t), np.median(sim), np.bincount(lab,minlength=K).min(),flush=True)

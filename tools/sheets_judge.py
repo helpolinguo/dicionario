@@ -37,7 +37,7 @@ def run_step(per=60):
     n=0
     for d in range(0, len(records), per):
         batch=records[d:d+per]; n+=1
-        with open(f"{REP}/lot{n:02d}.txt","w",encoding='utf-8') as f:
+        with open(f"{REP}/batch{n:02d}.txt","w",encoding='utf-8') as f:
             for x in batch:
                 f.write("%d\t%s\t%s\t%s | %s\n"
                         %(x['id'], x['mot'], ",".join(x['vois']) or "-",

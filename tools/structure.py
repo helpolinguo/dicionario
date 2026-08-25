@@ -67,4 +67,4 @@ if __name__=="__main__":
     breaks=sum(1 for a,b in zip(v,v[1:]) if a>b)
     print(f"  breaks in the alphabetical order: {breaks} ({100*breaks/max(len(v)-1,1):.1f} %)")
     for e in ent: e['code']=e['code'].group(1) if e['code'] else None
-    pickle.dump(ent, open(f"{T}/entrees.pkl","wb"))
+    pickle.dump(ent, open(f"{T}/entries.pkl","wb"))

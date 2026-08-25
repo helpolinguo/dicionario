@@ -11,7 +11,7 @@ def read_(file_):
     return d
 def pairs(pg, txt):
     """Returns (indices of cells in meta_all, characters)."""
-    z=np.load(f"{T}/cellules/p-{pg:03d}.npz", allow_pickle=True)
+    z=np.load(f"{T}/cells/p-{pg:03d}.npz", allow_pickle=True)
     occ=z['occ']; lg=z['lignes']
     M=np.load(f"{T}/meta_all.npy")
     sel=np.where(M[:,0]==pg)[0]

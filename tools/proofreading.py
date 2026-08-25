@@ -27,7 +27,7 @@ def page_text_(pg, pages=None):
 
 def strips(pg, rep, lines):
     """Cuts the page into horizontal strips, each legible at a glance."""
-    z=np.load(f"{T}/cellules/p-{pg:03d}.npz", allow_pickle=True)
+    z=np.load(f"{T}/cells/p-{pg:03d}.npz", allow_pickle=True)
     scale=float(z['shape'][0])/Image.open(f"{ROOT}/scan/p-{pg:03d}.jpg").size[1]
     vstep=float(z['pasv']); lg={int(k):float(y) for k,y in z['lignes']}
     im=Image.open(f"{ROOT}/scan/p-{pg:03d}.jpg").convert('L')

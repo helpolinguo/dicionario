@@ -38,7 +38,7 @@ def run_step(per=60, batches=10):
     for L in range(batches):
         batch=records[L*per:(L+1)*per]
         if not batch: break
-        with open(f"{REP}/lot{L+1:02d}.txt","w",encoding='utf-8') as f:
+        with open(f"{REP}/batch{L+1:02d}.txt","w",encoding='utf-8') as f:
             for x in batch:
                 f.write("%d\t%s\t%s | %s\n"%(x['id'], x['mot'], x['ved'], x['ctx']))
     print("pool %d ; %d lots de %d ecrits"%(len(records), min(batches,(len(records)+per-1)//per), per))

@@ -154,7 +154,7 @@ def run_step(min_attested=8, max_faulty=5, max_pos=3, margin=8, ngram_margin=6.0
 if __name__=="__main__":
     exc, log_, freq = run_step()
     with open(f"{T}/journal_corrections.txt","w",encoding='utf-8') as f:
-        f.write("page\tligne\tcol\tlu\tcorrige\tforme lue\tforme retenue\tfreq lue\tfreq retenue\n")
+        f.write("page\tline\tcol\tread\tcorrected\tform read\tform kept\tfreq read\tfreq kept\n")
         for j in log_: f.write("\t".join(map(str,j))+"\n")
     # merged into exceptions.txt, preserving the manual entries
     manual=[]

@@ -31,7 +31,7 @@ def smudges():
 def load_():
     lab=np.load(f"{T}/km_lab.npy"); M=np.load(f"{T}/meta_all.npy")
     return lab,M
-def table(file_=f"{T}/etiquettes.txt", n=None):
+def table(file_=f"{T}/labels.txt", n=None):
     """Table group -> character. File: one line 'idx char' (empty char = space)."""
     props=np.load(f"{T}/proposition.npy")
     tab=np.array(props, dtype=object).copy()
@@ -45,7 +45,7 @@ def table(file_=f"{T}/etiquettes.txt", n=None):
     return tab
 def page_text(pg, lab, M, tab):
     import numpy as np
-    z=np.load(f"{T}/cellules/p-{pg:03d}.npz", allow_pickle=True)
+    z=np.load(f"{T}/cells/p-{pg:03d}.npz", allow_pickle=True)
     lg=z['lignes']; ncol=z['occ'].shape[1]
     sel=np.where(M[:,0]==pg)[0]
     m=M[sel]; l=lab[sel]

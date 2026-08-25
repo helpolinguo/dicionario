@@ -7,7 +7,7 @@ from scipy.ndimage import label, find_objects, binary_dilation
 from PIL import Image, ImageDraw
 ROOT=_ROOT
 LH,LV,AREA,INK,THICK,FAR = 12,6,900,1500,900,12
-black=np.load(f"{ROOT}/work/couv/noir_cache.npy")
+black=np.load(f"{ROOT}/work/cover/black_cache.npy")
 BOXES=[(21,138,264,394),(188,288,218,359),(379,458,187,331),(546,638,175,323),
         (720,801,188,330),(877,974,218,358),(1034,1136,285,394)]
 mp=np.zeros(black.shape,bool)

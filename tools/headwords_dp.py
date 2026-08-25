@@ -101,8 +101,8 @@ if __name__=="__main__":
     exc=dict(exceptions())
     fresh,log_,hw,C,ch=resolve_(lab,M,tab,smudges(),exc,alt)
     print(len(hw),"headwords ;",len(log_),"cells corrected")
-    with open(f"{T}/journal_vedettes.txt","w",encoding='utf-8') as f:
-        f.write("page\tligne\tcol\tlu\tcorrige\tvedette lue\tvedette retenue\n")
+    with open(f"{T}/journal_headwords.txt","w",encoding='utf-8') as f:
+        f.write("page\tline\tcol\tread\tcorrected\theadword read\theadword kept\n")
         for j in log_: f.write("\t".join(map(str,j))+"\n")
     import os
     p=f"{T}/exceptions.txt"; lines=[]

@@ -50,7 +50,7 @@ def _offset(old, new_, dmax=16):
 def repair_(pg, Q, tab, verbose=True):
     from cells import extract
     from decode import smudges
-    old_npz=f"{T}/cellules/p-{pg:03d}.npz"
+    old_npz=f"{T}/cells/p-{pg:03d}.npz"
     z=np.load(old_npz, allow_pickle=True)
     M=np.load(f"{T}/meta_all.npy"); kl=np.load(f"{T}/km_lab.npy")
     sel=np.where(M[:,0]==pg)[0]
@@ -99,16 +99,16 @@ def repair_(pg, Q, tab, verbose=True):
     return dict(pagino=pg, decalage=int(dec), colonne=int(col_score), score=float(score),
                 cells=A, meta=Mnew, groupes=gnew, avant=int(len(sel)))
 
-def run_step(pages, out_path=f"{T}/reparation.json"):
+def run_step(pages, out_path=f"{T}/repair.json"):
     Q=np.load(f"{T}/km_centres2.npy"); tab=np.load(f"{T}/cls_lab.npy",allow_pickle=True)
     res=[]
     for pg in pages:
         try: res.append(repair_(pg,Q,tab))
         except Exception as e:
             print(f"  FAILED p-{pg:03d}: {e}", flush=True)
-    np.save(f"{T}/reparation_cells.npy", np.concatenate([r['cells'] for r in res]))
-    np.save(f"{T}/reparation_meta.npy",  np.concatenate([r['meta'] for r in res]))
-    np.save(f"{T}/reparation_grp.npy",   np.concatenate([r['groupes'] for r in res]))
+    np.save(f"{T}/repair_cells.npy", np.concatenate([r['cells'] for r in res]))
+    np.save(f"{T}/repair_meta.npy",  np.concatenate([r['meta'] for r in res]))
+    np.save(f"{T}/repair_grp.npy",   np.concatenate([r['groupes'] for r in res]))
     json.dump([{k:v for k,v in r.items() if k in ('pagino','decalage','colonne','score','avant')} for r in res],
               open(out_path,'w'))
     print("pages repaired:", len(res))

@@ -23,7 +23,7 @@ def merge_(grey_svg, black_svg, out_path, grey="#8c8c8c"):
 def run_step():
     g=monochrome_ink(f"{ROOT}/scan/p-000.jpg")
     n=normalise(g)[4:1640,0:1205]
-    os.makedirs(TRV,exist_ok=True); np.save(f"{TRV}/niveaux.npy",n)
+    os.makedirs(TRV,exist_ok=True); np.save(f"{TRV}/levels.npy",n)
     u=oversample(n)
 
     # --- portraits: two tones ---

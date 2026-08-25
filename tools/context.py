@@ -7,7 +7,7 @@ T=_ROOT + "/work"
 _cache={}
 def page(pg):
     if pg not in _cache:
-        _cache[pg]=np.load(f"{T}/cellules/p-{pg:03d}.npz", allow_pickle=True)
+        _cache[pg]=np.load(f"{T}/cells/p-{pg:03d}.npz", allow_pickle=True)
     return _cache[pg]
 def context(groups, lab, M, k, n=8, before_=10, after_=10, zoom=4, seed=0):
     idx=np.where(lab==k)[0]

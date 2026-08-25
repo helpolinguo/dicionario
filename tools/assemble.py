@@ -17,8 +17,8 @@ T=_ROOT + "/work"
 
 def read_sheets():
     read_={}
-    for f in sorted(os.listdir(f"{T}/groupes/rez")):
-        for l in open(f"{T}/groupes/rez/"+f,encoding='utf-8'):
+    for f in sorted(os.listdir(f"{T}/groups/rez")):
+        for l in open(f"{T}/groups/rez/"+f,encoding='utf-8'):
             l=l.rstrip("\n")
             if l.startswith("==") or "\t" not in l: continue
             a,b=l.split("\t",1)
@@ -35,7 +35,7 @@ def truth_by_group():
 
 def run_step():
     kl=np.load(f"{T}/km_lab.npy"); K=int(kl.max())+1
-    mod=np.load(f"{T}/cls_lab_modele.npy",allow_pickle=True)
+    mod=np.load(f"{T}/cls_lab_model.npy",allow_pickle=True)
     read_=read_sheets(); per=truth_by_group()
     end_=mod.copy(); src=collections.Counter(); mixed=[]
     for g in range(K):
@@ -48,26 +48,26 @@ def run_step():
         if v is not None and len(v)==1: end_[g]=v; src['planche']+=1; continue
         src['modele']+=1
     np.save(f"{T}/cls_lab.npy", end_)
-    np.save(f"{T}/groupes_mixtes.npy", np.array(mixed,dtype=int))
+    np.save(f"{T}/groups_mixed.npy", np.array(mixed,dtype=int))
     print("arbitrage :", dict(src))
-    old=np.load(f"{T}/cls_lab_avant_relecture_groupes.npy",allow_pickle=True)
+    old=np.load(f"{T}/cls_lab_before_proofreading_groups.npy",allow_pickle=True)
     n=np.bincount(kl,minlength=K)
     d=[g for g in range(K) if end_[g]!=old[g]]
     print("groups differing from the original labelling:",len(d)," cells:",int(n[d].sum()))
     return end_, mixed
 
-def mixed_cells(mixed, out_path=f"{T}/exceptions_modele.txt"):
+def mixed_cells(mixed, out_path=f"{T}/exceptions_model.txt"):
     """Cell-by-cell decoding of the mixed groups."""
     C=np.load(f"{T}/cells_all.npy", mmap_mode='r'); M=np.load(f"{T}/meta_all.npy")
     kl=np.load(f"{T}/km_lab.npy")
     from features2 import feature_vector2
-    m=pickle.load(open(f"{T}/modele3.pkl","rb"))
+    m=pickle.load(open(f"{T}/model3.pkl","rb"))
     sel=np.where(np.isin(kl, mixed))[0]
     print("cells to decode one by one:",len(sel))
     written=0
     with open(out_path,"w",encoding='utf-8') as f:
-        f.write("# Cellules des groupes melanges, decodees une a une par le modele.\n")
-        f.write("# Ce fichier a la priorite la plus basse : toute correction a la main l'emporte.\n")
+        f.write("# Cells of the mixed groups, decoded one by one by the model.\n")
+        f.write("# This file has the lowest priority: any correction by hand wins.\n")
         for a in range(0,len(sel),20000):
             b=sel[a:a+20000]
             X=feature_vector2(np.asarray(C[b]))

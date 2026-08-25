@@ -19,7 +19,7 @@ MARGIN={'signaturo':10}          # margin of the cutting, in pixels of the scan
 
 def not_typed():
     d={}
-    p=f"{T}/pages_non_dactylo.txt"
+    p=f"{T}/pages_not_typed.txt"
     if os.path.exists(p):
         for l in open(p,encoding='utf-8'):
             if l.startswith('#') or not l.strip(): continue
@@ -34,7 +34,7 @@ def ornaments():
     « Y » in the middle, section Y not opening on a fresh sheet. The « Y »
     disappeared there without a sound.
     """
-    p=f"{T}/ornements.json"
+    p=f"{T}/ornaments.json"
     if not os.path.exists(p): return {}
     d={}
     for e in json.load(open(p)): d.setdefault(e['pagino'], []).append(e)
@@ -54,7 +54,7 @@ def _latex_ornament(e):
     """
     m=MARGIN.get(e['litero'], 6)
     pg=e['pagino']
-    z=np.load(f"{T}/cellules/p-{pg:03d}.npz", allow_pickle=True)
+    z=np.load(f"{T}/cells/p-{pg:03d}.npz", allow_pickle=True)
     scale=float(z['shape'][0])/e['H']
     vstep=float(z['pasv']); hstep=float(z['pash'])
     xg=float(z['xg']); col0=int(z['col0']); lg=z['lignes']
@@ -76,10 +76,10 @@ def run_step():
                    if nd[pg]=='kovrilo' else "\\pgvakua")
             note = "couverture, lithographie" if nd[pg]=='kovrilo' else "page blanche"
             open(path_,"w",encoding='utf-8').write(
-                "%% page %d du fac-simile (image p-%03d) — %s, pas de frappe\n%s\n"
+                "%% page %d of the facsimile (image p-%03d) — %s, not typed\n%s\n"
                 % (pg+1, pg, note, body))
             done_.append(pg); continue
-        if not os.path.exists(f"{T}/cellules/p-{pg:03d}.npz"): continue
+        if not os.path.exists(f"{T}/cells/p-{pg:03d}.npz"): continue
         try: write_(pg,lab,M,tab)
         except Exception as e:
             print("FAILED p%03d: %s"%(pg,e), flush=True); continue

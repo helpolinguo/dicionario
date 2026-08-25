@@ -14,7 +14,7 @@ import cells
 ROOT=_ROOT; T=f"{ROOT}/work"
 
 def one_(pg):
-    z=np.load(f"{T}/cellules/p-{pg:03d}.npz", allow_pickle=True)
+    z=np.load(f"{T}/cells/p-{pg:03d}.npz", allow_pickle=True)
     ncol=z['occ'].shape[1]; col0=int(z['col0'])
     cells.EXTEND=False; cells.EXTEND_RIGHT=True
     d=cells.extract(f"{ROOT}/scan/p-{pg:03d}.jpg")
@@ -30,10 +30,10 @@ def one_(pg):
 if __name__=="__main__":
     a,b=int(sys.argv[1]), int(sys.argv[2]); out=[]
     for pg in range(a,b):
-        if not os.path.exists(f"{T}/cellules/p-{pg:03d}.npz"): continue
+        if not os.path.exists(f"{T}/cells/p-{pg:03d}.npz"): continue
         if pg in (0,1,3,7,87,111,577): continue
         try: out.append(one_(pg))
         except Exception as e: print("FAILED",pg,e, flush=True)
-    json.dump(out, open(f"{T}/fins_{a}.json","w"))
+    json.dump(out, open(f"{T}/ends_{a}.json","w"))
     p=sum(x['perdus'] for x in out); l=sum(x['lignes'] for x in out)
     print(f"{a}-{b} : {len(out)} pages, {l} lines touched, {p} characters cut off")

@@ -1,6 +1,6 @@
 import numpy as np, glob, os, pickle
 _ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-DIR=_ROOT + "/work/cellules"
+DIR=_ROOT + "/work/cells"
 def load_(names=None):
     """Returns cells (N,22,12) uint8, meta (page,line,col) and the list of pages."""
     if names is None: names=[os.path.basename(p)[:-4] for p in sorted(glob.glob(DIR+"/*.npz"))]

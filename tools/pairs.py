@@ -30,7 +30,7 @@ for a,b in PAIRS:
     if len(a)==1 and len(b)==1: LOOKALIKE[a].add(b); LOOKALIKE[b].add(a)
 MIN_ATTESTED=6; MAX_FAULTY=2; RATIO=8
 
-def run_step(out_path=f"{T}/paires.json"):
+def run_step(out_path=f"{T}/pairs.json"):
     from edition import load_text
     pages,_,_=load_text()
     lines=[]

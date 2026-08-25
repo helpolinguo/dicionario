@@ -9,7 +9,7 @@ from PIL import Image, ImageDraw
 T=_ROOT + "/work"; ROOT=_ROOT
 
 def band(pg, k0, k1, Z=3, out_path=None):
-    z=np.load(f"{T}/cellules/p-{pg:03d}.npz", allow_pickle=True)
+    z=np.load(f"{T}/cells/p-{pg:03d}.npz", allow_pickle=True)
     lg=dict((int(k),float(y)) for k,y in z['lignes'])
     vstep=float(z['pasv']); hstep=float(z['pash']); xg=float(z['xg']); c0=int(z['col0'])
     underline=pickle.loads(z['sou'].item())
@@ -36,7 +36,7 @@ def band(pg, k0, k1, Z=3, out_path=None):
                 xa=(xg+(a+c0)*hstep-0)*Z; xb=(xg+(b+1+c0)*hstep)*Z
                 yr=(lg[k]+0.62*vstep-y0/scale)*Z
                 d.rectangle([xa,yr-2,xb,yr+2], outline=(255,0,0))
-    p=out_path or f"{T}/sou-p{pg:03d}-{k0}.png"
+    p=out_path or f"{T}/underline-p{pg:03d}-{k0}.png"
     im.save(p); print(p, im.size)
 
 if __name__=="__main__":

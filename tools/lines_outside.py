@@ -15,7 +15,7 @@ import page as P
 ROOT=_ROOT; T=f"{ROOT}/work"
 
 def lattice(pg, threshold=0.02):
-    z=np.load(f"{T}/cellules/p-{pg:03d}.npz", allow_pickle=True)
+    z=np.load(f"{T}/cells/p-{pg:03d}.npz", allow_pickle=True)
     lg=np.array(z['lignes']); vstep=float(z['pasv'])
     a=P.load_(f"{ROOT}/scan/p-{pg:03d}.jpg")
     b=P.mask_edges(P.normalise(a)); _,r=P.deskew(b)
@@ -43,7 +43,7 @@ if __name__=="__main__":
 
 def columns_(pg, ks):
     """For each line k, the first and the last inked column."""
-    z=np.load(f"{T}/cellules/p-{pg:03d}.npz", allow_pickle=True)
+    z=np.load(f"{T}/cells/p-{pg:03d}.npz", allow_pickle=True)
     lg=np.array(z['lignes']); vstep=float(z['pasv']); hstep=float(z['pash'])
     xg=float(z['xg']); col0=int(z['col0'])
     a=P.load_(f"{ROOT}/scan/p-{pg:03d}.jpg")

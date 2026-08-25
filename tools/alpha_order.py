@@ -70,8 +70,8 @@ if __name__=="__main__":
     exc=dict(exceptions())
     fresh,log_=correct_(lab,M,tab,smudges(),exc,alt)
     print(len(log_),"headword cells corrected by alphabetical order")
-    with open(f"{T}/journal_ordre_alpha.txt","w",encoding='utf-8') as f:
-        f.write("page\tligne\tcol\tlu\tcorrige\tvedette lue\tvedette retenue\tprecedente\tsuivante\n")
+    with open(f"{T}/journal_alpha_order.txt","w",encoding='utf-8') as f:
+        f.write("page\tline\tcol\tread\tcorrected\theadword read\theadword kept\tprevious\tnext\n")
         for j in log_: f.write("\t".join(map(str,j))+"\n")
     import os
     lines=[]

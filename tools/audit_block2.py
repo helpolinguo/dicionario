@@ -2,7 +2,7 @@
 """Does the stored block cover all the text the page carries, on the RIGHT
 and at the FOOT?
 
-audit_block.py looked only at the foot. Pages photographed askew are
+audit_blockk.py looked only at the foot. Pages photographed askew are
 trimmed on the right: « smalto » reads « Vitro blua, obtenat » instead of
 « obtenata per la fuzo di materio ». We therefore measure both edges, in
 steps of the page's grid -- one column, one line -- and not in pixels.
@@ -13,11 +13,11 @@ _ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, _ROOT + "/tools")
 import page as P
 ROOT = _ROOT; T = f"{ROOT}/work"
-OUT_PATH = f"{T}/audit_bloc2.json"
+OUT_PATH = f"{T}/audit_block2.json"
 
 
 def one_(pg):
-    z = np.load(f"{T}/cellules/p-{pg:03d}.npz", allow_pickle=True)
+    z = np.load(f"{T}/cells/p-{pg:03d}.npz", allow_pickle=True)
     a = P.load_(f"{ROOT}/scan/p-{pg:03d}.jpg")
     b = P.mask_edges(P.normalise(a)); _, r = P.deskew(b)
     y0, y1, x0, x1 = P.text_block(r)
@@ -36,7 +36,7 @@ def all_():
     if os.path.exists(OUT_PATH):
         out = {int(k): v for k, v in json.load(open(OUT_PATH)).items()}
     pages = sorted(int(re.search(r'p-(\d+)', f).group(1))
-                   for f in glob.glob(f"{T}/cellules/p-*.npz"))
+                   for f in glob.glob(f"{T}/cells/p-*.npz"))
     for i, pg in enumerate(pages):
         if pg in out: continue
         try: out[pg] = one_(pg)

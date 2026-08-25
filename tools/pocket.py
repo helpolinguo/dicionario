@@ -7,7 +7,7 @@ giving the first headword on the left and the last on the right, section
 initials.
 
 The source is the same file as the HTML page,
-work/edicioni/dicionario.jsonl. The two editions therefore cannot diverge:
+work/editions/dicionario.jsonl. The two editions therefore cannot diverge:
 any correction laid in the proofreading layers is found in the one as in the
 other at the next rebuild.
 """
@@ -18,7 +18,7 @@ import edition
 _ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 ROOT = _ROOT; T = f"{ROOT}/work"; OUT = f"{ROOT}/pocket"
-SOURCE = f"{T}/edicioni/dicionario.jsonl"
+SOURCE = f"{T}/editions/dicionario.jsonl"
 
 # The typescript notes the languages by a letter; the reading edition writes
 # them out. In the pocket edition there is no room: we return to the
