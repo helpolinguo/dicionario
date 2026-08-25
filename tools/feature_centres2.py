@@ -9,13 +9,13 @@ space.
 """
 import numpy as np, sys
 sys.path.insert(0,'/root/dicionario/outils')
-from features2 import features2
+from features2 import feature_vector2
 T="/root/dicionario/travail"
 def executer(bloc=20000):
     C=np.load(f"{T}/cells_all.npy", mmap_mode='r'); kl=np.load(f"{T}/km_lab.npy")
     K=12000; D=None; S=None; n=np.zeros(K)
     for a in range(0,len(kl),bloc):
-        X=traits2(np.asarray(C[a:a+bloc]))
+        X=feature_vector2(np.asarray(C[a:a+bloc]))
         if S is None: D=X.shape[1]; S=np.zeros((K,D),np.float64)
         np.add.at(S, kl[a:a+bloc], X)
         np.add.at(n, kl[a:a+bloc], 1)

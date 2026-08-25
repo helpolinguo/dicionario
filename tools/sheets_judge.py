@@ -15,7 +15,7 @@ from suspects import inventaire
 from clean import connu, variantes
 T="/root/dicionario/travail"; REP=f"{T}/juger"
 
-def contexte(s, w, large=42):
+def context_of(s, w, large=42):
     m=re.search(r'\b'+re.escape(w)+r'\b', s, re.I)
     if not m: return s[:2*large]
     a=max(0, m.start()-large); b=min(len(s), m.end()+large)
@@ -31,7 +31,7 @@ def executer(par=60):
         ved,img,lig,idx,s = ctx[w]
         vois=sorted({v for v in set(variantes(w)) if connu(v,rac)})[:4]
         fiches.append(dict(id=i, mot=w, vois=vois, ved=ved, img=img, lig=lig,
-                           ctx=contexte(s, w)))
+                           ctx=context_of(s, w)))
     json.dump(fiches, open(f"{REP}/fiches.json","w"), ensure_ascii=False)
     n=0
     for d in range(0, len(fiches), par):

@@ -16,7 +16,7 @@ def charger_tout():
         M.append(np.stack([np.full(len(ii),pg,np.int32), lg[ii,0].astype(np.int32), jj.astype(np.int32)],1))
     return np.concatenate(C), np.concatenate(M)
 _yy,_xx=np.mgrid[0:CH,0:CW]
-def traits(C, lim=2.0, sigma=0.8):
+def feature_vector(C, lim=2.0, sigma=0.8):
     A=C.astype(np.float32)/255.
     s=A.sum((1,2))+1e-6
     cy=(A*_yy).sum((1,2))/s; cx=(A*_xx).sum((1,2))/s

@@ -20,7 +20,7 @@ We therefore repair page by page:
 """
 import numpy as np, os, sys, json, difflib
 sys.path.insert(0,'/root/dicionario/outils')
-from features2 import features2
+from features2 import feature_vector2
 RAC="/root/dicionario"; T=f"{RAC}/travail"
 
 def _texte(cells_occ, kl_page, cols, lignes, tab, bav):
@@ -60,7 +60,7 @@ def reparer(pg, Q, tab, verbeux=True):
     occ=d['occ']; lg=np.array(d['lignes']); nues=d['nues']
     ii,jj=np.where(occ)
     A=(np.clip(nues[ii,jj],0,1)*255.0).round().astype(np.uint8)
-    X=traits2(A); X=X/np.maximum(np.linalg.norm(X,axis=1,keepdims=True),1e-6)
+    X=feature_vector2(A); X=X/np.maximum(np.linalg.norm(X,axis=1,keepdims=True),1e-6)
     gnew=(X@Q.T).argmax(1).astype(np.int32)
     knew=lg[ii,0].astype(np.int32)
     Mnew=np.stack([np.full(len(ii),pg,np.int32), knew, jj.astype(np.int32)],1)

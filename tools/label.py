@@ -1,7 +1,7 @@
 """Labelling the groups: a hand-made seed + propagation by classifier."""
 import sys, numpy as np, collections, pickle
 sys.path.insert(0,'/root/dicionario/outils')
-from features import features
+from features import feature_vector
 from seed import tout
 from sklearn.linear_model import LogisticRegression
 T="/root/dicionario/travail"
@@ -9,9 +9,9 @@ def executer(tours=3):
     C=np.load(f"{T}/cells_all.npy", mmap_mode='r')
     lab=np.load(f"{T}/km_lab.npy"); moy=np.load(f"{T}/km_moy.npy")
     I,Y,_=tout(); o=np.argsort(I); I=I[o]; Y=Y[o]
-    X=traits(np.asarray(C[I]))
+    X=feature_vector(np.asarray(C[I]))
     m=LogisticRegression(max_iter=4000,C=20.).fit(X,Y)
-    Xm=traits(np.clip(moy,0,255).astype(np.uint8))
+    Xm=feature_vector(np.clip(moy,0,255).astype(np.uint8))
     ordre=np.argsort(lab, kind='stable')
     bornes=np.searchsorted(lab[ordre], np.arange(len(moy)+1))
     for tour in range(tours):
@@ -26,7 +26,7 @@ def executer(tours=3):
             idx.append(mm); l2.append(np.full(len(mm),p[k]))
         idx=np.concatenate(idx); l2=np.concatenate(l2); o=np.argsort(idx)
         print(f"  tour {tour}: {len(surs)} groupes surs, {len(idx)} cellules", flush=True)
-        X2=np.concatenate([X,traits(np.asarray(C[idx[o]]))]); Y2=np.concatenate([Y,l2[o]])
+        X2=np.concatenate([X,feature_vector(np.asarray(C[idx[o]]))]); Y2=np.concatenate([Y,l2[o]])
         w=np.concatenate([np.full(len(Y),5.),np.ones(len(l2))])
         m=LogisticRegression(max_iter=2000,C=20.).fit(X2,Y2,sample_weight=w)
         del X2,Y2,w

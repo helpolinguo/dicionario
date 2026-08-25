@@ -16,7 +16,7 @@ import sys, os, json
 import numpy as np
 sys.path.insert(0,'/root/dicionario/outils')
 import cells
-from features2 import features2
+from features2 import feature_vector2
 RAC="/root/dicionario"; T=f"{RAC}/travail"
 
 def une(pg, Q, tab, bav_seuils=True):
@@ -40,7 +40,7 @@ def une(pg, Q, tab, bav_seuils=True):
     bord=(P[:,:,:2].sum((1,2))+P[:,:,-2:].sum((1,2)))/(tot+1e-6)
     haut=P[:,:4,:].sum((1,2))/(tot+1e-6); bas=P[:,18:,:].sum((1,2))/(tot+1e-6)
     bav=((bord>0.55)|((tot<12)&(bord>0.25))|(haut>0.80)|(bas>0.85))
-    X=traits2(A); X=X/np.maximum(np.linalg.norm(X,axis=1,keepdims=True),1e-6)
+    X=feature_vector2(A); X=X/np.maximum(np.linalg.norm(X,axis=1,keepdims=True),1e-6)
     g=(X@Q.T).argmax(1)
     out=[]
     for i in range(len(ii)):

@@ -9,7 +9,7 @@ import numpy as np
 from scipy.ndimage import gaussian_filter, shift as ndshift
 CH,CW=22,12
 _yy,_xx=np.mgrid[0:CH,0:CW]
-def traits2(C, lim=2.0, sigma=0.8):
+def feature_vector2(C, lim=2.0, sigma=0.8):
     A=C.astype(np.float32)/255.
     s=A.sum((1,2))+1e-6
     cy=(A*_yy).sum((1,2))/s; cx=(A*_xx).sum((1,2))/s

@@ -59,7 +59,7 @@ def cellules_mixtes(mixtes, sortie=f"{T}/exceptions_modele.txt"):
     """Cell-by-cell decoding of the mixed groups."""
     C=np.load(f"{T}/cells_all.npy", mmap_mode='r'); M=np.load(f"{T}/meta_all.npy")
     kl=np.load(f"{T}/km_lab.npy")
-    from features2 import features2
+    from features2 import feature_vector2
     m=pickle.load(open(f"{T}/modele3.pkl","rb"))
     sel=np.where(np.isin(kl, mixtes))[0]
     print("cellules a decoder une a une :",len(sel))
@@ -69,7 +69,7 @@ def cellules_mixtes(mixtes, sortie=f"{T}/exceptions_modele.txt"):
         f.write("# Ce fichier a la priorite la plus basse : toute correction a la main l'emporte.\n")
         for a in range(0,len(sel),20000):
             b=sel[a:a+20000]
-            X=traits2(np.asarray(C[b]))
+            X=feature_vector2(np.asarray(C[b]))
             P=m.predict_proba(X); cls=m.classes_
             j=P.argmax(1); p=P.max(1)
             for i,jj,pp in zip(b,j,p):

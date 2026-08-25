@@ -15,7 +15,7 @@ import json, re, sys, os, collections
 sys.path.insert(0,'/root/dicionario/outils')
 from suspects import inventaire
 from clean import connu, variantes
-from sheets_judge import context
+from sheets_judge import context_of
 T="/root/dicionario/travail"; REP=f"{T}/sens"
 
 def executer(par=60, lots=10):
@@ -31,7 +31,7 @@ def executer(par=60, lots=10):
         pool.append((n, w, ved, img, lig, s))
     pool.sort(key=lambda x:(x[0], x[1]))                            # hapax first
     os.makedirs(REP, exist_ok=True)
-    fiches=[dict(id=i, mot=w, ved=ved, img=img, lig=lig, ctx=contexte(s,w))
+    fiches=[dict(id=i, mot=w, ved=ved, img=img, lig=lig, ctx=context_of(s,w))
             for i,(n,w,ved,img,lig,s) in enumerate(pool)]
     json.dump(fiches, open(f"{REP}/fiches.json","w"), ensure_ascii=False)
     for L in range(lots):

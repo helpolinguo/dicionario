@@ -22,7 +22,7 @@ but a smudge are recognised by a geometric criterion at decoding time.
 import sys, os, time, collections, pickle
 import numpy as np
 sys.path.insert(0,'/root/dicionario/outils')
-from features2 import features2
+from features2 import feature_vector2
 from sklearn.neural_network import MLPClassifier
 T="/root/dicionario/travail"
 
@@ -30,7 +30,7 @@ def _lots(C, idx, taille=20000):
     """Features in slices: a million cells do not fit in memory."""
     out=[]
     for a in range(0,len(idx),taille):
-        out.append(traits2(np.asarray(C[idx[a:a+taille]])))
+        out.append(feature_vector2(np.asarray(C[idx[a:a+taille]])))
     return np.concatenate(out) if out else np.empty((0,528),np.float32)
 
 def lire_planches():
@@ -92,7 +92,7 @@ def executer(tours=3, cache=20, seuil_auto=0.98, par_groupe=6):
     plats=np.sort(np.concatenate([e for e in ech if len(e)]))
     pos={v:i for i,v in enumerate(plats)}
     Xe=_lots(C,plats)
-    print("traits calcules : %.0fs, %d cellules de vote"%(time.time()-t0,len(plats)), flush=True)
+    print("feature_vector calcules : %.0fs, %d cellules de vote"%(time.time()-t0,len(plats)), flush=True)
 
     m=MLPClassifier(hidden_layer_sizes=(256,), alpha=1e-4, max_iter=40,
                     random_state=0, early_stopping=False)

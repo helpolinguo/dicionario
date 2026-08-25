@@ -2,7 +2,7 @@
 majority vote of the group's cells, then the primacy of the seed."""
 import sys, numpy as np, collections, pickle, time
 sys.path.insert(0,'/root/dicionario/outils')
-from features2 import features2
+from features2 import feature_vector2
 from seed import tout
 from sklearn.neural_network import MLPClassifier
 T="/root/dicionario/travail"
@@ -19,7 +19,7 @@ def executer(tours=4, cache=30, par_groupe=12):
     # labelled « space » with a confidence of 1.000.
     reel = Y != ' '
     I, Y = I[reel], Y[reel]
-    X=traits2(np.asarray(C[I]))
+    X=feature_vector2(np.asarray(C[I]))
     ordre=np.argsort(lab,kind='stable'); bornes=np.searchsorted(lab[ordre],np.arange(K+1))
     # a representative sample of each group, for the vote
     rng=np.random.default_rng(0)
@@ -30,8 +30,8 @@ def executer(tours=4, cache=30, par_groupe=12):
         ech.append(m if len(m)<=cache else rng.choice(m,cache,replace=False))
     plats=np.sort(np.concatenate([e for e in ech if len(e)]))
     pos={v:i for i,v in enumerate(plats)}
-    Xe=traits2(np.asarray(C[plats]))
-    print("traits: %.0fs, %d cellules d'echantillon"%(time.time()-t0, len(plats)), flush=True)
+    Xe=feature_vector2(np.asarray(C[plats]))
+    print("feature_vector: %.0fs, %d cellules d'echantillon"%(time.time()-t0, len(plats)), flush=True)
     m=MLPClassifier(hidden_layer_sizes=(256,), alpha=1e-4, max_iter=40,
                     random_state=0, early_stopping=False)
     Xa, Ya, Wa = X, Y, np.full(len(Y),1.0)
