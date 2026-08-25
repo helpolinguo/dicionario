@@ -1,7 +1,0 @@
-[
- {
-  "id": 0,
-  "kind": "docstring",
-  "text": "\"\"\"Propage l'extension du bloc a droite sur tout le livre.\n\nLe bloc de texte etait cerne par les colonnes occupees sur au moins trois\nlignes : les fins de ligne qu'une seule ligne atteint tombaient dehors —\n« preciz », « apa », « anoni- ». L'extension a droite les recupere, et elle est\nsans danger : elle n'ajoute des colonnes qu'apres les autres, sans deplacer\nl'origine. La numerotation des colonnes ne bouge pas, donc aucune correction\ndeja faite n'est invalidee.\n\"\"\""
- }
-]

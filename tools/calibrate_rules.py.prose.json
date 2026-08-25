@@ -1,7 +1,0 @@
-[
- {
-  "id": 0,
-  "kind": "docstring",
-  "text": "\"\"\"Calibration du veto « du blanc sous le filet » contre le releve a l'oeil.\n\nLes 91 pages relevees servent de verite : une ligne listee porte les plages\nindiquees, une ligne absente n'en porte aucune. On compare la detection avec\net sans veto.\n\"\"\""
- }
-]

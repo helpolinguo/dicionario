@@ -1,7 +1,0 @@
-[
- {
-  "id": 0,
-  "kind": "docstring",
-  "text": "\"\"\"Rend les fins de ligne que le bloc coupait, sans redecouper le livre.\n\nLe bloc de texte est cerne par les colonnes encrees sur au moins trois lignes :\n994 caracteres, en bout de 728 lignes, tombaient dehors. Les recuperer en\nelargissant le bloc obligeait a redecouper toutes les pages — ce qui faisait\nperdre des vedettes a cent quarante-cinq d'entre elles.\n\nOn les recupere donc autrement : la page est recoupee en memoire avec le bloc\netendu, les cellules qui debordent sont rattachees au groupe dont le centre est\nle plus proche, et elles sont ajoutees au texte comme de simples corrections\naux colonnes qui suivent le bloc. Le decoupage enregistre, lui, ne bouge pas :\naucune correction deja faite n'est invalidee.\n\"\"\""
- }
-]

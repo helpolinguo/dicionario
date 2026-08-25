@@ -1,7 +1,0 @@
-[
- {
-  "id": 0,
-  "kind": "docstring",
-  "text": "\"\"\"Planches de jugement, en texte seul.\n\nLe scan est use et cher a lire ; la transcription, elle, se lit pour rien. On\nne soumet donc ni images ni pages entieres, mais la seule question qui reste\nouverte : ce mot fait-il sens en ido a cet endroit ?\n\nUne ligne par candidat : numero, forme lue, formes voisines obtenues par\nechange de sosies, et le contexte strictement necessaire. Le juge repond par\nle numero et la forme retenue, rien d'autre.\n\"\"\""
- }
-]

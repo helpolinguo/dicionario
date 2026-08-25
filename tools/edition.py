@@ -1,183 +1,184 @@
 # -*- coding: utf-8 -*-
-"""Extraction d'une base lexicale structuree a partir du tapuscrit decode.
+"""Extracting a structured lexical base from the decoded typescript.
 
-Le tapuscrit suit une grammaire stricte, qui se lit dans la mise en page :
+The typescript follows a strict grammar, which is read off the layout:
 
     vedetto. (fako.) Senco unesma. - II. Senco duesma. - L. nomo latina. - DEFIS.
     ^^^^^^^  ^^^^^^                    ^^^                ^^^^^^^^^^^^^   ^^^^^
-    soulignee, colonne 0                sens               nomo cientifika  lingui
+    underlined, column 0                sense              nomo cientifika  lingui
 
-Chaque enregistrement porte sa **provenance** — image du scan, page du livre,
-ligne de la grille — et ses **drapeaux de qualite**. Rien n'est efface : ce qui
-est douteux est signale, pas masque.
+Each record carries its **provenance** -- image of the scan, page of the book,
+line of the grid -- and its **flags of quality**. Nothing is erased: what is
+doubtful is reported, not hidden.
 """
 import numpy as np, os, pickle, re, collections, sys, json, os, unicodedata
 sys.path.insert(0,'/root/dicionario/outils')
 from consolidate import vedettes
 T="/root/dicionario/travail"
-DECALAGE_FOLIO = 7          # numero de page du livre = index d'image - 7
+DECALAGE_FOLIO = 7          # page number of the book = image index - 7
 
 LANGUI = {'D':'Germana','E':'Angla','F':'Franca','I':'Italiana','R':'Rusa',
           'S':'Hispana','L':'Latina','P':'Portugalana','G':'Greka','N':'Nederlandana'}
-# Certaines notations epellent la langue : « FDSued » = Franca, Germana, Sueda.
+# Some notations spell the language out: « FDSued » = Franca, Germana, Sueda.
 ABREV = {'Sued':'Sueda','Ned':'Nederlandana','Pol':'Polona','Dan':'Dana',
          'Nor':'Norvegana','Fin':'Finlandana','Cek':'Cheka'}
-# Quelques notations epellent la langue au long, separees par des virgules —
-# « Jap.,Sanskr. » pour « ka(d) ». Elles n'entrent pas dans le code a lettres :
-# lues comme du texte, l'article passait pour « sen-lingua ».
+# A few notations spell the language out in full, separated by commas --
+# « Jap.,Sanskr. » for « ka(d) ». They do not enter the letter code: read as
+# text, the article passed for « sen-lingua ».
 EPELE = {'Jap':'Japoniana','Sanskr':'Sanskrita','Hebr':'Hebrea','Arab':'Araba',
          'Turk':'Turka','Chin':'Chiniana','Malay':'Malaya','Skand':'Skandinava',
          'Gr':'Greka','Lat':'Latina','Slav':'Slava','Hind':'Hindua'}
 RE_EPELE = re.compile(r'(?:[-\u2013]|^)\s*((?:[A-Z][a-z]{1,7}\.?\s*,\s*)+[A-Z][a-z]{1,7}\.?)\s*$')
 
 def _lire_code(jeton):
-    """Le jeton final est-il un code de langues ? Retourne la liste, ou None.
+    """Is the final token a code of languages? Returns the list, or None.
 
-    Le discriminant est la CASSE : un code est en capitales. Sans elle, tout mot
-    terminant une phrase — « gamo », « radii », « korpo » — passait pour un code.
-    On tolere une capitale abimee par le decodage (« dEFIRS ») et le « l » lu
-    pour « I » (« DEFlS »), mais on exige que le jeton soit majoritairement haut
-    de casse.
+    The discriminant is the CASE: a code is in capitals. Without it, every word
+    ending a sentence -- « gamo », « radii », « korpo » -- passed for a code.
+    We tolerate a capital damaged by the decoding (« dEFIRS ») and the « l »
+    read for « I » (« DEFlS »), but require the token to be mostly upper case.
     """
     if not jeton or len(jeton) > 12: return None
     hauts=sum(1 for c in jeton if c.isupper())
     if hauts < max(1, int(0.6*len(jeton))): return None
     out=[]; reste=jeton
-    for ab,nom in ABREV.items():                    # abreviation epelee, en fin
+    for ab,nom in ABREV.items():                    # a spelled-out abbreviation, at the end
         if reste.endswith(ab): out.append(nom); reste=reste[:-len(ab)]; break
     for c in reste.upper().replace('L','I') if False else reste:
         c = 'I' if c=='l' else c.upper()
         if c not in LANGUI: return None
         out.append(LANGUI[c])
-    # Aucun vrai code ne nomme deux fois la meme langue. « II » et « III » sont
-    # des numeros de sens que la fin d'article laisse pendre — chez « forsan »,
-    # « xenio », « -ajo », « ek » —, et l'edition les donnait pour « Italiana,
-    # Italiana ». Le decoupage en articles (dividar) posait deja cette regle ;
-    # elle vaut ici aussi.
+    # No true code names the same language twice. « II » and « III » are numbers
+    # of senses that the end of an article leaves hanging -- under « forsan »,
+    # « xenio », « -ajo », « ek » -- and the edition gave them as « Italiana,
+    # Italiana ». The cutting into articles (dividar) laid down that rule
+    # already; it holds here too.
     if len(set(out)) != len(out): return None
     return out or None
-# Le code de langues est parfois colle au point qui le precede — « agar
-# lo.DEFIS. » — faute de l'original. On accepte donc le point comme separateur
-# au meme titre que le tiret.
-# Le code final n'est pas toujours precede d'un tiret : il se colle au point
-# — « agar lo.DEFIS. » — ou a la parenthese fermante — « (anke metaf.)DEFIRS ».
-# Il n'est pas toujours suivi d'un point non plus.
+# The language code is sometimes stuck to the full stop before it -- « agar
+# lo.DEFIS. » -- by a fault of the original. We therefore accept the full stop
+# as a separator on the same footing as the hyphen.
+# The final code is not always preceded by a hyphen: it sticks to the full stop
+# -- « agar lo.DEFIS. » -- or to the closing parenthesis -- « (anke metaf.)DEFIRS ».
+# Nor is it always followed by a full stop.
 RE_CODE   = re.compile(r'(?:[-–.)]|^)\s*([DEFIRSLP]{1,8})\s*[.,]?\s*$')
-# La parenthese ouvrante manque parfois dans l'original : « abduktar.-trans.) »
-# se lit ainsi au scan, verifie. On tolere donc son absence, mais seulement si
-# rien n'est deja ouvert et si le contenu est court, pour ne pas avaler une
-# phrase entiere. Le point qui suit la parenthese fermante est consomme : sans
-# cela la definition commencait par « . » — « ablegato », « abulio ».
+# The opening parenthesis is sometimes missing in the original:
+# « abduktar.-trans.) » reads so in the scan, verified. We therefore tolerate
+# its absence, but only if nothing is already open and if the content is short,
+# so as not to swallow a whole sentence. The full stop that follows the closing
+# parenthesis is consumed: without that the definition began with « . » --
+# « ablegato », « abulio ».
 RE_FAKO   = re.compile(r'^\(([^()]{1,40})\)\s*\.?\s*')
 RE_FAKO2  = re.compile(r'^([^()]{1,25})\)\s*\.?\s*')
-# Le nom scientifique est annonce par « L. ». Le tiret qui le precede manque
-# souvent : « ... kompozaji". L. artemisia absinthium ». On accepte donc le
-# point et le debut de segment au meme titre que le tiret.
-# La virgule appartient au nom scientifique quand il donne deux formes —
-# « L. anas, anatis ». Sans elle dans la classe, le nom restait dans le sens.
-# La SECONDE forme peut faire plusieurs mots — « L. rubus caesius, rubus
-# fructicosus » chez rovo, « L. dalbergia nigra, jacarania mimosifolia » chez
-# palisandro, et jusqu'a la glose de l'auteur, « L. conium maculatum, e speco di
-# cicuta » chez cikuto. N'en prendre qu'un laissait le reste dans la definition,
-# precede de la virgule orpheline du nom : « ... (rovbero). , rubus
-# fructicosus ». On admet donc la seconde forme entiere, quatre mots comme la
-# premiere.
-# Le nom scientifique ne finit pas toujours sur un tiret ou en fin de segment :
-# il est souvent suivi d'une parenthese fermante — « (L. triticum caninum) » —
-# d'une virgule qui reprend la phrase, ou du numero du sens suivant —
-# « L. aquila II. ». Ancre sur le seul tiret, il restait dans la definition de
-# soixante-sept articles. On borne donc le nom par sa FORME — quatre mots
-# latins au plus, plus une seconde forme apres virgule pour « anas, anatis » —
-# au lieu de le borner par ce qui le suit.
-# Le point du « L. » manque parfois — « ...puteo-kordegi.- L tilia. - FISL. »
-# chez tilio. On l'admet sans son point, mais alors seulement devant une
-# MINUSCULE : « - La persono qua... », « - Longa bastono... » ouvrent une
-# definition, et le L y prendrait la premiere lettre du mot.
-# Le nom se termine souvent sur « .- » sans espace — « L. viverra genetis.- II.
-# (tekn.) ... » chez jineto. Sans le tiret dans la classe qui suit le point, le
-# nom restait dans la definition de soixante-huit articles.
-# Un « L. » qui introduit un EXEMPLE n'annonce pas le nom scientifique de
-# l'article : « enklitiko. ... Kom ex.: L. que en neque ; ne en venisne ; F. ce
-# en est-ce ». Pris pour un binome, il quittait la definition — qui restait sur
-# « Kom ex.; » — pour aller s'afficher en nom latin de l'article. Le « F. » qui
-# suit, lui, n'a jamais ete pris : seul le « L. » preteait a confusion.
+# The scientific name is announced by « L. ». The hyphen before it is often
+# missing: « ... kompozaji". L. artemisia absinthium ». We therefore accept the
+# full stop and the start of a segment on the same footing as the hyphen.
+# The comma belongs to the scientific name when it gives two forms --
+# « L. anas, anatis ». Without it in the class, the name stayed in the sense.
+# The SECOND form can run to several words -- « L. rubus caesius, rubus
+# fructicosus » under rovo, « L. dalbergia nigra, jacarania mimosifolia » under
+# palisandro, and as far as the author's gloss, « L. conium maculatum, e speco
+# di cicuta » under cikuto. Taking only one left the rest in the definition,
+# preceded by the name's orphaned comma: « ... (rovbero). , rubus
+# fructicosus ». We therefore admit the second form whole, four words like the
+# first.
+# The scientific name does not always end on a hyphen or at the end of a
+# segment: it is often followed by a closing parenthesis -- « (L. triticum
+# caninum) » -- by a comma that takes the sentence up again, or by the number of
+# the next sense -- « L. aquila II. ». Anchored on the hyphen alone, it stayed
+# in the definition of sixty-seven articles. We therefore bound the name by its
+# FORM -- four Latin words at most, plus a second form after a comma for
+# « anas, anatis » -- instead of bounding it by what follows it.
+# The full stop of the « L. » is sometimes missing -- « ...puteo-kordegi.- L
+# tilia. - FISL. » under tilio. We admit it without its full stop, but then only
+# before a LOWER CASE letter: « - La persono qua... », « - Longa bastono... »
+# open a definition, and the L would take the word's first letter there.
+# The name often ends on « .- » with no space -- « L. viverra genetis.- II.
+# (tekn.) ... » under jineto. Without the hyphen in the class that follows the
+# full stop, the name stayed in the definition of sixty-eight articles.
+# An « L. » that introduces an EXAMPLE does not announce the article's
+# scientific name: « enklitiko. ... Kom ex.: L. que en neque ; ne en venisne ;
+# F. ce en est-ce ». Taken for a binomial, it left the definition -- which
+# stayed at « Kom ex.; » -- to be displayed as the article's Latin name. The
+# « F. » that follows has never been taken: only the « L. » invited confusion.
 RE_LATINA = re.compile(
     r'(?:(?<!ex\.)[-–.(,;:]|^)\s*(?:L\.\s*|L\s+(?=[a-z]))'
     r'([A-Za-z][A-Za-z-]*(?:\s+[A-Za-z][A-Za-z-]*){0,3}'
     r'(?:\s*,\s*[A-Za-z][A-Za-z-]*(?:\s+[A-Za-z][A-Za-z-]*){0,3})?)'
     r'\s*(?=[-–)(:;,]|\.[\s)–-]|\.?$|\s(?:I{1,3}|IV|VI{0,3})\.)')
-# Les sens se separent par « - II. », mais le tiret manque souvent : « ...
-# komenco-punto e fino-parto. II. (gram.) ... ». On coupe donc aussi sur un
-# point suivi du numero de sens, ce qui vaut pour 107 articles.
-# Six articles numerotent leurs sens en chiffres ARABES — « grapino »,
-# « kapelo », « koliaro », « kondamnar », « konfliktar » — et « iambo » melange
-# les deux niveaux. Sans cette branche, tout leur contenu restait dans un seul
-# sens. On exige la majuscule ou la parenthese apres le numero, ce qui ecarte
-# « 1.000 » et les formules chimiques. Le « l » lu pour « 1 » est admis : la
-# confusion est constante dans ce tapuscrit.
-# La parenthese FERMANTE vaut le point : « elaborar. ... per laborado. (anke
-# metaf.) II. (fiziol.) Igar absorbebla... ». Le numero suit alors une
-# parenthese, non un point, et le sens ne se coupait pas — onze articles
-# gardaient deux sens en un. Le garde-fou tient : « pos I. K. » chez « hejiro »
-# et « rejo Francisko I. » chez « legiono » ne suivent ni point ni parenthese,
-# et ne se coupent pas.
-# Le point du numero manque parfois : « ...di elektro-lampo. III veziketo
-# produktata... » chez « ampulo », « ...kontenar aquo. – II Mar-baseno... »
-# chez « baseno ». Le livre n'en compte que deux, et les deux sont de vrais
-# sens ; on admet donc le numero suivi d'une simple espace, a condition qu'une
-# lettre suive. Une PARENTHESE la vaut : le sens s'ouvre tres souvent sur son
-# qualificatif, « reklamacar. I(netrans.) ... ne-equitatoza.II (trans.)
-# Postular... », et le numero se retrouvait alors dans le texte du sens, ou il
-# doublait celui que les editions posent elles-memes — « 1. I (zool.) Mamifero
-# karnivora... » chez « leono ». L'espace y est facultative : la dactylo colle
-# le numero a la parenthese aussi souvent qu'elle l'en separe.
-# Le livre numerote jusqu'a VIII — « modo » a huit sens, « exemplo », « lineo »
-# et « punto » en ont sept. La suite s'arretait a VI : « -VII.(tipogr.) » chez
-# « punto » restait dans le sens VI, son numero au milieu du texte.
-# « VI{0,3} » couvre V, VI, VII et VIII d'un seul tenant, comme le fait deja la
-# regle qui OTE le numero en tete de sens. Le livre ne va pas au-dela : aucun
-# article ne porte de IX.
+# The senses are separated by « - II. », but the hyphen is often missing:
+# « ... komenco-punto e fino-parto. II. (gram.) ... ». We therefore also cut on
+# a full stop followed by the number of a sense, which holds for 107 articles.
+# Six articles number their senses in ARABIC figures -- « grapino »,
+# « kapelo », « koliaro », « kondamnar », « konfliktar » -- and « iambo » mixes
+# the two levels. Without this branch, all their content stayed in a single
+# sense. We require the capital or the parenthesis after the number, which sets
+# aside « 1.000 » and the chemical formulae. The « l » read for « 1 » is
+# admitted: the confusion is constant in this typescript.
+# The CLOSING parenthesis is worth the full stop: « elaborar. ... per laborado.
+# (anke metaf.) II. (fiziol.) Igar absorbebla... ». The number then follows a
+# parenthesis, not a full stop, and the sense did not cut -- eleven articles
+# kept two senses in one. The safeguard holds: « pos I. K. » under « hejiro »
+# and « rejo Francisko I. » under « legiono » follow neither full stop nor
+# parenthesis, and do not cut.
+# The number's full stop is sometimes missing: « ...di elektro-lampo. III
+# veziketo produktata... » under « ampulo », « ...kontenar aquo. – II
+# Mar-baseno... » under « baseno ». The book counts only two, and both are true
+# senses; we therefore admit the number followed by a plain space, provided a
+# letter follows. A PARENTHESIS is worth as much: the sense very often opens on
+# its qualifier, « reklamacar. I(netrans.) ... ne-equitatoza.II (trans.)
+# Postular... », and the number then found itself in the text of the sense,
+# where it doubled the one the editions lay themselves -- « 1. I (zool.)
+# Mamifero karnivora... » under « leono ». The space is optional there: the
+# typist sticks the number to the parenthesis as often as she separates them.
+# The book numbers as far as VIII -- « modo » has eight senses, « exemplo »,
+# « lineo » and « punto » have seven. The run stopped at VI: « -VII.(tipogr.) »
+# under « punto » stayed in sense VI, its number in the middle of the text.
+# « VI{0,3} » covers V, VI, VII and VIII in one piece, as the rule that TAKES
+# the number off the head of a sense already does. The book goes no further: no
+# article carries a IX.
 RE_SENCO  = re.compile(r'\s*(?:[-–]\s*|(?<=[.)])\s*)'
                        r'(?=(?:I{1,3}|IV|VI{0,3})[.,]\s?'
                        r'|(?:I{1,3}|IV|VI{0,3})\s+[A-Za-zÀ-ÿ]'
                        r'|(?:I{1,3}|IV|VI{0,3})\s*\('
                        r'|[l\d]\d?\.\s*[A-ZÀ-Ý(])')
-# L'auteur numerote parfois ses sens ENTRE PARENTHESES : « (1) ... (2) ... ».
-# Ecrits ainsi, ils tiennent le plus souvent en une seule phrase — les morceaux
-# se suivent apres un point-virgule ou deux-points, « (1) Garnisar ye ulo...;
-# (2) Garnisar per esar pozita sur... » chez « kovrar » — et le livre les rend
-# tels quels : on les laisse.
+# The author sometimes numbers his senses IN PARENTHESES: « (1) ... (2) ... ».
+# Written so, they most often hold in a single sentence -- the pieces follow
+# one another after a semicolon or a colon, « (1) Garnisar ye ulo...;
+# (2) Garnisar per esar pozita sur... » under « kovrar » -- and the book renders
+# them as they stand: we leave them.
 #
-# Mais le PREMIER de ces numeros suit la vedette, la ou l'analyse cherche le
-# domaine : il partait au champ `fako`, d'ou il etait ecarte comme numero.
-# L'article perdait alors son « (1) » en gardant son « (2) » — « ramo », «
-# romano », « vice », les trois seuls du livre. La numerotation orpheline ne
-# renseigne plus personne ; on coupe le sens a sa place, et les editions
-# renumerotent comme elles le font des autres. La coupure ne se fait qu'apres
-# une phrase CLOSE, pour ne pas defaire les enumerations d'un seul souffle.
+# But the FIRST of those numbers follows the headword, where the analysis looks
+# for the domain: it went into the `fako` field, whence it was set aside as a
+# number. The article then lost its « (1) » while keeping its « (2) » --
+# « ramo », « romano », « vice », the only three in the book. An orphaned
+# numbering tells nobody anything; we cut the sense in its place, and the
+# editions renumber as they do the others. The cut is made only after a CLOSED
+# sentence, so as not to undo the enumerations spoken in one breath.
 RE_ORFA_NUM = re.compile(r'(?<=[.!])\s*[-–]?\s*\((?:I{2,3}|IV|[2-9])\)\s*'
                          r'(?=[A-Za-zÀ-Ý«(])')
 RE_NUM_UNESMA = re.compile(r'\(\s*(?:1|l|I)\s*\)')
 FINALES_OK = ("o","a","e","i","ar","ir","or")
-# Signe de coupure pose dans le texte par l'analyse, la ou un sens finit sans
-# que le livre l'ait numerote — le code de langues qui le clot, par exemple.
-# Invisible, il est lu par le decoupage en sens, et n'en sort jamais.
+# A mark of cutting laid in the text by the analysis, where a sense ends
+# without the book having numbered it -- the language code that closes it, for
+# example. Invisible, it is read by the cutting into senses, and never comes
+# out of it.
 KUPO = "\ue002"
 
 _LP=None
 def _lignes_plus(fichier=f"{T}/lignes_plus.txt"):
-    """Lignes de bas (ou de haut) de page perdues par une RE-COUPE ulterieure.
+    """Lines from the foot (or the head) of a page lost to a later RE-CUTTING.
 
-    La page 290 l'a montre : son extraction a ete refaite le 13 aout, et le
-    nouveau bloc s'arretait quatre lignes plus haut que l'ancien. Le fac-simile,
-    compose avant la re-coupe, garde ces lignes ; l'edition de lecture, batie
-    sur le .npz, les avait perdues — « koklusho » finissait sur « precipue la »
-    et « kokono » manquait au livre. Plutot que de re-couper la page, ce qui
-    deplacerait toutes les corrections indexees par (page, ligne, colonne), on
-    rend ici les lignes telles que le fac-simile les porte.
+    Page 290 showed it: its extraction was redone on 13 August, and the new
+    block stopped four lines higher than the old. The facsimile, composed
+    before the re-cutting, keeps those lines; the reading edition, built on the
+    .npz, had lost them -- « koklusho » ended on « precipue la » and « kokono »
+    was missing from the book. Rather than re-cut the page, which would move
+    every correction indexed by (page, line, column), we give the lines back
+    here as the facsimile carries them.
 
-    Une ligne du fichier : page<TAB>numero de ligne<TAB>texte.
-    Le texte est celui de la grille, espaces de tete comprises.
+    One line of the file: page<TAB>line number<TAB>text.
+    The text is that of the grid, leading spaces included.
     """
     global _LP
     if _LP is None:
@@ -192,7 +193,7 @@ def _lignes_plus(fichier=f"{T}/lignes_plus.txt"):
 
 
 def _signaturo():
-    """Empreinte des fichiers dont depend le texte decode."""
+    """Fingerprint of the files the decoded text depends on."""
     noms=["cls_lab.npy","cls_alternatives.pkl","lignes_plus.txt",
           "exceptions_fins.txt","exceptions_ornements.txt","exceptions_paires.txt",
           "exceptions.txt","exceptions_relecture.txt","exceptions_manuel.txt",
@@ -236,9 +237,9 @@ def _charger_texte():
         out=[]
         for k,s in lignes:
             l=list(s)
-            # Une correction peut allonger la ligne : une vedette relue peut
-            # compter plus de cellules que la lecture automatique. On complete
-            # la ligne au lieu de laisser tomber la correction.
+            # A correction can lengthen the line: a headword re-read may count
+            # more cells than the automatic reading. We complete the line instead
+            # of dropping the correction.
             for (pp,kk,cc),v in exc.items():
                 if pp==pg and kk==k:
                     if cc>=len(l): l.extend(" "*(cc-len(l)+1))
@@ -249,11 +250,11 @@ def _charger_texte():
             par=dict(out); par.update(sup)
             out=sorted(par.items())
         pages[pg]=out
-        # Les filets de soulignement de la page, tels que le decoupage des
-        # cellules les a releves : une liste de plages de COLONNES par ligne,
-        # dans la meme numerotation que le texte rendu ci-dessus. C'est la
-        # marque que l'auteur a portee lui-meme sur son tapuscrit ; elle
-        # designe le domaine, la locution, le nom latin, le mot cite.
+        # The page's underline rules, as the cutting of the cells surveyed them:
+        # a list of ranges of COLUMNS per line, in the same numbering as the text
+        # returned above. It is the mark the author himself laid on his
+        # typescript; it designates the domain, the phrase, the Latin name, the
+        # quoted word.
         try:
             z=np.load(f"{T}/cellules/p-{pg:03d}.npz", allow_pickle=True)
             import pickle as _pk
@@ -267,7 +268,7 @@ def _charger_texte():
 
 _ND=None
 def _non_dactylo():
-    """Pages qui ne sont pas dactylographiees : couverture, pages blanches."""
+    """Pages that are not typewritten: cover, blank pages."""
     global _ND
     if _ND is None:
         _ND=set(); p=f"{T}/pages_non_dactylo.txt"
@@ -277,98 +278,96 @@ def _non_dactylo():
                 _ND.add(int(l.split('\t')[0]))
     return _ND
 
-# Un folio, tel que le decodeur le rend : « 113 », mais aussi « lOO », « 2Ol »,
-# « ll2 » — le un et le zero de la machine a ecrire se lisent l et O. Deux
-# folios se suivent parfois, « 173/175 », quand la page porte les deux.
+# A folio, as the decoder returns it: « 113 », but also « lOO », « 2Ol »,
+# « ll2 » -- the typewriter's one and zero read as l and O. Two folios
+# sometimes follow one another, « 173/175 », when the page carries both.
 RE_FOLIO=re.compile(r'^[\dlOoIi][\dlOoIi\s/.,\u2013-]{0,7}$')
-# Le folio, en fin de ligne de texte, se distingue par le blanc qui le precede :
-# « ... sen shancelar   563 ». Il n'appartient pas a la phrase.
+# The folio, at the end of a line of text, is distinguished by the white
+# before it: « ... sen shancelar   563 ». It does not belong to the sentence.
 RE_FOLIO_FIN=re.compile(r'\s{2,}[\dlOoIi]{1,4}[.,]?$')
 
 def decouper(pages, corrigees, filetoj=None):
     filetoj = filetoj or {}
     ent=[]; tetoj={}
     for pg in sorted(pages):
-        if pg < 8: continue          # liminaires : titre, preface, rezumo di gramatiko
-        if pg in _non_dactylo(): continue   # pages blanches : rien a decouper
+        if pg < 8: continue          # front matter: title, preface, rezumo di gramatiko
+        if pg in _non_dactylo(): continue   # blank pages: nothing to cut
         try: ved={k for k,_ in vedettes(pg)}
         except Exception: ved=set()
-        # Marge de la page, lue sur le TEXTE DECODE et non sur l'occupation des
-        # cellules : quarante-cinq pages commencent plus a droite — la 380
-        # commence en 5 — et occ() y voit de l'encre en colonne 0 la ou le
-        # decodage ne voit rien. Toutes leurs entrees etaient perdues.
+        # The page's margin, read off the DECODED TEXT and not off the occupation
+        # of the cells: forty-five pages begin further right -- page 380 begins
+        # at 5 -- and occ() sees ink in column 0 there where the decoding sees
+        # nothing. All their entries were lost.
         lignes_pl=[s for _,s in pages[pg] if s.strip()]
         if lignes_pl:
             mg=min(len(s)-len(s.lstrip()) for s in lignes_pl)
         else:
             mg=0
-        # Une vedette non soulignee reste une vedette : elle commence a la
-        # marge, apres une ligne blanche, et se presente comme « mot. ».
-        # Une vedette non soulignee reste une vedette. On ne lui impose pas la
-        # marge : « +quoniam » est en colonne 17, « milieto » en 5. Ce qui la
-        # designe, c'est de suivre une ligne blanche et de se presenter comme
-        # « mot. ». Le « + » qui marque les mots non officiels en fait partie.
-        # « - oz-. », « - as. », « + prei. » : la dactylo a laisse une espace
-        # entre le signe et le mot. Sans cette tolerance, « -oz- » et « -as »
-        # n'etaient pas des vedettes du tout et tombaient dans l'article
-        # precedent.
-        # « .heliko », « .hipofizo » : la dactylo a frappe un point avant le
-        # mot. Sans cette tolerance, ces deux articles n'etaient pas des
-        # vedettes du tout et tombaient dans le precedent — « hipofizo » se
-        # lisait a la fin de « hipodromo ».
-        # « "dis" », « "hidalgo" » : un emprunt cite est une vedette a part
-        # entiere, et l'auteur l'entoure de guillemets. « ha ! » : une
-        # interjection se termine par son point d'exclamation, non par un
-        # point. « o (d). » : la vedette porte sa variante entre parentheses,
-        # comme « a(d). », mais separee par une espace.
-        # « rutino, » : la dactylo a frappe la VIRGULE au lieu du point. Le
-        # filet est bien la, la ligne blanche aussi ; seule la ponctuation
-        # manquait, et l'article entier tombait dans « ruteno », dont il
-        # avalait le symbole chimique. Sur les six cent trente-neuf pages, une
-        # seule ligne suit une ligne blanche en se presentant « mot, » : celle-
-        # la. Admettre la virgule ne coute donc aucun faux positif.
-        # « -- protestanto. » : l'auteur a marque d'un double tiret l'article
-        # qu'il inserait apres coup. « +intrenar (trans.) » : il a omis le
-        # point, et c'est le qualificatif entre parentheses qui clot la
-        # vedette. Sans ces deux tolerances, « protestanto » tombait dans
-        # « protestar » et « +intrenar » dans « intramolekula ».
+        # An unrmarked headword is still a headword: it begins at the margin,
+        # after a blank line, and presents itself as « mot. ».
+        # An unmarked headword is still a headword. We do not impose the margin
+        # on it: « +quoniam » is in column 17, « milieto » in 5. What designates
+        # it is following a blank line and presenting itself as « mot. ». The
+        # « + » that marks the unofficial words is part of it.
+        # « - oz-. », « - as. », « + prei. »: the typist left a space between the
+        # sign and the word. Without this tolerance, « -oz- » and « -as » were
+        # not headwords at all and fell into the preceding article.
+        # « .heliko », « .hipofizo »: the typist struck a full stop before the
+        # word. Without this tolerance, those two articles were not headwords at
+        # all and fell into the preceding one -- « hipofizo » read at the end of
+        # « hipodromo ».
+        # « "dis" », « "hidalgo" »: a quoted borrowing is a headword in its own
+        # right, and the author frames it in quotation marks. « ha ! »: an
+        # interjection ends with its exclamation mark, not with a full stop.
+        # « o (d). »: the headword carries its variant in parentheses, like
+        # « a(d). », but separated by a space.
+        # « rutino, »: the typist struck the COMMA instead of the full stop. The
+        # rule is there, the blank line too; only the punctuation was missing,
+        # and the whole article fell into « ruteno », whose chemical symbol it
+        # swallowed. Over the six hundred and thirty-nine pages, one line alone
+        # follows a blank line presenting itself as « mot, »: that one. Admitting
+        # the comma therefore costs no false positive.
+        # « -- protestanto. »: the author marked with a double hyphen the article
+        # he was inserting after the fact. « +intrenar (trans.) »: he omitted the
+        # full stop, and it is the qualifier in parentheses that closes the
+        # headword. Without these two tolerances, « protestanto » fell into
+        # « protestar » and « +intrenar » into « intramolekula ».
         RE_VED=re.compile(r'^(?:[-–]{2}\s*)?[\"«]?\.?[+-]?\s?'
                           r'[A-Za-z][A-Za-z\'’-]{0,30}[\"»]?'
                           r'\s?-?\s?(?:\([A-Za-z]{1,3}\)\s?)?'
                           r'(?:[.!,]|\s*\([A-Za-z]{1,12}[.,)])')
-        # La ligne blanche ne se lit pas dans le texte : elle N'EST PAS dans la
-        # grille. page_texte() ne rend que les lignes detectees, et leurs
-        # numeros sautent — 2, 3, puis 5. C'est ce SAUT qui marque le blanc.
-        # A chercher une chaine vide, la regle ne se declenchait que sur la
-        # premiere ligne de chaque page : la 536 ne rendait qu'un article sur
-        # quatorze, et « simpla », « utila », « granda » manquaient au livre.
-        # Le folio, et les lignes qui ne portent aucune lettre — les chiffres
-        # en exposant d'une formule, poses au-dessus de leur ligne —, ne
-        # rompent pas le blanc : ils ne sont pas du texte suivi. Sans cette
-        # transparence, « smalto » (folio colle a la vedette) et « morfino »
-        # (les indices de sa formule au-dessus) n'etaient pas des vedettes du
-        # tout, et leurs articles tombaient hors du livre.
+        # The blank line is not read in the text: it is NOT in the grid.
+        # page_texte() returns only the lines detected, and their numbers skip --
+        # 2, 3, then 5. It is that SKIP that marks the blank. Looking for an
+        # empty string, the rule fired only on the first line of each page: page
+        # 536 returned one article out of fourteen, and « simpla », « utila »,
+        # « granda » were missing from the book.
+        # The folio, and the lines that carry no letter -- the superscript figures
+        # of a formula, laid above their line -- do not break the blank: they are
+        # not running text. Without that transparency, « smalto » (folio stuck to
+        # the headword) and « morfino » (the subscripts of its formula above)
+        # were not headwords at all, and their articles fell outside the book.
         prec=None; ved2=set()
         for k,s in pages[pg]:
             if not s.strip(): continue
             if RE_FOLIO.match(s.strip()) or not any(c.isalpha() for c in s):
                 continue
             blanc = (prec is None) or (k - prec > 1)
-            # Un mot TOUT en capitales n'est pas une vedette : c'est le code de
-            # langues, que l'auteur a parfois rejete sur une ligne a part apres
-            # un interligne — « DEFIR. » sous « sodo ». « Direktorio », « Usa »,
-            # « Venus » gardent leur capitale initiale et restent des vedettes.
+            # A word ALL in capitals is not a headword: it is the language code,
+            # which the author sometimes threw onto a line of its own after a
+            # leading -- « DEFIR. » under « sodo ». « Direktorio », « Usa »,
+            # « Venus » keep their initial capital and remain headwords.
             u=s.lstrip()
             capitales = re.match(r'^[A-Z]{2,}\b', u) is not None
             if blanc and not capitales and RE_VED.match(u): ved2.add(k)
             prec=k
-        # Les indices d'une formule, frappes sur une ligne a part JUSTE AVANT
-        # la vedette qui les porte : « 12  22  11 » au-dessus de « laktoso ».
-        # La machine ne descend pas les chiffres ; la dactylo remonte donc la
-        # ligne. Quatre formules du livre sont dans ce cas — laktoso, morfino,
-        # saponino, fenacetino — et leur ligne d'indices se rattachait a
-        # l'article PRECEDENT, ou elle n'a rien a faire. Meme sort pour le
-        # point isole qui precede « deciliono ».
+        # The subscripts of a formula, struck on a line of their own JUST BEFORE
+        # the headword that carries them: « 12  22  11 » above « laktoso ». The
+        # machine does not lower the figures; the typist therefore raises the
+        # line. Four formulae in the book are in that case -- laktoso, morfino,
+        # saponino, fenacetino -- and their line of subscripts attached itself to
+        # the PRECEDING article, where it has no business. The same fate for the
+        # isolated full stop that precedes « deciliono ».
         contenu=[(k,x) for k,x in pages[pg] if x.strip()]
         muta=set()
         for i,(k,x) in enumerate(contenu):
@@ -388,12 +387,12 @@ def decouper(pages, corrigees, filetoj=None):
                 orfa.append((k, RE_FOLIO_FIN.sub('', s)))
         if cur: ent.append(cur)
         if orfa: tetoj[pg]=orfa
-    # Article commence en bas d'une page et poursuivi en tete de la suivante.
-    # « tamburo » (folio 567) s'arretait sur « kovrita ye » : ses deux dernieres
-    # lignes ouvrent la page 568, avant « tamburino », et le decoupage, qui
-    # repart de zero a chaque page, les jetait. On ne les rattache que si
-    # l'article precedent est reste EN SUSPENS — sans code de langues finale —,
-    # ce qui est la marque meme de la coupure.
+    # An article begun at the foot of a page and continued at the head of the
+    # next. « tamburo » (folio 567) stopped at « kovrita ye »: its last two lines
+    # open page 568, before « tamburino », and the cutting, which starts from zero
+    # on each page, threw them away. We attach them only if the preceding article
+    # was left IN SUSPENSE -- with no final language code -- which is the very mark
+    # of the break.
     RE_KODO=re.compile(r'[-–]\s*[A-Za-z]{1,12}\.?\s*$')
     der={}
     for i,e in enumerate(ent):
@@ -404,15 +403,15 @@ def decouper(pages, corrigees, filetoj=None):
         if d is None: continue
         e=ent[d[1]]
         t=" ".join(x for _,x in e['lineoj']).strip()
-        # L'article precedent porte deja son code : il est clos, la tete de
-        # page ne le prolonge pas.
+        # The preceding article already carries its code: it is closed, the head
+        # of the page does not continue it.
         if RE_KODO.search(t): continue
-        # Il se termine sur un tiret seul : ce n'est pas la phrase qui manque,
-        # c'est le code de langues. « "nirvana" » finit ainsi, et la tete de la
-        # page suivante appartient a « nivar », article que le livre a perdu.
+        # It ends on a lone hyphen: it is not the sentence that is missing, it is
+        # the language code. « "nirvana" » ends so, and the head of the next page
+        # belongs to « nivar », an article the book has lost.
         if re.search(r'[-–]\s*$', t): continue
         u=" ".join(x.strip() for _,x in lignes).strip()
-        # Une lettre esseulee, un signe : un accident de frappe, non un texte.
+        # A letter on its own, a sign: an accident of typing, not a text.
         if len(u) < 8 or len(u.split()) < 2: continue
         e['lineoj'].extend(lignes); n_suite+=1
     if n_suite: print("articles poursuivis en tete de page : %d"%n_suite)
@@ -424,29 +423,29 @@ def decouper(pages, corrigees, filetoj=None):
 
 
 def sublineajoj(e):
-    """Ce que l'auteur a SOULIGNE dans l'article, remis bout a bout.
+    """What the author UNDERLINED in the article, set end to end.
 
-    Le tapuscrit n'a pas d'italique : la dactylo souligne. Elle souligne le
-    mot-vedette, le nom latin, le domaine — « (matem.) » — et la locution qui
-    porte sa propre definition — « Proporciono geometriala : ... ». Le releve
-    des filets donne, ligne par ligne, des plages de colonnes ; il suffit d'y
-    lire le texte.
+    The typescript has no italic: the typist underlines. She underlines the
+    headword, the Latin name, the domain -- « (matem.) » -- and the phrase that
+    carries its own definition -- « Proporciono geometriala : ... ». The survey
+    of the rules gives, line by line, ranges of columns; one need only read the
+    text in them.
 
-    Une locution coupee en fin de ligne se recolle : « Proporciono geome- »
-    puis « triala ». Le trait d'union est celui de la coupure, non du mot.
+    A phrase broken at the end of a line is reglued: « Proporciono geome- »
+    then « triala ». The hyphen is the break's, not the word's.
     """
     fil=e.get('filetoj') or {}
     par={k:s for k,s in e['lineoj']}
-    morceaux=[]                       # (texte, coupe_a_la_fin)
+    morceaux=[]                       # (text, cut_at_the_end)
     for k,s in e['lineoj']:
         fin=len(s.rstrip())
         for a,b in sorted(fil.get(k, [])):
             if a >= len(s): continue
             t=s[a:b+1]
-            # Le filet mord parfois sur la ponctuation voisine.
+            # The rule sometimes bites into the neighbouring punctuation.
             t=t.strip(" .,;:)(\u00ab\u00bb\"'")
             if not t: continue
-            # Coupure de fin de ligne : le trait d'union suit immediatement.
+            # End-of-line break: the hyphen follows immediately.
             coupe = s[b+1:fin].strip() == '-'
             morceaux.append((t, coupe))
     out=[]; i=0
@@ -457,7 +456,7 @@ def sublineajoj(e):
             t = t + morceaux[i][0]
             coupe = morceaux[i][1]
         out.append(t); i += 1
-    # Le mot-vedette est souligne comme le reste : il n'apprend rien ici.
+    # The headword is underlined like the rest: it teaches nothing here.
     v=(e.get('vedetto') or '').lower().lstrip('*+')
     vu=set(); res=[]
     for t in out:
@@ -469,7 +468,7 @@ def sublineajoj(e):
 
 _FIN=("ar","ir","or","as","is","os","us","o","a","e","i")
 def _atteste(w, lexique):
-    """Le mot, ou sa racine une fois la finale grammaticale otee, est-il vedette ?"""
+    """Is the word, or its root once the grammatical ending is off, a headword?"""
     if not lexique or not w: return False
     w=w.lower()
     if w in lexique: return True
@@ -478,19 +477,19 @@ def _atteste(w, lexique):
     return False
 
 def recoller(lignes, lexique=None):
-    """Recolle les lignes d'un article en rendant les mots coupes en fin de ligne.
+    """Reglues an article's lines, giving back the words broken at the line end.
 
-    Le tapuscrit coupe les mots au bord droit : « por rezis- » puis « tar ».
-    Les joindre par une espace donnait « rezis- tar ». On les recolle donc sans
-    espace et sans le trait.
+    The typescript breaks words at the right edge: « por rezis- » then « tar ».
+    Joining them with a space gave « rezis- tar ». We therefore reglue them
+    with no space and no hyphen.
 
-    Un compose qui tombe pile sur la coupure est ambigu — « homo-korpo » coupe
-    apres le trait devrait garder son trait. On tranche par le lexique : si le
-    On teste le mot RECOLLE, non le fragment de gauche. La premiere version
-    testait la gauche : « re », « pro », « kom », « fa », « mi » sont des
-    prefixes, donc toujours attestes comme vedettes, et le trait restait —
-    « re-cevar », « pro-duktita », « kom-batis » sortaient coupes en deux. Le
-    jugement lexical de la premiere vague n'a quasiment trouve que cela.
+    A compound that falls exactly on the break is ambiguous -- « homo-korpo »
+    broken after the hyphen should keep its hyphen. We settle it by the
+    lexicon: we test the REGLUED word, not the left-hand fragment. The first
+    version tested the left: « re », « pro », « kom », « fa », « mi » are
+    prefixes, hence always attested as headwords, and the hyphen stayed --
+    « re-cevar », « pro-duktita », « kom-batis » came out cut in two. The
+    lexical judgement of the first wave found almost nothing else.
     """
     out=""
     for i,s in enumerate(lignes):
@@ -500,41 +499,41 @@ def recoller(lignes, lexique=None):
             gauche=re.split(r'[^A-Za-z’\'-]', out[:-1])[-1]
             droite=re.split(r'[^A-Za-z’\'-]', s)[0]
             if _atteste(gauche+droite, lexique):
-                out=out[:-1]+s          # le mot recolle existe : c'etait une cesure
+                out=out[:-1]+s          # the reglued word exists: it was a hyphenation
             elif (lexique and _atteste(gauche, lexique)
                           and _atteste(droite, lexique)):
-                out=out+s               # deux mots attestes : compose, on garde le trait
+                out=out+s               # two attested words: a compound, we keep the hyphen
             else:
-                out=out[:-1]+s          # dans le doute, la cesure est le cas courant
+                out=out[:-1]+s          # in doubt, hyphenation is the ordinary case
         else:
             out=out+" "+s
     return out
 
-# Deux articles frappes a la suite sur une meme ligne. Le decoupage se fait sur
-# la ligne blanche qui precede la vedette ; quand la dactylo n'en a pas laisse,
-# le second article se retrouve avale dans la definition du premier —
-# « cerebelo » dans « cereala », « asepta » dans « asentar ». Ce qui les separe
-# est sur : chaque article FINIT par son code de langues. Tout ce qui suit
-# « - DEFIS. » et se presente comme « mot : » ou « mot. » est donc un article
-# neuf. On exige un vrai code — « L. » (nom latin) et « Simb. » (symbole
-# chimique) n'en sont pas — pour ne pas couper « - L. saponaria. » en deux.
+# Two articles struck one after the other on the same line. The cutting is made
+# on the blank line before the headword; when the typist has left none, the
+# second article finds itself swallowed into the definition of the first --
+# « cerebelo » in « cereala », « asepta » in « asentar ». What separates them is
+# sure: each article ENDS with its language code. Everything that follows
+# « - DEFIS. » and presents itself as « mot : » or « mot. » is therefore a new
+# article. We require a true code -- « L. » (Latin name) and « Simb. » (chemical
+# symbol) are not -- so as not to cut « - L. saponaria. » in two.
 RE_DIVIDO = re.compile(r'[-–]\s*([A-Za-z]{1,12})\.\s+'
                        r'(?=(?:[+*]?[a-zà-ÿ][a-zà-ÿ\'\u2019-]{1,25}'
                        r'(?:\s*[:.!]\s|\s+\()'
-                       # Emprunt cite pris pour vedette : « "argus" », « "inch" ».
-                       # Onze articles se trouvaient ainsi noyes dans leur voisin.
+                       # A quoted borrowing taken for a headword: « "argus" », « "inch" ».
+                       # Eleven articles were drowned in their neighbour that way.
                        r'|["\u00ab]\s*[+*]?[a-zà-ÿ]))')
 
 _DIVIDI=None
 def _dividi(fichier=f"{T}/dividi.txt"):
-    """Coupures relevees a l'oeil : image:ligno -> chaine ou couper.
+    """Cuts surveyed by eye: image:line -> the string to cut at.
 
-    Le reperage automatique s'appuie sur le code de langues qui finit chaque
-    article. Quand une note s'est glissee entre les deux — « shokar. ... II.
-    (Ref. "Adjuntenda", fine di ca verko) shovar. (trans.) Glitigar per
-    pulso. - DE. » —, il n'y a plus de code a l'endroit de la couture, et le
-    second article — une racine entiere, absente du reste du livre — restait
-    noye dans le premier.
+    The automatic location relies on the language code that ends each article.
+    When a note has slipped between the two -- « shokar. ... II. (Ref.
+    "Adjuntenda", fine di ca verko) shovar. (trans.) Glitigar per pulso. - DE. »
+    -- there is no code left at the point of the join, and the second article --
+    a whole root, absent from the rest of the book -- stayed drowned in the
+    first.
     """
     global _DIVIDI
     if _DIVIDI is None:
@@ -550,19 +549,19 @@ def _dividi(fichier=f"{T}/dividi.txt"):
 
 
 def dividar(brut, lexique=None):
-    """Scinde les entrees qui en contiennent deux. Rend la liste elargie."""
+    """Splits the entries that contain two. Returns the widened list."""
     out=[]
     for e in brut:
         t = e.get('teksto_brut')
         if t is None:
             t = re.sub(r'\s+',' ',recoller([s for _,s in e['lineoj']], lexique)).strip()
-            # La couche de correction du texte brut doit s'appliquer AVANT le
-            # decoupage : c'est elle qui retablit le point du code de langues,
-            # sur lequel la coupure s'appuie (« - DEFIR. shut! »).
+            # The correction layer for the raw text must be applied BEFORE the
+            # cutting: it is that layer which restores the full stop of the language
+            # code, on which the cut relies (« - DEFIR. shut! »).
             for a,b in _texti().items():
                 if a in t: t=t.replace(a,b)
-        # La coupure relevee a l'oeil passe la premiere : elle porte la ou le
-        # code de langues manque, et le reperage automatique ne voit rien.
+        # The cut surveyed by eye goes first: it bears where the language code
+        # is missing, and the automatic location sees nothing.
         _c = _dividi().get("%d:%d" % (e.get('image',-1), e.get('ligno',-1)))
         if _c and _c in t and t.index(_c) > 0:
             j=t.index(_c)
@@ -574,15 +573,15 @@ def dividar(brut, lexique=None):
             coupe=None
             for m in RE_DIVIDO.finditer(t):
                 j=m.group(1)
-                # « - II. » n'est pas un code mais un numero de sens : lu comme
-                # « Italiana, Italiana », il coupait « seniora » en deux. Aucun
-                # vrai code ne repete une langue.
+                # « - II. » is not a code but a number of sense: read as
+                # « Italiana, Italiana », it cut « seniora » in two. No true code
+                # repeats a language.
                 if j=='L' or len(set(j.upper()))!=len(j): continue
-                # « - S. stachys. » : ce qui suit le code est le nom latin de la
-                # plante, pas un article. Un article a une definition.
-                # Un article peut etre tres bref : « "kilowatt". 1000 "watt" »
-                # tient en vingt-trois signes. Le seuil ecarte surtout le nom
-                # latin isole, plus court encore.
+                # « - S. stachys. »: what follows the code is the plant's Latin
+                # name, not an article. An article has a definition.
+                # An article can be very short: « "kilowatt". 1000 "watt" »
+                # holds in twenty-three signs. The threshold sets aside above all
+                # the isolated Latin name, shorter still.
                 if len(t)-m.end() < 18: continue
                 if _lire_code(j):
                     coupe=m; break
@@ -599,14 +598,14 @@ def dividar(brut, lexique=None):
 
 _TEXTI=None
 def _texti(fichier=f"{T}/texti.txt"):
-    """Corrections du TEXTE BRUT, avant toute analyse.
+    """Corrections to the RAW TEXT, before any analysis.
 
-    Certaines fautes doivent se reparer avant que le code de langues, le
-    domaine et les sens soient lus — sinon la reparation arrive trop tard.
-    Ainsi « autoritato » : l'auteur a ajoute « pensala. » en marge, tres a
-    droite, pour completer « verko » a la ligne suivante ; le mot s'est
-    retrouve APRES le « - DEFIRS. » de l'article precedent, dont le code ne
-    s'ancrait donc plus en fin de chaine.
+    Some faults must be repaired before the language code, the domain and the
+    senses are read -- or the repair comes too late. Thus « autoritato »: the
+    author added « pensala. » in the margin, far to the right, to complete
+    « verko » on the next line; the word found itself AFTER the « - DEFIRS. »
+    of the preceding article, whose code was therefore no longer anchored at
+    the end of the string.
     """
     global _TEXTI
     if _TEXTI is None:
@@ -620,35 +619,35 @@ def _texti(fichier=f"{T}/texti.txt"):
     return _TEXTI
 
 def _kupar(x):
-    """Coupe la queue d'un segment, SANS toucher a l'ellipse finale.
+    """Cuts the tail of a segment, WITHOUT touching the final ellipsis.
 
-    L'auteur marque d'un « ... » la place du complement que le mot regit :
-    « de la instanto kande onu agnoskas kom valida ke... » pour quoniam, et de
-    meme pour for, jus, kande, kovrar, pasar, proxim. Le rognage ordinaire des
-    points la faisait disparaitre, alors qu'elle porte du sens — le livre en
-    garde cinquante-cinq autres ailleurs.
+    The author marks with a « ... » the place of the complement the word
+    governs: « de la instanto kande onu agnoskas kom valida ke... » for
+    quoniam, and likewise for for, jus, kande, kovrar, pasar, proxim. The
+    ordinary trimming of full stops made it disappear, though it carries sense
+    -- the book keeps fifty-five others elsewhere.
     """
     x = re.sub(r'[\s\-\u2013]+$', '', x)
-    # Le code de langues se colle parfois a l'ellipse — « ... gradale) de...EFIRS »
-    # chez proxim — et la recherche du code en emporte un point. Deux points
-    # suffisent donc a la reconnaitre ; on la retablit a trois.
+    # The language code sometimes sticks to the ellipsis -- « ... gradale)
+    # de...EFIRS » under proxim -- and the search for the code carries off one of
+    # its dots. Two dots therefore suffice to recognise it; we restore it to three.
     if re.search(r'\.\.+$', x):
         return re.sub(r'\.\.+$', '...', x)
-    # « e c. » abrege « e cetere » : ce point appartient au mot, non a la
-    # phrase, et ne doit pas tomber avec la ponctuation finale.
+    # « e c. » abbreviates « e cetere »: that full stop belongs to the word,
+    # not to the sentence, and must not fall with the final punctuation.
     if re.search(r'(?<![A-Za-zÀ-ÿ])e c\.$', x):
         return x
     x = re.sub(r'[\s\-\u2013.,;:]+$', '', x)
     return x
 
 
-# Abreviations employees dans le champ du domaine. L'original les pointe
-# irregulierement — « (ajuro) » ecrit « bot. », d'autres « bot » tout court.
-# On uniformise en les pointant toutes. La liste est EXPLICITE, et non deduite
-# d'une regle sur la finale : le meme champ contient des prepositions qui
-# finissent aussi par une consonne (« trans., ad », « netrans., pri »), des
-# verbes (« qua agas »), des numeraux (« un »), et jusqu'a une formule chimique
-# — une regle generale y mettait « C.8 H.8 » et « Natur.-historio ».
+# Abbreviations used in the domain field. The original points them
+# irregularly -- « (ajuro) » writes « bot. », others « bot » plain. We make
+# them uniform by pointing them all. The list is EXPLICIT, and not deduced from
+# a rule about the ending: the same field contains prepositions that also end
+# in a consonant (« trans., ad », « netrans., pri »), verbs (« qua agas »),
+# numerals (« un »), and even a chemical formula -- a general rule put « C.8
+# H.8 » and « Natur.-historio » there.
 MALLONGIGI = set("""
 trans netrans netr tran anat anatom arit aritm algeb akust arkeol arkit arkitekt
 astr astron biol bot diplomac elektr embriol farmak filoz filozof financ fiz
@@ -661,7 +660,7 @@ tekn teknol teol teratol versif zool zoolog
 
 
 def pointi(f):
-    """Ajoute le point aux abreviations du domaine, et a elles seules."""
+    """Adds the full stop to the domain abbreviations, and to those alone."""
     if not f:
         return f
     return re.sub(r'(?<![A-Za-zÀ-ÿ.])([A-Za-zÀ-ÿ]+)(?![A-Za-zÀ-ÿ.-])',
@@ -669,13 +668,13 @@ def pointi(f):
                   else m.group(1), f)
 
 
-# Les noms propres qui ouvrent une parenthese dans le livre — pays, personnes,
-# divinites, peuples, et les adjectifs de langue et de nation, qui gardent leur
-# majuscule en ido. Sans cette liste la regle de minuscule les abimait :
-# « (Italia) » devenait « (italia) », « (Voltaire) » « (voltaire) », et
-# « (Diana chasera, Tetis, e c.) » chez nimfo perdait sa deesse. La liste a ete
-# relevee sur le texte brut, en cherchant toute parenthese ouverte par un mot
-# capitalise dont l'edition avait fait une minuscule.
+# The proper nouns that open a parenthesis in the book -- countries, persons,
+# divinities, peoples, and the adjectives of language and nation, which keep
+# their capital in Ido. Without this list the lower-case rule spoilt them:
+# « (Italia) » became « (italia) », « (Voltaire) » « (voltaire) », and
+# « (Diana chasera, Tetis, e c.) » under nimfo lost its goddess. The list was
+# surveyed on the raw text, by looking for every parenthesis opened by a
+# capitalised word the edition had made lower case.
 PROPRA = ('Roma', 'Vatikano', 'Afrodito', 'Araba', 'Aug', 'Auguste', 'Azia',
           'Bacchus', 'Britania', 'Cicero', 'Diana', 'Dubois', 'Elizeo', 'Epiro',
           'Francia', 'Greka', 'Grekia', 'India', 'Istanbul', 'Italia', 'Kelti',
@@ -688,30 +687,30 @@ PROPRA = ('Roma', 'Vatikano', 'Afrodito', 'Araba', 'Aug', 'Auguste', 'Azia',
 
 
 def minuskligi(f):
-    """La majuscule initiale d'un domaine n'a pas lieu d'etre : « (Muziko) »
-    s'ecrit « (muziko) ». L'auteur ne s'est pas uniformise. On epargne les noms
-    propres et les formules chimiques, reconnues a leur chiffre."""
+    """A domain's initial capital has no reason to be: « (Muziko) » is written
+    « (muziko) ». The author did not make himself uniform. We spare the proper
+    nouns and the chemical formulae, recognised by their figure."""
     if not f or not f[0].isupper():
         return f
     unua = f.split()[0].rstrip('.,)')
-    # Un symbole chimique — « M », « M' », « Na » — n'est pas un domaine :
-    # « (M : natro, o kalio...) », dans la formule de l'alun, dit ce que la
-    # lettre M represente. Un domaine du livre est un mot, non une lettre.
+    # A chemical symbol -- « M », « M' », « Na » -- is not a domain:
+    # « (M : natro, o kalio...) », in the formula for alum, says what the
+    # letter M stands for. A domain of the book is a word, not a letter.
     if len(unua.rstrip("'")) <= 2 and unua.rstrip("'").isupper():
         return f
-    # Le nom propre peut porter une queue : « Roentgen-radii » n'est pas
-    # « Roentgen » pour le test, et les rayons X de radiografar sortaient
-    # « roentgen-radii ». On interroge aussi ce qui precede le trait.
+    # A proper noun can carry a tail: « Roentgen-radii » is not
+    # « Roentgen » for the test, and the X-rays of radiografar came out
+    # « roentgen-radii ». We ask about what precedes the hyphen as well.
     if (unua in PROPRA or unua.split('-')[0] in PROPRA
             or re.search(r'[\d\u2080-\u2089]', unua)):
         return f
-    # Le chiffre peut n'arriver qu'au mot SUIVANT, et le premier symbole
-    # n'etre ni une capitale seule ni un nom propre : « (Si O3)2n », le
-    # silicium de l'amiante, devenait « (si O3)2n ». La formule ne se
-    # reconnait alors qu'ENTIERE, et c'est le motif qui pose deja les indices
-    # qu'on interroge, avec ses deux garde-fous — au moins deux symboles et un
-    # chiffre. Une phrase qui ouvre par une capitale et porte un nombre n'y
-    # passe pas : « (Dicesas precipue pri la homo qua evas plu kam 20 yari) ».
+    # The figure may arrive only at the NEXT word, and the first symbol be
+    # neither a lone capital nor a proper noun: « (Si O3)2n », the silicon of
+    # asbestos, became « (si O3)2n ». The formula is then recognisable only
+    # WHOLE, and it is the pattern that already lays the subscripts we ask,
+    # with its two safeguards -- at least two symbols and one figure. A
+    # sentence that opens with a capital and carries a number does not pass:
+    # « (Dicesas precipue pri la homo qua evas plu kam 20 yari) ».
     if _formulo_sola(f):
         return f
     return f[0].lower() + f[1:]
@@ -722,30 +721,31 @@ _CIFRIGI = str.maketrans('\u2080\u2081\u2082\u2083\u2084'
 
 
 def _formulo_sola(u):
-    """La chaine est-elle une FORMULE chimique, et rien d'autre ?
+    """Is the string a chemical FORMULA, and nothing else?
 
-    Les indices sont ramenes sur la ligne avant le test : la chaine pose
-    d'abord les majuscules, ensuite les indices, mais la meme fonction se
-    rejoue sur un texte deja rendu, ou « Si O3 » s'ecrit « Si O\u2083 ».
+    The subscripts are brought back onto the line before the test: the string
+    lays the capitals first, the subscripts after, but the same function is
+    replayed on a text already rendered, where « Si O3 » is written
+    « Si O\u2083 ».
     """
     u = u.strip().translate(_CIFRIGI)
     return bool(_FORMULO.fullmatch(u) and re.search(r'\d', u)
                 and len(re.findall(r'[A-Z]', u)) >= 2)
 
 
-# Le meme domaine, ecrit de deux facons par l'auteur — « (anatom.) » une fois
-# contre « (anat.) » deux cent vingt-neuf, « (kem.) » deux fois contre
-# « (kemio) » cent quatre-vingts. Ce n'est pas une mauvaise lecture : c'est
-# l'auteur qui ne s'est pas uniformise, sur quarante ans de fiches. L'edition
-# retient LA FORME QU'IL EMPLOIE LE PLUS. Quand les deux sont a moins du double
-# l'une de l'autre, c'est l'abregee qui l'emporte : le livre abrege ses domaines
-# 2 463 fois contre 746 ou il les ecrit au long, et l'abreviation est donc sa
-# maniere. Chaque ligne porte les deux comptes.
+# The same domain, written two ways by the author -- « (anatom.) » once
+# against « (anat.) » two hundred and twenty-nine times, « (kem.) » twice
+# against « (kemio) » a hundred and eighty. It is not a misreading: it is the
+# author who did not make himself uniform, over forty years of slips. The
+# edition keeps THE FORM HE USES MOST. When the two are within twice each other,
+# the abbreviated one prevails: the book abbreviates its domains 2,463 times
+# against 746 where it writes them out, and abbreviation is therefore its way.
+# Each line carries both counts.
 #
-# Ce qui n'est PAS ici : les formes que rien ne dit equivalentes. « tekn. » et
-# « teknol. », « fiz. » et « fiziol. », « paleont. » et « paleogr. », « milit. »
-# et « milit-arto », « elektro » et « elektrotekniko » sont des domaines
-# distincts, et « (religio kristana) », « (armeo-chefo) » des locutions.
+# What is NOT here: the forms nothing says are equivalent. « tekn. » and
+# « teknol. », « fiz. » and « fiziol. », « paleont. » and « paleogr. »,
+# « milit. » and « milit-arto », « elektro » and « elektrotekniko » are distinct
+# domains, and « (religio kristana) », « (armeo-chefo) » are phrases.
 DOMENI_UNIFORMA = {
     'netr.': 'netrans.',            #   3 / 446
     'anatom.': 'anat.',             #   1 / 229
@@ -773,47 +773,47 @@ DOMENI_UNIFORMA = {
     'med.': 'medic.',               #   1 /  32
     'medicino': 'medic.',           #  13 /  32
     'nav.': 'navig.',               #   3 /  38
-    'teolo': 'teol.',               #   1 /   6  (« teolo » n'est pas un mot)
+    'teolo': 'teol.',               #   1 /   6  (« teolo » is not a word)
     'kristan.': 'kristanismo',      #   1 /   7
-    'kristanismo.': 'kristanismo',  #   1 /   7  (le point d'un mot entier)
+    'kristanismo.': 'kristanismo',  #   1 /   7  (the full stop of a whole word)
     'arkeologio': 'arkeol.',        #   1 /   4
     'opt.': 'optiko',               #   2 /   5
-    'histologio': 'histol.',        #   7 /   5  — a moins du double : l'abrege
+    'histologio': 'histol.',        #   7 /   5  — within twice: the abbreviation
     'kirurgio': 'kirurg.',          #   8 /  13
-    'retoriko': 'retor.',           #   7 /   6  — a moins du double : l'abrege
+    'retoriko': 'retor.',           #   7 /   6  — within twice: the abbreviation
     'mekaniko': 'mekan.',           #   3 /   4
     'meteor.': 'meteorol.',         #   2 /   6
     'paleontol.': 'paleont.',       #   4 /   5
     'paleontologio': 'paleont.',    #   1 /   5
     'elektr.': 'elektro',           #   9 /  20
     'milito': 'milit.',             #   6 /  10
-    'imprim.': 'imprim-arto',       #   1 /   3  — le trait d'union, maniere
-    'imprimarto': 'imprim-arto',    #   2 /   1    du livre pour ses domaines
-    'militarto': 'milit-arto',      #   4 /   8    composes : il l'ecrit ainsi
-    'shakoludo': 'shako-ludo',      #   1 /   1    dans TOUS les autres —
+    'imprim.': 'imprim-arto',       #   1 /   3  — the hyphen, the book's
+    'imprimarto': 'imprim-arto',    #   2 /   1    way with its compound
+    'militarto': 'milit-arto',      #   4 /   8    domains: it writes them so
+    'shakoludo': 'shako-ludo',      #   1 /   1    in ALL the others —
     'skermarto': 'skerm-arto',      #   1 /   1    « banko-komerco », « natur-
     'yurocienco': 'yuro-cienco',    #  24 /  15    historio », « politiko-yuro ».
-    'akustiko': 'akust.',           #   1 /   1  — egalite : l'abrege
+    'akustiko': 'akust.',           #   1 /   1  — equal: the abbreviation
     'diplomaco': 'diplomac.',       #   1 /   1
     'magnetismo': 'magnet.',        #   1 /   1
     'fortifikuro': 'fortifik.',     #   1 /   1
     'teratologio': 'teratol.',      #   1 /   1
     'versifado': 'versif.',         #   1 /   1
-    'prosodio': 'prozodio',         #   1 /   1  — « prozodio » est vedette du
-                                    #             livre, « prosodio » non
-    'teol.katol': 'teol. katol.',   # l'espace perdue entre deux domaines
+    'prosodio': 'prozodio',         #   1 /   1  — « prozodio » is a headword of
+                                    #             the book, « prosodio » is not
+    'teol.katol': 'teol. katol.',   # the space lost between two domains
     'trans.pri': 'trans., pri',
     'meteorologio': 'meteorol.',    #   1 /   6
     'tekniko': 'tekn.',             #   1 / 119
     'maronavigado': 'maro-navig.',  #   1 /   1
 }
-# Le soulignement releve sur la page porte la forme QUE L'AUTEUR A ECRITE ; le
-# champ porte celle que l'edition retient. Pour reconnaitre qu'un souligne est
-# le domaine — et ne pas l'envoyer a la liste des filets non places —, il faut
-# donc connaitre les deux. Table inverse, pour cet usage seul.
+# The underline surveyed on the page carries the form THE AUTHOR WROTE; the
+# field carries the one the edition keeps. To recognise that an underlined
+# stretch is the domain -- and not send it to the list of unplaced rules -- one
+# must therefore know both. An inverse table, for that use alone.
 def _plata(x):
-    """La chaine reduite a ses lettres : « netrans.,an » et « netrans., an »
-    sont le meme domaine, « yuro-cienco » et « yurocienco » aussi."""
+    """The string reduced to its letters: « netrans.,an » and « netrans., an »
+    are the same domain, and so are « yuro-cienco » and « yurocienco »."""
     return re.sub(r'[^0-9a-zà-ÿ]', '', x.lower())
 
 
@@ -824,13 +824,13 @@ DOMENI_PLATA = {_plata(_v): _r for _v, _r in DOMENI_UNIFORMA.items()}
 
 
 def alia_formo(u):
-    """La forme RETENUE d'un domaine que la page ecrit autrement.
+    """The form KEPT for a domain the page writes otherwise.
 
-    Le filet de la dactylo couvre « medicino » ; le texte rendu porte
-    « medic. ». Cherche tel quel, le filet ne se retrouvait plus, et le domaine
-    perdait son italique. Le trait se rompt aussi en fin de ligne, et il ne
-    reste qu'un morceau — « cienco » pour « yuro-cienco » : on accepte donc
-    aussi le morceau, a partir de quatre lettres.
+    The typist's rule covers « medicino »; the text returned carries
+    « medic. ». Sought as it stands, the rule was no longer found, and the
+    domain lost its italic. The stroke also breaks at the end of a line, and
+    only a piece is left -- « cienco » for « yuro-cienco »: we therefore accept
+    the piece too, from four letters up.
     """
     p=_plata(u)
     if not p:
@@ -845,16 +845,16 @@ def alia_formo(u):
             if p in _plata(v):
                 return r
     return None
-# On ne remplace que la composante ENTIERE : le champ enumere parfois deux
-# domaines — « (arit., algeb.) », « (fiz. e geom.) » —, et chacun compte pour
-# une composante. Une composante de plusieurs mots est une phrase de l'auteur,
-# non un domaine : « ante la milito universala di 1914-18 », « en la filozofio
-# olima », « olima geometrio » gardent leur mot.
+# We replace only the WHOLE component: the field sometimes enumerates two
+# domains -- « (arit., algeb.) », « (fiz. e geom.) » -- and each counts as one
+# component. A component of several words is a sentence of the author's, not a
+# domain: « ante la milito universala di 1914-18 », « en la filozofio olima »,
+# « olima geometrio » keep their word.
 RE_KOMPONO = re.compile(r'(\s*,\s*|\s+e\s+)')
 
 
 def uniformigar(f):
-    """Rend au domaine la forme que l'auteur emploie le plus souvent."""
+    """Gives the domain back the form the author uses most often."""
     if not f:
         return f
     out=[]
@@ -862,15 +862,15 @@ def uniformigar(f):
         bouts=RE_KOMPONO.split(part)
         for i in range(0, len(bouts), 2):
             b=bouts[i].strip()
-            # La forme cherchee l'est a la ponctuation et a la casse pres :
-            # « Medicino », « kem » sans son point et « kem. » sont le meme mot.
+            # The form sought is sought but for punctuation and case:
+            # « Medicino », « kem » without its full stop and « kem. » are the same word.
             r=DOMENI_UNIFORMA.get(b) or DOMENI_PLATA.get(_plata(b))
             if r:
                 bouts[i]=bouts[i].replace(b, r)
-            # La virgule qui separe deux domaines prend son espace, comme les
-            # quatre cents autres : « (netrans.,an) » s'ecrit « (netrans., an) ».
-            # Sauf entre deux chiffres : « (en Paris = 1,18 metro) », chez
-            # « ulno », porte une decimale et non une enumeration.
+            # The comma that separates two domains takes its space, like the four
+            # hundred others: « (netrans.,an) » is written « (netrans., an) ».
+            # Except between two figures: « (en Paris = 1,18 metro) », under « ulno »,
+            # carries a decimal and not an enumeration.
             if (i+1 < len(bouts) and not re.search(r'\d', bouts[i])
                     and not re.search(r'\d', bouts[i+2])):
                 bouts[i+1]=', ' if ',' in bouts[i+1] else ' e '
@@ -878,25 +878,24 @@ def uniformigar(f):
     return ') ('.join(out)
 
 
-# Une abreviation, ou le « e c. » de l'auteur, ne finit pas une phrase.
+# An abbreviation, or the author's « e c. », does not end a sentence.
 RE_ABREVO_FINA = re.compile(r'(?:\be\s*c|\b[A-Za-z])\.$')
 
 
 def _remarko_fina(t, m):
-    """La parenthese CLOT-elle le sens, apres un point ?
+    """Does the parenthesis CLOSE the sense, after a full stop?
 
-    Alors ce n'est pas un qualificatif de domaine mais une REMARQUE, et elle
-    garde la capitale que l'auteur lui a donnee : « (Dicesas precipue pri la
-    homo qua evas plu kam 20 yari) » chez adulta, « (Uzesas ordinare en
-    pluralo.) » chez litanio, « (Anke metaf.) » chez sept articles.
+    Then it is not a qualifier of domain but a REMARK, and it keeps the capital
+    the author gave it: « (Dicesas precipue pri la homo qua evas plu kam 20
+    yari) » under adulta, « (Uzesas ordinare en pluralo.) » under litanio,
+    « (Anke metaf.) » under seven articles.
 
-    Le point ne suffit pas, ni la place : le domaine du sens SUIVANT se pose
-    lui aussi apres un point — « Kontrea. (en lukto) La persono qua
-    opozesas... » chez adversa, « ...kombatis en lico. (metaf.) La persono
-    qua... » chez championo. Ce qui separe les deux, c'est que la remarque ne
-    laisse rien derriere elle, tandis que le qualificatif annonce ce qui suit.
-    Sur tout le dictionnaire la regle leve 47 parentheses, et aucune n'est un
-    domaine.
+    The full stop does not suffice, nor does the place: the NEXT sense's domain
+    is laid after a full stop too -- « Kontrea. (en lukto) La persono qua
+    opozesas... » under adversa, « ...kombatis en lico. (metaf.) La persono
+    qua... » under championo. What separates the two is that the remark leaves
+    nothing behind it, whereas the qualifier announces what follows. Over the
+    whole dictionary the rule raises 47 parentheses, and not one is a domain.
     """
     if t[m.end():].strip(' .'):
         return False
@@ -905,18 +904,17 @@ def _remarko_fina(t, m):
 
 
 def pointi_sencoj(t):
-    """Meme regle DANS les parentheses d'un sens : tous les qualificatifs ne
-    sont pas dans le champ du domaine — « ajuro » porte les siens dans ses deux
-    sens, « (arkitekt.) » pointe et « (stofo) » non, ce dernier etant un mot
-    entier et non une abreviation."""
+    """The same rule WITHIN a sense's parentheses: not every qualifier is in
+    the domain field -- « ajuro » carries its own in both its senses,
+    « (arkitekt.) » pointed and « (stofo) » not, the latter being a whole word
+    and not an abbreviation."""
     def _un(m):
         u = m.group(1)
-        # La parenthese qui CITE un signe de ponctuation n'est pas un
-        # qualificatif : « komo. Puntuo-signo (,) qua indikas... »,
-        # « cirkonflexo... signo (^) », « diezo... Signo (#) ». Le rognage de
-        # la virgule finale, pose pour les domaines a rallonge —
-        # « (netrans.,) » —, videait la parenthese de komo tout entiere, et
-        # l'article definissait la virgule sans la montrer.
+        # A parenthesis that QUOTES a mark of punctuation is not a qualifier:
+        # « komo. Puntuo-signo (,) qua indikas... », « cirkonflexo... signo (^) »,
+        # « diezo... Signo (#) ». The trimming of the final comma, laid for the
+        # domains with a tail -- « (netrans.,) » -- emptied komo's parenthesis
+        # altogether, and the article defined the comma without showing it.
         if not re.search(r'[0-9A-Za-z\u00c0-\u00ff]', u):
             return m.group(0)
         if _remarko_fina(t, m):
@@ -926,7 +924,7 @@ def pointi_sencoj(t):
 
 
 def _tondar_fino(s):
-    """Le balayage de fin de chaine, qui s'arrete aux points de suspension."""
+    """The sweep of the end of a string, which stops at the ellipsis."""
     m = re.search(r'[\s.\-—–]+$', s)
     if not m:
         return s
@@ -940,100 +938,101 @@ def analizar(e, lexique=None):
         t=recoller([s for _,s in e['lineoj']], lexique)
     t=re.sub(r'\s+',' ',t).strip()
     for a,b in _texti().items():
-        # Idempotence : la couche passe une fois au decoupage et une fois a
-        # l'analyse. Quand la cle est un prefixe de son remplacement — ajouter
-        # un guillemet fermant, par exemple — la seconde passe l'ajoutait une
-        # seconde fois. On s'abstient si le remplacement est deja pose.
+        # Idempotence: the layer passes once at the cutting and once at the
+        # analysis. When the key is a prefix of its replacement -- adding a
+        # closing quotation mark, for instance -- the second pass added it a
+        # second time. We abstain if the replacement is already laid.
         if a in t and b not in t: t=t.replace(a,b)
-    # Le fac-simile garde l'espace que la dactylo a laissee autour du tiret
-    # d'affixe ; l'edition de lecture recolle. « - as. » est « -as », « - at
-    # - . » est « -at- », « bo - . » est « bo- ». Sans quoi la vedette etait
-    # vide et l'article introuvable.
-    # « -- protestanto. » : le double tiret annonce un article insere apres
-    # coup, il n'appartient pas a la vedette. Un tiret SEUL, lui, est l'affixe
-    # (« -a », « -oz- ») et reste.
+    # The facsimile keeps the space the typist left around an affix's hyphen;
+    # the reading edition reglues. « - as. » is « -as », « - at - . » is
+    # « -at- », « bo - . » is « bo- ». Failing which the headword was empty and
+    # the article could not be found.
+    # « -- protestanto. »: the double hyphen announces an article inserted after
+    # the fact, it does not belong to the headword. A LONE hyphen, on the other
+    # hand, is the affix (« -a », « -oz- ») and stays.
     t=re.sub(r'^[-–]{2,}\s+(?=[A-Za-z+"«])', '', t)
     t=re.sub(r'^([-+])\s+(?=[A-Za-zÀ-ÿ])', r'\1', t)
     t=re.sub(r'^([-+]?[A-Za-zÀ-ÿ][A-Za-zÀ-ÿ\'’-]{0,20})\s+-\s*(?=\.)', r'\1-', t)
     t=re.sub(r'^([-+]?[A-Za-zÀ-ÿ][A-Za-zÀ-ÿ\'’-]{0,20})\s+-\s*\.', r'\1-.', t)
-    # Vedette espacee lettre a lettre — « l a t i r o » pour « latiro » : la
-    # dactylo mettait ainsi en valeur, faute d'italique.
+    # A headword spaced letter by letter -- « l a t i r o » for « latiro »: the
+    # typist gave emphasis that way, for want of an italic.
     m0=re.match(r'^((?:[A-Za-zÀ-ÿ] ){2,}[A-Za-zÀ-ÿ])(?=\s*\.)', t)
     if m0: t = m0.group(1).replace(' ','') + t[m0.end():]
-    # Ligne barree a coups de guillemets et de tirets : la dactylo annulait
-    # ainsi une ligne entiere. Ce qui suit le code de langues et ne porte ni
-    # lettre ni chiffre ne dit rien — mais laisse la, cette queue empechait le
-    # code de s'ancrer en fin de chaine, et « exotera » passait pour
-    # « sen-lingua », son DEFIRS reste au milieu de la definition.
+    # A line struck out with quotation marks and hyphens: the typist cancelled
+    # a whole line that way. What follows the language code and carries neither
+    # letter nor figure says nothing -- but left there, that tail kept the code
+    # from anchoring at the end of the string, and « exotera » passed for
+    # « sen-lingua », its DEFIRS left in the middle of the definition.
     t=re.sub(r'[\s"\u00ab\u00bb\u2019\'.,;:_+*=/|\-\u2013\u2014]{6,}$', '', t)
-    # La rature porte parfois des LETTRES — « myelito. ... - DEFIS. vm-----m- ».
-    # La regle ci-dessus, qui exige une queue sans lettre ni chiffre, la
-    # laissait passer : la definition gardait le barbouillage, et le code, qui
-    # ne s'ancrait plus en fin de chaine, etait perdu — l'article passait pour
-    # « sen-lingua ». Un jeton qui porte trois tirets de suite n'est aucun mot
-    # de la langue ; le livre n'en compte que cinq, tous des ratures.
+    # The deletion sometimes carries LETTERS -- « myelito. ... - DEFIS.
+    # vm-----m- ». The rule above, which requires a tail with neither letter nor
+    # figure, let it through: the definition kept the scrawl, and the code, which
+    # no longer anchored at the end of the string, was lost -- the article passed
+    # for « sen-lingua ». A token carrying three hyphens in a row is no word of
+    # the language; the book counts only five, all of them deletions.
     t=re.sub(r'[\s.,;:\-\u2013]*\S*-{3,}\S*[\s.,;:\-\u2013]*$', '', t)
     e['teksto']=t
-    # Le tapuscrit marque les mots non officiels d'un « + » en exposant ; la
-    # tradition ido ecrit une asterisque. On la restitue ici — le fac-simile,
-    # lui, garde le signe frappe.
+    # The typescript marks the unofficial words with a superscript « + »; Ido
+    # tradition writes an asterisk. We restore it here -- the facsimile keeps the
+    # sign as struck.
     #
-    # PARTOUT, non a la seule vedette : le signe marque aussi la variante qui
-    # la suit — « timbro (+tembro) », « tarda (+retarda) » — et les mots cites
-    # dans les definitions — « +Seancar », « +Kluzajo », « +Asiejo-mashino ».
-    # Deux contextes en sont exclus, ou le « + » est le signe de l'addition et
-    # non une marque : « 6 +1, o 4 +3 » chez « sep », et les points d'une
-    # figure « AA'+BB'+CC' » chez « involuciono ». On exige donc une LETTRE
-    # apres le signe, et rien d'alphanumerique avant lui.
+    # EVERYWHERE, and not on the headword alone: the sign also marks the variant
+    # that follows it -- « timbro (+tembro) », « tarda (+retarda) » -- and the
+    # words quoted in the definitions -- « +Seancar », « +Kluzajo »,
+    # « +Asiejo-mashino ». Two contexts are excluded, where the « + » is the sign
+    # of addition and not a mark: « 6 +1, o 4 +3 » under « sep », and the points
+    # of a figure « AA'+BB'+CC' » under « involuciono ». We therefore require a
+    # LETTER after the sign, and nothing alphanumeric before it.
     #
-    # Effet de bord voulu : « augmentar » finissait sur « +DEFIS », et son code
-    # de langues ne s'ancrait pas — l'article passait pour « sen-lingua ». Avec
-    # l'asterisque, que la lecture du code admet deja, il s'ancre.
+    # A side effect, and a wanted one: « augmentar » ended on « +DEFIS », and its
+    # language code did not anchor -- the article passed for « sen-lingua ». With
+    # the asterisk, which the reading of the code already admits, it anchors.
     t = re.sub(r"(?<![A-Za-zÀ-ÿ0-9'’])\+(?=[A-Za-zÀ-ÿ])", '*', t)
-    # La vedette peut etre entre guillemets — « "alpari" », « "amen" » — ou
-    # precedee d'un point parasite. On les admet, puis on les retire du mot.
+    # The headword can be in quotation marks -- « "alpari" », « "amen" » -- or
+    # preceded by a stray full stop. We admit them, then take them off the word.
     t = t.lstrip('. ')
-    # Emprunt cite : le tapuscrit encadre de guillemets les mots pris tels
-    # quels a une autre langue — « amen », « alpari », « angelus », « avoue ».
-    # On retient le fait, sans le mettre dans la vedette : la recherche doit
-    # continuer de trouver « amen » frappe sans guillemets.
-    # Encore faut-il que les guillemets tiennent TOUT le mot. « "brokoli"-kaulo »
-    # n'est pas un emprunt cite : c'est un mot ido dont le premier element seul
-    # est emprunte, et les editions, qui encadrent de chevrons la vedette citee,
-    # en mettaient une seconde paire autour de la premiere. On refuse donc la
-    # fermante suivie d'une minuscule ou d'un tiret — le mot continue. Suivie
-    # d'une capitale, elle ouvre la definition : « "madras"Kapovesto », ou
-    # l'espace a manque a la frappe.
+    # A quoted borrowing: the typescript frames in quotation marks the words
+    # taken as they stand from another language -- « amen », « alpari »,
+    # « angelus », « avoue ». We record the fact without putting it in the
+    # headword: the search must go on finding « amen » typed without them.
+    # The quotation marks must hold the WHOLE word, though. « "brokoli"-kaulo »
+    # is not a quoted borrowing: it is an Ido word only the first element of
+    # which is borrowed, and the editions, which frame the quoted headword in
+    # guillemets, put a second pair around the first. We therefore refuse the
+    # closing mark followed by a lower-case letter or a hyphen -- the word goes
+    # on. Followed by a capital, it opens the definition: « "madras"Kapovesto »,
+    # where the space was missed in the typing.
     e['citita'] = bool(re.match(r'^["\u00ab\u201c][^"\u00bb\u201d]{1,60}'
                                 r'["\u00bb\u201d](?![a-zà-ÿ-])', t))
-    # Les lettres accentuees appartiennent au mot : sans elles « ampere » se
-    # coupait en « amp » et le reste tombait dans la definition.
-    # Locution latine ou anglaise prise pour vedette : le tapuscrit l'encadre de
-    # guillemets — « "a posteriori" », « "high life" ». Le mot-vedette est alors
-    # la locution ENTIERE ; sans cette regle « a posteriori » se reduisait a
-    # « a » et sa definition commencait par « posteriori" ».
+    # The accented letters belong to the word: without them « ampere » was cut
+    # into « amp » and the rest fell into the definition.
+    # A Latin or English phrase taken as a headword: the typescript frames it in
+    # quotation marks -- « "a posteriori" », « "high life" ». The headword is then
+    # the WHOLE phrase; without this rule « a posteriori » came down to « a » and
+    # its definition began with « posteriori" ».
     mq=re.match(r'^["\u201c]?([A-Za-zÀ-ÿ][A-Za-zÀ-ÿ\'’-]*'
                 r'(?: [A-Za-zÀ-ÿ][A-Za-zÀ-ÿ\'’-]*){0,2})["\u201d]'
                 r'\s*(?:\.|(?=\s*[A-ZÀ-Ý(]))', t)
     if mq:
         e['vedetto']=mq.group(1); m=None; resto=t[mq.end():].strip()
     else:
-        # L'asterisque autant que la croix : la marque du mot non officiel est
-        # deja rendue plus haut quand elle touche son mot — « +si » devient
-        # « *si » —, et la vedette ne se reconnaissait plus. « si » porte deux
-        # articles, et le second, l'adverbe, perdait le sien.
+        # The asterisk as much as the cross: the mark of the unofficial word is
+        # already rendered above when it touches its word -- « +si » becomes
+        # « *si » -- and the headword was no longer recognised. « si » carries two
+        # articles, and the second, the adverb, lost its own.
         m=re.match(r'^([+*]?-?["\u201c]?[A-Za-zÀ-ÿ][A-Za-zÀ-ÿ"’\'\u201d-]*)\s*\.?', t)
         e['vedetto']= (m.group(1).strip('.').strip('"\u201c\u201d')
                        .replace('+','*',1)) if m else ""
         resto = t[m.end():].strip() if m else t
-    # Le bruit qui suit parfois le code — « - DEFIRS. --- » — empechait
-    # l'ancrage en fin de chaine, et l'entree passait pour « sen-lingua ».
-    # Les POINTS DE SUSPENSION, eux, appartiennent au texte : ils tiennent la
-    # place du complement, et huit articles finissent dessus — « Kambie di... »
-    # chez « po », « Qua havas tri... » chez « tri- », « Profite da... Destine
-    # di... » chez « por ». Le balayage les emportait, sauf quand un guillemet
-    # fermant les protegeait (« qua tendencas a... »). On garde donc le dernier
-    # groupe de points du balayage et on ne retire que ce qui le suit.
+    # The noise that sometimes follows the code -- « - DEFIRS. --- » -- kept it
+    # from anchoring at the end of the string, and the entry passed for
+    # « sen-lingua ».
+    # The ELLIPSIS, however, belongs to the text: it holds the place of the
+    # complement, and eight articles end on one -- « Kambie di... » under « po »,
+    # « Qua havas tri... » under « tri- », « Profite da... Destine di... » under
+    # « por ». The sweep carried them off, except where a closing quotation mark
+    # protected them (« qua tendencas a... »). We therefore keep the sweep's last
+    # group of dots and remove only what follows it.
     resto = _tondar_fino(resto)
     e['lingui']=[]; e['kodo']=None
     me = RE_EPELE.search(resto)
@@ -1042,25 +1041,26 @@ def analizar(e, lexique=None):
         if all(noms):
             e['lingui']=noms; e['kodo']=me.group(1).strip()
             resto = _kupar(resto[:me.start()])
-    # Le code n'est pas toujours precede d'un tiret. Il se colle au point
-    # (« agar lo.DEFIS. »), a la parenthese fermante (« (anke metaf.)DEFIRS »),
-    # mais aussi a une parenthese OUVRANTE restee ouverte (« ...alambiko.
-    # (DEFIRS »), a une virgule (« ...deliberita, DEFIS ») ou a rien du tout
-    # (« ...kavalrio DEFIRS »). Vingt-et-un articles gardaient ainsi leur code
-    # au milieu de la definition et passaient pour « sen-lingua ». La casse
-    # protege : _lire_code exige un jeton majoritairement haut de casse, et le
-    # dernier mot d'une definition ne l'est jamais.
-    # L'auteur ajoute parfois une remarque APRES le code : « ... - DEFIS. (Ta
-    # vorto ne esas sinonimo di mariajar... ) ». Le code n'etant plus en fin de
-    # chaine, il n'etait pas lu, et l'article passait pour « sen-lingua ». On
-    # met donc la remarque de cote le temps de lire le code, puis on la remet.
+    # The code is not always preceded by a hyphen. It sticks to the full stop
+    # (« agar lo.DEFIS. »), to the closing parenthesis (« (anke metaf.)DEFIRS »),
+    # but also to an OPENING parenthesis left open (« ...alambiko. (DEFIRS »), to
+    # a comma (« ...deliberita, DEFIS ») or to nothing at all (« ...kavalrio
+    # DEFIRS »). Twenty-one articles kept their code in the middle of the
+    # definition that way and passed for « sen-lingua ». Case protects:
+    # _lire_code requires a token mostly upper case, and the last word of a
+    # definition never is.
+    # The author sometimes adds a remark AFTER the code: « ... - DEFIS. (Ta vorto
+    # ne esas sinonimo di mariajar... ) ». The code no longer being at the end of
+    # the string, it was not read, and the article passed for « sen-lingua ». We
+    # therefore set the remark aside long enough to read the code, then put it
+    # back.
     remarko = ''
     if not e['kodo']:
         mr = re.match(r'^(.*?[-–]\s*[A-Za-z]{1,12}\s*\.)\s*(\(.{6,}\))\s*$',
                       resto, re.S)
         if mr and _lire_code(re.search(r'([A-Za-z]{1,12})\s*\.$', mr.group(1)).group(1)):
-            # Le point final doit tomber : la recherche du code exige des
-            # lettres en toute fin de chaine.
+            # The final full stop must fall: the search for the code requires
+            # letters at the very end of the string.
             resto, remarko = mr.group(1).rstrip(' .'), mr.group(2)
     mj = None if e['kodo'] else re.search(r'(?:[-–.,()*]|\s|^)\s*([A-Za-z]{1,12})$', resto)
     if mj:
@@ -1070,21 +1070,21 @@ def analizar(e, lexique=None):
             resto = _kupar(resto[:mj.start()])
     if remarko:
         resto = (resto.rstrip(' -–.') + '. ' + remarko) if resto else remarko
-    # Le code de langues qui n'est PAS au bout. L'auteur l'a parfois pose apres
-    # un premier sens et a continue — « cilio. (anat.) Pilo... - F. (bot.) Sorto
-    # di pilo... - F. » —, ou la frappe a laisse une scorie derriere lui :
-    # « - DE. s q c i » chez hidranto, « - DEFIS. pre- » chez studiar. Le code
-    # restait alors AU MILIEU de la definition, ou il n'a rien a faire, et
-    # l'article passait pour « sen-lingua ».
+    # The language code that is NOT at the end. The author has sometimes laid it
+    # after a first sense and gone on -- « cilio. (anat.) Pilo... - F. (bot.)
+    # Sorto di pilo... - F. » -- or the typing left a cinder behind it: « - DE. s
+    # q c i » under hidranto, « - DEFIS. pre- » under studiar. The code then
+    # stayed IN THE MIDDLE of the definition, where it has no business, and the
+    # article passed for « sen-lingua ».
     #
-    # On ne touche qu'a deux cas surs : l'article n'a pas de code, ou il porte
-    # deja le MEME. Un code different au milieu du texte est autre chose — chez
-    # « staciono », « (autofiakri - F. taxi - autobusi, e c.) » donne le mot
-    # francais, il ne clot pas l'article.
+    # We touch only two sure cases: the article has no code, or it already carries
+    # the SAME one. A different code in the middle of the text is something else
+    # -- under « staciono », « (autofiakri - F. taxi - autobusi, e c.) » gives the
+    # French word, it does not close the article.
     #
-    # Quand ce qui suit ouvre un sens — un domaine entre parentheses, ou un
-    # tiret suivi d'une capitale —, la coupure se fait la : le code marquait la
-    # fin d'un sens. On la note d'un signe que le decoupage lira.
+    # When what follows opens a sense -- a domain in parentheses, or a hyphen
+    # followed by a capital -- the cut is made there: the code marked the end of a
+    # sense. We note it with a sign the cutting will read.
     mi = re.search(r'\s*[-–]\s*([A-Z][A-Zl]{0,11})\.?\s+(?=\S)', resto)
     li = _lire_code(mi.group(1)) if mi and mi.group(1) != 'L' else None
     if li and (not e['kodo'] or e['kodo'].upper() == mi.group(1).upper()):
@@ -1098,50 +1098,49 @@ def analizar(e, lexique=None):
             resto = gauche.rstrip(' -–.,;:') + '. ' + droite
         else:
             resto = gauche.rstrip() + ' ' + droite
-    # Le numero de sens qui pend au bout de l'article, sans rien apres lui :
-    # « forsan. Adverbo qua signifikas "..." - II. » — la dactylo a annonce un
-    # second sens qu'elle n'a pas frappe. Seul, le numero ne dit rien, et
-    # l'edition ecarte deja ses pareils au milieu du texte. On exige le tiret
-    # qui l'annonce, pour ne pas rogner « la rejo Francisko I ».
+    # The number of a sense hanging at the end of the article, with nothing after
+    # it: « forsan. Adverbo qua signifikas "..." - II. » -- the typist announced a
+    # second sense she did not type. Alone, the number says nothing, and the
+    # edition sets aside its like in the middle of the text already. We require
+    # the hyphen that announces it, so as not to trim « la rejo Francisko I ».
     resto = re.sub(r'[.;,]?\s*[-–]\s*(?:I{1,3}|IV|VI{0,3}|IX|X)\.?$', '', resto)
     resto = resto.lstrip(' -–.,;:')
-    # « ed. (Videz "e"). » : la parenthese porte un RENVOI, pas un domaine. Prise
-    # pour un domaine, elle laissait l'article sans definition du tout.
+    # « ed. (Videz "e"). »: the parenthesis carries a CROSS-REFERENCE, not a
+    # domain. Taken for a domain, it left the article with no definition at all.
     mf=None if re.match(r'^\(\s*(?:Videz|videz|Vid\.)\b', resto) else (
         RE_FAKO.match(resto) or RE_FAKO2.match(resto))
-    # Le domaine porte souvent une ponctuation parasite, heritee de la frappe :
-    # « zool, », « .trans », « patol, ». Et il peut contenir une date, dont les
-    # chiffres sont a redresser comme ailleurs — « olim, ante l9l5 ».
+    # The domain often carries stray punctuation, inherited from the typing:
+    # « zool, », « .trans », « patol, ». And it can contain a date, whose figures
+    # are to be straightened as elsewhere -- « olim, ante l9l5 ».
     e['fako']= uniformigar(minuskligi(pointi(cifri(mf.group(1).strip(' .,;:'))))) if mf else None
     if e['fako']: e['fako']=formuli(e['fako'])
     if mf: resto = resto[mf.end():]
-    # Deux parentheses de suite : la seconde precise la premiere et non le
-    # sens. « pensar. (trans. e netrans.) (ulo, ad ulo, pri ulu od ulo) » —
-    # le regime appartient au marqueur de transitivite, pas a la definition,
-    # qui commencait donc par une parenthese orpheline.
+    # Two parentheses in a row: the second qualifies the first and not the
+    # sense. « pensar. (trans. e netrans.) (ulo, ad ulo, pri ulu od ulo) » --
+    # the government belongs to the marker of transitivity, not to the
+    # definition, which therefore began with an orphaned parenthesis.
     if e['fako']:
         m2 = re.match(r'^[\s.,;:\u2013-]*\(([^()]{1,40})\)\s*\.?\s*(?=[-\u2013]?\s*(?:[IVX]{1,4}\.|[A-Z\u00c0-\u00dd]))', resto)
         if m2:
-            # La seconde parenthese est un renseignement de meme nature que la
-            # premiere, et lui revient le meme traitement : minuscule initiale,
-            # chiffres redresses, POINT rendu a l'abreviation. Recollee telle
-            # quelle, elle ressortait nue quand ses voisines etaient pointees —
+            # The second parenthesis is a piece of information of the same nature as
+            # the first, and the same treatment is due to it: initial lower case,
+            # figures straightened, the FULL STOP given back to the abbreviation.
+            # Reglued as it stood, it came out bare when its neighbours were pointed --
             # « (trans.) (tekn) », « (netrans.) (patol) », « (netrans.) (Kemio) ».
             dua = uniformigar(minuskligi(pointi(cifri(m2.group(1).strip(' .,;:')))))
             e['fako'] = "%s) (%s" % (e['fako'], dua)
             resto = resto[m2.end():]
     resto = resto.lstrip(' -–.,;:')
-    # Elision : « ka(d) », « on(u) », « a(d) ». La lettre entre parentheses
-    # appartient au mot — elle ne s'ajoute que devant une voyelle. Elle etait
-    # lue comme un domaine, et s'affichait separee de la vedette, dans une
-    # autre couleur.
+    # Elision: « ka(d) », « on(u) », « a(d) ». The letter in parentheses belongs
+    # to the word -- it is added only before a vowel. It was read as a domain, and
+    # displayed apart from the headword, in another colour.
     #
-    # Ce n'en est une que si la vedette est breve ET la parenthese d'UNE
-    # lettre. Sans cette double condition on happerait « afina (ad) »,
-    # « plena (de) », ou la parenthese porte une preposition regie et non une
-    # lettre elidee.
-    # Interjection : le point d'exclamation appartient au mot, non a la
-    # definition. « he » se lit « he! », et sa definition commence apres.
+    # It is one only if the headword is short AND the parenthesis holds ONE
+    # letter. Without that double condition we would catch « afina (ad) »,
+    # « plena (de) », where the parenthesis carries a governed preposition and not
+    # an elided letter.
+    # Interjection: the exclamation mark belongs to the word, not to the
+    # definition. « he » reads « he! », and its definition begins after it.
     if resto.startswith('!') and e['vedetto'] and len(e['vedetto'].lstrip('*')) <= 6:
         e['vedetto'] = e['vedetto'] + '!'
         resto = resto[1:].lstrip(' -–.,;:')
@@ -1151,30 +1150,30 @@ def analizar(e, lexique=None):
         e['fako'] = None
     e['latina']= [x.strip(' .') for x in RE_LATINA.findall(resto)]
     resto = RE_LATINA.sub('', resto).strip(' -–')
-    # Un nom releve a l'oeil l'emporte : la machine ne peut pas savoir que
-    # « capparia spi nosa » est « capparia spinosa », aucun des deux morceaux
-    # n'etant un mot latin.
+    # A name surveyed by eye prevails: the machine cannot know that
+    # « capparia spi nosa » is « capparia spinosa », neither of the two pieces
+    # being a Latin word.
     _man = latinaji_manuala().get("%s@%d:%d" % (e.get('vedetto'), e.get('image', -1),
                                                 e.get('ligno', -1)))
     if _man:
         e['latina'] = [x.strip() for x in _man.split(';') if x.strip()]
     e['simbolo']= None
-    # Un NUMERO de sens entre parentheses n'est pas un domaine : « romano. (I)
-    # Verko literaturala... », « vice. (l) qua pre-nominesis... » — le « l »
-    # etant le 1 de la dactylo. Les editions renumerotent les sens elles-memes ;
-    # garde comme domaine, le numero s'affichait a la place du domaine.
+    # A NUMBER of sense in parentheses is not a domain: « romano. (I) Verko
+    # literaturala... », « vice. (l) qua pre-nominesis... » -- the « l » being the
+    # typist's 1. The editions renumber the senses themselves; kept as a domain,
+    # the number was displayed in the domain's place.
     if e['fako'] and re.fullmatch(r'(?:[IVX]{1,4}|[a-z]|[0-9]|l)', e['fako'].strip()):
         e['fako'] = None
-    # Le numero peut PRECEDER un vrai domaine : « ramo. (l) (bot.) Mikra
-    # brancho... ». La fusion des deux parentheses gardait alors les deux, et
-    # l'article s'annoncait « (1) (bot.) ». On ne jette que le numero.
+    # The number can PRECEDE a true domain: « ramo. (l) (bot.) Mikra
+    # brancho... ». The merging of the two parentheses then kept both, and the
+    # article announced itself « (1) (bot.) ». We throw away the number alone.
     if e['fako']:
         m1 = re.fullmatch(r'(?:[IVX]{1,4}|[a-z]|[0-9]|l)\)\s*\((.+)', e['fako'].strip())
         if m1: e['fako'] = m1.group(1)
-    # Une FORMULE chimique posee juste apres la vedette — « asparagino. (C8 H8
-    # AZ2 O6). Substanco... » — n'est pas un domaine non plus : c'est le meme
-    # renseignement que « Simbolo kemiala : ... » ailleurs dans le livre, et il
-    # va au meme champ, pour se rendre de la meme facon.
+    # A chemical FORMULA laid just after the headword -- « asparagino. (C8 H8
+    # AZ2 O6). Substanco... » -- is not a domain either: it is the same piece of
+    # information as « Simbolo kemiala : ... » elsewhere in the book, and it goes
+    # to the same field, to be rendered the same way.
     if (e['fako'] and e['simbolo'] is None
             and re.fullmatch(r"[A-Z][A-Za-z0-9\u2080-\u2089\s.'()/-]*", e['fako'].strip())
             and re.search(r'[0-9\u2080-\u2089]', e['fako'])):
@@ -1183,8 +1182,8 @@ def analizar(e, lexique=None):
     senci=[_kupar(x.lstrip(' -–.,;:')) for m in resto.split(KUPO)
            for x in RE_SENCO.split(m) if x.strip(' -–.,;:')]
     e['senci']= senci if senci else ([resto] if resto else [])
-    # La numerotation entre parentheses dont le « (1) » est parti au domaine :
-    # on coupe a la place des numeros restes (voir RE_ORFA_NUM).
+    # The numbering in parentheses whose « (1) » went to the domain: we cut in
+    # the place of the numbers that remain (see RE_ORFA_NUM).
     S=[]
     for s in e['senci']:
         if RE_ORFA_NUM.search(s) and not RE_NUM_UNESMA.search(s):
@@ -1193,9 +1192,10 @@ def analizar(e, lexique=None):
         else:
             S.append(s)
     e['senci']=S
-    # Rattrapage : le code peut rester au bout du DERNIER sens quand une note
-    # le suivait dans l'original et que le decoupage en sens l'a isole. On le
-    # releve la aussi — et s'il double celui deja lu, on le retire du texte.
+    # A recovery: the code can be left at the end of the LAST sense when a note
+    # followed it in the original and the cutting into senses isolated it. We
+    # survey it there too -- and if it doubles the one already read, we take it
+    # out of the text.
     if e['senci']:
         mk = re.search(r'(?:[-–.,()*]|\s)\s*([A-Za-z]{1,12})\s*\.?\s*$', e['senci'][-1])
         if mk:
@@ -1212,64 +1212,64 @@ def analizar(e, lexique=None):
     if not v: e['drapeli'].append('sen-chefvorto')
     elif not _finalo_ok(e): e['drapeli'].append('finalo-nekustumala')
     if not e['kodo']: e['drapeli'].append('sen-lingua')
-    # Le drapeau « korektigita » disait « au moins une cellule corrigee
-    # automatiquement » — une information de provenance, non un doute. Toutes
-    # les definitions ayant ete relues une a une, il ne designait plus de
-    # travail restant : il est retire. Le compte reste dans e['korektita'],
-    # pour qui veut mesurer.
+    # The flag « korektigita » said « at least one cell corrected automatically »
+    # -- a piece of provenance, not a doubt. Every definition having been re-read
+    # one by one, it no longer designated work remaining: it is withdrawn. The
+    # count stays in e['korektita'], for whoever wants to measure.
 
     if e['image'] in (546,547): e['drapeli'].append('pagino-nefidinda')
     return e
 
-# Les deux dernieres pages du livre portent une liste a part, annoncee par son
-# propre titre : « LISTO de vorti qui, pro lia teknikaleso e probiteso multa-
-# yara, probable adoptesos da la Akademio di Ido ». Ce sont donc, par
-# definition, des mots non encore officiels — l'asterisque leur revient, mais
-# la dactylo ne l'a pas frappee, le titre valant pour toute la liste.
+# The last two pages of the book carry a separate list, announced by its own
+# title: « LISTO de vorti qui, pro lia teknikaleso e probiteso multa-yara,
+# probable adoptesos da la Akademio di Ido ». They are therefore, by
+# definition, words not yet official -- the asterisk is due to them, but the
+# typist did not strike it, the title standing for the whole list.
 PAGINI_NEOFICALA = (637, 638)
 
 def _klavo_ordino(v):
-    """La vedette telle qu'elle se RANGE, sa marque de tete otee.
+    """The headword as it FILES, its leading mark taken off.
 
-    L'asterisque du mot non officiel et le tiret de l'affixe ne sont pas des
-    lettres, et le livre ne les range pas : « -acho » est entre « acetono » et
-    « aciano », « -eyo » entre « exutorio » et « ez ». Compares tels quels, ils
-    passaient avant toute lettre — chacun des 126 affixes et mots non officiels
-    rompait donc l'ordre par sa seule marque, et entrainait son voisin avec
-    lui. Quatre-vingt-cinq drapeaux ne disaient que cela.
+    The asterisk of the unofficial word and the hyphen of the affix are not
+    letters, and the book does not file them: « -acho » is between « acetono »
+    and « aciano », « -eyo » between « exutorio » and « ez ». Compared as they
+    stood, they came before every letter -- each of the 126 affixes and
+    unofficial words therefore broke the order by its mark alone, and dragged
+    its neighbour with it. Eighty-five flags said nothing but that.
 
-    Le point d'exclamation de l'interjection ne se range pas davantage :
-    « ah! » se cherche a « ah ». Ni le tiret FINAL du suffixe — « -an- » se
-    range avec « an » —, ni l'espace de la locution latine : le livre pose
-    « a posteriori » entre « apostata » et « apostemo », donc a « aposteriori ».
+    The interjection's exclamation mark files no more than they do: « ah! » is
+    looked for at « ah ». Nor does the suffix's FINAL hyphen -- « -an- » files
+    with « an » -- nor the space of a Latin phrase: the book lays
+    « a posteriori » between « apostata » and « apostemo », hence at
+    « aposteriori ».
     """
-    # L'accent ne se range pas non plus : « ampèremetro » precede « ampla »
-    # dans le livre, ce que seul un « e » sans accent explique. Le tapuscrit
-    # n'en porte que sur des noms empruntes — ampère, Roentgen.
+    # The accent does not file either: « ampèremetro » precedes « ampla » in
+    # the book, which only an unaccented « e » explains. The typescript carries
+    # accents on borrowed names alone -- ampère, Roentgen.
     v = unicodedata.normalize('NFD', v.lower())
     v = ''.join(c for c in v if not unicodedata.combining(c))
-    # Les guillemets ne se rangent pas davantage, ou qu'ils soient : le livre
-    # range « "brokoli"-kaulo » a « brokoli-kaulo ». L'espace insecable qui les
-    # accompagne dans l'edition part avec eux.
+    # The quotation marks file no more than the rest, wherever they are: the
+    # book files « "brokoli"-kaulo » at « brokoli-kaulo ». The non-breaking
+    # space that goes with them in the edition goes with them here.
     v = v.lstrip('*+"«.-').rstrip('!').rstrip('-')
     return re.sub('[\\s\u00a0"«»\u201c\u201d]', '', v)
 
 
-# La DESINENCE ne compte pas dans le rangement du livre. C'est une regle qu'il
-# n'enonce pas, mais qu'il suit : « aktinio » precede « aktinika » parce que
-# l'auteur range « aktini » avant « aktinik », le -o et le -a n'y entrant pas.
-# Comparees mot entier, ces deux vedettes passaient pour un desordre, et neuf
-# cents autres avec elles.
+# The ENDING does not count in the book's filing. It is a rule the book does
+# not state, but follows: « aktinio » precedes « aktinika » because the author
+# files « aktini » before « aktinik », the -o and the -a not entering into it.
+# Compared as whole words, those two headwords passed for a disorder, and nine
+# hundred others with them.
 #
-# L'auteur ne s'y tient pas toujours : il ecrit « astrakano » puis « astro »,
-# ou la racine seule voudrait l'inverse — « astr » avant « astrakan ». Les deux
-# lectures sont donc gardees, et le drapeau ne se leve que si TOUTES DEUX sont
-# rompues : ce qu'aucune des deux conventions n'explique.
+# The author does not always keep to it: he writes « astrakano » then « astro »,
+# where the root alone would have it the other way -- « astr » before
+# « astrakan ». Both readings are therefore kept, and the flag is raised only
+# if BOTH are broken: what neither convention explains.
 FINALES_ORDINO = ('ar', 'ir', 'or', 'o', 'a', 'e', 'i')
 
 
 def _klavo_radiko(v):
-    """La vedette rangee, sa desinence otee en plus."""
+    """The headword filed, its ending taken off as well."""
     k = _klavo_ordino(v)
     for d in FINALES_ORDINO:
         if k.endswith(d):
@@ -1277,16 +1277,16 @@ def _klavo_radiko(v):
     return k
 
 
-# Le suffixe ne compte pas plus que la desinence, et pour la meme raison : le
-# rangement suit la RACINE. « venerala » precede « veneracar » parce que le
-# premier est vener-al-a et le second venerac-ar ; « inventariar » precede
-# « inventar » parce que les deux sortent de invent-. C'est ainsi que plusieurs
-# dictionnaires de l'ido les analysent, et le livre les range de meme.
+# The suffix counts no more than the ending, and for the same reason: the
+# filing follows the ROOT. « venerala » precedes « veneracar » because the
+# first is vener-al-a and the second venerac-ar; « inventariar » precedes
+# « inventar » because both come out of invent-. That is how several
+# dictionaries of Ido analyse them, and the book files them likewise.
 #
-# Le depouillement s'arrete a UN suffixe, et ne descend jamais sous cinq
-# lettres : sans cette borne « metalo » deviendrait « met- » et « histerio »
-# « hist- ». Cette troisieme lecture ne peut qu'OTER des drapeaux — il en faut
-# trois pour en poser un —, jamais en ajouter.
+# The stripping stops at ONE suffix, and never goes below five letters:
+# without that bound « metalo » would become « met- » and « histerio »
+# « hist- ». This third reading can only TAKE flags away -- three are needed
+# to raise one -- never add any.
 SUFIXI = tuple(sorted(
     ('ari', 'atr', 'ebl', 'end', 'eri', 'esk', 'estr', 'ier', 'ind', 'ism',
      'ist', 'oid', 'ach', 'ad', 'aj', 'al', 'an', 'ar', 'ed', 'eg', 'em',
@@ -1295,7 +1295,7 @@ SUFIXI = tuple(sorted(
 
 
 def _klavo_radikalo(v, mini=5):
-    """La vedette rangee, sa desinence et UN suffixe otes."""
+    """The headword filed, its ending and ONE suffix taken off."""
     r = _klavo_radiko(v)
     for x in SUFIXI:
         if r.endswith(x) and len(r) - len(x) >= mini:
@@ -1303,38 +1303,38 @@ def _klavo_radikalo(v, mini=5):
     return r
 
 
-# Le livre se termine par deux listes a part, qui recommencent chacune
-# l'alphabet : un addendum de cinq articles (image 636) et la « LISTO de vorti
-# qui... probable adoptesos da la Akademio di Ido » (images 637-638). Leur
-# premiere vedette recule forcement dans l'alphabet ; ce n'est pas un desordre.
+# The book ends with two separate lists, each of which begins the alphabet
+# again: an addendum of five articles (image 636) and the « LISTO de vorti qui
+# ... probable adoptesos da la Akademio di Ido » (images 637-638). Their first
+# headword necessarily goes backwards in the alphabet; it is not a disorder.
 KOMENCO_DE_SEKCIONO = (636, 637)
 
 
-# La nature grammaticale, telle que le livre l'annonce lui-meme en tete de
-# definition : « Prepoziciono qua indikas... », « Interjeciono qua expresas... »
+# The grammatical nature, as the book announces it itself at the head of a
+# definition: « Prepoziciono qua indikas... », « Interjeciono qua expresas... »
 RE_GRAMATIKA = re.compile(
     r'^\(?\s*(?:prepoziciono|konjunciono|pronomo|adverbo|interjeciono'
     r'|sufixo|prefixo|artiklo|partikulo|des?inenco)', re.I)
 
 
 def _finalo_ok(e):
-    """La finale de la vedette est-elle celle d'un mot ido ?
+    """Is the headword's ending that of an Ido word?
 
-    La question n'a de sens que pour un MOT DE LA LANGUE. Trois familles y
-    echappent, et les signaler etait une erreur de categorie :
+    The question has sense only for a WORD OF THE LANGUAGE. Three families
+    escape it, and reporting them was an error of category:
 
-      * l'AFFIXE — « -eyo », « poli- », « bo- » —, dont le tiret dit
-        precisement qu'il n'est pas un mot. 78 cas ;
-      * le mot que le livre declare lui-meme GRAMMATICAL : « an.
-        Prepoziciono qua indikas relato di kontigueso », « fi! Interjeciono
-        qua expresas la desprizo di ulo ». L'ido ne donne pas de finale en
-        -o/-a/-e/-i a ses prepositions, pronoms et interjections. 51 cas ;
-      * l'EMPRUNT CITE — « amen », « angelus », « cambium » —, que l'auteur
-        entoure de guillemets parce qu'il n'est pas ido. 50 cas.
+      * the AFFIX -- « -eyo », « poli- », « bo- » -- whose hyphen says
+        precisely that it is not a word. 78 cases;
+      * the word the book itself declares GRAMMATICAL: « an. Prepoziciono qua
+        indikas relato di kontigueso », « fi! Interjeciono qua expresas la
+        desprizo di ulo ». Ido gives no ending in -o/-a/-e/-i to its
+        prepositions, pronouns and interjections. 51 cases;
+      * the QUOTED BORROWING -- « amen », « angelus », « cambium » -- which the
+        author frames in quotation marks because it is not Ido. 50 cases.
 
-    Ce qui reste — les numeraux « cent », « dek », les noms de notes « b »,
-    « c », « d », et les prepositions que le livre ne qualifie pas — est
-    legitime aussi, mais rien dans le texte ne permet de le dire.
+    What is left -- the numerals « cent », « dek », the note names « b », « c »,
+    « d », and the prepositions the book does not qualify -- is legitimate too,
+    but nothing in the text lets one say so.
     """
     v = e.get('vedetto') or ''
     if not v: return True
@@ -1345,19 +1345,19 @@ def _finalo_ok(e):
     return any(v.lower().endswith(f) for f in FINALES_OK)
 
 
-# L'ordre des lettres du code est celui du livre : D E F I R S, puis L — le
-# latin, que quatre-vingt-douze codes mettent en dernier —, puis les langues
-# rares. Vingt-deux codes le rompent : « DEFSR » chez alibio, « ED » chez
-# sendar, « FISDE » chez grano, « dEFIRS » ou « DEFlS » ou la capitale et le I
-# ont ete abimes a la lecture. Rien ne s'y repete — c'est l'ordre seul qui
-# differe —, et l'edition le remet, la ligne brute gardant la graphie de la
-# page. Les notations qui EPELLENT la langue en sont exemptes : « FDSued »,
-# « DERPol », « Gr », « Ned » ne sont pas des suites de lettres.
+# The order of the letters of the code is the book's: D E F I R S, then L --
+# the Latin, which ninety-two codes put last -- then the rare languages.
+# Twenty-two codes break it: « DEFSR » under alibio, « ED » under sendar,
+# « FISDE » under grano, « dEFIRS » or « DEFlS » where the capital and the I
+# were damaged in the reading. Nothing repeats in them -- it is the order alone
+# that differs -- and the edition puts it back, the raw line keeping the page's
+# spelling. The notations that SPELL the language out are exempt: « FDSued »,
+# « DERPol », « Gr », « Ned » are not runs of letters.
 ORDINO_KODO = 'DEFIRSLPGN'
 
 
 def ordinigi_kodojn(ent):
-    """Remet les lettres du code dans l'ordre du livre. Rend le nombre pose."""
+    """Puts the letters of the code back into the book's order. Returns the count laid."""
     n = 0
     for e in ent:
         k = e.get('kodo')
@@ -1374,13 +1374,13 @@ def ordinigi_kodojn(ent):
 
 
 def drapeli_ordino(ent):
-    """Pose le drapeau d'ordre sur toute la liste, et rend le nombre pose.
+    """Lays the order flag over the whole list, and returns the count laid.
 
-    Le drapeau se lit sur la SUITE des vedettes : il se repose donc en entier
-    des qu'une vedette change, ou qu'un article s'ajoute. Une vedette rompt
-    l'ordre quand elle recule sur les TROIS lectures — mot entier, racine, et
-    racine depouillee de son suffixe (voir _klavo_radiko et _klavo_radikalo) —,
-    et qu'elle n'ouvre pas une des listes finales.
+    The flag is read off the RUN of headwords: it is therefore laid again in
+    full as soon as a headword changes, or an article is added. A headword
+    breaks the order when it goes backwards on ALL THREE readings -- whole
+    word, root, and root stripped of its suffix (see _klavo_radiko and
+    _klavo_radikalo) -- and when it does not open one of the final lists.
     """
     for e in ent:
         if 'ordino-ruptita' in (e.get('drapeli') or []):
@@ -1396,10 +1396,10 @@ def drapeli_ordino(ent):
         if v[i] >= v[i-1] or r[i] >= r[i-1] or d[i] >= d[i-1]: continue
         if (ent[i].get('image') in KOMENCO_DE_SEKCIONO
                 and unua.get(ent[i].get('image')) == id(ent[i])): continue
-        # Les quatre locutions latines — « a posteriori », « ex libris » — sont
-        # rangees tantot comme un seul mot, « aposteriori » entre « apostata »
-        # et « apostemo », tantot comme deux, « ex libris » avant « exajerar ».
-        # Le livre ne dit pas laquelle des deux ; on ne les compte donc pas.
+        # The four Latin phrases -- « a posteriori », « ex libris » -- are filed now
+        # as one word, « aposteriori » between « apostata » and « apostemo », now as
+        # two, « ex libris » before « exajerar ». The book does not say which of the
+        # two; we therefore do not count them.
         if ' ' in (ent[i].get('vedetto') or '') or ' ' in (ent[i-1].get('vedetto') or ''):
             continue
         ent[i].setdefault('drapeli', []).append('ordino-ruptita'); n+=1
@@ -1408,84 +1408,86 @@ def drapeli_ordino(ent):
 
 def e_ok(e):
     v=e.get('vedetto') or ""
-    # Une vedette d'une seule lettre est legitime : « a », « b », « c »... sont
-    # les notes de la gamme. Seule la vedette VIDE n'est pas un article.
+    # A headword of a single letter is legitimate: « a », « b », « c »... are the
+    # notes of the scale. Only the EMPTY headword is not an article.
     if not v: return False
-    # « p. 83, an-pos "cetato" : » n'est pas un article mais un renvoi de
-    # l'errata, qui dit ou inserer l'article suivant.
+    # « p. 83, an-pos "cetato" : » is not an article but a cross-reference from
+    # the errata, saying where to insert the article that follows.
     if re.match(r'^p\.\s*\d', e.get('teksto') or ''): return False
-    # Le folio courant, lu comme du texte : « 110 » se decode « llO », « 111 »
-    # « lll ». Un tel jeton, sans definition, n'est pas un mot.
+    # The running folio, read as text: « 110 » decodes « llO », « 111 » « lll ».
+    # Such a token, with no definition, is not a word.
     if not (e.get('senci') or []) and re.fullmatch(r'[lI1O0]{2,4}', v): return False
     return True
 
-# La locution se presente toujours de la meme maniere : un groupe qui commence
-# par une capitale et que suit un deux-points. Le soulignement de l'auteur la
-# confirme ; la forme la trouve, meme la ou la relecture a corrige une coquille
-# et ou la chaine relevee sur la grille ne se retrouve plus telle quelle.
-# La VIRGULE fait partie de la locution : l'auteur empile parfois des locutions
-# paralleles qui partagent une definition — « Extraktar radiko, quadrata,
-# kubala, di nombro : ... », c'est-a-dire la racine carree et la racine cubique
-# en une seule fois ; « La matematiki pura, la mekaniko pura : ... ». Sans elle,
-# la definition qui suit grossissait le corps de la locution PRECEDENTE, qui
-# n'en pouvait mais.
-# La MINUSCULE est admise, sous condition. La capitale n'etait qu'un indice :
-# ce qui annonce une locution, c'est le soulignement et le deux-points. Quand
-# le sens s'ouvre sur son domaine, le mot qui suit garde sa minuscule —
-# « agregar. ... III. (en la universitato di Francia) agregito : la persono
-# qua... » —, et la locution passait inapercue. On l'accepte donc, mais une
-# locution en minuscule doit CITER la vedette, comme le fait deja toute
-# locution d'un seul mot : « agregito » sous « agregar ». Sans quoi les
-# exemples que l'auteur enumere apres un « Exemple : » — « krucagar : agar per
-# kruco » sous « -agar » — et ses conditions d'emploi — « kun radiko nomala : »
-# sous « -ig- » — se seraient detachees comme des sous-entrees, alors qu'elles
-# appartiennent a la phrase.
-# La locution porte parfois la CROIX du mot non officiel : « *skrino » est le
-# mot du cinema, et l'auteur le nomme comme tel sous « skreno ». La marque se
-# lit donc avec elle, et les deux garde-fous qui suivent — la capitale, le lien
-# avec la vedette — n'ont pas a s'y appliquer : un mot marque de la croix EST
-# un mot que l'auteur nomme, jamais l'adverbe d'une glose.
+# The phrase always presents itself the same way: a group beginning with a
+# capital and followed by a colon. The author's underline confirms it; the form
+# finds it, even where the proofreading has corrected a slip and the string
+# surveyed on the grid is no longer found as it stood.
+# The COMMA is part of the phrase: the author sometimes stacks parallel phrases
+# that share a definition -- « Extraktar radiko, quadrata, kubala, di nombro :
+# ... », that is, the square root and the cube root at one stroke; « La
+# matematiki pura, la mekaniko pura : ... ». Without it, the definition that
+# follows swelled the body of the PRECEDING phrase, which could do nothing
+# about it.
+# The LOWER CASE is admitted, under a condition. The capital was only a clue:
+# what announces a phrase is the underline and the colon. When the sense opens
+# on its domain, the word that follows keeps its lower case -- « agregar. ...
+# III. (en la universitato di Francia) agregito : la persono qua... » -- and
+# the phrase went unnoticed. We therefore accept it, but a phrase in lower case
+# must QUOTE the headword, as every one-word phrase already does:
+# « agregito » under « agregar ». Failing which the examples the author
+# enumerates after an « Exemple : » -- « krucagar : agar per kruco » under
+# « -agar » -- and his conditions of use -- « kun radiko nomala : » under
+# « -ig- » -- would have detached themselves as sub-entries, when they belong
+# to the sentence.
+# The phrase sometimes carries the CROSS of the unofficial word: « *skrino » is
+# the word of the cinema, and the author names it as such under « skreno ». The
+# mark is therefore read with it, and the two safeguards that follow -- the
+# capital, the link with the headword -- have no business applying to it: a
+# word marked with the cross IS a word the author names, never the adverb of a
+# gloss.
 RE_LOKUCO=re.compile(r'(?:^|(?<=[.;:]\s)|(?<=\)\s)|(?<=[-\u2013]\s))'
                      r'([*+]?[A-Za-zÀ-ÿ][A-Za-zà-ÿ]+(?:[-, ]+[A-Za-zà-ÿ]+){0,6})\s*:\s')
-# Un qualificatif de tete : « (matem.) », « (kemio) ». Une lettre ou un chiffre
-# seul entre parentheses est un numero d'enumeration, non un domaine.
+# A leading qualifier: « (matem.) », « (kemio) ». A single letter or figure in
+# parentheses is an enumeration number, not a domain.
 RE_KVAL=re.compile(r'(?:[-\u2013\s]*\((?![A-Za-z0-9]\))[^()]{1,60}\)\s*)+$')
 RE_NUMERO=re.compile(r'\(([A-Za-z0-9])\)\s*$')
-# Le meme qualificatif, mais en TETE : « *botono. (elektr.) Mikra cilindro... »
-# porte son domaine apres la vedette, non avant elle comme « (geom.) arko
-# inflexita : ... ». Il va au champ `fako` dans les deux cas.
+# The same qualifier, but at the HEAD: « *botono. (elektr.) Mikra
+# cilindro... » carries its domain after the headword, not before it like
+# « (geom.) arko inflexita : ... ». It goes to the `fako` field in both cases.
 RE_KVAL_KAPO=re.compile(r'^(?:\((?![A-Za-z0-9]\))[^()]{1,60}\)\s*)+')
-# La locution ouvre parfois une PARENTHESE : « estado. Eso mentala... (estado
-# civila : la situeso di persono kom filio legitima o ne-legitima...) ». C'est
-# la meme chose qu'ailleurs — soulignee, suivie du deux-points, portant sa
-# propre definition —, et la parenthese ne la degrade pas : « estado civila » se
-# cherche comme « estado ». Elle s'y ecrit souvent en minuscule, la parenthese
-# tenant lieu d'ouverture ; on n'exige donc pas la capitale ici.
-# Un ARTICLE ENTIER glisse entre parentheses dans la definition d'un autre :
-# « butono. ... (*botono. (elektr.) Mikra cilindro, ek materio elektro-ne-
-# konduktiva...) ». Ce n'est pas une locution mais un mot a part, avec son
-# domaine et sa definition — et l'asterisque, dont l'auteur marque le mot non
-# encore officiel, le distingue de l'abreviation de domaine qui a la meme
-# forme : « (trans. ... », « (anat. ... », « (metaf. ... ». Le livre n'en
-# compte qu'un ; sans lui, « botono » ne se cherchait pas.
+# The phrase sometimes opens a PARENTHESIS: « estado. Eso mentala... (estado
+# civila : la situeso di persono kom filio legitima o ne-legitima...) ». It is
+# the same thing as elsewhere -- underlined, followed by the colon, carrying its
+# own definition -- and the parenthesis does not degrade it: « estado civila »
+# is looked for as « estado ». It is often written in lower case there, the
+# parenthesis standing for the opening; we therefore do not require the capital
+# here.
+# A WHOLE ARTICLE slipped in parentheses into the definition of another:
+# « butono. ... (*botono. (elektr.) Mikra cilindro, ek materio
+# elektro-ne-konduktiva...) ». It is not a phrase but a separate word, with its
+# domain and its definition -- and the asterisk, with which the author marks the
+# word not yet official, distinguishes it from the domain abbreviation of the
+# same shape: « (trans. ... », « (anat. ... », « (metaf. ... ». The book counts
+# only one; without it, « botono » could not be looked for.
 RE_SUBARTIKLO=re.compile(r'\(\s*(\*[A-Za-zÀ-Ý][A-Za-zà-ÿ-]{2,})\s*\.\s*')
 RE_LOKUCO_KRAMPA=re.compile(r'\(\s*([A-Za-z\u00c0-\u00ff][A-Za-z\u00e0-\u00ff]*'
                             r'(?:[- ][A-Za-z\u00e0-\u00ff]+){0,4})\s*:\s')
-# Les desinences grammaticales de l'Ido : participes, verbe, substantif,
-# adjectif, adverbe, pluriel. On les ote pour comparer deux mots par leur
-# RACINE — « inflexar » et « arko inflexita » n'ont pas la meme fin, mais le
-# meme mot. De la PLUS LONGUE a la plus courte : « inflexita » doit rendre
-# « inflex », non « inflexit », faute de quoi le verbe ne s'y reconnait pas.
+# The grammatical endings of Ido: participles, verb, noun, adjective, adverb,
+# plural. We take them off to compare two words by their ROOT -- « inflexar »
+# and « arko inflexita » have not the same end, but the same word. From the
+# LONGEST to the shortest: « inflexita » must return « inflex », not
+# « inflexit », failing which the verb is not recognised in it.
 FINAJI=('anta','inta','onta','ata','ita','ota',
         'ar','as','is','os','us','o','a','e','i')
 
 
 def _radiko(m):
-    """La racine du mot, sa desinence otee.
+    """The root of the word, its ending taken off.
 
-    On n'ote rien qui laisserait moins de quatre lettres : sur un radical si
-    court, deux mots sans rapport se ressemblent trop — « bear » n'est pas
-    « be- », et « arko » n'est pas « ark- ».
+    We take off nothing that would leave fewer than four letters: on so short a
+    stem, two unrelated words resemble each other too closely -- « bear » is not
+    « be- », and « arko » is not « ark- ».
     """
     m=m.lower().strip(' .,;:\u00ab\u00bb"\'')
     for d in FINAJI:
@@ -1495,25 +1497,25 @@ def _radiko(m):
 
 
 def _citas_vedeton(loko, vedetto):
-    """La locution reprend-elle le mot de l'article ?
+    """Does the phrase take up the article's word?
 
-    Dans une parenthese, le deux-points introduit aussi la GLOSE, qui n'est pas
-    une locution : « (antonimo : inflaco) », « (analogie : sur la kapo di ula
-    repteri) », « (simbolo kemiala : Ir) ». L'auteur les souligne comme les
-    locutions — le soulignement ne les separe donc pas. Ce qui les separe, c'est
-    que la locution CITE le mot de l'article, sous une forme ou une autre :
-    « estado civila » sous « estado », « arko inflexita » sous « inflexar »,
-    « relate » sous « relatar ». La glose, elle, parle d'autre chose.
+    Within a parenthesis, the colon also introduces the GLOSS, which is not a
+    phrase: « (antonimo : inflaco) », « (analogie : sur la kapo di ula repteri) »,
+    « (simbolo kemiala : Ir) ». The author underlines them as he does the
+    phrases -- the underline therefore does not separate them. What separates
+    them is that the phrase QUOTES the article's word, in one form or another:
+    « estado civila » under « estado », « arko inflexita » under « inflexar »,
+    « relate » under « relatar ». The gloss speaks of something else.
 
-    Hors parenthese, la capitale distinguait les deux ; entre parentheses la
-    locution perd sa capitale, et cette citation en tient lieu.
+    Outside a parenthesis, the capital distinguished the two; within one the
+    phrase loses its capital, and this quotation stands in its place.
     """
     r=_radiko(vedetto)
     if len(r) < 4: return False
-    # On compare par le DEBUT : « konstanta » rend « konst » — la desinence
-    # -anta y passe pour un participe qu'elle n'est pas — la ou « konstanto »
-    # rend « konstant ». Exiger l'egalite separait les deux ; le prefixe les
-    # reunit, sans rapprocher pour autant « nun » de « moloso ».
+    # We compare by the BEGINNING: « konstanta » returns « konst » -- the ending
+    # -anta passes there for a participle it is not -- where « konstanto »
+    # returns « konstant ». Requiring equality separated the two; the prefix
+    # reunites them, without for all that bringing « nun » near « moloso ».
     for w in loko.split():
         u=_radiko(w)
         if len(u) < 4: continue
@@ -1522,13 +1524,13 @@ def _citas_vedeton(loko, vedetto):
 
 
 def _fermo(t, i):
-    """L'index de la parenthese qui ferme celle ouverte en `i`, ou None.
+    """The index of the parenthesis that closes the one opened at `i`, or None.
 
-    Le tapuscrit ne ferme pas toujours : « inflexar » ouvre une parenthese que
-    la ligne suivante, tronquee, n'a jamais close. Compter les niveaux le dit
-    sans se tromper, et ne prend pas la fermeture d'une parenthese INTERIEURE —
-    « ... tangenta per olia somiti (quale la embracilo tipografiala) » — pour
-    celle de la locution.
+    The typescript does not always close: « inflexar » opens a parenthesis the
+    next line, truncated, never closed. Counting the levels says so without
+    error, and does not take the closing of an INTERIOR parenthesis --
+    « ... tangenta per olia somiti (quale la embracilo tipografiala) » -- for
+    that of the phrase.
     """
     n=0
     for j in range(i, len(t)):
@@ -1540,10 +1542,10 @@ def _fermo(t, i):
 
 
 def _enhavas(tuto, parto):
-    """`parto` est-il un morceau de `tuto`, aux mots entiers ?
+    """Is `parto` a piece of `tuto`, at whole words?
 
-    La comparaison se fait mot a mot, ponctuation otee : le filet releve
-    « quadrata » la ou la locution ecrit « quadrata, ».
+    The comparison is made word by word, punctuation off: the rule surveys
+    « quadrata » where the phrase writes « quadrata, ».
     """
     def _mots(s): return [w.strip('.,;:') for w in s.lower().split() if w.strip('.,;:')]
     A, B = _mots(tuto), _mots(parto)
@@ -1552,44 +1554,44 @@ def _enhavas(tuto, parto):
 
 
 def _kongruas(a, b):
-    """Deux chaines designent-elles la meme locution ?"""
-    # La croix du mot non officiel ne separe pas deux ecritures du meme mot :
-    # le releve rend « +skrino », le texte typographie « *skrino ».
+    """Do two strings designate the same phrase?"""
+    # The cross of the unofficial word does not separate two spellings of the
+    # same word: the survey returns « +skrino », the typeset text « *skrino ».
     a=a.lower().strip(' .:').lstrip('*+'); b=b.lower().strip(' .:').lstrip('*+')
     if a == b: return True
-    # Mot a mot, la ponctuation de fin otee : le filet de « radiko » s'arrete
-    # sur « Extraktar radiko, quadrata » quand la locution ecrit « quadrata, ».
-    # Sans cela la virgule, presente d'un cote et pas de l'autre, faisait
-    # echouer la comparaison des debuts.
+    # Word by word, the final punctuation off: the rule of « radiko » stops at
+    # « Extraktar radiko, quadrata » where the phrase writes « quadrata, ».
+    # Without that the comma, present on one side and not the other, made the
+    # comparison of the beginnings fail.
     pa=[w.strip('.,;:') for w in a.split()]
     pb=[w.strip('.,;:') for w in b.split()]
     if not pa or not pb: return False
-    # Le premier mot suffit s'il est long : « Prpporciono » relu
-    # « Proporciono » reste reconnaissable, et la suite est identique.
+    # The first word suffices if it is long: « Prpporciono » re-read
+    # « Proporciono » stays recognisable, and the rest is identical.
     import difflib
     if len(pa) == len(pb):
         return difflib.SequenceMatcher(None, a, b).ratio() >= 0.85
-    # Le filet s'arrete parfois avant la fin de la locution — « Elektro » pour
-    # « Elektro pozitiva ». Un debut assez long vaut identification.
+    # The rule sometimes stops before the end of the phrase -- « Elektro » for
+    # « Elektro pozitiva ». A long enough beginning is identification enough.
     court, long = (pa, pb) if len(pa) < len(pb) else (pb, pa)
     if long[:len(court)] == court and len(" ".join(court)) >= 5: return True
     return False
 
 
-KOMENCO="\ue000"; FINO="\ue001"     # bornes de l'italique, invisibles au texte
+KOMENCO="\ue000"; FINO="\ue001"     # bounds of the italic, invisible to the text
 
 
 def marki(t, motifs, pozitaj=()):
-    """Encadre de bornes chaque passage a mettre en italique.
+    """Frames with bounds every passage to be set in italic.
 
-    On pose les plus longs d'abord : « (aludante persono) » contient
-    « persono », et l'ordre inverse aurait coupe la parenthese en deux.
+    We lay the longest first: « (aludante persono) » contains « persono », and
+    the reverse order would have cut the parenthesis in two.
     """
     if not t or not (motifs or pozitaj): return t
     spans=[]
-    # Les italiques posees a l'oeil : le contexte donne la place, les accolades
-    # disent ce qui la prend. Elles passent AVANT les filets, qui ne doivent pas
-    # recouper un passage deja borne.
+    # The italics laid by eye: the context gives the place, the braces say what
+    # takes it. They pass BEFORE the rules, which must not re-cut a passage
+    # already bounded.
     for kun, sp in pozitaj:
         i=t.find(kun)
         if i < 0: continue
@@ -1614,24 +1616,24 @@ def _tuti(u, t):
     return list(mo.finditer(t))
 
 
-# Une locution qui est un NOM PROPRE garde sa capitale. Le livre n'en compte
-# qu'une : le Grand Orient de la franc-maconnerie.
+# A phrase that is a PROPER NOUN keeps its capital. The book counts only one:
+# the Grand Orient of freemasonry.
 LOKUCI_PROPRA = ('Granda Oriento',)
 
 
 def minuskla_lokuco(l):
-    """La locution s'ecrit comme une vedette : en minuscule."""
+    """The phrase is written as a headword is: in lower case."""
     if not l or l in LOKUCI_PROPRA or not l[0].isupper(): return l
     return l[0].lower() + l[1:]
 
 
 def majuskla_komenco(t):
-    """Initiale capitale, comme les dix mille autres definitions du livre.
+    """Initial capital, like the ten thousand other definitions of the book.
 
-    On ne touche qu'a une definition qui COMMENCE par une lettre minuscule :
-    celle qui s'ouvre sur une parenthese — « (bot.) ... » — porte un domaine,
-    et le domaine s'ecrit en minuscule. Un renvoi d'un seul mot tres court —
-    « ica : ca » — n'est pas une phrase et garde le sien.
+    We touch only a definition that BEGINS with a lower-case letter: one that
+    opens on a parenthesis -- « (bot.) ... » -- carries a domain, and the domain
+    is written in lower case. A cross-reference of a single very short word --
+    « ica : ca » -- is not a sentence and keeps its own.
     """
     if not t: return t
     i=0
@@ -1642,31 +1644,31 @@ def majuskla_komenco(t):
     return t[:i] + t[i].upper() + t[i+1:]
 
 
-# --- Le symbole chimique ----------------------------------------------------
+# --- The chemical symbol ----------------------------------------------------
 #
-# Le livre l'ecrit de dix facons : « . – Simbolo kemiala : Al », « . Simbolo
-# kemiala : Al » sans tiret, « . – Simbolo kem. Rh » abrege et sans deux-points,
-# en minuscule, ou en incise entre parentheses. Pire que l'inegalite : la ou
-# l'auteur a souligne l'etiquette, « Simbolo kemiala : » a exactement la forme
-# d'une locution — capitale, deux-points, definition — et s'en allait ouvrir un
-# alinea de sous-entree, dans SOIXANTE articles sur soixante-quinze. Or ce n'est
-# pas un mot de la langue : c'est une etiquette, de meme nature que le nom
-# latin. On la sort donc du texte, dans son propre champ, et les deux editions
-# la rendent d'une seule facon.
+# The book writes it ten ways: « . – Simbolo kemiala : Al », « . Simbolo
+# kemiala : Al » with no hyphen, « . – Simbolo kem. Rh » abbreviated and with no
+# colon, in lower case, or as an aside in parentheses. Worse than the
+# unevenness: where the author underlined the label, « Simbolo kemiala : » has
+# exactly the shape of a phrase -- capital, colon, definition -- and went off to
+# open a sub-entry paragraph, in SIXTY articles out of seventy-five. But it is
+# not a word of the language: it is a label, of the same nature as the Latin
+# name. We therefore take it out of the text, into a field of its own, and both
+# editions render it in one way.
 ETIKEDO_SIMBOLO = "simbolo kemiala"
-# Les quatre graphies du libelle, pour reconnaitre le filet qui le couvrait :
-# le trait le coupe court — « Simb. kem », « Simbolo kemial » — aussi souvent
-# qu'il le prend en entier.
+# The four spellings of the label, to recognise the rule that covered it:
+# the stroke cuts it short -- « Simb. kem », « Simbolo kemial » -- as often as
+# it takes it whole.
 ETIKEDOJ = ("simbolo kemiala", "simb. kemiala", "simbolo kem.", "simb. kem.")
-# « Simbolo » s'abrege lui aussi — « Simb. kem. Au » chez « oro », « Simb.
-# kemiala : Br » chez « bromo » —, et « kem » se rencontre nu. Les quatre
-# libelles se croisent librement ; le motif les prend tous.
+# « Simbolo » is abbreviated too -- « Simb. kem. Au » under « oro », « Simb.
+# kemiala : Br » under « bromo » -- and « kem » is met bare. The four labels
+# cross freely; the pattern takes them all.
 RE_SIMBOLO = re.compile(r'[\s.,;:–-]*(\()?\s*simb(?:olo|\.)\s*kem(?:iala|\.)?'
                         r'\s*[:.]?\s*', re.I)
-# Un symbole ou une formule tient en peu de signes — le plus long du livre est
-# « C₁₆, H₂₆, N₂, O₁₀ ». Au-dela, ce n'est plus un symbole : chez « ruteno »
-# l'article suivant, « rutino », s'est fondu dans le texte au decodage. On
-# n'extrait alors RIEN, et le defaut reste visible plutot que d'etre maquille.
+# A symbol or a formula holds in few signs -- the longest in the book is
+# « C₁₆, H₂₆, N₂, O₁₀ ». Beyond that it is no longer a symbol: under « ruteno »
+# the following article, « rutino », merged into the text at the decoding. We
+# then extract NOTHING, and the defect stays visible rather than be made up.
 LONGO_SIMBOLO = 40
 
 
@@ -1674,8 +1676,8 @@ _SIMBOLI = None
 
 
 def simboli_manuala(fichier=f"{T}/simboli.txt"):
-    """Les symboles releves a l'oeil sur le fac-simile, la ou le decodage les
-    a perdus. Meme cle que subvorti.txt : vedetto@image:ligno."""
+    """The symbols surveyed by eye on the facsimile, where the decoding lost
+    them. The same key as subvorti.txt: vedetto@image:ligno."""
     global _SIMBOLI
     if _SIMBOLI is None:
         _SIMBOLI = {}
@@ -1694,7 +1696,7 @@ _LATINAJI = None
 
 
 def latinaji_manuala(fichier=f"{T}/latinaji.txt"):
-    """Les noms scientifiques redresses a l'oeil. Meme cle que simboli.txt."""
+    """The scientific names put right by eye. The same key as simboli.txt."""
     global _LATINAJI
     if _LATINAJI is None:
         _LATINAJI = {}
@@ -1710,11 +1712,12 @@ def latinaji_manuala(fichier=f"{T}/latinaji.txt"):
 
 
 def _kodo_ne_simbolo(e):
-    """Un code de langues qui EGALE le symbole chimique n'est pas un code.
+    """A language code that EQUALS the chemical symbol is not a code.
 
-    Le symbole ferme parfois l'article, sans rien derriere lui : « palado. ...
-    Simbolo kemiala : Pd. » Le decodage a lu ce « Pd. » comme un code de
-    langues et en a tire « portugalana, germana ». L'article n'en porte aucun.
+    The symbol sometimes closes the article, with nothing behind it:
+    « palado. ... Simbolo kemiala : Pd. » The decoding read that « Pd. » as a
+    language code and drew « portugalana, germana » from it. The article carries
+    none.
     """
     k = (e.get('kodo') or '').strip('.').lower()
     if k and k == (e.get('simbolo') or '').strip('.').lower():
@@ -1732,27 +1735,28 @@ RE_LATINA_ENTEKSTA = re.compile(
 
 
 def latinaji_enteksta(e):
-    """Le nom scientifique que la PHRASE retient.
+    """The scientific name the SENTENCE keeps.
 
-    RE_LATINA prend le nom que l'auteur pose a part — « ... kompozaji". L.
-    artemisia absinthium » — et l'ote du texte pour le porter au champ. Mais le
-    nom se glisse aussi DANS la phrase, ou la syntaxe le retient : « Familio de
-    insekti di qui la tipo esas L. acarus, kun korpo... » ne se lit plus si on
-    l'en retire. Treize articles sont dans ce cas, et leur champ restait vide —
-    le nom ne se cherchait pas, et les deux editions ne l'annoncaient pas.
+    RE_LATINA takes the name the author lays apart -- « ... kompozaji". L.
+    artemisia absinthium » -- and takes it out of the text to carry it to the
+    field. But the name also slips INTO the sentence, where the syntax holds it:
+    « Familio de insekti di qui la tipo esas L. acarus, kun korpo... » no longer
+    reads if it is taken out. Thirteen articles are in that case, and their
+    field stayed empty -- the name could not be looked for, and neither edition
+    announced it.
 
-    On le COPIE donc, sans toucher au texte. Deux « L. » n'annoncent pas un
-    nom : celui qui ouvre un exemple — « Kom ex. : L. que en neque » chez
-    enklitiko — et celui qui nomme la langue — « ica vice ca, en L. iscala vice
-    scala » chez prostezo. L'un se reconnait a son « ex. », l'autre a son
-    « en ».
+    We therefore COPY it, without touching the text. Two « L. » do not announce
+    a name: the one that opens an example -- « Kom ex. : L. que en neque » under
+    enklitiko -- and the one that names the language -- « ica vice ca, en L.
+    iscala vice scala » under prostezo. The one is recognised by its « ex. »,
+    the other by its « en ».
 
-    Les binomes vont par deux — « L. ostrea edulis e gryphea angulata » — et la
-    conjonction n'est pas un mot du nom : sans l'exclure, le premier binome
-    mordait dessus et rendait « ostrea edulis e gryphea ».
+    The binomials go in pairs -- « L. ostrea edulis e gryphea angulata » -- and
+    the conjunction is not a word of the name: without excluding it, the first
+    binomial bit into it and returned « ostrea edulis e gryphea ».
     """
-    # On lit les SENS, non la structure : celle-ci se reconstruit en fin de
-    # chaine, et la lire ici rendrait la passe dependante de son rang.
+    # We read the SENSES, not the structure: the latter is rebuilt at the end of
+    # the chain, and reading it here would make the pass depend on its rank.
     nova = []
     for t in (e.get('senci') or []):
             for m in RE_LATINA_ENTEKSTA.finditer(t):
@@ -1773,13 +1777,13 @@ def latinaji_enteksta(e):
 
 
 def apartigar_simbolon(e):
-    """Sort le symbole chimique du texte et le met dans son champ.
+    """Takes the chemical symbol out of the text and puts it in its field.
 
-    Rend 1 si un symbole a ete pose. La ou la dactylo a bien frappe l'etiquette
-    mais ou le symbole ne s'est pas decode, on va le chercher dans simboli.txt,
-    releve a l'oeil sur la page ; faute de l'y trouver, l'article garde son
-    texte tel quel — l'etiquette sans symbole ne dit rien, mais l'effacer
-    effacerait aussi la trace du manque.
+    Returns 1 if a symbol has been laid. Where the typist struck the label
+    properly but the symbol did not decode, we go and fetch it from
+    simboli.txt, surveyed by eye on the page; failing to find it there, the
+    article keeps its text as it stands -- a label without a symbol says
+    nothing, but erasing it would erase the trace of the lack as well.
     """
     man = simboli_manuala().get("%s@%d:%d" % (e.get('vedetto'),
                                               e.get('image', -1),
@@ -1791,18 +1795,17 @@ def apartigar_simbolon(e):
             continue
         resto = t[m.end():]
         if m.group(1):
-            # Etiquette en incise — « ..., (simbolo kemiala : Ir) quan onu
-            # renkontras... » : elle s'arrete a sa parenthese, et la phrase
-            # reprend apres.
+            # The label as an aside -- « ..., (simbolo kemiala : Ir) quan onu
+            # renkontras... »: it stops at its parenthesis, and the sentence takes up
+            # again after it.
             j = resto.find(')')
             sim, suite = (resto[:j], resto[j+1:]) if j >= 0 else (resto, '')
         else:
             sim, suite = resto, ''
         sim = sim.strip(' .,;:')
-        # Un texte contamine ne se laisse pas couper : chez « ruteno »
-        # l'article suivant s'est fondu dans le sien, et ce qui suit
-        # l'etiquette n'est pas un symbole mais des lignes entieres. On n'y
-        # touche pas, meme pour y poser une lecture faite a l'oeil.
+        # A contaminated text will not be cut: under « ruteno » the following
+        # article merged into its own, and what follows the label is not a symbol
+        # but whole lines. We do not touch it, even to lay a reading made by eye.
         if len(sim) > LONGO_SIMBOLO:
             continue
         if not sim and not man:
@@ -1811,10 +1814,10 @@ def apartigar_simbolon(e):
         S[k] = espacar((t[:m.start()] + ' ' + suite).strip(' .,;:–-'))
         _kodo_ne_simbolo(e)
         return 1
-    # L'etiquette n'est plus dans le texte : ou bien la dactylo ne l'a pas
-    # frappee, ou bien un passage precedent l'en a deja sortie. Une lecture
-    # faite a l'oeil s'y pose tout de meme, et corrige au besoin un symbole
-    # que le decodage n'avait lu qu'a moitie — « Ca » pour « Ca F² ».
+    # The label is no longer in the text: either the typist did not strike it,
+    # or an earlier pass has already taken it out. A reading made by eye is laid
+    # there all the same, and corrects if need be a symbol the decoding had read
+    # only by halves -- « Ca » for « Ca F² ».
     if man and e.get('simbolo') != man:
         e['simbolo'] = man
         _kodo_ne_simbolo(e)
@@ -1827,13 +1830,13 @@ _FILETOJ = None
 
 
 def filetoj_ekartita(fichier=f"{T}/filetoj.txt"):
-    """Les filets releves que l'oeil ecarte : vedetto@image:ligno -> fragments.
+    """The surveyed rules the eye sets aside: vedetto@image:ligno -> fragments.
 
-    Le releve prend aussi ce qui n'est pas une intention — le trait d'une ligne
-    voisine, un trait qui deborde d'un mot sur le suivant. L'edition ne peut pas
-    toujours le savoir : un mot plein souligne au milieu d'une definition
-    ressemble a un mot cite, et le livre en cite beaucoup. Ce fichier ne fait que
-    RETIRER un releve, jamais en poser un.
+    The survey also takes what is not an intention -- the stroke of a
+    neighbouring line, a stroke that runs from one word onto the next. The
+    edition cannot always know: a full word underlined in the middle of a
+    definition looks like a quoted word, and the book quotes many. This file
+    only TAKES a survey away, never lays one.
     """
     global _FILETOJ
     if _FILETOJ is None:
@@ -1848,7 +1851,7 @@ def filetoj_ekartita(fichier=f"{T}/filetoj.txt"):
                         continue
                     u = q[1].strip()
                     if '{' in u or u.startswith('>'):
-                        continue          # POSE : filetoj_pozita, filetoj_rendita
+                        continue          # LAID: filetoj_pozita, filetoj_rendita
                     _FILETOJ.setdefault(q[0].strip(), set()).add(u)
     return _FILETOJ
 
@@ -1857,15 +1860,15 @@ _RENDITAJ = None
 
 
 def filetoj_rendita(fichier=f"{T}/filetoj.txt"):
-    """Les filets RENDUS au releve : vedetto@image:ligno -> fragments.
+    """The rules GIVEN BACK to the survey: vedetto@image:ligno -> fragments.
 
-    Le trait etait la, le releve ne l'a pas vu. Rendu ici, il reprend le chemin
-    ordinaire : la locution qui porte sa propre definition ouvre son alinea, le
-    reste passe en italique. C'est ce dont « pseudonima » avait besoin —
-    « Pseudonimo : Nomo ne-exakta » est une sous-entree, mais aucun filet ne la
-    designait, et rien ne la distinguait d'une phrase.
+    The stroke was there, the survey did not see it. Given back here, it takes
+    the ordinary road again: the phrase that carries its own definition opens
+    its paragraph, the rest passes into italic. That is what « pseudonima »
+    needed -- « Pseudonimo : Nomo ne-exakta » is a sub-entry, but no rule
+    designated it, and nothing distinguished it from a sentence.
 
-    La ligne commence par « > » : aucun releve du livre ne porte ce signe.
+    The line begins with « > »: no survey in the book carries that sign.
     """
     global _RENDITAJ
     if _RENDITAJ is None:
@@ -1888,17 +1891,17 @@ _POZITAJ = None
 
 
 def filetoj_pozita(fichier=f"{T}/filetoj.txt"):
-    """Les italiques posees A L'OEIL : vedetto@image:ligno -> (contexte, spans).
+    """The italics laid BY EYE: vedetto@image:ligno -> (context, spans).
 
-    L'auteur met en italique le mot qu'il CITE. Quand le releve du filet n'a rien
-    rendu, l'edition ne peut pas le deviner — mais le lecteur, lui, bute :
-    « La omiso di ta avan qua esas anakoluto » ne se lit pas sans savoir que
-    « ta » et « qua » y sont cites, non employes.
+    The author sets in italic the word he QUOTES. When the survey of the rule
+    returned nothing, the edition cannot guess it -- but the reader stumbles:
+    « La omiso di ta avan qua esas anakoluto » does not read without knowing
+    that « ta » and « qua » are quoted there, not used.
 
-    Le fragment porte alors des ACCOLADES autour de ce qui prend l'italique, et
-    le reste est du contexte : « La omiso di {ta} avan {qua} esas anakoluto ».
-    Sans lui, « qua » serait mis en italique aux trois endroits ou il parait dans
-    l'article, dont deux ou il est un pronom ordinaire.
+    The fragment then carries BRACES around what takes the italic, and the rest
+    is context: « La omiso di {ta} avan {qua} esas anakoluto ». Without it,
+    « qua » would be set in italic in all three places where it appears in the
+    article, two of which it is an ordinary pronoun.
     """
     global _POZITAJ
     if _POZITAJ is None:
@@ -1926,19 +1929,19 @@ def filetoj_pozita(fichier=f"{T}/filetoj.txt"):
 
 
 def _rekolar(subl, textoj):
-    """Le filet coupe par une fin de ligne : ses deux moities n'en font qu'une.
+    """The rule cut by an end of line: its two halves are only one.
 
-    La dactylo souligne « Kreto-krayono » ; la ligne casse au milieu du mot, et
-    le releve rend « Kreto-kra- » puis « yono ». Cherches tels quels, aucun des
-    deux ne se retrouve dans le texte recolle : la locution qu'ils designent
-    n'etait plus reconnue, et les deux moities finissaient parmi les fragments
-    non places. On les recolle quand la forme jointe, elle, se trouve dans le
-    texte — avec ou sans le trait d'union, selon ce que le recollage a decide.
+    The typist underlines « Kreto-krayono »; the line breaks in the middle of
+    the word, and the survey returns « Kreto-kra- » then « yono ». Sought as
+    they stand, neither of the two is found again in the reglued text: the
+    phrase they designate was no longer recognised, and both halves ended among
+    the unplaced fragments. We reglue them when the joined form is found in the
+    text -- with or without the hyphen, according to what the regluing decided.
 
-    Un tiret final n'annonce pas toujours une coupure : « -ez- » et « auto - »
-    en portent un qui leur appartient. La condition est donc la MEME que pour
-    poser l'italique — le morceau joint doit se retrouver dans le texte —, et
-    ce qui ne s'y retrouve pas reste tel quel.
+    A final hyphen does not always announce a break: « -ez- » and « auto - »
+    carry one of their own. The condition is therefore the SAME as for laying
+    the italic -- the joined piece must be found in the text -- and what is not
+    found there stays as it stands.
     """
     out=[]; i=0
     while i < len(subl):
@@ -1955,25 +1958,25 @@ def _rekolar(subl, textoj):
 
 
 def _filet_sen_vedeto(loko, u, vedetto):
-    """Le filet a perdu son premier mot, et ce mot etait LA VEDETTE.
+    """The rule has lost its first word, and that word was THE HEADWORD.
 
-    Le releve rend les filets ligne par ligne. Quand la dactylo souligne une
-    locution que la fin de ligne coupe — « ... - II. Licenco » puis
-    « poeziala : su-liberigo... » —, il en rend deux morceaux ; et celui qui
-    porte la vedette est ecarte, parce qu'un filet egal a la vedette est
-    justement celui du mot-vedette, qui n'apprend rien. La locution se
-    retrouvait donc reduite a sa fin, et n'etait plus reconnue.
+    The survey returns the rules line by line. When the typist underlines a
+    phrase the end of a line cuts -- « ... - II. Licenco » then « poeziala :
+    su-liberigo... » -- it returns two pieces of it; and the one carrying the
+    headword is set aside, because a rule equal to the headword is precisely
+    that of the headword itself, which teaches nothing. The phrase therefore
+    found itself reduced to its end, and was no longer recognised.
 
-    « tribono » le montre en deux lignes voisines : « Tribono di la soldati »,
-    dont le filet a tenu sur une ligne, ouvre sa sous-entree ; « Tribono di la
-    plebeyi », son exact parallele, n'en ouvrait pas, son filet ayant perdu le
-    mot « Tribono ». Le livre traite les deux de la meme facon.
+    « tribono » shows it in two neighbouring lines: « Tribono di la soldati »,
+    whose rule held on one line, opens its sub-entry; « Tribono di la plebeyi »,
+    its exact parallel, opened none, its rule having lost the word « Tribono ».
+    The book treats the two alike.
 
-    On exige que le mot manquant soit UN seul, et qu'il cite la vedette. Sans
-    cette condition, le suffixe seul rattachait « Kun radiko di verbo
-    netransitiva » a « -ig- », ou « Testamento » au filet « Olda Testamento ».
-    Sur tout le dictionnaire la regle leve trois locutions : « Licenco
-    poeziala », « Puteo arteza », « Tribono di la plebeyi ».
+    We require the missing word to be ONE only, and to quote the headword.
+    Without that condition, the suffix alone attached « Kun radiko di verbo
+    netransitiva » to « -ig- », or « Testamento » to the rule « Olda
+    Testamento ». Over the whole dictionary the rule raises three phrases:
+    « Licenco poeziala », « Puteo arteza », « Tribono di la plebeyi ».
     """
     pl = loko.split(); pu = u.split()
     if len(pl) != len(pu) + 1:
@@ -1985,11 +1988,11 @@ def _filet_sen_vedeto(loko, u, vedetto):
 
 
 def strukturizar(e):
-    """Decoupe chaque sens en un corps et, s'il y a lieu, ses sous-entrees.
+    """Cuts each sense into a body and, where there is cause, its sub-entries.
 
-    « proporciono » porte quatre locutions dans son second sens, chacune avec
-    sa propre definition. Les couler dans un seul paragraphe les rendait
-    introuvables ; on les detache, avec leur qualificatif de domaine.
+    « proporciono » carries four phrases in its second sense, each with its own
+    definition. Pouring them into a single paragraph made them impossible to
+    find; we detach them, with their qualifier of domain.
     """
     subl=_rekolar(sublineajoj(e), e.get('senci') or [])
     _for=filetoj_ekartita().get("%s@%d:%d" % (e.get('vedetto'),
@@ -2008,18 +2011,18 @@ def strukturizar(e):
             if not any(_kongruas(loko, u)
                        or _filet_sen_vedeto(loko, u, e.get('vedetto') or '')
                        for u in subl): continue
-            # Voir RE_LOKUCO : hors parenthese, une locution qui n'ouvre pas
-            # par une capitale doit etre un derive de la vedette.
+            # See RE_LOKUCO: outside a parenthesis, a phrase that does not open
+            # with a capital must be a derivative of the headword.
             if (loko[:1].islower() and not loko.startswith(('*', '+'))
                     and not _citas_vedeton(loko, e.get('vedetto') or '')):
                 continue
-            # Un seul mot, sans trait d'union, etranger a la vedette : ce n'est
-            # pas une locution mais une GLOSE — « moloso. ... – Nun : grosa
-            # gardo-hundo », ou « Nun » est l'adverbe « maintenant ». La
-            # capitale et le deux-points ne suffisent pas a la distinguer ; le
-            # lien avec la vedette, si. Les vraies locutions d'un seul mot sont
-            # soit des composes — « mar-baseno », « dento-krono » —, soit des
-            # derives de la vedette — « acido » sous « acida ».
+            # A single word, with no hyphen, unrelated to the headword: this is
+            # not a phrase but a GLOSS -- « moloso. ... – Nun : grosa gardo-hundo »,
+            # where « Nun » is the adverb « now ». The capital and the colon do not
+            # suffice to distinguish it; the link with the headword does. The true
+            # one-word phrases are either compounds -- « mar-baseno »,
+            # « dento-krono » -- or derivatives of the headword -- « acido » under
+            # « acida ».
             if (len(loko.split()) == 1 and '-' not in loko
                     and not loko.startswith(('*', '+'))
                     and not _citas_vedeton(loko, e.get('vedetto') or '')):
@@ -2041,20 +2044,20 @@ def strukturizar(e):
         trov.sort()
         if not trov:
             strukt.append({"teksto": t, "sub": []}); continue
-        # Une locution entre parentheses commence a sa parenthese OUVRANTE : le
-        # signe appartient a la locution, non au texte qui la precede.
+        # A phrase in parentheses begins at its OPENING parenthesis: the sign
+        # belongs to the phrase, not to the text before it.
         deb=[x[3][0] if x[3] else x[0] for x in trov]
         sub=[]; suite=[]
         for i,(a,apres,loko,kr) in enumerate(trov):
             fin=deb[i+1] if i+1 < len(trov) else len(t)
             if kr and kr[1] is not None and kr[1] < fin:
-                # La sous-entree s'arrete a la parenthese qui la ferme. Ce qui
-                # suit reprend la phrase du sens — « (en vehilo publika : ...)
-                # La komizo di qua la rolo... » — et retourne donc au corps.
+                # The sub-entry stops at the parenthesis that closes it. What follows
+                # takes up the sentence of the sense -- « (en vehilo publika : ...) La
+                # komizo di qua la rolo... » -- and therefore goes back to the body.
                 suite.append(t[kr[1]+1:fin]); fin=kr[1]
             sub.append({"loko": loko, "fako": "", "teksto": t[apres:fin].strip()})
         tete=t[:deb[0]]
-        # Le qualificatif colle a la locution qui suit, non au sens precedent.
+        # The qualifier goes with the phrase that follows, not with the sense before.
         for i in range(len(sub)):
             src = tete if i == 0 else sub[i-1]["teksto"]
             m=RE_KVAL.search(src)
@@ -2064,16 +2067,16 @@ def strukturizar(e):
                 sub[i]["fako"]=q
                 if i == 0: tete=src
                 else: sub[i-1]["teksto"]=src.rstrip(" -\u2013,;")
-        # Un numero d'enumeration reste seul en tete : il ouvre la premiere
-        # sous-entree plutot que de faire un sens vide.
+        # An enumeration number left alone at the head: it opens the first
+        # sub-entry rather than make an empty sense.
         tete=tete.strip(" -\u2013;,")
         m=RE_NUMERO.match(tete.strip()) if tete else None
         if m and len(tete.strip()) <= 3:
             sub[0]["fako"]=(tete.strip()+" "+sub[0]["fako"]).strip(); tete=""
-        # Le texte qui suivait la parenthese se recolle au corps du sens, la
-        # parenthese otee. On le fait EN DERNIER : le qualificatif de tete et le
-        # numero d'enumeration se lisent a la fin du texte qui PRECEDE, et une
-        # reprise collee avant les aurait caches.
+        # The text that followed the parenthesis is reglued to the body of the
+        # sense, the parenthesis off. We do it LAST: the leading qualifier and the
+        # enumeration number are read at the end of the text that PRECEDES, and a
+        # resumption glued before them would have hidden them.
         if suite:
             tete=espacar(re.sub(r'\s+', ' ',
                                 (tete + " " + " ".join(suite))).strip())
@@ -2083,9 +2086,9 @@ def strukturizar(e):
         b['teksto']=majuskla_komenco(b['teksto'])
         for x in b['sub']:
             x['loko']=minuskla_lokuco(x['loko'])
-            # Le tiret qui introduisait la locution SUIVANTE reste au bout du
-            # corps de la precedente — « ... relate Suno. – ». Il n'annonce
-            # plus rien, la locution ayant pris son alinea.
+            # The hyphen that introduced the NEXT phrase is left at the end of the
+            # body of the previous one -- « ... relate Suno. – ». It no longer
+            # announces anything, the phrase having taken its own paragraph.
             x['teksto']=x['teksto'].rstrip(" -–,;")
             if not x['fako']:
                 mk=RE_KVAL_KAPO.match(x['teksto'])
@@ -2093,27 +2096,26 @@ def strukturizar(e):
                     x['fako']=mk.group(0).strip()
                     x['teksto']=x['teksto'][mk.end():].lstrip(' .,;:')
             x['teksto']=majuskla_komenco(x['teksto'])
-            # Le qualificatif est garde NU, comme le champ `fako` de l'article :
-            # ce sont les editions qui posent les parentheses. Sans cela le
-            # domaine d'une locution — pris entre parentheses dans le texte —
-            # et celui d'un article rattache — pris dans le champ — ne
-            # s'ecrivaient pas de la meme facon.
+            # The qualifier is kept BARE, like the article's `fako` field: it is the
+            # editions that lay the parentheses. Without that a phrase's domain --
+            # taken in parentheses in the text -- and that of an attached article --
+            # taken in the field -- were not written the same way.
             x['fako']=uniformigar(x['fako'].strip().strip('()').strip())
     e['strukt']=strukt
-    # Ce qui reste souligne sans etre une locution : le domaine, le nom latin,
-    # le mot cite. L'edition le rend en italique, la ou il se retrouve.
+    # What is left underlined without being a phrase: the domain, the Latin
+    # name, the quoted word. The edition renders it in italic, where it is found.
     lok={x["loko"].lower() for b in strukt for x in b["sub"]}
-    # Le filet DU DOMAINE, pour la meme raison que celui de la locution : il a
-    # deja fait son travail. « (elektro) » est parti au champ `fako`, que les
-    # deux editions rendent en italique a leur maniere ; le fragment n'a pas a
-    # se reposer sur le premier « elektro » venu de la definition. Il le
-    # faisait dans 31 articles — « fonto di ELEKTRO » chez akumulatoro, « la
-    # ponto di NAVO » chez swabro, « komandas ARMEO » chez generalo —, ou le
-    # mot est employe, non cite.
+    # The DOMAIN's rule, for the same reason as the phrase's: it has already
+    # done its work. « (elektro) » has gone to the `fako` field, which both
+    # editions render in italic in their own way; the fragment has no business
+    # settling on the first « elektro » to come along in the definition. It did
+    # so in 31 articles -- « fonto di ELEKTRO » under akumulatoro, « la ponto di
+    # NAVO » under swabro, « komandas ARMEO » under generalo -- where the word
+    # is used, not quoted.
     #
-    # Le livre porte 4 109 filets egaux a un domaine, et pas un seul hors de sa
-    # parenthese : la dactylo souligne le domaine la ou il est, jamais son
-    # echo. Le garde-fou est donc sans faux frere.
+    # The book carries 4,109 rules equal to a domain, and not one outside its
+    # parenthesis: the typist underlines the domain where it is, never its echo.
+    # The safeguard therefore has no false brother.
     fak={(e.get('fako') or '').strip().strip('()').rstrip('.').lower()}
     fak |= {(x.get('fako') or '').strip().strip('()').rstrip('.').lower()
             for b in strukt for x in b['sub']}
@@ -2122,25 +2124,25 @@ def strukturizar(e):
     kur=[]; dub=[]; vu=set()
     for u in subl:
         if u.lower() in lok: continue
-        # Le filet ampute dont la locution est nee : il la designe deja, et
-        # n'a pas a se poser une seconde fois en italique dans le corps.
+        # The truncated rule the phrase was born of: it designates the phrase
+        # already, and has no business settling a second time in italic in the body.
         if any(_trovar(u, L) for L in lok): continue
         pose=False
         alt=alia_formo(u)
-        # Le releve est BRUT, le texte est typographie : les points de
-        # suspension y sont devenus le caractere unique, et l'affixe qui les
-        # suit s'en est detache. « lore...lore » (lor), « trans., por...-eso »
-        # (elektar) ne s'y retrouvaient plus, et le filet passait pour non
-        # place. On cherche donc aussi la forme typographiee du releve.
+        # The survey is RAW, the text is typeset: the ellipsis has become the
+        # single character there, and the affix that follows it has come away from
+        # it. « lore...lore » (lor), « trans., por...-eso » (elektar) were no longer
+        # found there, and the rule passed for unplaced. We therefore also look for
+        # the typeset form of the survey.
         if not alt and elipso(u) != u:
             alt=elipso(u)
-        # Le trait coupe court : le releve ne rend que le DEBUT du qualificatif
-        # — « met » pour « (metaf.) », « alud » pour « (aludante homo od animalo
-        # vivanta) », « aci » pour « (acioni, obligacioni) ». Cherche tel quel,
-        # il ne se retrouve nulle part, et le domaine perdait son italique quand
-        # ses voisins l'avaient. Vingt cas dans le livre, tous des qualificatifs
-        # entre parentheses du meme article ; on exige trois lettres, pour qu'un
-        # fragment plus court ne designe pas n'importe quelle parenthese.
+        # The stroke cuts short: the survey returns only the BEGINNING of the
+        # qualifier -- « met » for « (metaf.) », « alud » for « (aludante homo od
+        # animalo vivanta) », « aci » for « (acioni, obligacioni) ». Sought as it
+        # stands, it is found nowhere, and the domain lost its italic where its
+        # neighbours had theirs. Twenty cases in the book, all of them qualifiers in
+        # parentheses from the same article; we require three letters, so that a
+        # shorter fragment does not designate any parenthesis at all.
         if (len(u) >= 3 and u.isalpha()
                 and not any(_trovar(u, t) for t in textoj)
                 and not (alt and any(_trovar(alt, t) for t in textoj))):
@@ -2152,19 +2154,18 @@ def strukturizar(e):
             if not m and alt:
                 m=_trovar(alt, t); mot=alt
             if not m: continue
-            # Le filet ne couvre souvent qu'une PARTIE de la parenthese : la
-            # dactylo souligne « aludante persono » mais coupe son trait au
-            # bout de la ligne. On met en italique la parenthese entiere —
-            # c'est elle, le qualificatif — et les deux moities se recollent.
+            # The rule often covers only PART of the parenthesis: the typist
+            # underlines « aludante persono » but cuts her stroke at the end of the
+            # line. We set the whole parenthesis in italic -- it is the parenthesis
+            # that is the qualifier -- and the two halves reglue.
             g=_parentezo(t, m.start(), m.end())
-            # Le domaine deja parti au champ ne se repose pas NU dans le corps.
-            # « (elektro) » est le domaine de akumulatoro ; l'italique retombait
-            # sur le « elektro » de « fonto di elektro », ou le mot est employe,
-            # non cite. On exige donc que le fragment soit encore une
-            # PARENTHESE dans le texte : la ou il l'est — « (bot.) » ouvrant le
-            # sens II de lotuso, « (fiziol.) » celui de sero, « (ica) » cite par
-            # ca —, il garde son italique ; la ou il ne l'est plus, il l'a
-            # laissee au champ.
+            # The domain already gone to the field does not settle BARE in the body
+            # again. « (elektro) » is akumulatoro's domain; the italic fell back onto
+            # the « elektro » of « fonto di elektro », where the word is used, not
+            # quoted. We therefore require the fragment still to be a PARENTHESIS in
+            # the text: where it is -- « (bot.) » opening sense II of lotuso,
+            # « (fiziol.) » that of sero, « (ica) » quoted by ca -- it keeps its
+            # italic; where it no longer is, it has left it with the field.
             if g is None and mot.strip().rstrip('.').lower() in fak:
                 continue
             if g is None and (len(mot) < 3 or _nur_motouti(mot)):
@@ -2180,20 +2181,19 @@ def strukturizar(e):
         b['teksto_k']=marki(b['teksto'], kur, _poz)
         for x in b['sub']:
             x['teksto_k']=marki(x['teksto'], kur, _poz)
-    # Un fragment absent du corps n'est pas douteux s'il a trouve sa place
-    # ailleurs : domaine, nom latin, locution — fut-ce une PART de locution.
-    # Le filet de « radiko » se rompt en fin de ligne et rend « Extraktar
-    # radiko, quadrata » puis « kubala, di nombro » : la seconde moitie ne se
-    # retrouve nulle part telle quelle, et pourtant elle est placee, la
-    # locution ayant pris son alinea.
-    # Le souligne porte la forme que l'auteur a ECRITE, le champ celle que
-    # l'edition retient : « medicino » sur la page, « medic. » dans le champ. On
-    # compare donc a la ponctuation pres, chaque moitie du champ et chaque
-    # domaine enumere comptant a part — et de part et d'autre, car le souligne
-    # peut etre plus court que le domaine (le filet s'est rompu en fin de ligne)
-    # comme plus long (l'edition a abrege). Dans ce second sens on exige quatre
-    # lettres, pour qu'un domaine bref — « per », « pri » — ne couvre pas
-    # n'importe quel fragment.
+    # A fragment absent from the body is not doubtful if it has found its place
+    # elsewhere: domain, Latin name, phrase -- even a PART of a phrase. The rule
+    # of « radiko » breaks at the end of a line and returns « Extraktar radiko,
+    # quadrata » then « kubala, di nombro »: the second half is found nowhere as
+    # it stands, and yet it is placed, the phrase having taken its own paragraph.
+    # The underlined text carries the form the author WROTE, the field the one
+    # the edition keeps: « medicino » on the page, « medic. » in the field. We
+    # therefore compare but for punctuation, each half of the field and each
+    # domain enumerated counting apart -- and on both sides, for the underlined
+    # text can be shorter than the domain (the rule broke at the end of a line)
+    # as well as longer (the edition abbreviated). In that second sense we
+    # require four letters, so that a short domain -- « per », « pri » -- does
+    # not cover any fragment at all.
     fakoj=set()
     for _f in [(e.get('fako') or '')] + [x['fako'] for b in strukt for x in b['sub']]:
         if not _f: continue
@@ -2203,14 +2203,13 @@ def strukturizar(e):
                 if _p: fakoj.add(_p)
         _p=_plata(_f)
         if _p: fakoj.add(_p)
-    # « prosodio » et « prozodio » ne se contiennent pas l'un l'autre : la table
-    # des variantes le dit, la comparaison ne peut pas le deviner.
+    # « prosodio » and « prozodio » do not contain each other: the table of
+    # variants says so, the comparison cannot guess it.
     fakoj |= {_plata(v) for f in list(fakoj) for v in DOMENI_VARIANTOJ.get(f, ())}
-    # Le nom scientifique donne parfois DEUX formes en une : « rubus caesius,
-    # rubus fructicosus », « conium maculatum, e speco di cicuta ». Le filet, lui,
-    # couvre chaque nom a part : cherche au caractere pres, le second passait
-    # pour un souligne non place. On accepte donc le MORCEAU, a partir de quatre
-    # lettres.
+    # The scientific name sometimes gives TWO forms in one: « rubus caesius,
+    # rubus fructicosus », « conium maculatum, e speco di cicuta ». The rule
+    # covers each name apart: sought to the character, the second passed for an
+    # unplaced underline. We therefore accept the PIECE, from four letters up.
     lat={x.lower() for x in (e.get('latina') or [])}
     latp={_plata(x) for x in lat}
     lokoj=[x['loko'] for b in strukt for x in b['sub']]
@@ -2223,12 +2222,12 @@ def strukturizar(e):
                   and not any(len(_plata(u)) >= 4 and _preskau_en(_plata(u), f)
                               for f in latp)
                   and not any(_kongruas(u, L) or _enhavas(L, u) for L in lokoj)
-                  # L'etiquette du symbole chimique a quitte le texte pour son
-                  # champ : le filet qui la couvrait est place, non douteux.
-                  # Le trait la coupe souvent court — « Simbolo kem »,
-                  # « Simbolo kemial » — ou n'en prend que la fin —
-                  # « kemiala » : on accepte donc tout morceau de l'etiquette,
-                  # a partir de trois lettres pour ne pas happer n'importe quoi.
+                  # The chemical symbol's label has left the text for its field:
+                  # the rule that covered it is placed, not doubtful.
+                  # The stroke often cuts it short -- « Simbolo kem »,
+                  # « Simbolo kemial » -- or takes only its end --
+                  # « kemiala »: we therefore accept any piece of the label,
+                  # from three letters up so as not to catch anything at all.
                   and not (e.get('simbolo') and
                            (_enhavas(ETIKEDO_SIMBOLO + ' ' + e['simbolo'], u)
                             or (len(u.strip()) >= 3
@@ -2237,22 +2236,23 @@ def strukturizar(e):
     return n_sub
 
 
-# Mots-outils : un filet qui ne couvre qu eux est un artefact du releve des
-# soulignements, non une intention de l auteur.
-# Les mots-outils : ceux qu'un filet ne designe jamais pour eux-memes. Un
-# soulignement qui ne couvre QUE ceux-la n'est pas une marque de l'auteur mais
-# une trace — le trait d'une ligne voisine, ou un releve qui a deborde.
-# « absinto » portait « ek la » en italique au milieu de sa definition.
+# Function words: a rule that covers only those is an artefact of the survey
+# of underlines, not an intention of the author.
+# The function words: those a rule never designates for themselves. An
+# underline that covers ONLY those is not a mark of the author's but a trace --
+# the stroke of a neighbouring line, or a survey that has overrun. « absinto »
+# carried « ek la » in italic in the middle of its definition.
 #
-# La liste est CLOSE : articles, prepositions, conjonctions, pronoms et
-# correlatifs, plus les formes de « esar ». Un mot plein n'y entre pas, meme
-# court : « Ido » chez « logiko », « ohm » chez « volto », « tri » chez
-# « tri- » sont des mots cites, et gardent leur italique.
+# The list is CLOSED: articles, prepositions, conjunctions, pronouns and
+# correlatives, plus the forms of « esar ». A full word does not enter it, even
+# a short one: « Ido » under « logiko », « ohm » under « volto », « tri » under
+# « tri- » are quoted words, and keep their italic.
 #
-# Quatre mots-outils en sont retires, parce que le livre les CITE quelque part
-# et que le filet y est une vraie marque : « ante » chez « avan » (« kontre ke
-# ante relatas tempo »), « avan » et « dop » chez « retro- » (« movo de avan ad
-# dop »), et « que » chez « enklitiko », ou il est latin — « L. que en neque ».
+# Four function words are withdrawn from it, because the book QUOTES them
+# somewhere and the rule there is a true mark: « ante » under « avan »
+# (« kontre ke ante relatas tempo »), « avan » and « dop » under « retro- »
+# (« movo de avan ad dop »), and « que » under « enklitiko », where it is Latin
+# -- « L. que en neque ».
 MALGRANDA={'la','lo','de','da','di','en','per','sur','a','ad','ab','ek','ye',
            'che','apud','cirkum','dum','exter','inter','kontre',
            'malgre','preter','segun','sub','super','til','trans','ultre','vers',
@@ -2268,9 +2268,9 @@ MALGRANDA={'la','lo','de','da','di','en','per','sur','a','ad','ab','ek','ye',
 
 
 def _nur_motouti(u):
-    """Le fragment ne couvre-t-il QUE des mots-outils ?"""
-    # « e c » — « e cetera » — s'ecrit en deux morceaux dont le second n'est
-    # pas un mot : on l'admet entier.
+    """Does the fragment cover ONLY function words?"""
+    # « e c » -- « e cetera » -- is written in two pieces the second of which is
+    # not a word: we admit it whole.
     if u.strip().lower() in MALGRANDA: return True
     mots=[m.strip('.,;:()«»\'’\u201c\u201d "').lower() for m in u.split()]
     mots=[m for m in mots if m]
@@ -2278,20 +2278,21 @@ def _nur_motouti(u):
 
 
 def _preskau_en(u, f):
-    """Le fragment se retrouve-t-il dans f, a UNE lettre pres ?
+    """Is the fragment found again in f, to within ONE letter?
 
-    Le releve du filet porte la lecture de la MACHINE ; le champ `latina`, lui,
-    a pu etre redresse a l'oeil — « myrmedophaga » rendu « myrmecophaga », que
-    la vedette « mirmekofago » prouve. Cherche au caractere pres, le filet ne se
-    retrouvait plus, et le nom scientifique passait pour un souligne non place.
-    Une lettre d'ecart, c'est exactement ce qu'une correction de lecture change ;
-    on exige quatre lettres pour qu'un fragment bref ne couvre pas n'importe quoi.
+    The survey of the rule carries the MACHINE's reading; the `latina` field
+    may have been put right by eye -- « myrmedophaga » rendered
+    « myrmecophaga », which the headword « mirmekofago » proves. Sought to the
+    character, the rule was no longer found, and the scientific name passed for
+    an unplaced underline. One letter of difference is exactly what a
+    correction of reading changes; we require four letters so that a short
+    fragment does not cover anything at all.
 
-    Un nom LONG peut en porter deux — « gamelopardalis giraffz » rendu
-    « camelopardalis giraffa » chez « jirafo », le c lu g et le a lu z. On admet
-    donc une lettre par tranche de douze : deux pour vingt-quatre caracteres,
-    une pour les fragments courts, ou la moindre tolerance de plus ferait se
-    ressembler n'importe quoi.
+    A LONG name can carry two -- « gamelopardalis giraffz » rendered
+    « camelopardalis giraffa » under « jirafo », the c read g and the a read z.
+    We therefore admit one letter per twelve: two for twenty-four characters,
+    one for the short fragments, where the least further tolerance would make
+    anything resemble anything.
     """
     if len(u) < 4 or len(u) > len(f):
         return False
@@ -2301,16 +2302,16 @@ def _preskau_en(u, f):
 
 
 def _trovar(u, t):
-    """L occurrence du fragment souligne dans le texte, l espacement libre."""
+    """The occurrence of the underlined fragment in the text, spacing free."""
     if not u.strip(): return None
-    # Sans egard a la casse : l'auteur ecrit « (Anke metaf.) », l'edition
-    # abaisse l'initiale des domaines, et le fragment releve sur la grille ne
-    # se retrouverait plus dans le texte.
-    # L'asterisque du mot non officiel se pose APRES le releve du filet, et
-    # le trait de la dactylo la couvre sans la connaitre : « pri grandoro » ne
-    # se retrouvait plus dans « (pri *grandoro) ». On la laisse donc passer
-    # entre les mots — devant le premier, la borne de gauche l'admet deja.
-    # _tuti(), qui POSE l'italique, suit la meme regle.
+    # Without regard to case: the author writes « (Anke metaf.) », the edition
+    # lowers the initial of the domains, and the fragment surveyed on the grid
+    # would no longer be found in the text.
+    # The asterisk of the unofficial word is laid AFTER the survey of the rule,
+    # and the typist's stroke covers it without knowing it: « pri grandoro » was
+    # no longer found in « (pri *grandoro) ». We therefore let it pass between
+    # the words -- before the first, the left bound admits it already. _tuti(),
+    # which LAYS the italic, follows the same rule.
     mo=re.compile(r'(?<![A-Za-z\u00c0-\u00ff])'
                   + r'\s+\*?'.join(re.escape(w) for w in u.split())
                   + r'(?![A-Za-z\u00c0-\u00ff])', re.I)
@@ -2318,7 +2319,7 @@ def _trovar(u, t):
 
 
 def _parentezo(t, a, b):
-    """Si le fragment est dans une parenthese, cette parenthese entiere."""
+    """If the fragment is in a parenthesis, that whole parenthesis."""
     i=t.rfind('(', 0, a)
     if i < 0: return None
     j=t.find(')', b-1)
@@ -2328,13 +2329,13 @@ def _parentezo(t, a, b):
     return t[i:j+1]
 
 def rataching_subvortoj(ent, fichier=f"{T}/subvorti.txt"):
-    """Rattache un article a celui dont l'auteur l'a fait dependre.
+    """Attaches an article to the one the author made it depend on.
 
-    Le rattachement ne DEGRADE pas l'article : il garde son domaine, son code
-    de langues et sa page. Il change seulement de place — au lieu d'ouvrir sa
-    propre entree, il se range sous celle dont il derive, comme les locutions.
-    Il reste trouvable par son nom : les exportations rangent les locutions
-    parmi les formes cherchables, au meme rang qu'une vedette.
+    The attachment does not DEGRADE the article: it keeps its domain, its
+    language code and its page. It only changes place -- instead of opening its
+    own entry, it files under the one it derives from, like the phrases. It
+    stays findable by its name: the exports file the phrases among the
+    searchable forms, on the same footing as a headword.
     """
     if not os.path.exists(fichier): return 0
     couples=[]
@@ -2372,10 +2373,10 @@ def rataching_subvortoj(ent, fichier=f"{T}/subvorti.txt"):
 def konstrui():
     pages,corr,filetoj = charger_texte()
     brut=decouper(pages,corr,filetoj)
-    # Deux passes : la premiere donne le lexique des vedettes, la seconde s'en
-    # sert pour trancher les traits d'union tombes sur une fin de ligne.
-    # Le lexique sert a trancher les traits d'union de fin de ligne : une
-    # vedette d'une lettre y attesterait n'importe quel fragment.
+    # Two passes: the first gives the lexicon of the headwords, the second uses
+    # it to settle the hyphens fallen at an end of line.
+    # The lexicon serves to settle the end-of-line hyphens: a one-letter
+    # headword there would attest any fragment at all.
     lex={e['vedetto'].lower() for e in (analizar(x) for x in brut)
          if e_ok(e) and len(e['vedetto']) >= 2}
     n0=len(brut); brut=dividar(brut, lex)
@@ -2387,11 +2388,11 @@ def konstrui():
     if n: print("sens retouches typographiquement : %d"%n)
     n=corriger_vedettes(ent)
     if n: print("vedettes corrigees a la main : %d"%n)
-    # Le drapeau de finale se lit SUR LA VEDETTE : corrigee ici, il doit se
-    # relire. « borc » devenu « boro », « fenikulc » devenu « fenikulo », la
-    # finale impossible a disparu — mais le drapeau qui la signalait restait,
-    # et la liste de travail designait un travail deja fait. Le drapeau d'ordre,
-    # lui, se recalcule deja en fin de chaine, pour la meme raison.
+    # The ending flag is read ON THE HEADWORD: corrected here, it must be read
+    # again. « borc » become « boro », « fenikulc » become « fenikulo », the
+    # impossible ending has gone -- but the flag that reported it stayed, and the
+    # working list designated work already done. The order flag, for its part,
+    # is recomputed at the end of the chain already, for the same reason.
     n=0
     for e in ent:
         v=e.get('vedetto') or ''
@@ -2406,38 +2407,37 @@ def konstrui():
     import proofread as _rel
     n,r=_rel.appliquer(ent)
     if n or r: print("relecture des definitions : %d corrections posees, %d refusees"%(n,r))
-    # La relecture rend le domaine tel qu'il se LIT sur la page — avec sa
-    # majuscule, et sans le point que le tapuscrit n'a pas frappe. Le champ, lui,
-    # est mis en minuscules et son abreviation pointee bien plus haut, AVANT
-    # cette correction : « (ariktekt.) » corrige en « arkitekt » ressortait donc
-    # nu quand ses trente voisins etaient pointes. On repasse les deux
-    # normalisations derriere la correction ; elles sont idempotentes.
+    # The proofreading returns the domain as it READS on the page -- with its
+    # capital, and without the full stop the typescript did not strike. The field,
+    # for its part, is lower-cased and its abbreviation pointed much earlier,
+    # BEFORE this correction: « (ariktekt.) » corrected to « arkitekt » therefore
+    # came out bare when its thirty neighbours were pointed. We pass both
+    # normalisations again behind the correction; they are idempotent.
     for e in ent:
         if e.get('fako'): e['fako']=kompozita(elipso(uniformigar(minuskligi(pointi(e['fako'])))))
-    # La relecture pose des chaines relevees avant la typographie : on repasse
-    # l'espacement derriere elle. espacar() est idempotente.
+    # The proofreading lays strings surveyed before the typography: we pass the
+    # spacing again behind it. espacar() is idempotent.
     for e in ent:
         S=e.get('senci') or []
         for k,t in enumerate(S):
-            # Ponctuation orpheline en tete de sens : elle vient d'une coupure
-            # de l'original, non du texte. « titrar » commencait par un point.
+            # Orphaned punctuation at the head of a sense: it comes from a break in the
+            # original, not from the text. « titrar » began with a full stop.
             S[k]=multipliko(kompozita(elipso(ekvilibrigi_parentezojn(pointi_abrevo(fermi_parentezon(
                 fermi_kvalifikilon(orfa_parentezo(formuli(cifri(pointi_sencoj(
                     surcharge(espacar(netigar_punktuo(t)))))))))).lstrip('.,;:) ').strip()))))
-    # (cifri et formuli n'interviennent qu'ici, une fois la relecture posee)
-    # Second passage des corrections a l'oeil. Une ligne de vorti.txt ecrite
-    # d'apres le texte RENDU ne pouvait pas s'appliquer plus haut : « de l til
-    # 10 litri » (bidono) porte un 10 que cifri n'avait pas encore tire du
-    # « lO » de la dactylo, et la correction ne prenait jamais — en silence.
-    # La fonction est idempotente : une correction deja posee ne trouve plus sa
-    # forme fautive et ne fait rien.
+    # (cifri and formuli come in here alone, once the proofreading is laid)
+    # A second pass of the corrections by eye. A line of vorti.txt written from
+    # the RENDERED text could not apply higher up: « de l til 10 litri » (bidono)
+    # carries a 10 that cifri had not yet drawn from the typist's « lO », and the
+    # correction never took -- in silence. The function is idempotent: a correction
+    # already laid no longer finds its faulty form and does nothing.
     n=corriger_vorti(ent)
     if n: print("mots corriges apres la mise en chiffres : %d"%n)
-    # Second rattrapage du code de langues. Celui de l'analyse passe AVANT la
-    # typographie ; quand la fin de ligne portait encore une scorie — un point
-    # isole chez « ganso », une ponctuation manquante chez « rodar » — le code
-    # ne s'ancrait pas, et l'article passait pour « sen-lingua » en gardant son
-    # code dans le texte. Repasse ici, il s'ancre.
+    # A second recovery of the language code. The analysis's pass comes BEFORE
+    # the typography; when the end of the line still carried a cinder -- an
+    # isolated full stop under « ganso », a missing punctuation under « rodar » --
+    # the code did not anchor, and the article passed for « sen-lingua » while
+    # keeping its code in the text. Passed again here, it anchors.
     n=0
     for e in ent:
         if e.get('kodo') or not e.get('senci'): continue
@@ -2451,12 +2451,13 @@ def konstrui():
         if 'sen-lingua' in e['drapeli']: e['drapeli'].remove('sen-lingua')
         n+=1
     if n: print("codes de langues rattrapes apres la typographie : %d"%n)
-    # Le code n'est pas toujours au bout du DERNIER sens. L'auteur l'a parfois
-    # pose, puis a ajoute un sens apres coup : « arniko. I. Planto aromata...
-    # - L. arnica montana. - DEFIS. II. Medikamento liquida... ». Le code reste
-    # alors au milieu de l'article, l'article passe pour « sen-lingua », et le
-    # lecteur voit « DEFIS » dans une definition. On le releve la aussi — sur le
-    # DERNIER sens qui en porte un, et pour les seuls articles qui n'en ont pas.
+    # The code is not always at the end of the LAST sense. The author has
+    # sometimes laid it, then added a sense after the fact: « arniko. I. Planto
+    # aromata... - L. arnica montana. - DEFIS. II. Medikamento liquida... ». The
+    # code then stays in the middle of the article, the article passes for
+    # « sen-lingua », and the reader sees « DEFIS » inside a definition. We survey
+    # it there too -- on the LAST sense that carries one, and for the articles that
+    # have none.
     n=0
     for e in ent:
         if e.get('kodo') or not e.get('senci'): continue
@@ -2475,11 +2476,11 @@ def konstrui():
     if n: print("codes de langues remis dans l'ordre du livre : %d"%n)
     n=steligar(ent)
     if n: print("mots non officiels marques la ou ils etaient nus : %d"%n)
-    # Article commence en bas de page, abandonne, puis RECOMMENCE en tete de la
-    # page suivante. « ampère » est le seul cas du livre : la premiere version
-    # s'arrete net, sans code de langues ; la seconde est complete. L'edition de
-    # lecture ne garde que celle-ci — le fac-simile, lui, conserve les deux,
-    # puisqu'il rend la page telle qu'elle fut frappee.
+    # An article begun at the foot of a page, abandoned, then BEGUN AGAIN at the
+    # head of the next. « ampère » is the book's only case: the first version
+    # stops short, with no language code; the second is complete. The reading
+    # edition keeps only the latter -- the facsimile keeps both, since it renders
+    # the page as it was struck.
     der={}; unua={}
     for e in ent:
         if e['ligno'] >= der.get(e['image'], (-1,))[0]: der[e['image']]=(e['ligno'], e)
@@ -2494,9 +2495,9 @@ def konstrui():
         print("faux departs de bas de page ecartes : %d"%len(fals))
     n0=len(ent); ent=[e for e in ent if e_ok(e)]
     if len(ent)<n0: print("renvois d'errata ecartes : %d"%(n0-len(ent)))
-    # Definition coupee net en bas de page : le scan a rogne la derniere ligne.
-    # Quatre articles finissent ainsi sur un mot-outil, sans code de langues, et
-    # leur suite n'est sur aucune page. On ne l'invente pas — on le dit.
+    # A definition cut short at the foot of a page: the scan trimmed the last
+    # line. Four articles end so on a function word, with no language code, and
+    # their continuation is on no page. We do not invent it -- we say so.
     RE_OUTIL=re.compile(r"(?<![A-Za-zÀ-ÿ])(?:di|de|la|ye|ad|en|kun|per|sur|qua|quan"
                         r"|quon|pri|po|od|ek|da|kom|ma|nek|sen)$")
     der={}
@@ -2506,51 +2507,51 @@ def konstrui():
         t=" ".join(e['senci']).rstrip()
         if t and not e['kodo'] and RE_OUTIL.search(t):
             e['drapeli'].append('tranchita-che-pagino-fino')
-    # Numerotation des sens. L'edition de lecture les numerote elle-meme, 1, 2,
-    # 3 : garder « I. », « II. » dans le texte ferait double emploi, et
-    # l'original est irregulier — « iambo » melange deux niveaux, « tribono »
-    # melange chiffres romains et arabes. On retire donc le numero de tete.
-    # Trois sens ne contiennent QUE leur etiquette de domaine, sans definition
-    # (« (metriko antiqua) ») : elle se rattache au sens suivant, qu'elle
-    # qualifie, plutot que de rester seule.
-    # La virgule remplace parfois le point apres le numero — « I, (olim). ».
-    # Elle n'est admise QU'APRES un chiffre romain suivi d'une majuscule ou
-    # d'une parenthese : « l, OOO, OOO » (biliono) et « 10 , od oktiliono »
-    # (noniliono) sont des nombres, non des numeros de sens.
-    # « 1.000 » n'est pas un sens numerote mais le nombre mille : sans cette
-    # garde, « mil » perdait son « 1. » et se definissait par « 000 ».
-    # Le numero sans son point — « III veziketo » — se retire aussi, sinon il
-    # ouvrirait le sens que la coupure vient d'isoler.
+    # Numbering of the senses. The reading edition numbers them itself, 1, 2, 3:
+    # keeping « I. », « II. » in the text would be redundant, and the original is
+    # irregular -- « iambo » mixes two levels, « tribono » mixes Roman and Arabic
+    # figures. We therefore take off the leading number.
+    # Three senses contain ONLY their domain label, with no definition
+    # (« (metriko antiqua) »): it attaches to the next sense, which it qualifies,
+    # rather than stay alone.
+    # The comma sometimes replaces the full stop after the number -- « I, (olim). ».
+    # It is admitted ONLY AFTER a Roman figure followed by a capital or a
+    # parenthesis: « l, OOO, OOO » (biliono) and « 10 , od oktiliono » (noniliono)
+    # are numbers, not numbers of senses.
+    # « 1.000 » is not a numbered sense but the number one thousand: without this
+    # guard, « mil » lost its « 1. » and defined itself by « 000 ».
+    # The number without its full stop -- « III veziketo » -- is taken off too, or
+    # it would open the sense the cut has just isolated.
     RE_NUM=re.compile(r'^(?:(?:I{1,3}|IV|VI{0,3}|IX|X|[l\d]\d?)[.)](?!\d)\s*'
                       r'|(?:I{1,3}|IV|VI{0,3}|IX|X),\s*(?=[A-ZÀ-Ý(])'
                       r'|(?:I{1,3}|IV|VI{0,3}|IX|X)\s+(?=[A-Za-zÀ-ÿ])'
-                      # Le numero suivi de la parenthese du qualificatif —
-                      # « I (zool.) Mamifero... » chez « leono », six articles.
-                      # L'espace y est facultative : « reklamacar.I(netrans.) ».
+                      # The number followed by the qualifier's parenthesis --
+                      # « I (zool.) Mamifero... » under « leono », six articles.
+                      # The space is optional there: « reklamacar.I(netrans.) ».
                       r'|(?:I{1,3}|IV|VI{0,3}|IX|X)\s*(?=\())')
     RE_ETIQ=re.compile(r'^\([^()]{1,40}\)\.?$')
     n_num=0
     for e in ent:
         S=[]
         for t in e.get('senci') or []:
-            # Numerotation IMBRIQUEE : « III. 1. Deklarar... ». Un seul retrait
-            # n'ote que le niveau superieur. On boucle, borne a trois tours.
+            # NESTED numbering: « III. 1. Deklarar... ». A single removal takes off
+            # the upper level alone. We loop, bounded at three rounds.
             u=t
             for _ in range(3):
                 w=RE_NUM.sub('', u).strip()
                 if w == u: break
                 u = w
             if u != t: n_num += 1
-            # « I » ou « II » seuls, sans definition : un numero orphelin que le
-            # decoupage a pris pour un sens. Il ne dit rien.
+            # « I » or « II » alone, with no definition: an orphaned number the cutting
+            # took for a sense. It says nothing.
             if re.fullmatch(r'(?:I{1,3}|IV|VI{0,3}|IX|X)', u): u=''
-            # Point double apres le numero — « titrar. I..(teknol.) ». Le
-            # retrait du numero laisse le second, orphelin en tete de sens.
-            # Le tiret separait les sens dans l'original — « vunduro. II. -
-            # (religio kristana). Marko... ». Le numero ote, il reste en tete
-            # et n'annonce plus rien. Il empechait en outre les editions de
-            # reconnaitre la parenthese de tete comme un domaine, et « stigmato
-            # » perdait l'italique de « (religio kristana) ».
+            # A doubled full stop after the number -- « titrar. I..(teknol.) ». The
+            # removal of the number leaves the second, orphaned at the head of the sense.
+            # The hyphen separated the senses in the original -- « vunduro. II. -
+            # (religio kristana). Marko... ». The number off, it is left at the head and
+            # no longer announces anything. It also kept the editions from recognising
+            # the leading parenthesis as a domain, and « stigmato » lost the italic of
+            # « (religio kristana) ».
             u = re.sub(r'^[.,;:)\s–-]+', '', u)
             u = espacar(u)
             S.append(u)
@@ -2562,8 +2563,8 @@ def konstrui():
             if t: fus.append(t)
         e['senci']=fus
     if n_num: print("numeros de sens retires : %d"%n_num)
-    # Les soulignements de l'auteur, releves sur la grille : ils donnent les
-    # locutions — sous-entrees a part entiere — et ce qui va en italique.
+    # The author's underlines, surveyed on the grid: they give the phrases --
+    # sub-entries in their own right -- and what goes into italic.
     n_maj=0
     for e in ent:
         S=e.get('senci') or []
@@ -2584,49 +2585,49 @@ def konstrui():
     return ent
 
 # ---------------------------------------------------------------------------
-# Couche des jugements lexicaux.
+# The layer of lexical judgements.
 #
-# Les corrections rendues par le jugement etaient ecrites dans le JSONL. Or
-# edition.py le reconstruit depuis le fac-simile : la reconstruction suivante
-# les effacait toutes, sans bruit. On les applique donc EN FIN DE CHAINE, a
-# partir des fichiers de reponses, comme filets.pkl et debuts.pkl le sont pour
-# le fac-simile. Une correction posee une fois est ainsi acquise.
+# The corrections returned by the judgement used to be written into the JSONL.
+# But edition.py rebuilds it from the facsimile: the next rebuild erased them
+# all, without a sound. We therefore apply them AT THE END OF THE CHAIN, from
+# the answer files, as filets.pkl and debuts.pkl are for the facsimile. A
+# correction laid once is thus acquired.
 JUGEMENTS = [(f"{T}/juger/fiches.json",  f"{T}/juger/reponses"),
              (f"{T}/sens/fiches.json",   f"{T}/sens/reponses")]
 
 def cifri(t):
-    """Chiffres lus comme des lettres : « lOO » pour « 100 », « 2O » pour 20.
+    """Figures read as letters: « lOO » for « 100 », « 2O » for 20.
 
-    La machine n'avait pas de touche 1 ni de touche 0 distinctes du « l » et du
-    « O » — usage courant des dactylos de l'epoque. Mais on ne peut pas
-    convertir a l'aveugle : dans « Al2O3 », « Fe2 O3 », « C6 H10 O5 », le O est
-    l'OXYGENE, et dans « De punto fixa O » c'est le nom d'un point. On ne
-    convertit donc que dans un contexte sans ambiguite : jeton commencant par
-    « l », chiffre suivi de « O » ou de « l » sans espace, et suite d'au moins
-    trois « O » — que nulle formule ne porte.
+    The machine had no 1 key and no 0 key distinct from the « l » and the
+    « O » -- common usage among the typists of the period. But one cannot
+    convert blindly: in « Al2O3 », « Fe2 O3 », « C6 H10 O5 », the O is OXYGEN,
+    and in « De punto fixa O » it is the name of a point. We therefore convert
+    only in a context without ambiguity: a token beginning with « l », a figure
+    followed by « O » or « l » with no space, and a run of at least three « O »
+    -- which no formula carries.
     """
     def _jeton(m):
         return m.group(0).replace('l', '1').replace('O', '0')
     t = re.sub(r'(?<![A-Za-zÀ-ÿ0-9])l[lO0-9]+(?![A-Za-zÀ-ÿ])', _jeton, t)
     t = re.sub(r'(?<=\d)[lO](?![A-Za-zÀ-ÿ0-9])', _jeton, t)
     t = re.sub(r'O{3,}', lambda m: '0' * len(m.group(0)), t)
-    # Numero d'enumeration isole : « ... indikar : l. objekto plu proxima ».
-    # Le « l » y tient lieu de 1. On exige le deux-points qui ouvre la liste.
+    # An isolated enumeration number: « ... indikar : l. objekto plu proxima ».
+    # The « l » there stands for 1. We require the colon that opens the list.
     t = re.sub(r'(?<=[:;]\s)l(?=[.)]\s)', '1', t)
-    # « (l) » ouvre une enumeration entre parentheses : c'est le chiffre 1.
+    # « (l) » opens an enumeration in parentheses: it is the figure 1.
     t = re.sub(r'\(l\)', '(1)', t)
-    # Le degre : la machine n'avait pas le signe et frappait un « o ».
+    # The degree: the machine had not the sign and struck an « o ».
     t = re.sub(r'(?<=\d)o(?=\s*(?:C\b|Celsius))', '\u00b0', t)
-    # « lOOOmetri » : la dactylo a soude le nombre a son unite. On exige trois
-    # chiffres et trois minuscules, ce qui epargne les formules — « C6H4 » n'a
-    # qu'une lettre, et elle est capitale.
+    # « lOOOmetri »: the typist welded the number to its unit. We require three
+    # figures and three lower-case letters, which spares the formulae -- « C6H4 »
+    # has only one letter, and it is a capital.
     t = re.sub(r'(?<![A-Za-zÀ-ÿ])(\d{3,})(?=[a-zà-ÿ]{3,})', r'\1 ', t)
     return t
 
 
 _SUB = str.maketrans('0123456789', '\u2080\u2081\u2082\u2083\u2084\u2085\u2086\u2087\u2088\u2089')
-# L'algebre s'annonce par son enonce, non par ses signes : « M' = aluminio »
-# chez aluno est une legende, pas une equation.
+# Algebra announces itself by its statement, not by its signs: « M' = aluminio »
+# under aluno is a legend, not an equation.
 _SUP = str.maketrans('0123456789', '\u2070\u00b9\u00b2\u00b3\u2074\u2075\u2076\u2077\u2078\u2079')
 _ALGEBRO = re.compile(r'\bequaciono\b|\bkoeficient|\bgrado\b.{0,20}\bduesma\b'
                        r'|\brelato\b|\bkubo\b|kalorizala')
@@ -2634,14 +2635,14 @@ _FORMULO = re.compile(r'(?<![A-Za-zÀ-ÿ])((?:[A-Z][a-z]?\d*[\s.]{0,2}){2,})(?![
 
 
 def formuli(t):
-    """Indices des formules chimiques : « H2 O » devient « H\u2082O ».
+    """Subscripts of the chemical formulae: « H2 O » becomes « H\u2082O ».
 
-    La machine ne descendait pas les chiffres : elle les frappait sur la ligne,
-    et separait souvent les symboles d'une espace pour la lisibilite. On rend
-    l'indice et on recolle. Deux garde-fous : il faut au moins deux symboles et
-    un chiffre — sans quoi « DEFIRS » ou « I. La » passeraient pour une
-    formule — et un « La » initial suivi d'une espace est l'article ido, non
-    le lanthane : « La C5 H4 N4 O2 quan kontenas... ».
+    The machine did not lower the figures: it struck them on the line, and
+    often separated the symbols by a space for legibility. We render the
+    subscript and reglue. Two safeguards: at least two symbols and one figure
+    are needed -- failing which « DEFIRS » or « I. La » would pass for a
+    formula -- and an initial « La » followed by a space is the Ido article,
+    not lanthanum: « La C5 H4 N4 O2 quan kontenas... ».
     """
     def _un(m):
         c = m.group(1)
@@ -2658,15 +2659,15 @@ def formuli(t):
         c = re.sub(r'(?<=[A-Za-z])(\d+)', lambda x: x.group(1).translate(_SUB), c)
         return tete + c + q
     t = _FORMULO.sub(_un, t)
-    # Cas que le motif principal ne prend pas, faute de deux symboles voisins :
-    # le chiffre qui suit une parenthese — « (CH\u2083)2 », « (OH)3 » — celui
-    # qui suit un symbole amorce — « M'2 » — et le symbole isole precede d'un
-    # coefficient — « 24 H2 ». On epargne l'algebre, ou le chiffre est un
-    # EXPOSANT et non un indice : « ax2 + bx + c = 0 » chez diskriminanto,
-    # « Ax2 + 2 Bxy » chez koniko. Les deux se reconnaissent a leur enonce.
+    # Cases the main pattern does not take, for want of two neighbouring symbols:
+    # the figure that follows a parenthesis -- « (CH\u2083)2 », « (OH)3 » -- the
+    # one that follows a lead symbol -- « M'2 » -- and the isolated symbol
+    # preceded by a coefficient -- « 24 H2 ». We spare algebra, where the figure is
+    # an EXPONENT and not a subscript: « ax2 + bx + c = 0 » under diskriminanto,
+    # « Ax2 + 2 Bxy » under koniko. Both are recognised by their statement.
     if _ALGEBRO.search(t):
-        # En algebre le chiffre est un EXPOSANT : « ax2 + bx + c = 0 » se lit
-        # ax\u00b2. Meme chose pour l'unite elevee a une puissance, « metro3 ».
+        # In algebra the figure is an EXPONENT: « ax2 + bx + c = 0 » reads ax\u00b2.
+        # The same for a unit raised to a power, « metro3 ».
         return re.sub(r'(?<=[A-Za-z])([23])(?![\d.,])',
                       lambda m: m.group(1).translate(_SUP), t)
     t = re.sub(r'\((\[A-Z][a-z]?)(\d+)\)',
@@ -2685,22 +2686,22 @@ _SUR = {'a': '\u00e2', 'e': '\u00ea', 'i': '\u00ee', 'o': '\u00f4', 'u': '\u00fb
 
 
 def surcharge(t):
-    """Le fac-simile note la surcharge par \\sur{signo}{litero} — la dactylo
-    frappait l'accent PAR-DESSUS la voyelle, faute de touche accentuee. Ce
-    balisage n'a rien a faire dans l'edition de lecture, ou la lettre accentuee
-    existe : « \\sur{\\textasciicircum{}}{a} » se lit « \u00e2 »."""
+    """The facsimile notes the overstrike as \\sur{signo}{litero} -- the typist
+    struck the accent OVER the vowel, for want of an accented key. That markup
+    has no business in the reading edition, where the accented letter exists:
+    « \\sur{\\textasciicircum{}}{a} » reads « \u00e2 »."""
     def _un(m):
         return _SUR.get(m.group(1), m.group(1))
     return re.sub(r'\\sur\{\\textasciicircum\{\}\}\{([A-Za-z])\}', _un, t)
 
 
 def orfa_parentezo(t):
-    """Retire la parenthese fermante orpheline en fin de definition.
+    """Removes the orphaned closing parenthesis at the end of a definition.
 
-    L'original en compte trente : l'ouvrante a ete perdue a la frappe, ou bien
-    consommee par l'extraction du domaine. Fermer ce qui n'a jamais ete ouvert
-    n'apporte rien. On ne touche QUE la derniere, et seulement si le compte des
-    autres est equilibre — sinon on ignore ou serait la faute.
+    The original counts thirty: the opening one was lost in the typing, or else
+    consumed by the extraction of the domain. Closing what was never opened
+    brings nothing. We touch ONLY the last, and only if the count of the others
+    is balanced -- otherwise we do not know where the fault would be.
     """
     if not t.endswith(')'):
         return t
@@ -2714,16 +2715,16 @@ def orfa_parentezo(t):
 
 
 def fermi_kvalifikilon(t):
-    """Ferme le qualificatif de tete dont la parenthese est restee ouverte.
+    """Closes the leading qualifier whose parenthesis was left open.
 
-    « transmisar. ... II. (biol. Igar pasar a la decendanti. » — la fermante
-    manque apres l'abreviation, et le livre l'ecrit « (biol.) » des centaines
-    de fois : sa place ne fait aucun doute.
+    « transmisar. ... II. (biol. Igar pasar a la decendanti. » -- the closing
+    mark is missing after the abbreviation, and the book writes « (biol.) »
+    hundreds of times: its place is in no doubt.
 
-    Cette regle doit passer AVANT fermi_parentezon, qui fermerait au BOUT du
-    sens : « (biol. Igar pasar a la decendanti) », ou le domaine avale toute la
-    definition. C'est le meme signe, pose a deux places, et une seule est
-    juste.
+    This rule must pass BEFORE fermi_parentezon, which would close at the END
+    of the sense: « (biol. Igar pasar a la decendanti) », where the domain
+    swallows the whole definition. It is the same sign, laid in two places, and
+    only one is right.
     """
     m = RE_KVAL_MANKA.match(t)
     if m and t.count('(') > t.count(')'):
@@ -2735,18 +2736,19 @@ def fermi_kvalifikilon(t):
 
 
 def fermi_parentezon(t):
-    """Ferme la parenthese restee ouverte en fin de definition.
+    """Closes the parenthesis left open at the end of a definition.
 
-    Le pendant exact d'orfa_parentezo. La fermante s'est perdue a la frappe et
-    le sens s'acheve au milieu d'une incise — « ... (anke metaf », « ...
-    (aludante penso, cienco, e c. », « ... (Ex. : la fragmento obskura ». Le
-    livre en compte soixante-cinq. Laissee ouverte, la parenthese pend dans les
-    deux editions, et la regle qui reconnait le domaine de tete s'y egare.
+    The exact counterpart of orfa_parentezo. The closing mark was lost in the
+    typing and the sense ends in the middle of an aside -- « ... (anke metaf »,
+    « ... (aludante penso, cienco, e c. », « ... (Ex. : la fragmento obskura ».
+    The book counts sixty-five. Left open, the parenthesis hangs in both
+    editions, and the rule that recognises the leading domain goes astray in it.
 
-    On ne ferme QUE si la derniere ouvrante n'a aucune fermante apres elle et
-    si tout ce qui la precede est equilibre. Ailleurs — chez « arachar », ou
-    c'est la PREMIERE parenthese qui est restee ouverte — on ignore ou serait
-    la faute, et fermer au bout deplacerait l'incise au lieu de la reparer.
+    We close ONLY if the last opening mark has no closing mark after it and if
+    everything before it is balanced. Elsewhere -- under « arachar », where it
+    is the FIRST parenthesis that was left open -- we do not know where the
+    fault would be, and closing at the end would move the aside instead of
+    repairing it.
     """
     i = t.rfind('(')
     if i < 0 or t.rfind(')') > i:
@@ -2757,45 +2759,47 @@ def fermi_parentezon(t):
     return t.rstrip() + ')'
 
 
-# « (anke metaf) » : le point de l'abreviation s'est perdu avec la parenthese
-# fermante, en bout de ligne. Le livre ecrit « (anke metaf.) » cinquante fois
-# contre dix-huit sans point — la forme n'est pas douteuse.
+# « (anke metaf) »: the abbreviation's full stop was lost with the closing
+# parenthesis, at the end of a line. The book writes « (anke metaf.) » fifty
+# times against eighteen without the stop -- the form is not in doubt.
 RE_ABREVO = re.compile(r'\((anke\s+metaf)\)', re.I)
 
 
 def pointi_abrevo(t):
-    """Rend son point a l'abreviation que la coupure de ligne a ecourtee."""
+    """Gives back its full stop to the abbreviation the line break cut short."""
     return RE_ABREVO.sub(lambda m: '(%s.)' % m.group(1), t)
 
 
-# Un qualificatif de tete dont la fermante s'est perdue : « (trans. Kustumigar
-# animalo... », « (anat. Saliajo mi-sferatra... ». Le livre ferme celle-la des
-# centaines de fois ; sa place ne fait aucun doute, juste apres l'abreviation.
+# A leading qualifier whose closing mark was lost: « (trans. Kustumigar
+# animalo... », « (anat. Saliajo mi-sferatra... ». The book closes that one
+# hundreds of times; its place is in no doubt, just after the abbreviation.
 #
-# L'espace a pu tomber avec elle : « (bot.Frukto kapsula... » chez « folikulo ».
-# Une CAPITALE collee au point de l'abreviation ouvre la definition ; elle ne
-# continue pas le mot abrege. Sans cela la parenthese se fermait au bout du
-# sens, et le domaine avalait toute la definition.
+# The space may have fallen with it: « (bot.Frukto kapsula... » under
+# « folikulo ». A CAPITAL stuck to the abbreviation's full stop opens the
+# definition; it does not continue the abbreviated word. Without that the
+# parenthesis closed at the end of the sense, and the domain swallowed the
+# whole definition.
 RE_KVAL_MANKA = re.compile(r'^\(([A-Za-zÀ-ÿ][A-Za-zà-ÿ]{1,11}\.)(?=\s|[A-ZÀ-Ý])')
 
 
 def ekvilibrigi_parentezojn(t):
-    """Retire les parentheses orphelines, faute de savoir ou serait leur paire.
+    """Removes the orphaned parentheses, for want of knowing where their mate
+    would be.
 
-    Le tapuscrit en laisse cinquante-cinq : « Gumo ek arboro) di India »,
-    « Deprenar (per violento, koakto, de ulu to quon lu retenas. » Le
-    fac-simile ne les rendra pas — l'original ne les a pas non plus. Il faut
-    donc trancher, et la regle est celle qu'orfa_parentezo posait deja pour la
-    fermante de fin : ON RETIRE LE SIGNE ORPHELIN. Le retirer ne fabrique aucun
-    groupement que l'auteur n'a pas fait ; en inventer un le ferait.
+    The typescript leaves fifty-five: « Gumo ek arboro) di India »,
+    « Deprenar (per violento, koakto, de ulu to quon lu retenas. » The
+    facsimile will not render them -- the original has none either. A decision
+    must therefore be made, and the rule is the one orfa_parentezo already laid
+    for the closing mark at the end: WE REMOVE THE ORPHANED SIGN. Removing it
+    manufactures no grouping the author did not make; inventing one would.
 
-    Deux exceptions, ou la place du conjoint ne fait aucun doute :
+    Two exceptions, where the mate's place is in no doubt:
 
-      * le qualificatif de tete — « (trans. » se ferme apres l'abreviation ;
-      * la locution entre parentheses — « (arko inflexita : ... » chez
-        « inflexar », que la page tronquee n'a jamais close. Elle ouvre une
-        sous-entree ; oter sa parenthese la ferait disparaitre. On laisse alors
-        le sens tel quel, desequilibre mais entier.
+      * the leading qualifier -- « (trans. » closes after the abbreviation;
+      * the phrase in parentheses -- « (arko inflexita : ... » under
+        « inflexar », which the truncated page never closed. It opens a
+        sub-entry; taking its parenthesis off would make it disappear. We then
+        leave the sense as it stands, unbalanced but whole.
     """
     m = RE_KVAL_MANKA.match(t)
     if m and t.count('(') > t.count(')'):
@@ -2819,39 +2823,40 @@ def ekvilibrigi_parentezojn(t):
 
 
 def netigar_punktuo(t):
-    """Les scories de frappe : virgule doublee, point double, virgule-point.
+    """The cinders of typing: a doubled comma, a doubled full stop, a comma-stop.
 
-    La dactylo a parfois frappe deux fois. Onze articles portent un point
-    double — « ...e tonizala. . – DEFIS » chez « arniko », « (trans. .) » chez
-    « reklamacar » —, quatre une virgule doublee, un une virgule suivie d'un
-    point. Le fac-simile les garde ; l'edition de lecture, non.
+    The typist sometimes struck twice. Eleven articles carry a doubled full
+    stop -- « ...e tonizala. . – DEFIS » under « arniko », « (trans. .) » under
+    « reklamacar » -- four a doubled comma, one a comma followed by a full
+    stop. The facsimile keeps them; the reading edition does not.
 
-    Le point double n'est retire que SEPARE d'une espace. Colles, « ie.. » et
-    « venenifanta.. » sont deux cas contraires — une ellipse ecourtee et un
-    point de trop — que rien ne distingue mecaniquement : ils sont traites un a
-    un dans vorti.txt. Et l'ellipse de l'auteur, « ... », reste intacte.
+    The doubled full stop is removed only when SEPARATED by a space. Stuck
+    together, « ie.. » and « venenifanta.. » are two contrary cases -- a
+    shortened ellipsis and one stop too many -- that nothing distinguishes
+    mechanically: they are dealt with one by one in vorti.txt. And the author's
+    ellipsis, « ... », stays intact.
     """
     t = re.sub(r',\s*,', ',', t)
     t = re.sub(r',\s*\.(?!\.)', ', ', t)
-    # Le point separe de sa virgule : « fuzebla ye 201° C. , kontenata en la
-    # kortico » chez salicino — le point est celui de l'abreviation, la virgule
-    # celle de la phrase, et l'espace entre les deux n'est de personne.
+    # The full stop parted from its comma: « fuzebla ye 201° C. , kontenata en la
+    # kortico » under salicino -- the stop is the abbreviation's, the comma the
+    # sentence's, and the space between them is nobody's.
     t = re.sub(r'\.\s+,', '.,', t)
-    # L'espace AVANT la virgule : « rimo nekompleta , quan » chez « asonancar »,
-    # « la religiani , ekleziani » chez « sinagogo ». Elle n'est de personne non
-    # plus. On exige une lettre devant et une lettre derriere : chez
-    # « *puntuar », « la signi ,; . : ? ! » enumere les signes eux-memes, et la
-    # virgule y est le premier de la liste, non une ponctuation de phrase.
+    # The space BEFORE the comma: « rimo nekompleta , quan » under « asonancar »,
+    # « la religiani , ekleziani » under « sinagogo ». It is nobody's either. We
+    # require a letter in front and a letter behind: under « *puntuar », « la
+    # signi ,; . : ? ! » enumerates the signs themselves, and the comma there is
+    # the first of the list, not a sentence's punctuation.
     t = re.sub(r'(?<=[A-Za-zÀ-ÿ)])[\s\u00a0]+,(?=[\s\u00a0]+[A-Za-zÀ-ÿ])', ',', t)
     t = re.sub(r'(?<!\.)\.\s+\.(?!\.)', '.', t)
     return re.sub(r'  +', ' ', t)
 
 
-# Les affixes que le livre donne comme VEDETTES, plus ceux que SUFIXI porte
-# pour le rangement. SUFIXI seul ne suffit pas ici : bati pour oter UN suffixe
-# d'un radical, il ignore « -im- », le suffixe de la fraction, qui est
-# justement celui de « 1/10.000.000-ima ». Les affixes d'UNE lettre — « -e »,
-# « -i » — n'y sont pas : ils se confondent avec les mots-outils.
+# The affixes the book gives as HEADWORDS, plus those SUFIXI carries for the
+# filing. SUFIXI alone does not suffice here: built to take ONE suffix off a
+# stem, it does not know « -im- », the suffix of the fraction, which is
+# precisely that of « 1/10.000.000-ima ». The ONE-letter affixes -- « -e »,
+# « -i » -- are not in it: they merge with the function words.
 AFIXI_KUN_FINALO = tuple(sorted(
     set(SUFIXI) | {'ab', 'ant', 'at', 'esm', 'im', 'int', 'ont', 'op', 'opl',
                    'ot', 'un'}, key=len, reverse=True))
@@ -2862,39 +2867,39 @@ RE_AFIXO_ESPACO = re.compile(
 
 
 def espacar(t):
-    """Espacement de la ponctuation, usage franco-canadien.
+    """Spacing of the punctuation, French-Canadian usage.
 
-    Isolee pour etre rejouable : la couche de relecture pose des chaines
-    relevees AVANT la typographie, et les reposer telles quelles mangeait
-    les espaces insecables — « familio«labiacei» ». On repasse donc ici
-    apres elle. La fonction est idempotente.
+    Isolated so as to be replayable: the proofreading layer lays strings
+    surveyed BEFORE the typography, and laying them back as they stood ate the
+    non-breaking spaces -- « familio«labiacei» ». We therefore pass again here
+    behind it. The function is idempotent.
     """
     t = re.sub(r',(?=[A-Za-zÀ-ÿ])', ', ', t)
-    # Le « L. » qui annonce le nom scientifique prend son espace : le livre
-    # l'ecrit ainsi partout, et une seule fois sans — « la tipo esas L.acarus »
-    # chez akaro. On ne touche a aucun autre point colle a une minuscule : il y
-    # en a huit dans le livre, et chacun demande sa lecture — « ex.en » veut
-    # l'espace, « viburnum.tinus » veut perdre son point.
+    # The « L. » that announces the scientific name takes its space: the book
+    # writes it so everywhere, and once only without -- « la tipo esas L.acarus »
+    # under akaro. We touch no other full stop stuck to a lower-case letter: there
+    # are eight in the book, and each calls for its own reading -- « ex.en » wants
+    # the space, « viburnum.tinus » wants to lose its stop.
     t = re.sub(r'(?<![A-Za-zÀ-ÿ])L\.(?=[a-zà-ÿ])', 'L. ', t)
-    # Le tiret d'affixe ne se detache pas de son affixe : « 1/10.000.000- ima »
-    # chez « metro » est « 1/10.000.000-ima », la dix-millionieme partie. C'est
-    # la meme espace parasite que la vedette connait — « - as. » pour « -as »,
-    # « bo - . » pour « bo- » —, posee cette fois dans le corps.
-    # On exige un SUFFIXE suivi de sa desinence : sans quoi « radio- o
-    # televizionorecevili » (megafono), ou le tiret reste en suspens devant la
-    # conjonction, se recollait en « radio-o ». Les quatre autres tirets isoles
-    # du livre — « ekirar- per », « perforuro- e », « implikas- kontre »,
-    # « establisita- ube » — n'en sont pas davantage.
+    # The affix's hyphen does not come away from its affix: « 1/10.000.000- ima »
+    # under « metro » is « 1/10.000.000-ima », the ten-millionth part. It is the
+    # same stray space the headword knows -- « - as. » for « -as », « bo - . » for
+    # « bo- » -- laid this time in the body.
+    # We require a SUFFIX followed by its ending: failing which « radio- o
+    # televizionorecevili » (megafono), where the hyphen hangs before the
+    # conjunction, reglued into « radio-o ». The book's four other isolated hyphens
+    # -- « ekirar- per », « perforuro- e », « implikas- kontre »,
+    # « establisita- ube » -- are no more hyphens of affixes than that one.
     t = RE_AFIXO_ESPACO.sub(r'-\1', t)
-    # La parenthese fermante collee au mot suivant prend une espace — mais pas
-    # celle qui fait CORPS avec le mot. L'auteur note ainsi l'element facultatif
-    # : « leon(in)o » dit le lion et la lionne, « formac(es)o » la formation et
-    # le fait de se former, « -(ant)ajo » le suffixe compose. Le mot continue
-    # apres la parenthese, et l'espace le couperait en deux. On la reconnait au
-    # tiret d'affixe qui la precede, ou a la lettre SEULE qui la suit — la
-    # finale du mot. Trois cas dans le livre, et aucun faux frere : « F(z) esas
-    # monodroma » porte deja son espace, « (aludante persono)Definuro » n'est
-    # pas un element mais une incise.
+    # The closing parenthesis stuck to the next word takes a space -- but not the
+    # one that is PART of the word. The author notes the optional element that way:
+    # « leon(in)o » says the lion and the lioness, « formac(es)o » the formation
+    # and the act of forming, « -(ant)ajo » the compound suffix. The word goes on
+    # after the parenthesis, and the space would cut it in two. We recognise it by
+    # the affix hyphen before it, or by the SINGLE letter that follows -- the
+    # word's ending. Three cases in the book, and no false brother: « F(z) esas
+    # monodroma » carries its space already, « (aludante persono)Definuro » is not
+    # an element but an aside.
     def _fermo_espaco(m):
         tiro, dedans, sekvo = m.group(1), m.group(2), m.group(3)
         korta = len(dedans) <= 6 and dedans.isalpha()
@@ -2902,45 +2907,44 @@ def espacar(t):
             return m.group(0)
         return '%s(%s) ' % (tiro, dedans)
     t = re.sub(r'(-?)\(([^()]*)\)(?=([A-Za-zÀ-ÿ]+))', _fermo_espaco, t)
-    # « (olim).Vaporo-mashino » : le point qui suit la parenthese
-    # fermante colle au mot suivant. 88 cas. On ne touche qu'apres une
-    # parenthese : ailleurs, « CH3CO.CH3 » est une formule chimique.
+    # « (olim).Vaporo-mashino »: the full stop that follows the closing
+    # parenthesis sticks to the next word. 88 cases. We touch it only after a
+    # parenthesis: elsewhere, « CH3CO.CH3 » is a chemical formula.
     t = re.sub(r'\)\.(?=[A-ZÀ-Ý])', '). ', t)
-    # Le meme point colle, cette fois derriere le GUILLEMET fermant : « ... kom
-    # nomo "prolonguro".On plulongigas » chez prolongar. Trois cas dans le
-    # livre, et les trois veulent l'espace — « "kancero".DEFIRS » chez
-    # karcinomo, « "paria".En India » chez paria. Les deux derniers s'en
-    # tiraient sans elle, le code de langues et la vedette se detachant seuls ;
-    # le premier gardait la phrase suivante soudee a la precedente. Aucun faux
-    # frere : un guillemet fermant ne fait jamais corps avec le mot d'apres.
+    # The same stuck full stop, this time behind the closing QUOTATION MARK:
+    # « ... kom nomo "prolonguro".On plulongigas » under prolongar. Three cases in
+    # the book, and all three want the space -- « "kancero".DEFIRS » under
+    # karcinomo, « "paria".En India » under paria. The last two managed without it,
+    # the language code and the headword detaching by themselves; the first kept
+    # the next sentence welded to the one before. No false brother: a closing
+    # quotation mark is never part of the word that follows.
     t = re.sub(r'([»"])\.(?=[A-ZÀ-Ý])', r'\1. ', t)
-    # L'asterisque du mot non officiel prend l'espace qui la separe du mot
-    # PRECEDENT. La dactylo collait sa croix au mot qu'elle marque — c'est
-    # voulu, « +stencilo » est un seul mot —, mais elle la collait aussi,
-    # six fois, a celui d'avant : « per perforo, sur+stencilo » chez
-    # hektografar, « di omna+itemi » chez *seancar, « la+chevaliere » chez
-    # barono, « la+asiejo-mashini » chez traino, « adolecanti,+konvokata »
-    # chez klaso, « en vazo+kluza » chez koko. Le livre porte 189 asterisques
-    # deja detachees et 50 en tete de fragment ; ces six sont les seules
-    # soudees, et la marque y appartient au mot qui SUIT.
+    # The asterisk of the unofficial word takes the space that separates it from
+    # the PRECEDING word. The typist stuck her cross to the word she marks -- that
+    # is intended, « +stencilo » is one word -- but she stuck it also, six times,
+    # to the one before: « per perforo, sur+stencilo » under hektografar, « di
+    # omna+itemi » under *seancar, « la+chevaliere » under barono,
+    # « la+asiejo-mashini » under traino, « adolecanti,+konvokata » under klaso,
+    # « en vazo+kluza » under koko. The book carries 189 asterisks already detached
+    # and 50 at the head of a fragment; these six are the only welded ones, and the
+    # mark there belongs to the word that FOLLOWS.
     t = re.sub(r'(?<=[A-Za-zÀ-ÿ,])\*(?=[a-zà-ÿ])', ' *', t)
-    # Espace parasite CONTRE la parenthese : « ( fig.) » pour
-    # « (fig.) », « hundo-herbo )» pour « hundo-herbo) ». La dactylo
-    # espacait pour caler sa ligne. 15 ouvrantes et 33 fermantes.
-    # « Igar(ulo) » : le mot colle a la parenthese ouvrante. Mais toutes ne se
-    # detachent pas — « il(u) », « dea(la) », « a(ta) » notent une finale
-    # facultative qui fait corps avec le mot, et « F(z) » est une fonction.
-    # On separe donc seulement quand le contenu compte trois lettres ou plus,
-    # ou porte autre chose que des lettres : c'est alors un complement ou un
-    # domaine, non une desinence.
+    # A stray space AGAINST the parenthesis: « ( fig.) » for « (fig.) »,
+    # « hundo-herbo )» for « hundo-herbo) ». The typist spaced to set her
+    # line. 15 opening and 33 closing.
+    # « Igar(ulo) »: the word stuck to the opening parenthesis. But not all detach
+    # -- « il(u) », « dea(la) », « a(ta) » note an optional ending that is part of
+    # the word, and « F(z) » is a function. We therefore separate only when the
+    # content counts three letters or more, or carries something other than
+    # letters: it is then a complement or a domain, not an ending.
     t = re.sub(r'(?<=[A-Za-zÀ-ÿ])\((?=([^()]*)\))',
                lambda m: ' (' if (len(m.group(1)) >= 3
                                   or not m.group(1).isalpha()) else '(', t)
-    # Ponctuation collee a une parenthese ouvrante : « Patrino homa.(Equivalanto
-    # sentimentala... » chez matro. 30 cas. On epargne les formules : chez
-    # stearino, « CH3.(CH2)16 » est une chaine carbonee, et l'espace y serait
-    # fautive. Le signe distinctif d'une formule est le chiffre qui termine le
-    # symbole precedent.
+    # Punctuation stuck to an opening parenthesis: « Patrino homa.(Equivalanto
+    # sentimentala... » under matro. 30 cases. We spare the formulae: under
+    # stearino, « CH3.(CH2)16 » is a carbon chain, and a space there would be
+    # wrong. The distinctive sign of a formula is the figure that ends the
+    # preceding symbol.
     def _pt(m):
         avan = t[:m.start()]
         if re.search(r'[A-Z][A-Za-z]?[0-9\u2080-\u2089]+$', avan):
@@ -2949,53 +2953,56 @@ def espacar(t):
     t = re.sub(r'([.,;:!?])\(', _pt, t)
     t = re.sub(r'\(\s+', '(', t)
     t = re.sub(r'\s+\)', ')', t)
-    # Point orphelin apres la parenthese fermante — « (aludante la hari...) .
-    # Di qua la koloro... ». Justifie, il ouvre un blanc dans la ligne.
+    # An orphaned full stop after the closing parenthesis -- « (aludante la
+    # hari...) . Di qua la koloro... ». Justified, it opens a gap in the line.
     t = re.sub(r'\)\s+\.(?=\s|$)', ')', t)
-    # Point superflu apres la parenthese de tete — « (komerco). Inter-egalesi ».
-    # La parenthese ferme deja le qualificatif ; le point fait double emploi.
+    # A superfluous full stop after the leading parenthesis -- « (komerco).
+    # Inter-egalesi ». The parenthesis closes the qualifier already; the stop is
+    # redundant.
     t = re.sub(r'^(\([^()]{1,120}\))\s*\.+(?=\s|$)', r'\1', t)
-    # Deux qualificatifs de suite — « (netrans.) (aludante vari). » chez
-    # transitar : le point tombe apres le SECOND, et la regle ci-dessus ne
-    # voyait que le premier.
+    # Two qualifiers in a row -- « (netrans.) (aludante vari). » under
+    # transitar: the stop falls after the SECOND, and the rule above saw only
+    # the first.
     t = re.sub(r'^((?:\([^()]{1,80}\)\s*){2,})\.+(?=\s|$)', r'\1', t)
-    # Deux-points superflu apres le qualificatif de tete — « (bruiso) : Poke
-    # sonora ». La parenthese suffit ; le deux-points annoncerait une liste.
+    # A superfluous colon after the leading qualifier -- « (bruiso) : Poke
+    # sonora ». The parenthesis suffices; the colon would announce a list.
     t = re.sub(r'^(\([^()]{1,60}\))[\s\u00a0]*:[\s\u00a0]*', r'\1 ', t)
-    # « e c » abrege « e cetere » : il prend le point. 325 occurrences le
-    # perdaient, 455 l'avaient deja.
+    # « e c » abbreviates « e cetere »: it takes the full stop. 325 occurrences
+    # lost it, 455 had it already.
     t = re.sub(r'(?<![A-Za-zÀ-ÿ])e c(?![A-Za-zÀ-ÿ.])', 'e c.', t)
-    # Espacement des ponctuations doubles, usage FRANCO-CANADIEN :
-    # le point-virgule, le point d'exclamation et le point
-    # d'interrogation ne prennent PAS d'espace devant — c'est la
-    # difference d'avec l'usage de France, qui y met une espace fine.
-    # Le deux-points, lui, en prend une, et elle est insecable pour
-    # qu'il ne parte pas seul en tete de ligne. Idem dans les
-    # chevrons. On recolle d'abord le deux-points a son mot suivant,
-    # sinon la regle d'espace insecable le laisserait colle.
+    # Spacing of the double punctuation marks, FRENCH-CANADIAN usage:
+    # the semicolon, the exclamation mark and the question mark take NO
+    # space before them -- that is the difference from the usage of
+    # France, which puts a thin space there. The colon does take one,
+    # and it is non-breaking so that it does not go off alone at the
+    # head of a line. The same within the guillemets. We first reglue
+    # the colon to the word after it, or the non-breaking-space rule
+    # would leave it stuck.
     t = re.sub(r':(?=[A-Za-zÀ-ÿ])', ': ', t)
     t = re.sub(r';(?=[A-Za-zÀ-ÿ])', '; ', t)
     t = re.sub(r'[\s\u00a0]*([;!?])', r'\1', t)
     t = re.sub(r'[\s\u00a0]*:', '\u00a0:', t)
-    # Le chevron colle au mot voisin par le DEHORS : « familio«labiacei» ».
-    # La regle suivante traite l'interieur ; celle-ci, l'exterieur.
+    # The guillemet stuck to the neighbouring word from OUTSIDE:
+    # « familio«labiacei» ». The next rule deals with the inside; this one
+    # with the outside.
     t = re.sub(r'(?<=[A-Za-zÀ-ÿ.,;:])(?=«)', ' ', t)
     t = re.sub(r'(?<=»)(?=[A-Za-zÀ-ÿ])', ' ', t)
     t = re.sub(r'«[\s\u00a0]*', '«\u00a0', t)
     t = re.sub(r'[\s\u00a0]*»', '\u00a0»', t)
-    # Le numero de sens colle a son premier mot — « I.Tereno »,
-    # « II.Alveolo ». On ne touche qu'aux chiffres romains : un point
-    # suivi d'une majuscule est ailleurs une abreviation legitime.
+    # The number of a sense stuck to its first word -- « I.Tereno »,
+    # « II.Alveolo ». We touch only the Roman figures: a full stop followed
+    # by a capital is elsewhere a legitimate abbreviation.
     t = re.sub(r'(?<![A-Za-zÀ-ÿ])(I{1,3}|IV|VI{0,3}|IX|XI{0,2})\.'
     r'(?=[A-Za-zÀ-ÿ])', r'\1. ', t)
-    # Ligne de bruit en fin de definition : la dactylo a barre une
-    # ligne entiere a coups de guillemets et de tirets. Ce qui n'a
-    # aucune lettre ni aucun chiffre ne dit rien.
-    # _kupar plutot qu'un rstrip nu : l'ellipse finale qui marque le complement
-    # regi — « ...kom valida ke... » — doit survivre au rognage du bruit.
-    # La queue de bruit ne doit pas engloutir une ellipse suivie de sa
-    # fermeture : « multa-... » compte six signes tous membres de la classe,
-    # et y passait entierement. On l'epargne explicitement.
+    # A line of noise at the end of a definition: the typist struck out a
+    # whole line with quotation marks and hyphens. What has neither letter
+    # nor figure says nothing.
+    # _kupar rather than a bare rstrip: the final ellipsis that marks the
+    # governed complement -- « ...kom valida ke... » -- must survive the trimming
+    # of the noise.
+    # The tail of noise must not swallow an ellipsis followed by its closing:
+    # « multa-... » counts six signs all members of the class, and went there
+    # entirely. We spare it explicitly.
     t = re.sub(r'(?:[\s"\u00ab\u00bb\u2019\'.,;:_+*=/|\-\u2013\u2014]{6,})$',
                lambda m: m.group(0) if re.fullmatch(
                    r'[\s\u00a0-]*\.{2,}[\s\u00a0]*[\u00bb"\')\]]*', m.group(0)) else '', t)
@@ -3003,28 +3010,28 @@ def espacar(t):
     return t
 
 
-# Les points de suspension. La machine n'avait pas le caractere unique :
-# l'auteur frappe trois points, parfois quatre. 96 occurrences.
+# The ellipsis. The machine had not the single character: the author strikes
+# three dots, sometimes four. 96 occurrences.
 #
-# Quand une desinence ou un suffixe suit les points, il s'en detache par une
-# espace et prend le tiret d'affixe. C'est la forme que le livre ecrit
-# lui-meme chez « min » — « ne tam multe ...-a » — et chez « quadri- » —
-# « Qua havas quar...-i » ; ailleurs le tiret, l'espace, ou les deux sont
-# tombes : « quik...onta », « esar...ata », « t. e. ...is...inta ».
+# When an ending or a suffix follows the dots, it detaches from them by a space
+# and takes the affix hyphen. That is the form the book writes itself under
+# « min » -- « ne tam multe ...-a » -- and under « quadri- » -- « Qua havas
+# quar...-i »; elsewhere the hyphen, the space, or both have fallen:
+# « quik...onta », « esar...ata », « t. e. ...is...inta ».
 #
-# Un MOT qui suit n'est pas un affixe et ne prend que l'espace : « lasas
-# ...efikar », « preferar...kam », « lore...lore », « ...esante prezenta ».
-# On s'en remet donc a la liste CLOSE des desinences, et au tiret que l'auteur
-# a lui-meme frappe — « por...-eso » —, jamais a une ressemblance de forme :
-# « esante » se decoupe en « es- » plus « -ante » sans etre pour autant un
-# suffixe suivi d'une desinence.
+# A WORD that follows is not an affix and takes only the space: « lasas
+# ...efikar », « preferar...kam », « lore...lore », « ...esante prezenta ». We
+# therefore rely on the CLOSED list of endings, and on the hyphen the author
+# struck himself -- « por...-eso » -- never on a resemblance of shape:
+# « esante » divides into « es- » plus « -ante » without being for all that a
+# suffix followed by an ending.
 #
-# Les desinences d'UNE lettre — « -o », « -a », « -e », « -i » — n'y sont pas :
-# ce sont aussi les mots-outils les plus courants du livre. « Esar prezenta
-# ye... e regardar » (asistar), « domeno qua dependas de... e, konseque »
-# (-i-) portent la conjonction, non la desinence. Ou l'auteur veut la
-# desinence d'une lettre, il a frappe le tiret lui-meme : « ...-a » chez
-# « min », « ...-i » chez « quadri- ».
+# The ONE-letter endings -- « -o », « -a », « -e », « -i » -- are not in it:
+# they are also the commonest function words of the book. « Esar prezenta ye...
+# e regardar » (asistar), « domeno qua dependas de... e, konseque » (-i-) carry
+# the conjunction, not the ending. Where the author wants the one-letter
+# ending, he struck the hyphen himself: « ...-a » under « min », « ...-i »
+# under « quadri- ».
 DESINENCI = tuple(sorted(
     ('anta', 'inta', 'onta', 'ante', 'inte', 'onte', 'anto', 'into', 'onto',
      'ata', 'ita', 'ota', 'ate', 'ite', 'ote', 'ato', 'ito', 'oto',
@@ -3036,11 +3043,11 @@ RE_ELIPSO = re.compile(
     % '|'.join(DESINENCI))
 
 
-# Les composes que le livre ecrit tantot avec le trait d'union, tantot soudes.
-# Il pose le trait a TOUS ses autres composes — « banko-komerco »,
-# « natur-historio », « politiko-yuro », « milit-arto », « skerm-arto » — et a
-# la grande majorite des emplois de ceux-ci ; on aligne les formes soudees qui
-# restent hors du champ `fako`, ou la table des domaines s'en charge deja.
+# The compounds the book writes now with the hyphen, now welded. It lays the
+# hyphen on ALL its other compounds -- « banko-komerco », « natur-historio »,
+# « politiko-yuro », « milit-arto », « skerm-arto » -- and on the great
+# majority of the uses of these; we align the welded forms that remain outside
+# the `fako` field, where the table of domains sees to it already.
 KOMPOZITA = (('yurocienco', 'yuro-cienco'),
              ('imprimarto', 'imprim-arto'))
 
@@ -3050,60 +3057,60 @@ RE_KOMPOZITA = tuple(
 
 
 def multipliko(t):
-    """Le « x » de la machine rendu au signe de la multiplication.
+    """The machine's « x » given back to the sign of multiplication.
 
-    La machine n'avait pas de croix : la dactylo frappe la lettre. Deux fois
-    dans le livre, et deux fois devant un NOMBRE — « ... x 1000 » chez « kilo- »,
-    « oktiliono x 1.000.000 » chez « noniliono ». C'est la condition : les trois
-    autres « x » isoles sont des inconnues, et aucune n'est suivie d'un chiffre —
-    « inter x, y, z » chez « konexo », « 2 D x + 2 Ey » chez « koniko »,
-    « y = sin. x » chez « sinusoido ».
+    The machine had no cross: the typist strikes the letter. Twice in the book,
+    and twice before a NUMBER -- « ... x 1000 » under « kilo- », « oktiliono x
+    1.000.000 » under « noniliono ». That is the condition: the three other
+    isolated « x » are unknowns, and none is followed by a figure -- « inter x,
+    y, z » under « konexo », « 2 D x + 2 Ey » under « koniko », « y = sin. x »
+    under « sinusoido ».
 
-    Se pose APRES cifri(), qui rend au « lOOO » de la dactylo ses chiffres.
+    Laid AFTER cifri(), which gives the typist's « lOOO » its figures back.
     """
     return re.sub(r'(?<![A-Za-z\u00e0-\u00ff0-9])x(?=[\s\u00a0]+\d)', '\u00d7', t)
 
 
 def kompozita(t):
-    """Le compose soude rendu au trait d'union du livre."""
+    """The welded compound given back the book's hyphen."""
     for r, b in RE_KOMPOZITA:
         t = r.sub(b, t)
     return t
 
 
 def elipso(t):
-    """Trois ou quatre points rendus par le caractere unique, et l'affixe qui
-    les suit detache par une espace et pointe d'un tiret."""
+    """Three or four dots rendered by the single character, and the affix that
+    follows them detached by a space and pointed with a hyphen."""
     t = re.sub(r'\.{3,}', '\u2026', t)
     t = RE_ELIPSO.sub(lambda m: '\u2026 -%s' % (m.group(1) or m.group(2)), t)
-    # Le mot ordinaire qui suit ne prend que l'espace.
+    # The ordinary word that follows takes only the space.
     t = re.sub(r'\u2026(?=[A-Za-z\u00c0-\u00ff])', '\u2026 ', t)
     return t
 
 
-# La finale sous laquelle un mot se laisse citer : desinence nominale,
-# adjectivale, adverbiale, verbale, ou participe.
+# The ending under which a word lets itself be quoted: nominal, adjectival,
+# adverbial or verbal ending, or participle.
 RE_FINALO_CITITA = (r'(?:oj|o|a|e|i|ar|ir|or|as|is|os|us|ez'
                     r'|ant[aeio]|int[aeio]|ont[aeio]'
                     r'|at[aeio]|it[aeio]|ot[aeio])')
 
 
 def steligar(ent):
-    """La marque du mot non officiel, portee PARTOUT ou le mot est cite.
+    """The mark of the unofficial word, carried EVERYWHERE the word is quoted.
 
-    Le livre declare ses mots non officiels a leur place alphabetique — la
-    vedette porte l'asterisque — et les marque aussi quand il les cite dans une
-    definition. Mais pas toujours : « werar » est marque cinquante fois et nu
-    six fois, « publico » cinq fois et nu une fois, « grandoro » quatre fois et
-    nu six fois. Le lecteur voyait le meme mot tantot signale, tantot non.
+    The book declares its unofficial words in their alphabetical place -- the
+    headword carries the asterisk -- and marks them too when it quotes them in a
+    definition. But not always: « werar » is marked fifty times and bare six,
+    « publico » five times and bare once, « grandoro » four times and bare six.
+    The reader saw the same word now reported, now not.
 
-    On aligne sur la marque, et seulement pour les mots ou l'auteur l'a lui-meme
-    posee au moins une fois : la ou il ne l'a jamais posee — « pondar »,
-    « niuzo », « golfo », « tarda », « intrenar » —, l'ajouter serait une
-    affirmation neuve, non une mise au net. Quatorze mots, 45 emplois.
+    We align on the mark, and only for the words where the author has laid it
+    himself at least once: where he has never laid it -- « pondar », « niuzo »,
+    « golfo », « tarda », « intrenar » -- adding it would be a new assertion,
+    not a tidying. Fourteen words, 45 uses.
 
-    L'article du mot lui-meme est laisse tel quel : sa vedette porte deja la
-    marque, et la redoubler dans sa propre definition n'apprend rien.
+    The word's own article is left as it stands: its headword carries the mark
+    already, and doubling it in its own definition teaches nothing.
     """
     radiki={}
     for e in ent:
@@ -3128,22 +3135,22 @@ def steligar(ent):
 
 
 def typographio(ent):
-    """Typographie de l'edition de lecture.
+    """Typography of the reading edition.
 
-    Le fac-simile garde les tirets tels que la machine les a frappes — elle
-    n'avait qu'une seule touche. L'edition de lecture, elle, peut les rendre.
-    Trois regles, mesurees avant d'etre posees pour ne pas deborder sur les
-    4 240 traits d'union internes, qui eux appartiennent aux mots :
+    The facsimile keeps the hyphens as the machine struck them -- it had but
+    one key. The reading edition can render them. Three rules, measured before
+    being laid so as not to spill onto the 4,240 internal hyphens, which do
+    belong to the words:
 
-      « elektro- -grandori »  -> « elektro-grandori »   (1 cas)
-      « -- » ou « - » double  -> tiret cadratin         (20 cas)
-      « mot - mot »           -> tiret demi-cadratin    (829 cas)
+      « elektro- -grandori »  -> « elektro-grandori »   (1 case)
+      « -- » or a doubled « - » -> em dash              (20 cases)
+      « mot - mot »           -> en dash                (829 cases)
     """
     n=0
-    # Les chevrons de la VEDETTE prennent leur espace, comme partout ailleurs
-    # dans le livre. « "brokoli"-kaulo » est le seul cas ou ils restent DANS la
-    # chaine : le mot ido n'y est cite qu'en partie, et le drapeau `citita`,
-    # qui fait poser aux editions « \u00ab\u00a0amen\u00a0\u00bb », ne peut pas le porter.
+    # The HEADWORD's guillemets take their space, as everywhere else in the
+    # book. « "brokoli"-kaulo » is the only case where they stay IN the string:
+    # the Ido word is quoted there only in part, and the `citita` flag, which
+    # has the editions lay « \u00ab\u00a0amen\u00a0\u00bb », cannot carry it.
     for e in ent:
         v=e.get('vedetto') or ''
         if '\u00ab' in v or '\u00bb' in v:
@@ -3154,62 +3161,61 @@ def typographio(ent):
         s=e.get('senci') or []
         for k,t in enumerate(s):
             o=t
-            # Le tiret de separation colle a la parenthese du domaine :
-            # « granda. -(cinemo) » chez « skreno », « direte.- (metaf.) » chez
-            # « intuicar ». Le livre l'ecrit avec ses deux espaces quatre-vingt-
-            # cinq fois ; treize fois l'une des deux manque. La parenthese d'un
-            # AFFIXE n'en est pas une — « = -(at)ajo », « equivalas -(ant)ajo » :
-            # la le mot continue apres la fermante, et le tiret lui appartient.
+            # The separating hyphen stuck to the domain's parenthesis:
+            # « granda. -(cinemo) » under « skreno », « direte.- (metaf.) » under
+            # « intuicar ». The book writes it with both its spaces eighty-five
+            # times; thirteen times one of the two is missing. An AFFIX's
+            # parenthesis is not one -- « = -(at)ajo », « equivalas -(ant)ajo »:
+            # there the word goes on after the closing mark, and the hyphen belongs
+            # to it.
             t=re.sub(r'\s*-\s*(\([^()]*\))(?![A-Za-zà-ÿ])', r' - \1', t)
-            t=re.sub(r'(\w)- -(\w)', r'\1-\2', t)          # trait redouble d'une coupure
+            t=re.sub(r'(\w)- -(\w)', r'\1-\2', t)          # a doubled stroke from a break
             t=re.sub(r'(?<![-\w])(?:- -|--)(?![-\w])', '—', t)
             t=re.sub(r'(?<=\S) - (?=\S)', ' – ', t)
-            # Le « + » du tapuscrit marque les mots non officiels ; la
-            # tradition ido ecrit une asterisque. 214 occurrences.
-            # Un mot non officiel est un mot ido, donc en minuscule : « +H₂O »,
-            # dans la formule de la morphine, est le plus de la chimie et non
-            # la marque de l'auteur.
+            # The typescript's « + » marks the unofficial words; Ido tradition
+            # writes an asterisk. 214 occurrences.
+            # An unofficial word is an Ido word, hence in lower case: « +H₂O », in
+            # the formula for morphine, is chemistry's plus and not the author's
+            # mark.
             #
-            # La marque est COLLEE au mot qu'elle marque — la dactylo ne laissait
-            # pas d'espace : « pri+grandoro », « sur+stencilo », « vazo+kluza »,
-            # « o+sesiono ». Le livre donne bien « *grandoro », « *stencilo »,
-            # « *kluza », « *sesiono » comme vedettes non officielles.
+            # The mark is STUCK to the word it marks -- the typist left no space:
+            # « pri+grandoro », « sur+stencilo », « vazo+kluza », « o+sesiono ». The
+            # book does give « *grandoro », « *stencilo », « *kluza », « *sesiono »
+            # as unofficial headwords.
             t=re.sub(r'\+(?=[a-zà-ÿ])', '*', t)
-            # Detachee du mot, elle ne l'est que si elle OUVRE le fragment ou
-            # suit une parenthese ouvrante : « legi (+ leyi) » chez « cienco ».
-            # Entre deux termes, c'est le plus de l'algebre, que la regle
-            # precedente prenait pour la marque : « ax² + bx + c = 0 » chez
-            # « diskriminanto », « a + b i e a' + b' i » chez « konjugar »,
-            # « a² = b² + c » chez « pitagorala » — quatre asterisques posees
-            # sur des inconnues.
+            # Detached from the word, it is so only if it OPENS the fragment or
+            # follows an opening parenthesis: « legi (+ leyi) » under « cienco ».
+            # Between two terms it is algebra's plus, which the preceding rule took
+            # for the mark: « ax² + bx + c = 0 » under « diskriminanto », « a + b i e
+            # a' + b' i » under « konjugar », « a² = b² + c » under « pitagorala » --
+            # four asterisks laid on unknowns.
             t=re.sub(r'(?:^|(?<=[(\[«“"]))\+\s+(?=[a-zà-ÿ])', '*', t)
-            # Le plus de l'arithmetique prend ses deux espaces, comme le livre
-            # les lui donne partout ailleurs — « Ax² + 2 Bxy + Cy² » chez
-            # « koniko », « a² = b² + c » chez « pitagorala ». Un seul endroit
-            # les perd : « Sis plus un (6 +1, o 4 +3) » chez « sep ».
+            # Arithmetic's plus takes both its spaces, as the book gives them to it
+            # everywhere else -- « Ax² + 2 Bxy + Cy² » under « koniko », « a² = b² + c »
+            # under « pitagorala ». One place alone loses them: « Sis plus un (6 +1, o
+            # 4 +3) » under « sep ».
             t=re.sub(r'(?<=\d)[\s\u00a0]*\+[\s\u00a0]*(?=\d)', ' + ', t)
-            # Guillemets : la machine n'avait que la double apostrophe droite.
-            # On ne convertit que les PAIRES — 834 sur 1 690 apostrophes ; les
-            # orphelines restent droites plutot que d'ouvrir un chevron qui ne
-            # se refermerait jamais.
+            # Quotation marks: the machine had only the straight double apostrophe.
+            # We convert only the PAIRS -- 834 out of 1,690 apostrophes; the orphaned
+            # ones stay straight rather than open a guillemet that would never close.
             t=re.sub(r'"([^"]{1,120})"', r'«\1»', t)
-            # Espaces manquantes apres la ponctuation : la dactylo serrait pour
-            # tenir la ligne. 258 virgules et 136 parentheses fermantes.
-            # cifri() et formuli() ne sont PAS ici : ce sont des transformations
-            # de rendu, et la couche de relecture cherche des chaines relevees
-            # sur le texte brut. « H2 Hg3 Si4 O12 » ne se retrouve plus une fois
-            # les indices poses ; on les pose donc APRES elle.
+            # Missing spaces after punctuation: the typist tightened to hold the line.
+            # 258 commas and 136 closing parentheses.
+            # cifri() and formuli() are NOT here: they are transformations of rendering,
+            # and the proofreading layer looks for strings surveyed on the raw text.
+            # « H2 Hg3 Si4 O12 » is no longer found once the subscripts are laid; we
+            # therefore lay them AFTER it.
             t=pointi_sencoj(surcharge(espacar(netigar_punktuo(t))))
             if t!=o: s[k]=t; n+=1
     return n
 
 def corriger_vedettes(ent, fichier=f"{T}/vedetti.txt"):
-    """Corrections de vedettes, relevees a l'oeil.
+    """Corrections to headwords, surveyed by eye.
 
-    La couche des jugements ne touche que les definitions : une vedette est un
-    article, pas une occurrence, et la corriger par regle a deja mal tourne.
-    Elle se corrige donc a la main, une ligne par cas, avec le motif ecrit en
-    regard. Le fac-simile, lui, garde la graphie de l'original.
+    The layer of judgements touches the definitions alone: a headword is an
+    article, not an occurrence, and correcting it by rule has already gone
+    wrong. It is therefore corrected by hand, one line per case, with the
+    reason written alongside. The facsimile keeps the original's spelling.
     """
     if not os.path.exists(fichier): return 0
     corr={}
@@ -3221,22 +3227,22 @@ def corriger_vedettes(ent, fichier=f"{T}/vedetti.txt"):
     n=0
     for e in ent:
         v=e.get('vedetto')
-        # Cible precise : « tri@600:23 » ne touche que l'article de la page 600
-        # ligne 23. Le livre porte DEUX « tri » — le chiffre 3 et le prefixe —
-        # et seul le second prend le trait d'union.
+        # A precise target: « tri@600:23 » touches only the article of page 600
+        # line 23. The book carries TWO « tri » -- the figure 3 and the prefix --
+        # and only the second takes the hyphen.
         c = corr.get("%s@%d:%d" % (v, e['image'], e['ligno']))
         if c is None: c = corr.get(v)
         if c is not None: e['vedetto']=c; n+=1
     return n
 
 def corriger_vorti(ent, fichier=f"{T}/vorti.txt"):
-    """Corrections de mots dans les definitions, relevees a l'oeil.
+    """Corrections to words in the definitions, surveyed by eye.
 
-    Le pendant de vedetti.txt pour le corps des articles. Deux passes
-    automatiques ont deja ete rejetees ici — la frequence donnait « papuli »
-    pour « populi », la racine « falko » pour « talko » — parce qu'un
-    dictionnaire de dix mille racines n'est pas tout le lexique de la langue.
-    On ecrit donc les cas un par un, avec leur motif.
+    The counterpart of vedetti.txt for the body of the articles. Two automatic
+    passes have already been rejected here -- frequency gave « papuli » for
+    « populi », the root « falko » for « talko » -- because a dictionary of ten
+    thousand roots is not the whole lexicon of the language. We therefore write
+    the cases out one by one, with their reason.
     """
     if not os.path.exists(fichier): return 0
     corr={}
@@ -3246,10 +3252,10 @@ def corriger_vorti(ent, fichier=f"{T}/vorti.txt"):
         p=l.split("\t")
         if len(p)>=2 and p[0].strip() and p[1].strip(): corr[p[0].strip()]=p[1].strip()
     if not corr: return 0
-    # Une correction peut porter sur PLUSIEURS mots — « en decen danto » pour
-    # « en decendanto », « ii aDom » pour « di mikra » : la machine a coupe ou
-    # soude la ou il ne fallait pas, et le mot fautif n'a pas de frontiere
-    # propre. On accepte donc une suite de mots a gauche comme a droite.
+    # A correction can bear on SEVERAL words -- « en decen danto » for
+    # « en decendanto », « ii aDom » for « di mikra »: the machine broke or welded
+    # where it should not, and the faulty word has no boundary of its own. We
+    # therefore accept a run of words on the left as on the right.
     mo=re.compile(r"(?<![A-Za-zÀ-ÿ-])(%s)(?![A-Za-zÀ-ÿ-])"
                   % "|".join(re.escape(k).replace(r"\ ", r"\s+")
                              for k in sorted(corr, key=len, reverse=True)))
@@ -3274,11 +3280,11 @@ def appliquer_jugements(ent):
                 x=fiches.get(int(i))
                 if x is None: continue
                 mot, bon = x['mot'], v.strip()
-                # Deux motifs, essayes dans l'ordre. Le premier recolle une
-                # cesure — « pro-duktita » -> « produktita ». Il ne doit pas
-                # etre le seul : « uaze » corrige en « quaze » n'est pas une
-                # cesure mais une lettre tombee, et le motif de cesure y
-                # cherchait « q-uaze » sans rien trouver, en silence.
+                # Two patterns, tried in order. The first reglues a hyphenation --
+                # « pro-duktita » -> « produktita ». It must not be the only one:
+                # « uaze » corrected to « quaze » is not a hyphenation but a fallen
+                # letter, and the hyphenation pattern looked for « q-uaze » there
+                # without finding anything, in silence.
                 motifs=[]
                 if bon.lower().endswith(mot.lower()) and len(bon)>len(mot):
                     tete=bon[:len(bon)-len(mot)]

@@ -1,7 +1,0 @@
-[
- {
-  "id": 0,
-  "kind": "docstring",
-  "text": "\"\"\"Traits d'une cellule : deux vues concatenees.\n\n- vue recalee : le tremblement de la frappe (+-2 px) est absorbe ;\n- vue brute   : la position dans la cellule est conservee, ce qui distingue\n  ce que le recalage confond (le point, l'apostrophe, la virgule, le tiret).\n\"\"\""
- }
-]

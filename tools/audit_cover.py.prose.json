@@ -1,7 +1,0 @@
-[
- {
-  "id": 0,
-  "kind": "docstring",
-  "text": "\"\"\"Planches de comparaison : le scan original en haut, la couverture finale en\nbas, zone de texte par zone de texte. Sert a verifier a l'oeil qu'aucune lettre\nn'a ete perdue au seuillage ou au depoussierage.\"\"\""
- }
-]

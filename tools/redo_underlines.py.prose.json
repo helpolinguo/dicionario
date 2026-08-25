@@ -1,7 +1,0 @@
-[
- {
-  "id": 0,
-  "kind": "docstring",
-  "text": "\"\"\"Recalcule les seuls releves de soulignement et les reinjecte dans les .npz,\nsans toucher aux cellules ni a leur etiquetage.\"\"\""
- }
-]
