@@ -1,0 +1,158 @@
+% ---------------------------------------------------------------------------
+%  preamble.tex — the grid, the font and the macros of the facsimile
+%  One constant per setting: everything is set here, nothing in the pages.
+% ---------------------------------------------------------------------------
+
+% ---- 1. Scale -------------------------------------------------------------
+% The PDF supplied is not the size of the book: it reproduces it at 70.4 %.
+% The proof lies in the mechanics of the typewriter, whose escapement is a
+% physical invariant: a Pica machine advances a tenth of an inch per strike.
+% The pitch measured on the scan is 1.7885 mm, that is 70.40 % of 2.54 mm.
+% Everything is therefore restored here to the original typing size.
+%
+%   \PasH = 1/10 inch  (Pica, 10 characters to the inch) — a mechanical invariant
+%   \PasV = 1.7013 x \PasH — a ratio measured over the 639 pages
+%
+% Note: 1.7013 departs from 5/3 = 1.6667 (which would answer to 6 lines to the
+% inch) by 2.1 %. That departure is real -- fitting the lattice over 50 lines
+% leaves no residual -- and comes from the offset reproduction of 1964, which
+% was not rigorously isotropic. We keep it: restoring the size does not
+% license correcting the geometry. To return to exactly 6 lines to the inch,
+% set \PasV to 0.1666667in.
+
+\newlength\PasH   \setlength\PasH  {0.1in}          % chasse : 2,540 mm
+\newlength\PasV   \setlength\PasV  {0.170128in}     % interligne : 4,321 mm
+
+% ---- 2. Leaf and margins --------------------------------------------------
+% The framing of the photographs varies by +-1 cm, but 66 pages of the scan
+% show both side margins within the frame: they are 21.9 mm on the left and
+% 21.3 mm on the right, symmetrical, about a block of 66 cells (167.6 mm).
+% Leaf: 21.9 + 167.6 + 21.3 = 210.8 mm — that is, A4.
+% 23 pages show both vertical margins: 14.3 mm at the top.
+\newlength\LargPage \setlength\LargPage{210mm}
+\newlength\HautPage \setlength\HautPage{297mm}
+\newlength\OrigX  \setlength\OrigX {21.9mm}   % bord gauche de la colonne 0
+\newlength\OrigY  \setlength\OrigY {12.44mm}  % origine du cadre : elle place
+%   the ink of line 0 at 14.3 mm from the edge (the difference, 1.86 mm, is the
+%   height of the line frame; registered by correlation against the scan, residual 0 px)
+\newcommand\NbCol{80}
+
+% underline rules, measured on the scan then brought back to scale
+\newlength\SouProf  \setlength\SouProf {2.30pt} % profondeur sous la reference
+\newlength\SouEpais \setlength\SouEpais{0.78pt} % epaisseur du filet
+
+% ---- 3. Page ---------------------------------------------------------------
+\usepackage[paperwidth=\LargPage,paperheight=\HautPage,
+            left=\OrigX,top=\OrigY,right=0mm,bottom=-80mm,
+            noheadfoot,nomarginpar]{geometry}
+\pagestyle{empty}
+\setlength\parindent{0pt}\setlength\parskip{0pt}
+\setlength\topskip{0pt}\setlength\lineskiplimit{-\maxdimen}
+\setlength\baselineskip{\PasV}
+\raggedbottom \raggedright \hbadness=10000 \hfuzz=200pt
+% Every space must be worth exactly one cell: no end-of-sentence space
+% (\frenchspacing), no elasticity (\spaceskip fixed).
+\frenchspacing
+\AtBeginDocument{\spaceskip=\PasH \xspaceskip=\PasH}
+
+% ---- 4. Font --------------------------------------------------------------
+% The size is set so that the set width is exactly \PasH:
+%   \PasH / 0.525 (the glyph's advance in ems for UM Typewriter)
+%   = 0.1 / 0.525 inch = 0.190476 inch.
+\usepackage{fontspec}
+\newcommand\CorpsTapuscrit{0.190476in}
+\newfontfamily\Tapuscrit{UMTypewriter-Regular.otf}[
+  Path=/usr/share/texlive/texmf-dist/fonts/opentype/public/umtypewriter/,
+  BoldFont=UMTypewriter-Bold.otf, ItalicFont=UMTypewriter-Italic.otf,
+  Ligatures=NoCommon]
+
+% ---- 5. Macros ------------------------------------------------------------
+% \l{...} : one line of the grid. Vertical position imposed by \PasV.
+\newcommand\lig[1]{\hbox to 0pt{\vrule height 8.8pt depth 3.4pt width 0pt #1\hss}}
+\let\l\lig
+
+% \cel{n} : n empty cells (spaces of exact set width)
+\newcommand\cel[1]{\hskip #1\PasH\relax}
+
+% \sou{...} : underlined — a rule, not \underline. Width = that of the text
+% (hence an exact multiple of the set width), depth and thickness measured.
+\newsavebox\bxsou
+\newcommand\sou[1]{%
+  \sbox\bxsou{#1}%
+  \hbox{\rlap{\usebox\bxsou}%
+        \raisebox{-\SouProf}{\rule{\wd\bxsou}{\SouEpais}}}}
+
+% \sur{a}{b} : overstrike — two characters in the same cell. Never a
+% precomposed character: that is how the machine formed its accents.
+\newcommand\sur[2]{\makebox[0pt][l]{#1}#2}
+
+% \barre{...} : a word struck through with a continuous stroke (strikings made
+% of a run of characters are rendered by \sur, character by character).
+\newsavebox\bxbar
+\newcommand\barre[1]{%
+  \sbox\bxbar{#1}%
+  \hbox{\rlap{\usebox\bxbar}\raisebox{2.8pt}{\rule{\wd\bxbar}{0.7pt}}}}
+
+% \marge[x]{y}{...} : text off the grid, in absolute coordinates from the top
+% left corner of the text area (x to the right, y downwards).
+\newcommand\marge[3][0pt]{%
+  \begingroup\setbox0\hbox{#3}%
+  \hbox to 0pt{\kern#1\raisebox{-#2}{\box0}\hss}\endgroup}
+
+% \pg{...} : one complete page
+
+% --- what is not typewritten ----------------------------------------------
+% The cover is a lithograph; six pages are blank; the copyright page carries
+% the author's autograph signature; and each letter of the alphabet opens on
+% that letter set in a large size in an Elzevir. None of this belongs to the
+% grid: we lay it back as it stands, cut out of the scan, in its place
+% measured as a fraction of the sheet.
+\usepackage{graphicx}
+% \ornamento{width}{file} : an image laid without taking up any room
+\newcommand\ornamento[2]{\raisebox{0pt}[0pt][0pt]{\includegraphics[width=#1]{#2}}}
+% \pgimago{file} : a whole page occupied by an image
+% The box is the width of the leaf, but it begins at the left margin: it
+% therefore overran by \OrigX on the right and the cover lost its edge there.
+% We come back first to the physical edge of the paper, in width as in height,
+% before centring.
+\newcommand\pgimago[1]{\vbox to \HautPage{\vskip-\OrigY\vss
+   \hbox to 0pt{\kern-\OrigX\hbox to \LargPage{\hss
+     \includegraphics[width=0.88\LargPage,height=0.88\HautPage,keepaspectratio]{#1}%
+   \hss}\hss}\vss}\clearpage}
+% \pgvakua : a page blank in the book, blank in the facsimile
+\newcommand\pgvakua{\vbox to \HautPage{}\clearpage}
+
+
+% \pgc{dx}{dy}{...} : a page laid in its place, and not at a fixed origin.
+%
+% The typescript does not always fill the same width: its lines run from 122
+% to 190 mm. Laying every page at the same origin therefore left as much as
+% 66 mm of white on one side and overflowed the other. Each page is now
+% centred on its own width, with a little more margin on the sewing side --
+% the work runs to 639 pages, and there must be something to bind it by.
+\newcommand\pgc[3]{\moveright#1\vbox{\vskip#2\relax
+   \baselineskip\PasV \lineskiplimit-\maxdimen #3}\clearpage}
+
+\newcommand\pg[1]{\vbox{\baselineskip\PasV \lineskiplimit-\maxdimen #1}\clearpage}
+
+% ---- 9. Hidden mark -------------------------------------------------------
+% A line carried on EVERY page, invisible to the eye but legible to any text
+% extractor. We use neither white ink nor a minute size -- the one shows as
+% soon as the ground changes, the other under a glass. We use the PDF's
+% rendering mode 3, that of OCR layers: the text is in the page's flow, it
+% takes part in search and in copy-and-paste, and it prints nothing at all.
+% « 3 Tr » turns it on, « 0 Tr » restores the ink -- without which everything
+% following on the page would become invisible too.
+%
+% Found again by:  pdftotext main.pdf - | grep "Gilles-Philippe"
+\newcommand\Kashita{Gilles-Philippe Morin kompris, skanis e direktis la
+  transskribo di ca libro.}
+\newcommand\SignoKashita{%
+  \raisebox{0pt}[0pt][0pt]{%
+    \pdfextension literal direct{3 Tr}%
+    \tiny\Kashita
+    \pdfextension literal direct{0 Tr}}}
+% The coordinates of \put are NUMBERS, multiplied by \unitlength:
+% passing it « 4mm » lays nothing at all, without the least warning.
+% We therefore lay at the origin, and offset within.
+\AddToHook{shipout/background}{\put(0,0){\hspace{4mm}\raisebox{-6mm}{\SignoKashita}}}

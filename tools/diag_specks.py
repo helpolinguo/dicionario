@@ -1,0 +1,50 @@
+import numpy as np, sys
+import os
+_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0,_ROOT + "/tools")
+from cover import OVERSAMPLE
+from scipy.ndimage import label, find_objects, binary_dilation
+from PIL import Image, ImageDraw
+ROOT=_ROOT
+LH,LV,AREA,INK,THICK,FAR = 12,6,900,1500,900,12
+black=np.load(f"{ROOT}/work/cover/black_cache.npy")
+BOXES=[(21,138,264,394),(188,288,218,359),(379,458,187,331),(546,638,175,323),
+        (720,801,188,330),(877,974,218,358),(1034,1136,285,394)]
+mp=np.zeros(black.shape,bool)
+for (x0,x1,y0,y1) in BOXES:
+    m=8; mp[(max(y0-m,0))*OVERSAMPLE:(y1+m)*OVERSAMPLE,(max(x0-m,0))*OVERSAMPLE:(x1+m)*OVERSAMPLE]=True
+T=black & ~mp
+d=binary_dilation(T,np.ones((1,LH*OVERSAMPLE),bool)); d=binary_dilation(d,np.ones((LV*OVERSAMPLE,1),bool))
+am,na=label(d,np.ones((3,3),int)); ink=np.bincount(am[T].ravel(),minlength=na+1)
+l,nb=label(T,np.ones((3,3),int)); obj=find_objects(l)
+areas=np.array([int((l[obj[i]]==i+1).sum()) for i in range(nb)])
+bb=np.array([(o[0].start,o[0].stop,o[1].start,o[1].stop) for o in obj])
+big=np.nonzero(areas>=THICK)[0]
+Y0,Y1,X0,X1=bb[:,0],bb[:,1],bb[:,2],bb[:,3]
+def dist_thick(i):
+    dy=np.maximum(0,np.maximum(Y0[i]-Y1[big], Y0[big]-Y1[i]))
+    dx=np.maximum(0,np.maximum(X0[i]-X1[big], X0[big]-X1[i]))
+    return np.hypot(dy,dx).min() if len(big) else 1e9
+sup=[]
+for i,o in enumerate(obj):
+    if areas[i]>=AREA: continue
+    ys,xs=np.nonzero(l[o]==i+1)
+    if ink[am[o][ys[0],xs[0]]]>=INK: continue
+    if dist_thick(i) <= FAR*OVERSAMPLE: continue
+    sup.append((i+1,o,areas[i]))
+print("a supprimer:",len(sup))
+np.save(f"{ROOT}/work/cv_sup.npy", np.array([k for k,_,_ in sup]))
+tiles=[]
+for k,o,a in sup:
+    cy=(o[0].start+o[0].stop)//2; cx=(o[1].start+o[1].stop)//2; R=40*OVERSAMPLE
+    a0,b0=max(cy-R,0),max(cx-R,0)
+    w=T[a0:cy+R, b0:cx+R]
+    im=Image.fromarray((~w*255).astype(np.uint8)).convert("RGB").resize((160,160),Image.NEAREST)
+    dd=ImageDraw.Draw(im); s=160.0/(2*R)
+    dd.rectangle([(o[1].start-b0)*s,(o[0].start-a0)*s,(o[1].stop-b0)*s,(o[0].stop-a0)*s],outline=(255,0,0))
+    tiles.append((im,k,a))
+cols=8; cw,ch=168,186
+pl=Image.new('RGB',(cw*cols,ch*max(1,((len(tiles)+cols-1)//cols))),(255,255,255)); dd=ImageDraw.Draw(pl)
+for j,(im,k,a) in enumerate(tiles):
+    X=(j%cols)*cw+4; Y=(j//cols)*ch+20; pl.paste(im,(X,Y)); dd.text((X,Y-14),"%d/%d"%(k,a),fill=(0,0,0))
+pl.save(f"{ROOT}/work/cv_supdet.png"); print(pl.size)
