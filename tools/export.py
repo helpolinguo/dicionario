@@ -45,6 +45,61 @@ def tsv(ent):
 GABARITO = """<!DOCTYPE html><html lang="io"><meta charset="utf-8">
 <title>Dicionario de la 10.000 radiki di la linguo universala Ido</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
+
+<!-- ===================================================================
+     FOR THE MACHINES — what search engines and crawlers read.
+     ===================================================================
+     The page is built for the eye; these lines make it legible to what
+     has no eyes.
+
+     "description" and "canonical" serve search engines. The "alternate"
+     link announces the Markdown version: that is the form a robot that
+     comes to READ rather than to look should take — it costs a
+     fraction of this page's weight, the markup being gone.
+
+     The JSON-LD block says what this document IS: a book, its author,
+     its date, its language. An engine that understands it no longer has
+     to guess.
+
+     The overall map is in /llms.txt, at the root, which speaks for all
+     four pages at once.
+     =================================================================== -->
+<meta name="description" content="Transskribo integra dil Dicionario de la 10.000 radiki di la linguo universala Ido (Marcel Pesch, editio princeps 1934, duesma editio 1964) : 9473 artikli, serchebla. Ofrata anke en formo lektebla da mashini (Markdown e JSON).">
+<link rel="canonical" href="https://ido.help/dicionario/">
+<link rel="alternate" type="text/markdown" href="dicionario.md" title="Texto pura, por lekto da mashini">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "Book",
+ "name": "Dicionario de la 10.000 radiki di la linguo universala Ido",
+ "author": {
+  "@type": "Person",
+  "name": "Marcelo Persiko (Marcel Pesch)"
+ },
+ "datePublished": "1934",
+ "inLanguage": "io",
+ "url": "https://ido.help/dicionario/",
+ "isAccessibleForFree": true,
+ "isPartOf": {
+  "@type": "WebSite",
+  "name": "ido.help",
+  "url": "https://ido.help/"
+ },
+ "encoding": [
+  {
+   "@type": "MediaObject",
+   "encodingFormat": "text/markdown",
+   "contentUrl": "https://ido.help/dicionario/dicionario.md"
+  },
+  {
+   "@type": "MediaObject",
+   "encodingFormat": "application/json",
+   "contentUrl": "https://ido.help/dicionario/dicionario.json"
+  }
+ ]
+}
+</script>
+
 <link rel="stylesheet" href="/pordo.css">
 <script src="/pordo.js" defer></script>
 <style>
@@ -56,27 +111,27 @@ body{margin:0;background:var(--pap);color:var(--enk);
 header{position:sticky;top:0;background:var(--pap);border-bottom:1px solid var(--lin);
  padding:14px 20px 12px;z-index:9;
 
- /* --- L'EN-TETE SUIT LE CORPS. ---------------------------------------
-    La bande tient toute la largeur, et c'est voulu : le fond et le filet
-    du bas doivent aller d'un bord a l'autre. Mais ce qu'elle PORTE doit
-    s'arreter ou le corps s'arrete. Sinon, sur une vue tres large, le
-    titre et la barre de recherche continuent de s'etendre alors que
-    la colonne des articles s'est deja fige a 780px et centre. Cela s'est vu
-    sur un Vision Pro, dont la vue est bien plus large qu'aucun ecran
-    d'ordinateur.
+ /* --- THE HEADER FOLLOWS THE BODY. ------------------------------------
+    The band spans the whole width, and that is intended: its ground and
+    the rule beneath it must go from edge to edge. But what it CARRIES
+    must stop where the body stops. Otherwise, on a very wide viewport,
+    the title and the search bar go on spreading while the column of
+    articles has already frozen at 780px and centred. This was seen on a
+    Vision Pro, whose viewport is far wider than any computer screen.
 
-    L'ecart lateral vaut donc 20 px tant que la vue est etroite, puis la
-    moitie de ce qui deborde des 780px de « #kont », dont les 820 px comptent ses 20 px de marge interne. Les deux
-    boites se superposent alors exactement, a toute largeur au-dela.
+    The side inset is therefore 20 px while the viewport is narrow, then
+    half of whatever overflows the 780px of "#kont" -- the 820 px counting
+    its 20 px of inner margin. The two boxes then coincide exactly, at
+    every width beyond.
 
-    Elle est posee APRES la forme courte, qu'elle ne remplace que sur les
-    deux cotes : un navigateur ignorant « max » ecarte cette ligne-ci et
-    garde les 20 px de la precedente, de sorte que l'en-tete redevient ce
-    qu'elle etait, sans rien casser. */
+    It is placed AFTER the short form, which it replaces only on the two
+    sides: a browser that does not know "max" discards this line and
+    keeps the 20 px of the previous one, so that the header becomes what
+    it was, breaking nothing. */
  padding-inline:max(20px, (100% - 780px) / 2)}
-/* Le bouton de telechargement s'ancre en haut a droite du titre. Sur ecran
-   etroit il perd son texte et ne garde que l'icone : la barre de recherche a
-   besoin de toute la largeur. */
+/* The download button anchors at the top right of the title. On a narrow
+   screen it loses its text and keeps only the icon: the search bar needs
+   the whole width. */
 .tito{display:flex;align-items:flex-start;gap:12px;justify-content:space-between}
 .dl{flex:none;display:inline-flex;align-items:center;gap:6px;text-decoration:none;
  border:1px solid var(--lin);border-radius:7px;padding:6px 11px;color:var(--acc);
@@ -91,10 +146,10 @@ h1{margin:0 0 2px;font-size:17px;font-weight:600;letter-spacing:.01em}
 .bar{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
 input[type=search]{flex:1 1 260px;min-width:200px;padding:8px 11px;border:1px solid var(--lin);
  border-radius:7px;background:var(--pap);color:var(--enk);font:inherit;font-size:16px}
-/* 16px exacte, e ne min: Safari sur iPhone zomas automate sur irga kampo di
-   qua la litero-grandeso esas sub 16px, kande onu tushas lu. La altra
-   solvuro — maximum-scale=1 en la meta viewport — impedus anke la zomo per
-   la fingri, do la lekteblesa por qui bezonas lu. */
+/* Exactly 16px, and not less: Safari on iPhone zooms automatically on any
+   field whose letter size is below 16px, when it is touched. The other
+   remedy -- maximum-scale=1 in the meta viewport -- would also prevent
+   zooming with the fingers, and so the legibility of those who need it. */
 input[type=search]:focus{outline:2px solid var(--acc);outline-offset:-1px}
 label.f{font-size:12.5px;color:var(--sub);display:flex;gap:5px;align-items:center;cursor:pointer;
  font-family:system-ui,sans-serif}
@@ -130,6 +185,28 @@ mark{background:rgba(214,160,106,.34);color:inherit;border-radius:2px}
 </div>
 </header>
 <div id="kont"><p id="nombro"></p><div id="lst"></div></div>
+<!-- THE LIFEBUOY. This page is built by JavaScript: the 9473 articles
+     live in the array below and do not exist in the document until the
+     script has run. Whatever does not run it — an indexing robot with no
+     JS engine, a site mirror, a language model that goes to the address —
+     therefore sees NOTHING, and nothing tells it so.
+
+     These few lines are the only thing it will see. They do not try to
+     render the dictionary in HTML: they say where it is, in a form that
+     costs it less than this page. -->
+<noscript>
+<div id="kont">
+<p>Ca pagino bezonas JavaScript por serchar en la 9473 artikli.</p>
+<p><strong>Sen JavaScript</strong>, la sama kontenajo esas ofrata tale :</p>
+<ul>
+<li><a href="vortlisto.md">vortlisto.md</a> — vedvorto e unesma senco nur</li>
+<li><a href="dicionario.md">dicionario.md</a> — la kompleta artikli</li>
+<li><a href="dicionario.json">dicionario.json</a> — la datumi, por interogar</li>
+<li><a href="dicionario.pdf">dicionario.pdf</a> — la faksimilo</li>
+</ul>
+<p>La karto di la tota sito : <a href="/llms.txt">ido.help/llms.txt</a></p>
+</div>
+</noscript>
 
 <script>
 const D=__DATA__;
