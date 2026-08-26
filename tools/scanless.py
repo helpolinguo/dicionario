@@ -274,12 +274,51 @@ def page_text(pg):
 def underlines(pg):
     """The page's rules, by line: {k: [(first column, last column)]}.
 
-    The `\\sou{}` of `content/`, which are the rules the facsimile sets. The
-    reading edition reads the same ones, so the two editions cannot part
-    company over an underline — and the figure the survey gives does not move
-    because the rules were measured a second time.
+    `work/rules.pkl` — `redo_rules.py`'s measurement — and NOT the `\\sou{}` of
+    `content/`. The two are not the same thing and the reading edition wants
+    this one. `page_lines()` merges a measured rule, trims it and brings it
+    back to the word boundary before setting it, and a rule that does not
+    survive those three passes leaves no `\\sou{}` at all; the reading edition,
+    which reads the measurement raw, still has it. It is by a rule beginning at
+    the margin that `headwords()` knows an article opens, so a rule dropped
+    there costs a whole article: « -ant- », « des- », « a priori »,
+    « autoro » — thirty-seven of them.
 
-    They are moved back by `shift()` like the text they underline.
+    The rules surveyed by eye prevail over the measurement, as they do in
+    `page_lines()`: 1,703 lines over 94 pages, and « autoro » is one of them —
+    `redo_rules.py` measures no rule on its line at all.
+
+    Same numbering as the cells, which is the unshifted one: `_from_cells()`
+    shifts these ranges itself when it sets the facsimile.
     """
+    from generate import fresh_rules, underlines_reread
     d = shift(pg)
-    return {k: [(a-d, b-d) for a, b in v] for k, v in page(pg)[1].items()}
+    got = fresh_rules().get(pg) or {}
+    out = {int(k): [(int(a), int(b)) for a, b in v[1]]
+           for k, v in got.items() if v[1]}
+    for (p, k), rg in underlines_reread().items():
+        # Surveyed on the SHIFTED facsimile, hence moved back like the text.
+        if p == pg and rg: out[int(k)] = [(a-d, b-d) for a, b in rg if b >= a]
+    return out
+
+
+def headwords(pg):
+    """Lines that open an article: the margin inked, and a rule beginning there.
+
+    `edition.headwords()` reads the occupation of the cells; we read the
+    decoded text, which `cut_up()` already holds to be the better authority
+    for the margin — forty-five pages begin further right, and there the cells
+    see ink in column zero where the decoding sees nothing.
+    """
+    lines = page_text(pg)
+    body = [s for _, s in lines if s.strip()]
+    if not body: return []
+    c0 = min(len(s) - len(s.lstrip()) for s in body)
+    rules = underlines(pg)
+    out = []
+    for i, (k, s) in enumerate(lines):
+        if not s.strip(): continue
+        if c0 >= len(s) or s[c0] == " ": continue
+        rg = rules.get(k)
+        if rg and any(a <= c0 <= b for a, b in rg): out.append((k, i))
+    return out
