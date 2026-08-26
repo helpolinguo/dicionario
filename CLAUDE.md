@@ -42,7 +42,7 @@ The two editions come from one file, and they are rebuilt together:
 Then the surveys, each of which says what it expects. A figure that moves
 without a reason is a defect, not a detail:
 
-    python3 tools/survey_rules.py   # 1525 fragments (14 / 542 / 49 / 920)
+    python3 tools/survey_rules.py   # 1444 fragments (9 / 324 / 9 / 1102)
     python3 tools/survey_order.py   # 35 transpositions, 20 headwords astray
     python3 tools/verify_edition.py
 
@@ -74,7 +74,10 @@ This one has been paid for three times in this repository alone:
 `index.html` carried two blocks `export.py` knew nothing about,
 `work/editions/index.html` was a stale copy of the published page, and
 `docs/underlines-unplaced.md` reported 1531 fragments where the tool
-gives 1525.
+gave 1525 — and it went stale a second time at 1525 when the tool had
+begun to give 1444, the survey having been run before the rebuilt
+edition was copied to the root, so that it measured the OLD file. Run
+the tool, then read what it wrote; do not read what was there before.
 
 **A KEY IS AN ADDRESS.** `vedetto`, `pagino`, `senci`, `drapeli`,
 `ordino-ruptita` are read back out of files this repository holds, and
