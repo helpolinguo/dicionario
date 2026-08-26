@@ -514,3 +514,12 @@
 284	15	1	i
 284	15	2	s
 284	15	3	t
+# p310 l29 c5 : the cell reads « a », and the sentence asks for « o ».
+# « ... pri punto determinita ek ulo agata o facota » -- the two participles
+# are a pair, and « facota » is future passive; the present passive « agata »
+# breaks it. The reading adopted is « agota », « to be done ».
+# The cell was not settled by the decoding: exceptions_pairs.txt (line 501)
+# put it right by the book's own lexicon, where « agata » exists as well as
+# « agota ». A lookalike a/o that the lexicon alone cannot arbitrate; the eye
+# does, on the sense.
+310	29	5	o
