@@ -77,6 +77,45 @@ def starts_rendered():
         _STARTS=pickle.load(open(p,"rb")) if os.path.exists(p) else {}
     return _STARTS
 
+_ASIDE=None
+def starts_set_aside(file_=None):
+    """Restored line starts the eye sets aside: {(page, line)}.
+
+    `restore_starts.py` re-cuts a page to recover a first letter the block was
+    cutting off. It is right nine times in fifteen. What it is not right about
+    is declared here, and it is declared and not deduced: the scan settles it.
+    """
+    global _ASIDE
+    if _ASIDE is None:
+        _ASIDE=set()
+        p=file_ or os.path.join(T,"starts_set_aside.txt")
+        if os.path.exists(p):
+            for l in open(p, encoding='utf-8'):
+                l=l.rstrip("\n")
+                if not l.strip() or l.startswith("#"): continue
+                f=l.split("\t")
+                _ASIDE.add((int(f[0]), int(f[1])))
+    return _ASIDE
+
+
+def starts_laid(pg, k, cells):
+    """The letters given back that are actually laid on line k.
+
+    Two are not. A letter the CORRECTION LAYER ALREADY SUPPLIES at column
+    zero: the layer has re-laid the whole line, and the note at page 474 of
+    exceptions_manual.txt says so in as many words -- « two lines typed one
+    cell left of the block; the p of protezo and protisto fell outside the
+    cutting. We lay the whole line again ». Laying the letter as well doubles
+    it: « pprotezo », « bbutono », « ddiabaso », « ttapar ».
+
+    And a letter the eye has set aside, which no rule could catch: page 63
+    line 2 was given an « h » before « bando », and the scan carries no « h ».
+    """
+    if (pg, k) in starts_set_aside(): return {}
+    first = exceptions().get((pg, k, 0))
+    return {c: ch for c, ch in cells.items() if not (c == -1 and ch == first)}
+
+
 _RULES=None
 def fresh_rules():
     """Rules recomputed by redo_rules.py, by page."""
@@ -173,7 +212,8 @@ def _from_cells(pg, lab, M, tab):
         underline={k:(yy,[(a+dec,b+dec) for a,b in pl],t) for k,(yy,pl,t) in underline.items()}
         ncol+=dec
         for k,d0 in beg.items():
-            for c,ch in d0.items(): per.setdefault(int(k),{})[c+dec]=ch
+            for c,ch in starts_laid(pg,int(k),d0).items():
+                per.setdefault(int(k),{})[c+dec]=ch
     return per, ncol, int(lg[:,0].max()), underline, None
 
 
@@ -189,9 +229,25 @@ def _from_content(pg):
     """
     import scanless
     rows, rules, _, ncol = scanless.page(pg)
-    k0 = scanless.first_line(pg)
-    per={k0+i: {c: v for c, v in enumerate(cells) if v != " "}
-          for i, cells in enumerate(rows)}
+    k0 = scanless.first_line(pg); d = scanless.shift(pg); rep = scanless.repairs()
+    beg = starts_rendered().get(pg) or {}
+    per={}
+    for i, cells in enumerate(rows):
+        k = k0 + i
+        # Back to the reading edition's columns, where the cells the shift
+        # destroyed are given back (work/grid_repair.txt): this is the page as
+        # decode.page_text() gives it, BEFORE the corrections.
+        u = list(cells[d:])
+        for c, v in rep.get((pg, k), {}).items():
+            if c >= len(u): u.extend(" " * (c - len(u) + 1))
+            u[c] = v
+        # And forward again, the letters cut off before column zero laid in the
+        # room the shift makes for them.
+        row = [" "] * d + u
+        for c, ch in starts_laid(pg, k, beg.get(k) or {}).items():
+            if c + d >= len(row): row.extend(" " * (c + d - len(row) + 1))
+            row[c+d] = ch
+        per[k] = {c: v for c, v in enumerate(row) if v != " "}
     return per, ncol, k0+len(rows)-1, {}, rules
 
 
@@ -202,8 +258,24 @@ def page_lines(pg, lab, M, tab):
     # again. See tools/scanless.page().
     read=_from_cells(pg,lab,M,tab) if scanless.corpora_present() else _from_content(pg)
     per,ncol,kmax,underline,settled=read
+    # THE CORRECTIONS ARE NUMBERED ON THE UNSHIFTED PAGE, so on a page the
+    # shift has moved they are laid at c + shift and not at c.
+    #
+    # They were laid at c until now, and it cost the thirteen shifted pages a
+    # cell each time: the correction landed one to the right of its target and
+    # overwrote what was there. p351 line 17 reads « l o m b a r d o » in the
+    # cells, the corrections put « b » at column 3 and « r » at 5, and the
+    # facsimile set « lobbrrdo » -- the « m » and the « a » struck out by the
+    # very corrections meant to mend the line. « devorar » was set « deocrar »,
+    # « centrika » « centriaa », « bandoliero » « bandolieoo ».
+    #
+    # The reading edition never had the fault: decode.page_text() does not
+    # shift, so there the corrections always fell where they were counted. That
+    # is the proof of the numbering, and it is why the two editions have
+    # disagreed on those pages from the first day.
+    d = scanless.shift(pg)
     for (pp,kk,cc),v in exceptions().items():
-        if pp==pg: per.setdefault(int(kk),{})[int(cc)]=v
+        if pp==pg: per.setdefault(int(kk),{})[int(cc)+d]=v
     # A correction can bear beyond the block: these are the line ends the
     # cutting had cut off. We widen the line to receive them, without having to
     # re-cut the page.

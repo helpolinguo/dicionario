@@ -1,0 +1,10 @@
+# Restored line starts the eye sets aside, on the scan.
+#
+# restore_starts.py re-cuts a page to recover a first letter that the cutting
+# of the block was leaving outside it. Over the fifteen letters it gives back
+# on the thirteen shifted pages, nine are right and are laid; five are already
+# supplied by the correction layer at column zero and starts_laid() drops them
+# by rule; and this one is simply not on the page.
+#
+# page<TAB>line<TAB>what was given back<TAB>what the scan carries
+63	2	h	bando. Asemblitaro de personi qui kuniras ed agas interkon-

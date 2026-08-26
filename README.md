@@ -136,7 +136,16 @@ exceptions_manual.txt       decisions made by hand, never rewritten
 
 Format: `page<TAB>line<TAB>column<TAB>content`. The page is the index of
 the scan's image; the line and the column are those of the machine's
-grid.
+grid, **before the shift** — thirteen pages carry a letter given back
+before column zero and are moved one cell right when they are set, and a
+correction is numbered where it was surveyed, not where it is set.
+
+Two smaller layers sit beside them:
+
+```
+grid_repair.txt       cells content/ no longer holds, given back
+starts_set_aside.txt  letters restore_starts.py gave back in error
+```
 
 ## The surveys
 
