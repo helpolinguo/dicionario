@@ -54,7 +54,7 @@ docs/underlines-unplaced.md, docs/order-broken.md   two surveys   } generated
 ## Building
 
 ```sh
-xelatex main.tex && xelatex main.tex   # the facsimile, 640 pages
+lualatex main.tex && lualatex main.tex  # the facsimile, 640 pages
 python3 tools/all_editions.py          # everything downstream of the text
 ```
 
@@ -69,8 +69,23 @@ are read back out of the `.aux` of the previous pass.
 never edited by hand**: what must change is changed in `tools/`, or in
 the correction layers under `work/`.
 
-The LaTeX build needs `xelatex` (facsimile) and `lualatex` (pocket
-edition, for its run-time hyphenation patterns). The tools need Python 3
+The LaTeX build needs **`lualatex` for both**. The facsimile was
+documented here as an `xelatex` build and it never was one: the signature
+laid in the margin of every page is drawn with `\pdfextension literal`
+(`preamble.tex`), a LuaTeX primitive with no XeTeX equivalent and no
+guard around it, so `xelatex main.tex` stops on the first page with
+`Undefined control sequence`. The pocket edition wants lualatex too, for
+its run-time hyphenation patterns.
+
+On a bare Debian or Ubuntu the whole of it is:
+
+```sh
+apt-get install --no-install-recommends \
+    texlive-luatex texlive-latex-extra texlive-fonts-recommended \
+    fonts-sil-charis fonts-inter
+```
+
+Jost\*, for the pocket cover, ships in `pocket/fonts/`. The tools need Python 3
 with `numpy`, `Pillow` and `opencv-python`. The 171 MB scan is not in the
 repository, and neither are the cut cells (295 MB) nor the corpus of
 features (256 MB): they are rebuilt from the scan by `tools/cells.py`.
