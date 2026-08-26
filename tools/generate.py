@@ -134,7 +134,13 @@ def _trim(range_, cells_of):
     if b2-a2+1 <= 2 and len(grp)==1: return None
     return (a2,b2)
 
-def page_lines(pg, lab, M, tab):
+def _from_cells(pg, lab, M, tab):
+    """The page's cells as the scan gives them.
+
+    (grid, columns, last line, rules measured, rules already set). The grid is
+    {line: {column: content}}, before the corrections; the last is None, the
+    rules being measured here and not read back.
+    """
     z=np.load(f"{T}/cells/p-{pg:03d}.npz", allow_pickle=True)
     lg=z['lignes']; ncol=z['occ'].shape[1]
     underline=pickle.loads(z['sou'].item()) if 'sou' in z else {}
@@ -161,7 +167,6 @@ def page_lines(pg, lab, M, tab):
     # The shift is applied BEFORE the exceptions: those are surveyed by eye on
     # the shifted facsimile, hence already in the new numbering.
     beg=starts_rendered().get(pg)
-    dec=0
     if beg:
         dec=-min(c for d0 in beg.values() for c in d0)
         per={k:{c+dec:v for c,v in d0.items()} for k,d0 in per.items()}
@@ -169,9 +174,36 @@ def page_lines(pg, lab, M, tab):
         ncol+=dec
         for k,d0 in beg.items():
             for c,ch in d0.items(): per.setdefault(int(k),{})[c+dec]=ch
+    return per, ncol, int(lg[:,0].max()), underline, None
+
+
+def _from_content(pg):
+    """The same grid, read back out of `content/` when the scan is not there.
+
+    See the head of tools/scanless.py. Two things are NOT done again here, and
+    must not be: the shift of the line starts, and the corrections -- the text
+    read has already been through both, and applying them twice would move the
+    page by a cell. The corrections are laid again all the same, just after:
+    on a cell that already carries them it changes nothing, and it is what
+    lets a NEW one -- the reason the layer exists -- reach the page.
+    """
+    import scanless
+    rows, rules, _, ncol = scanless.page(pg)
+    k0 = scanless.first_line(pg)
+    per={k0+i: {c: v for c, v in enumerate(cells) if v != " "}
+          for i, cells in enumerate(rows)}
+    return per, ncol, k0+len(rows)-1, {}, rules
+
+
+def page_lines(pg, lab, M, tab):
+    import scanless
+    # `settled` is the rules as they are already set, which the pages read back
+    # out of `content/` carry: they are taken as they stand and not measured
+    # again. See tools/scanless.page().
+    read=_from_cells(pg,lab,M,tab) if scanless.corpora_present() else _from_content(pg)
+    per,ncol,kmax,underline,settled=read
     for (pp,kk,cc),v in exceptions().items():
         if pp==pg: per.setdefault(int(kk),{})[int(cc)]=v
-    kmax=int(lg[:,0].max())
     # A correction can bear beyond the block: these are the line ends the
     # cutting had cut off. We widen the line to receive them, without having to
     # re-cut the page.
@@ -190,6 +222,8 @@ def page_lines(pg, lab, M, tab):
             # trimming -- those corrections aim precisely at putting right what the
             # automatic measurement had placed badly.
             ranges=[(a,b) for a,b in reread if b>=a]
+        elif settled is not None:
+            ranges=[(a,b) for a,b in settled.get(k,[]) if b>=a]
         elif k in underline:
             yy,pl,tot=underline[k]
             ranges=sorted((a,b) for a,b in pl if b>=a)

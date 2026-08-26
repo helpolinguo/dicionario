@@ -27,8 +27,16 @@ piece of work starts again from `main`, and it is a new pull request.
 
 ## What we check before pushing
 
+**Everything below runs in a clone, with or without the scan.** Without
+the cells, the grid is read back out of `content/`; see § *Building
+without the scan* in `README.md` and the head of `tools/scanless.py`.
+A correction laid in `work/` therefore has to be rebuilt and committed
+in the same breath — declaring it is no longer half the work, it is a
+quarter of it.
+
 The two editions come from one file, and they are rebuilt together:
 
+    python3 tools/generate_all.py   # the facsimile's 639 pages
     python3 tools/all_editions.py   # base, HTML page, pocket text, lualatex x2
 
 Then the surveys, each of which says what it expects. A figure that moves

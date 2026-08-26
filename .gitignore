@@ -9,3 +9,9 @@ __pycache__/
 *.log
 *.out
 *.toc
+
+# The decoded text, cached between two runs of the tools. Rebuilt from the
+# cells when the scan is there, from content/ when it is not; particular to
+# the machine, and invalidated by its own fingerprint. See _signature() in
+# tools/edition.py.
+work/_pages.pkl

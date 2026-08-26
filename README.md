@@ -76,6 +76,28 @@ repository, and neither are the cut cells (295 MB) nor the corpus of
 features (256 MB): they are rebuilt from the scan by `tools/cells.py`.
 The transcription, both editions and every correction are.
 
+### Building without the scan
+
+**A clone rebuilds everything, scan or no scan.** Without the cells,
+`content/` is read for the grid instead — it is set cell by cell, so the
+grid comes back out of it exactly: `\cel{n}` is n empty cells, `\sou{...}`
+a run of underlined ones, one cell per character everywhere else. Parsing
+the 634 typed pages and setting them again returns the 35,117 lines byte
+for byte. See `tools/scanless.py`; nothing has to be asked for, the tools
+look for the corpus and take the other road when it is not there.
+
+This is a way back in, not the ground truth, and it is narrower in three
+places. The text read has **already been through the correction layers**,
+so withdrawing a line from `exceptions_manual.txt` no longer brings the
+old reading back — adding one still works, which is what the layer is
+for. The **rules are taken as they are set** and not measured again, the
+three passes that merge and trim them reading a line of text that is no
+longer the raw one. And an **ornament keeps the place it has**, since
+recomputing it needs the cut cells of its page.
+
+With the scan there, none of that applies: the tools read the corpus and
+`tools/scanless.py` stands aside.
+
 
 ## The reading page's address
 
