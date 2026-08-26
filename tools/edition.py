@@ -320,8 +320,17 @@ def cut_up(pages, corrected, rules_=None):
     for pg in sorted(pages):
         if pg < 8: continue          # front matter: title, preface, rezumo di gramatiko
         if pg in _not_typed(): continue   # blank pages: nothing to cut
+        # Without the cells, the same test is made on the decoded text: see
+        # scanless.headwords(). Falling back to an EMPTY set is not harmless --
+        # it is by a rule at the margin that « -ant- », « des- », « a priori »
+        # and thirty-four others are known to open an article, the regular
+        # expression below reaching none of them.
         try: hw={k for k,_ in headwords(pg)}
-        except Exception: hw=set()
+        except Exception:
+            try:
+                import scanless
+                hw={k for k,_ in scanless.headwords(pg)}
+            except Exception: hw=set()
         # The page's margin, read off the DECODED TEXT and not off the occupation
         # of the cells: forty-five pages begin further right -- page 380 begins
         # at 5 -- and occ() sees ink in column 0 there where the decoding sees

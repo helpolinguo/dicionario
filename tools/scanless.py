@@ -210,23 +210,129 @@ def pages():
     return out
 
 
+def shift(pg):
+    """The cells `restore_starts.py` gives back BEFORE column zero, counted.
+
+    `generate.page_lines()` moves the whole page right by that many cells so
+    that the letters given back have somewhere to go, and `content/` therefore
+    holds the shifted page. `decode.page_text()` does not shift, and the
+    corrections are surveyed on the shifted facsimile: the reading edition
+    reads a line at column c and lays the correction for column c+shift on it,
+    which is what puts the letter given back at the head of the word.
+
+    So a page read for the reading edition must be moved BACK. Thirteen pages
+    are concerned -- 63, 86, 114, 133, 141, 351, 456, 474, 533, 570, 573, 576,
+    638 -- and without this « devorar » is read « deocrar » and « devota »
+    « dvvota », the correction landing one cell to the right of its place.
+    """
+    from generate import starts_rendered
+    beg = starts_rendered().get(pg)
+    return -min(c for d0 in beg.values() for c in d0) if beg else 0
+
+
+_REPAIR = None
+def repairs(file_=None):
+    """The cells `content/` no longer holds: {(page, line): {column: content}}.
+
+    See the head of work/grid_repair.txt. On the thirteen shifted pages a
+    correction overwrites the cell to its LEFT, and that cell was gone before
+    `content/` was written: fifty-three of them, given back here in the
+    numbering of the reading edition.
+    """
+    global _REPAIR
+    if _REPAIR is None:
+        _REPAIR = {}
+        p = file_ or f"{T}/grid_repair.txt"
+        if os.path.exists(p):
+            for l in open(p, encoding='utf-8'):
+                l = l.rstrip("\n")
+                if not l.strip() or l.startswith("#"): continue
+                f = l.split("\t")
+                _REPAIR.setdefault((int(f[0]), int(f[1])), {})[int(f[2])] = f[3]
+    return _REPAIR
+
+
 def page_text(pg):
     """The page's lines, as `decode.page_text()` gives them: (k, text).
 
-    Same shape and same numbering, so `edition.py` reads one or the other
-    without knowing which.
+    Same shape, same numbering and the same column zero, so `edition.py` reads
+    one or the other without knowing which.
     """
     rows, _, _, _ = page(pg)
-    k0 = first_line(pg)
-    return [(k0 + i, "".join(r).rstrip()) for i, r in enumerate(rows)]
+    k0 = first_line(pg); d = shift(pg); rep = repairs()
+    out = []
+    for i, r in enumerate(rows):
+        k = k0 + i
+        cells = list(r[d:])
+        for c, v in rep.get((pg, k), {}).items():
+            if c >= len(cells): cells.extend(" " * (c - len(cells) + 1))
+            cells[c] = v
+        out.append((k, "".join(cells).rstrip()))
+    return out
 
 
 def underlines(pg):
     """The page's rules, by line: {k: [(first column, last column)]}.
 
-    The `\\sou{}` of `content/`, which are the rules the facsimile sets. The
-    reading edition reads the same ones, so the two editions cannot part
-    company over an underline — and the figure the survey gives does not move
-    because the rules were measured a second time.
+    `work/rules.pkl` — `redo_rules.py`'s measurement — and NOT the `\\sou{}` of
+    `content/`. The two are not the same thing and the reading edition wants
+    this one. `page_lines()` merges a measured rule, trims it and brings it
+    back to the word boundary before setting it, and a rule that does not
+    survive those three passes leaves no `\\sou{}` at all; the reading edition,
+    which reads the measurement raw, still has it. It is by a rule beginning at
+    the margin that `headwords()` knows an article opens, so a rule dropped
+    there costs a whole article: « -ant- », « des- », « a priori »,
+    « autoro » — thirty-seven of them.
+
+    The rules surveyed by eye prevail over the measurement, as they do in
+    `page_lines()`: 1,703 lines over 94 pages, and « autoro » is one of them —
+    `redo_rules.py` measures no rule on its line at all.
+
+    Same numbering as the cells, which is the unshifted one: `_from_cells()`
+    shifts these ranges itself when it sets the facsimile.
     """
-    return {k: list(v) for k, v in page(pg)[1].items()}
+    from generate import fresh_rules, underlines_reread
+    d = shift(pg)
+    got = fresh_rules().get(pg) or {}
+    out = {int(k): [(int(a), int(b)) for a, b in v[1]]
+           for k, v in got.items() if v[1]}
+    for (p, k), rg in underlines_reread().items():
+        # Surveyed on the SHIFTED facsimile, hence moved back like the text.
+        if p == pg and rg: out[int(k)] = [(a-d, b-d) for a, b in rg if b >= a]
+    return out
+
+
+def headwords(pg):
+    """Lines that open an article: the margin inked, and a rule beginning there.
+
+    `edition.headwords()` reads the occupation of the cells; we read the
+    decoded text, which `cut_up()` already holds to be the better authority
+    for the margin — forty-five pages begin further right, and there the cells
+    see ink in column zero where the decoding sees nothing.
+
+    THE RULE MUST MEET THE FIRST WORD, not column zero exactly. That is the
+    same test said in a way the measurement survives: what marks an article is
+    that its headword, standing at the margin, is underlined. `redo_rules.py`
+    clips the first cell often enough — « -ig- » is measured from column 1,
+    « hektogramo » from 3, « versiono » from 5 — and asking the rule to cover
+    the margin itself lost those six articles. Asking it to meet the first
+    word costs nothing: the lines it adds are already headwords by the regular
+    expression, so the count does not run away (9,471 openings against the
+    edition's 9,473, where the exact test gives 9,460). A continuation line
+    cannot be caught by it either -- it is indented, and so never begins at the
+    margin.
+    """
+    lines = page_text(pg)
+    body = [s for _, s in lines if s.strip()]
+    if not body: return []
+    c0 = min(len(s) - len(s.lstrip()) for s in body)
+    rules = underlines(pg)
+    out = []
+    for i, (k, s) in enumerate(lines):
+        if not s.strip(): continue
+        if c0 >= len(s) or s[c0] == " ": continue
+        end = c0
+        while end + 1 < len(s) and s[end+1] != " ": end += 1
+        rg = rules.get(k)
+        if rg and any(a <= end and b >= c0 for a, b in rg): out.append((k, i))
+    return out
