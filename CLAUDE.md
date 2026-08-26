@@ -46,9 +46,11 @@ without a reason is a defect, not a detail:
     python3 tools/survey_order.py   # 35 transpositions, 20 headwords astray
     python3 tools/verify_edition.py
 
-And the facsimile compiles, always:
+And the facsimile compiles, always -- with **lualatex**, not xelatex:
+the signature in the margin uses \pdfextension, which XeTeX does not
+have. See § *Building* in README.md.
 
-    xelatex main.tex && xelatex main.tex
+    lualatex main.tex && lualatex main.tex
 
 ## Four rules that are not negotiable
 
