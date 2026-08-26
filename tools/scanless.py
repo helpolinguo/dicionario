@@ -309,6 +309,18 @@ def headwords(pg):
     decoded text, which `cut_up()` already holds to be the better authority
     for the margin — forty-five pages begin further right, and there the cells
     see ink in column zero where the decoding sees nothing.
+
+    THE RULE MUST MEET THE FIRST WORD, not column zero exactly. That is the
+    same test said in a way the measurement survives: what marks an article is
+    that its headword, standing at the margin, is underlined. `redo_rules.py`
+    clips the first cell often enough — « -ig- » is measured from column 1,
+    « hektogramo » from 3, « versiono » from 5 — and asking the rule to cover
+    the margin itself lost those six articles. Asking it to meet the first
+    word costs nothing: the lines it adds are already headwords by the regular
+    expression, so the count does not run away (9,471 openings against the
+    edition's 9,473, where the exact test gives 9,460). A continuation line
+    cannot be caught by it either -- it is indented, and so never begins at the
+    margin.
     """
     lines = page_text(pg)
     body = [s for _, s in lines if s.strip()]
@@ -319,6 +331,8 @@ def headwords(pg):
     for i, (k, s) in enumerate(lines):
         if not s.strip(): continue
         if c0 >= len(s) or s[c0] == " ": continue
+        end = c0
+        while end + 1 < len(s) and s[end+1] != " ": end += 1
         rg = rules.get(k)
-        if rg and any(a <= c0 <= b for a, b in rg): out.append((k, i))
+        if rg and any(a <= end and b >= c0 for a, b in rg): out.append((k, i))
     return out
