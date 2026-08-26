@@ -230,6 +230,28 @@ def shift(pg):
     return -min(c for d0 in beg.values() for c in d0) if beg else 0
 
 
+_REPAIR = None
+def repairs(file_=None):
+    """The cells `content/` no longer holds: {(page, line): {column: content}}.
+
+    See the head of work/grid_repair.txt. On the thirteen shifted pages a
+    correction overwrites the cell to its LEFT, and that cell was gone before
+    `content/` was written: fifty-three of them, given back here in the
+    numbering of the reading edition.
+    """
+    global _REPAIR
+    if _REPAIR is None:
+        _REPAIR = {}
+        p = file_ or f"{T}/grid_repair.txt"
+        if os.path.exists(p):
+            for l in open(p, encoding='utf-8'):
+                l = l.rstrip("\n")
+                if not l.strip() or l.startswith("#"): continue
+                f = l.split("\t")
+                _REPAIR.setdefault((int(f[0]), int(f[1])), {})[int(f[2])] = f[3]
+    return _REPAIR
+
+
 def page_text(pg):
     """The page's lines, as `decode.page_text()` gives them: (k, text).
 
@@ -237,8 +259,16 @@ def page_text(pg):
     one or the other without knowing which.
     """
     rows, _, _, _ = page(pg)
-    k0 = first_line(pg); d = shift(pg)
-    return [(k0 + i, "".join(r[d:]).rstrip()) for i, r in enumerate(rows)]
+    k0 = first_line(pg); d = shift(pg); rep = repairs()
+    out = []
+    for i, r in enumerate(rows):
+        k = k0 + i
+        cells = list(r[d:])
+        for c, v in rep.get((pg, k), {}).items():
+            if c >= len(cells): cells.extend(" " * (c - len(cells) + 1))
+            cells[c] = v
+        out.append((k, "".join(cells).rstrip()))
+    return out
 
 
 def underlines(pg):

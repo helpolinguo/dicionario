@@ -1,0 +1,75 @@
+# The cells that content/ no longer holds, given back.
+#
+# On the thirteen pages where restore_starts.py gives back a letter cut off
+# BEFORE column zero, generate.page_lines() shifts the page right and only
+# then lays the corrections -- which are numbered on the UNSHIFTED page. Each
+# one therefore lands a cell to the right of its target and overwrites what
+# was there. content/ was written afterwards, so the overwritten cell is gone
+# from the repository: reading the grid back out of content/ returned
+# « lobbrrdo » for « lombardo » and « deoorar » for « devorar », and the
+# thirty-seven articles whose headword was thus broken fell out of the book.
+#
+# This file gives those cells back, in the numbering of the READING edition --
+# the one decode.page_text() uses, before the shift. scanless.page_text() lays
+# them; the facsimile does not read this file and does not move.
+#
+# Two authorities, and never a supposition. « edition » : the cell is settled
+# by the published edition itself, by the headword of its own article or by
+# the one word of the article that fits with a single letter unknown.
+# « scan » : the edition says nothing there, and the cell was read by eye on
+# the page of the scan -- what was read is quoted alongside.
+#
+# page<TAB>line<TAB>column<TAB>character<TAB>authority<TAB>what is read
+63	7	4	i	edition	Ssstemo
+63	19	8	r	edition	bandolieoo.
+63	30	61	t	edition	moneoo
+63	33	31	r	edition	komeccisto).
+63	45	40	t	edition	quaza-monoo
+86	18	60	t	edition	kuraa
+114	11	2	v	edition	deoorar.
+114	14	1	e	edition	dvvota.Konsakrita
+114	20	66	r	edition	apreta,,
+114	23	5	t	edition	dezeraa.
+114	50	32	n	edition	Kristaaa).
+133	19	58	I	edition	DEFSS.
+133	43	6	k	edition	centriaa.
+141	8	2	e	edition	ssentar
+141	16	5	i	edition	emboloo.
+141	24	8	m	edition	eetalo-plako,
+141	30	48	e	edition	mkkanismo
+141	33	4	x	scan	axa e sama-periferia
+351	11	2	k	edition	louusto.
+351	17	2	m	edition	lobbrrdo.
+351	17	4	a	edition	lobbrrdo.
+351	20	1	o	edition	lmmbriko.
+351	23	2	n	edition	loccho.
+351	31	30	e	edition	tmmpo.
+351	36	13	r	edition	(astoon.)
+351	43	2	r	edition	lonno.
+351	44	3	t	scan	ter la okulo
+351	50	2	t	edition	loaao.
+456	2	0	p	edition	oodoido.
+456	14	46	 	scan	II. Beleso
+456	32	62	 	scan	rotaco di
+456	48	62	a	edition	igrr
+474	8	54	 	scan	di la cetera
+474	25	64	m	scan	albuminoidi sim-
+474	44	64	S	edition	DEFIR..
+533	16	2	e	edition	sijjo.
+533	21	4	t	edition	siesaar.
+533	24	59	l	edition	transmisebaa
+570	49	38	l	edition	teoo
+573	31	33	 	scan	inventis Tiro
+573	47	43	n	edition	persoii
+573	55	5	s	edition	taktimmo.(biol.)
+576	16	6	a	edition	tapiokoo.
+576	16	64	S	edition	DEFI..
+576	28	54	r	edition	supottas
+576	35	14	u	edition	segnn
+576	53	3	j	edition	taroo.
+576	60	13	i	edition	grzza.
+638	4	62	i	edition	incendi,,
+638	8	1	u	edition	pbblccitear.
+638	8	4	i	edition	pbblccitear.
+638	37	5	 	scan	o per kombusto
+638	43	28	s	edition	paaas
