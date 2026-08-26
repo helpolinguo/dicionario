@@ -207,6 +207,16 @@ def _signature():
     if os.path.isdir(d):
         sig.append(("cells", max((os.path.getmtime(os.path.join(d,f))
                                      for f in os.listdir(d)), default=0)))
+    else:
+        # Without the cells, the text is read out of `content/`: it is that
+        # directory the cache must follow, or a page set again would not be
+        # read again. See tools/scanless.py.
+        c=f"{_ROOT}/content"
+        sig.append(("content", max((os.path.getmtime(os.path.join(c,f))
+                                     for f in os.listdir(c)), default=0)))
+    # rules.pkl carries the underlines when the cells are not there.
+    p=f"{T}/rules.pkl"
+    sig.append(("rules.pkl", os.path.getmtime(p) if os.path.exists(p) else 0))
     return sig
 
 
@@ -229,12 +239,26 @@ def load_text(hidden=True):
 def _load_text():
     from decode import load_, page_text
     from generate import exceptions
-    lab,M=load_(); tab=np.load(f"{T}/cls_lab.npy",allow_pickle=True); exc=exceptions()
+    import scanless
+    # Without the scan, the same lines are read back out of `content/`, which
+    # is in the repository and is set cell by cell. See tools/scanless.py.
+    scan=scanless.corpora_present()
+    if scan:
+        lab,M=load_(); tab=np.load(f"{T}/cls_lab.npy",allow_pickle=True)
+        last=int(M[:,0].max())
+    else:
+        lab=M=tab=None; last=max(scanless.pages())
+    exc=exceptions()
     corrected=set((p,k,c) for (p,k,c) in exc)
     pages={}; rules_={}
-    for pg in range(int(M[:,0].max())+1):
-        try: lines=page_text(pg,lab,M,tab)
+    for pg in range(last+1):
+        try:
+            lines=page_text(pg,lab,M,tab) if scan else scanless.page_text(pg)
         except Exception: continue
+        # A page that is not typewritten -- the cover, the six blank ones --
+        # has no cells; without the scan it has no \l{} either. Both roads
+        # therefore leave it out of the table, rather than entering it empty.
+        if not lines: continue
         out=[]
         for k,s in lines:
             l=list(s)
@@ -257,11 +281,14 @@ def _load_text():
         # typescript; it designates the domain, the phrase, the Latin name, the
         # quoted word.
         try:
-            z=np.load(f"{T}/cells/p-{pg:03d}.npz", allow_pickle=True)
-            import pickle as _pk
-            underline=_pk.loads(z['sou'].item())
-            rules_[pg]={int(k): [(int(a),int(b)) for a,b in v[1]]
-                         for k,v in underline.items() if v[1]}
+            if scan:
+                z=np.load(f"{T}/cells/p-{pg:03d}.npz", allow_pickle=True)
+                import pickle as _pk
+                underline=_pk.loads(z['sou'].item())
+                rules_[pg]={int(k): [(int(a),int(b)) for a,b in v[1]]
+                             for k,v in underline.items() if v[1]}
+            else:
+                rules_[pg]=scanless.underlines(pg)
         except Exception:
             rules_[pg]={}
     return pages, corrected, rules_

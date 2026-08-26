@@ -66,9 +66,19 @@ def _latex_ornament(e):
             % (col*HSTEP_MM, ln*VSTEP_MM, wid*HSTEP_MM, e['dosiero']))
 
 def run_step():
-    lab,M=load_(); tab=np.load(f"{T}/cls_lab.npy",allow_pickle=True)
+    import scanless
+    # Without the scan, the grid is read back out of `content/` and the
+    # ornaments are the ones already set: recomputing their place needs the cut
+    # cells of their page. See the head of tools/scanless.py.
+    scan = scanless.corpora_present()
+    if scan:
+        lab,M=load_(); tab=np.load(f"{T}/cls_lab.npy",allow_pickle=True)
+        n=int(M[:,0].max())+1
+    else:
+        lab=M=tab=None
+        n=max(scanless.pages())+1
     nd=not_typed(); orn=ornaments()
-    n=int(M[:,0].max())+1; done_=[]
+    done_=[]
     for pg in range(n):
         path_=f"{ROOT}/content/p{pg:03d}.tex"
         if pg in nd:
@@ -79,7 +89,14 @@ def run_step():
                 "%% page %d of the facsimile (image p-%03d) — %s, not typed\n%s\n"
                 % (pg+1, pg, note, body))
             done_.append(pg); continue
-        if not os.path.exists(f"{T}/cells/p-{pg:03d}.npz"): continue
+        if scan:
+            if not os.path.exists(f"{T}/cells/p-{pg:03d}.npz"): continue
+            head_ = "".join(_latex_ornament(e) for e in orn.get(pg,[]))
+        else:
+            if not os.path.exists(path_): continue
+            # Read BEFORE the page is set again: what we write is what we are
+            # about to overwrite.
+            head_ = scanless.page(pg)[2]
         try: write_(pg,lab,M,tab)
         except Exception as e:
             print("FAILED p%03d: %s"%(pg,e), flush=True); continue
@@ -88,7 +105,7 @@ def run_step():
             # All the page's ornaments, laid on the first line: their place is
             # given in grid coordinates by \marge, so each falls where it must,
             # whatever the line that receives it.
-            head="".join(_latex_ornament(e) for e in orn[pg])
+            head=head_
             for i,l in enumerate(L):
                 if l.startswith("\\l{"):
                     L[i]="\\l{"+head+l[3:]
