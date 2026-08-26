@@ -210,15 +210,35 @@ def pages():
     return out
 
 
+def shift(pg):
+    """The cells `restore_starts.py` gives back BEFORE column zero, counted.
+
+    `generate.page_lines()` moves the whole page right by that many cells so
+    that the letters given back have somewhere to go, and `content/` therefore
+    holds the shifted page. `decode.page_text()` does not shift, and the
+    corrections are surveyed on the shifted facsimile: the reading edition
+    reads a line at column c and lays the correction for column c+shift on it,
+    which is what puts the letter given back at the head of the word.
+
+    So a page read for the reading edition must be moved BACK. Thirteen pages
+    are concerned -- 63, 86, 114, 133, 141, 351, 456, 474, 533, 570, 573, 576,
+    638 -- and without this « devorar » is read « deocrar » and « devota »
+    « dvvota », the correction landing one cell to the right of its place.
+    """
+    from generate import starts_rendered
+    beg = starts_rendered().get(pg)
+    return -min(c for d0 in beg.values() for c in d0) if beg else 0
+
+
 def page_text(pg):
     """The page's lines, as `decode.page_text()` gives them: (k, text).
 
-    Same shape and same numbering, so `edition.py` reads one or the other
-    without knowing which.
+    Same shape, same numbering and the same column zero, so `edition.py` reads
+    one or the other without knowing which.
     """
     rows, _, _, _ = page(pg)
-    k0 = first_line(pg)
-    return [(k0 + i, "".join(r).rstrip()) for i, r in enumerate(rows)]
+    k0 = first_line(pg); d = shift(pg)
+    return [(k0 + i, "".join(r[d:]).rstrip()) for i, r in enumerate(rows)]
 
 
 def underlines(pg):
@@ -228,5 +248,8 @@ def underlines(pg):
     reading edition reads the same ones, so the two editions cannot part
     company over an underline — and the figure the survey gives does not move
     because the rules were measured a second time.
+
+    They are moved back by `shift()` like the text they underline.
     """
-    return {k: list(v) for k, v in page(pg)[1].items()}
+    d = shift(pg)
+    return {k: [(a-d, b-d) for a, b in v] for k, v in page(pg)[1].items()}
