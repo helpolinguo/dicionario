@@ -3544,7 +3544,7 @@ iktiologio — La parto di la natur-historio, qua traktas la fishi
 iktiosauro — Reptero fosila, kun fisho-vertebri
 iktuso (patol.) — Afekto subita, qua frapas quale stroko. (kom ex. : iktuso apoplexiala, epilepsiala)
 iktus (metriko) — Frapo qua perceptigas la tempo forta di verso-pedo
--il- — Sufixo qua signifikas « instrumento por… » (ne « machino por… »)
+-il- — Sufixo qua signifikas « instrumento por… » (ne « mashino por… »)
 il(u) — Pronomo personala maskulala, persono triesma (uzata kande onu volas emfazar la sexuo)
 ileono (anat.) — La lasta e maxim longa parto di la intestino tenua
 ilexo (bot.) — Arboro di la familio « ilicinei », sempre verda, di qua la folii esas briloza e dornoza
