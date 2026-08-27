@@ -1319,7 +1319,7 @@ cerio (kemio) — Korpo simpla metala, ferea, harda, densesogrado : 6,7
 cerizo (bot.) — Mikra frukto, reda plu o min forte, globa, pulpoza, di qua la kerno esas glata, quan produktas arboro de la familio « rozacei » (di qua la ligno uzesas por moblifado)
 ceriz-lauro (bot.) — Arboreto de la familio « apocinacei ». (prunus) laurocerasus
 cernar (trans.) — Enemike cirkondar ed enklozar por kaptar
-certa — Qua konsideresas, egardesas, kom nedubitebla, kom vera. (*certena : Qua ne dubitas pri la vereso, la exakteso, di ulo)
+certa — Qua konsideresas, egardesas, kom nedubitebla, kom vera
 certifikar (trans.) — Garantiar kom vera, kom exakta
 cerumeno (anat.) — Materio grasatra, flavatra, qua, sekrecite da la folikuli aden la tubeto di la orelo extera, lubrifikas la membrano di olca, ed ibe su amasigas ofte, hardeskante
 ceruzo (kemio) — Subkarbonato di plombo, substanco blanka, friabla, quan onu uzas kom fardo, e kom farbo por induto edificala, e de qua onu facas la emalio di porcelano

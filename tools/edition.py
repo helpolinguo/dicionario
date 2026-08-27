@@ -1507,8 +1507,16 @@ RE_QUAL_HEAD=re.compile(r'^(?:\((?![A-Za-z0-9]\))[^()]{1,60}\)\s*)+')
 # word not yet official, distinguishes it from the domain abbreviation of the
 # same shape: « (trans. ... », « (anat. ... », « (metaf. ... ». The book counts
 # only one; without it, « botono » could not be looked for.
+#
+# The phrase in parentheses CARRIES THAT MARK TOO, and the two patterns
+# between them left the case out: RE_SUBENTRY wants the full stop of a whole
+# article, RE_PHRASE_BRACKET wanted a letter hard against the parenthesis. So
+# « certa. ... (*certena : Qua ne dubitas pri la vereso...) » was neither, and
+# « certena » was not a sub-entry though its rule had been measured. The mark
+# is admitted here as RE_PHRASE admits it outside the parenthesis: a « + » in
+# the typescript designates a WORD, which is exactly what a sub-entry is.
 RE_SUBENTRY=re.compile(r'\(\s*(\*[A-Za-zÀ-Ý][A-Za-zà-ÿ-]{2,})\s*\.\s*')
-RE_PHRASE_BRACKET=re.compile(r'\(\s*([A-Za-z\u00c0-\u00ff][A-Za-z\u00e0-\u00ff]*'
+RE_PHRASE_BRACKET=re.compile(r'\(\s*([*+]?[A-Za-z\u00c0-\u00ff][A-Za-z\u00e0-\u00ff]*'
                             r'(?:[- ][A-Za-z\u00e0-\u00ff]+){0,4})\s*:\s')
 # The grammatical endings of Ido: participles, verb, noun, adjective, adverb,
 # plural. We take them off to compare two words by their ROOT -- « inflexar »
@@ -2070,8 +2078,12 @@ def structure_(e):
             spot=m.group(1)
             if m.start(1) in taken: continue
             if not any(_agrees(spot, u) for u in sublines): continue
+            # The mark is not part of the word: « *certena » quotes « certa »
+            # as plainly as « certena » does, and the test must not be blinded
+            # by it -- RE_SUBENTRY's own call strips it the same way.
             if not (spot[:1].isupper()
-                    or _quotes_headword(spot, e.get('vedetto') or '')): continue
+                    or _quotes_headword(spot.lstrip('*+'),
+                                        e.get('vedetto') or '')): continue
             found.append((m.start(1), m.end(), spot, (m.start(), _close(t, m.start()))))
         for m in RE_SUBENTRY.finditer(t):
             spot=m.group(1)
