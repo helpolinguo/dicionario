@@ -138,7 +138,18 @@ RE_LATIN = re.compile(
 # « VI{0,3} » covers V, VI, VII and VIII in one piece, as the rule that TAKES
 # the number off the head of a sense already does. The book goes no further: no
 # article carries a IX.
-RE_SENSE  = re.compile(r'\s*(?:[-–]\s*|(?<=[.)])\s*)'
+#
+# A STRAY OPENING PARENTHESIS stands between the full stop and the number in
+# three articles: « la kozo. ( II. Lokizar » (prizentar), « demonstrenda.
+# ( IV. (teol.) » (propoziciono), « an sulo.( II. (avan ulu) » (reptar).
+# Nothing opens there -- no parenthesis closes it, and the edition already
+# takes it away further down, where the senses read « sulo. II. » and
+# « demonstrenda. IV. ». But the cut runs BEFORE that cleaning, and the
+# number, hidden behind the sign, no longer opened a sense: the three
+# articles lost their last one, swallowed by the one before it. We let the
+# sign pass here as the cleaning does later. It admits three cuts in the
+# whole book -- 13,328 pieces become 13,331 -- and those three alone.
+RE_SENSE  = re.compile(r'\s*(?:[-–]\s*|(?<=[.)])\s*\(?\s*)'
                        r'(?=(?:I{1,3}|IV|VI{0,3})[.,]\s?'
                        r'|(?:I{1,3}|IV|VI{0,3})\s+[A-Za-zÀ-ÿ]'
                        r'|(?:I{1,3}|IV|VI{0,3})\s*\('
