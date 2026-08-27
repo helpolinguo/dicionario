@@ -30313,7 +30313,8 @@ Judikar (ulo) kom agreabla a su
 <!-- p. 461, l. 26 | Germana, Angla, Franca -->
 
 ## prizentar *(trans., ad)*
-Pozar (ulo) avan ulu por ke lu prenez la kozo. II. Lokizar (ulu) avan ulu por ke ica videz lu
+1. Pozar (ulo) avan ulu por ke lu prenez la kozo
+2. Lokizar (ulu) avan ulu por ke ica videz lu
 <!-- p. 461, l. 28 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## pro
@@ -30594,7 +30595,8 @@ Konformigar a la legi segun qui(lu), kom parto di ensemblo, esas tale o tale gra
 ## propoziciono
 1. (logiko) Enunco di judiko
 2. (gram.) Asembluro ek objekto, verbo ed atributo
-3. (geom.) Enunco di teoremo demonstrenda. IV. (teol.) Afirmo dogmatala
+3. (geom.) Enunco di teoremo demonstrenda
+4. (teol.) Afirmo dogmatala
 <!-- p. 465, l. 47 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## propra
@@ -32382,7 +32384,8 @@ Stofo ek silko e lano, od ek lano e kotono
 <!-- p. 493, l. 33 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## reptar *(netrans.)*
-(aludante ula animali) Avancar per tranar su kun ventro an sulo. II. (avan ulu). Humileskar desestiminde
+1. (aludante ula animali) Avancar per tranar su kun ventro an sulo
+2. (avan ulu) Humileskar desestiminde
 <!-- p. 493, l. 35 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## republiko
