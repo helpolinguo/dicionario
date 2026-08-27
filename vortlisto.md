@@ -7002,7 +7002,7 @@ privacar (trans., de) — Afliktar (ulu) per igar lu ne plus havar, od indijar (
 privata — Ne publika
 privilejo — Avantajo personala, individuala, qua grantesis kom ecepto ye la yuro komuna
 prizar (trans.) — Judikar (ulo) kom agreabla a su
-prizentar (trans., ad) — Pozar (ulo) avan ulu por ke lu prenez la kozo. II. Lokizar (ulu) avan ulu por ke ica videz lu
+prizentar (trans., ad) — Pozar (ulo) avan ulu por ke lu prenez la kozo
 pro — Efekte de, konseque de, efike da, kauze de
 probar (trans.) — Aplikar, kom foyounesma, kozo a lua destineso, por povar judikar ka lu esas apta por lo
 probabla — Di qua la exakteso havas plu multa chanci « por » kam chanci « kontre »
@@ -7474,7 +7474,7 @@ reprezentar — (trans.) Remplasar (ulu) en la praktiko di lua yuri
 reprimandar (trans., pri) — Agar (ad ulu) blamo pri lua kulpo
 reprochar (trans., ad) — Imputar kom kulpo (ulo) ad ulu, turnante su a lu
 repso — Stofo ek silko e lano, od ek lano e kotono
-reptar (netrans.) — (aludante ula animali) Avancar per tranar su kun ventro an sulo. II. (avan ulu). Humileskar desestiminde
+reptar (netrans.) — (aludante ula animali) Avancar per tranar su kun ventro an sulo
 republiko — Guverno-sistemo en qua la suvereneso apartenas ad asemblitaro ek la populo, od a senato, ed en qua la povo exekutigar la legi ne esas heredala
 repudiar (trans.) — Cesar agnoskar legale (kom sua spozino)
 repugnar (trans.) — Produktar antipatio nevinkebla, nerepresebla
