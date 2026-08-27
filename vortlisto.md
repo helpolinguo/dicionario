@@ -2920,7 +2920,7 @@ ganso (zool.) — Ucelo palmipeda, de la sama familio kam olta di la anado
 ganto — Envelopilo de felo o de texajo lina, lana, silka, e c., qua kovras la palmi di la manuo ed omna fingri single, tale ke la manui protektesas sen cesar esar libera
 gapar (netrans.) — Cirkular en stradi, haltante (pro kuriozeso) mem avan kozi qui ne meritas regardeso
 garar (trans.) — Lokizar (navo) shirme en doko
-garantiar (trans.) — Certenigar ulu pri (ulo) sua-response; certifikar sua-response
+garantiar (trans.) — *Certenigar ulu pri (ulo) sua-response; certifikar sua-response
 garbo — Fasko de spiki falchita, en qua omna kapi dispozesas samapunte, qua plularjeskas inter la pedo e la kapo. (anke metafore, pri flori, pirotekno, aquo-sprico)
 garbanzo (bot.) — Nomo di varietato di pizi
 gardar (trans.) — Surveyar por ke ulu, ulo, ne departez, ne egaresez, ne perdesez, ne domajesez
