@@ -3305,14 +3305,7 @@ def correct_words(ent, file_=f"{T}/words.txt"):
     # « en decendanto », « ii aDom » for « di mikra »: the machine broke or welded
     # where it should not, and the faulty word has no boundary of its own. We
     # therefore accept a run of words on the left as on the right.
-    # « * » guards the left as a letter does. A correction that PREPENDS the
-    # mark of an unofficial word -- « Certenigar ulu » -> « *Certenigar ulu » --
-    # leaves the key itself untouched, so on the second pass above it would
-    # match again and lay a second asterisk: « **Certenigar ». Every other
-    # correction changes something INSIDE the span it matches and so cancels
-    # itself, which is the idempotence that second pass counts on. The pass
-    # that aligns the unofficial words guards its own left the same way.
-    mo=re.compile(r"(?<![*A-Za-zÀ-ÿ-])(%s)(?![A-Za-zÀ-ÿ-])"
+    mo=re.compile(r"(?<![A-Za-zÀ-ÿ-])(%s)(?![A-Za-zÀ-ÿ-])"
                   % "|".join(re.escape(k).replace(r"\ ", r"\s+")
                              for k in sorted(corr, key=len, reverse=True)))
     n=0
