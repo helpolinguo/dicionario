@@ -15218,7 +15218,7 @@ Frapo qua perceptigas la tempo forta di verso-pedo
 <!-- p. 228, l. 25 | sen-lingua -->
 
 ## -il-
-Sufixo qua signifikas « instrumento por… » (ne « machino por… »)
+Sufixo qua signifikas « instrumento por… » (ne « mashino por… »)
 <!-- p. 228, l. 28 | sen-lingua -->
 
 ## il(u)
