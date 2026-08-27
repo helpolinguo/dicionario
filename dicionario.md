@@ -5575,7 +5575,8 @@ Enemike cirkondar ed enklozar por kaptar
 <!-- p. 84, l. 42 | Germana, Franca -->
 
 ## certa
-Qua konsideresas, egardesas, kom nedubitebla, kom vera. (*certena : Qua ne dubitas pri la vereso, la exakteso, di ulo)
+Qua konsideresas, egardesas, kom nedubitebla, kom vera
+***certena** Qua ne dubitas pri la vereso, la exakteso, di ulo
 <!-- p. 84, l. 44 | Angla, Franca, Italiana, Hispana -->
 
 ## certifikar *(trans.)*
