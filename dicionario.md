@@ -12504,7 +12504,7 @@ Cirkular en stradi, haltante (pro kuriozeso) mem avan kozi qui ne meritas regard
 <!-- p. 188, l. 9 | Germana, Angla, Franca, Italiana, Hispana -->
 
 ## garantiar *(trans.)*
-Certenigar ulu pri (ulo) sua-response; certifikar sua-response
+*Certenigar ulu pri (ulo) sua-response; certifikar sua-response
 <!-- p. 188, l. 14 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## garbo
