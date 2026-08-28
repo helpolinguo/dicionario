@@ -42,6 +42,8 @@ The two editions come from one file, and they are rebuilt together:
 Then the surveys, each of which says what it expects. A figure that moves
 without a reason is a defect, not a detail:
 
+    python3 tools/parentheticals.py # 2020 verbi (1387 / 587 / 15), 396 regas
+                                    # prepoziciono; 953 faki, 88 of five or more
     python3 tools/survey_rules.py   # 1444 fragments (9 / 324 / 9 / 1102)
     python3 tools/survey_order.py   # 35 transpositions, 20 headwords astray
     python3 tools/verify_edition.py
@@ -66,7 +68,8 @@ klozata per kovrilo » became « ... per cover ». Whatever moves in
 bare word.
 
 **A PRODUCED FILE IS NOT A PLACE WHERE ONE WRITES.** `index.html`,
-`dicionario.md`, `.json`, `.jsonl`, `.tsv`, `vortlisto.md`,
+`dicionario.md`, `.json`, `.jsonl`, `.tsv`, `vortlisto.md`, `verbi.*`,
+`faki.*`,
 `content/*.tex`, `content/all.tex`, `pocket/content.tex` and the two
 surveys in `docs/` are regenerated; an edit made in them by hand
 disappears at the next build. What must change is changed in `tools/` or
