@@ -16,9 +16,9 @@ Two editions come out of one source, and cannot diverge:
 
 - **the facsimile** (`main.pdf`), 640 pages, the typescript as it stands;
 - **the cleaned text** — the reading page, a machine-readable edition
-  (`dicionario.md`, `.json`, `.jsonl`, `.tsv`) and a **pocket
-  dictionary** (`dicionario.pdf`), 9,473 entries set in two columns with
-  running heads and PDF bookmarks.
+  (`dicionario.md`, `.json`, `.jsonl`, `.tsv`, and `vorti/` — one file
+  per word) and a **pocket dictionary** (`dicionario.pdf`), 9,473 entries
+  set in two columns with running heads and PDF bookmarks.
 
 This is one of three books gathered at [ido.help](https://ido.help/); the
 other two are [tabeli](https://github.com/helpolinguo/tabeli) and
@@ -45,6 +45,8 @@ index.html           the reading page                             } generated
 dicionario.md/.json/.jsonl/.tsv   the book laid flat              } generated
 dicionario.pdf       the pocket edition, what the page's button offers
 vortlisto.md         the word list                                } generated
+vorti/WORD.md        ONE FILE PER WORD, ~600 bytes each            } generated
+.nojekyll            the deploy is a plain copy: no Jekyll pass
 docs/journal.md      why every value is what it is (French)
 docs/edition-journal.md  the cleaned edition, entry by entry (French)
 docs/sources.md      what the archive holds, and what it does not
@@ -135,6 +137,56 @@ named `q` — that declaration is Safari's second way of recognising a site's
 search when no OpenSearch document is there to be read. Nothing is
 submitted: the list is already filtered at the keystroke, and letting the
 form go would reload 2.1 MB to show what is on screen.
+
+## One file per word
+
+`vorti/` holds **one file per headword**, some 600 bytes each, at an address
+worked out from the word itself: `/dicionario/vorti/propoziciono.md`. Nothing
+has to be searched and no index has to be fetched first — that is the whole
+point of it.
+
+It exists because every other machine-readable file here is THE WHOLE BOOK.
+The cheapest of them, `vortlisto.md`, is 923 kB; the reading page is 2.1 MB
+and carries its articles as one JSON block the browser filters, so a fetcher
+that truncates never reaches the letter P. **Asked what `propoziciono` meant,
+ChatGPT answered with the senses of the English *proposition*** — proposal,
+offer, logical assertion — none of which is in the article, which gives
+`(logiko)`, `(gram.)`, `(geom.)` and `(teol.)`. It then fetched the page, was
+truncated, and gave up.
+
+**The address is the headword, with what a URL cannot carry taken off it.**
+Lower case; the accent folded; a space becomes a hyphen; and the four marks
+that carry sense in this book but not in an address are dropped — the
+asterisk of the word not official, the exclamation of the interjections, the
+parentheses of `a(d)`, the guillemets of `«brokoli»-kaulo`. They are dropped
+from the ADDRESS only: the file's own heading prints the headword as the book
+sets it.
+
+| headword | address |
+| --- | --- |
+| `propoziciono` | `vorti/propoziciono.md` |
+| `-a` | `vorti/-a.md` |
+| `a(d)` | `vorti/ad.md` |
+| `a posteriori` | `vorti/a-posteriori.md` |
+| `*golfo` | `vorti/golfo.md` |
+| `ah!` | `vorti/ah.md` |
+| `ampère` | `vorti/ampere.md` |
+
+**MEASURED: the 9,473 articles make 9,461 addresses.** Twelve are shared —
+six by a headword the book prints twice (`do`, `harmoniko`, `intendanto`,
+`la`, `*nexta`, `*stejo`), six by a starred word meeting its unstarred twin
+(`e(d)`/`ed`, `o(d)`/`od`, `*frua`/`frua`, `*si`/`si`, `*tarda`/`tarda`,
+`*timbro`/`timbro`). **A shared address holds both articles**, one after the
+other, which is why the rule needs no disambiguating suffix: a suffix would
+have to be looked up, and that is the thing being avoided.
+
+`vorti/index.md` lists them all, for the crawler, which cannot work an
+address out. A reader who knows the word does not need it.
+
+`.nojekyll` was added with them. The repository has no `_config.yml`, no
+layout and no front matter, so Jekyll was doing nothing here but slowing the
+build — and 65 of these addresses begin with a hyphen, being Ido's affixes.
+The deploy is now a plain copy.
 
 ## The corrections
 

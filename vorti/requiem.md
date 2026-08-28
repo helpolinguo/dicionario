@@ -1,0 +1,15 @@
+<!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
+
+## « requiem » *(liturgio katolika)*
+1. Prego por la mortinti
+2. Meso di « requiem » : Meso por la repozo di la anmo di mortinto
+3. Parti di la mortinto-meso, igita muzikajo
+<!-- p. 494, l. 2 | sen-lingua -->
+
+---
+
+*Dicionario de la 10.000 radiki di la linguo universala Ido*, Marcelo Persiko (Marcel Pesch), 1934/1964.
+
+La defini esas en Ido. La lingui indikata esas ti en qui la radiko esas atestata — li ne esas tradukuri.
+
+Vortlisto : ../vortlisto.md · Kompleta libro : ../dicionario.md · Pagino : ../?q=requiem

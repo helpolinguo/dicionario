@@ -1,0 +1,14 @@
+<!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
+
+## abrotano *(bot.)*
+Speco di artemizio di qua la folii, kande onu manuagas li, lasas sur la fingri odoro citronala
+L. artemisia abrotanum
+<!-- p. 4, l. 2 | sen-lingua -->
+
+---
+
+*Dicionario de la 10.000 radiki di la linguo universala Ido*, Marcelo Persiko (Marcel Pesch), 1934/1964.
+
+La defini esas en Ido. La lingui indikata esas ti en qui la radiko esas atestata — li ne esas tradukuri.
+
+Vortlisto : ../vortlisto.md · Kompleta libro : ../dicionario.md · Pagino : ../?q=abrotano

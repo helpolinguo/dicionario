@@ -1,0 +1,13 @@
+<!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
+
+## doko
+Maro-baseno por konstruktar o reparar navi; baseno cirkondata da kayi e warfi por charjar o descharjar navi
+<!-- p. 119, l. 35 | Germana, Franca, Rusa -->
+
+---
+
+*Dicionario de la 10.000 radiki di la linguo universala Ido*, Marcelo Persiko (Marcel Pesch), 1934/1964.
+
+La defini esas en Ido. La lingui indikata esas ti en qui la radiko esas atestata — li ne esas tradukuri.
+
+Vortlisto : ../vortlisto.md · Kompleta libro : ../dicionario.md · Pagino : ../?q=doko

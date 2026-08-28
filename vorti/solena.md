@@ -1,0 +1,15 @@
+<!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
+
+## solena
+1. Celebrata singla-yare per ceremonio publika
+2. Akompanata da ceremonio, da agi publika, qui igas lu partikulare importoza ed impozanta
+3. (metaf.) Grava til igar la kozo importoza ed impozanta
+<!-- p. 540, l. 37 | Germana, Angla, Franca, Italiana, Hispana | pagino-nefidinda -->
+
+---
+
+*Dicionario de la 10.000 radiki di la linguo universala Ido*, Marcelo Persiko (Marcel Pesch), 1934/1964.
+
+La defini esas en Ido. La lingui indikata esas ti en qui la radiko esas atestata — li ne esas tradukuri.
+
+Vortlisto : ../vortlisto.md · Kompleta libro : ../dicionario.md · Pagino : ../?q=solena
