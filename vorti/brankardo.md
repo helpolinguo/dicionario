@@ -1,0 +1,13 @@
+<!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
+
+## brankardo
+Singla de la du branchi (ligna), plu o min lejera, maxim ofte kurvigita por su adaptar a la korpo di la kavalo, qui artike juntesas a la avana parto di veturo, ed inter qui onu jungas la kavalo
+<!-- p. 72, l. 42 | Franca -->
+
+---
+
+*Dicionario de la 10.000 radiki di la linguo universala Ido*, Marcelo Persiko (Marcel Pesch), 1934/1964.
+
+La defini esas en Ido. La lingui indikata esas ti en qui la radiko esas atestata — li ne esas tradukuri.
+
+Vortlisto : ../vortlisto.md · Kompleta libro : ../dicionario.md · Pagino : ../?q=brankardo

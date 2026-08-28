@@ -1,0 +1,14 @@
+<!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
+
+## milano *(zool.)*
+Rapt-ucelo jornala, di qua la kaudo esas oblonga e forkatra, ye flugo rapida
+L. milvus ictinus
+<!-- p. 373, l. 7 | Franca, Hispana -->
+
+---
+
+*Dicionario de la 10.000 radiki di la linguo universala Ido*, Marcelo Persiko (Marcel Pesch), 1934/1964.
+
+La defini esas en Ido. La lingui indikata esas ti en qui la radiko esas atestata — li ne esas tradukuri.
+
+Vortlisto : ../vortlisto.md · Kompleta libro : ../dicionario.md · Pagino : ../?q=milano

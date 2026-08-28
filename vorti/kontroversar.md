@@ -1,0 +1,13 @@
+<!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
+
+## kontroversar *(trans.)*
+Diskutar kun ulu pri punto di doktrino
+<!-- p. 302, l. 56 | Germana, Angla, Franca, Italiana, Hispana -->
+
+---
+
+*Dicionario de la 10.000 radiki di la linguo universala Ido*, Marcelo Persiko (Marcel Pesch), 1934/1964.
+
+La defini esas en Ido. La lingui indikata esas ti en qui la radiko esas atestata — li ne esas tradukuri.
+
+Vortlisto : ../vortlisto.md · Kompleta libro : ../dicionario.md · Pagino : ../?q=kontroversar

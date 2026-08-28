@@ -1,0 +1,13 @@
+<!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
+
+## antiklina *(geol.)*
+Dicesas pri la plisuro di strato en qua la parto konkava regardas adinfre
+<!-- p. 31, l. 14 | sen-lingua -->
+
+---
+
+*Dicionario de la 10.000 radiki di la linguo universala Ido*, Marcelo Persiko (Marcel Pesch), 1934/1964.
+
+La defini esas en Ido. La lingui indikata esas ti en qui la radiko esas atestata — li ne esas tradukuri.
+
+Vortlisto : ../vortlisto.md · Kompleta libro : ../dicionario.md · Pagino : ../?q=antiklina
