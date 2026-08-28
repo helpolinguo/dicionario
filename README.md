@@ -46,6 +46,8 @@ dicionario.md/.json/.jsonl/.tsv   the book laid flat              } generated
 dicionario.pdf       the pocket edition, what the page's button offers
 vortlisto.md         the word list                                } generated
 vorti/WORD.md        ONE FILE PER WORD, ~600 bytes each            } generated
+verbi.md/.json       transitivity and the governed preposition     } generated
+faki.md/.json        the subject fields, and their words           } generated
 .nojekyll            the deploy is a plain copy: no Jekyll pass
 docs/journal.md      why every value is what it is (French)
 docs/edition-journal.md  the cleaned edition, entry by entry (French)
@@ -58,6 +60,7 @@ docs/underlines-unplaced.md, docs/order-broken.md   two surveys   } generated
 ```sh
 lualatex main.tex && lualatex main.tex  # the facsimile, 640 pages
 python3 tools/all_editions.py          # everything downstream of the text
+python3 tools/parentheticals.py        # verbi.*, faki.*
 ```
 
 `tools/all_editions.py` runs the four stages in the one order that keeps
@@ -66,8 +69,9 @@ page (`tools/export.py`), the pocket text (`tools/pocket.py`), then
 lualatex twice — twice, because the running heads and the PDF bookmarks
 are read back out of the `.aux` of the previous pass.
 
-`index.html`, `dicionario.*`, `vortlisto.md`, `content/*.tex`,
-`pocket/content.tex` and the two surveys in `docs/` are **generated,
+`index.html`, `dicionario.*`, `vortlisto.md`, `verbi.*`, `faki.*`,
+`content/*.tex`, `pocket/content.tex` and the two surveys in `docs/` are
+**generated,
 never edited by hand**: what must change is changed in `tools/`, or in
 the correction layers under `work/`.
 
@@ -187,6 +191,66 @@ address out. A reader who knows the word does not need it.
 layout and no front matter, so Jekyll was doing nothing here but slowing the
 build — and 65 of these addresses begin with a hyphen, being Ido's affixes.
 The deploy is now a plain copy.
+
+## The parenthetical holds three things
+
+Before the first sense the book prints a bracketed group, and three
+different kinds of statement stand there under one field:
+
+```
+abdikar.    (trans.) (pri rejo od altra suvereno). Cesar sua regno...
+adaptar.    (trans., ad) Konformigar ulo ad ulo...
+ablacionar. (trans.)(kirurg.) Deprenar de la korpo homala...
+```
+
+`fako` carries all of it as one string — `trans.) (kirurg.` being the
+ordinary shape where the book sets two groups. Nothing told them apart, so
+nothing could be asked of them.
+
+**The transitivity.** 2,020 articles are marked `trans.` or `netrans.` —
+1,387 transitive, 587 intransitive, 15 both. In Ido this is not a detail of
+lexicography: it decides whether a verb takes a direct object, and
+therefore whether `-ig-` or `-es-` is the right derivation. A writer
+without it guesses on every verb.
+
+**The governed preposition.** 396 of them name the preposition they take —
+`adaptar ad`, `admirar pri, pro`, `admisar aden`. 100 distinct forms. This
+is printed nowhere else, and it is the difference between Ido a reader can
+follow and Ido that is merely Ido-shaped.
+
+**The subject field.** 953 distinct parentheticals, of which 88 name five
+words or more: `bot.` 616, `zool.` 454, `anat.` 275, `patol.` 248.
+
+**BOTH LEVELS ARE READ, AND READING ONLY THE ARTICLE'S LOSES THE VERBS THAT
+MATTER MOST.** A sense carries its own mark, wrapped in the export between
+two private-use sentinels. **MEASURED: 40 verbs are marked at sense level
+only** — `fugar`, `finar`, `komencar`, `kombatar`, `embarkar` among them —
+and they are marked there *because* they are transitive in one sense and
+intransitive in another:
+
+```
+finar — transitiva (senco 1), netransitiva (senco 2)
+fugar — netransitiva (senco 1), transitiva (senco 2)
+```
+
+A tool reading `fako` alone reports 1,981 verbs, looks complete, and is
+silent on every verb whose answer is *it depends on the sense*. 31 verbs
+change by sense. The same reading is what finds `metaf.`, which marks 228
+words and **not one article**: read at article level alone, the book has no
+mark for the figurative sense at all.
+
+**WHAT IS NOT GOVERNMENT.** `abdikar (pri rejo od altra suvereno)` opens
+with a preposition and is **not** government — it says what sort of subject
+the verb takes. A first cut keyed to the first word made that phrase the
+government of `abdikar`, and 33 articles read that way. A government is
+prepositions and nothing else: every token must be a preposition or one of
+the placeholders `ulu` / `ulo`. `ad`, `pri, pro`, `ulo, ad ulu` pass;
+`pri rejo` does not, and is kept verbatim as a note rather than being
+classified into something the tool invented.
+
+**The field itself is not touched.** `fako` stays as `export.py` writes it,
+and the reading page with it; the decomposition acts in `verbi.*` and
+`faki.*` alone.
 
 ## The corrections
 
