@@ -2,7 +2,7 @@
 
 ## trancheo *(tekn.)*
 1. Exkavuro facita en sulo ula-longe (por kanalo, kanaleto, voyo, relvoyo, e c.)
-2. (milit-arto) Fosato, shirme da qua onu povas proximigar su a fortifikajo, a fortreso, *asiejata (*siejata)
+2. (milit-arto) Fosato, shirme da qua onu povas proximigar su a fortifikajo, a fortreso, *asiejata (siejata)
 <!-- p. 589, l. 41 | Germana, Angla, Franca, Rusa -->
 
 ---

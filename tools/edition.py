@@ -3219,20 +3219,42 @@ def star_(ent):
 
     The word's own article is left as it stands: its headword carries the mark
     already, and doubling it in its own definition teaches nothing.
+
+    AND THE ENDING DECIDES WHAT IS A DERIVATIVE, because in Ido it carries the
+    part of speech. « *siejo » is a NOUN, the book's own new sense of the word:
+    « Loko ube ulu, ulo, esas establisita ». « siejata » is the past participle
+    of « siejar », to besiege, which is another word entirely and which the book
+    never marks -- it writes « +asiejata (siejata) », the cross on the first and
+    nothing on the second, at arieto p045 and at trancheo p596. Taking the root
+    alone, the rule read « siej » in both and marked the participle too, which
+    asserts an unofficial verb the book does not declare.
+
+    A participle or a conjugated form is therefore propagated only from a VERB
+    headword. From a noun or an adjective only the nominal endings are: -o, -oj,
+    -a, -e, -i. Measured over the whole book, the restriction blocks two marks
+    and only two, both « siejata »; the 43 others stand, « *reproduktar »'s
+    twenty conjugated forms among them, since there the headword IS the verb.
     """
+    # The nominal endings alone: noun, adjective, adverb, plural.
+    ENDING_NOMINAL = r'(?:oj|o|a|e|i)'
     roots_={}
     for e in ent:
         v=e.get('vedetto') or ''
         if not v.startswith('*'): continue
-        r=re.sub(r'(ar|ir|or|o|a|e|i)$', '', v[1:])
-        if len(r)>=3: roots_[r]=v
+        m_=re.search(r'(ar|ir|or|o|a|e|i)$', v[1:])
+        r=v[1:][:m_.start()] if m_ else v[1:]
+        if len(r)>=3: roots_[r]=(v, bool(m_) and m_.group(1) in ('ar','ir','or'))
     n=0
-    for r,v in sorted(roots_.items()):
+    for r,(v,verb_) in sorted(roots_.items()):
+        # The attestation is read on every ending: the author's mark anywhere on
+        # the root is what says the root is unofficial. Only what we then LAY is
+        # restricted.
         marker=re.compile(r'\*(%s%s)(?![A-Za-zà-ÿ-])' % (re.escape(r), RE_ENDING_QUOTED))
         if not any(marker.search(s) for e in ent for s in (e.get('senci') or [])):
             continue
         bare_=re.compile(r'(?<![*A-Za-zà-ÿ-])(%s%s)(?![A-Za-zà-ÿ-])'
-                        % (re.escape(r), RE_ENDING_QUOTED))
+                        % (re.escape(r),
+                           RE_ENDING_QUOTED if verb_ else ENDING_NOMINAL))
         for e in ent:
             if (e.get('vedetto') or '')==v: continue
             S=e.get('senci') or []

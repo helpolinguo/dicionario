@@ -604,7 +604,7 @@ argus — Persono mitologiala qua havis cent okuli ed a qua Junono donabis kom i
 -ario — Sufixo qua indikas « persono a qua nia ago direktesas, od ula kozo destinesas »
 ario — Ensemblo de noti muzikala e de toni ye qui konsistas kanto
 arida — Sen vejetanti, sterila
-arieto (milit-arto) — En la milit-arto di la antiqui e di la mezepokani : milito-mashino kun, ye un extremajo, mutono-kapo ek fero, per qua onu frapis la muregi di urbo *asiejata (*siejata)
+arieto (milit-arto) — En la milit-arto di la antiqui e di la mezepokani : milito-mashino kun, ye un extremajo, mutono-kapo ek fero, per qua onu frapis la muregi di urbo *asiejata (siejata)
 aristo — Stangeto osta en la skeleto di la fishi
 aristokrata — Qua apartenas a ta formo di guvernado en olqua la autoritato guvernala esas la privilejo di la nobeli
 aristolokio (bot.) — Planto lignoza di qua la radiko uzesas kom tonizivo ed apertivo

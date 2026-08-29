@@ -2557,7 +2557,7 @@ Sen vejetanti, sterila
 <!-- p. 38, l. 48 | Germana, Angla, Franca, Italiana, Hispana -->
 
 ## arieto *(milit-arto)*
-En la milit-arto di la antiqui e di la mezepokani : milito-mashino kun, ye un extremajo, mutono-kapo ek fero, per qua onu frapis la muregi di urbo *asiejata (*siejata)
+En la milit-arto di la antiqui e di la mezepokani : milito-mashino kun, ye un extremajo, mutono-kapo ek fero, per qua onu frapis la muregi di urbo *asiejata (siejata)
 <!-- p. 38, l. 50 | Hispana -->
 
 ## aristo
@@ -38459,7 +38459,7 @@ Dividar par-separe (korpo) per korpo plu harda e taliita tale ke adminime un ek 
 
 ## trancheo *(tekn.)*
 1. Exkavuro facita en sulo ula-longe (por kanalo, kanaleto, voyo, relvoyo, e c.)
-2. (milit-arto) Fosato, shirme da qua onu povas proximigar su a fortifikajo, a fortreso, *asiejata (*siejata)
+2. (milit-arto) Fosato, shirme da qua onu povas proximigar su a fortifikajo, a fortreso, *asiejata (siejata)
 <!-- p. 589, l. 41 | Germana, Angla, Franca, Rusa -->
 
 ## tranquila
