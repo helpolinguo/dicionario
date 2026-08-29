@@ -1168,15 +1168,23 @@ def analyse_(e, lexicon=None):
     # the government belongs to the marker of transitivity, not to the
     # definition, which therefore began with an orphaned parenthesis.
     if e['fako']:
-        m2 = re.match(r'^[\s.,;:\u2013-]*\(([^()]{1,40})\)\s*\.?\s*(?=[-\u2013]?\s*(?:[IVX]{1,4}\.|[A-Z\u00c0-\u00dd]))', rest)
+        # The two can be JOINED BY A CONNECTOR, and the book does it once:
+        # « experimentar. (trans.)e (netrans., pri, per) » -- transitive AND
+        # intransitive, the « e » being the Ido « and » and standing outside
+        # both parentheses. Without it the rule stopped at the first note, and
+        # the second stayed in the definition, whose initial capital then fell
+        # on the connector: the sense read « E (netrans., pri, per). En la
+        # observo-cienci... ». It is the only entry of the book shaped so.
+        m2 = re.match(r'^[\s.,;:\u2013-]*(?:(ed?|od?)\s+)?\(([^()]{1,40})\)\s*\.?\s*(?=[-\u2013]?\s*(?:[IVX]{1,4}\.|[A-Z\u00c0-\u00dd]))', rest)
         if m2:
             # The second parenthesis is a piece of information of the same nature as
             # the first, and the same treatment is due to it: initial lower case,
             # figures straightened, the FULL STOP given back to the abbreviation.
             # Reglued as it stood, it came out bare when its neighbours were pointed --
             # « (trans.) (tekn) », « (netrans.) (patol) », « (netrans.) (Kemio) ».
-            second_ = make_uniform(to_lowercase(point_(to_digits(m2.group(1).strip(' .,;:')))))
-            e['fako'] = "%s) (%s" % (e['fako'], second_)
+            second_ = make_uniform(to_lowercase(point_(to_digits(m2.group(2).strip(' .,;:')))))
+            join_ = " %s " % m2.group(1) if m2.group(1) else " "
+            e['fako'] = "%s)%s(%s" % (e['fako'], join_, second_)
             rest = rest[m2.end():]
     rest = rest.lstrip(' -–.,;:')
     # Elision: « ka(d) », « on(u) », « a(d) ». The letter in parentheses belongs
