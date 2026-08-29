@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## arieto *(milit-arto)*
-En la milit-arto di la antiqui e di la mezepokani : milito-mashino kun, ye un extremajo, mutono-kapo ek fero, per qua onu frapis la muregi di urbo *asiejata (*siejata)
+En la milit-arto di la antiqui e di la mezepokani : milito-mashino kun, ye un extremajo, mutono-kapo ek fero, per qua onu frapis la muregi di urbo *asiejata (siejata)
 <!-- p. 38, l. 50 | Hispana -->
 
 ---
