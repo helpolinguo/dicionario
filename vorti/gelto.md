@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## gelto
-Parto proporcionala de la pekunio qua rezultas de la vendo di la vari, grantata a sua komizi (ultre la salarioquanto fixa di ici) da ula butikegi
+Parto proporcionala de la pekunio qua rezultas de la vendo di la vari, grantata a sua komizi (ultre la salario-quanto fixa di ici) da ula butikegi
 <!-- p. 190, l. 26 | Germana, Franca -->
 
 ---

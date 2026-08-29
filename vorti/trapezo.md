@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## trapezo
-1. (geom.) Quadrilatero di qua du lateri esas interparalela, ma ne-interegala
+1. (geom.) Quadrilatero di qua du lateri esas inter-paralela, ma ne-interegala
 2. Implemento di gimnastiko ek bastono qua povas portar la pezo di persono, suspendita per du kordi ringoza a la portiko
 <!-- p. 591, l. 18 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 

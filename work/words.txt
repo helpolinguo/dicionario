@@ -38,7 +38,17 @@ DEFIES	DEFIRS	p116 diciplinar : aucun code ne repete une langue ; E y figure deu
 D5	DE	p194 ganso : code de langues, 5 lu pour E
 gipao	gipso	p366 masonar : « la induturi ek mortero, gipso »
 (nuva)	(*nuva)	p404 : la senco III di «nova» distingesas kom *nuva ; en brokantar la «+» di la originalo suficas
-segunmezuro	segunmezura	p395 muzikar : adjektivo, do finalo -a
+# segunmezuro	segunmezura	p395 muzikar : adjektivo, do finalo -a
+# ANNULEE, et devenue sans objet : elle corrigeait un mot que le
+# recollage avait fabrique. Le tapuscrit coupe « segun- » / « mezuro »
+# a la fin de p395 l25, et l'ancien recollage soudait « segunmezuro »,
+# qui n'est pas un mot ; on lui donnait alors la finale -a de
+# l'adjectif. Le trait d'union rendu, muzikar lit « de soni
+# segun-mezuro e ritmoza » -- exactement ce que le livre ecrit de
+# lui-meme chez sequencio p526 l45, « versi segun-mezuro e ritmoza ».
+# La cle « segunmezuro » ne rencontre donc plus rien, et une correction
+# qui ne rencontre plus rien ne doit pas rester a faire croire
+# qu'elle agit.
 # --- Sous-numerotations : le « 1 » lu comme un « l » minuscule.
 kolo : l. Ornivo	kolo : 1. Ornivo	p292 koliaro : sous-enumeration
 Prepoziciono : l. Indikas	Prepoziciono : 1. Indikas	p565 sub : sous-enumeration

@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## hamstro *(zool.)*
-Mikra mamifero rodera, di Rusia e di la nordoregioni di Germania
+Mikra mamifero rodera, di Rusia e di la nordo-regioni di Germania
 L. cricetus
 <!-- p. 207, l. 34 | Germana, Franca, Rusa, Hispana -->
 

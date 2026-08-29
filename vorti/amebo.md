@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## amebo
-Protozoario mikroskopala, qua vivas en la aquo sensala o saloza, ed havas pseudopodi por movar su
+Protozoario mikroskopala, qua vivas en la aquo sen-sala o saloza, ed havas pseudopodi por movar su
 <!-- p. 22, l. 51 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ---

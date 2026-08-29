@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## dekremento *(radiotekniko)*
-Deskresko di la ocili o di elektrofluo
+Deskresko di la ocili o di elektro-fluo
 <!-- p. 100, l. 37 | sen-lingua -->
 
 ---

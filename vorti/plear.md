@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## plear *(trans.)*
-1. Amuzar su, o laborar, per funcionigar muzikinstrumento
+1. Amuzar su, o laborar, per funcionigar muzik-instrumento
 2. Reprezentar teatrajo, cinemo-filmo. (anke metaf.)
 <!-- p. 445, l. 46 | sen-lingua -->
 

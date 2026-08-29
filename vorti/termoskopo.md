@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## termoskopo *(fiziko)*
-Aparato por montrar la existo e la signo di difero pri la temperaturi reciproka di du medii, ma qua donas unike valori relativa pri la grandesogrado di ta diferi
+Aparato por montrar la existo e la signo di difero pri la temperaturi reciproka di du medii, ma qua donas unike valori relativa pri la grandeso-grado di ta diferi
 <!-- p. 578, l. 21 | Germana, Angla, Franca, Italiana, Hispana -->
 
 ---

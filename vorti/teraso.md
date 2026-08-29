@@ -2,7 +2,7 @@
 
 ## teraso
 1. Platformo plu o min vasta, facita en gardeno, en parko, por regardar la peizajo til horizonto o por promenar – ek ter-amaso sustenata cirkonde da masonuro
-2. Platformo masonura, facita por regardar la cirkondajo o por promenar, sur un ek la etaji supra o sur la tektokarpenturo di domo, di edifico
+2. Platformo masonura, facita por regardar la cirkondajo o por promenar, sur un ek la etaji supra o sur la tekto-karpenturo di domo, di edifico
 <!-- p. 576, l. 42 | Germana, Angla, Franca -->
 
 ---

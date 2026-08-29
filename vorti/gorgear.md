@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## gorgear *(netrans.)*
-Bruisar quale aquo qua falas de tektopluvkanalo
+Bruisar quale aquo qua falas de tekto-pluvkanalo
 <!-- p. 198, l. 35 | Germana, Angla, Franca, Italiana -->
 
 ---

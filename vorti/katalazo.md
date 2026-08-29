@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## katalazo *(biol.)*
-Fermento solvebla, deskovrita en la tabakofolii, e qua efikas reduktive
+Fermento solvebla, deskovrita en la tabako-folii, e qua efikas reduktive
 <!-- p. 271, l. 12 | sen-lingua -->
 
 ---

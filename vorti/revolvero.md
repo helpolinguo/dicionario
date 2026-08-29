@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## revolvero
-Pafarmo portebla, pistoleto qua posibligas pafar plurafoye sen interrupto, per provizesir ye plura kulati quin onu povas charjar anticipe, e quin resorto igas pasar singlope avan la tubo o la tubi di la armo
+Pafarmo portebla, pistoleto qua posibligas pafar plura-foye sen interrupto, per provizesir ye plura kulati quin onu povas charjar anticipe, e quin resorto igas pasar singlope avan la tubo o la tubi di la armo
 <!-- p. 497, l. 12 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ---

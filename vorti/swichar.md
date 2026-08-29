@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## swichar *(trans.) (elektro)*
-Chanjar la direciono di la elektrofluo, per aparato qua posibligas agar lo sen modifiko di la instaluro, di la filo-reto
+Chanjar la direciono di la elektro-fluo, per aparato qua posibligas agar lo sen modifiko di la instaluro, di la filo-reto
 <!-- p. 565, l. 10 | Angla -->
 
 ---

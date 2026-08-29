@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## stileto
-Poniardo, kun lamo streta, secione triangula o quadriangula
+Poniardo, kun lamo streta, secione triangula o quadri-angula
 <!-- p. 553, l. 45 | Angla, Franca -->
 
 ---

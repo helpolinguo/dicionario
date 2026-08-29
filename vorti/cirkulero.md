@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## cirkulero
-Letro de qua un kopiuro uniforma sendesas samainstante a plura (e, generale : a tre multa) personi
+Letro de qua un kopiuro uniforma sendesas sama-instante a plura (e, generale : a tre multa) personi
 <!-- p. 93, l. 24 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ---

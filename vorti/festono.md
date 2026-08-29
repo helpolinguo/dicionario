@@ -2,7 +2,7 @@
 
 ## festono
 1. Envolvajo ek folii e flori, arkoforma, quan onu suspendas intervalope, kom festo-ornivi
-2. Bordo di vesto, di linjo, taliita formacante denti kurva (o quadrata, o triangula)
+2. Bordo di vesto, di linjo, taliita formacante denti kurva (o quadrata, o tri-angula)
 3. Broduro qua kovras la bordo
 <!-- p. 164, l. 53 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 

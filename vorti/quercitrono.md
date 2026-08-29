@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## quercitrono *(bot.)*
-Granda querko sempre-verda de la nordoregioni di Amerika, di qua la kortico donas materio tintala flava
+Granda querko sempre-verda de la nordo-regioni di Amerika, di qua la kortico donas materio tintala flava
 L. quercus tinctoria
 <!-- p. 476, l. 51 | Germana, Angla, Franca, Italiana -->
 

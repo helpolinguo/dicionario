@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## ficho
-Lamo de ivoro, de osto, de perlomatro, qua uzesas, dum kartoludo, e c., por la konto di la punti quin singlu ganas, e qui pagesas lor la fino di la ludo
+Lamo de ivoro, de osto, de perlomatro, qua uzesas, dum karto-ludo, e c., por la konto di la punti quin singlu ganas, e qui pagesas lor la fino di la ludo
 <!-- p. 165, l. 50 | Germana, Franca, Rusa, Hispana -->
 
 ---

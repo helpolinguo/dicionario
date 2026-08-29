@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## kubo
-1. Paralelepipedo sis-edra, qua formacas quadrati interegala
+1. Paralelepipedo sis-edra, qua formacas quadrati inter-egala
 2. La tria potenco di nombro, o la produto de la nombro, multiplikita per lua quadrato
 <!-- p. 319, l. 44 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 

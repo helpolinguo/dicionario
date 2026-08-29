@@ -3,9 +3,9 @@
 ## damo
 1. Muliero spozoza
 2. Muliero vidva
-3. En la kartoludo : figuro qua reprezentas rejino
+3. En la karto-ludo : figuro qua reprezentas rejino
 4. En la shako-ludo : ta rejino qua unika darfas serchar e kaptar omna-direcione ed irga-diste
-5. En la piono-ludo : piono qua arivinte a la lasta lineo di la piono-plako, duopligesas por distingar lu de la ceteri, e darfas marchar e kaptar diagonale irgadiste
+5. En la piono-ludo : piono qua arivinte a la lasta lineo di la piono-plako, duopligesas por distingar lu de la ceteri, e darfas marchar e kaptar diagonale irga-diste
 <!-- p. 95, l. 36 | Germana, Angla, Franca, Italiana, Hispana -->
 
 ---

@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## matadoro *(precipue en Hispania)*
-La viro qua, en la taurokombati, havas kom tasko ocidar la animalo per espadostroko
+La viro qua, en la tauro-kombati, havas kom tasko ocidar la animalo per espadostroko
 <!-- p. 360, l. 26 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ---

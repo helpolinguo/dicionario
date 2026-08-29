@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## ridelo *(tekn.)*
-Ligno-peco horizontala qua, ye singla latero di chareto, formacas, per la ronda ligno-cilindri qui trairas lu, quaza rastelero destinita impedor la falo di la kargajo
+Ligno-peco horizontala qua, ye singla latero di chareto, formacas, per la ronda ligno-cilindri qui tra-iras lu, quaza rastelero destinita impedor la falo di la kargajo
 <!-- p. 498, l. 41 | Franca, Italiana -->
 
 ---

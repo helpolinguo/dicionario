@@ -524,7 +524,7 @@ def _attested(w, lexicon):
         if w.endswith(f) and len(w)-len(f)>=2 and w[:-len(f)] in lexicon: return True
     return False
 
-def reglue(lines, lexicon=None):
+def reglue(lines, lexicon=None, compounds=None):
     """Reglues an article's lines, giving back the words broken at the line end.
 
     The typescript breaks words at the right edge: « por rezis- » then « tar ».
@@ -538,6 +538,28 @@ def reglue(lines, lexicon=None):
     prefixes, hence always attested as headwords, and the hyphen stayed --
     « re-cevar », « pro-duktita », « kom-batis » came out cut in two. The
     lexical judgement of the first wave found almost nothing else.
+
+    THAT LEXICAL TEST STILL LOSES THE HYPHEN OF A REAL COMPOUND, and it cannot
+    be mended by widening it. _attested() takes the grammatical ending off the
+    word and looks the bare stem up among the HEADWORDS, which carry endings of
+    their own: « cienci » gives « cienc », which is not a headword, « cienco »
+    is. So « observo-cienci », broken over p161, came out « observocienci ».
+    Three widenings were measured over the 2,874 end-of-line hyphens of the
+    book and all three were dropped: comparing stem to stem moves 394 joins and
+    breaks « digest-tala », « grand-eso », « obten-esas »; requiring a whole
+    word on each side moves 212 and breaks « ani-mali », « pro-duktas »,
+    « Testa-mento »; making the reglued test stem-aware as well moves 209 and
+    now UNGLUES fifty compounds the book does write -- « des-kompozar »,
+    « ne-utila », « trans-irar ». A rare word cannot be told from a rare
+    hyphenation by any measure of the book's own roots.
+
+    THE BOOK ITSELF ANSWERS, and it is asked first. A compound that the
+    typescript writes WHOLE INSIDE A LINE was never broken there, so its hyphen
+    is the word's and not the break's; met again at a line end, it keeps it.
+    2,893 such forms stand in the book, and they hold 112 of the breaks -- 91
+    distinct compounds, « lumo-radii » 36 times, « inter-egala » 27,
+    « pekunio-quanto » 20. The test invents nothing: it can only give back a
+    hyphen the book has already written somewhere else.
     """
     out=""
     for i,s in enumerate(lines):
@@ -546,7 +568,9 @@ def reglue(lines, lexicon=None):
         if out.endswith('-') and s[:1].islower() and out[:-1][-1:].isalpha():
             left_=re.split(r'[^A-Za-z’\'-]', out[:-1])[-1]
             right_=re.split(r'[^A-Za-z’\'-]', s)[0]
-            if _attested(left_+right_, lexicon):
+            if compounds and (left_+'-'+right_).lower() in compounds:
+                out=out+s               # the book writes this compound unbroken
+            elif _attested(left_+right_, lexicon):
                 out=out[:-1]+s          # the reglued word exists: it was a hyphenation
             elif (lexicon and _attested(left_, lexicon)
                           and _attested(right_, lexicon)):
@@ -596,13 +620,13 @@ def _split(file_=f"{T}/splits.txt"):
     return _SPLITS
 
 
-def split_at(raw, lexicon=None):
+def split_at(raw, lexicon=None, compounds=None):
     """Splits the entries that contain two. Returns the widened list."""
     out=[]
     for e in raw:
         t = e.get('teksto_brut')
         if t is None:
-            t = re.sub(r'\s+',' ',reglue([s for _,s in e['lineoj']], lexicon)).strip()
+            t = re.sub(r'\s+',' ',reglue([s for _,s in e['lineoj']], lexicon, compounds)).strip()
             # The correction layer for the raw text must be applied BEFORE the
             # cutting: it is that layer which restores the full stop of the language
             # code, on which the cut relies (« - DEFIR. shut! »).
@@ -980,10 +1004,10 @@ def _trim_end(s):
     return s[:m.start() + d[-1].end()] if d else s[:m.start()]
 
 
-def analyse_(e, lexicon=None):
+def analyse_(e, lexicon=None, compounds=None):
     t=e.get('teksto_brut')
     if t is None:
-        t=reglue([s for _,s in e['lineoj']], lexicon)
+        t=reglue([s for _,s in e['lineoj']], lexicon, compounds)
     t=re.sub(r'\s+',' ',t).strip()
     for a,b in _texts_of().items():
         # Idempotence: the layer passes once at the cutting and once at the
@@ -2447,9 +2471,17 @@ def build():
     # headword there would attest any fragment at all.
     lex={e['vedetto'].lower() for e in (analyse_(x) for x in raw)
          if e_ok(e) and len(e['vedetto']) >= 2}
-    n0=len(raw); raw=split_at(raw, lex)
+    # A hyphen the TYPESCRIPT writes whole inside a line was never a break: it
+    # is the word's. Gathered here once, it settles the same hyphen met at a
+    # line end -- see reglue(). Read off the raw lines, before any regluing, so
+    # that no form kept by the rule can come back and attest itself.
+    comp={m.group(0).lower()
+          for pg in pages for _,s in pages[pg]
+          for m in re.finditer(r'\b[A-Za-zà-ÿ]{2,}-[a-zà-ÿ]{2,}\b', s)}
+    n0=len(raw); raw=split_at(raw, lex, comp)
     if len(raw)>n0: print("articles separated from a shared line: %d"%(len(raw)-n0))
-    ent=[analyse_(e, lex) for e in raw]
+    print("compounds the book writes unbroken: %d"%len(comp))
+    ent=[analyse_(e, lex, comp) for e in raw]
     n=apply_judgements(ent)
     if n: print("lexical judgements applied: %d occurrences"%n)
     n=typography(ent)
@@ -3117,7 +3149,15 @@ RE_ELLIPSIS = re.compile(
 # majority of the uses of these; we align the welded forms that remain outside
 # the `fako` field, where the table of domains sees to it already.
 COMPOUND = (('yurocienco', 'yuro-cienco'),
-             ('imprimarto', 'imprim-arto'))
+             ('imprimarto', 'imprim-arto'),
+             # « observo-cienci » is the same compound as « yuro-cienco » above,
+             # and the book breaks it over the end of p161 l23, « observo- » then
+             # « cienci ». reglue() gives a broken compound its hyphen back only
+             # when the book writes that compound unbroken somewhere else; this
+             # one it writes once and only there, so nothing attests it and the
+             # regluing welded it. It is put right here, where the welded forms
+             # that no rule reaches are put right.
+             ('observocienci', 'observo-cienci'))
 
 RE_COMPOUND = tuple(
     (re.compile(r'(?<![-A-Za-z\u00e0-\u00ff])%s(?![A-Za-z\u00e0-\u00ff])' % a), b)

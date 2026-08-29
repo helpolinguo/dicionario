@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## ampèremetro *(elektro)*
-Instrumento por mezurar la intensesogrado di elektro-fluo, e di qua la cifro-plako koncernas le « ampère »
+Instrumento por mezurar la intenseso-grado di elektro-fluo, e di qua la cifro-plako koncernas le « ampère »
 <!-- p. 25, l. 9 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ---

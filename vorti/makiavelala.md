@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## makiavelala
-Konforma a la doktrino asertita da Machiavelli, olqua, dum multa tempo, konsideresis kom perfekte kontreetika (perfida, ruzoza, malicoza, sen-shama)
+Konforma a la doktrino asertita da Machiavelli, olqua, dum multa tempo, konsideresis kom perfekte kontre-etika (perfida, ruzoza, malicoza, sen-shama)
 <!-- p. 350, l. 33 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ---

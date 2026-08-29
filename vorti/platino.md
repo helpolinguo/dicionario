@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## platino *(kemio)*
-Metalo precoza, griz-blanka, mola, duktila, plu pezoza kam oro, ne-alterebla en aero, tre tenaca. Atompezo : 194
+Metalo precoza, griz-blanka, mola, duktila, plu pezoza kam oro, ne-alterebla en aero, tre tenaca. Atom-pezo : 194
 *Simb. kem.* **Pt**
 <!-- p. 445, l. 38 | Germana, Angla, Franca, Italiana, Hispana -->
 

@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## koregono *(zool.)*
-Genero di fisho qua vivas en aquo sensala, familio di la salmonidei, qua vivas en la granda lagi di la centro di Europa (Suisia, Germania, nordoregioni di Italia)
+Genero di fisho qua vivas en aquo sen-sala, familio di la salmonidei, qua vivas en la granda lagi di la centro di Europa (Suisia, Germania, nordo-regioni di Italia)
 <!-- p. 306, l. 11 | sen-lingua -->
 
 ---

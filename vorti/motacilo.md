@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## motacilo *(zool.)*
-Mikra ucelo qua flugetas cirkum la bestiotrupi, ed apud la aqui fluanta o dormanta
+Mikra ucelo qua flugetas cirkum la bestio-trupi, ed apud la aqui fluanta o dormanta
 L. motacilla alba
 <!-- p. 384, l. 34 | Latina -->
 

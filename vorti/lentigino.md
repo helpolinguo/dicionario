@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## lentigino *(che ula personi)*
-Altereso naturala, granoforma, di la koloro di lia pelo
+Altereso naturala, grano-forma, di la koloro di lia pelo
 <!-- p. 334, l. 35 | Angla, Franca, Italiana, Hispana -->
 
 ---

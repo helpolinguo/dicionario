@@ -2,7 +2,7 @@
 
 ## pinto
 1. Extremajo tale tenuigita ke lu pikas. (Ex. : pinto di agulo, di espado, di kompaso)
-2. Ulo kelke pintoforma. (ex. : pinto di monto)
+2. Ulo kelke pinto-forma. (ex. : pinto di monto)
 <!-- p. 440, l. 8 | Angla, Franca, Italiana, Hispana -->
 
 ---

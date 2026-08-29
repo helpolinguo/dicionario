@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## diapazono *(muziko)*
-Instrumento qua donas noto uzata kom departopunto por regular la tono
+Instrumento qua donas noto uzata kom departo-punto por regular la tono
 <!-- p. 109, l. 15 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ---

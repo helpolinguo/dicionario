@@ -2,7 +2,7 @@
 
 ## pajo
 1. Puerulo qua servas princulo, princino, e c.
-2. (ludokarti) Figuro di qua la rango-valoro esas situita dop la rejulo e la damo
+2. (ludo-karti) Figuro di qua la rango-valoro esas situita dop la rejulo e la damo
 <!-- p. 415, l. 52 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ---

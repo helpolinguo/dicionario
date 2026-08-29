@@ -1402,7 +1402,7 @@ Singla ek la perifrazi qui cirkondas la pens-enunco
 <!-- p. 22, l. 13 | Angla, Franca, Italiana, Hispana -->
 
 ## ambasado
-Misiono permananta, establisita da guvernistaro apud guvernistaro stranjera, por igar plu facilan lia interrelati
+Misiono permananta, establisita da guvernistaro apud guvernistaro stranjera, por igar plu facilan lia inter-relati
 <!-- p. 22, l. 16 | Germana, Angla, Franca, Italiana, Hispana -->
 
 ## ambiciar *(trans.)*
@@ -1447,7 +1447,7 @@ Establisuro provizora, destinita a furnisar flego
 <!-- p. 22, l. 48 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## amebo
-Protozoario mikroskopala, qua vivas en la aquo sensala o saloza, ed havas pseudopodi por movar su
+Protozoario mikroskopala, qua vivas en la aquo sen-sala o saloza, ed havas pseudopodi por movar su
 <!-- p. 22, l. 51 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## amebocito *(biol.)*
@@ -1538,7 +1538,7 @@ CH₃NH₂ o (CH₃)₃ NH o C₆H₅N (CH₃)₂
 <!-- p. 24, l. 16 | sen-lingua -->
 
 ## amitoso *(biol.)*
-Su-divido nemediata di la celuli, sen sudivido di la nukleo-peloto. (Antonimo : « mitoso »)
+Su-divido nemediata di la celuli, sen su-divido di la nukleo-peloto. (Antonimo : « mitoso »)
 <!-- p. 24, l. 18 | Germana, Angla, Franca, Italiana, Hispana -->
 
 ## amnestiar *(trans.)*
@@ -1597,7 +1597,7 @@ Intenseso-grado di elektro-fluo qua povas deskompozar 0,001118 gramo di arjento 
 <!-- p. 25, l. 4 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## ampèremetro *(elektro)*
-Instrumento por mezurar la intensesogrado di elektro-fluo, e di qua la cifro-plako koncernas le « ampère »
+Instrumento por mezurar la intenseso-grado di elektro-fluo, e di qua la cifro-plako koncernas le « ampère »
 <!-- p. 25, l. 9 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## ampla
@@ -1781,7 +1781,7 @@ Dicesas pri la planti che qui la dissemo di poleno eventas per vento
 <!-- p. 27, l. 49 | Germana, Angla, Franca, Italiana, Hispana -->
 
 ## anemometro
-Instrumento per qua onu povas mezurar la rapidesogrado di vento
+Instrumento per qua onu povas mezurar la rapideso-grado di vento
 <!-- p. 27, l. 52 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## anemono *(bot.)*
@@ -2078,7 +2078,7 @@ Karbono fosila, qua brulas nur desfacile, kun flamo kurta, sen odoro nek fumo
 <!-- p. 32, l. 8 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## antraxo *(patol.)*
-Inflamo-tumoro di la tisuo celulara subpela
+Inflamo-tumoro di la tisuo celulara sub-pela
 <!-- p. 32, l. 11 | Germana, Angla, Franca, Italiana, Hispana -->
 
 ## antropoida
@@ -2699,7 +2699,7 @@ Situita en la mi-sfero di la Terglobo, qua regardas vers la stelaro « Granda Ur
 <!-- p. 40, l. 38 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## arlekino
-Persono komika di la farso Italiana; lu aparas sur la ceneyo, kun vesto konsistanta ye peci triangula, diversakolora, e kun ligna sabro en la manuo
+Persono komika di la farso Italiana; lu aparas sur la ceneyo, kun vesto konsistanta ye peci triangula, diversa-kolora, e kun ligna sabro en la manuo
 <!-- p. 40, l. 42 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## armo
@@ -2985,7 +2985,7 @@ Ocidar per frapo de ulo tre pezoza
 <!-- p. 44, l. 33 | Franca -->
 
 ## asonancar *(netrans., kun)*
-1. Rivenar (aludante la sama sonuno)
+1. Rivenar (aludante la sama son-uno)
 2. Konsistar ye rimo nekompleta, quan karakterizas nur la identeso di la vokalo acentoza inter du finali maskula e du finali femina. (Ex. ek la Franca linguo : perte e peste)
 <!-- p. 44, l. 35 | Germana, Angla, Franca, Italiana, Hispana -->
 
@@ -3039,7 +3039,7 @@ Nomo di aparati diversa qui havas kom rolo aspirar la fluidi (aero, gaso, vapori
 <!-- p. 45, l. 14 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## aspirino
-Acido acetil-salicila : CH₃COOC₆H₄COOH. Korpo blanka, solida, fuzo-punto : 133° Celsius. Uzata medicine kom kontrefebro, kontre-doloro
+Acido acetil-salicila : CH₃COOC₆H₄COOH. Korpo blanka, solida, fuzo-punto : 133° Celsius. Uzata medicine kom kontre-febro, kontre-doloro
 <!-- p. 45, l. 19 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## astenopa *(patol.)*
@@ -3416,7 +3416,7 @@ Morfoso kompozata da faktori interna, che planto
 
 ## autonoma
 1. Qua regnesas da sua legi propra
-2. (biol.) Dicesas pri la formaco di ovo quan genitis du gameti samarasa
+2. (biol.) Dicesas pri la formaco di ovo quan genitis du gameti sama-rasa
 <!-- p. 50, l. 13 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## autopsiar *(trans.)*
@@ -3844,7 +3844,7 @@ Obstruktar, klozar per stango.
 <!-- p. 56, l. 44 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## barako
-Konstrukturo de planki, por shirmar peskisti, mutongardisti, komercisti en aero publika, e c.
+Konstrukturo de planki, por shirmar peskisti, muton-gardisti, komercisti en aero publika, e c.
 <!-- p. 56, l. 48 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## barakano
@@ -4378,7 +4378,7 @@ Equilibrigo di aktivo e di pasivo di konto komercala
 <!-- p. 65, l. 3 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## bilboketo
-Ludilo qua konsistas ye bastoneto qua finas, calatere per pinto, talatere per pleto, mezi di qua esas suspendita bulo quan onu devas lansar tale ke onu retrorecevos lu sur la pinto o sur la pleto
+Ludilo qua konsistas ye bastoneto qua finas, ca-latere per pinto, talatere per pleto, mezi di qua esas suspendita bulo quan onu devas lansar tale ke onu retrorecevos lu sur la pinto o sur la pleto
 <!-- p. 65, l. 6 | Germana, Franca, Italiana, Rusa -->
 
 ## bilgo
@@ -5556,7 +5556,7 @@ L. anthriacus cerefolium
 <!-- p. 84, l. 28 | Franca, Italiana, Latina -->
 
 ## cerio *(kemio)*
-Korpo simpla metala, ferea, harda, densesogrado : 6,7
+Korpo simpla metala, ferea, harda, denseso-grado : 6,7
 *Simb. kem.* **Ce**
 <!-- p. 84, l. 31 | sen-lingua -->
 
@@ -5938,7 +5938,7 @@ Marko poslasita sur la pelo da vunduro, bruluro, pos risanesko
 1. Periodo kontinua ek ula quanto de yari, dum qua ula fenomeni astronomiala eventas sam-ordine
 2. Serio de modifikesi di korpo qua pasas tra estadi diversa, e retrovenas a sua departo-punto
 3. Serio de poemi pri un epoko, un temo, e c.
-4. Lineo spirala quan formacas, cirkum stipo o rameto, la origino-punto di folii qui interkorespondas
+4. Lineo spirala quan formacas, cirkum stipo o rameto, la origino-punto di folii qui inter-korespondas
 <!-- p. 90, l. 2 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## ciklameno *(bot.)*
@@ -6153,7 +6153,7 @@ Envolveso – sinui cirkloforma
 <!-- p. 93, l. 20 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## cirkulero
-Letro de qua un kopiuro uniforma sendesas samainstante a plura (e, generale : a tre multa) personi
+Letro de qua un kopiuro uniforma sendesas sama-instante a plura (e, generale : a tre multa) personi
 <!-- p. 93, l. 24 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## cirkum
@@ -6298,9 +6298,9 @@ Stando anormala di la vid-organo, qua impedas dicernar ula kolori, precipue la k
 ## damo
 1. Muliero spozoza
 2. Muliero vidva
-3. En la kartoludo : figuro qua reprezentas rejino
+3. En la karto-ludo : figuro qua reprezentas rejino
 4. En la shako-ludo : ta rejino qua unika darfas serchar e kaptar omna-direcione ed irga-diste
-5. En la piono-ludo : piono qua arivinte a la lasta lineo di la piono-plako, duopligesas por distingar lu de la ceteri, e darfas marchar e kaptar diagonale irgadiste
+5. En la piono-ludo : piono qua arivinte a la lasta lineo di la piono-plako, duopligesas por distingar lu de la ceteri, e darfas marchar e kaptar diagonale irga-diste
 <!-- p. 95, l. 36 | Germana, Angla, Franca, Italiana, Hispana -->
 
 ## damasko
@@ -6663,7 +6663,7 @@ Garnisar ye acesoraji destinita a plubeligar
 <!-- p. 100, l. 34 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## dekremento *(radiotekniko)*
-Deskresko di la ocili o di elektrofluo
+Deskresko di la ocili o di elektro-fluo
 <!-- p. 100, l. 37 | sen-lingua -->
 
 ## dekremetro *(radiotekniko)*
@@ -6995,7 +6995,7 @@ Eventigar bruiso subita per bruska expanso di gaso
 <!-- p. 106, l. 23 | Germana, Angla, Franca, Italiana, Hispana -->
 
 ## detrimentar *(trans.)*
-Efektigar ad ulu (ad ulo), perdo, mem nevole e mediate
+Efektigar ad ulu (ad ulo), perdo, mem ne-vole e mediate
 <!-- p. 106, l. 26 | Angla, Franca, Italiana, Hispana -->
 
 ## deutoplasmo *(biol.)*
@@ -7181,7 +7181,7 @@ L. dianthus
 <!-- p. 109, l. 12 | Latina -->
 
 ## diapazono *(muziko)*
-Instrumento qua donas noto uzata kom departopunto por regular la tono
+Instrumento qua donas noto uzata kom departo-punto por regular la tono
 <!-- p. 109, l. 15 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## diapedezo *(patol.)*
@@ -7293,7 +7293,7 @@ Mekanismo muntita sur la arboro di la movo-roti di automobilo, por posibligar ke
 <!-- p. 110, l. 41 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## difraktar *(trans.)*
-Produktar deviaco semblanta di la lumoradii kande li frolas la bordi di korpo opaka
+Produktar deviaco semblanta di la lumo-radii kande li frolas la bordi di korpo opaka
 <!-- p. 110, l. 46 | Germana, Angla, Franca, Italiana, Hispana -->
 
 ## difterio *(patol.)*
@@ -9182,7 +9182,7 @@ Fermento solvebla
 <!-- p. 139, l. 35 | sen-lingua -->
 
 ## eogena *(geol.)*
-Dicesas pri la grupo maxim anciena ek la sulostrati terciara
+Dicesas pri la grupo maxim anciena ek la sulo-strati terciara
 <!-- p. 139, l. 37 | sen-lingua -->
 
 ## eolipilo *(tekn.)*
@@ -10169,7 +10169,7 @@ Konocar (ulo), savar (pri ulo) per uzir lu praktikale
 <!-- p. 154, l. 20 | Angla, Franca, Italiana, Hispana -->
 
 ## experimentar *(trans.) e (netrans., pri, per)*
-En la observocienci : operaco quan onu agas por verifikar o por demonstrar ulo per praktiko
+En la observo-cienci : operaco quan onu agas por verifikar o por demonstrar ulo per praktiko
 <!-- p. 154, l. 23 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## experta
@@ -10563,7 +10563,7 @@ Ario armeala kurta, tre ritmoza, pleata per trumpeti od altra muzik-instrumenti 
 <!-- p. 160, l. 6 | Germana, Angla, Franca, Italiana, Hispana -->
 
 ## fanfaronar *(netrans., pri, pro)*
-Exajerar sua avantaji, sua forteso, e c., per parolo od altre, por trompar sua kunhomi
+Exajerar sua avantaji, sua forteso, e c., per parolo od altre, por trompar sua kun-homi
 <!-- p. 160, l. 9 | Franca, Italiana, Hispana -->
 
 ## fango
@@ -10911,7 +10911,7 @@ Agar repasto festala, pompoza, honorize di ulo o di ulu
 
 ## festono
 1. Envolvajo ek folii e flori, arkoforma, quan onu suspendas intervalope, kom festo-ornivi
-2. Bordo di vesto, di linjo, taliita formacante denti kurva (o quadrata, o triangula)
+2. Bordo di vesto, di linjo, taliita formacante denti kurva (o quadrata, o tri-angula)
 3. Broduro qua kovras la bordo
 <!-- p. 164, l. 53 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
@@ -10980,7 +10980,7 @@ Brocho, agrafo ek metalo, por retenar la extremaji di vesto
 <!-- p. 165, l. 47 | Germana, Angla, Franca, Italiana, Hispana -->
 
 ## ficho
-Lamo de ivoro, de osto, de perlomatro, qua uzesas, dum kartoludo, e c., por la konto di la punti quin singlu ganas, e qui pagesas lor la fino di la ludo
+Lamo de ivoro, de osto, de perlomatro, qua uzesas, dum karto-ludo, e c., por la konto di la punti quin singlu ganas, e qui pagesas lor la fino di la ludo
 <!-- p. 165, l. 50 | Germana, Franca, Rusa, Hispana -->
 
 ## fidar *(netrans., ad)*
@@ -12674,7 +12674,7 @@ Substanco azotoza quan onu extraktas de la osti, de la kartilagi di la animali, 
 <!-- p. 190, l. 22 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## gelto
-Parto proporcionala de la pekunio qua rezultas de la vendo di la vari, grantata a sua komizi (ultre la salarioquanto fixa di ici) da ula butikegi
+Parto proporcionala de la pekunio qua rezultas de la vendo di la vari, grantata a sua komizi (ultre la salario-quanto fixa di ici) da ula butikegi
 <!-- p. 190, l. 26 | Germana, Franca -->
 
 ## gemo
@@ -13247,7 +13247,7 @@ Ekfluajo de la membrano genitala ed urinifala
 <!-- p. 198, l. 32 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## gorgear *(netrans.)*
-Bruisar quale aquo qua falas de tektopluvkanalo
+Bruisar quale aquo qua falas de tekto-pluvkanalo
 <!-- p. 198, l. 35 | Germana, Angla, Franca, Italiana -->
 
 ## gorilo *(zool.)*
@@ -13312,7 +13312,7 @@ Substanco (ferkarburo) de qua onu facas la krayoni ordinara
 <!-- p. 199, l. 30 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## grafologio
-Studiado di la karaktero di la homi segun lia skribostilo, di lia grafismo
+Studiado di la karaktero di la homi segun lia skribo-stilo, di lia grafismo
 <!-- p. 199, l. 33 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## grafometro
@@ -13808,7 +13808,7 @@ Telo o reto suspendita horizontale per lua du extremaji, tale ke lu formacas lit
 <!-- p. 207, l. 30 | Angla, Franca, Rusa, Hispana -->
 
 ## hamstro *(zool.)*
-Mikra mamifero rodera, di Rusia e di la nordoregioni di Germania
+Mikra mamifero rodera, di Rusia e di la nordo-regioni di Germania
 L. cricetus
 <!-- p. 207, l. 34 | Germana, Franca, Rusa, Hispana -->
 
@@ -14236,7 +14236,7 @@ Morbo konstitucionala ed heredebla, nekontagiala, quan karakterizas desordini ne
 <!-- p. 213, l. 37 | Franca -->
 
 ## heteroblastika *(biol.)*
-(fenomeno) qua konsistas ye la formaceso, en la sama punti, che animali inter-parenta, di organi interequivalanta, ma di qui la origino embriologiala esas tamen interdiferanta
+(fenomeno) qua konsistas ye la formaceso, en la sama punti, che animali inter-parenta, di organi interequivalanta, ma di qui la origino embriologiala esas tamen inter-diferanta
 <!-- p. 213, l. 43 | sen-lingua -->
 
 ## heterodoxo
@@ -15259,7 +15259,7 @@ Reprezentar ulo en sua spirito
 <!-- p. 228, l. 52 | Angla, Franca, Italiana, Hispana -->
 
 ## imaginara *(matem.)*
-Simbolo algebrala, ek radikalo duesmagrada pri nombro negativa
+Simbolo algebrala, ek radikalo duesma-grada pri nombro negativa
 <!-- p. 228, l. 54 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## imajo
@@ -18096,7 +18096,7 @@ Figuro retorikala, per qua la vorto qua indikas propre ta o ca objekto, uzesas p
 <!-- p. 271, l. 8 | Germana, Angla, Franca, Italiana, Hispana -->
 
 ## katalazo *(biol.)*
-Fermento solvebla, deskovrita en la tabakofolii, e qua efikas reduktive
+Fermento solvebla, deskovrita en la tabako-folii, e qua efikas reduktive
 <!-- p. 271, l. 12 | sen-lingua -->
 
 ## katalepsio *(patol.)*
@@ -18153,7 +18153,7 @@ Granda kirko di la arkitekturo kristana mezepokala
 
 ## kategorika
 1. (segun la doktrino da Kant) Lo absoluta e ne-kondicionata
-2. **imperativo kategorika** Agoregulo qua su impozas a la volado kom impero universala ed absoluta
+2. **imperativo kategorika** Ago-regulo qua su impozas a la volado kom impero universala ed absoluta
 <!-- p. 272, l. 2 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## katekismo *(religio kristana)*
@@ -18351,7 +18351,7 @@ Mikra stifto ek fero, ek ligno, muntita trans-verso aden la pinto di bolto, di c
 <!-- p. 274, l. 46 | Germana -->
 
 ## kelero
-Spaco subsula, ordinare vultoza, rezervita sub la teretajo di la domi, ed apta (pro lua temperaturo sempre egala) konservar la vini e la diversa provizaji
+Spaco subsula, ordinare vultoza, rezervita sub la ter-etajo di la domi, ed apta (pro lua temperaturo sempre egala) konservar la vini e la diversa provizaji
 <!-- p. 274, l. 50 | Germana, Angla, Franca -->
 
 ## kelka
@@ -20022,7 +20022,7 @@ Singla de la granda dividuri di la Terglobo quin la oceani separas, ica de ita, 
 
 ## kontingento
 1. (armeo) Quanto de armeani qua esas furnisenda singla-yare a la rekruto-autoritatozi
-2. **moneto-kontingento** *(financo)* Proporciono di la naturi diversa di monetuni quin la Monetiferio devas fabrikar.
+2. **moneto-kontingento** *(financo)* Proporciono di la naturi diversa di monet-uni quin la Monetiferio devas fabrikar.
 **la kontingenti** *(filoz.)* To quo povas eventar, ma ne eventos necese
 <!-- p. 301, l. 33 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
@@ -20201,7 +20201,7 @@ Brandio qua esas la produkturo naturala de la vini rekoltata e distilata en la r
 <!-- p. 304, l. 27 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## kooperar *(netrans.) (ekonomiko)*
-Dicesas pri la ago da ta laboristi qui, vice donar a patrono sua laboro po salariopekunio, komunigas sua sparita pekunio e sua laboro, por produktar e vendar – singla de li partoprenonte la profito o la desprofito. – Dicesas anke pri la personi qui kompras komune sua bezonaji engrose, tale obtenante profitoquanto – quale komercisto endetalista – quan li distributas inter su proporcione a la valoro pekuniala di sua kompri
+Dicesas pri la ago da ta laboristi qui, vice donar a patrono sua laboro po salariopekunio, komunigas sua sparita pekunio e sua laboro, por produktar e vendar – singla de li partoprenonte la profito o la desprofito. – Dicesas anke pri la personi qui kompras komune sua bezonaji engrose, tale obtenante profito-quanto – quale komercisto endetalista – quan li distributas inter su proporcione a la valoro pekuniala di sua kompri
 <!-- p. 304, l. 31 | Angla, Franca -->
 
 ## kooptar *(trans. por)*
@@ -20251,7 +20251,7 @@ Igar apta por manjeso, per la efiko da fairo (per boliigo, rosto, grilo, e c.)
 <!-- p. 305, l. 19 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## koralio
-Produkturo kalkoza ek ula polipi, plu o min dazlantereda, kun la formo di rami, maxim-multa-kaze fixigita an roki submarsurfaca
+Produkturo kalkoza ek ula polipi, plu o min dazlante-reda, kun la formo di rami, maxim-multa-kaze fixigita an roki submarsurfaca
 <!-- p. 305, l. 24 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## koram
@@ -20294,7 +20294,7 @@ Morbo nervala qua produktas movi sukusoza
 <!-- p. 306, l. 8 | Germana, Angla, Franca, Hispana -->
 
 ## koregono *(zool.)*
-Genero di fisho qua vivas en aquo sensala, familio di la salmonidei, qua vivas en la granda lagi di la centro di Europa (Suisia, Germania, nordoregioni di Italia)
+Genero di fisho qua vivas en aquo sen-sala, familio di la salmonidei, qua vivas en la granda lagi di la centro di Europa (Suisia, Germania, nordo-regioni di Italia)
 <!-- p. 306, l. 11 | sen-lingua -->
 
 ## korekta
@@ -20310,7 +20310,7 @@ Direciono determinita di la fluido elektra, magnetala
 <!-- p. 306, l. 21 | Angla, Franca, Italiana, Hispana -->
 
 ## korespondar *(netrans., kun, pri)*
-1. Esar reciproke konforma (1) pro interkonveno di sua naturo, di sua proporcioni; (2) pro interkonkordo di sentimenti
+1. Esar reciproke kon-forma (1) pro interkonveno di sua naturo, di sua proporcioni; (2) pro interkonkordo di sentimenti
 2. Esar reciproke komunikanta : (1) per paseyo komuna; (2) per kambio di letri
 <!-- p. 306, l. 24 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
@@ -20796,7 +20796,7 @@ Lansar voco-sonuni stridanta e neartikulita
 <!-- p. 314, l. 35 | Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## kriblo
-Recevuyo di qua la kulo esas borita ye trui interegala, por separar la objekti di groseso neinteregala, lasanta trapasar ici, retenante iti
+Recevuyo di qua la kulo esas borita ye trui inter-egala, por separar la objekti di groseso neinteregala, lasanta trapasar ici, retenante iti
 <!-- p. 314, l. 38 | Franca, Italiana, Hispana -->
 
 ## krik!
@@ -20942,7 +20942,7 @@ Korpo simpla, metala, di qua la kompozaji esas remarkinda pro lia kolori
 <!-- p. 316, l. 52 | sen-lingua -->
 
 ## kromatiko
-1. (muziko) Qua konsistas ek intersequo de mitoni (mi-toni kromatika), kontraste kun la mi-toni diatonika, plu mikra ye un komao
+1. (muziko) Qua konsistas ek intersequo de mi-toni (mi-toni kromatika), kontraste kun la mi-toni diatonika, plu mikra ye un komao
 2. Qua koncernas la kolori
 <!-- p. 316, l. 55 | Germana, Angla, Franca, Italiana, Hispana -->
 
@@ -21110,7 +21110,7 @@ Ajustar la hararo per dispozar la hari ula-maniero
 <!-- p. 319, l. 41 | Germana, Angla, Franca -->
 
 ## kubo
-1. Paralelepipedo sis-edra, qua formacas quadrati interegala
+1. Paralelepipedo sis-edra, qua formacas quadrati inter-egala
 2. La tria potenco di nombro, o la produto de la nombro, multiplikita per lua quadrato
 <!-- p. 319, l. 44 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
@@ -21388,7 +21388,7 @@ L. numenius
 <!-- p. 323, l. 48 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## kursiva *(pri skribo)*
-Qua konsistas ek literi trasebla fluante, ed inklinata de dextre a sinistre. Dicesas anke pri la imprimotipo qua inklinesas same kam la skriburo ordinara
+Qua konsistas ek literi trasebla fluante, ed inklinata de dextre a sinistre. Dicesas anke pri la imprimo-tipo qua inklinesas same kam la skriburo ordinara
 <!-- p. 323, l. 52 | Germana, Angla, Franca, Italiana, Hispana -->
 
 ## kursoro *(tekn.)*
@@ -21931,7 +21931,7 @@ Pelo dika, deprenita de la karno di ula animali (bovulo, bovino, bovyuno, bufalo
 
 ## lego
 1. Ago-regulo impozata da autoritatozo supera
-2. Agoregulo impozata a la homo da lua raciono, lua koncienco
+2. Ago-regulo impozata a la homo da lua raciono, lua koncienco
 3. (*leyo) Regulo konstanta, universala, a qua omna fenomeni di naturo esas obedienda. – Rezultajo de analizar exakte e precize la cirkonstanci qui esas elementi en la produkto di la fenomeni, ed interligar ta cirkonstanci per la relati normala di inter-sucedo e di inter-simileso. (Auguste Comte)
 <!-- p. 333, l. 13 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
@@ -22018,7 +22018,7 @@ Peco di kalorizo-ligno, segita o tranchita tale ke onu povas pozar lu aden kamen
 <!-- p. 334, l. 32 | Franca, Italiana, Hispana -->
 
 ## lentigino *(che ula personi)*
-Altereso naturala, granoforma, di la koloro di lia pelo
+Altereso naturala, grano-forma, di la koloro di lia pelo
 <!-- p. 334, l. 35 | Angla, Franca, Italiana, Hispana -->
 
 ## lentisko *(bot.)*
@@ -22165,7 +22165,7 @@ L. libellula
 <!-- p. 336, l. 46 | Germana, Angla, Franca, Italiana, Hispana -->
 
 ## libro
-1. Reprodukturo imprimura di la verko da autoro, ek paperfolii asemblita aden kayeri quin onu interasemblas
+1. Reprodukturo imprimura di la verko da autoro, ek paperfolii asemblita aden kayeri quin onu inter-asemblas
 2. La verko tale *reproduktita
 3. Singla ek la parti di ula verki
 <!-- p. 336, l. 52 | Angla, Franca, Italiana, Hispana -->
@@ -22266,7 +22266,7 @@ L. Syringa
 <!-- p. 338, l. 25 | sen-lingua -->
 
 ## lilio *(bot.)*
-Planto herbacea, bulboza kun stipo rekta, e di qua la varietato maxim konocata havas floro pureblanka e klosho-forma
+Planto herbacea, bulboza kun stipo rekta, e di qua la varietato maxim konocata havas floro pure-blanka e klosho-forma
 L. lilium
 <!-- p. 338, l. 28 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
@@ -22456,7 +22456,7 @@ Protoxido di plombo fuzita, mi-vitrigita, uzata por preparar la plombo-sali qui 
 <!-- p. 341, l. 19 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## litero
-Signo alfabetala per qua onu reprezentas singla sonuno di linguo
+Signo alfabetala per qua onu reprezentas singla son-uno di linguo
 <!-- p. 341, l. 24 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## literaturo
@@ -22665,7 +22665,7 @@ Porciono plu o min dina di korpo, tranchita per de-seko tre egala, tale ke la su
 <!-- p. 344, l. 27 | Germana, Angla, Franca, Italiana -->
 
 ## longitudo
-1. (geogr.) Koordinato geografiala qua uzesas por determinar la situeso di loko sur la surfaco di la Terglobo : disto de ta loko a la meridiano determinita
+1. (geogr.) Koordinato geografiala qua uzesas por determinar la situeso di loko sur la surfaco di la Ter-globo : disto de ta loko a la meridiano determinita
 2. (astron.) Koordinato astronomiala uzata por determinar la situeso di astro sur la sfero cielala; disto de ta astro a la punto equinoxala di printempo
 <!-- p. 344, l. 33 | Angla, Franca, Italiana, Rusa, Hispana -->
 
@@ -23024,7 +23024,7 @@ L. Lemur
 <!-- p. 350, l. 30 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## makiavelala
-Konforma a la doktrino asertita da Machiavelli, olqua, dum multa tempo, konsideresis kom perfekte kontreetika (perfida, ruzoza, malicoza, sen-shama)
+Konforma a la doktrino asertita da Machiavelli, olqua, dum multa tempo, konsideresis kom perfekte kontre-etika (perfida, ruzoza, malicoza, sen-shama)
 <!-- p. 350, l. 33 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## maklo *(kristalografio)*
@@ -23225,7 +23225,7 @@ Mikra mancho quan onu sizas por movigar mekanismo
 <!-- p. 353, l. 49 | Franca, Italiana -->
 
 ## mango *(bot.)*
-Frukto di granda arboro di India e di la sudoregioni di Amerika, e qua kelke similesas persiko
+Frukto di granda arboro di India e di la sudo-regioni di Amerika, e qua kelke similesas persiko
 L. mango
 <!-- p. 353, l. 52 | Germana, Angla, Franca, Italiana, Hispana -->
 
@@ -23255,7 +23255,7 @@ Sorto di ago o faco
 
 ## manifestar
 1. (trans.) Igar quaze palpebla, sentebla
-2. (netrans., pri, por) Demonstrar kolektive, publike, favore di opiniono; expresar publike revendiko – multakaze per amaso-cirkular sur la voyi publika, en la stradi, avenui, bulvardi, placi di urbo
+2. (netrans., pri, por) Demonstrar kolektive, publike, favore di opiniono; expresar publike revendiko – multa-kaze per amaso-cirkular sur la voyi publika, en la stradi, avenui, bulvardi, placi di urbo
 <!-- p. 354, l. 18 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## maniko
@@ -23443,7 +23443,7 @@ Spaco sen-texta, lakuno, cirkum paginedo de texto skribura od imprimura
 1. Traco lasita da kozo e per qua onu povas *rekonocar lu
 2. Traco facita sur kozo por igar lu *rekonocebla
 3. Marko obliterala da la posto, qua indikas sur la letri la loko e la dio di la departo e di la arivo
-4. (*timbro) Flug-sigluro quan onu glutinas sur letro (por afrankar lu), sur afisho, sur quitigo-akto, e c. (por pagar la impostopekunio) e qua indikas sua preco
+4. (*timbro) Flug-sigluro quan onu glutinas sur letro (por afrankar lu), sur afisho, sur quitigo-akto, e c. (por pagar la imposto-pekunio) e qua indikas sua preco
 <!-- p. 357, l. 25 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## markezo
@@ -23615,7 +23615,7 @@ Texuro de palio, de junko tresigita, per qua onu kovras la planko-sulo, la muri
 <!-- p. 360, l. 23 | Germana, Angla -->
 
 ## matadoro *(precipue en Hispania)*
-La viro qua, en la taurokombati, havas kom tasko ocidar la animalo per espadostroko
+La viro qua, en la tauro-kombati, havas kom tasko ocidar la animalo per espadostroko
 <!-- p. 360, l. 26 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## matematiko
@@ -23906,7 +23906,7 @@ Manier-adverbo uzata (1) avan komparativo (di supereso o di infreso) por plufort
 1. Apendico unionita a la torso di la homo, di la animalo, per artiki
 2. Persono qua esas un ek la kompozanti di korporaciono politikala, literaturala – di asociitaro, di komuniono religiala
 3. Un ek la propozicioni ye qui konsistas frazo; un ek la frazi ye qui konsistas la ideo-developo
-4. Singla de la du parti di equaciono, quin separas la signo di interegaleso
+4. Singla de la du parti di equaciono, quin separas la signo di inter-egaleso
 <!-- p. 364, l. 45 | Angla, Franca, Italiana, Hispana -->
 
 ## membrano
@@ -25161,7 +25161,7 @@ Sentenco, proverbo preferata da ulu, od atribuita ad ulu, kom expresanta plu o m
 <!-- p. 384, l. 30 | Germana, Angla, Italiana, Rusa -->
 
 ## motacilo *(zool.)*
-Mikra ucelo qua flugetas cirkum la bestiotrupi, ed apud la aqui fluanta o dormanta
+Mikra ucelo qua flugetas cirkum la bestio-trupi, ed apud la aqui fluanta o dormanta
 L. motacilla alba
 <!-- p. 384, l. 34 | Latina -->
 
@@ -25283,7 +25283,7 @@ Desembarasar de la humoro viskoza quan sekrecas la mukozo nazala
 <!-- p. 386, l. 27 | Latina -->
 
 ## municiono *(teknol. militala)*
-Singla ek la kozi ye qui konsistas la ensemblo ek la moyeni di defenso, di su-nutro, ye qui onu provizas fortifikajo, fortreso, militistotrupo. Anke : pulvero, kartochi, obusi, bombi, atomarmi
+Singla ek la kozi ye qui konsistas la ensemblo ek la moyeni di defenso, di su-nutro, ye qui onu provizas fortifikajo, fortreso, militisto-trupo. Anke : pulvero, kartochi, obusi, bombi, atomarmi
 <!-- p. 386, l. 30 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## muntar *(trans.) (tekn.)*
@@ -25415,7 +25415,7 @@ Ensemblo de la agi ed esforci, koordinata, da grupo de personi qui volas atingar
 <!-- p. 388, l. 19 | Angla, Franca, Italiana -->
 
 ## muzikar *(netrans.)*
-Ecitar la sentimenti per serii melodia o per kombinuri harmonioza de soni segunmezura e ritmoza
+Ecitar la sentimenti per serii melodia o per kombinuri harmonioza de soni segun-mezuro e ritmoza
 <!-- p. 388, l. 24 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## myelo *(anat.)*
@@ -25676,7 +25676,7 @@ Elemento qua esas gasa ye la temperaturo ordinara, ed existas en aero minima-qua
 <!-- p. 392, l. 22 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## neovitalismo *(biol.)*
-Teorio segun qua la faktori fizikokemiala qui kondicionas la fenomeni vivala efikas per mekanismo partikulara e qui diferas de olta qua intervenas en la mondo materiala ordinara
+Teorio segun qua la faktori fiziko-kemiala qui kondicionas la fenomeni vivala efikas per mekanismo partikulara e qui diferas de olta qua intervenas en la mondo materiala ordinara
 <!-- p. 392, l. 26 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## neperala *(matem.)*
@@ -25820,7 +25820,7 @@ L. boselaphus tragocamelus
 <!-- p. 394, l. 38 | sen-lingua -->
 
 ## nimbo *(meteorol.)*
-Pluvo-nubo qua karakterizas la aerofluo equatorala, sen formo preciza, kun periferio quaze lacerita
+Pluvo-nubo qua karakterizas la aero-fluo equatorala, sen formo preciza, kun periferio quaze lacerita
 <!-- p. 394, l. 41 | Germana, Angla, Franca, Italiana, Hispana -->
 
 ## nimfo *(mitol.)*
@@ -26425,7 +26425,7 @@ Qua havas ok edri
 
 ## oktavo
 1. (muziko) Intertempi de ok gradi
-2. (liturgio katol.) Intertempo de ok dii qua sequas granda festodio ekleziala e dum qua eventas la memorigo di ta festo. – La lasta dio ek ta serio, en qua la oficio esas maxim solena
+2. (liturgio katol.) Intertempo de ok dii qua sequas granda festo-dio ekleziala e dum qua eventas la memorigo di ta festo. – La lasta dio ek ta serio, en qua la oficio esas maxim solena
 <!-- p. 404, l. 21 | Germana, Angla, Franca, Italiana, Hispana -->
 
 ## oktiliono *(aritm.)*
@@ -26557,7 +26557,7 @@ Amaso de aquo qua superstaceskas e retrofalas sur la surfaco di maro, lago, fluv
 <!-- p. 406, l. 10 | Angla, Franca, Italiana, Hispana -->
 
 ## onixo
-Agato delikata, kun strati interparalela diversakolora
+Agato delikata, kun strati interparalela diversa-kolora
 <!-- p. 406, l. 14 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## onklo
@@ -27189,7 +27189,7 @@ Singla ek la du lateri di folio sur qua onu skribas od imprimas
 
 ## pajo
 1. Puerulo qua servas princulo, princino, e c.
-2. (ludokarti) Figuro di qua la rango-valoro esas situita dop la rejulo e la damo
+2. (ludo-karti) Figuro di qua la rango-valoro esas situita dop la rejulo e la damo
 <!-- p. 415, l. 52 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## pako
@@ -27902,7 +27902,7 @@ L. pastinaca
 <!-- p. 426, l. 2 | Germana, Italiana, Rusa, Hispana, Latina -->
 
 ## pastoro
-1. (olim) La persono qua edukas e gardas bestiotrupi
+1. (olim) La persono qua edukas e gardas bestio-trupi
 2. (religio) Quaza sacerdoto di la religio protestantista
 <!-- p. 426, l. 5 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
@@ -28878,7 +28878,7 @@ Tufo de pili, ligita an la extremajo di bastono mancha, uzata por extensar farbi
 
 ## pinto
 1. Extremajo tale tenuigita ke lu pikas. (Ex. : pinto di agulo, di espado, di kompaso)
-2. Ulo kelke pintoforma. (ex. : pinto di monto)
+2. Ulo kelke pinto-forma. (ex. : pinto di monto)
 <!-- p. 440, l. 8 | Angla, Franca, Italiana, Hispana -->
 
 ## pintado *(zool.)*
@@ -28930,7 +28930,7 @@ L. pirus communis
 <!-- p. 440, l. 50 | Angla, Franca, Italiana, Hispana -->
 
 ## piramido
-1. Monumento kun quar facii triangula e bazo quadriangula, qua uzesis kom tombo por la olima reji di Egiptia (faraoni)
+1. Monumento kun quar facii triangula e bazo quadri-angula, qua uzesis kom tombo por la olima reji di Egiptia (faraoni)
 2. (geom.) Solido kun edri triangula unionita per somito komuna, kun bazo poligonala, e qua havas tam multa lateri kam edri
 <!-- p. 441, l. 2 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
@@ -29224,7 +29224,7 @@ En la imprimo-mashino, brakio-funcionanta, la peco de gisfero, quadrata o rektan
 <!-- p. 445, l. 32 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## platino *(kemio)*
-Metalo precoza, griz-blanka, mola, duktila, plu pezoza kam oro, ne-alterebla en aero, tre tenaca. Atompezo : 194
+Metalo precoza, griz-blanka, mola, duktila, plu pezoza kam oro, ne-alterebla en aero, tre tenaca. Atom-pezo : 194
 *Simb. kem.* **Pt**
 <!-- p. 445, l. 38 | Germana, Angla, Franca, Italiana, Hispana -->
 
@@ -29237,7 +29237,7 @@ Bruisar monotone quale aquo qua agitesas
 <!-- p. 445, l. 44 | Latina -->
 
 ## plear *(trans.)*
-1. Amuzar su, o laborar, per funcionigar muzikinstrumento
+1. Amuzar su, o laborar, per funcionigar muzik-instrumento
 2. Reprezentar teatrajo, cinemo-filmo. (anke metaf.)
 <!-- p. 445, l. 46 | sen-lingua -->
 
@@ -30096,7 +30096,7 @@ Singla ek la elementi di to quo preiras e preparas la temo precipua
 <!-- p. 458, l. 15 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## preludar *(netrans.) (muziko)*
-Probar sua voco, sua muzikinstrumento per kantar, plear serio de noti
+Probar sua voco, sua muzik-instrumento per kantar, plear serio de noti
 <!-- p. 458, l. 18 | Germana, Angla, Franca, Italiana, Hispana -->
 
 ## premio
@@ -30289,7 +30289,7 @@ Superioro di kuvento, di monakeyo
 
 ## prismato
 1. (geom.) Poliedro di qua la bazo infra e la bazo supra esas poligoni paralela egala; e la edri laterala, paralelogrami qui interunionas la lateri homologa di la bazo
-2. (fiziko) Prismo triangula de kristalo qua, kande lumoradii trairas lu, refraktas ta radii e deskompozas li aden lia kolori prima
+2. (fiziko) Prismo triangula de kristalo qua, kande lumo-radii trairas lu, refraktas ta radii e deskompozas li aden lia kolori prima
 <!-- p. 461, l. 7 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## pritaneo *(en la epoki antiqua)*
@@ -30634,7 +30634,7 @@ Katenatra dispozeso di la silogismo, en qua la konkluzo di la unesma divenas la 
 
 ## proskriptar *(trans.) (en Roma, antique)*
 1. Imperar la ocido (di ulu) sen formi judiciala, per nur enskribo sur afisho-texto publikigita
-2. Kondamnar ad ocideso grandaquante
+2. Kondamnar ad ocideso granda-quante
 <!-- p. 466, l. 18 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## prospekto
@@ -31286,7 +31286,7 @@ Kurvo di la klaso quaresma
 <!-- p. 476, l. 21 | Angla, Franca, Italiana, Hispana -->
 
 ## quasio *(bot.)*
-Kortico de la arbusto L. quassia amara, detranchita aden mikra spani, qua saporas tre bitre, ed uzata en medicino kom tonigivo pos macereso (5 grami singla-litre), sive en tintivo alkoholoza
+Kortico de la arbusto L. quassia amara, de-tranchita aden mikra spani, qua saporas tre bitre, ed uzata en medicino kom tonigivo pos macereso (5 grami singla-litre), sive en tintivo alkoholoza
 L. quassia amara
 <!-- p. 476, l. 23 | Germana, Angla, Franca, Italiana, Hispana -->
 
@@ -31317,7 +31317,7 @@ Serchar, komisite od intencante adportor od venigor
 <!-- p. 476, l. 48 | Franca, Italiana -->
 
 ## quercitrono *(bot.)*
-Granda querko sempre-verda de la nordoregioni di Amerika, di qua la kortico donas materio tintala flava
+Granda querko sempre-verda de la nordo-regioni di Amerika, di qua la kortico donas materio tintala flava
 L. quercus tinctoria
 <!-- p. 476, l. 51 | Germana, Angla, Franca, Italiana -->
 
@@ -31352,7 +31352,7 @@ Sen ajorno, tardeso (*retardeso) o fristo, mem minima
 <!-- p. 477, l. 22 | Angla | finalo-nekustumala -->
 
 ## quilayo *(bot.)*
-Genero de rozacei, ek tri o quar speci de arbori, kun folii alternanta, flori dioika, qui kreskas en la sudoregioni di Amerika, e di qui la pulvero, obtenata de lia kortico, uzesas por netigar la linji sordida de makuli grasa
+Genero de rozacei, ek tri o quar speci de arbori, kun folii alternanta, flori dioika, qui kreskas en la sudo-regioni di Amerika, e di qui la pulvero, obtenata de lia kortico, uzesas por netigar la linji sordida de makuli grasa
 L. quillaja saponaria
 <!-- p. 477, l. 25 | sen-lingua -->
 
@@ -32032,7 +32032,7 @@ Organo qua regulas la funciono di mekanismo, di mashino
 
 ## rehabilitar *(trans.)*
 1. Ri-establisar en lua stando originala, en lua yuri originala (persono quan onu deklarabis dekadinta de li)
-2. (metaf.) Ri-estimigar da lua kunhomi
+2. (metaf.) Ri-estimigar da lua kun-homi
 <!-- p. 488, l. 2 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## reino
@@ -32195,7 +32195,7 @@ Atencar ne-vole (ulu, ulo) ne-ordinara, ne-kustumala, ne-expektita
 <!-- p. 490, l. 31 | Angla, Franca -->
 
 ## remar *(netrans.)*
-Uzar, por igar batelo (ed, olim, navo) avancar, longa ligno-stango, kun planketo ye la extremajo per qua onu quaze plaudas o batas la aquo e, tale, obtenas la pulsoforco
+Uzar, por igar batelo (ed, olim, navo) avancar, longa ligno-stango, kun planketo ye la extremajo per qua onu quaze plaudas o batas la aquo e, tale, obtenas la pulso-forco
 <!-- p. 490, l. 34 | Franca, Italiana, Hispana | ordino-ruptita -->
 
 ## remediar *(trans., per)*
@@ -32495,7 +32495,7 @@ Retroduktar aden limiti plu streta
 <!-- p. 495, l. 14 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## reto
-1. Texuro ek mashi interligita per nodi plu o min interdistanta, facita ek kordeto, filo, e c., per bastono cilindra e naveto
+1. Texuro ek mashi interligita per nodi plu o min inter-distanta, facita ek kordeto, filo, e c., per bastono cilindra e naveto
 2. Produkturo reto-forma ek filo, silko, filo ora od arjenta
 3. Interplekturo de linei (voyi, kanali, relvoyi, e c.)
 <!-- p. 495, l. 17 | Angla, Franca, Italiana, Hispana -->
@@ -32538,7 +32538,7 @@ Retroprenar, nihiligar, explicite, formale (to quon onu dicis, o plendo ad autor
 <!-- p. 495, l. 55 | Angla, Franca, Italiana, Hispana -->
 
 ## retretar *(netrans., de, ek)*
-1. (strategio) Retroiro (*rekulo) da trupo de militisti qua koaktesas agar tale da la enemiko plu forta qua avancas
+1. (strategio) Retro-iro (*rekulo) da trupo de militisti qua koaktesas agar tale da la enemiko plu forta qua avancas
 2. Cesar sua vivo profesionala, stat-employatala, mestierala, mondumala
 <!-- p. 496, l. 2 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
@@ -32610,7 +32610,7 @@ Agar violente la chanjo di (sua) guvernistaro
 <!-- p. 497, l. 9 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## revolvero
-Pafarmo portebla, pistoleto qua posibligas pafar plurafoye sen interrupto, per provizesir ye plura kulati quin onu povas charjar anticipe, e quin resorto igas pasar singlope avan la tubo o la tubi di la armo
+Pafarmo portebla, pistoleto qua posibligas pafar plura-foye sen interrupto, per provizesir ye plura kulati quin onu povas charjar anticipe, e quin resorto igas pasar singlope avan la tubo o la tubi di la armo
 <!-- p. 497, l. 12 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## revuar *(trans.)*
@@ -32712,7 +32712,7 @@ Sentar quaza expanseso di sua vizajo quan akompanas expiri sukusoza plu o min br
 <!-- p. 498, l. 37 | Franca, Italiana, Hispana -->
 
 ## ridelo *(tekn.)*
-Ligno-peco horizontala qua, ye singla latero di chareto, formacas, per la ronda ligno-cilindri qui trairas lu, quaza rastelero destinita impedor la falo di la kargajo
+Ligno-peco horizontala qua, ye singla latero di chareto, formacas, per la ronda ligno-cilindri qui tra-iras lu, quaza rastelero destinita impedor la falo di la kargajo
 <!-- p. 498, l. 41 | Franca, Italiana -->
 
 ## rifo *(navig.)*
@@ -33028,7 +33028,7 @@ Nomo di la parto nefixa, en la elektro-motori kun fluo alternanta – opoze stat
 
 ## rotulo
 1. (anat.) Mikra osto plata, kun anguli kelke rondigita, ye qua konsistas la parto avana di la genuo
-2. (tekn.) Peco metala, sfero-forma, uzata kom artiko en la mashinorgani qui bezonas povar movar su omna-direcione
+2. (tekn.) Peco metala, sfero-forma, uzata kom artiko en la mashin-organi qui bezonas povar movar su omna-direcione
 <!-- p. 503, l. 47 | Franca, Italiana, Hispana -->
 
 ## rovo *(bot.)*
@@ -33773,7 +33773,7 @@ Tranchar, o nur sekar, per instrumento qua konsistas ek lamo metala, dina, kun a
 <!-- p. 515, l. 23 | Germana, Italiana -->
 
 ## seglo *(navig.)*
-Peco de telo forta, qua konsistas (ordinare) ye plura peci asemblita, quan onu ligas an la yardi di la masti, e qua, desfaldite ed orientizite segun la vigoro e la direciono di vento, recevas de olca impulso qua igas la navo avancar tadirecione o ca-direcione
+Peco de telo forta, qua konsistas (ordinare) ye plura peci asemblita, quan onu ligas an la yardi di la masti, e qua, desfaldite ed orientizite segun la vigoro e la direciono di vento, recevas de olca impulso qua igas la navo avancar ta-direcione o ca-direcione
 <!-- p. 515, l. 28 | Germana, Angla -->
 
 ## segmento
@@ -34546,11 +34546,11 @@ Exkavajo, facita en sulo, aden qua onu depozas la grani (di frumento, e c.) por 
 <!-- p. 527, l. 27 | Germana, Angla, Franca, Italiana, Hispana -->
 
 ## silabo *(fonetiko)*
-Son-uno artikulata, produktata per un vocemiso, e qua konsistas ye o konsonanti e vokali, o vokalo sola, o diftongo
+Son-uno artikulata, produktata per un voc-emiso, e qua konsistas ye o konsonanti e vokali, o vokalo sola, o diftongo
 <!-- p. 527, l. 30 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## sileno *(bot.)*
-Herbo un-yara, du-yara o perena, ed, en ula kazi, miarboreto di qua la folii interopozesas, e kun flori (multakaze) grupigita aden *kimi
+Herbo un-yara, du-yara o perena, ed, en ula kazi, miarboreto di qua la folii interopozesas, e kun flori (multa-kaze) grupigita aden *kimi
 L. silenus
 <!-- p. 527, l. 34 | sen-lingua -->
 
@@ -34784,7 +34784,7 @@ Probo kunfuzar plura doktrini filozofiala, medicinala
 
 ## sinkrona
 1. (matem.) Dicesas pri la movi qui eventas en la sama tempo-parto
-2. (elektro) (pri elektro-mashino) Di qua la angulo-rapideso sempre egalesas la pulso-rapideso di la elektrofluo alternanta quan lu recevas o produktas od esas, di olu, multoplo o multoplo-dividanto
+2. (elektro) (pri elektro-mashino) Di qua la angulo-rapideso sempre egalesas la pulso-rapideso di la elektro-fluo alternanta quan lu recevas o produktas od esas, di olu, multoplo o multoplo-dividanto
 <!-- p. 531, l. 11 | Germana, Angla, Franca, Italiana, Hispana -->
 
 ## sinodo *(religio)*
@@ -35746,7 +35746,7 @@ Lineo qua volvas cirkum axo quale la fileto di skrubo, di helico
 <!-- p. 546, l. 29 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## spiralo
-1. (geom.) Kurvolineo, sur plano, qua trasas samasinse serio de rotaci cirkum punti fixa (polo) de qua lu deviacas gradoze segun *leyo (lego) determinita
+1. (geom.) Kurvolineo, sur plano, qua trasas sama-sinse serio de rotaci cirkum punti fixa (polo) de qua lu deviacas gradoze segun *leyo (lego) determinita
 2. (horloj.) Mikra resorto qua reglas la eskapo di la pendulo de horlojeto, e mantenas la izokroneso di lua ocili
 <!-- p. 546, l. 32 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
@@ -36208,7 +36208,7 @@ Kelo qua asemblas la peci ye qui konsistas charniro, buklo, e c.
 <!-- p. 553, l. 37 | Germana, Angla, Franca, Rusa, Hispana -->
 
 ## stileto
-Poniardo, kun lamo streta, secione triangula o quadriangula
+Poniardo, kun lamo streta, secione triangula o quadri-angula
 <!-- p. 553, l. 45 | Angla, Franca -->
 
 ## stilistiko
@@ -36772,7 +36772,7 @@ Prepoziciono : Qua esas plu alta kam la suprajo e sen kontakto kun ica. – a
 <!-- p. 562, l. 14 | Angla, Franca, Italiana, Hispana -->
 
 ## superba
-Qua estimas su tante ke lu situas su super sua kunhomi ed, pro lo, exajeras sua revendiki sociala, mondumala
+Qua estimas su tante ke lu situas su super sua kun-homi ed, pro lo, exajeras sua revendiki sociala, mondumala
 <!-- p. 562, l. 17 | Franca, Italiana, Hispana -->
 
 ## superfetaciono *(fiziol.)*
@@ -36962,7 +36962,7 @@ Fasko de fili kanaba, por lavar e vishar la ponto di navo
 <!-- p. 565, l. 7 | Germana, Angla, Rusa -->
 
 ## swichar *(trans.) (elektro)*
-Chanjar la direciono di la elektrofluo, per aparato qua posibligas agar lo sen modifiko di la instaluro, di la filo-reto
+Chanjar la direciono di la elektro-fluo, per aparato qua posibligas agar lo sen modifiko di la instaluro, di la filo-reto
 <!-- p. 565, l. 10 | Angla -->
 
 ## *swobo
@@ -37012,7 +37012,7 @@ Planketo de ligno, en biblioteko, armoro, etajero, qua interseparas horizontale 
 <!-- p. 565, l. 61 | Franca, Italiana, Hispana -->
 
 ## tabureto
-1. Sidilo kun quar pedi, sen brakii nek dorsapogilo
+1. Sidilo kun quar pedi, sen brakii nek dors-apogilo
 2. Mikra suportilo, di qua la formo esas analoga, sur qua onu pozas sua pedi kande onu sidas sur stulo
 <!-- p. 566, l. 6 | Germana, Franca, Rusa, Hispana -->
 
@@ -37404,7 +37404,7 @@ Transmisar voce (ulo ad ulu) per uzar instrumento ek plako dina de fero pura qua
 <!-- p. 572, l. 55 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## telegonio *(biol.)*
-Transmiso, a la genituro ek mariajo datoduesma, di karakteri qui devenas de la patrulo unesma-mariaja
+Transmiso, a la genituro ek mariajo dato-duesma, di karakteri qui devenas de la patrulo unesma-mariaja
 <!-- p. 573, l. 6 | Germana, Angla, Franca, Italiana, Hispana -->
 
 ## telegrafar *(trans., ad)*
@@ -37420,7 +37420,7 @@ Doktrino segun qua la enti esas organizita por la skopo a qua li destinesis
 <!-- p. 573, l. 15 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## telepatio *(metapsik.)*
-Nomo per qua onu indikas ula senti (sensala o psikala) de persono, pri ulo reala quon agis sama-tempe altra persono, ma ye tanta disto ed en cirkonstanci tala, ke olua saveso da la persono unesme-mencionita aspektas neposibla
+Nomo per qua onu indikas ula senti (sen-sala o psikala) de persono, pri ulo reala quon agis sama-tempe altra persono, ma ye tanta disto ed en cirkonstanci tala, ke olua saveso da la persono unesme-mencionita aspektas neposibla
 <!-- p. 573, l. 18 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## teleskopo
@@ -37652,7 +37652,7 @@ Instaluro plu o min granda, en qua onu depozas tero, petri, stoni, planti, e c.,
 
 ## teraso
 1. Platformo plu o min vasta, facita en gardeno, en parko, por regardar la peizajo til horizonto o por promenar – ek ter-amaso sustenata cirkonde da masonuro
-2. Platformo masonura, facita por regardar la cirkondajo o por promenar, sur un ek la etaji supra o sur la tektokarpenturo di domo, di edifico
+2. Platformo masonura, facita por regardar la cirkondajo o por promenar, sur un ek la etaji supra o sur la tekto-karpenturo di domo, di edifico
 <!-- p. 576, l. 42 | Germana, Angla, Franca -->
 
 ## teratologio
@@ -37754,7 +37754,7 @@ La mezurado di kaloro
 <!-- p. 578, l. 19 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## termoskopo *(fiziko)*
-Aparato por montrar la existo e la signo di difero pri la temperaturi reciproka di du medii, ma qua donas unike valori relativa pri la grandesogrado di ta diferi
+Aparato por montrar la existo e la signo di difero pri la temperaturi reciproka di du medii, ma qua donas unike valori relativa pri la grandeso-grado di ta diferi
 <!-- p. 578, l. 21 | Germana, Angla, Franca, Italiana, Hispana -->
 
 ## termostato *(teknol.)*
@@ -38012,7 +38012,7 @@ L. tipula
 <!-- p. 582, l. 24 | Angla, Franca, Italiana, Hispana, Latina -->
 
 ## tirar *(trans., de, ek, per)*
-1. Venigar ula-direcione, per prenar (la persono, la kozo) ye un ek lua parti quan onu adduktas ad su : (a) esante sen-mova, (b) marchante tadirecione
+1. Venigar ula-direcione, per prenar (la persono, la kozo) ye un ek lua parti quan onu adduktas ad su : (a) esante sen-mova, (b) marchante ta-direcione
 2. Adduktar (persono, kozo) ek la loko ube lu esas inkluzita, retenata
 3. (pri kameno, furnelo, e c., alimentata per karbono o ligno) Subisar en su ta aero-fluo per qua la aero necesa por la kombusto atraktesas a la herdo por remplasar la aero varmigita qua ekiras la tubo fluala, tranante kun su la fumuro
 <!-- p. 582, l. 28 | Franca, Italiana, Hispana -->
@@ -38196,7 +38196,7 @@ La arto deskriptar e reprezentar mape la figuro di loko, di la obstakli di teren
 <!-- p. 585, l. 20 | Germana, Angla, Franca, Italiana, Hispana -->
 
 ## torako *(anat.)*
-1. (che la vertebrozi) Kavajo quan shirmas parieto osta, e qua kontenas la organi precipua di la sangocirkulado e di la respirado
+1. (che la vertebrozi) Kavajo quan shirmas parieto osta, e qua kontenas la organi precipua di la sango-cirkulado e di la respirado
 2. (che la insekti) Parto di la korpo inter la kapo e la abdomino, e sur qua insertesas la ali e la gambi
 <!-- p. 585, l. 25 | Germana, Angla, Franca, Italiana, Hispana -->
 
@@ -38259,7 +38259,7 @@ Asemblajo ek fili kuntordita por facar kordegi, kabli, e c., e di qua la nombro 
 <!-- p. 586, l. 26 | Franca, Italiana -->
 
 ## torpedo
-1. (zool.) Fisho kartilagoza, kun korpo plata, diskoforma, qua havas, an singla latero di sua kapo, organo partikulara qua elektro-sukusas ti qui tushas ta fisho
+1. (zool.) Fisho kartilagoza, kun korpo plata, disko-forma, qua havas, an singla latero di sua kapo, organo partikulara qua elektro-sukusas ti qui tushas ta fisho
 2. (milit-arto) Mashino plenigita ye pulvero, kun amorcilo, qua, se shokata, explozas, e quan onu lansas kontre la navi enemikala, od imersas, por impedar la proximesko da ta navi a la litoro, e c.
 <!-- p. 586, l. 30 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
@@ -38556,7 +38556,7 @@ Pordo horizontala qua klozas aperturo facita en la plankaro e quan onu levas od 
 <!-- p. 591, l. 15 | Angla, Franca, Italiana, Hispana -->
 
 ## trapezo
-1. (geom.) Quadrilatero di qua du lateri esas interparalela, ma ne-interegala
+1. (geom.) Quadrilatero di qua du lateri esas inter-paralela, ma ne-interegala
 2. Implemento di gimnastiko ek bastono qua povas portar la pezo di persono, suspendita per du kordi ringoza a la portiko
 <!-- p. 591, l. 18 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
@@ -39645,12 +39645,12 @@ La grado di saturebleso di atomo di korpo per hidro-atomi
 <!-- p. 607, l. 60 | Angla, Franca -->
 
 ## valeriano *(bot.)*
-Planto farmaciala, ek la brancho « dikotiledoni monopetala », kun flori rozea e flori preske kompozaja, di qua la radiko esas kontre-spasma, kontrefebra
+Planto farmaciala, ek la brancho « dikotiledoni monopetala », kun flori rozea e flori preske kompozaja, di qua la radiko esas kontre-spasma, kontre-febra
 L. valeriana
 <!-- p. 608, l. 2 | Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## valerianelo *(bot.)*
-Planto herbatra, kun folii spatuloforma, quan la homo manjas forme di salado
+Planto herbatra, kun folii spatulo-forma, quan la homo manjas forme di salado
 L. valerianella olitoria
 <!-- p. 608, l. 7 | Angla, Franca, Italiana -->
 
@@ -39813,7 +39813,7 @@ L. vicia
 <!-- p. 610, l. 32 | Angla, Franca, Italiana -->
 
 ## vedeto *(milit.)*
-Mikra milito-navo uzata kom observero. -Barkego movata per vaporo o petrolo, qua servas militonavo
+Mikra milito-navo uzata kom observero. -Barkego movata per vaporo o petrolo, qua servas milito-navo
 <!-- p. 610, l. 37 | Germana, Angla, Franca, Italiana -->
 
 ## vegro *(navig.)*
@@ -40057,7 +40057,7 @@ La suprajo di la kapo
 <!-- p. 614, l. 12 | Angla, Franca, Italiana, Hispana -->
 
 ## vertijar *(netrans.) (patol.)*
-Subisar ta sturdo kurtadura dum qua semblas ke la objekti jiras o rotacas avan la okuli
+Subisar ta sturdo kurta-dura dum qua semblas ke la objekti jiras o rotacas avan la okuli
 <!-- p. 614, l. 14 | Angla, Franca, Italiana, Hispana -->
 
 ## vertikala *(geom.)*
@@ -40258,7 +40258,7 @@ Singla ek la pili sur la surfaco di ula membrani (mukozo di la stomako, e c.)
 <!-- p. 617, l. 3 | Angla, Franca, Italiana, Hispana -->
 
 ## vilajo
-Mikra grupo de domi di rurani, qua ne havas stradi rektalinea, nek limito cirkum-muro o ramparo-cirkuito
+Mikra grupo de domi di rurani, qua ne havas stradi rekta-linea, nek limito cirkum-muro o ramparo-cirkuito
 <!-- p. 617, l. 6 | Angla, Franca, Italiana -->
 
 ## vilanelo

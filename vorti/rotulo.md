@@ -2,7 +2,7 @@
 
 ## rotulo
 1. (anat.) Mikra osto plata, kun anguli kelke rondigita, ye qua konsistas la parto avana di la genuo
-2. (tekn.) Peco metala, sfero-forma, uzata kom artiko en la mashinorgani qui bezonas povar movar su omna-direcione
+2. (tekn.) Peco metala, sfero-forma, uzata kom artiko en la mashin-organi qui bezonas povar movar su omna-direcione
 <!-- p. 503, l. 47 | Franca, Italiana, Hispana -->
 
 ---

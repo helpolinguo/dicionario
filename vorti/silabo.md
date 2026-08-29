@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## silabo *(fonetiko)*
-Son-uno artikulata, produktata per un vocemiso, e qua konsistas ye o konsonanti e vokali, o vokalo sola, o diftongo
+Son-uno artikulata, produktata per un voc-emiso, e qua konsistas ye o konsonanti e vokali, o vokalo sola, o diftongo
 <!-- p. 527, l. 30 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ---

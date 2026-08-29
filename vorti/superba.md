@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## superba
-Qua estimas su tante ke lu situas su super sua kunhomi ed, pro lo, exajeras sua revendiki sociala, mondumala
+Qua estimas su tante ke lu situas su super sua kun-homi ed, pro lo, exajeras sua revendiki sociala, mondumala
 <!-- p. 562, l. 17 | Franca, Italiana, Hispana -->
 
 ---

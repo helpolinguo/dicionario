@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## aspirino
-Acido acetil-salicila : CH₃COOC₆H₄COOH. Korpo blanka, solida, fuzo-punto : 133° Celsius. Uzata medicine kom kontrefebro, kontre-doloro
+Acido acetil-salicila : CH₃COOC₆H₄COOH. Korpo blanka, solida, fuzo-punto : 133° Celsius. Uzata medicine kom kontre-febro, kontre-doloro
 <!-- p. 45, l. 19 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ---

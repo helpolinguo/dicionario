@@ -4,7 +4,7 @@
 1. Apendico unionita a la torso di la homo, di la animalo, per artiki
 2. Persono qua esas un ek la kompozanti di korporaciono politikala, literaturala – di asociitaro, di komuniono religiala
 3. Un ek la propozicioni ye qui konsistas frazo; un ek la frazi ye qui konsistas la ideo-developo
-4. Singla de la du parti di equaciono, quin separas la signo di interegaleso
+4. Singla de la du parti di equaciono, quin separas la signo di inter-egaleso
 <!-- p. 364, l. 45 | Angla, Franca, Italiana, Hispana -->
 
 ---

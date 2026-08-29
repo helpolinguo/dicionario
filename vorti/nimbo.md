@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## nimbo *(meteorol.)*
-Pluvo-nubo qua karakterizas la aerofluo equatorala, sen formo preciza, kun periferio quaze lacerita
+Pluvo-nubo qua karakterizas la aero-fluo equatorala, sen formo preciza, kun periferio quaze lacerita
 <!-- p. 394, l. 41 | Germana, Angla, Franca, Italiana, Hispana -->
 
 ---

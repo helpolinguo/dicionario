@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## retretar *(netrans., de, ek)*
-1. (strategio) Retroiro (*rekulo) da trupo de militisti qua koaktesas agar tale da la enemiko plu forta qua avancas
+1. (strategio) Retro-iro (*rekulo) da trupo de militisti qua koaktesas agar tale da la enemiko plu forta qua avancas
 2. Cesar sua vivo profesionala, stat-employatala, mestierala, mondumala
 <!-- p. 496, l. 2 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 

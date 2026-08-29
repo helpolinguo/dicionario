@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## pastoro
-1. (olim) La persono qua edukas e gardas bestiotrupi
+1. (olim) La persono qua edukas e gardas bestio-trupi
 2. (religio) Quaza sacerdoto di la religio protestantista
 <!-- p. 426, l. 5 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 

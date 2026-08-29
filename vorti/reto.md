@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## reto
-1. Texuro ek mashi interligita per nodi plu o min interdistanta, facita ek kordeto, filo, e c., per bastono cilindra e naveto
+1. Texuro ek mashi interligita per nodi plu o min inter-distanta, facita ek kordeto, filo, e c., per bastono cilindra e naveto
 2. Produkturo reto-forma ek filo, silko, filo ora od arjenta
 3. Interplekturo de linei (voyi, kanali, relvoyi, e c.)
 <!-- p. 495, l. 17 | Angla, Franca, Italiana, Hispana -->

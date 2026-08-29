@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## kelero
-Spaco subsula, ordinare vultoza, rezervita sub la teretajo di la domi, ed apta (pro lua temperaturo sempre egala) konservar la vini e la diversa provizaji
+Spaco subsula, ordinare vultoza, rezervita sub la ter-etajo di la domi, ed apta (pro lua temperaturo sempre egala) konservar la vini e la diversa provizaji
 <!-- p. 274, l. 50 | Germana, Angla, Franca -->
 
 ---
