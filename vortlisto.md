@@ -2382,7 +2382,7 @@ expedicionar (trans.) — Sendar homi, komisar li, por militar o por explorar re
 expektar (trans.) — Mente anticipar ula evento
 expektorar (trans.) — Ekjetar de la tubi respirala, per la boko
 experiencar (trans.) — Konocar (ulo), savar (pri ulo) per uzir lu praktikale
-experimentar (trans.) — E (netrans., pri, per). En la observo-cienci : operaco quan onu agas por verifikar o por demonstrar ulo per praktiko
+experimentar (trans.) e (netrans., pri, per) — En la observo-cienci : operaco quan onu agas por verifikar o por demonstrar ulo per praktiko
 experta — Qua savas tre multe (pri ulo) per praktikado
 expertizar (trans.) — Submisar a la evaluo da experti. (pri experti) Evaluar la preco, la qualesi di (ulo)
 expiacar (trans.) — Lavar per ceremonio religiala, per sakrifiko (krimino pro qua onu esas despurigita.)

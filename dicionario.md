@@ -10168,8 +10168,8 @@ Ekjetar de la tubi respirala, per la boko
 Konocar (ulo), savar (pri ulo) per uzir lu praktikale
 <!-- p. 154, l. 20 | Angla, Franca, Italiana, Hispana -->
 
-## experimentar *(trans.)*
-E (netrans., pri, per). En la observo-cienci : operaco quan onu agas por verifikar o por demonstrar ulo per praktiko
+## experimentar *(trans.) e (netrans., pri, per)*
+En la observo-cienci : operaco quan onu agas por verifikar o por demonstrar ulo per praktiko
 <!-- p. 154, l. 23 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## experta
