@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## preludar *(netrans.) (muziko)*
-Probar sua voco, sua muzikinstrumento per kantar, plear serio de noti
+Probar sua voco, sua muzik-instrumento per kantar, plear serio de noti
 <!-- p. 458, l. 18 | Germana, Angla, Franca, Italiana, Hispana -->
 
 ---

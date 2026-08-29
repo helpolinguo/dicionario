@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## valeriano *(bot.)*
-Planto farmaciala, ek la brancho « dikotiledoni monopetala », kun flori rozea e flori preske kompozaja, di qua la radiko esas kontre-spasma, kontrefebra
+Planto farmaciala, ek la brancho « dikotiledoni monopetala », kun flori rozea e flori preske kompozaja, di qua la radiko esas kontre-spasma, kontre-febra
 L. valeriana
 <!-- p. 608, l. 2 | Angla, Franca, Italiana, Rusa, Hispana -->
 

@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## valerianelo *(bot.)*
-Planto herbatra, kun folii spatuloforma, quan la homo manjas forme di salado
+Planto herbatra, kun folii spatulo-forma, quan la homo manjas forme di salado
 L. valerianella olitoria
 <!-- p. 608, l. 7 | Angla, Franca, Italiana -->
 

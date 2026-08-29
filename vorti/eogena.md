@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## eogena *(geol.)*
-Dicesas pri la grupo maxim anciena ek la sulostrati terciara
+Dicesas pri la grupo maxim anciena ek la sulo-strati terciara
 <!-- p. 139, l. 37 | sen-lingua -->
 
 ---

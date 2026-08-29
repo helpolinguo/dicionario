@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## vertijar *(netrans.) (patol.)*
-Subisar ta sturdo kurtadura dum qua semblas ke la objekti jiras o rotacas avan la okuli
+Subisar ta sturdo kurta-dura dum qua semblas ke la objekti jiras o rotacas avan la okuli
 <!-- p. 614, l. 14 | Angla, Franca, Italiana, Hispana -->
 
 ---

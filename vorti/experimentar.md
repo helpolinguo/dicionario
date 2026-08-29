@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## experimentar *(trans.)*
-E (netrans., pri, per). En la observocienci : operaco quan onu agas por verifikar o por demonstrar ulo per praktiko
+E (netrans., pri, per). En la observo-cienci : operaco quan onu agas por verifikar o por demonstrar ulo per praktiko
 <!-- p. 154, l. 23 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ---

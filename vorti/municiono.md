@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## municiono *(teknol. militala)*
-Singla ek la kozi ye qui konsistas la ensemblo ek la moyeni di defenso, di su-nutro, ye qui onu provizas fortifikajo, fortreso, militistotrupo. Anke : pulvero, kartochi, obusi, bombi, atomarmi
+Singla ek la kozi ye qui konsistas la ensemblo ek la moyeni di defenso, di su-nutro, ye qui onu provizas fortifikajo, fortreso, militisto-trupo. Anke : pulvero, kartochi, obusi, bombi, atomarmi
 <!-- p. 386, l. 30 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ---

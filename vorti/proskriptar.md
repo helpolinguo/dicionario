@@ -2,7 +2,7 @@
 
 ## proskriptar *(trans.) (en Roma, antique)*
 1. Imperar la ocido (di ulu) sen formi judiciala, per nur enskribo sur afisho-texto publikigita
-2. Kondamnar ad ocideso grandaquante
+2. Kondamnar ad ocideso granda-quante
 <!-- p. 466, l. 18 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ---

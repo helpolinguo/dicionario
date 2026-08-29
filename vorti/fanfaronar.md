@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## fanfaronar *(netrans., pri, pro)*
-Exajerar sua avantaji, sua forteso, e c., per parolo od altre, por trompar sua kunhomi
+Exajerar sua avantaji, sua forteso, e c., per parolo od altre, por trompar sua kun-homi
 <!-- p. 160, l. 9 | Franca, Italiana, Hispana -->
 
 ---

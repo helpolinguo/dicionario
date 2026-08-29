@@ -2,7 +2,7 @@
 
 ## rehabilitar *(trans.)*
 1. Ri-establisar en lua stando originala, en lua yuri originala (persono quan onu deklarabis dekadinta de li)
-2. (metaf.) Ri-estimigar da lua kunhomi
+2. (metaf.) Ri-estimigar da lua kun-homi
 <!-- p. 488, l. 2 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ---

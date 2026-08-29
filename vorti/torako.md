@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## torako *(anat.)*
-1. (che la vertebrozi) Kavajo quan shirmas parieto osta, e qua kontenas la organi precipua di la sangocirkulado e di la respirado
+1. (che la vertebrozi) Kavajo quan shirmas parieto osta, e qua kontenas la organi precipua di la sango-cirkulado e di la respirado
 2. (che la insekti) Parto di la korpo inter la kapo e la abdomino, e sur qua insertesas la ali e la gambi
 <!-- p. 585, l. 25 | Germana, Angla, Franca, Italiana, Hispana -->
 

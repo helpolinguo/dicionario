@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## torpedo
-1. (zool.) Fisho kartilagoza, kun korpo plata, diskoforma, qua havas, an singla latero di sua kapo, organo partikulara qua elektro-sukusas ti qui tushas ta fisho
+1. (zool.) Fisho kartilagoza, kun korpo plata, disko-forma, qua havas, an singla latero di sua kapo, organo partikulara qua elektro-sukusas ti qui tushas ta fisho
 2. (milit-arto) Mashino plenigita ye pulvero, kun amorcilo, qua, se shokata, explozas, e quan onu lansas kontre la navi enemikala, od imersas, por impedar la proximesko da ta navi a la litoro, e c.
 <!-- p. 586, l. 30 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 

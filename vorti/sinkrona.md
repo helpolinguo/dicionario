@@ -2,7 +2,7 @@
 
 ## sinkrona
 1. (matem.) Dicesas pri la movi qui eventas en la sama tempo-parto
-2. (elektro) (pri elektro-mashino) Di qua la angulo-rapideso sempre egalesas la pulso-rapideso di la elektrofluo alternanta quan lu recevas o produktas od esas, di olu, multoplo o multoplo-dividanto
+2. (elektro) (pri elektro-mashino) Di qua la angulo-rapideso sempre egalesas la pulso-rapideso di la elektro-fluo alternanta quan lu recevas o produktas od esas, di olu, multoplo o multoplo-dividanto
 <!-- p. 531, l. 11 | Germana, Angla, Franca, Italiana, Hispana -->
 
 ---

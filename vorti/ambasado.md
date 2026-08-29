@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## ambasado
-Misiono permananta, establisita da guvernistaro apud guvernistaro stranjera, por igar plu facilan lia interrelati
+Misiono permananta, establisita da guvernistaro apud guvernistaro stranjera, por igar plu facilan lia inter-relati
 <!-- p. 22, l. 16 | Germana, Angla, Franca, Italiana, Hispana -->
 
 ---

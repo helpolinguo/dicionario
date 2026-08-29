@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## heteroblastika *(biol.)*
-(fenomeno) qua konsistas ye la formaceso, en la sama punti, che animali inter-parenta, di organi interequivalanta, ma di qui la origino embriologiala esas tamen interdiferanta
+(fenomeno) qua konsistas ye la formaceso, en la sama punti, che animali inter-parenta, di organi interequivalanta, ma di qui la origino embriologiala esas tamen inter-diferanta
 <!-- p. 213, l. 43 | sen-lingua -->
 
 ---

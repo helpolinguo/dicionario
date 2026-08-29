@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## muzikar *(netrans.)*
-Ecitar la sentimenti per serii melodia o per kombinuri harmonioza de soni segunmezura e ritmoza
+Ecitar la sentimenti per serii melodia o per kombinuri harmonioza de soni segun-mezuro e ritmoza
 <!-- p. 388, l. 24 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ---

@@ -2,7 +2,7 @@
 
 ## manifestar
 1. (trans.) Igar quaze palpebla, sentebla
-2. (netrans., pri, por) Demonstrar kolektive, publike, favore di opiniono; expresar publike revendiko – multakaze per amaso-cirkular sur la voyi publika, en la stradi, avenui, bulvardi, placi di urbo
+2. (netrans., pri, por) Demonstrar kolektive, publike, favore di opiniono; expresar publike revendiko – multa-kaze per amaso-cirkular sur la voyi publika, en la stradi, avenui, bulvardi, placi di urbo
 <!-- p. 354, l. 18 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ---

@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## telepatio *(metapsik.)*
-Nomo per qua onu indikas ula senti (sensala o psikala) de persono, pri ulo reala quon agis sama-tempe altra persono, ma ye tanta disto ed en cirkonstanci tala, ke olua saveso da la persono unesme-mencionita aspektas neposibla
+Nomo per qua onu indikas ula senti (sen-sala o psikala) de persono, pri ulo reala quon agis sama-tempe altra persono, ma ye tanta disto ed en cirkonstanci tala, ke olua saveso da la persono unesme-mencionita aspektas neposibla
 <!-- p. 573, l. 18 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ---

@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## grafologio
-Studiado di la karaktero di la homi segun lia skribostilo, di lia grafismo
+Studiado di la karaktero di la homi segun lia skribo-stilo, di lia grafismo
 <!-- p. 199, l. 33 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ---

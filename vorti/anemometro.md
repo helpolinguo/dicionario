@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## anemometro
-Instrumento per qua onu povas mezurar la rapidesogrado di vento
+Instrumento per qua onu povas mezurar la rapideso-grado di vento
 <!-- p. 27, l. 52 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ---

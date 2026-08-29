@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## difraktar *(trans.)*
-Produktar deviaco semblanta di la lumoradii kande li frolas la bordi di korpo opaka
+Produktar deviaco semblanta di la lumo-radii kande li frolas la bordi di korpo opaka
 <!-- p. 110, l. 46 | Germana, Angla, Franca, Italiana, Hispana -->
 
 ---

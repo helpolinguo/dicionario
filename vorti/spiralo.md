@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## spiralo
-1. (geom.) Kurvolineo, sur plano, qua trasas samasinse serio de rotaci cirkum punti fixa (polo) de qua lu deviacas gradoze segun *leyo (lego) determinita
+1. (geom.) Kurvolineo, sur plano, qua trasas sama-sinse serio de rotaci cirkum punti fixa (polo) de qua lu deviacas gradoze segun *leyo (lego) determinita
 2. (horloj.) Mikra resorto qua reglas la eskapo di la pendulo de horlojeto, e mantenas la izokroneso di lua ocili
 <!-- p. 546, l. 32 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 

@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## quilayo *(bot.)*
-Genero de rozacei, ek tri o quar speci de arbori, kun folii alternanta, flori dioika, qui kreskas en la sudoregioni di Amerika, e di qui la pulvero, obtenata de lia kortico, uzesas por netigar la linji sordida de makuli grasa
+Genero de rozacei, ek tri o quar speci de arbori, kun folii alternanta, flori dioika, qui kreskas en la sudo-regioni di Amerika, e di qui la pulvero, obtenata de lia kortico, uzesas por netigar la linji sordida de makuli grasa
 L. quillaja saponaria
 <!-- p. 477, l. 25 | sen-lingua -->
 

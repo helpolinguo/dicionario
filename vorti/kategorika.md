@@ -2,7 +2,7 @@
 
 ## kategorika
 1. (segun la doktrino da Kant) Lo absoluta e ne-kondicionata
-2. **imperativo kategorika** Agoregulo qua su impozas a la volado kom impero universala ed absoluta
+2. **imperativo kategorika** Ago-regulo qua su impozas a la volado kom impero universala ed absoluta
 <!-- p. 272, l. 2 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ---

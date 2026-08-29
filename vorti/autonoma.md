@@ -2,7 +2,7 @@
 
 ## autonoma
 1. Qua regnesas da sua legi propra
-2. (biol.) Dicesas pri la formaco di ovo quan genitis du gameti samarasa
+2. (biol.) Dicesas pri la formaco di ovo quan genitis du gameti sama-rasa
 <!-- p. 50, l. 13 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ---

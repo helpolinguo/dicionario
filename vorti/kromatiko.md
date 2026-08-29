@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## kromatiko
-1. (muziko) Qua konsistas ek intersequo de mitoni (mi-toni kromatika), kontraste kun la mi-toni diatonika, plu mikra ye un komao
+1. (muziko) Qua konsistas ek intersequo de mi-toni (mi-toni kromatika), kontraste kun la mi-toni diatonika, plu mikra ye un komao
 2. Qua koncernas la kolori
 <!-- p. 316, l. 55 | Germana, Angla, Franca, Italiana, Hispana -->
 

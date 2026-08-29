@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## libro
-1. Reprodukturo imprimura di la verko da autoro, ek paperfolii asemblita aden kayeri quin onu interasemblas
+1. Reprodukturo imprimura di la verko da autoro, ek paperfolii asemblita aden kayeri quin onu inter-asemblas
 2. La verko tale *reproduktita
 3. Singla ek la parti di ula verki
 <!-- p. 336, l. 52 | Angla, Franca, Italiana, Hispana -->

@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## neovitalismo *(biol.)*
-Teorio segun qua la faktori fizikokemiala qui kondicionas la fenomeni vivala efikas per mekanismo partikulara e qui diferas de olta qua intervenas en la mondo materiala ordinara
+Teorio segun qua la faktori fiziko-kemiala qui kondicionas la fenomeni vivala efikas per mekanismo partikulara e qui diferas de olta qua intervenas en la mondo materiala ordinara
 <!-- p. 392, l. 26 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ---

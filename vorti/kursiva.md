@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## kursiva *(pri skribo)*
-Qua konsistas ek literi trasebla fluante, ed inklinata de dextre a sinistre. Dicesas anke pri la imprimotipo qua inklinesas same kam la skriburo ordinara
+Qua konsistas ek literi trasebla fluante, ed inklinata de dextre a sinistre. Dicesas anke pri la imprimo-tipo qua inklinesas same kam la skriburo ordinara
 <!-- p. 323, l. 52 | Germana, Angla, Franca, Italiana, Hispana -->
 
 ---

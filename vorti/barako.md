@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## barako
-Konstrukturo de planki, por shirmar peskisti, mutongardisti, komercisti en aero publika, e c.
+Konstrukturo de planki, por shirmar peskisti, muton-gardisti, komercisti en aero publika, e c.
 <!-- p. 56, l. 48 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ---

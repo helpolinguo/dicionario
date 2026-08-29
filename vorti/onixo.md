@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## onixo
-Agato delikata, kun strati interparalela diversakolora
+Agato delikata, kun strati interparalela diversa-kolora
 <!-- p. 406, l. 14 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ---

@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## asonancar *(netrans., kun)*
-1. Rivenar (aludante la sama sonuno)
+1. Rivenar (aludante la sama son-uno)
 2. Konsistar ye rimo nekompleta, quan karakterizas nur la identeso di la vokalo acentoza inter du finali maskula e du finali femina. (Ex. ek la Franca linguo : perte e peste)
 <!-- p. 44, l. 35 | Germana, Angla, Franca, Italiana, Hispana -->
 

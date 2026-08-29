@@ -2,7 +2,7 @@
 
 ## kontingento
 1. (armeo) Quanto de armeani qua esas furnisenda singla-yare a la rekruto-autoritatozi
-2. **moneto-kontingento** *(financo)* Proporciono di la naturi diversa di monetuni quin la Monetiferio devas fabrikar.
+2. **moneto-kontingento** *(financo)* Proporciono di la naturi diversa di monet-uni quin la Monetiferio devas fabrikar.
 **la kontingenti** *(filoz.)* To quo povas eventar, ma ne eventos necese
 <!-- p. 301, l. 33 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 

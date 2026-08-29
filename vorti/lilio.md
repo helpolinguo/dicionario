@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## lilio *(bot.)*
-Planto herbacea, bulboza kun stipo rekta, e di qua la varietato maxim konocata havas floro pureblanka e klosho-forma
+Planto herbacea, bulboza kun stipo rekta, e di qua la varietato maxim konocata havas floro pure-blanka e klosho-forma
 L. lilium
 <!-- p. 338, l. 28 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 

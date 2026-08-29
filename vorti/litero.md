@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## litero
-Signo alfabetala per qua onu reprezentas singla sonuno di linguo
+Signo alfabetala per qua onu reprezentas singla son-uno di linguo
 <!-- p. 341, l. 24 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ---

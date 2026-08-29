@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## koralio
-Produkturo kalkoza ek ula polipi, plu o min dazlantereda, kun la formo di rami, maxim-multa-kaze fixigita an roki submarsurfaca
+Produkturo kalkoza ek ula polipi, plu o min dazlante-reda, kun la formo di rami, maxim-multa-kaze fixigita an roki submarsurfaca
 <!-- p. 305, l. 24 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ---

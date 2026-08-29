@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## vilajo
-Mikra grupo de domi di rurani, qua ne havas stradi rektalinea, nek limito cirkum-muro o ramparo-cirkuito
+Mikra grupo de domi di rurani, qua ne havas stradi rekta-linea, nek limito cirkum-muro o ramparo-cirkuito
 <!-- p. 617, l. 6 | Angla, Franca, Italiana -->
 
 ---

@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## quasio *(bot.)*
-Kortico de la arbusto L. quassia amara, detranchita aden mikra spani, qua saporas tre bitre, ed uzata en medicino kom tonigivo pos macereso (5 grami singla-litre), sive en tintivo alkoholoza
+Kortico de la arbusto L. quassia amara, de-tranchita aden mikra spani, qua saporas tre bitre, ed uzata en medicino kom tonigivo pos macereso (5 grami singla-litre), sive en tintivo alkoholoza
 L. quassia amara
 <!-- p. 476, l. 23 | Germana, Angla, Franca, Italiana, Hispana -->
 

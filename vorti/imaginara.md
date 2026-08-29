@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## imaginara *(matem.)*
-Simbolo algebrala, ek radikalo duesmagrada pri nombro negativa
+Simbolo algebrala, ek radikalo duesma-grada pri nombro negativa
 <!-- p. 228, l. 54 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ---

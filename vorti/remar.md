@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## remar *(netrans.)*
-Uzar, por igar batelo (ed, olim, navo) avancar, longa ligno-stango, kun planketo ye la extremajo per qua onu quaze plaudas o batas la aquo e, tale, obtenas la pulsoforco
+Uzar, por igar batelo (ed, olim, navo) avancar, longa ligno-stango, kun planketo ye la extremajo per qua onu quaze plaudas o batas la aquo e, tale, obtenas la pulso-forco
 <!-- p. 490, l. 34 | Franca, Italiana, Hispana | ordino-ruptita -->
 
 ---

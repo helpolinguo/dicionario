@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## tabureto
-1. Sidilo kun quar pedi, sen brakii nek dorsapogilo
+1. Sidilo kun quar pedi, sen brakii nek dors-apogilo
 2. Mikra suportilo, di qua la formo esas analoga, sur qua onu pozas sua pedi kande onu sidas sur stulo
 <!-- p. 566, l. 6 | Germana, Franca, Rusa, Hispana -->
 

@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## amitoso *(biol.)*
-Su-divido nemediata di la celuli, sen sudivido di la nukleo-peloto. (Antonimo : « mitoso »)
+Su-divido nemediata di la celuli, sen su-divido di la nukleo-peloto. (Antonimo : « mitoso »)
 <!-- p. 24, l. 18 | Germana, Angla, Franca, Italiana, Hispana -->
 
 ---

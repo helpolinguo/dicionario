@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## cerio *(kemio)*
-Korpo simpla metala, ferea, harda, densesogrado : 6,7
+Korpo simpla metala, ferea, harda, denseso-grado : 6,7
 *Simb. kem.* **Ce**
 <!-- p. 84, l. 31 | sen-lingua -->
 

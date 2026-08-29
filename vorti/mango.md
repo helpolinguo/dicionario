@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## mango *(bot.)*
-Frukto di granda arboro di India e di la sudoregioni di Amerika, e qua kelke similesas persiko
+Frukto di granda arboro di India e di la sudo-regioni di Amerika, e qua kelke similesas persiko
 L. mango
 <!-- p. 353, l. 52 | Germana, Angla, Franca, Italiana, Hispana -->
 

@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## antraxo *(patol.)*
-Inflamo-tumoro di la tisuo celulara subpela
+Inflamo-tumoro di la tisuo celulara sub-pela
 <!-- p. 32, l. 11 | Germana, Angla, Franca, Italiana, Hispana -->
 
 ---

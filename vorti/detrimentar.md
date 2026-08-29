@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## detrimentar *(trans.)*
-Efektigar ad ulu (ad ulo), perdo, mem nevole e mediate
+Efektigar ad ulu (ad ulo), perdo, mem ne-vole e mediate
 <!-- p. 106, l. 26 | Angla, Franca, Italiana, Hispana -->
 
 ---

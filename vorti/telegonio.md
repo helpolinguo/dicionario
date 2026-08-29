@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## telegonio *(biol.)*
-Transmiso, a la genituro ek mariajo datoduesma, di karakteri qui devenas de la patrulo unesma-mariaja
+Transmiso, a la genituro ek mariajo dato-duesma, di karakteri qui devenas de la patrulo unesma-mariaja
 <!-- p. 573, l. 6 | Germana, Angla, Franca, Italiana, Hispana -->
 
 ---
