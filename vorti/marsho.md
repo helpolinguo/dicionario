@@ -1,7 +1,8 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## marsho
-Tereno dilutita da aquo qua povas nur desfacile for-fluar. – Tereno basa, humida, apta pri la kultivo di legumi
+Tereno dilutita da aquo qua povas nur desfacile for-fluar.
+— Tereno basa, humida, apta pri la kultivo di legumi
 <!-- p. 358, l. 23 | Angla -->
 
 ---

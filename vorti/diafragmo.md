@@ -2,7 +2,8 @@
 
 ## diafragmo
 1. (anat.) Muskulo parieta inter la pektoro e la abdomino. – Parieto qua dividas ula organi
-2. (optiko) Cirklo opaka, muntita en teleskopo o lorno, por haltigar la radii qui ne kuniras a la foko. – Disko kun truo ronda, quan la fotografisto muntas en la objektalo samaskope
+2. (optiko) Cirklo opaka, muntita en teleskopo o lorno, por haltigar la radii qui ne kuniras a la foko.
+— Disko kun truo ronda, quan la fotografisto muntas en la objektalo samaskope
 <!-- p. 108, l. 11 | Angla, Franca, Italiana, Rusa, Hispana -->
 
 ---

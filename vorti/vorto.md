@@ -1,7 +1,8 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## vorto
-Son-uno artikulata, ek un o plura silabi, uzata por reprezentar ento od eso-maniero. – Skriburo qua reprezentas ta son-uno
+Son-uno artikulata, ek un o plura silabi, uzata por reprezentar ento od eso-maniero.
+— Skriburo qua reprezentas ta son-uno
 <!-- p. 621, l. 52 | Germana, Angla -->
 
 ---

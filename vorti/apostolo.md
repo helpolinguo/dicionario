@@ -1,7 +1,8 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## apostolo *(religio katol.)*
-Singla ek la dek-e-du dicipuli qui recevis de Iesu-Kristo la komiso predikor evangelio. – Ta qua propagas la doktrino Kristana
+Singla ek la dek-e-du dicipuli qui recevis de Iesu-Kristo la komiso predikor evangelio.
+— Ta qua propagas la doktrino Kristana
 <!-- p. 35, l. 5 | Germana, Angla, Franca, Italiana, Rusa -->
 
 ---

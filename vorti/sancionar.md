@@ -1,7 +1,8 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## sancionar *(trans.)*
-Igar (lego) aplikenda per la aprobo da la suvereno, da la chefo di la povo exekutigala. – Konfirmar (lego), igar (lu) aplikata per minaco ye punisi, o per promiso di rekompenso
+Igar (lego) aplikenda per la aprobo da la suvereno, da la chefo di la povo exekutigala.
+— Konfirmar (lego), igar (lu) aplikata per minaco ye punisi, o per promiso di rekompenso
 <!-- p. 510, l. 45 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ---

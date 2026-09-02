@@ -1,7 +1,8 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## memorando
-Noto diplomacala en qua memorigesas to quo eventis pri ta o ca afero. – Noto destinita memorigar ulo
+Noto diplomacala en qua memorigesas to quo eventis pri ta o ca afero.
+— Noto destinita memorigar ulo
 <!-- p. 365, l. 13 | Germana, Angla, Franca -->
 
 ---

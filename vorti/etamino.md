@@ -1,7 +1,8 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## etamino
-Stofo ek lano lejera. – Lanajo, krinajo, quan onu uzas por blutar
+Stofo ek lano lejera.
+— Lanajo, krinajo, quan onu uzas por blutar
 <!-- p. 149, l. 5 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ---

@@ -1,7 +1,8 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## reduto *(milit-arto)*
-Fortifikajo aparta, tote klozita (*kluza), sen anguli konkava. – Anke : Fortifikajo flotacanta, garnisita ye bastioni, uzata por transportar trupi de soldati trans fluvio o rivero
+Fortifikajo aparta, tote klozita (*kluza), sen anguli konkava.
+— Anke : Fortifikajo flotacanta, garnisita ye bastioni, uzata por transportar trupi de soldati trans fluvio o rivero
 <!-- p. 485, l. 51 | Germana, Angla, Franca, Hispana -->
 
 ---

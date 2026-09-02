@@ -1,7 +1,8 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## asociar *(trans.)*
-Igar partoprenar to quon agas ulu. – Unionar ad ulu kom partoprenonto di ta quon lu agas
+Igar partoprenar to quon agas ulu.
+— Unionar ad ulu kom partoprenonto di ta quon lu agas
 <!-- p. 44, l. 30 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ---

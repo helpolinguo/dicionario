@@ -1,7 +1,8 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## kartusho
-Kadro skultita, grabita, forme di karto di qua la bordumo, la angulo, aspektas quale volvajo, destinita por recevor enskriburo, devizo, moto, la monogramo di ulu, e quan onu plasizas sur edifico, infre ed en la angulo (sinistre o dextre), di tabelo, di pikturo, di graburo, di mapo. – Lineo-kadro elipsoida qua, en hieroglifo-texto, cirkondas la nomi di la deaji, di la reji, di la dinastii
+Kadro skultita, grabita, forme di karto di qua la bordumo, la angulo, aspektas quale volvajo, destinita por recevor enskriburo, devizo, moto, la monogramo di ulu, e quan onu plasizas sur edifico, infre ed en la angulo (sinistre o dextre), di tabelo, di pikturo, di graburo, di mapo.
+— Lineo-kadro elipsoida qua, en hieroglifo-texto, cirkondas la nomi di la deaji, di la reji, di la dinastii
 <!-- p. 268, l. 38 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ---

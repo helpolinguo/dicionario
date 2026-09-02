@@ -1,7 +1,8 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## ulular *(netrans.)*
-(aludante la nokt-uceli) Kriar jemante. – Kriar jemante, quale la nokt-uceli
+(aludante la nokt-uceli) Kriar jemante.
+— Kriar jemante, quale la nokt-uceli
 <!-- p. 603, l. 12 | Germana, Angla, Franca, Italiana, Hispana -->
 
 ---

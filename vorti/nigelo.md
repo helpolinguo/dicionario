@@ -1,7 +1,8 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## nigelo *(bot.)*
-Morbo di la spiko (imputata a nebulo) qua transformas la grano aden amaso blanka ek multa-mil aguleti. – Morbo di la spiko, qua transformas la grano a polvo nigratra qua konsistas ye kriptogami
+Morbo di la spiko (imputata a nebulo) qua transformas la grano aden amaso blanka ek multa-mil aguleti.
+— Morbo di la spiko, qua transformas la grano a polvo nigratra qua konsistas ye kriptogami
 <!-- p. 394, l. 9 | Angla, Franca, Italiana, Hispana, Latina -->
 
 ---

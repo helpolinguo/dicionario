@@ -1,7 +1,8 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## etologio
-Cienco di la mori. – Traktato pri la mori
+Cienco di la mori.
+— Traktato pri la mori
 <!-- p. 149, l. 50 | sen-lingua -->
 
 ---

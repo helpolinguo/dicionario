@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## -isto
-1. Sufixo qua signifikas : I. « la persono qua profesione su okupas pri… »
+1. Sufixo qua signifikas : « la persono qua profesione su okupas pri… »
 2. Adepto, adherinto di partiso, di skolo doktrinala
 <!-- p. 244, l. 4 | sen-lingua -->
 

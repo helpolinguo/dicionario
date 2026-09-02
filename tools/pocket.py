@@ -127,6 +127,11 @@ def entry(e):
                 esc(x.get('fako') or ''), esc(x['loko']),
                 _bound_to(esc(x.get('teksto_k') or x.get('teksto') or '')),
                 num if j == 0 else "", esc(code_)))
+    # The remarks the book sets below its numbering: after the senses and their
+    # sub-entries, before the labels (symbol, Latin name, language codes), and
+    # with no number -- see notes_() in tools/edition.py.
+    for t in (e.get('noti') or []):
+        L.append("\\noto{%s}" % _italic(_bound_to(esc(t))))
     if e.get('simbolo'):
         L.append("\\simbolo{%s}" % esc(e['simbolo']))
     if e.get('latina'):

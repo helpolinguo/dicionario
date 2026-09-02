@@ -1,7 +1,8 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## bezigo
-Karto-ludo. – Nomo, en ta ludo, di la unioneso di la karelo-pajo e di la piquo-damo
+Karto-ludo.
+— Nomo, en ta ludo, di la unioneso di la karelo-pajo e di la piquo-damo
 <!-- p. 63, l. 40 | Germana, Angla, Franca, Italiana, Hispana -->
 
 ---

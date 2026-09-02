@@ -1,7 +1,8 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## rutino
-Kustumo su-inkrustinta agar o facar ulo segun ta o maniero. – Metaf. : Kustumo a qua onu su konformas mekanismatre, sen-reflekte
+Kustumo su-inkrustinta agar o facar ulo segun ta o maniero.
+— Metaf. : Kustumo a qua onu su konformas mekanismatre, sen-reflekte
 <!-- p. 506, l. 38 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ---

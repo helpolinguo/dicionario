@@ -1,7 +1,8 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## simultana
-Qua valoras egale e kune, solidare. (kom ex. : equacioni simultana). – « Simultana » ne esas sinonimo di « sama-tempa », « sam-epoka », « sam-instanta »
+Qua valoras egale e kune, solidare. (kom ex. : equacioni simultana).
+— « Simultana » ne esas sinonimo di « sama-tempa », « sam-epoka », « sam-instanta »
 <!-- p. 529, l. 43 | sen-lingua -->
 
 ---

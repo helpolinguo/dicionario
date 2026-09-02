@@ -1,7 +1,8 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## violacar *(trans.)*
-Domajar, lezar (ulo) quan onu ya devas respektar. – Koitar muliero kontre elua volo
+Domajar, lezar (ulo) quan onu ya devas respektar.
+— Koitar muliero kontre elua volo
 <!-- p. 617, l. 56 | Angla, Franca, Italiana, Hispana -->
 
 ---

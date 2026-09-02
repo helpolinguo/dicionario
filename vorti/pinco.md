@@ -1,7 +1,8 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## pinco *(tekn.)*
-Mikra tenalio, uzata diverse en la mestieri, en kirurgio. – « Pinco » diferas de « tenalio » per to ke lu esas utensilo sen charniro (la du parti ye qua lu konsistas esas asemblita per resorto o parto flexebla)
+Mikra tenalio, uzata diverse en la mestieri, en kirurgio.
+— « Pinco » diferas de « tenalio » per to ke lu esas utensilo sen charniro (la du parti ye qua lu konsistas esas asemblita per resorto o parto flexebla)
 <!-- p. 439, l. 40 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ---

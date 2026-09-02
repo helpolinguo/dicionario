@@ -1,7 +1,8 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## ca *(ica)*
-Pronomo qua uzesas por ri-nomar kozo qua jus nomesis o quik nomesos. – Generale, ta (ita) uzesas por korespondar a ta senco – ca (ica) esante rezervata por indikar : 1. objekto plu proxima; 2. la duesma ek du nomaji (ta (ita) koncernas lore la unesma)
+Pronomo qua uzesas por ri-nomar kozo qua jus nomesis o quik nomesos.
+— Generale, ta (ita) uzesas por korespondar a ta senco – ca (ica) esante rezervata por indikar : 1. objekto plu proxima; 2. la duesma ek du nomaji (ta (ita) koncernas lore la unesma)
 <!-- p. 81, l. 7 | Franca -->
 
 ---
