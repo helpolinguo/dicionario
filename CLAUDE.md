@@ -39,6 +39,15 @@ The two editions come from one file, and they are rebuilt together:
     python3 tools/generate_all.py   # the facsimile's 639 pages
     python3 tools/all_editions.py   # base, HTML page, pocket text, lualatex x2
 
+Then the forms drawn from the page, in this order — each reads what the
+one before it wrote:
+
+    python3 tools/machine_readable.py  # .json, .md, vortlisto.md, vorti/
+    python3 tools/anki.py              # dicionario.apkg — 9473 notes,
+                                       # 17,840 cards, 221 tags. The sha256
+                                       # it prints does not move unless the
+                                       # text does: the build is byte-stable.
+
 Then the surveys, each of which says what it expects. A figure that moves
 without a reason is a defect, not a detail:
 
