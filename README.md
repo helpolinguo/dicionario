@@ -17,8 +17,9 @@ Two editions come out of one source, and cannot diverge:
 - **the facsimile** (`main.pdf`), 640 pages, the typescript as it stands;
 - **the cleaned text** — the reading page, a machine-readable edition
   (`dicionario.md`, `.json`, `.jsonl`, `.tsv`, and `vorti/` — one file
-  per word) and a **pocket dictionary** (`dicionario.pdf`), 9,473 entries
-  set in two columns with running heads and PDF bookmarks.
+  per word), a **pocket dictionary** (`dicionario.pdf`), 9,473 entries
+  set in two columns with running heads and PDF bookmarks, and an **Anki
+  deck** (`dicionario.apkg`) for whoever means to learn them.
 
 This is one of three books gathered at [ido.help](https://ido.help/); the
 other two are [tabeli](https://github.com/helpolinguo/tabeli) and
@@ -44,6 +45,7 @@ work/                the working tree: corrections cell by cell,
 index.html           the reading page                             } generated
 dicionario.md/.json/.jsonl/.tsv   the book laid flat              } generated
 dicionario.pdf       the pocket edition, what the page's button offers
+dicionario.apkg      the Anki deck, 9,473 notes                   } generated
 vortlisto.md         the word list                                } generated
 vorti/WORD.md        ONE FILE PER WORD, ~600 bytes each            } generated
 verbi.md/.json       transitivity and the governed preposition     } generated
@@ -60,8 +62,16 @@ docs/underlines-unplaced.md, docs/order-broken.md   two surveys   } generated
 ```sh
 lualatex main.tex && lualatex main.tex  # the facsimile, 640 pages
 python3 tools/all_editions.py          # everything downstream of the text
+python3 tools/machine_readable.py      # dicionario.md/.json, vortlisto, vorti/
 python3 tools/parentheticals.py        # verbi.*, faki.*
+python3 tools/anki.py                  # dicionario.apkg
 ```
+
+The last three read `index.html` and `dicionario.json`, which the second
+writes; they are listed here in the order they must run in. The block gave
+four of the five lines until the deck was added, `machine_readable.py`
+having been left out of it although `parentheticals.py` reads the file it
+writes.
 
 `tools/all_editions.py` runs the four stages in the one order that keeps
 the two editions level: the lexical base (`tools/edition.py`), the HTML
@@ -69,7 +79,8 @@ page (`tools/export.py`), the pocket text (`tools/pocket.py`), then
 lualatex twice — twice, because the running heads and the PDF bookmarks
 are read back out of the `.aux` of the previous pass.
 
-`index.html`, `dicionario.*`, `vortlisto.md`, `verbi.*`, `faki.*`,
+`index.html`, `dicionario.*` — the deck among them —, `vortlisto.md`,
+`verbi.*`, `faki.*`,
 `content/*.tex`, `pocket/content.tex` and the two surveys in `docs/` are
 **generated,
 never edited by hand**: what must change is changed in `tools/`, or in
@@ -191,6 +202,48 @@ address out. A reader who knows the word does not need it.
 layout and no front matter, so Jekyll was doing nothing here but slowing the
 build — and 65 of these addresses begin with a hyphen, being Ido's affixes.
 The deploy is now a plain copy.
+
+## The deck
+
+`dicionario.apkg` is the whole book as an **Anki deck**: 9,473 notes,
+17,840 cards, 1.6 MB, built by `tools/anki.py` out of `dicionario.json`.
+An `.apkg` is a zip holding a SQLite collection in Anki's schema 11, and
+this one is written with `sqlite3` and `zipfile` alone — **a clone builds
+it with nothing installed**, no genanki and none of the three libraries
+the scan wants.
+
+Two cards come from one note:
+
+| card | question | answer |
+| --- | --- | --- |
+| `Vedetto → senco` | the headword | the article, as the page sets it |
+| `Senco → vedetto` | the article | the headword |
+
+**The second is not made for every article.** MEASURED, over the 9,473:
+102 are affixes, which have no sense to recognise; 532 carry a body under
+25 characters, too short to guess at; and 472 print the headword's own
+root inside the definition — `abandonar. Lasar ... abandonita` hands the
+answer over. **8,367 articles carry the reverse card**, and the 1,106
+others carry the first alone.
+
+**The guid is an address.** Anki knows a note it has already seen by its
+`guid` and by nothing else: a matching guid is UPDATED on import, a new
+one is ADDED. The guid here is computed from the headword's address — the
+same rule `vorti/` uses, imported from the tool that owns it — and from
+the rank of the article among those sharing it. **A corrected deck
+imported over an old one therefore keeps every repetition ever made.**
+The deck's and the note type's identifiers are fixed for the same reason,
+and the build is deterministic to the byte, so a rebuild that changes
+nothing shows no diff.
+
+The tags are the book's own marks, read by `tools/parentheticals.py` at
+both levels — 221 of them: `fako::bot.` selects the 616 plants,
+`verbo::transitiva` the verbs that take an object, `prepoziciono::ad` the
+verbs that govern *ad*, `litero::k` a letter of the alphabet. The
+interface is in Ido, here as on the page: the deck's name, its fields
+(`Vedetto`, `Fako`, `Senci`, `Lingui`, ...) and its tags. A field's name
+is an address too — Anki matches an imported note to the one it holds
+field by field, by name.
 
 ## The parenthetical holds three things
 
