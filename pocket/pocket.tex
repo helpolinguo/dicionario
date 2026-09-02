@@ -95,6 +95,11 @@
 \newcommand{\vorto}[1]{{\titra\bfseries\color{akcento}#1}}
 \newcommand{\fako}[1]{\enspace\textit{(#1)}}
 \newcommand{\senco}[2]{\enspace{\titra\bfseries\footnotesize #1.}~#2}
+% The remark the book hangs after its senses, with no number of its own. It
+% keeps the author's dash, which is what sets it apart from a numbered sense:
+% here it must be an em dash and not the hyphen of the typescript, since the
+% edition renders the hyphens (see typography() in tools/edition.py).
+\newcommand{\noto}[1]{\enspace\textemdash~#1}
 \newcommand{\latina}[1]{\enspace\textit{L. #1}}
 % The chemical symbol. The label takes the italic, like that of the Latin
 % name; the symbol stays UPRIGHT -- a sloped formula reads badly, and the

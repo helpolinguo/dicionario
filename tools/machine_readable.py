@@ -92,6 +92,11 @@ def entry(e: dict) -> str:
             lin.append(' '.join(p for p in part if p))
             num = ''
 
+    # La remarque que le livre pend apres ses sens, sans numero : le tiret la
+    # marque ici comme il la marque sur la page.
+    for t in e.get('r') or []:
+        lin.append(f'— {text_(t)}')
+
     if e.get('l'):
         lin.append(f'L. {"; ".join(e["l"])}')
     if e.get('y'):

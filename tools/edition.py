@@ -1289,6 +1289,11 @@ def analyse_(e, lexicon=None, compounds=None):
         e['vedetto'] = '*' + e['vedetto']
     v=e['vedetto']
     e['drapeli']=list(e.get('drapeli_pre',[]))
+    # The remarks the book sets below its numbering; notes_() fills them.
+    # Declared here so that every record carries the key, empty or not:
+    # a key is an address, and a reader must not have to guess whether it
+    # is missing or empty.
+    e['noti']=[]
     if not v: e['drapeli'].append('sen-chefvorto')
     elif not _ending_ok(e): e['drapeli'].append('finalo-nekustumala')
     if not e['kodo']: e['drapeli'].append('sen-lingua')
@@ -2075,6 +2080,99 @@ def _rule_without_headword(spot, u, headword_):
     return _quotes_headword(pl[0], headword_)
 
 
+# A remark the book hangs on the END of an article, after its numbered senses,
+# set off by the same dash that separates them -- but with no number of its own.
+# \ue000 and \ue001 bound the italic in `teksto_k` (see START/END below), and
+# they fall BETWEEN the dash and the letter -- « horizonto. – \ue000Metaf\ue001. :
+# La komenco di ulo » under auroro. The look-ahead steps over them, or the
+# remark that opens on an italic word is not seen at all. They are stepped
+# over INSIDE the look-ahead and not in the match, so that the cut leaves them
+# WITH the remark. Consumed instead, the opening one stayed in the body and the
+# remark began on a closing one alone: the pocket book set \noto{Metaf}, a
+# brace closed that nothing had opened, and lualatex stopped on « Extra }, or
+# forgotten \endgroup » -- no PDF produced at all.
+RE_NOTE = re.compile(r'\.\s*[–-]\s+(?=[\ue000\ue001]*[«"A-ZÀ-Ý])')
+
+
+def notes_(ent):
+    """Detaches the remark the book hangs after the senses, unnumbered.
+
+    « -ig-. ... II. kun radiko di verbo netransitiva : "esar la kauzo di
+    la...-ar". - "Igar" uzesas anke kom radiko, kun la senco : "..." » -- the
+    author separates his last piece with the dash that separates his senses,
+    and gives it NO number. The edition had only two shapes, the numbered sense
+    and the sub-entry with its label, and so glued the piece into the sense
+    before it: the reader read as part of sense II what the book had set apart
+    from it. Sixty-six articles, sixty-eight pieces.
+
+    Laid on `strukt`, and AFTER structure_() has taken its sub-entries: a phrase
+    that carries its own definition and its own underline is better served as a
+    sub-entry, with its label, than as a loose remark. Run before it instead,
+    this pass stole twenty-two of them -- « phrases detached » fell from 113 to
+    91 -- and the count of remarks rose from 68 to 122 on text the structuring
+    had not yet been through. `senci` is not touched: it is the FLAT text, and
+    it already keeps what strukt has detached into sub-entries.
+
+    Rendered as a third shape: its own paragraph, after the senses, with
+    no number. That asserts nothing about what the piece IS, which is the point
+    -- the sixty-eight are not one kind. Some are true remarks (« "Pinco"
+    diferas de "tenalio" per to ke... »), some a phrase carrying its own
+    definition (« Kaloro latenta : kaloro quan absorbas korpo... »), some an
+    extended or figurative sense (« Metaf. : La komenco di ulo », auroro). What
+    they have in common is the book's own presentation, and it is that which is
+    reproduced: after, set off, unnumbered.
+
+    TWO THINGS ARE LEFT WHERE THEY STAND, and both were measured.
+
+    A piece opening on a PARENTHESIS is not taken. Admitting « ( » raises the
+    count from 68 to 119, and the fifty-one it adds are of one kind: a sense
+    qualified by its domain -- « (metaf.) Persono o kozo por qua onu profesas
+    quaza kulto » (idolo), « (astron.) La signo okesma di zodiako »
+    (skorpiono), « (kemio) Acido : Oxo-kompozajo... » (acida). Those ARE further
+    meanings, and setting them below the numbering would say the contrary.
+
+    A piece opening on « L. » is not taken either: it is the scientific name,
+    and e['latina'] carries it already -- ostro, sodo. Taken, it would be set a
+    second time, the page printing it once from `latina` and once here.
+    """
+    def _cut(t):
+        """The body, and the remarks hanging off its end."""
+        cuts=[m for m in RE_NOTE.finditer(t)
+              if not t[m.end():].startswith('L. ')
+              and len(t[m.end():].split()) >= 4]
+        # A body that is nothing BUT the remark keeps it: cutting would leave a
+        # numbered sense with nothing to carry its number.
+        if not cuts or not t[:cuts[0].start()+1].strip(' .'): return t, []
+        segs=[]
+        for i,m in enumerate(cuts):
+            end = cuts[i+1].start()+1 if i+1 < len(cuts) else len(t)
+            u=t[m.end():end].strip()
+            if u: segs.append(u)
+        return (t[:cuts[0].start()+1].strip(), segs) if segs else (t, [])
+
+    n=0
+    for e in ent:
+        B=e.get('strukt') or []
+        if not B: continue
+        b=B[-1]
+        body, segs = _cut(b.get('teksto_k') or b.get('teksto') or '')
+        if not segs: continue
+        # The italic must not be cut in half. If a run opens before the dash
+        # and closes after it, body and remark each keep one bound and neither
+        # can be set; such an article is left alone rather than repaired blind.
+        if any(u.count('\ue000') != u.count('\ue001') for u in [body] + segs):
+            continue
+        # teksto and teksto_k are the same text, one of them marked up; the cut
+        # is computed on the one displayed and applied to the other by the same
+        # rule, so that the two cannot come apart.
+        plain, _ = _cut(b.get('teksto') or '')
+        if b.get('teksto_k') is not None: b['teksto_k']=body
+        b['teksto']=plain
+        e['noti']=(e.get('noti') or []) + segs
+        n += len(segs)
+    return n
+
+
 def structure_(e):
     """Cuts each sense into a body and, where there is cause, its sub-entries.
 
@@ -2655,6 +2753,24 @@ def build():
             u = re.sub(r'^[.,;:)\s–-]+', '', u)
             u = space_out(u)
             S.append(u)
+        # THE FIRST NUMBER OF ALL, STRANDED AFTER THE INTRODUCTORY COLON.
+        # « -ig-. Sufixo qua signifikas : I. kun radiko nomala... II. kun radiko
+        # di verbo netransitiva... » -- the cut opens a sense at « II. », which
+        # follows a full stop, and cannot open one at « I. », which follows the
+        # colon of the preamble. The article then showed « 1. Sufixo qua
+        # signifikas : I. ... » against « 2. ... »: the same list numbered twice,
+        # once by the edition and once by the author, and only for its first
+        # item. The number is the artefact; the preamble stays where the author
+        # put it, at the head of the first sense.
+        # ONLY « I », ONLY IN THE FIRST SENSE, ONLY WHEN THERE IS A SECOND: a
+        # lone sense that carries its whole enumeration inline is consistent with
+        # itself -- « mento. Maniero vidar, pensar, sentar : I. Impulso...; II.
+        # Stoko... » -- and cutting into it would leave the preamble hanging.
+        # The colon is required, which is what keeps « pos I. K. » (hejiro,
+        # sanskrito) and « la rejo Francisko I. » (legiono) out of reach.
+        if len(S) > 1 and S[0]:
+            u = re.sub(r'^(.{1,80}?\s:\s)I\.\s+(?=\S)', r'\1', S[0])
+            if u != S[0]: S[0]=u; n_num += 1
         fus=[]
         for i,t in enumerate(S):
             if RE_LABEL.match(t) and i+1 < len(S):
@@ -2676,6 +2792,8 @@ def build():
     n_sym=sum(split_off_symbol(e) for e in ent)
     if n_sym: print("chemical symbols moved into the domain: %d"%n_sym)
     n_sub=sum(structure_(e) for e in ent)
+    n_note=notes_(ent)
+    if n_note: print("remarks set below the numbering: %d"%n_note)
     n_run=sum(1 for e in ent if e.get('kursiva'))
     print("phrases detached: %d ; articles with an underline: %d"%(n_sub, n_run))
     for e in ent: e.pop('filetoj', None)

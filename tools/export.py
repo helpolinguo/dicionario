@@ -177,6 +177,10 @@ article{padding:11px 0;border-bottom:1px solid var(--lin)}
 .subvorto>b{color:var(--acc)}
 .subvorto .lin{color:var(--sub);font-size:11.5px;margin-left:6px;letter-spacing:.03em}
 .subvorto::before{content:"\u25b8";color:var(--acc);margin-right:5px}
+/* La remarque que le livre pend apres ses sens, sans numero : il la detache
+   par un tiret, et c est ce tiret qui la marque ici. */
+.noto{margin:4px 0 0;text-indent:-12px;padding-left:12px}
+.noto::before{content:"\u2014";color:var(--sub);margin-right:5px}
 .meta{margin-top:5px;font-size:11.5px;color:var(--sub);font-family:system-ui,sans-serif;
  display:flex;gap:9px;flex-wrap:wrap}
 .dr{color:var(--flag)}
@@ -237,8 +241,9 @@ function surl(t,r){if(!r)return esc(t);return esc(t).replace(new RegExp('('+r.re
 // Tout le texte d'un article, bornes otees : c'est la-dessus que porte la
 // recherche dans les definitions. On le calcule une fois par article.
 function texto(e){
- if(e._t===undefined) e._t=(e.b||[]).map(b=>b.t+' '+(b.u||[]).map(
-   x=>x.k+' '+x.q+' '+x.t).join(' ')).join(' ').replace(/[\ue000\ue001]/g,'').toLowerCase();
+ if(e._t===undefined) e._t=((e.b||[]).map(b=>b.t+' '+(b.u||[]).map(
+   x=>x.k+' '+x.q+' '+x.t).join(' ')).join(' ')+' '+(e.r||[]).join(' '))
+   .replace(/[\ue000\ue001]/g,'').toLowerCase();
  return e._t;}
 function korpo(t,r){
  if(t.indexOf('\ue000')<0){
@@ -272,6 +277,7 @@ function rendi(e,r){
    +'<b>'+surl(x.k,r)+'</b>'+(x.q?' <i>('+esc(x.q)+')</i>':'')+' '+korpo(x.t,r)
    +(x.n&&x.n.length?'<span class="lin">'+esc(x.n.join(', '))+'</span>':'')+'</p>';
    num=0;});});
+ (e.r||[]).forEach(t=>{h+='<p class="senco noto">'+korpo(t,r)+'</p>';});
  if(e.l&&e.l.length)h+='<p class="senco lat">L. '+esc(e.l.join('; '))+'</p>';
  // Le symbole chimique : une etiquette, comme le nom latin. Le livre l'ecrivait
  // de dix facons — avec ou sans tiret, « kemiala » ou « kem. », majuscule ou
@@ -435,6 +441,7 @@ def html_edition(ent):
                     **({"n":x['lingui']} if x.get('lingui') else {})}
                    for x in (b.get('sub') or [])]}
              for b in (e.get('strukt') or [])],
+        **({"r":e['noti']} if e.get('noti') else {}),
         "n":e['lingui'],"p":e['pagino'],"g":e['ligno'],"d":e['drapeli'],
         **({"y":e['simbolo']} if e.get('simbolo') else {}),
         **({"c":1} if e.get('citita') else {})} for e in ent]
