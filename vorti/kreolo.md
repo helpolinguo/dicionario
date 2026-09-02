@@ -1,7 +1,8 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## kreolo
-Persono di raso blanka, naskinta en la kolonii (olim) Hispana di Amerika. – Persono qua naskis en la kolonii Europana inter-tropike
+Persono di raso blanka, naskinta en la kolonii (olim) Hispana di Amerika.
+— Persono qua naskis en la kolonii Europana inter-tropike
 <!-- p. 313, l. 18 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ---

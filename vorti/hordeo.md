@@ -1,7 +1,8 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## hordeo *(bot.)*
-Planto cereala singlayara, herbatra, di qua la stipo perpendikla esas garnisita ye folii alterna, lineatra. e la flori dispozita spiko-forme. – Grano quan produktas ta planto, uzata por facar pano-sorto grosiera, nutrar la kavali, la brutaro, fabrikar biro, e c.
+Planto cereala singlayara, herbatra, di qua la stipo perpendikla esas garnisita ye folii alterna, lineatra. e la flori dispozita spiko-forme.
+— Grano quan produktas ta planto, uzata por facar pano-sorto grosiera, nutrar la kavali, la brutaro, fabrikar biro, e c.
 L. hordeum
 <!-- p. 223, l. 14 | Latina -->
 

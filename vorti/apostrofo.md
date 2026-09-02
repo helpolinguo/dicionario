@@ -2,7 +2,8 @@
 
 ## apostrofo
 1. (gram.) Signo ortografiala qua remplasas litero elizionita
-2. (retor.) Procedo oratorala per qua onu interpelas subite persono prezenta, ento nevidebla, kozo quan onu traktas quale se lu esus persono. – Interpelo vigoroza di ulu
+2. (retor.) Procedo oratorala per qua onu interpelas subite persono prezenta, ento nevidebla, kozo quan onu traktas quale se lu esus persono.
+— Interpelo vigoroza di ulu
 <!-- p. 35, l. 9 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ---

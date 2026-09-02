@@ -1,7 +1,8 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## kodexo
-Kolektajo ek la legi klasifikita tale ke olu reprezentas la ensemblo di la legi di lando pri ta o ca temo. – Anke pri la formuli farmaciala, la frazi konvencionala telegrafala
+Kolektajo ek la legi klasifikita tale ke olu reprezentas la ensemblo di la legi di lando pri ta o ca temo.
+— Anke pri la formuli farmaciala, la frazi konvencionala telegrafala
 <!-- p. 282, l. 45 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ---

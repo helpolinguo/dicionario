@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## -ajo
-1. Sufixo qua indikas : I. Kozo facita ek ula materio, o qua posedas ta o ca karaktero (ex. : lanajo, kotonajo, bonajo, bitrajo)
+1. Sufixo qua indikas : Kozo facita ek ula materio, o qua posedas ta o ca karaktero (ex. : lanajo, kotonajo, bonajo, bitrajo)
 2. (per extenso di la senco) Ago, parolo, procedo di… (amikalajo, pueralajo)
 3. (kun verbo transitiva) Indikas la objekto pasiva di la ago (cakaze, lu equivalas « -ata ») (ex. : manjajo : karno, pano, legumi); vidajo : kozo vidata
 4. (kun verbo mixita) -ajo = -(at)ajo (ex. : chanjajo : kozo chanjata.)

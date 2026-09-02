@@ -1,7 +1,8 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## arto
-Singla de la generi en qui la homo o la animalo produktas verki segun ula reguli. – Aplikado di la savi por realigar koncepto
+Singla de la generi en qui la homo o la animalo produktas verki segun ula reguli.
+— Aplikado di la savi por realigar koncepto
 <!-- p. 41, l. 42 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ---

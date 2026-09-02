@@ -2,7 +2,8 @@
 
 ## fundamento
 1. Masonuro quan onu establisas, en sulo, kom bazo solida di edifico
-2. (metaf.) En ensemblo, la elemento esencala sur qua su apogas lo cetera. – To sur quo onu apogas sua judiko
+2. (metaf.) En ensemblo, la elemento esencala sur qua su apogas lo cetera.
+— To sur quo onu apogas sua judiko
 <!-- p. 183, l. 10 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ---

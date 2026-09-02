@@ -1,7 +1,8 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## dotar *(trans., per, ye)*
-Provizar (homo) per la havajo quan lu adportas mariajo a sua spozo. – Provizar per ula qualesi
+Provizar (homo) per la havajo quan lu adportas mariajo a sua spozo.
+— Provizar per ula qualesi
 <!-- p. 121, l. 50 | Angla, Franca, Italiana, Hispana -->
 
 ---

@@ -5,7 +5,8 @@ Kaloto de metalo qua, frapate per marteleto, produktas sonuno pasable duroza
 <!-- p. 581, l. 9 | Franca, Hispana | artiklo-dividita -->
 
 ## *timbro *(postmarko)*
-Peceto de papero imprimuroza (ordinare kun konturo dentetoza pro perforesir) quan onu glutinas sur la letro-kuverti por montrar ke la afranko-preco esas pagita. – Analoge pri la « timbri » fiskala, asekurala, e c.
+Peceto de papero imprimuroza (ordinare kun konturo dentetoza pro perforesir) quan onu glutinas sur la letro-kuverti por montrar ke la afranko-preco esas pagita.
+— Analoge pri la « timbri » fiskala, asekurala, e c.
 <!-- p. 581, l. 18 | Franca, Hispana -->
 
 ---

@@ -1,7 +1,8 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## bushelo
-En Francia, olima mezurilo di kapaceso (cirkume 13 litri); nun, la bushelo kontenas -segun la regioni 1 o 2 dekalitri. – En Usa, la kapaceso varias segun la stati
+En Francia, olima mezurilo di kapaceso (cirkume 13 litri); nun, la bushelo kontenas -segun la regioni 1 o 2 dekalitri.
+— En Usa, la kapaceso varias segun la stati
 <!-- p. 78, l. 23 | Angla, Franca, Rusa -->
 
 ---

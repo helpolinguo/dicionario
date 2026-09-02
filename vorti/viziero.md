@@ -1,7 +1,8 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## viziero
-Parto avana di la kasko, quan onu abasis por shirmar la vizajo, e tra qua onu povis vidar e respirar per greto streta. – Peco ek ledro muntita an-avan kasqueto por shirmar la okuli kontre la suno-radii e kontre la pluvoguti
+Parto avana di la kasko, quan onu abasis por shirmar la vizajo, e tra qua onu povis vidar e respirar per greto streta.
+— Peco ek ledro muntita an-avan kasqueto por shirmar la okuli kontre la suno-radii e kontre la pluvoguti
 <!-- p. 619, l. 48 | Germana, Angla, Franca, Italiana, Hispana -->
 
 ---

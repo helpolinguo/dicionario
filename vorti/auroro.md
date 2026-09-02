@@ -1,7 +1,8 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## auroro
-Koloro oranjea qua venas de la radii di Suno levanta, qui frapas horizonto. – Metaf. : La komenco di ulo
+Koloro oranjea qua venas de la radii di Suno levanta, qui frapas horizonto.
+— Metaf. : La komenco di ulo
 <!-- p. 48, l. 51 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ---

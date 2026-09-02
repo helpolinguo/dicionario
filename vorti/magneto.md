@@ -1,7 +1,8 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## magneto
-Erco de fero oxidoza, di qua un ek la karakteri esas atraktar fero o stalo. – Ferbloko o stalobloko quan efikis magneto o koranto (elektro-fluo) o la magnetefekto di la Terglobo. – (metaf.) To quo atraktas forte
+Erco de fero oxidoza, di qua un ek la karakteri esas atraktar fero o stalo.
+— Ferbloko o stalobloko quan efikis magneto o koranto (elektro-fluo) o la magnetefekto di la Terglobo. – (metaf.) To quo atraktas forte
 <!-- p. 349, l. 15 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ---

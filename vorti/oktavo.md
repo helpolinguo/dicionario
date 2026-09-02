@@ -2,7 +2,8 @@
 
 ## oktavo
 1. (muziko) Intertempi de ok gradi
-2. (liturgio katol.) Intertempo de ok dii qua sequas granda festo-dio ekleziala e dum qua eventas la memorigo di ta festo. – La lasta dio ek ta serio, en qua la oficio esas maxim solena
+2. (liturgio katol.) Intertempo de ok dii qua sequas granda festo-dio ekleziala e dum qua eventas la memorigo di ta festo.
+— La lasta dio ek ta serio, en qua la oficio esas maxim solena
 <!-- p. 404, l. 21 | Germana, Angla, Franca, Italiana, Hispana -->
 
 ---

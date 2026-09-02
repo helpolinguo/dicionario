@@ -1,7 +1,8 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## permanar *(netrans.)*
-Mantenar su, konservar su, sen interrupto. – Esar kontinue en la sama loko, sen absenteso nek intermito
+Mantenar su, konservar su, sen interrupto.
+— Esar kontinue en la sama loko, sen absenteso nek intermito
 <!-- p. 434, l. 12 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ---

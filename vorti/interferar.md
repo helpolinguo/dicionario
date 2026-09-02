@@ -1,7 +1,8 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## interferar *(netrans.)*
-(fiziko) (aludante lumo-radii) Renkontrar altra lumo-radii, de quo konsequas deskresko plu o min granda da lia lumo. – Fenomeno analoga pri la fonoondi
+(fiziko) (aludante lumo-radii) Renkontrar altra lumo-radii, de quo konsequas deskresko plu o min granda da lia lumo.
+— Fenomeno analoga pri la fonoondi
 <!-- p. 239, l. 24 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ---

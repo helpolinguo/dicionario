@@ -2,7 +2,8 @@
 
 ## variar *(netrans.)*
 1. Submisar (serio de fakti) a chanji intersucedanta
-2. (netrans.) Chanjar intersucedante. – Dicesas pri kozi qui, kun traiti komuna, interdiferas
+2. (netrans.) Chanjar intersucedante.
+— Dicesas pri kozi qui, kun traiti komuna, interdiferas
 <!-- p. 609, l. 29 | Germana, Angla, Franca, Italiana, Hispana -->
 
 ---

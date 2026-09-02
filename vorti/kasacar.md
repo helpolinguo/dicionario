@@ -1,7 +1,8 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## kasacar *(trans.) (yuro-cienco)*
-Nihiligar yurale verdikto, akto, proceduro. – En Francia, la kasaco-korto esas la tribunalo suprega, qua (unika kom tala) darfas kasacar, nihiligar last-instance verdikto pro formo-defekto o lego-desegardo
+Nihiligar yurale verdikto, akto, proceduro.
+— En Francia, la kasaco-korto esas la tribunalo suprega, qua (unika kom tala) darfas kasacar, nihiligar last-instance verdikto pro formo-defekto o lego-desegardo
 <!-- p. 269, l. 27 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ---

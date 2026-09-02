@@ -179,7 +179,7 @@ agronomio — La cienco qua donas la reguli di agrokultivo
 agulo — Stangeto ek stalo polisita, di qua un extremajo esas pinta, e la altra, obtuzigita, ed un-trua, por recevar filo
 ah! — Interjeciono qua indikas ke onu quik expresos emoco forta qua kaptis la psiko (joyo, doloro, iraco, e c.)
 ailanto (bot.) — Planto ek la familio « nutacei »
--ajo — Sufixo qua indikas : I. Kozo facita ek ula materio, o qua posedas ta o ca karaktero (ex. : lanajo, kotonajo, bonajo, bitrajo)
+-ajo — Sufixo qua indikas : Kozo facita ek ula materio, o qua posedas ta o ca karaktero (ex. : lanajo, kotonajo, bonajo, bitrajo)
 ajio (banko-komerco) — Profito de la difero inter la valoro nominala e la valoro reala di la moneto-peci – inter la valoro nuna e la preco lor la pagoteso di la valor-paperi, di la vari di qui la kurso varias
 ajila — Di qua la movi esas flexebla, rapida
 ajiotar (netrans., pri) — Spekular pri la valor-paperi, pri la vari, di qui la kursi esas variiva
@@ -539,7 +539,7 @@ apoplexio (patol.) — Paralizeso plu o min kompleta, produktita da lezuro cereb
 apostata (religio) — Qua abandonis sua religio (la religio en qua lu naskis) po altra
 a posteriori — Segun la fakti observita
 apostilo — Noto sur peticiono, por rekomendar lu
-apostolo (religio katol.) — Singla ek la dek-e-du dicipuli qui recevis de Iesu-Kristo la komiso predikor evangelio. – Ta qua propagas la doktrino Kristana
+apostolo (religio katol.) — Singla ek la dek-e-du dicipuli qui recevis de Iesu-Kristo la komiso predikor evangelio.
 apostrofo — (gram.) Signo ortografiala qua remplasas litero elizionita
 apoteko — Butiko ube la medikamenti preparesas, konservesas, vendesas. a konsumeri
 apotemo (geom.) — Radio di la cirklo enskribata en poligono regulala
@@ -656,7 +656,7 @@ arozar (trans.) — Humidigar per varsar liquido gutope, imitante roso
 arpejar (netrans.) (muziko) — Plear muzikajo-parto tre rapide, igante audeblan intersucedante la son-uni di akordo
 arseno (kemio) — Korpo simpla, metaloida, stalo-griza, facile ruptebla, di qui la kompozaji (la aloyuri eceptate) esas venenoza
 arsenalo — Loko ube onu fabrikas o depozas la armi, la municioni, la milit-instrumenti quin onu uzas tere, mare od aere
-arto — Singla de la generi en qui la homo o la animalo produktas verki segun ula reguli. – Aplikado di la savi por realigar koncepto
+arto — Singla de la generi en qui la homo o la animalo produktas verki segun ula reguli.
 artemizio (bot.) — Planto di la familio « kompozaji », toniziva
 arterio (anat.) — Vaskulo qua portas la sango de la kordio ad omna parti di la korpo
 arterito (patol.) — Inflamuro di arterio
@@ -703,7 +703,7 @@ asketo — Persono qua, en la komenco di la Eklezio kristana, retroiris de la so
 asklepiado — Verso qua konsistas ye un spondeo, du koriambi ed un iambo
 askoltar (trans.) — Atencar to quo dicesas; esforcar por audar
 asno (zool.) — Animalo di la genero « solipedi », kun oreli longa, spino salianta, krio desharmonioza (bramo), e quan onu uzas precipue kom kargajo-bestio
-asociar (trans.) — Igar partoprenar to quon agas ulu. – Unionar ad ulu kom partoprenonto di ta quon lu agas
+asociar (trans.) — Igar partoprenar to quon agas ulu.
 asomar (trans.) — Ocidar per frapo de ulo tre pezoza
 asonancar (netrans., kun) — Rivenar (aludante la sama son-uno)
 asortar (trans., kun) — Kunpozar kozi qui inter-harmonias
@@ -787,7 +787,7 @@ augusta — Titulo honorizala, uzata a la membri di familio suverena
 aula — En la universitati Germana, Usana, Suisa : la chambrego di la akti e di la festi skolala
 aureolo — Cirklo lumala ye qua la piktisti cirkondas la kapo di Iesu-Kristo, di la Virgino e di la santi
 aurikulo — Singla de la du supra kavaji di la kordio
-auroro — Koloro oranjea qua venas de la radii di Suno levanta, qui frapas horizonto. – Metaf. : La komenco di ulo
+auroro — Koloro oranjea qua venas de la radii di Suno levanta, qui frapas horizonto.
 auskultar (trans.) (medic.) — Askoltar, per pozar la orelo an la parti vicina di la kordio, di la pulmoni, e c., la bruisi normala od anormala qui eventas en ta organi
 auspico (en Roma antiqua) — Predico ek la flugo od ek la kanto di la uceli, quan onu agis jus ante komencar agado, entraprezo publika. (anke metaf.)
 austera — Tre severa por su pri la mori, kun nuanco di rigoro ed asketeso
@@ -983,7 +983,7 @@ bela — Qua vekigas la admiro-sentimento, per igar senteblan o per manifestar t
 beladono (bot.) — Planto herbacea, perena, ek la familio « solanei », venenoza en omna lua parti, e di qua la toxikeso uzesas medicinale
 belemnito — Konko fosila, longa, cilindra, finanta per pinto
 belvedero — Paviliono konstruktita en loko de ube la peizajo esas agreabla e vasta, od an la somito di edifico de ube onu vidas vaste
-bemolo (muziko) — Signo pozita avan muzik-noto por savigar ke onu devas abasar ye un mi-tono ta noto ed olti di la sama grado en la sama mezuro. – Signo an la klefo por savigar ke onu devas abasar ye un mi-tono omna noti skribita sur la sama lineo, en la muzikajo
+bemolo (muziko) — Signo pozita avan muzik-noto por savigar ke onu devas abasar ye un mi-tono ta noto ed olti di la sama grado en la sama mezuro.
 bendo — Areo limitizita per du linei paralela
 benedikar (trans.) — Dicar vorti qui *wishas ad ulu lua feliceso
 benediktano — Reguliero en la ordeno di santa Benediktus
@@ -1013,7 +1013,7 @@ betelo (bot.) — Arbusto sarmentoza de India orientala, de la genero « pipro �
 betono — Mixuro de mortero hidraulikala e de stoni triturita, qua hardeskas en aquo
 betonio (bot.) — Planto herbacea, perena, kun bela flori spikedispozite – genero di la familio « labiacei »
 betravo (bot.) — Speco di beto kun radiko rotacanta quale la rapo, blanka o reda, qua donas nutrivo por la homo e la bestii, e di qua onu extraktas sukro
-bezigo — Karto-ludo. – Nomo, en ta ludo, di la unioneso di la karelo-pajo e di la piquo-damo
+bezigo — Karto-ludo.
 bezoaro — Agreguro kalkoloza quan onu renkontras en la intestino ed en la stomako di ula animali, e quan onu uzis kom antidoto, amuleto, e c.
 bezonar (trans.) — Indijar ulo quon postulas la naturo o la cirkonstanci o la skopo vizata
 bi- — Du-… (uzata por la termini ciencala : bikapa, biloba, e c.)
@@ -1243,7 +1243,7 @@ burokrato — La persono qua molestoze uzas, a publiko, la povo quan donas a lu 
 burso — Saketo por portar moneto-peci en la posho
 buso (bot.) — Arboreto di la familio « euforbiacei », di qua la foliaro esas sempre verda
 busho — Grupo, asemblajo de arboreti (nefruktifera)
-bushelo — En Francia, olima mezurilo di kapaceso (cirkume 13 litri); nun, la bushelo kontenas -segun la regioni 1 o 2 dekalitri. – En Usa, la kapaceso varias segun la stati
+bushelo — En Francia, olima mezurilo di kapaceso (cirkume 13 litri); nun, la bushelo kontenas -segun la regioni 1 o 2 dekalitri.
 busko — Lamo flexebla ek barto-materio, stalo, e c., qua, per aplikeso muldoza a la kurveso di la pektoro, mantenas rigide la parto avana di korsajo, di jupo-korpo
 busolo — Instrumento facita segun la duopla proprajo di la magnet-agulo : direktar sua pinto ad (vers) la nordo-polo, e proximigar su ad vertikalo segun ke lu portesas ad la poli
 busprito (navig.) — Masto avana di navo, inklinita a la aquo-surfaco, qua portas la seglo avana e fixigita an kordego
@@ -1259,7 +1259,7 @@ buxo — Kolektuyo di qua la formo e la dimensioni esas variiva, ek ligno, karto
 buzo (zool.) — Raptucelo, genero « avidi desnobla », kun korpo grosiera e quan lua posturo sen-mova dum plura hori (vartante sua raptotajo) igas aspektar stupida
 buzardo (zool.) — Rapt-ucelo, genero « avidi desnobla », di qua la tarso esas tenua ed alta, havante mi-kolumo de plumi, e qua similesas la buzo
 c (muziko) — Nomo di la noto unesma di la « do »-gamo
-ca (ica) — Pronomo qua uzesas por ri-nomar kozo qua jus nomesis o quik nomesos. – Generale, ta (ita) uzesas por korespondar a ta senco – ca (ica) esante rezervata por indikar : 1. objekto plu proxima; 2. la duesma ek du nomaji (ta (ita) koncernas lore la unesma)
+ca (ica) — Pronomo qua uzesas por ri-nomar kozo qua jus nomesis o quik nomesos.
 cambium (bot.) — Parto di la sapo qua, pro solideskar pokope, augmentas la substanco di la basto e di la alburno inter qui lu cirkulas
 caro (olim, ante 1915) — La suvereno di Rusia
 cecidio (bot.) — Nomo generala di la gali quin produktas, sur la vejetanti, ula paraziti animala o vejetanta (insekti, akari, vermi, bakterii)
@@ -1886,7 +1886,7 @@ dormar (netrans.) — Esar en ta stando dum qua che homo od animalo, haltigesas 
 dorno (bot.) — Pikanto qua kreskas sur ula planti
 dorso (anat.) — Facio dopa di la homo-korpo; facio supera di la animalo-korpo
 doselo — Kronatro qua superesas altaro, trono, e quan onu portas en la procesioni super la eukaristio
-dotar (trans., per, ye) — Provizar (homo) per la havajo quan lu adportas mariajo a sua spozo. – Provizar per ula qualesi
+dotar (trans., per, ye) — Provizar (homo) per la havajo quan lu adportas mariajo a sua spozo.
 dozo — Quanto de medikamento, quan la malado devas absorbar en un foyo; quanto quan onu devas inkluzar, en medikamento kompozaja, de singla ek la substanci ye qui lu konsistas
 draceno (bot.) — Planto ornamentala
 dragar — Skurar (portuo, rivero, e c.) per deprenar de la fundo di la skurajo la gravio, la slamo, la rezidui
@@ -2304,7 +2304,7 @@ esvanar (netrans.) — Ne plus konciar sua vivo
 etajo (arkitekt.) — En domo, en edifico, konsistanta ye plura apartmenti superpozita : omna parto sama-nivela
 etajero — Moblo ek montanti qui portas tabuleti horizontala, dispozita etaje, sur qui onu pozas libri, art-objekti, e c.
 etalono — Tipo legale di la mezurili e ponderili
-etamino — Stofo ek lano lejera. – Lanajo, krinajo, quan onu uzas por blutar
+etamino — Stofo ek lano lejera.
 etapar (netrans.) (pri armeo) — Haltar en loko ube la trupi marchanta repozos dum nokto
 etato — To quo konstatas la estado di la kozi en ta o ca instanto
 etero — La parto maxim subtila di atmosfero, ye qua (krede da la antiqui) konsistas fairo
@@ -2317,7 +2317,7 @@ etiologio — (filoz.) Exploro di la kauzi
 etmoido (anat.) — (osto kraniala) di qua la lamo supra esas truoza, inkastrita en la sesguro infra di la osto frontala, e qua kontributas a formacar la naztrui
 etnografio — Deskripto di la populi
 etnologio — Cienco di la origino e di la deveno di la populi
-etologio — Cienco di la mori. – Traktato pri la mori
+etologio — Cienco di la mori.
 etuyo — Sorto di buxo adaptita a la formo di la objekto quan lu kontenos
 eudiometro — Instrumento uzata por determinar la proporcion di la parti qui kompozas aero od irgaltra mixuro de gasi
 eudiometrio — Analizo di aero, di mixuri de gasi, per eudiometro
@@ -3472,7 +3472,7 @@ hoplito (en la epoki antiqua) — Infantriano di qua la armi esis tre pezoza
 *horario — Tabelo qua indikas la kloki di la departo ed arivo pri la treni, tramveturi, autobusi, aeroplani, e c. – o la tempopunti ye qui ulo agesos, facesos (segun programo)
 horo — La parto 24-esma di un dio; « horo » mezuras duro o tempo-intervalo
 hordo — (che la Tatari) Homo-trupo vaganta, nomada
-hordeo (bot.) — Planto cereala singlayara, herbatra, di qua la stipo perpendikla esas garnisita ye folii alterna, lineatra. e la flori dispozita spiko-forme. – Grano quan produktas ta planto, uzata por facar pano-sorto grosiera, nutrar la kavali, la brutaro, fabrikar biro, e c.
+hordeo (bot.) — Planto cereala singlayara, herbatra, di qua la stipo perpendikla esas garnisita ye folii alterna, lineatra. e la flori dispozita spiko-forme.
 horizonto — Limito di la vido omna-direcione, che la observanto; lineo cirklo-kurva di qua lu esas la centro, ed ube cielo semblas juntar su a la Terglobo
 horlojo — Instrumento uzata por indikar qua kloko esas
 hornblendo — Silikato naturala di aluminio, di kalio, di fero e di magnezo, apartenanta a la genero « amfibola »; ta mineralo esas opaka, obskur-verda, od obskur-bruna o perfekte nigra
@@ -3525,9 +3525,9 @@ idioplasmo (biol.) — Parto di la plasmo, qua kontenas omna partikuli qui repre
 idiota (patol.) — Di qua la cerebro esas nur hipo-kreskinta; di qua la kompreniveso esas tre poka
 idiotismo — Frazo-formo di qua la senco ne esas deskovrebla per la analizo, pro ke olu ne rezultas logikale de la senco e di la kombinuro de la elementi uzata; anke pri vorto e lua elementi. (Louis Couturat)
 idolo — Figuro, statuo, qua reprezentas deo o deajo, e qua kultesas. – (metaf.) Persono o kozo por qua onu profesas quaza kulto, amo, amoro pasionoza
--ier- — Sufixo qua signifikas : I. Etuyo qua kontenas o sustenas la kozo indikata da la radiko
+-ier- — Sufixo qua signifikas : Etuyo qua kontenas o sustenas la kozo indikata da la radiko
 -if- — Sufixo qua signifikas « produktar, genitar, sekrecar » (to quon indikas la radiko)
--ig- — Sufixo qua signifikas : I. kun radiko nomala : « donar la qualeso quan expresas la radiko »; « transformar a… »
+-ig- — Sufixo qua signifikas : kun radiko nomala : « donar la qualeso quan expresas la radiko »; « transformar a… »
 ignorar — Refuzar saveskar, konoceskar; vole nesavar, vole nekonocar
 iguano (zool.) — Granda saurio di la tropiko-regioni di Amerika
 -ik- — Sufixo qua signifikas « qua esas malada de…, pro… »
@@ -3737,7 +3737,7 @@ intercesar (netrans., por, favore di) — Intervenar por ke ulu obtenez lua pard
 interdiktar (trans., ulo, ad ulu) — Imperar ke ulu ne (agez ulo)
 interesar (trans., pri, ad) — Ecitar en ulu lua kuriozeso, lua emoci
 interesto — Ensemblo de la kozi qui esas avantajoza ye ulu
-interferar (netrans.) — (fiziko) (aludante lumo-radii) Renkontrar altra lumo-radii, de quo konsequas deskresko plu o min granda da lia lumo. – Fenomeno analoga pri la fonoondi
+interferar (netrans.) — (fiziko) (aludante lumo-radii) Renkontrar altra lumo-radii, de quo konsequas deskresko plu o min granda da lia lumo.
 interimo — Intervalo dum qua ofico o plaso (en hierarkio) vakas
 interjeciono (gram.) — Klameto qua expresas la emoco subita di la psiko
 intermezo — Distraktivo (baleto, danso, kanto) quan onu lokizas inter la akti di teatrajo
@@ -3811,7 +3811,7 @@ iruptar (netrans.) — Enirar subite e violentoze
 iskiono (anat.) — Parto infra di la osti hanchala, ube inkastresas la osto di la kruro
 islamo — Religio e civilizeso-formo di la Mohamedisti
 -ismo — Sufixo qua signifikas « doktrino », « partiso », « sistemo »
--isto — Sufixo qua signifikas : I. « la persono qua profesione su okupas pri… »
+-isto — Sufixo qua signifikas : « la persono qua profesione su okupas pri… »
 istmo (geogr.) — Streta lango de tero, inter du mari, e qua unionas peninsulo a la kontinento cetera
 -it — Dezinenco di la participo pasintala pasiva
 ita — La persono, la kozo, qua maxime distas de ta qua parolas; la persono, la kozo, quan onu nomis enumer-unesme
@@ -4180,13 +4180,13 @@ kartocho — Tubo kartona, cilindra, qua kontenas la pulvero di fusilo, di pisto
 kartografio — La arto facar la mapi (geografiala, astronomiala, e c.)
 kartomanciar (netrans.) — Explorar la hazardo-kombinaji ek ludo-karti, por divinar la eventaji futura
 kartono — Pasto ek papero, shifoni, e c., quan onu hardigis e foliigis; od asemblajo ek folii o karti interglutinita
-kartusho — Kadro skultita, grabita, forme di karto di qua la bordumo, la angulo, aspektas quale volvajo, destinita por recevor enskriburo, devizo, moto, la monogramo di ulu, e quan onu plasizas sur edifico, infre ed en la angulo (sinistre o dextre), di tabelo, di pikturo, di graburo, di mapo. – Lineo-kadro elipsoida qua, en hieroglifo-texto, cirkondas la nomi di la deaji, di la reji, di la dinastii
+kartusho — Kadro skultita, grabita, forme di karto di qua la bordumo, la angulo, aspektas quale volvajo, destinita por recevor enskriburo, devizo, moto, la monogramo di ulu, e quan onu plasizas sur edifico, infre ed en la angulo (sinistre o dextre), di tabelo, di pikturo, di graburo, di mapo.
 kartuzio (religio katol.) — Monakeyo di la regulieri di la ordeno di « Santa Bruno », konstruktita (sen ecepto-kazi) en loko dezerta
 karubo (bot.) — La shelo pulpa di arboro, verda, ek la familio « leguminosi », e di qua la ligno esas tre harda
 karunklo — (anat.) Mikra peco karna (en la organismo); apendico karna an la fronto, an la pektoro di ula uceli (dindi, kazuari, e c.)
 karuselo — Quaza turniro, distraktivo ek konkursi, kur-konkursi, por recevor premie ringi fingrala, e c., agita da kavalokavalkanti dispozita quadrile
 kaso — Chambro ube eventas la inkasi e desinkasi da firmo komercala o da administrantaro
-kasacar (trans.) (yuro-cienco) — Nihiligar yurale verdikto, akto, proceduro. – En Francia, la kasaco-korto esas la tribunalo suprega, qua (unika kom tala) darfas kasacar, nihiligar last-instance verdikto pro formo-defekto o lego-desegardo
+kasacar (trans.) (yuro-cienco) — Nihiligar yurale verdikto, akto, proceduro.
 kashaloto (zool.) — Mamifero ek la familio « cetacei », qua diferas de la baleno per to ke, vice barti, lu havas denti an la mandibulo ed, an la maxilo, alveoli en qui esas la denti
 kashmiro — Texajo tre delikata, facita ek la lano di la mutoni. ed ek la lanugo di la pektoro di la kaprini di Tibet
 kasio (bot.) — Shelo (di qua la pulpo nigra uzesas kom laxigivo) di la arboro L. cassia
@@ -4385,7 +4385,7 @@ koboldo — En la superstici plebeyala : mikra diablo malicoza qua tormentas la 
 kochenilo (zool.) — Insekto qua vivas sur la nopalo e donas bela tinto-materio reda
 kocigo (anat.) — Mikra osto, en la extremajo infra di la spino, *artikumata a la sakrumo, che la homo e che la spinozi sen-kauda
 kocinelo (zool.) — Mikra insekto koleoptera. (septempunctata)
-kodexo — Kolektajo ek la legi klasifikita tale ke olu reprezentas la ensemblo di la legi di lando pri ta o ca temo. – Anke pri la formuli farmaciala, la frazi konvencionala telegrafala
+kodexo — Kolektajo ek la legi klasifikita tale ke olu reprezentas la ensemblo di la legi di lando pri ta o ca temo.
 kodicilo — Klauzo adjuntita – qua kompletigas, modifikas o nihiligas testamento
 koeficiento (matem.) — Nombro qua, skribite avan quanto algebrala, indikas quantafoye olca esas uzenda
 koercitiva (elektro) — Feldo koercitiva : valoro de magneto-feldo, necesa por retroduktar a zero la indukteso magnetala en ica od ita punto di korpo feromagnetala, pos submisir ica a sat multa cikli magnetala
@@ -4695,7 +4695,7 @@ konvolvulo (bot.) — Planto herbatra od arboretatra, kun flori dispozita funela
 konvoyar (trans.) — Transportar soldati, municioni, viktualii per serio de navi, de veturi, de kamioni qui avancas linee (quale la vagoni di treno)
 konvulsar (netrans.) — Tordar su konseque de ta kontrakto subita di la muskuli qua akompanas ula standi morbala di la nervaro. Afekto qua koncernas la infanti, karakterizata da kontrakti di ta o ca parte di la korpo qui povas produktar morto per konjestiono cerebrala, asfixieso
 konyako — Brandio qua esas la produkturo naturala de la vini rekoltata e distilata en la regiono qua cirkondas la Franca urbo Cognac (pron. Konyak')
-kooperar (netrans.) (ekonomiko) — Dicesas pri la ago da ta laboristi qui, vice donar a patrono sua laboro po salariopekunio, komunigas sua sparita pekunio e sua laboro, por produktar e vendar – singla de li partoprenonte la profito o la desprofito. – Dicesas anke pri la personi qui kompras komune sua bezonaji engrose, tale obtenante profito-quanto – quale komercisto endetalista – quan li distributas inter su proporcione a la valoro pekuniala di sua kompri
+kooperar (netrans.) (ekonomiko) — Dicesas pri la ago da ta laboristi qui, vice donar a patrono sua laboro po salariopekunio, komunigas sua sparita pekunio e sua laboro, por produktar e vendar – singla de li partoprenonte la profito o la desprofito.
 kooptar (trans. por) — Admisar eceptale (membri qui ne satisfacas omna kondicioni postulata), pro lua autoritato (savo, erudeso, talento) partikulara
 koordinar (trans.) — Ordinar segun ula relati (la parti di ensemblo) por facar ek lu ensemblo
 kopaivo — Substanco terpentinatra quan onu extraktas per incizo de la kortico di ula arbusto e quan onu uzas medicinale kontre ula morbi di la organi genitala ed urinifala
@@ -4749,7 +4749,7 @@ koronero — En Britania : oficiero judiciala di qua la tasko konsistas ye inque
 korpo — Che la homi e la bestii : ensemblo ek la parti materiala qui kompozas organismo en qua rezidas la vivo animalala
 korporaciono — Asociitaro de individui, interligita per reguli, obligesi, privileji komuna
 korporalo (liturgio katol.) — Linjo sakrigita quan la sacerdoto extensas sur la altaro, lor meso, e sur qua lu pozas la kalico e la hostio
-korpulenta (pri homo) — Karakterizata da ampleso, plu o min grandega, di sua korpo. – Di qua la tota korpo (anke la membri) esas grosa, dika; muskuloza forte, do robusta e sana
+korpulenta (pri homo) — Karakterizata da ampleso, plu o min grandega, di sua korpo.
 korpuskulo — Materio-grano infinite mikra
 korso — Aleo uzata kom promeneyo publika, en urbo
 korsajo — Parto di la robo, qua kovras la busto (di muliero), la parto supra, de la shultri til la tayo (do, super la jupo)
@@ -4810,7 +4810,7 @@ kremo — La parto maxim densa di lakto, qua acensas a la surfaco kande onu lasa
 kremacar (trans.) — Reduktar a cindri (objekto o la korpo di homo mortinta)
 kremono (tekn.) — Ferajo uzata por klozar od apertar fenestro; stango de fero rekta, muntita an un ek la montanti, quan onu adsuprenirigas od adinfreirigas per rotacigar mancho tale ke onu enirigas singla ek la extremaji aden seruro-boko, od ekirigas li de olu
 krenelo — Aperturo facita ye intervali en la parapeto di remparo, di turmo, por lansar projektili sur la enemiko
-kreolo — Persono di raso blanka, naskinta en la kolonii (olim) Hispana di Amerika. – Persono qua naskis en la kolonii Europana inter-tropike
+kreolo — Persono di raso blanka, naskinta en la kolonii (olim) Hispana di Amerika.
 kreozoto (kemio) — Liquido oleatra, korodiva ed antisepsiiva, quan onu obtenas per la distilo di gudro lignala
 krepo — Stofo ek lano delikata, plu o min diafana, kun filo ondoza, quan onu preparas per kelke tordar la filo longesale (warpe), pose plunjante la texuro aden aquo e frotante lu per vaxo
 krepisar (trans.) — Indutar (muro) per trulo o balayilo, ye strato di gipso, di mortero, quan onu lasas aspera vice planigar lu
@@ -5017,7 +5017,7 @@ lamarckismo (biol.) — Teorio (transformista) da Lamarck, qua asertas ke exkluz
 lamelo — (tekn.) Mikra lamo de vitro sur qua onu pozas la objekto quan onu exploras per mikroskopo
 lamentar (netrans., pri, pro) — Lasar explozar, lor la emoco de sufro, klameti iterata
 laminar (trans.) (tekn.) — Transformar (bloko metala) a lami, per igar lu pasar inter du rotaco-cilindri, qui turnas inversa-sinse
-lampo — Utensilo konsistanta (origine) ye tanko qua kontenas liquido kombustebla, en qua esas imersita mecho quan onu acendas por produktar lumo. – Utensilo sama-skopo, en qua lumo produktesas da filo (metala o karba) inkandecoza per elektro
+lampo — Utensilo konsistanta (origine) ye tanko qua kontenas liquido kombustebla, en qua esas imersita mecho quan onu acendas por produktar lumo.
 lampaso — Silko-stofo, quan onu obtenis olim de Chinia, kun granda desegnuri reliefa, maxim-multa-kaze sur fondo altrakolora
 lampiono — Kupeto qua kontenas materio kombustebla, kun mecho, uzata por la ilumini
 lampiro (zool.) — Insekto di qua la femino esas sen-ala e fosforecas en nia klimato, — aloza e fosforecoza pri la du sexui, en la landi tropikala
@@ -5306,7 +5306,7 @@ mago — Sacerdoto di la religio di la Persi antiqua, adoranti di fairo
 magazino — Chambro, loko ube onu depozas vari diversa, por konservar li ante lia uzeso o vendeso. (Ne konfundar a « butiko », « butikego »)
 magiar (netrans.) — Efikar (aserte) a la homi, a la elementi, per povo supernatura – en ula kazi : mediace diablo.— (metaf.) Efikar extraordinare a la homi (per eloquenteso, per poezio, e c.)
 magnato — Stato-grando, en Polonia ed en Hungaria, olim
-magneto — Erco de fero oxidoza, di qua un ek la karakteri esas atraktar fero o stalo. – Ferbloko o stalobloko quan efikis magneto o koranto (elektro-fluo) o la magnetefekto di la Terglobo. – (metaf.) To quo atraktas forte
+magneto — Erco de fero oxidoza, di qua un ek la karakteri esas atraktar fero o stalo.
 magnetizar (trans.) — Submisar (ulu) a la efiko di magnetismo (animalala)
 magnezio (kemio) — Korpo simpla, metala, qua esas kombustebla, en aero, kun lumo blanka dazliva, lasante reziduo ek polvo blanka qua esas magnez-oxido
 magnolio (bot.) — Arboro exotika, kun granda folii briloza, bele-verda, e flori odorifanta, pure-blanka
@@ -5432,7 +5432,7 @@ marodar (netrans.) — (aludante soldati qui marchas o kampanias) Furtetar
 marokino — Felo de kapro plu o min granoza, apretita per galo o sumako
 marono (bot.) — Frukto, plu grosa kam kastaneo, qua havas nur un pulpo-bloko por okupar la shelo dornoza – produktita da varietato di kastaniero greftita
 marquizo — Avantekto, maxim-multa-kaze ek vitroplaki, muntita super la pordo di edifico por ke onu povez enirar od ekirar shirmate
-marsho — Tereno dilutita da aquo qua povas nur desfacile for-fluar. – Tereno basa, humida, apta pri la kultivo di legumi
+marsho — Tereno dilutita da aquo qua povas nur desfacile for-fluar.
 marshalo — Oficiro generala qua preiris la armei por preparar la voyo e lo necesa por la kampo
 marsuino (zool.) — Cetaceo ek la klaso « delfini », kun muzelo obtuza e rondatra
 marsupialo (zool.) — Quadripedo qua havas posho abdominala ube esas la mameli ed ube la yuni, naskinta premature, havas sua refujeyo dum la gravideso suplementa
@@ -5491,7 +5491,7 @@ medalio — Peco de metalo, estampita por perpetuigar la memoro di ago remarkind
 medaliono — Juvelo plata, ronda od ovala, en qua onu enklozas portreto, haro-lokli, reliquii, e c.
 medio — To quo cirkondas omna-sinse
 mediacar (netrans., pri) — Agar por konciliar personi qui deskonkordas (anke pri aferi komercala)
-mediano (geom.) (pri figuro plana) — Lineo rekta qua dividas aden du parti interegala, omna kordi, paralela ye un direciono. – Rekto qua juntas la somito di triangulo a la mezo di la latero opozita
+mediano (geom.) (pri figuro plana) — Lineo rekta qua dividas aden du parti interegala, omna kordi, paralela ye un direciono.
 mediata — (aludante la kozi) Qua, situita inter du termini, efikas por pasigar de un de la termini a la altra
 medicino — La arto risanigar, fondita sur la cienco pri la morbi e la medikamenti
 mediko — Persono a qua esas grantita la diplomo « doktoro pri medicino »
@@ -5530,7 +5530,7 @@ membro — Apendico unionita a la torso di la homo, di la animalo, per artiki
 membrano — Tisuo organala, che animalo o vejetanto, qua envolvas ula organi, absorbas, exhalas, sekrecas ula fluidi
 memento (liturgio katol.) — Prego di la mes-kanono, en qua la sacerdoto memorigas la vivanti e, pose, la mortinti
 memorar (trans.) — Reprezentar, en sua spirito, kozo pasinta
-memorando — Noto diplomacala en qua memorigesas to quo eventis pri ta o ca afero. – Noto destinita memorigar ulo
+memorando — Noto diplomacala en qua memorigesas to quo eventis pri ta o ca afero.
 memorialo — Registro, libro, en qua esas konsignita la kozi historiala quin onu volas memoror
 menado (epoki antiqua) — Muliero qua, lor la festi pri Bako, abandonis su a deliri furioza
 menajar (netrans.) — Okupesar da la administro, da la ekonomio, di sua hemo
@@ -5624,7 +5624,7 @@ micelo (biol.) — La aglomerajo maxim mikra ek molekuli, qua havas la propraji 
 mielo — Substanco siropatra, sukroza, quan la abeli elaboras ek la materii quin li rekoltis en la flori, e quin li igas ek-fluar aden la alveoli di lia abeluyo por la nutro di su e di la larvi
 mielato — Exuduro viskoza e sukroza, quan sekrecas, dum la periodi di aero-sikeso e di tero-sikeso, la folii di ula arbori
 mieno — Aspekto di la vizajo
-migrar (netrans., ad, de) — Diplasar su, livante ula lando por instalar su en altra. – Su-diplasar di ula sorti de animali qui iras ad altra klimati, sive periodale, segun la sezoni, sive pro cirkonstanci acidentala
+migrar (netrans., ad, de) — Diplasar su, livante ula lando por instalar su en altra.
 migreno — Doloro qua afektas, ordinare, nur parto di la kapo, partikulare la regiono temporala, ed akompanesas multa-kaze da perturbesi stomakala
 mikao (mineral.) — Silikato aluminoza, kun metal-brilo, quan onu povas separar facile ad lami diafana, per klivo
 mikologo — Autoro di traktato pri la fungi (champinioni)
@@ -5961,7 +5961,7 @@ nevuso (patol.) — Misformacuro di pelo, multa-kaze naskala, de origino embrion
 ni — Ensemblo de la personi quin la parolanto aludas kom esanta en la sama grupo kam lu
 nicho (arkitekt.) — Kavajo facita en muro por pozar ibe statuo, vazo, furnelo, e c. Mikra reduito en apartamento, ube onu lokizas lito
 nielo (tekn.) — Graburo kava di qua onu plenigas la streki ye sorto di emalio nigra
-nigelo (bot.) — Morbo di la spiko (imputata a nebulo) qua transformas la grano aden amaso blanka ek multa-mil aguleti. – Morbo di la spiko, qua transformas la grano a polvo nigratra qua konsistas ye kriptogami
+nigelo (bot.) — Morbo di la spiko (imputata a nebulo) qua transformas la grano aden amaso blanka ek multa-mil aguleti.
 nigra — Di qua la koloro, rezultante de la absorbeso di omna lumo-radii, produktas sur la vid-organo la impreso di obskureso kompleta, di tenebro
 nihilo — Absenteso di eso (ante la existo di naturo)
 nikelo (kemio) — Korpo simpla, metala, grize-blanka, desfacile fuzebla, forjebla, maleebla, polisebla
@@ -6583,7 +6583,7 @@ perkalino — Perkalo tintita e glata
 perkutar (trans.) — (medic.) Explorar per la metodo qua konsistas ye frapar sur la parieto di korpo-kavajo por saveskar (segun la naturo di la bruiso) quan esas la stando di la organi en ta kavajo
 perlo — Globeto, maxim-multa-kaze arjento-blanka, kun reflekti ciel-arkea, qua formacesas en ula konki
 perlomatro — Materio blanka, kun reflekti ciel-arkea, ye qua konsistas la latero interna di ula konki, ed uzesas por tabulifado
-permanar (netrans.) — Mantenar su, konservar su, sen interrupto. – Esar kontinue en la sama loko, sen absenteso nek intermito
+permanar (netrans.) — Mantenar su, konservar su, sen interrupto.
 permear (trans.) (aludante liquido, gaso) — Pasar de ca a ta latero di parieto per trairar la pori di olca
 permigar (trans.) (ulo ad ulu) — Grantar la darfo o la yuro (agor o facar ulo)
 permutar (trans.) — Pozar ulo en la plaso di altra kozo, e reciproke
@@ -6666,7 +6666,7 @@ pimpinelo (bot.) — Planto herbatra, aromata, ek la familio « rozacei », uzat
 pino (bot.) — Granda arboro rezinoza, sempre verda, ek la familio « koniferi »
 pinaklo (arkitekt.) — Tekto-karpenturo dekorita, e finanta per pinto
 pinastro (bot.) — Pino sovaja (mar-litorala) de qua onu extraktas terpentino
-pinco (tekn.) — Mikra tenalio, uzata diverse en la mestieri, en kirurgio. – « Pinco » diferas de « tenalio » per to ke lu esas utensilo sen charniro (la du parti ye qua lu konsistas esas asemblita per resorto o parto flexebla)
+pinco (tekn.) — Mikra tenalio, uzata diverse en la mestieri, en kirurgio.
 pinchar (trans.) — Klemar forte inter la fingri
 pinealo (anat.) — Mikra korpo, avan la cerebelo
 pinglo — Mikra stango de latuno, pinta ye un extremajo, kapoza ye la altra, quan onu uzas por ligar
@@ -7084,7 +7084,7 @@ prosternar (netrans.) — Kushar su, kun sua ventro vers sulo, kun sua vizajo ko
 prostezo (gram.) — Adjunto di un litero, di un silabo, komence di vorto. (kom ex. : ica vice ca, en L. iscala vice scala; en F. lierre vice ierre)
 prostitucar (trans.) — (aludante muliero) Koitar kun irgu po pekunio
 prostracar (netrans.) — Esar abatita extreme, mentale, spiritale, o korpale
-protagonisto — La persono qua, en teatrajo, pleas la rolo precipua. – Metaf. La persono qua *iniciativas ed agas quaze kom chefo en ta o ca afero publik-utila, homaro-bona
+protagonisto — La persono qua, en teatrajo, pleas la rolo precipua.
 protalo (bot.) — Mikra lamo verda, granda admaxime quale la unglo di la orel-fingro, kreskanta surface di tero, qua rezultas de la jermifo di la spori di filiki (o di la cetera kriptogami vaskuloza)
 protamino (kemio organika) — Proteino kontenata da la spermatozoidi di la fishi
 protandra (bot.) — Dicesas pri la flori hermafrodita che qui la stamini divenas matura ante la pistilo ed ube, konseque, la fekundigo povas eventar nur inter flori distingata
@@ -7361,7 +7361,7 @@ redemtar (trans.) — Obtenar la liberigo po ransono
 redingoto — Vesto di qua la paneli envelopas la korpo
 reduito — Fortifikajo konstruktita dop altra por prolongar la defenso-fortifikaji se la unesma esus kaptita da la enemiko
 reduktar (trans.) — Retroduktar a lua situeso naturala, normala (osto luxacita, ruptita)
-reduto (milit-arto) — Fortifikajo aparta, tote klozita (*kluza), sen anguli konkava. – Anke : Fortifikajo flotacanta, garnisita ye bastioni, uzata por transportar trupi de soldati trans fluvio o rivero
+reduto (milit-arto) — Fortifikajo aparta, tote klozita (*kluza), sen anguli konkava.
 refo (navig.) — Parto di seglo quan onu rifaldis por diminutar la surfaco opozata a vento
 referar (trans., ad) — Relatigar (ulo) a to quo explikas lu, konfirmas lu
 referendario — Oficiero di kancelereyo qua havas kom taski gardar la rejo-siglilo e raportar pri la supliko-letri
@@ -7659,7 +7659,7 @@ rusto — Fer-oxido, redatra
 rustika — Qua apartenas a la kozi di ruro. Dicesas anke pri la manieri di la rurani – pri la planti qui rezistas la domaji produktita da la mala vetero quale la planti sovaja – pri benko, kozo ek petro kruda od ek ligno ne-laborita
 ruto (bot.) — Planto medicinala, ek la familio « rutacei » di qui lu esas la tipo, qua saporas akre
 ruteno (kemio) — Metalo ek la grupo di platino, la maxim skarsa ek omni, deskovrita da Glaus (en la yaro 1843) en la osmio di iridio
-rutino — Kustumo su-inkrustinta agar o facar ulo segun ta o maniero. – Metaf. : Kustumo a qua onu su konformas mekanismatre, sen-reflekte
+rutino — Kustumo su-inkrustinta agar o facar ulo segun ta o maniero.
 ruzar (netrans., per) — Uzar, por trompar, moyeni qui igas falsajo aspektar quale exaktajo, quale verajo
 sabato (biblo) — Repozo, preskriptita da lia religio, quan la Judi devas praktikar dum la tota dio sepesma di la semano
 sabeliko (bot.) — Varietato di kaulo, di qua la folii esas tre frizita
@@ -7717,7 +7717,7 @@ sambuko (bot.) — Arbusto di qua la ligno, tre lejera, kontenas medulo-tubo tre
 samovaro — Sorto di bolio-urno, uzata en Rusia, qua posible igas disponar irga-instante aquo bolianta
 sana — Di qua la organismo standas bone, morb-imuna
 sanatorio — Kuracerio, precipue higienala, por la maladi e la personi fatigita kronike, inter qui la tuberklosiki
-sancionar (trans.) — Igar (lego) aplikenda per la aprobo da la suvereno, da la chefo di la povo exekutigala. – Konfirmar (lego), igar (lu) aplikata per minaco ye punisi, o per promiso di rekompenso
+sancionar (trans.) — Igar (lego) aplikenda per la aprobo da la suvereno, da la chefo di la povo exekutigala.
 sandalo — Pedo-vesto ek nura suolo, retenata da kordoni qui ligesas an la supra parto di la pedo
 sandarako — Gumo rezinoza, pulvera, per qua onu frotas la paper-folio quan onu skrapis, por impedar lu « drinkar » (absorbar) la inko skribala
 sandro (zool.) — Genero de fishi teleostea, familio di la « perkidei », kelke simila a la perki
@@ -7998,7 +7998,7 @@ simpatiko (anat.) — Centro nervala aparta de cerebro
 simpla — Qua ne konsistas ek parti
 simptomo — (patol.) Fenomeno qua karakterizas la existesko di ta o ca morbo
 simular (trans.) — Donar la semblo kom la realajo
-simultana — Qua valoras egale e kune, solidare. (kom ex. : equacioni simultana). – « Simultana » ne esas sinonimo di « sama-tempa », « sam-epoka », « sam-instanta »
+simultana — Qua valoras egale e kune, solidare. (kom ex. : equacioni simultana).
 sino — (anat.) Parto di la korpo di muliero, en qua elu facis sua filio
 sinagogo — (historio religiala) Asemblitaro ek la religiani, ekleziani (lego da Mozes)
 sinapo (bot.) — Planto krucifera; ek lua grani facesas mustardo
@@ -8011,7 +8011,7 @@ sinekdoko (retor.) — Figuro qua konsistas ye indikar kozo per la genero de qua
 sinektika (algebro) — Funciono sinektika interne di konturo : nomo, donita da Cauchy, ad omna funciono qua ne cesas esar finita e kontinua, di qua la derivajo, anke, ne cesas esar finita e kontinua, e di qua la valoro esas sempre unika pri omna valori di la varieblo qua korespondas a la punti di la kontur-internajo
 sinekuro — Ofico en qua la oficiero recevas salario-quanto quankam lu ne havas tasko exekutenda
 sinergido (biol.) — Singla de la energidi, calatere e talatere di oosfero, en la sako embrionala di la angiospermi
-singla — Adjektivo distributala qua indikas ke la persono, la kozo, quan lu determinas esas parto di plurajo kolektiva. – Single : un po un, unope
+singla — Adjektivo distributala qua indikas ke la persono, la kozo, quan lu determinas esas parto di plurajo kolektiva.
 singlutar (netrans.) — Subisar ta spasmo di la pektoro qua, kontrakte da doloro, lasas eskapar la voco konvulsatra, forme di son-uni intermitanta
 singulara — Qua ne esas aplikebla a pluri
 sinioro — Titulo honorala quan onu donas a la personegi di la supra rangi en la hierarkio sociala
@@ -8749,7 +8749,7 @@ tilio (bot.) — Arboro di qua uzesas : la floro, por facar infuzuri kalmigiva, 
 timar (trans.) — Tendencar evitor (ulu, ulo) (de qua onu expektas malajo)
 timbalo — Mi-globo de kupro o latuno, kovrita per felo tensita quan onu klemas o desklemas per skrubi, por akordigar lu, e sur qua onu frapas per vergeti ek ligno harda o tegita ye felo-peco segun la sonoreso-grado quan onu deziras obtenor – muzik-instrumento qua uzesas en kavalrio ed en orkestro
 timbro (*tembro) — Kaloto de metalo qua, frapate per marteleto, produktas sonuno pasable duroza
-*timbro (postmarko) — Peceto de papero imprimuroza (ordinare kun konturo dentetoza pro perforesir) quan onu glutinas sur la letro-kuverti por montrar ke la afranko-preco esas pagita. – Analoge pri la « timbri » fiskala, asekurala, e c.
+*timbro (postmarko) — Peceto de papero imprimuroza (ordinare kun konturo dentetoza pro perforesir) quan onu glutinas sur la letro-kuverti por montrar ke la afranko-preco esas pagita.
 timiano (bot.) — Planto odoroza, ek la familio « labiei », quan onu uzas en la faco di sauci
 timida — Qua indijas audaco pro desfidar su
 timono — Longa stango de ligno, muntita ye la parto avana di veturo, di plugilo, ed an singla latero di qua tir-bestio (kavalo, bovo) esas jungita por apogar su ad olu por tirar, retenar, chanjar sua direciono, des-avancar
@@ -9061,7 +9061,7 @@ ultramikroskopo (tekn.) — Aranjuro partikulara di lumizo, adaptita a mikroskop
 ultramikroskopio — Ensemblo ek la procedi di explori pri la studio di la korpuskuli tante mikra-dimensiona ke li ne esas observebla per la mikroskopo ordinara
 ultramontana — Qua preferas obediar la papo kam la autoritatozi civila di sua lando
 ultre — Adjunte ad
-ulular (netrans.) — (aludante la nokt-uceli) Kriar jemante. – Kriar jemante, quale la nokt-uceli
+ulular (netrans.) — (aludante la nokt-uceli) Kriar jemante.
 -umo — Sufixo di qua la senco esas nepreciza (quale la prepoziciono « ye »), rare uzata e, kande uzata, nur en ula kazi quin sancionis la Akademio di Ido
 umbro — Okro brune-redatra, uzata kom farbo
 umbelo (bot.) — Modo di infloresenco, forme di parasuno apertata
@@ -9299,7 +9299,7 @@ vinkar (trans.) — Igar su superesar (a) pri forteso, sua enemikon (en batalio,
 vintro — La sezono maxim kolda di la yaro, en qua la jorni esas maxime kurta, qua sequas autuno e pre-iras printempo
 vinyeto (tekn.) — Ornamento qua reprezentas vito-branchi interplektita, supre di la pagino unesma di libro o di chapitro. Omna ornamento di la frontispico o di la pagini di libro. Graburo cirkondata da kartusho, Ornamento di la kovrilo di libro. Ornamento cirkum naztuko. Ornamento di paperfolii letrala
 violo — (bot.) Planto ek la familio « violacei », kun mikra floro di qua la odoro esas dolca, e la koloro inter reda e blua…
-violacar (trans.) — Domajar, lezar (ulo) quan onu ya devas respektar. – Koitar muliero kontre elua volo
+violacar (trans.) — Domajar, lezar (ulo) quan onu ya devas respektar.
 violentar (trans.) — Koaktar sovaje, per la uzo di vigoro sen-represa
 violino (muziko) — Instrumento kun kordi ed arketo, derivita de la viulo olima, igita plu mikra-dimensiona, e reduktita a quar kordi inter-akordita quintope (g, d, la, e)
 violoncelo (muziko) — Instrumento kun quar kordi ed arketo, ye un quinto sub alto, qua preske korespondas a la viulobaso olima, e quan onu pleas tenante lu inter sua genui
@@ -9328,7 +9328,7 @@ vivipara — Qua parturas ja vivanta sua yuni (kontraste kun « ovipara »)
 vizar (trans.) — Regardar tre atencoze (lor sua lanso o jus ante sua lanso di objekto ad la punto quan onu volas atingar)
 vizajo — La facio di la kapo (che la homo)
 vizelo (zool.) — Varietato ek la genero « martro », kun korpo svelta, longa, falva, falveso plu klara subventre, muzelo pinto-forma
-viziero — Parto avana di la kasko, quan onu abasis por shirmar la vizajo, e tra qua onu povis vidar e respirar per greto streta. – Peco ek ledro muntita an-avan kasqueto por shirmar la okuli kontre la suno-radii e kontre la pluvoguti
+viziero — Parto avana di la kasko, quan onu abasis por shirmar la vizajo, e tra qua onu povis vidar e respirar per greto streta.
 viziono — Iluziono per qua onu kredas vidar ulu od ulo qua ne esas prezenta koram onua okuli
 viziro (en Turkia olima) — Oficiro ek la *konselio (konsilantaro) di la sultano
 vizitar (trans.) — Irar renkontre che ulu, pro devo di politeso, di deferenco
@@ -9357,7 +9357,7 @@ vomero (anat.) — Osto sen-simetraja, dina, quadrilatera, anomala, ye qua konsi
 vomiko (medic.) — Amaso de materio pusoza qua naskas en la pulmoni (che la tuberklosiki) e forjetesas per quaza vomo
 vomiknuco (bot.) — Bero venenoza ek arboreto de India
 vomitorio (en la Roma antiqua) — Larja aperturo en la klozilo por lasar pasar la spekteri, en la amfiteatro qua destinesis a la ludi publika. (*publicala)
-vorto — Son-uno artikulata, ek un o plura silabi, uzata por reprezentar ento od eso-maniero. – Skriburo qua reprezentas ta son-uno
+vorto — Son-uno artikulata, ek un o plura silabi, uzata por reprezentar ento od eso-maniero.
 vorticar (netrans.) — Forportesar per jirado rapida
 votar (netrans., pri, por, kontre) — (aludante asemblitaro en qua la rezolvi esas agenda segun la opiniono da la majoritato – ed aludante singla membro) Depozar bilieto, bulo, e c. qua indikas ke (ta membro) adoptas o ne-adoptas ta o ca propozajo
 vovar (trans.) — Promisar a la deajo exekutor ta o ca tasko, verko meritoza, se lu exaucos la demando quan onu agas a lu

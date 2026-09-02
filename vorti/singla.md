@@ -1,7 +1,8 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## singla
-Adjektivo distributala qua indikas ke la persono, la kozo, quan lu determinas esas parto di plurajo kolektiva. – Single : un po un, unope
+Adjektivo distributala qua indikas ke la persono, la kozo, quan lu determinas esas parto di plurajo kolektiva.
+— Single : un po un, unope
 <!-- p. 530, l. 38 | Angla -->
 
 ---

@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## -ier-
-1. Sufixo qua signifikas : I. Etuyo qua kontenas o sustenas la kozo indikata da la radiko
+1. Sufixo qua signifikas : Etuyo qua kontenas o sustenas la kozo indikata da la radiko
 2. Karakterizata da… (ulo extera)
 3. Arboro, arboreto, arbusto, qua produktas la frukto di qua la nomo indikesas da la radiko
 <!-- p. 227, l. 21 | sen-lingua -->
