@@ -1336,16 +1336,18 @@ without moving the word — so the back now has a length of its own,
 `\versodiam`, and `\emblemdiam` stays shared by the front cover and the
 title page alone.
 
-**The height obeys the rule the front already obeys**: the two margins
-above and below the mark are divided in golden section, the small one at
-the top, 52.71 mm against 85.27. The centre of the disc lands at 0.4095
-of the page height. It used to sit at 0.4703, the mirror of the front's
-emblem about the horizontal axis. With the larger disc, four placings were
-compared side by side — 0.4095, 0.44, 0.4703 and the geometric middle —
-and the golden one is the one that reads as intended: the mark holds the
-page instead of floating in it. Both lengths are computed from the page
-in `pocket/cover.tex`, where the arithmetic is written out.
+**The height stays where it was**, at 0.4703 of the page: the mirror of the
+front's emblem about the horizontal axis, a little above the middle where
+a sign on its own asks to be. A higher placing was tried first and pushed:
+the two margins above and below the mark divided in golden section, the
+small one at the top, 52.71 mm against 85.27, which puts the centre at
+0.4095. Laid beside 0.44, 0.4703 and the geometric middle it was the one
+that read as intended in a mock-up. On the page it read as TOO HIGH, and
+the reader said so: the front divides in golden section the margins a
+block of lettering leaves, and the eye does not weigh a lone disc the same
+way. The mirror rule is kept; both lengths are computed from the page in
+`pocket/cover.tex`, where the arithmetic is written out.
 
 Checked on the rebuilt `pocket/pocket.pdf`, 446 pages: the disc measures
-42.02 mm and its centre 73.71 mm from the top, 0.4095 of the height; of
+42.02 mm and its centre 84.65 mm from the top, 0.4703 of the height; of
 the 446 pages, the last is the only one whose image changed.

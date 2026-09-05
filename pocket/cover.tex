@@ -227,20 +227,27 @@
 % agrees with it to half a millimetre, 180 / phi^3 = 42.5. (110 / phi,
 % 68 mm, was tried and rejected: it makes a poster of the page.)
 %
-% THE HEIGHT follows the rule the front already obeys, § Line heights,
-% point 3: the two margins that remain above and below the mark are
-% divided in golden section, the small one at the top -- 52.71 mm against
-% 85.27, ratio 1/phi. That puts the centre of the disc at 0.4095 of the
-% page height. It used to sit at 0.4703, the mirror of the front's emblem
-% about the horizontal axis; with the larger disc that placing was
-% compared side by side with this one, with 0.44, and with the geometric
-% middle, and it is the golden one that reads as intended -- the mark
-% holds the page instead of floating in it, and a sign on its own wants
-% to sit above the middle, not on it.
+% THE HEIGHT is not the geometric middle: a sign on its own looks LOW
+% there, and the optical centre is wanted. The one the eye asks for here
+% is the MIRROR of the centre of the emblem of the front cover about the
+% horizontal axis of the page -- 0.5297 on the front, 1 minus 0.5297 on
+% the back. The two covers therefore hold the mark at symmetrical
+% heights: a little below the middle when a composition accompanies it, a
+% little above when it is alone. The rule is the one the back cover had
+% at the old diameter; it is kept at the new one.
 %
-% Both lengths are computed from the page, so the calculation can be
-% redone: 1/phi^2 = 0.381966, and the top margin is 1/phi^2 of what the
-% disc leaves.
+% A higher placing was tried and rejected. Dividing the margins above and
+% below the disc in golden section, the small one at the top -- the rule
+% the front cover's block obeys, § Line heights, point 3 -- puts the
+% centre at 0.4095 of the height. Laid beside 0.44, 0.4703 and the
+% geometric middle it looked right in a mock-up; on the printed page it
+% read as TOO HIGH, and it was the reader who said so. The margins the
+% front divides in golden section are the ones a block of lettering
+% leaves; the eye does not weigh a lone disc the same way.
+%
+% The diameter is computed from the page, so the calculation can be
+% redone: 1/phi^2 = 0.381966.
+\newcommand{\posVERSO}{0.470298\paperheight}
 \newlength{\versodiam}
 \newlength{\posverso}
 \newcommand{\platverso}{%
@@ -248,7 +255,8 @@
   \AddToShipoutPictureFG*{\AtPageUpperLeft{%
     \setlength{\unitlength}{1pt}%
     \setlength{\versodiam}{0.381966\paperwidth}%
-    \setlength{\posverso}{0.381966\dimexpr\paperheight-\versodiam\relax}%
+    \setlength{\posverso}{\posVERSO}%
+    \addtolength{\posverso}{-0.5\versodiam}%
     \put(0,-\posverso){\makebox[\paperwidth][c]{\raisebox{-\height}{%
       \idoemblemo{\versodiam}{white}{idoblua}}}}}}%
   \thispagestyle{empty}\null\clearpage}
