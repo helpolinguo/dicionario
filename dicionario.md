@@ -17838,7 +17838,7 @@ Divido di la celulo, lor qua la divido di la nuklei preiras olta di la celulo-ko
 <!-- p. 266, l. 31 | sen-lingua -->
 
 ## kariofilo *(bot.)*
-Burjono di la floro di arboro. di Moluko o di Antili, ek la familio « mirtacei », uzata kom spico, piklo
+Burjono di la floro di arboro di Moluko o di Antili, ek la familio « mirtacei », uzata kom spico, piklo
 L. caryophillus aromaticus
 <!-- p. 266, l. 34 | Italiana -->
 
@@ -26751,7 +26751,7 @@ L. simia satyrus
 <!-- p. 408, l. 33 | Germana, Angla, Franca, Italiana, Hispana -->
 
 ## oranjo *(bot.)*
-Frukto de arbusto di qua la foliaro ne velkas sukoza, parfumoza, di qua la shelo esas flava oree
+Frukto de arbusto di qua la foliaro ne velkas, sukoza, parfumoza, di qua la shelo esas flava oree
 L. citrus aurantium
 <!-- p. 408, l. 37 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 

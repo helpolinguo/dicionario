@@ -4147,7 +4147,7 @@ kariero — Profesiono ofico-hierarkioza
 kariko — Redingoto ampla, kun pelerino dispozita etajatre
 karikatar (trans.) — Reprezentar persono, kozi, ma exajerante, groteske, por igar li rido-mokinda
 kariocinezo (biol.) — Divido di la celulo, lor qua la divido di la nuklei preiras olta di la celulo-korpo
-kariofilo (bot.) — Burjono di la floro di arboro. di Moluko o di Antili, ek la familio « mirtacei », uzata kom spico, piklo
+kariofilo (bot.) — Burjono di la floro di arboro di Moluko o di Antili, ek la familio « mirtacei », uzata kom spico, piklo
 kariolizo (bot.) — Dissolvo di la celulo-nukleo
 karitato — Amo kompatoza di la kunhomi
 karlino (bot.) — Planto di qua la radiko uzesis kom sudorifigivo
@@ -6177,7 +6177,7 @@ or (konjunciono) — En la punto quan atingis la rezono
 oro (kemio) — Metalo flava, tre precoza, tre densa, tre duktila, tre maleebla, nealterebla da aero nek da aquo, quan onu uzas (aloyita kun kelka kupro) por facar moneto-peci granda-valora, juveli, e c.
 oraklo — (en la epoki antiqua) Respondo agita, ye la nomo di la deajo, a la persono qua venis konsultar lu en lua templo
 orangutano (zool.) — Granda simio sen-kauda, qua similesas pasable la homo de la vidopunto « formo extera »
-oranjo (bot.) — Frukto de arbusto di qua la foliaro ne velkas sukoza, parfumoza, di qua la shelo esas flava oree
+oranjo (bot.) — Frukto de arbusto di qua la foliaro ne velkas, sukoza, parfumoza, di qua la shelo esas flava oree
 oratoro — Persono qua, profesione, agas diskursi
 oratorio (muziko) — Dramato religiala, akompanata da muzikajo, destinita a pleeso sen dekoruri nek kostumi teatrala
 orbito — (astron.) Kurvo alonge qua iras, propra-move, ula korpi cielala (planeti, kometi, e c.)

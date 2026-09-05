@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## kariofilo *(bot.)*
-Burjono di la floro di arboro. di Moluko o di Antili, ek la familio « mirtacei », uzata kom spico, piklo
+Burjono di la floro di arboro di Moluko o di Antili, ek la familio « mirtacei », uzata kom spico, piklo
 L. caryophillus aromaticus
 <!-- p. 266, l. 34 | Italiana -->
 
