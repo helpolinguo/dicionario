@@ -1312,3 +1312,42 @@ address and adds no history entry; Enter writes it without reloading; the
 cross empties the field and the address alike; no console error, no
 horizontal scroll at 1440x900 or 390x844, and the round home button still
 computes to 42 px.
+
+---
+
+## The back cover's emblem, cut from the page in golden section (2026)
+
+**THE MARK ON THE BACK COVER WAS TOO SMALL, AND IT WAS SMALL BY DESIGN.**
+Measured in the PDF, the disc was 30.27 mm on a page of 110 x 180 mm —
+27.5 % of the width, 3.6 % of the area. The diameter was not chosen for
+the back at all: it was the front's, where the disc is the O of the word
+IDO and is set at 1.0651 times its capital height, repeated on the back
+"so that the two covers rhyme". On the front the emblem borrows its
+weight from the lettering beside it; alone on the blue it read as a
+publisher's device.
+
+**The new diameter is the width divided twice by phi**, 110 / phi² =
+42.02 mm, 0.382 of the width; the height agrees with it to half a
+millimetre, 180 / phi³ = 42.5. No power of phi lands on the old value
+(110 / phi³ = 26.0, 110 / phi² = 42.0). Three sizes were laid side by
+side, 30.3, 42.0 and 68.0 mm: the last, 110 / phi, makes a poster of the
+page and was rejected. The front keeps its diameter — its disc cannot move
+without moving the word — so the back now has a length of its own,
+`\versodiam`, and `\emblemdiam` stays shared by the front cover and the
+title page alone.
+
+**The height stays where it was**, at 0.4703 of the page: the mirror of the
+front's emblem about the horizontal axis, a little above the middle where
+a sign on its own asks to be. A higher placing was tried first and pushed:
+the two margins above and below the mark divided in golden section, the
+small one at the top, 52.71 mm against 85.27, which puts the centre at
+0.4095. Laid beside 0.44, 0.4703 and the geometric middle it was the one
+that read as intended in a mock-up. On the page it read as TOO HIGH, and
+the reader said so: the front divides in golden section the margins a
+block of lettering leaves, and the eye does not weigh a lone disc the same
+way. The mirror rule is kept; both lengths are computed from the page in
+`pocket/cover.tex`, where the arithmetic is written out.
+
+Checked on the rebuilt `pocket/pocket.pdf`, 446 pages: the disc measures
+42.02 mm and its centre 84.65 mm from the top, 0.4703 of the height; of
+the 446 pages, the last is the only one whose image changed.
