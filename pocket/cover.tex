@@ -210,26 +210,45 @@
   \kovrilteksto{black}{idoblua}{white}%
   \thispagestyle{empty}\null\clearpage}
 
-% The back cover: the emblem alone on the blue. The same diameter as on
-% the front -- it is the same mark, and repeating it at the same size
-% makes the two covers rhyme. The disc is white and the star blue, as on
-% the front: on a blue ground it is the disc that must carry the light.
+% The back cover: the emblem alone on the blue. The disc is white and the
+% star blue, as on the front: on a blue ground it is the disc that must
+% carry the light.
 %
-% The height is not the geometric middle: a sign on its own looks LOW
-% there, and the optical centre is wanted. The one the eye asks for here
-% happens to be the MIRROR of the centre of the emblem of the front cover
-% about the horizontal axis of the page -- 0.5297 on the front, 1 minus
-% 0.5297 on the back. The two covers therefore hold the mark at
-% symmetrical heights: a little below the middle when a composition
-% accompanies it, a little above when it is alone.
-\newcommand{\posVERSO}{0.470298\paperheight}
+% THE MARK IS LARGER THAN ON THE FRONT. It used to be laid at the same
+% diameter, 30.27 mm, on the reasoning that repeating the same mark at the
+% same size makes the two covers rhyme. Measured on the page, that
+% reasoning did not hold up: on the front the emblem borrows its weight
+% from the lettering it stands beside; alone on 110 x 180 mm it covered
+% 3.6 % of the page and read as a publisher's device, not as the cover
+% motif the mock-up asks for. The front keeps its diameter -- there the
+% disc is the O of the word IDO and cannot move -- and the back takes its
+% own, cut from the page in GOLDEN SECTION: the width divided twice by
+% phi, 110 / phi^2 = 42.02 mm, that is 0.382 of the width. The height
+% agrees with it to half a millimetre, 180 / phi^3 = 42.5. (110 / phi,
+% 68 mm, was tried and rejected: it makes a poster of the page.)
+%
+% THE HEIGHT follows the rule the front already obeys, § Line heights,
+% point 3: the two margins that remain above and below the mark are
+% divided in golden section, the small one at the top -- 52.71 mm against
+% 85.27, ratio 1/phi. That puts the centre of the disc at 0.4095 of the
+% page height. It used to sit at 0.4703, the mirror of the front's emblem
+% about the horizontal axis; with the larger disc that placing was
+% compared side by side with this one, with 0.44, and with the geometric
+% middle, and it is the golden one that reads as intended -- the mark
+% holds the page instead of floating in it, and a sign on its own wants
+% to sit above the middle, not on it.
+%
+% Both lengths are computed from the page, so the calculation can be
+% redone: 1/phi^2 = 0.381966, and the top margin is 1/phi^2 of what the
+% disc leaves.
+\newlength{\versodiam}
 \newlength{\posverso}
 \newcommand{\platverso}{%
   \fondo{idoblua}%
   \AddToShipoutPictureFG*{\AtPageUpperLeft{%
     \setlength{\unitlength}{1pt}%
-    \setlength{\posverso}{\posVERSO}%
-    \addtolength{\posverso}{-0.5\emblemdiam}%
+    \setlength{\versodiam}{0.381966\paperwidth}%
+    \setlength{\posverso}{0.381966\dimexpr\paperheight-\versodiam\relax}%
     \put(0,-\posverso){\makebox[\paperwidth][c]{\raisebox{-\height}{%
-      \idoemblemo{\emblemdiam}{white}{idoblua}}}}}}%
+      \idoemblemo{\versodiam}{white}{idoblua}}}}}}%
   \thispagestyle{empty}\null\clearpage}
