@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## oranjo *(bot.)*
-Frukto de arbusto di qua la foliaro ne velkas sukoza, parfumoza, di qua la shelo esas flava oree
+Frukto de arbusto di qua la foliaro ne velkas, sukoza, parfumoza, di qua la shelo esas flava oree
 L. citrus aurantium
 <!-- p. 408, l. 37 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
