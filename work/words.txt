@@ -110,3 +110,15 @@ sur skrino fluorecanta	sur *skrino fluorecanta	p480 radioskopar : « skrino » p
 sur la funikulo	sur la *funikulo	p217 hilo : « funikulo » n est vedette nulle part dans le livre, sous aucune graphie, et l autre endroit ou l auteur le cite porte la croix — « Influro di la *funikulo » chez karunklo p269. Ici le mot est coupe par la fin de ligne, « sur la fu- » puis « nikulo » : la marque avait toute chance de tomber dans la coupure.
 igar olca rekonocebla	igar olca *rekonocebla	p237 insigno : la racine elle-meme est non officielle — « *rekonocar » est vedette des listes finales, p631 —, et un derive d une racine non officielle l est aussi. L auteur marque d ailleurs le meme mot chez marko p357 : « por igar lu +rekonocebla ».
 machino	mashino	p228 -il- : « Sufixo qua signifikas "instrumento por..." (ne "machino por...") ». Le livre ecrit « mashino » 54 fois dans ses definitions contre cette seule « machino », et « mashino » est vedette du dictionnaire — avec « mashinacar » — la ou « machino » ne l est nulle part, sous aucune graphie. Aucune passe automatique ne pouvait l atteindre : c/s ne figure pas dans PAIRS (tools/pairs.py), la liste des sosies relevee par les relecteurs, ou c va avec o, e, k et s avec z, 8, x — les deux lettres ne se ressemblent pas, et clean.py exige justement un echange de sosies. La ligne a ete rendue en entier par la relecture directe (exceptions_proofreading.txt, p235 l28) : le tapuscrit porte bien « machino ». C est une scorie de frappe, le francais « machine » sous les doigts, et le fac-simile la garde.
+# --- La parenthese du nom scientifique separait ; retiree, elle a soude.
+# RE_LATIN ote le nom du texte pour le porter au champ `latina`. Quand le
+# livre le glisse AU MILIEU de la phrase, entre parentheses, la parenthese
+# faisait le travail d une ponctuation, et son retrait laisse les deux
+# voisins colles. Douze articles du livre ecrivent « (L. ... ) » suivi d un
+# mot en minuscule ; dix se lisent tres bien sans elle — « Gumo ek arboro
+# (L. garcinia) di India » donne « Gumo ek arboro di India » —, et poser une
+# virgule a tout coup les abimerait. Les deux qui suivent sont les seuls que
+# le retrait ait casses ; on les redresse ici, un par un, comme le veut ce
+# fichier.
+velkas sukoza	velkas, sukoza	p408 oranjo : « Frukto de arbusto di qua la foliaro ne velkas (L. citrus aurantium) sukoza, parfumoza, di qua la shelo esas flava oree ». « sukoza » et « parfumoza » qualifient le FRUIT, non le fait de ne pas se faner : ils ouvrent l enumeration que « , parfumoza, » poursuit, et la virgule qui les en separait etait portee par la parenthese.
+arboro. di	arboro di	p266 kariofilo : le tapuscrit ecrit « di la floro di arboro.(L. caryophillus aromaticus) di Moluko », le point colle a la parenthese. Le nom retire, il reste « di arboro. di Moluko » — un point suivi d une minuscule, qui n ouvre aucune phrase. Scorie de frappe : le point est de trop, et c est une espace qu il faut.
