@@ -28516,7 +28516,7 @@ Mantenar su, konservar su, sen interrupto.
 Pasar de ca a ta latero di parieto per trairar la pori di olca
 <!-- p. 434, l. 16 | Angla, Franca, Italiana, Hispana -->
 
-## permigar *(trans.) (ulo ad ulu)*
+## permisar *(trans.) (ulo ad ulu)*
 Grantar la darfo o la yuro (agor o facar ulo)
 <!-- p. 434, l. 19 | Angla, Franca, Italiana, Hispana -->
 
