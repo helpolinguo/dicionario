@@ -259,7 +259,7 @@ Transskribita de https://ido.help/dicionario/
 **aludante la persono qua parolas** (1) — venar
 **aludante la populo di stato** (1) — revolucionar
 **aludante la sacerdoto qua celebras meso** (1) — konsekracar
-**aludante la sama sonuno** (1) — asonancar
+**aludante la sama son-uno** (1) — asonancar
 **aludante la sharlatani e feriala aktori** (1) — bonimentar
 **aludante la stat-autoritatozi** (1) — requizitar
 **aludante la stomako** (1) — ruktar

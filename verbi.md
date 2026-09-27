@@ -6,7 +6,7 @@ La marki *(trans.)* e *(netrans.)*, e la prepoziciono quan la verbo regas, quale
 
 Transskribita de https://ido.help/dicionario/
 
-2020 verbi markizita : 1387 transitiva, 587 netransitiva, 15 amba, 31 qui chanjas segun la senco. 396 regas prepoziciono.
+2020 verbi markizita : 1386 transitiva, 587 netransitiva, 17 amba, 30 qui chanjas segun la senco. 396 regas prepoziciono.
 
 ## Omna verbi
 
@@ -360,7 +360,7 @@ deputar — transitiva
 derivar — transitiva
 derogar — netransitiva — de
 desegnar — transitiva
-desertar — transitiva
+desertar — amba
 deservar — transitiva
 deskriptar — transitiva
 despitar — netransitiva — pri, pro, de
@@ -581,7 +581,7 @@ expedicionar — transitiva
 expektar — transitiva
 expektorar — transitiva
 experiencar — transitiva
-experimentar — netransitiva (senco 1) — pri, per
+experimentar — amba — pri, per
 expertizar — transitiva
 expiacar — transitiva
 expirar — netransitiva
@@ -2140,7 +2140,7 @@ Qua verbi regas qua prepoziciono.
 
 ## Noti
 
-La parentezi qui ne esas nek speco nek prepoziciono : la libro dicas hike pri qua subjekto o en qua fako la verbo uzesas. Li esas konservita quale printita. (606 verbi.)
+La parentezi qui ne esas nek speco nek prepoziciono : la libro dicas hike pri qua subjekto o en qua fako la verbo uzesas. Li esas konservita quale printita. (605 verbi.)
 
 abasar — metaf.; aludante persono
 abdikar — pri rejo od altra suvereno
@@ -2191,7 +2191,7 @@ arpejar — muziko
 asaltar — milit-arto
 asentar — asento; konsento
 asimilar — fiziol.; metaf.
-asonancar — aludante la sama sonuno; Ex. ek la Franca linguo : perte e peste
+asonancar — aludante la sama son-uno; Ex. ek la Franca linguo : perte e peste
 atricar — teol.
 auskultar — medic.
 avalanchar — aludante blokego de nivo-floki
@@ -2220,7 +2220,6 @@ deliktar — en Francia
 deliquecar — kemio
 derogar — yuro-cienco
 desegnar — per, sur, e c
-desertar — e netrans.
 deservar — en templo, kirko, sinagogo
 detachar — armeo
 determinar — gram.; aludante propoziciono acesora

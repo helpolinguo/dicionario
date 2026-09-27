@@ -236,6 +236,14 @@ The deck's and the note type's identifiers are fixed for the same reason,
 and the build is deterministic to the byte, so a rebuild that changes
 nothing shows no diff.
 
+**But such an import corrects nothing yet.** Anki updates a note it
+already holds only when the one imported is newer, and every timestamp in
+the package is a constant. Measured with Anki 26.09.3: the deck imported
+over the one committed before it updates **none** of its 9,473 notes, under
+the default setting and under *always* alike; with every note one second
+later, it updates all 9,473. An import into an empty collection gets
+everything.
+
 The tags are the book's own marks, read by `tools/parentheticals.py` at
 both levels — 221 of them: `fako::bot.` selects the 616 plants,
 `verbo::transitiva` the verbs that take an object, `prepoziciono::ad` the
@@ -261,7 +269,7 @@ ordinary shape where the book sets two groups. Nothing told them apart, so
 nothing could be asked of them.
 
 **The transitivity.** 2,020 articles are marked `trans.` or `netrans.` —
-1,387 transitive, 587 intransitive, 15 both. In Ido this is not a detail of
+1,386 transitive, 587 intransitive, 17 both. In Ido this is not a detail of
 lexicography: it decides whether a verb takes a direct object, and
 therefore whether `-ig-` or `-es-` is the right derivation. A writer
 without it guesses on every verb.
@@ -276,7 +284,7 @@ words or more: `bot.` 616, `zool.` 454, `anat.` 275, `patol.` 248.
 
 **BOTH LEVELS ARE READ, AND READING ONLY THE ARTICLE'S LOSES THE VERBS THAT
 MATTER MOST.** A sense carries its own mark, wrapped in the export between
-two private-use sentinels. **MEASURED: 40 verbs are marked at sense level
+two private-use sentinels. **MEASURED: 38 verbs are marked at sense level
 only** — `fugar`, `finar`, `komencar`, `kombatar`, `embarkar` among them —
 and they are marked there *because* they are transitive in one sense and
 intransitive in another:
@@ -286,11 +294,18 @@ finar — transitiva (senco 1), netransitiva (senco 2)
 fugar — netransitiva (senco 1), transitiva (senco 2)
 ```
 
-A tool reading `fako` alone reports 1,981 verbs, looks complete, and is
-silent on every verb whose answer is *it depends on the sense*. 31 verbs
+A tool reading `fako` alone reports 1,982 verbs, looks complete, and is
+silent on every verb whose answer is *it depends on the sense*. 30 verbs
 change by sense. The same reading is what finds `metaf.`, which marks 228
 words and **not one article**: read at article level alone, the book has no
-mark for the figurative sense at all.
+mark for the figurative sense at all. The remarks the book sets below its
+numbering are read too, as the article's own: five of them carry a mark,
+among them the `(metaf.)` of `magneto`.
+
+**Two groups can be joined by a connector**, and the book does it once:
+`experimentar (trans.) e (netrans., pri, per)`, transitive, and intransitive
+governing *pri* or *per*. Both marks are read, and the verb is counted
+among those of both kinds.
 
 **WHAT IS NOT GOVERNMENT.** `abdikar (pri rejo od altra suvereno)` opens
 with a preposition and is **not** government — it says what sort of subject
