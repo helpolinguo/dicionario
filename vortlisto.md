@@ -6585,7 +6585,7 @@ perlo — Globeto, maxim-multa-kaze arjento-blanka, kun reflekti ciel-arkea, qua
 perlomatro — Materio blanka, kun reflekti ciel-arkea, ye qua konsistas la latero interna di ula konki, ed uzesas por tabulifado
 permanar (netrans.) — Mantenar su, konservar su, sen interrupto.
 permear (trans.) (aludante liquido, gaso) — Pasar de ca a ta latero di parieto per trairar la pori di olca
-permigar (trans.) (ulo ad ulu) — Grantar la darfo o la yuro (agor o facar ulo)
+permisar (trans.) (ulo ad ulu) — Grantar la darfo o la yuro (agor o facar ulo)
 permutar (trans.) — Pozar ulo en la plaso di altra kozo, e reciproke
 perono (arkitekt.) — Eskalero de kelka gradi, konstruktita avan la fasado di domo, e qua finas per platformo a qua abutas la eniro-koridoro precipua
 peroneo (anat.) — Osto longa di la gambo, fixigita ye la latero extera di tibio
