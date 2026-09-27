@@ -206,7 +206,7 @@ The deploy is now a plain copy.
 ## The deck
 
 `dicionario.apkg` is the whole book as an **Anki deck**: 9,473 notes,
-17,842 cards, 1.6 MB, built by `tools/anki.py` out of `dicionario.json`.
+17,840 cards, 1.6 MB, built by `tools/anki.py` out of `dicionario.json`.
 An `.apkg` is a zip holding a SQLite collection in Anki's schema 11, and
 this one is written with `sqlite3` and `zipfile` alone — **a clone builds
 it with nothing installed**, no genanki and none of the three libraries
@@ -220,10 +220,10 @@ Two cards come from one note:
 | `Senco → vedetto` | the article | the headword |
 
 **The second is not made for every article.** MEASURED, over the 9,473:
-102 are affixes, which have no sense to recognise; 535 carry a body under
-25 characters, too short to guess at; and 467 print the headword's own
+102 are affixes, which have no sense to recognise; 532 carry a body under
+25 characters, too short to guess at; and 472 print the headword's own
 root inside the definition — `abandonar. Lasar ... abandonita` hands the
-answer over. **8,369 articles carry the reverse card**, and the 1,104
+answer over. **8,367 articles carry the reverse card**, and the 1,106
 others carry the first alone.
 
 **The guid is an address.** Anki knows a note it has already seen by its
