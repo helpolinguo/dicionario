@@ -7521,7 +7521,7 @@ reverberar (trans.) — (fiziko) (aludante surfaco) Retrosendar la l
 reverencar (trans.) — Movar sua korpo por salutar ye maniero qua manifestas respekto profunda
 reverso — La facio, opozata a la facio quan, en kozo, onu regardas, o regardigas, prefere
 reversionar (yuro-cienco) — Dicesas pri havaji qui retroiras a la persono qua donacabis li a kunhomo, kaze ke ica mortas sen filii
-revizar (trans.) — Submisar itere (texto, proceso, kodexo konto) ad exploro por reformar, korektigar, se necesa
+revizar (trans.) — Submisar itere (texto, proceso, kodexo, konto) ad exploro por reformar, korektigar, se necesa
 revokar (trans.) (pro) — Retrotirar (lu) de lua ofico (pro nekapableso, pro kulpo profesionala, e c.)
 revoltar (netrans., kontre, pri, pro) — Refuzar la obedio di la imperi de la autoritatozi legitima, regnanta. – (anke metaf.)
 revolucionar (netrans.) (aludante la populo di stato) — Agar violente la chanjo di (sua) guvernistaro
