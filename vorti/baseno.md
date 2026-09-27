@@ -4,7 +4,7 @@
 1. Recipiento portebla, cirklatra, di qua la bordi esas alta, destinita a kontenar aquo
 2. **mar-baseno** La regiono quan trafluas omna fluvii qui adiras ta maro
 3. **fluvio-baseno** La teritorio quan trairas fluvio kun omna lua riveri
-4. Geologio-baseno : la teritorio ek masivo komuna de strati, de tereni geologiala
+4. **geologio-baseno** La teritorio ek masivo komuna de strati, de tereni geologiala
 <!-- p. 59, l. 3 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ---

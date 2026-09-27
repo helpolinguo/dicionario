@@ -1,8 +1,8 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## ostro *(zool.)*
-Genero de moluski lamelo-brankia, tipo di la familio « ostreidi », ek cirkume cent speci qui vivas en la mari varma e mi-varma, e kinacent speci fosila en la strati sekundara e terciara. – L. ostrea edulis e gryphea angulata
-L. ostrea edulis; gryphea angulata
+Genero de moluski lamelo-brankia, tipo di la familio « ostreidi », ek cirkume cent speci qui vivas en la mari varma e mi-varma, e kinacent speci fosila en la strati sekundara e terciara
+L. ostrea edulis e gryphea angulata
 <!-- p. 412, l. 48 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ---

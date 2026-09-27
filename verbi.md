@@ -2140,7 +2140,7 @@ Qua verbi regas qua prepoziciono.
 
 ## Noti
 
-La parentezi qui ne esas nek speco nek prepoziciono : la libro dicas hike pri qua subjekto o en qua fako la verbo uzesas. Li esas konservita quale printita. (605 verbi.)
+La parentezi qui ne esas nek speco nek prepoziciono : la libro dicas hike pri qua subjekto o en qua fako la verbo uzesas. Li esas konservita quale printita. (606 verbi.)
 
 abasar — metaf.; aludante persono
 abdikar — pri rejo od altra suvereno
@@ -2206,6 +2206,7 @@ beatifikar — aludante la papo
 boliar — aludante liquido
 bonimentar — aludante la sharlatani e feriala aktori
 bordear — aludante navo
+brosar — L. triticum caninum
 censurar — aludante la Eklezio Kristana o korpo di ta Eklezio
 cherpar — anke metaf.
 cirkular — pri moneto

@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## tinlauro *(bot.)*
-Arboreto ek la genero « viburni ». L. viburnum tinus
+Arboreto ek la genero « viburni »
 L. viburnum tinus
 <!-- p. 582, l. 8 | sen-lingua -->
 

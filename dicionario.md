@@ -810,7 +810,6 @@ Instalar la armeani en la loki diversa di teritorio ube li devas vivar dum kelka
 
 ## akaro *(zool.)*
 Familio de insekti di qui la tipo esas L. acarus, kun korpo, generale, disko-forma e globatra, sen distingo tre preciza di abdomino de cefalotorako
-L. acarus
 <!-- p. 13, l. 13 | Angla, Franca, Italiana, Rusa, Hispana, Latina -->
 
 ## aklamar *(trans.)*
@@ -3497,7 +3496,7 @@ Domajar, ne nur navo, ma anke kozi transportata per navo, fervoyo, veturo
 
 ## avelano *(bot.)*
 Frukto kun shelo un-lojia, ne-dehiscenta, inkastrita per involukro
-L. corylus evellana
+L. corylus avellana
 <!-- p. 51, l. 14 | Franca, Italiana, Hispana, Latina -->
 
 ## aveno *(bot.)*
@@ -3982,7 +3981,7 @@ Infra parto (bazo), videbla, di edifico, qua jacas sur la fundamento
 1. Recipiento portebla, cirklatra, di qua la bordi esas alta, destinita a kontenar aquo
 2. **mar-baseno** La regiono quan trafluas omna fluvii qui adiras ta maro
 3. **fluvio-baseno** La teritorio quan trairas fluvio kun omna lua riveri
-4. Geologio-baseno : la teritorio ek masivo komuna de strati, de tereni geologiala
+4. **geologio-baseno** La teritorio ek masivo komuna de strati, de tereni geologiala
 <!-- p. 59, l. 3 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## basko
@@ -4197,7 +4196,6 @@ Hidrokarbido, liquido senkolora, extraktita de rezini e de gudro minkarbonala, q
 
 ## benzoo
 Substanco rezinoza qua defluas, tra incizuro, de varietato de L. styrax benzoin
-L. styrax benzoin
 <!-- p. 62, l. 21 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## benzolo
@@ -5015,8 +5013,7 @@ Muliero-juvelo, kun pinglo, uzata por ligar shalo, kolumo, e c.
 <!-- p. 74, l. 55 | Germana, Angla, Franca, Rusa, Hispana | ordino-ruptita -->
 
 ## brosar *(trans.)*
-Frotar, per asemblajo ek faski de krini, de porko-pili, ek fragmenti de hundo-herbo e c., ajustita inter-nivele sur plako de ligno, de ivoro, e c. por netigar, sen-polvigar, e c.
-L. triticum caninum
+Frotar, per asemblajo ek faski de krini, de porko-pili, ek fragmenti de hundo-herbo (L. triticum caninum) e c., ajustita inter-nivele sur plako de ligno, de ivoro, e c. por netigar, sen-polvigar, e c.
 <!-- p. 75, l. 5 | Angla, Franca, Hispana -->
 
 ## broshar *(trans.)*
@@ -15532,7 +15529,6 @@ Kotono-stofo kun imaji imprimita, qua origine fabrikesis en India
 
 ## indigo
 Farbo blua quan onu extraktas de la folii e de la stipi di la L. indigofera
-L. indigofera
 <!-- p. 232, l. 34 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## indignar *(netrans., pri, pro, kontre)*
@@ -18023,7 +18019,6 @@ Texajo tre delikata, facita ek la lano di la mutoni. ed ek la lanugo di la pekto
 
 ## kasio *(bot.)*
 Shelo (di qua la pulpo nigra uzesas kom laxigivo) di la arboro L. cassia
-L. cassia
 <!-- p. 269, l. 41 | Germana, Angla, Franca, Italiana, Hispana -->
 
 ## kasiso *(bot.)*
@@ -24687,7 +24682,7 @@ L. mespilus
 <!-- p. 376, l. 35 | Germana, Italiana, Hispana, Latina -->
 
 ## mistelo *(bot.)*
-Planto lignoza, qua vivas parazite sur ula arbori (querko, pomiero, fraxino.) L. viscum
+Planto lignoza, qua vivas parazite sur ula arbori (querko, pomiero, fraxino.)
 L. viscum
 <!-- p. 376, l. 39 | Germana, Angla -->
 
@@ -27046,8 +27041,8 @@ Inflamuro di la osto-tisuo
 <!-- p. 412, l. 46 | Germana, Angla, Franca -->
 
 ## ostro *(zool.)*
-Genero de moluski lamelo-brankia, tipo di la familio « ostreidi », ek cirkume cent speci qui vivas en la mari varma e mi-varma, e kinacent speci fosila en la strati sekundara e terciara. – L. ostrea edulis e gryphea angulata
-L. ostrea edulis; gryphea angulata
+Genero de moluski lamelo-brankia, tipo di la familio « ostreidi », ek cirkume cent speci qui vivas en la mari varma e mi-varma, e kinacent speci fosila en la strati sekundara e terciara
+L. ostrea edulis e gryphea angulata
 <!-- p. 412, l. 48 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## ostracismo *(en Grekia antiqua)*
@@ -31150,8 +31145,7 @@ Membro di sekto protestanta tre rigoroza, qua aspiras ad igar kristanismo ri-esa
 <!-- p. 473, l. 25 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## purpuro
-Kolorizivo bele-reda quan antique onu obtenis de L. murex trunculus o murex brancaris, molusko gasteropoda, tipo di la tribuo « muricinei » qua vivas en la mari di qui la aquo esas kolda o tepida, o fosila de la epoko « kretacea »
-L. murex trunculus; murex brancaris
+Kolorizivo bele-reda quan antique onu obtenis de L. murex trunculus o murex brancaris, molusko gasteropoda, tipo di la tribuo « muricinei » qua vivas en la mari di qui la aquo esas kolda o tepida, o fosila de la epoko « kretacea »
 <!-- p. 473, l. 29 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## puso *(patol.)*
@@ -31322,7 +31316,6 @@ Kurvo di la klaso quaresma
 
 ## quasio *(bot.)*
 Kortico de la arbusto L. quassia amara, de-tranchita aden mikra spani, qua saporas tre bitre, ed uzata en medicino kom tonigivo pos macereso (5 grami singla-litre), sive en tintivo alkoholoza
-L. quassia amara
 <!-- p. 476, l. 23 | Germana, Angla, Franca, Italiana, Hispana -->
 
 ## quaternara
@@ -34525,7 +34518,6 @@ Dormar pos la repasto dimezala, dejuna
 
 ## sifiliso *(patol.)*
 Morbo infektiva e kontagiala, transmisebla a la decedonti, e di qua la kauzo esas la mikrobo L. treponema pallidum – morbo qua afektas precipue la organi sexuala
-L. treponema pallidum
 <!-- p. 526, l. 24 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## siflar *(trans. e netrans.)*
@@ -35337,8 +35329,8 @@ Peco de la intestino di porko, di mutono, quan onu plenigis ye karno de porko, o
 <!-- p. 539, l. 33 | Angla, Franca, Italiana, Rusa | pagino-nefidinda -->
 
 ## sodo *(bot.)*
-Planto ek la familio « kenopodiacei », propra ye la regioni klimato-moderata e subtropika; un-yar-dura; di qua la folii esas quaze pulpoza, lineala, e la flori mikra e verdatra; de qui onu extraktis olim natroxo. – L. salsola soda e salsola kali. – (kemio) Salo alkalioza quan onu extraktas de ta planto ed anke ek la fuki
-L. salsola soda; salsola kali
+Planto ek la familio « kenopodiacei », propra ye la regioni klimato-moderata e subtropika; un-yar-dura; di qua la folii esas quaze pulpoza, lineala, e la flori mikra e verdatra; de qui onu extraktis olim natroxo. – (kemio) Salo alkalioza quan onu extraktas de ta planto ed anke ek la fuki
+L. salsola soda e salsola kali
 *Simb. kem.* **CO₃Na₂**
 <!-- p. 539, l. 37 | Germana, Angla, Franca, Italiana, Rusa | pagino-nefidinda -->
 
@@ -37166,7 +37158,6 @@ Adverbo : sama-grada pri qualeso
 
 ## tamarindo *(bot.)*
 Frukto de la arboreto L. tamarindus, ek la familio « leguminosi », di qua la shelo kontenas pulpo laxigiva, mi-purgiva
-L. tamarindus
 <!-- p. 567, l. 54 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## tamarisko *(bot.)*
@@ -38028,7 +38019,7 @@ Morbo di la pelo haroza, che la homo
 <!-- p. 582, l. 4 | Angla, Franca, Italiana -->
 
 ## tinlauro *(bot.)*
-Arboreto ek la genero « viburni ». L. viburnum tinus
+Arboreto ek la genero « viburni »
 L. viburnum tinus
 <!-- p. 582, l. 8 | sen-lingua -->
 
@@ -38081,7 +38072,6 @@ Glando an la parto infra di la laringo, sur la serio-unesma ringi di la trakeo
 
 ## tirozimazo *(biol.)*
 Oxidazo, en la fungi di la genero L. russula, qua povas oxidigar tirozino
-L. russula
 <!-- p. 582, l. 52 | sen-lingua -->
 
 ## tirozino *(biol.)*

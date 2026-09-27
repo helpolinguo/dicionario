@@ -2,7 +2,6 @@
 
 ## indigo
 Farbo blua quan onu extraktas de la folii e de la stipi di la L. indigofera
-L. indigofera
 <!-- p. 232, l. 34 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ---
