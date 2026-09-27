@@ -2,7 +2,6 @@
 
 ## tamarindo *(bot.)*
 Frukto de la arboreto L. tamarindus, ek la familio « leguminosi », di qua la shelo kontenas pulpo laxigiva, mi-purgiva
-L. tamarindus
 <!-- p. 567, l. 54 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ---

@@ -37,3 +37,13 @@ fritilario@187:28	fritillus	p180 : lu « fritilius » — le double l pris pour 
 # « tragocamelus » (nilgauo) — et « gamel- » une seule, ici.
 jirafo@255:48	camelopardalis giraffa	p248 : lu « gamelopardalis giraffz ». Le c lu comme g — le livre ecrit « camel- » partout ailleurs — et le a final lu comme z, qui ne finit aucun nom latin. « Camelopardalis », le chameau-leopard, est le nom ancien de la girafe
 askarido@51:11	ascaridae genus : ascaris	p044 : le fac-simile porte « - L. ascaridae genus : » en fin de ligne et « ascaris. » au debut de la suivante, le filet couvrant les deux. C est UNE annotation — la famille Ascaridae, genero Ascaris — et le deux-points en fait partie. La regle d extraction s arrete dessus et laissait « : ascaris » dans la definition ; c est le seul « L. » du livre qui porte un deux-points, et la regle ne change pas pour un cas.
+#
+# Un trait d'union seul a la place du nom : l'article ne pose AUCUN nom a part.
+# Son « L. » glose un autre mot de la definition, et reste dans la phrase a
+# cote de lui ; la regle d'extraction, qui l'aurait pris pour le nom latin de
+# l'article, n'y touche pas.
+brosar@82:5	-	p075 : « ek fragmenti de hundo-herbo (L. triticum caninum) e c. » — le nom est celui de l herbe aux chiens dont on fait la brosse, non celui du verbe « brosar ». Pris par la regle, il quittait la phrase et s affichait apres la definition comme le nom latin de l article. Le livre ouvre vingt parentheses « (L. ...) » au milieu d une phrase, et les dix-neuf autres glosent la chose meme de l article ou ce dont elle vient : l arbre de piro, l arbuste de kafeo, le chene de korko, Descartes pour karteziana. La regle les prend a bon droit ; celle-ci est la seule a nommer autre chose.
+#
+# Une lettre de la dactylo, non de la lecture : le tapuscrit porte bien la
+# faute, le fac-simile la garde, l'edition de lecture la redresse.
+avelano@58:14	corylus avellana	p051 : le tapuscrit porte « corylus evellana ». Le noisetier est Corylus avellana, du latin avellana, la noisette ; le livre ecrit le meme mot avec son a chez moskardino, « muscardinus avellanarius », l espece nommee d apres elle. La relecture directe a rendu la ligne entiere, et avec le e (exceptions_proofreading.txt, image 58 l15) ; les deux decodages qui subsistent lisent un e eux aussi en tete du mot, « eEellana » et « eEgllaoE ». Si le scan y montre un a, la correction revient au fac-simile par exceptions_manual.txt, et cette ligne-ci serait a retirer.

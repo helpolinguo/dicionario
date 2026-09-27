@@ -1,8 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## purpuro
-Kolorizivo bele-reda quan antique onu obtenis de L. murex trunculus o murex brancaris, molusko gasteropoda, tipo di la tribuo « muricinei » qua vivas en la mari di qui la aquo esas kolda o tepida, o fosila de la epoko « kretacea »
-L. murex trunculus; murex brancaris
+Kolorizivo bele-reda quan antique onu obtenis de L. murex trunculus o murex brancaris, molusko gasteropoda, tipo di la tribuo « muricinei » qua vivas en la mari di qui la aquo esas kolda o tepida, o fosila de la epoko « kretacea »
 <!-- p. 473, l. 29 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ---

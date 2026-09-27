@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## mistelo *(bot.)*
-Planto lignoza, qua vivas parazite sur ula arbori (querko, pomiero, fraxino.) L. viscum
+Planto lignoza, qua vivas parazite sur ula arbori (querko, pomiero, fraxino.)
 L. viscum
 <!-- p. 376, l. 39 | Germana, Angla -->
 

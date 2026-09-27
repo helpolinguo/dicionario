@@ -2,7 +2,6 @@
 
 ## benzoo
 Substanco rezinoza qua defluas, tra incizuro, de varietato de L. styrax benzoin
-L. styrax benzoin
 <!-- p. 62, l. 21 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ---

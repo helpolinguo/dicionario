@@ -206,7 +206,7 @@ The deploy is now a plain copy.
 ## The deck
 
 `dicionario.apkg` is the whole book as an **Anki deck**: 9,473 notes,
-17,840 cards, 1.6 MB, built by `tools/anki.py` out of `dicionario.json`.
+17,841 cards, 1.6 MB, built by `tools/anki.py` out of `dicionario.json`.
 An `.apkg` is a zip holding a SQLite collection in Anki's schema 11, and
 this one is written with `sqlite3` and `zipfile` alone — **a clone builds
 it with nothing installed**, no genanki and none of the three libraries
@@ -221,9 +221,9 @@ Two cards come from one note:
 
 **The second is not made for every article.** MEASURED, over the 9,473:
 102 are affixes, which have no sense to recognise; 532 carry a body under
-25 characters, too short to guess at; and 472 print the headword's own
+25 characters, too short to guess at; and 471 print the headword's own
 root inside the definition — `abandonar. Lasar ... abandonita` hands the
-answer over. **8,367 articles carry the reverse card**, and the 1,106
+answer over. **8,368 articles carry the reverse card**, and the 1,105
 others carry the first alone.
 
 **The guid is an address.** Anki knows a note it has already seen by its
@@ -279,7 +279,7 @@ without it guesses on every verb.
 is printed nowhere else, and it is the difference between Ido a reader can
 follow and Ido that is merely Ido-shaped.
 
-**The subject field.** 953 distinct parentheticals, of which 88 name five
+**The subject field.** 952 distinct parentheticals, of which 88 name five
 words or more: `bot.` 616, `zool.` 454, `anat.` 275, `patol.` 248.
 
 **BOTH LEVELS ARE READ, AND READING ONLY THE ARTICLE'S LOSES THE VERBS THAT
@@ -352,16 +352,18 @@ Two reports say what the edition could not settle, and both are
 regenerated from the published text:
 
 ```sh
-python3 tools/survey_rules.py   # 1445 underlines it could not place
+python3 tools/survey_rules.py   # 1444 underlines it could not place
 python3 tools/survey_order.py   # 55 headwords that break the alphabet
 ```
 
 A figure that moves without a reason is a defect, not a detail.
 
-**1445 is the figure without the scan; with it, 1525 was measured when
-the figure without it was 1444**, before the headword « permigar » was
-corrected to « permisar » — which leaves its underline over from the
-headword, one fragment more, and has not been measured with the scan.
+**1444 is the figure without the scan; with it, 1525 was measured when
+the figure without it was 1444 as well** — but not the same 1444. Since
+then the headword « permigar » was corrected to « permisar », which
+leaves its underline over from the headword, one fragment more; and
+baseno's « Geologio- » was joined to the « baseno » the line end had cut
+from it, one fragment fewer. Neither has been measured with the scan.
 The two roads do not read the same measurement of the rules. The
 facsimile has always preferred `redo_rules.py`'s recomputation, with the
 survey by eye over it (`generate.py`, « Recomputed rules »); the reading

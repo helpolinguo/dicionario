@@ -1,8 +1,8 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## sodo *(bot.)*
-Planto ek la familio « kenopodiacei », propra ye la regioni klimato-moderata e subtropika; un-yar-dura; di qua la folii esas quaze pulpoza, lineala, e la flori mikra e verdatra; de qui onu extraktis olim natroxo. – L. salsola soda e salsola kali. – (kemio) Salo alkalioza quan onu extraktas de ta planto ed anke ek la fuki
-L. salsola soda; salsola kali
+Planto ek la familio « kenopodiacei », propra ye la regioni klimato-moderata e subtropika; un-yar-dura; di qua la folii esas quaze pulpoza, lineala, e la flori mikra e verdatra; de qui onu extraktis olim natroxo. – (kemio) Salo alkalioza quan onu extraktas de ta planto ed anke ek la fuki
+L. salsola soda e salsola kali
 *Simb. kem.* **CO₃Na₂**
 <!-- p. 539, l. 37 | Germana, Angla, Franca, Italiana, Rusa | pagino-nefidinda -->
 

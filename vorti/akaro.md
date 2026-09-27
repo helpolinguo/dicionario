@@ -2,7 +2,6 @@
 
 ## akaro *(zool.)*
 Familio de insekti di qui la tipo esas L. acarus, kun korpo, generale, disko-forma e globatra, sen distingo tre preciza di abdomino de cefalotorako
-L. acarus
 <!-- p. 13, l. 13 | Angla, Franca, Italiana, Rusa, Hispana, Latina -->
 
 ---

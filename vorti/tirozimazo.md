@@ -2,7 +2,6 @@
 
 ## tirozimazo *(biol.)*
 Oxidazo, en la fungi di la genero L. russula, qua povas oxidigar tirozino
-L. russula
 <!-- p. 582, l. 52 | sen-lingua -->
 
 ---

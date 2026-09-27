@@ -6,7 +6,7 @@ La fako printita en parentezo avan la unesma senco, e la vorti quin ol markizas.
 
 Transskribita de https://ido.help/dicionario/
 
-953 parentezi diferanta, de qui 88 markizas kin vorti o plu. La ceteri esas ofte noti pri un sola vorto, e li esas konservita infre quale printita.
+952 parentezi diferanta, de qui 88 markizas kin vorti o plu. La ceteri esas ofte noti pri un sola vorto, e li esas konservita infre quale printita.
 
 ## Faki di kin vorti o plu
 
@@ -133,6 +133,7 @@ Transskribita de https://ido.help/dicionario/
 **Konfundar ad** (1) — konfundar
 **Kuglo sisas** (1) — siflar
 **Kurso di la filozofio pozitivista** (1) — sinoptika
+**L. triticum caninum** (1) — brosar
 **Lico** (1) — stadio
 **Louis Couturat** (1) — idiotismo
 **Maskula** (1) — maskulo
@@ -575,7 +576,6 @@ Transskribita de https://ido.help/dicionario/
 **gram. Latina** (2) — deponenta, supino
 **gram., retor.** (1) — metaforo
 **gramatiko** (1) — elipso
-**gryphea angulata** (1) — ostro
 **hektogr.** (1) — klishar
 **hiperbole** (1) — kriminar
 **historio di Francia** (1) — Direktorio
@@ -701,6 +701,7 @@ Transskribita de https://ido.help/dicionario/
 **mitol. orientala** (1) — gulo
 **mitol., Germana e Skandinava** (1) — nixo
 **mitol., religio** (1) — deo
+**murex brancaris** (1) — purpuro
 **murex trunculus** (1) — purpuro
 **natur-historio** (2) — bikuspida, exotika
 **navaro** (1) — eskadro
@@ -718,7 +719,6 @@ Transskribita de https://ido.help/dicionario/
 **olim, en Hispania** (1) — garoto
 **olima geometrio** (1) — kateto
 **oosferi** (1) — oogonio
-**ostrea edulis** (1) — ostro
 **pafarmo** (1) — ejektar
 **paleogr.** (2) — palimpsesto, unciala
 **parazitologio** (1) — plasmodio
@@ -948,7 +948,6 @@ Transskribita de https://ido.help/dicionario/
 **venisne** (1) — enklitiko
 **versif.** (3) — spondeo, trokeo, xenio
 **vesto** (2) — agrafo, rotondo
-**viscum** (1) — mistelo
 **volt** (1) — farad
 **vorto ciencala** (1) — deletera
 **vorto pejorativa** (1) — taumaturgo

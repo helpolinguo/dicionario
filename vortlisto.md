@@ -1187,7 +1187,7 @@ bronkio (anat.) — Singla ek la du tubi kartilagoza quin formacas la bifurko di
 bronkito (patol.) — Inflameso di la mukozo qua tapete kovras la bronki
 bronzo (kemio) — Metalo harda e sonora, obskur-kolora, qua konsistas ye aloyuro de kupro e stano, segun proporcioni variiva ed a qua onu adjuntas olakaze zinko, plombo e mem arjento – quan onu uzas kom materio por gisar statui, medalii, kloshi, kanoni
 brocho — Muliero-juvelo, kun pinglo, uzata por ligar shalo, kolumo, e c.
-brosar (trans.) — Frotar, per asemblajo ek faski de krini, de porko-pili, ek fragmenti de hundo-herbo e c., ajustita inter-nivele sur plako de ligno, de ivoro, e c. por netigar, sen-polvigar, e c.
+brosar (trans.) — Frotar, per asemblajo ek faski de krini, de porko-pili, ek fragmenti de hundo-herbo (L. triticum caninum) e c., ajustita inter-nivele sur plako de ligno, de ivoro, e c. por netigar, sen-polvigar, e c.
 broshar (trans.) — Pasigar filo tra folii o kayeri de folii por sutar li ad-ensemble
 brovo (anat.) — Saliajo arko-forma, garnisita ye pili, qua esas situita super singla okulo
 bruo (bot.) — Kovrilo verda, fibroza, ledratra, qua protektas la shelo di la nuco, di la mandelo, di la avelano, e c.
@@ -5704,7 +5704,7 @@ mirtelo (bot.) — Genero de planti ek « vacinei » qua produktas beri nigratra
 mis- — Prefixo qua signifikas « erore, nejuste »
 misiono — Senditaro (religiala, ciencala, diplomacala) di qua la tasko konsistas ye – rispektive – predikar, instruktar o docar, studiar, explorar, negociar, e c.
 mispelo (bot.) — Frukto qua havas plura kerni, qua manjesas erste kande lu oldeskis e komencas velkar
-mistelo (bot.) — Planto lignoza, qua vivas parazite sur ula arbori (querko, pomiero, fraxino.) L. viscum
+mistelo (bot.) — Planto lignoza, qua vivas parazite sur ula arbori (querko, pomiero, fraxino.)
 misterio — Rito sekreta di la politeismo antiqua, a qua admisesis nur poka iniciiti. – To quon onu konservas, mantenas, sekreta
 mistifikar (trans.) — Trompar, erorigar (ulu), amuzante su de lua kredo
 mistiko — Doktrino filozofiala, religiala, qua konsideras kom la perfekteso sorto di kontemplo ed extazo qua elevas la homo, ja en la vivo sur-tera, ad uniono misterioza kun deo
@@ -6245,7 +6245,7 @@ osteoblasto (biol.) — Celulo yuna, restinta e retroveninta a sua stando embrio
 osteologio — Parto di anatomio, qua traktas la osti
 osteomo (patol.) — Tumoro ek osto-tisuo
 ostito (patol.) — Inflamuro di la osto-tisuo
-ostro (zool.) — Genero de moluski lamelo-brankia, tipo di la familio « ostreidi », ek cirkume cent speci qui vivas en la mari varma e mi-varma, e kinacent speci fosila en la strati sekundara e terciara. – L. ostrea edulis e gryphea angulata
+ostro (zool.) — Genero de moluski lamelo-brankia, tipo di la familio « ostreidi », ek cirkume cent speci qui vivas en la mari varma e mi-varma, e kinacent speci fosila en la strati sekundara e terciara
 ostracismo (en Grekia antiqua) — Exilo, dek-yar-dura, di civitano qua divenis suspektata pro lua autoritato, lua povo, en la civito
 ostrogoto — Persono qua ne konformigas sua konduto a la kustumi, a la deci, qui regnas en la medio en qua lu vivas
 -ot- (gram.) — Verbo-dezinenco di la participo di futureso, pasiva
@@ -7185,7 +7185,7 @@ pureo — Disho ek legumi reduktita a paplo
 purgar (trans.) — Kuracar per eskapigar la feko quan kontenas la intestini, per absorbigar lino-semini, agar-agaro, ricinoleo, aquo minerala sulfoza, e c.
 purgatorio (religio katol.) — Loko ube la homi qui mortas ye stando di graco, expiacas la peki pri qui li ne penitencis sat multe en ica mondo
 puritano (kristanismo) — Membro di sekto protestanta tre rigoroza, qua aspiras ad igar kristanismo ri-esar pura quale lor lua origino
-purpuro — Kolorizivo bele-reda quan antique onu obtenis de L. murex trunculus o murex brancaris, molusko gasteropoda, tipo di la tribuo « muricinei » qua vivas en la mari di qui la aquo esas kolda o tepida, o fosila de la epoko « kretacea »
+purpuro — Kolorizivo bele-reda quan antique onu obtenis de L. murex trunculus o murex brancaris, molusko gasteropoda, tipo di la tribuo « muricinei » qua vivas en la mari di qui la aquo esas kolda o tepida, o fosila de la epoko « kretacea »
 puso (patol.) — Humoro morbala, densa, quan produktas la korupteso di la tisui, lor lia inflameso
 pustulo (patol.) — Mikra tumoro qua pusifas
 putativa (yuro-cienco) — Pri qua onu kredas ke lu esas valida legale
@@ -8136,7 +8136,7 @@ socio — Ensemblo, duroza, ek homi qui vivas obedie di legi komunana. (anke alu
 sociologo — Ciencisto qua su okupas pri sociologio
 sociologio — Cienco di qua la studiajo esas la cirkonstanci ed existo-kondicioni di la socio homara
 sociso — Peco de la intestino di porko, di mutono, quan onu plenigis ye karno de porko, o de bovo, tre spicizita, triturita e pistita, e tre presita
-sodo (bot.) — Planto ek la familio « kenopodiacei », propra ye la regioni klimato-moderata e subtropika; un-yar-dura; di qua la folii esas quaze pulpoza, lineala, e la flori mikra e verdatra; de qui onu extraktis olim natroxo. – L. salsola soda e salsola kali. – (kemio) Salo alkalioza quan onu extraktas de ta planto ed anke ek la fuki
+sodo (bot.) — Planto ek la familio « kenopodiacei », propra ye la regioni klimato-moderata e subtropika; un-yar-dura; di qua la folii esas quaze pulpoza, lineala, e la flori mikra e verdatra; de qui onu extraktis olim natroxo. – (kemio) Salo alkalioza quan onu extraktas de ta planto ed anke ek la fuki
 sodomiar (netrans.) — Agar koito anusala, inter-vira, od inter viro e muliero, o kun bestioio
 sofao — Sorto di repozo-lito, kun tri dors-apogili, uzata kom sidilo
 sofismo — Argumento trompera, seduktera
@@ -8760,7 +8760,7 @@ tindro — Substanco sponjatra, extraktita de la agariko di la querko (fungo kun
 tineo (zool.) — Mikra insekto lepidoptera, di qua la speco maxim difuzita esas ta qua devoras la grani
 tinio (patol.) — Morbo di la pelo haroza, che la homo
 tinklar (netrans.) — (aludante klosho quan onu frapas sur nur un latero per la frapilo) Produktar sonuni qui intersucedas lente
-tinlauro (bot.) — Arboreto ek la genero « viburni ». L. viburnum tinus
+tinlauro (bot.) — Arboreto ek la genero « viburni »
 tintar (trans., ye, ad) — Impregnar (filo, lano, texuro, felo, e c.) ye substanco qua igas lu havar ta o ca koloro
 tipo — Peco de ligno, de metalo, e c., qua havas stampuro qua esas destinita *reproduktar stampuro strikte sama
 tipografar (trans.) — Imprimar per tipi

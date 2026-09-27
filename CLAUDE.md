@@ -44,7 +44,7 @@ one before it wrote:
 
     python3 tools/machine_readable.py  # .json, .md, vortlisto.md, vorti/
     python3 tools/anki.py              # dicionario.apkg — 9473 notes,
-                                       # 17,840 cards, 221 tags. The sha256
+                                       # 17,841 cards, 221 tags. The sha256
                                        # it prints does not move unless the
                                        # text does: the build is byte-stable.
 
@@ -52,8 +52,8 @@ Then the surveys, each of which says what it expects. A figure that moves
 without a reason is a defect, not a detail:
 
     python3 tools/parentheticals.py # 2020 verbi (1386 / 587 / 17), 396 regas
-                                    # prepoziciono; 953 faki, 88 of five or more
-    python3 tools/survey_rules.py   # 1445 fragments (9 / 324 / 9 / 1103)
+                                    # prepoziciono; 952 faki, 88 of five or more
+    python3 tools/survey_rules.py   # 1444 fragments (8 / 324 / 9 / 1103)
     python3 tools/survey_order.py   # 35 transpositions, 20 headwords astray
     python3 tools/verify_edition.py
 

@@ -25,7 +25,7 @@ nothing can be asked of them.
     or more: bot. 580, zool. 425, patol. 234, anat. 230.
 
   These are the article's own field. Read at sense level too -- see
-  parentheticals() -- the verbs are 2020 and the domains 953.
+  parentheticals() -- the verbs are 2020 and the domains 952.
 
 WHAT IS NOT GOVERNMENT, AND HOW IT IS TOLD APART. « abdikar (pri rejo od
 altra suvereno) » opens with a preposition and is NOT government: it is a

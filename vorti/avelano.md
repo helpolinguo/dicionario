@@ -2,7 +2,7 @@
 
 ## avelano *(bot.)*
 Frukto kun shelo un-lojia, ne-dehiscenta, inkastrita per involukro
-L. corylus evellana
+L. corylus avellana
 <!-- p. 51, l. 14 | Franca, Italiana, Hispana, Latina -->
 
 ---

@@ -2,7 +2,6 @@
 
 ## kasio *(bot.)*
 Shelo (di qua la pulpo nigra uzesas kom laxigivo) di la arboro L. cassia
-L. cassia
 <!-- p. 269, l. 41 | Germana, Angla, Franca, Italiana, Hispana -->
 
 ---
