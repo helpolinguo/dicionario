@@ -17,12 +17,15 @@ nothing can be asked of them.
     not a detail of lexicography: in Ido it decides whether a verb takes a
     direct object at all, and therefore whether -ig- or -es- is the right
     derivation. A model writing Ido without it guesses on every verb.
-  * THE GOVERNED PREPOSITION. 380 of those verbs name the preposition they
+  * THE GOVERNED PREPOSITION. 385 of those verbs name the preposition they
     take -- « adaptar ad », « admirar pri, pro », « admisar aden ». That is
     the difference between Ido a reader can follow and Ido that is merely
     Ido-shaped, and it is printed nowhere but inside this field.
-  * THE SUBJECT DOMAIN. 435 distinct values, of which 67 name five articles
+  * THE SUBJECT DOMAIN. 427 distinct values, of which 66 name five articles
     or more: bot. 580, zool. 425, patol. 234, anat. 230.
+
+  These are the article's own field. Read at sense level too -- see
+  parentheticals() -- the verbs are 2020 and the domains 953.
 
 WHAT IS NOT GOVERNMENT, AND HOW IT IS TOLD APART. « abdikar (pri rejo od
 altra suvereno) » opens with a preposition and is NOT government: it is a
@@ -72,8 +75,21 @@ ADMITTED = PREPOSITIONS | PLACEHOLDERS | CONJUNCTIONS
 # (aludante persono) Retrodutar... » in the middle of its sense.
 SPAN = re.compile('\ue000(.*?)\ue001')
 
+# THE BOUNDARY BETWEEN TWO GROUPS CAN CARRY A CONNECTOR. MEASURED: 328
+# fields set two groups as « (trans.) (kirurg.) », and one sets them as
+# « (trans.) e (netrans., pri, per) » -- experimentar, where the Ido « and »
+# stands outside both parentheses: transitive, and intransitive governing
+# pri or per. The edition admits the same four connectors at the same place
+# (edition.py, analyse_()), and so the field reads « trans.) e (netrans.,
+# pri, per ». Split on « ) ( » alone, it was ONE part: « trans. » opened
+# it, the verb came out transitive, and « ) e (netrans., pri, per » was
+# left among the notes of verbi.md.
+GROUPS = re.compile(r'\)\s*(?:(?:ed?|od?)\s+)?\(')
+
+# « trans., e netrans. » (desertar) is « trans. e netrans. » with a comma,
+# and was read as trans. with a note « e netrans. » for the want of it.
 TRANSITIVITY = re.compile(
-    r'^(netrans\.\s+e\s+trans\.|trans\.\s+e\s+netrans\.|trans\.|netrans\.)'
+    r'^(netrans\.,?\s+e\s+trans\.|trans\.,?\s+e\s+netrans\.|trans\.|netrans\.)'
     r'\s*(.*)$')
 
 
@@ -96,17 +112,20 @@ def decompose(fako):
     The book sets « (trans.) (kirurg.) » as often as « (trans., ad) », and
     export.py keeps the whole group, so the split is on the boundary
     between two groups before anything else is read.
+
+    The marks are gathered over every group, and not taken from the last
+    one: two groups that mark the two transitivities make a verb of both
+    kinds, as « trans. e netrans. » in one group does.
     """
     parts = [p.strip().strip('()')
-             for p in re.split(r'\)\s*\(', fako or '') if p.strip()]
-    kind, gov, rest = None, [], []
+             for p in GROUPS.split(fako or '') if p.strip()]
+    marks, gov, rest = set(), [], []
     for part in parts:
         m = TRANSITIVITY.match(part)
         if m:
             mark = m.group(1)
-            kind = ('amba' if ' e ' in mark else
-                    'transitiva' if mark.startswith('trans') else
-                    'netransitiva')
+            marks |= ({'trans', 'netrans'} if ' e ' in mark else
+                      {'trans'} if mark.startswith('trans') else {'netrans'})
             tail = m.group(2).lstrip(', ').strip()
             if tail:
                 (gov if governs(tail) else rest).append(tail)
@@ -114,6 +133,9 @@ def decompose(fako):
             gov.append(part)
         elif part:
             rest.append(part)
+    kind = ('amba' if len(marks) == 2 else
+            'transitiva' if marks == {'trans'} else
+            'netransitiva' if marks else None)
     return kind, gov, rest
 
 
@@ -126,18 +148,29 @@ def parentheticals(record):
 
     Sense number 0 is the article's own, out of `fako`; 1, 2, 3 are the
     senses'. BOTH ARE NEEDED, and reading only the first loses the verbs
-    that matter most. MEASURED: 40 verbs are marked at sense level ONLY --
+    that matter most. MEASURED: 38 verbs are marked at sense level ONLY --
     fugar, finar, komencar, fumar, kombatar, embarkar among them -- and
     they are marked there precisely BECAUSE they are transitive in one
     sense and intransitive in another. A tool reading `fako` alone reports
-    1981 verbs, looks complete, and is silent on every verb whose answer
+    1982 verbs, looks complete, and is silent on every verb whose answer
     is « it depends on the sense ».
+
+    THE REMARKS ARE READ TOO, as the article's own -- they belong to no one
+    sense. The remark the book sets below its numbering has had a key of
+    its own, `r`, since the edition stopped gluing it to the last sense;
+    its marks went with it, and this function, reading `b` alone, lost
+    them: « (metaf.) » at magneto, « Metaf » at auroro, protagonisto and
+    rutino, « (ita) » at ca. A mark is the typist's underline, and it does
+    not depend on where the edition sets the words.
     """
     if record.get('f'):
         yield 0, record['f']
     for i, sense in enumerate(record.get('b', []), 1):
         for m in SPAN.finditer(sense.get('t') or ''):
             yield i, m.group(1).strip().strip('()')
+    for note in record.get('r') or []:
+        for m in SPAN.finditer(note):
+            yield 0, m.group(1).strip().strip('()')
 
 
 def verbs(records):
@@ -163,14 +196,14 @@ def domains(records):
     """Every parenthetical that is NOT a transitivity mark, with its words.
 
     Article level and sense level both. The sense level is not a rounding
-    error: « metaf. » marks 229 senses and NOT ONE article, so a tool
-    reading `fako` alone does not know the book has a mark for the
-    figurative sense at all.
+    error: « metaf. » marks 228 senses and one remark, in 228 words, and
+    NOT ONE article's own field, so a tool reading `fako` alone does not
+    know the book has a mark for the figurative sense at all.
     """
     out = {}
     for r in records:
         for _, text in parentheticals(r):
-            for part in re.split(r'\)\s*\(', text):
+            for part in GROUPS.split(text):
                 part = part.strip().strip('()')
                 if part and not TRANSITIVITY.match(part):
                     out.setdefault(part, set()).add(r['v'])

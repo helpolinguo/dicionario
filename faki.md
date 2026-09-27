@@ -259,7 +259,7 @@ Transskribita de https://ido.help/dicionario/
 **aludante la persono qua parolas** (1) — venar
 **aludante la populo di stato** (1) — revolucionar
 **aludante la sacerdoto qua celebras meso** (1) — konsekracar
-**aludante la sama sonuno** (1) — asonancar
+**aludante la sama son-uno** (1) — asonancar
 **aludante la sharlatani e feriala aktori** (1) — bonimentar
 **aludante la stat-autoritatozi** (1) — requizitar
 **aludante la stomako** (1) — ruktar
@@ -934,7 +934,7 @@ Transskribita de https://ido.help/dicionario/
 **treno** (1) — espreso
 **treponema pallidum** (1) — sifiliso
 **tri** (1) — tri-
-**ulo ad ulu** (1) — permigar
+**ulo ad ulu** (1) — permisar
 **ulo, ad ulo, pri ulu od ulo** (1) — pensar
 **ulo, ad ulu** (1) — pagar
 **ulu** (4) — adoptar, akaparar, dorlotar, odiar
