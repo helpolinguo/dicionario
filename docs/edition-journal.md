@@ -362,14 +362,25 @@ quoi. Elle rattrape du même coup treize filets brisés par une fin de ligne :
 La règle ci-dessus prend le nom que l'auteur pose **à part**, et l'ôte du texte
 pour le porter au champ. Mais le nom se glisse aussi **dans** la phrase, où la
 syntaxe le retient : *Familio de insekti di qui la tipo esas L. acarus, kun
-korpo…* ne se lit plus si on l'en retire. **Treize articles** sont dans ce cas,
-et leur champ restait vide — le nom ne se cherchait pas, et les deux éditions ne
-l'annonçaient pas.
+korpo…* ne se lit plus si on l'en retire. **Treize articles** passaient pour
+être dans ce cas, et leur champ restait vide — le nom ne se cherchait pas,
+disait-on, et les deux éditions ne l'annonçaient pas.
 
-On le **copie** donc, sans toucher au texte : `akaro`, `benzoo`, `indigo`,
-`kasio`, `mistelo`, `ostro`, `purpuro`, `quasio`, `sifiliso`, `sodo`,
-`tamarindo`, `tinlauro`, `tirozimazo`. Les articles à nom scientifique passent
-de 823 à **836**.
+On l'a d'abord **copié** au champ, sans toucher au texte : `akaro`, `benzoo`,
+`indigo`, `kasio`, `mistelo`, `ostro`, `purpuro`, `quasio`, `sifiliso`, `sodo`,
+`tamarindo`, `tinlauro`, `tirozimazo` ; les articles à nom scientifique étaient
+passés de 823 à 836. **Cette copie est retirée.** Chaque édition imprime le
+champ sur sa propre ligne, et le nom sortait **deux fois** — dans la phrase,
+puis seul en dessous : un traducteur l'a pris, chez `benzoo`, pour une
+répétition du livre, qui ne l'écrit qu'une fois. Aucune des deux raisons ne
+tenait : la recherche de la page lit le texte des définitions, où le nom se
+trouve, et n'a jamais lu le champ ; et la phrase l'annonce. Des treize,
+**neuf** sont bien retenus par la syntaxe et gardent leur nom dans la phrase
+seule — `akaro`, `benzoo`, `indigo`, `kasio`, `purpuro`, `quasio`, `sifiliso`,
+`tamarindo`, `tirozimazo` ; **quatre** étaient posés à part, sous trois formes
+que la règle ne connaissait pas, et elle les prend désormais — `mistelo`,
+`ostro`, `sodo`, `tinlauro`. Voir, en fin de journal, *The Latin name printed
+once*.
 
 Deux `L.` n'annoncent pas un nom, et sont écartés : celui qui ouvre un exemple —
 *Kom ex. : L. que en neque* chez `enklitiko` — et celui qui nomme la langue —
@@ -379,7 +390,10 @@ Deux `L.` n'annoncent pas un nom, et sont écartés : celui qui ouvre un exemple
 Les binômes vont parfois **par deux** — *L. ostrea edulis e gryphea angulata*,
 *L. salsola soda e salsola kali*, *L. murex trunculus o murex brancaris* — et la
 conjonction n'est pas un mot du nom : sans l'exclure, le premier binôme mordait
-dessus et rendait *ostrea edulis e gryphea*.
+dessus et rendait *ostrea edulis e gryphea*. La copie retirée, ceux d'`ostro` et
+de `sodo`, posés à part, sont pris **entiers** par la règle, conjonction
+comprise, comme elle prenait déjà les deux formes séparées d'une virgule ;
+celui de `purpuro` est dans la phrase, et y reste.
 
 **Deux annonces manquées.** Le nom n'est pas toujours introduit par un `L.` net.
 Chez `eringo`, le tapuscrit le pose **seul sur sa ligne**, souligné, sans rien
@@ -391,15 +405,20 @@ ascaris*, la famille *Ascaridae*, genre *Ascaris* — et la règle s'arrête des
 laissant *: ascaris* dans la définition. C'est le seul `L.` du livre à porter un
 deux-points, et la règle ne change pas pour un cas : le nom entier est posé par
 `work/latinaji.txt`, le reste ôté par `work/vorti.txt`. Les articles à nom
-scientifique passent à **837**.
+scientifique passent à 837 — puis à **827** quand la copie est retirée : les
+neuf noms que la phrase retient quittent le champ, et celui de `brosar` aussi,
+qui glose l'herbe dont on fait la brosse et n'est pas le sien.
 
 **Deux points, deux lectures.** Le `L.` du nom scientifique prend son espace :
 le livre l'écrit ainsi partout, et une seule fois sans — *la tipo esas L.acarus*
 chez `akaro`. Mais on ne touche à aucun autre point collé à une minuscule : il y
 en a huit dans le livre, et chacun demande sa lecture. *ex.en* chez `grava` veut
 l'espace ; *viburnum.tinus* chez `tinlauro` veut **perdre son point**, le binôme
-étant *Viburnum tinus*, le laurier-tin. Celui-là est corrigé dans
-`work/vorti.txt`.
+étant *Viburnum tinus*, le laurier-tin. Celui-là était corrigé dans
+`work/vorti.txt`, mais trop tard pour la règle, qui laissait le nom dans la
+phrase ; elle le prend désormais avec son point, qui devient une espace dans le
+champ, et la ligne de `work/vorti.txt`, qui ne rencontrait plus rien, est
+retirée.
 
 ### Le symbole chimique (`simbolo`)
 
@@ -757,7 +776,9 @@ ouvrent une locution à deux-points — `baseno`, `konfluanta`, `pozitiva`,
 `sentinelo` —, et cinq sont la ligne de vedette elle-même, l'article ayant
 commencé une ligne plus haut que le découpage ne l'a cru — `asesoro`, `*pondar`,
 `shovar`, `tino`, `warfo`. Aucune règle ne les sépare : elles se prennent une par
-une.
+une. `baseno` s'est pris depuis par une règle, étroite : sa locution est un
+composé que la fin de ligne coupe juste avant la vedette, *Geologio-* puis
+*baseno* — voir, en fin de journal, *Four remarks from a translator*.
 
 Cinq articles seulement posaient un fragment plus souvent qu'il n'a été mesuré :
 `aliancar`, `apostata`, `katodo` — réglés ici —, `maskulo`, où *maskula* ouvre
@@ -1691,3 +1712,97 @@ L'ouvrage date de 1964. Son statut juridique dépend de la date de mort de
 l'auteur et du pays de diffusion : à vérifier auprès des ayants droit ou de
 l'Uniono por la Linguo Internaciona avant toute mise en ligne publique. Ce
 travail est une transcription, il n'affecte pas les droits sur l'œuvre.
+
+
+---
+
+## Four remarks from a translator (2026)
+
+**THREE OF THE FOUR WERE THE EDITION'S DOING — ONE OF THEM TAKEN FOR THE
+BOOK'S — AND THE FOURTH IS THE TYPIST'S.** A translator working from the
+reading edition sent four remarks back with the work, and Gilles-Philippe
+Morin passed them on. Each was measured against the typescript and against
+the tools. Rebuilt, sixteen articles of 9,473 move.
+
+### baseno: the third compound lost its second half to the headword
+
+*« the extraction split one entry into three headwords »* — baseno,
+mar-baseno, fluvio-baseno, a stray « 2. » and « 3. » at the ends. No file
+this repository publishes splits it: the JSON, the Markdown, the page, the
+pocket book and the deck each hold one article. The cut was made
+downstream, most likely out of the typeset text, where a sub-entry is set
+like a headword — bold, in the accent colour — with the number of its sense
+in front of it; cut there, each number is left hanging at the end of the
+piece before.
+
+The article was uneven all the same, and that part was ours. The book sets
+three parallel compounds, each underlined and followed by its colon — II.
+*Mar-baseno*, III. *Fluvio-baseno*, IV. *Geologio-baseno*. The first two
+opened their sub-entries; the fourth sense stayed plain text, *Geologio-baseno :
+la teritorio…*, with a doubtful *Geologio-* in `dubinda`. Its rule runs over
+the line end: *- IV. Geologio-* closes one line, *baseno : la teritorio*
+opens the next. The hyphen lies inside the rule, so the two pieces are
+joined by `_reglue()`, against the text — and `underlinings()` had already
+thrown the second away, because it equals the headword. A piece equal to the
+headword is now kept when the piece before it ends on a hyphen, and dropped
+again if nothing joins it. **The book does this once.** The fourth sense
+opens on *geologio-baseno* like the other two: phrases detached, 113 → 114.
+
+### brosar: the Latin name was the grass's
+
+*« brosar ends in "L. triticum caninum", which comes from hundo-herbo »* —
+exactly so. The typescript reads *ek fragmenti de hundo-herbo (L. triticum
+caninum) e c., ajustita…*: the name glosses the grass the brush is made of.
+The rule takes a parenthesised name out of a sentence on purpose. The book
+opens twenty such parentheses, and nineteen gloss the article's own thing or
+what it comes from — the tree of `piro`, the shrub of `kafeo`, the oak of
+`korko`, Descartes for `karteziana`. This one names neither, and it went to
+the field as the Latin name of the verb *to brush*. It is set aside by eye in
+`work/latins.txt`, where a bare hyphen in place of the name now says that the
+article lays no name apart: the name stays in the sentence beside the word it
+glosses, in italic.
+
+### The Latin name printed once
+
+*« benzoo has the Latin name twice in the source »* — the source has it
+once: *Substanco rezinoza qua defluas, tra incizuro, de varietato de L.
+styrax benzoin. - DEFIRS.* The second was the edition's. `latins_inline()`
+copied into `latina` every name the sentence holds and left the text as it
+stood; every edition prints `latina` on its own line after the senses, so
+the name came out twice — in **thirteen** articles. The copy is withdrawn,
+and a name is printed once, where the author put it:
+
+- **nine** are held by the syntax and stay in the sentence alone — `akaro`,
+  `benzoo`, `indigo`, `kasio`, `purpuro`, `quasio`, `sifiliso`,
+  `tamarindo`, `tirozimazo`. Their field is empty: the book lays no name
+  apart for them;
+- **four** were laid apart after all, in three shapes the rule did not know,
+  and it now takes them out of the text — after a closing parenthesis
+  (`mistelo`), two binomials joined by *e* (`ostro`, `sodo`), a full stop
+  struck inside the binomial (`tinlauro`). The line of `work/words.txt`
+  that mended tinlauro's full stop came after the rule had passed the name
+  by; it now meets nothing, and is withdrawn.
+
+The copy gave two reasons, and neither holds. The name *could not be looked
+for*: the page's search reads the text of the definitions, and never read
+`l` at all. *Neither edition announced it*: the sentence does. What the
+field loses is a claim the book does not make — that syphilis is *treponema
+pallidum*, the microbe its sentence names as the cause, or tyrosinase
+*russula*, the genus of fungi it is found in. Articles with a scientific
+name: 837 → 827.
+
+One underline came into view with it. purpuro's second binomial is
+underlined one letter short in the typescript — `\sou{murex brancari}s` —
+and the copied field had been placing the fragment. The copy gone,
+`work/rules.txt` sets the short stroke aside and gives the binomial back
+whole: it takes the italic in the sentence, like the first.
+
+### avelano: a slip of the typist's
+
+*« avelano has "corylus evellana", a typo in the source for avellana »* —
+so it is. The hazel is *Corylus avellana*, from the Latin *avellana*, the
+hazelnut, and the book writes the word with its *a* at `moskardino`,
+*muscardinus avellanarius*. The typescript does read *e*: the direct
+proofreading returned the line whole with it (image 58, line 15), and both
+surviving machine decodings read an *e* at the head of the word too. The
+facsimile keeps it; `work/latins.txt` puts it right in the reading edition.
