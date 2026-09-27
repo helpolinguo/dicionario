@@ -31,6 +31,7 @@ decen danto	decendanto	p394 mutaco : « qua eventas en decendanto di individuo n
 edek	ed ek	p489 raso : « la ancestri ed ek la decendinti »
 pos-turo	posturo	trait d'union parasite : « per adoptar posturo humila »
 obhekto	objekto	j lu comme h : « la objekto di ta o ca penso »
+kodexo konto	kodexo, konto	p496 revizar : « Submisar itere (texto, proceso, kodexo, konto) ad exploro ». Quatre objets enumeres, et seul le troisieme n a pas sa virgule, la ou la ligne se coupe : « kodexo » finit la ligne 52 de l image 503, « konto) » ouvre la 53. Le livre ecrit la meme famille de documents avec ses virgules chez chapitro p86 : « di libro, kodexo, kontrato, budjeto, e c. ». La machine n a rien lu en colonne 56, qui est dans le bloc (la grille de la page a 62 colonnes, et aucune fin de ligne n y a ete rendue) ; la relecture directe, qui rend ses lignes a la longueur recue, ne pouvait pas y ajouter une case. Si le scan y montre la virgule, c est au fac-simile de la recevoir, par exceptions_manual.txt en 503 52 56, et cette ligne-ci, qui ne rencontrerait plus rien, serait a retirer ; sinon le fac-simile garde le tapuscrit tel qu il est. La cle ne se trouve qu une fois dans les 9473 articles.
 # --- Coquilles des lignes retrouvees par la reparation du bas de page.
 aubordino	subordino	p116 diciplinar : « la regulo di subordino e di ordino »
 korpb	korpo	p116 diciplinar : « a la membri di korpo, di organismo »

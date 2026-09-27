@@ -32630,7 +32630,7 @@ Dicesas pri havaji qui retroiras a la persono qua donacabis li a kunhomo, kaze k
 <!-- p. 496, l. 48 | Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## revizar *(trans.)*
-Submisar itere (texto, proceso, kodexo konto) ad exploro por reformar, korektigar, se necesa
+Submisar itere (texto, proceso, kodexo, konto) ad exploro por reformar, korektigar, se necesa
 <!-- p. 496, l. 52 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## revokar *(trans.) (pro)*
