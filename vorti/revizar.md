@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## revizar *(trans.)*
-Submisar itere (texto, proceso, kodexo konto) ad exploro por reformar, korektigar, se necesa
+Submisar itere (texto, proceso, kodexo, konto) ad exploro por reformar, korektigar, se necesa
 <!-- p. 496, l. 52 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ---
