@@ -25,14 +25,14 @@ what genanki writes; what is written here is the deck, not a new format.
 
 THE GUID IS AN ADDRESS. Anki recognises a note it has seen before by its
 `guid`, and by nothing else: a note whose guid matches one already in the
-collection is UPDATED on import, and one whose guid is new is ADDED. The
-guid is therefore computed from the headword's address -- the same rule
-`vorti/` uses, imported from the tool that owns it -- and from the rank of
-the article among those sharing that address. A reader who imports a
-corrected deck over an old one keeps every repetition ever made; had the
-guid been drawn from a counter or from the clock, the same import would
-have laid 9,473 duplicates beside the notes it was meant to correct, and
-the reader's history with them.
+collection is UPDATED on import -- when it is newer, see below -- and one
+whose guid is new is ADDED. The guid is therefore computed from the
+headword's address -- the same rule `vorti/` uses, imported from the tool
+that owns it -- and from the rank of the article among those sharing that
+address. A reader who imports a corrected deck over an old one keeps every
+repetition ever made; had the guid been drawn from a counter or from the
+clock, the same import would have laid 9,473 duplicates beside the notes
+it was meant to correct, and the reader's history with them.
 
 THE BUILD IS DETERMINISTIC. Every timestamp in the database and in the zip
 is a constant, and the identifiers are counted from a constant, so two runs
@@ -40,6 +40,16 @@ over one text give THE SAME BYTES -- measured with sha256, and printed at
 the end of every run. A generated file committed to the repository must
 change when the text changes and not otherwise; one that carried the hour
 of its build would show a diff at every run and hide the real one.
+
+BUT ANKI UPDATES A NOTE ONLY WHEN THE ONE IMPORTED IS NEWER, and these
+timestamps never move. MEASURED with the anki library, version 26.09.3:
+the deck imported over the one committed before it updates NONE of its
+9,473 notes -- all come back as duplicates, under the importer's default
+and under « always » alike -- while the same deck with every note's `mod`
+one second later updates all 9,473. The note type is not updated either:
+its `mod` is the same constant. So a reader who imported an earlier deck
+keeps every repetition, as the guid promises, and receives no correction;
+a reader who imports into an empty collection receives everything.
 
 WHAT THE DECK ASKS. Two cards, from one note:
 
@@ -63,10 +73,11 @@ reading is imported rather than done again here: there is one reading of
 the parenthetical in this repository, not two of them drifting apart.
 
 CHECKED WITH ANKI ITSELF, and not against this file's own idea of the
-format: the package was imported by the `anki` library, version 26.8, into
-an empty collection. 9,473 notes and 17,840 cards arrive, in the deck and
-under the note type named here; the note type comes back with its ten
-fields and its two templates, and with the `req` written below. THE SAME
+format: the package was imported by the `anki` library, version 26.8, and
+again by 26.09.3 once the remarks were set in it, into an empty
+collection. 9,473 notes and 17,840 cards arrive, in the deck and under the
+note type named here; the note type comes back with its ten fields and
+its two templates, and with the `req` written below. THE SAME
 FILE IMPORTED A SECOND TIME ADDS NOTHING -- 9,473 notes still, which is
 the guid rule doing what it is there for. The library is not a dependency
 of this repository: it was installed to check, and the deck is built
@@ -167,7 +178,8 @@ def body(t: str) -> str:
 
 
 def senses(e: dict) -> str:
-    """The senses and the sub-entries, in the page's order and its shapes."""
+    """The senses, the sub-entries and the remarks, in the page's order and
+    its shapes."""
     lines = []
     B = e.get('b') or []
     for i, b in enumerate(B):
@@ -184,17 +196,30 @@ def senses(e: dict) -> str:
                 part.append(f'<span class="lin">{esc(", ".join(x["n"]))}</span>')
             lines.append('<div class="subvorto">%s</div>' % ''.join(part))
             num = ''
+    # THE REMARK THE BOOK HANGS BELOW ITS SENSES, unnumbered: the page sets it
+    # after the last sense and before the Latin name, a dash before it, and so
+    # does the card. It has had a key of its own, `r`, since the edition
+    # stopped gluing it to the last sense -- and this function did not read
+    # that key, so the 46 remarks the page shows were in no card built after
+    # the change. It goes in `Senci` and not in a field of its own: a new field
+    # would change the note type every reader's collection holds (see FIELDS).
+    for t in e.get('r') or []:
+        lines.append(f'<div class="senco noto">{body(t)}</div>')
     return ''.join(lines)
 
 
 def plain(e: dict) -> str:
     """Everything the article says, markup gone. Serves the two measurements
-    below -- the length of the body, and the root that gives itself away."""
+    below -- the length of the body, and the root that gives itself away.
+
+    The remarks count: the reverse card shows them, and « Pinco » diferas de
+    « tenalio » hands the answer over as surely as a sense would."""
     t = []
     for b in e.get('b') or []:
         t.append(b.get('t') or '')
         for x in b.get('u') or []:
             t += [x.get('k') or '', x.get('q') or '', x.get('t') or '']
+    t += e.get('r') or []
     return re.sub('[%s%s]' % (IT0, IT1), '', ' '.join(t))
 
 
@@ -230,8 +255,8 @@ def reversible(e: dict) -> bool:
 # tree. A field the book prints as two words therefore joins them with a
 # hyphen -- « religio katolika » is one tag, not two -- and the tree is the
 # one thing that makes 9,473 notes searchable without a search: fako::bot.
-# selects the 616 plants, verbo::transitiva the 1,387 verbs that take an
-# object.
+# selects the 616 plants, verbo::transitiva the 1,416 verbs marked
+# transitive in the article or in one of its senses.
 
 def tagify(s: str) -> str:
     s = re.sub(r'\s+', '-', s.strip())
@@ -329,6 +354,8 @@ CSS = """.card{
 .subvorto>b{color:var(--acc)}
 .subvorto::before{content:"\\25b8";color:var(--acc);margin-right:5px}
 .subvorto .lin{color:var(--sub);font-size:12px;margin-left:6px;letter-spacing:.03em}
+.noto{text-indent:-12px;padding-left:12px}
+.noto::before{content:"\\2014";color:var(--sub);margin-right:5px}
 .lat{font-style:italic;color:var(--sub)}
 .simb{color:var(--sub)}
 .meta{margin-top:10px;font-size:12px;color:var(--sub);
