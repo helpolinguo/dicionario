@@ -47,10 +47,10 @@ WHAT THE DECK ASKS. Two cards, from one note:
   senco → vedetto   the article, and one recalls the headword
 
 The second is NOT made for every article. MEASURED, over the 9,473: 102 are
-affixes, which have no sense to recognise; 532 carry a body under 25
-characters, too short to be guessed at; and 472 PRINT THE HEADWORD'S OWN
+affixes, which have no sense to recognise; 535 carry a body under 25
+characters, too short to be guessed at; and 467 PRINT THE HEADWORD'S OWN
 ROOT INSIDE THE DEFINITION -- « abako ... la kapitelo » is fair, but
-« abandonar. Lasar ... abandonita » hands the answer over. 8,367 articles
+« abandonar. Lasar ... abandonita » hands the answer over. 8,369 articles
 are left, and they alone carry the reverse card. The gate is the field
 `Inversa`: Anki makes no card whose question side comes out empty, so an
 empty `Inversa` is the whole of it.
@@ -63,8 +63,8 @@ reading is imported rather than done again here: there is one reading of
 the parenthetical in this repository, not two of them drifting apart.
 
 CHECKED WITH ANKI ITSELF, and not against this file's own idea of the
-format: the package was imported by the `anki` library, version 26.8, into
-an empty collection. 9,473 notes and 17,840 cards arrive, in the deck and
+format: the package was imported by the `anki` library, version 26.9.3, into
+an empty collection. 9,473 notes and 17,842 cards arrive, in the deck and
 under the note type named here; the note type comes back with its ten
 fields and its two templates, and with the `req` written below. THE SAME
 FILE IMPORTED A SECOND TIME ADDS NOTHING -- 9,473 notes still, which is

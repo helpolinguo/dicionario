@@ -44,7 +44,7 @@ one before it wrote:
 
     python3 tools/machine_readable.py  # .json, .md, vortlisto.md, vorti/
     python3 tools/anki.py              # dicionario.apkg — 9473 notes,
-                                       # 17,840 cards, 221 tags. The sha256
+                                       # 17,842 cards, 221 tags. The sha256
                                        # it prints does not move unless the
                                        # text does: the build is byte-stable.
 
