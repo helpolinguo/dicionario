@@ -84,12 +84,37 @@ RE_DOMAIN2  = re.compile(r'^([^()]{1,25})\)\s*\.?\s*')
 # fructicosus ». We therefore admit the second form whole, four words like the
 # first.
 # The scientific name does not always end on a hyphen or at the end of a
-# segment: it is often followed by a closing parenthesis -- « (L. triticum
-# caninum) » -- by a comma that takes the sentence up again, or by the number of
-# the next sense -- « L. aquila II. ». Anchored on the hyphen alone, it stayed
-# in the definition of sixty-seven articles. We therefore bound the name by its
-# FORM -- four Latin words at most, plus a second form after a comma for
-# « anas, anatis » -- instead of bounding it by what follows it.
+# segment: it is often followed by a closing parenthesis -- « Frukto di arboro
+# (L. pirus communis) ek la familio... » under piro -- by a comma that takes the
+# sentence up again, or by the number of the next sense -- « L. aquila II. ».
+# Anchored on the hyphen alone, it stayed in the definition of sixty-seven
+# articles. We therefore bound the name by its FORM -- four Latin words at most,
+# plus a second form after a comma for « anas, anatis » -- instead of bounding
+# it by what follows it.
+# The parenthesis in the middle of a sentence glosses the word before it.
+# MEASURED: the book opens twenty « (L. ...) » so, and nineteen gloss the
+# article's own thing or what it comes from -- the tree of piro, the shrub of
+# kafeo, the oak of korko, Descartes for karteziana. The twentieth does not:
+# « brosar. ... ek fragmenti de hundo-herbo (L. triticum caninum) e c. » names
+# the grass the brush is made of, and taken out it became the Latin name of
+# the verb « to brush ». It is set aside by eye in latins.txt, where a bare
+# hyphen says that the article lays no name apart; see analyse_().
+# Three shapes the book lays apart were missed, and the name stayed in the
+# text -- where, until the copy of latins_inline() was withdrawn, it was ALSO
+# carried to the field, and every edition printed it twice:
+#   - after a CLOSING parenthesis: « ... (querko, pomiero, fraxino.) L. viscum.
+#     DE. » under mistelo, the parenthesis closing the sentence. The
+#     parenthesis is looked behind, not taken: consumed, it went with the name;
+#   - two binomials joined by the conjunction, as they are by the comma:
+#     « - L. ostrea edulis e gryphea angulata. - » under ostro, « - L. salsola
+#     soda e salsola kali. - » under sodo. Five words, and the name stopped at
+#     four;
+#   - a full stop struck between the two words of the binomial: « L.
+#     viburnum.tinus.- » under tinlauro, Viburnum tinus, the laurustinus. It is
+#     admitted between two lower-case letters only, and becomes a space in the
+#     field.
+# MEASURED over the whole book, each shape is met where it is named and nowhere
+# else: one « ) L. », two pairs, one glued full stop.
 # The full stop of the « L. » is sometimes missing -- « ...puteo-kordegi.- L
 # tilia. - FISL. » under tilio. We admit it without its full stop, but then only
 # before a LOWER CASE letter: « - La persono qua... », « - Longa bastono... »
@@ -103,9 +128,9 @@ RE_DOMAIN2  = re.compile(r'^([^()]{1,25})\)\s*\.?\s*')
 # stayed at « Kom ex.; » -- to be displayed as the article's Latin name. The
 # « F. » that follows has never been taken: only the « L. » invited confusion.
 RE_LATIN = re.compile(
-    r'(?:(?<!ex\.)[-–.(,;:]|^)\s*(?:L\.\s*|L\s+(?=[a-z]))'
-    r'([A-Za-z][A-Za-z-]*(?:\s+[A-Za-z][A-Za-z-]*){0,3}'
-    r'(?:\s*,\s*[A-Za-z][A-Za-z-]*(?:\s+[A-Za-z][A-Za-z-]*){0,3})?)'
+    r'(?:(?<!ex\.)[-–.(,;:]|^|(?<=\)))\s*(?:L\.\s*|L\s+(?=[a-z]))'
+    r'([A-Za-z][A-Za-z-]*(?:(?:\s+|\.(?=[a-z]))[A-Za-z][A-Za-z-]*){0,3}'
+    r'(?:(?:\s*,\s*|\s+[eo]\s+)[A-Za-z][A-Za-z-]*(?:\s+[A-Za-z][A-Za-z-]*){0,3})?)'
     r'\s*(?=[-–)(:;,]|\.[\s)–-]|\.?$|\s(?:I{1,3}|IV|VI{0,3})\.)')
 # The senses are separated by « - II. », but the hyphen is often missing:
 # « ... komenco-punto e fino-parto. II. (gram.) ... ». We therefore also cut on
@@ -1241,14 +1266,24 @@ def analyse_(e, lexicon=None, compounds=None):
             and e['vedetto'] and len(e['vedetto'].lstrip('*')) <= 3):
         e['vedetto'] = "%s(%s)" % (e['vedetto'], e['fako'])
         e['fako'] = None
-    e['latina']= [x.strip(' .') for x in RE_LATIN.findall(rest)]
-    rest = RE_LATIN.sub('', rest).strip(' -–')
+    _man = latins_manual().get("%s@%d:%d" % (e.get('vedetto'), e.get('image', -1),
+                                                e.get('ligno', -1)))
+    if _man == '-':
+        # The article lays NO name apart: its « L. » glosses another word of
+        # the definition and stays in the sentence beside it -- « hundo-herbo
+        # (L. triticum caninum) » under brosar. See RE_LATIN.
+        e['latina'] = []
+        rest = rest.strip(' -–')
+    else:
+        # The full stop struck inside the binomial -- « viburnum.tinus » --
+        # becomes the space it stands for. See RE_LATIN.
+        e['latina']= [re.sub(r'(?<=[a-z])\.(?=[a-z])', ' ', x.strip(' .'))
+                      for x in RE_LATIN.findall(rest)]
+        rest = RE_LATIN.sub('', rest).strip(' -–')
     # A name surveyed by eye prevails: the machine cannot know that
     # « capparia spi nosa » is « capparia spinosa », neither of the two pieces
     # being a Latin word.
-    _man = latins_manual().get("%s@%d:%d" % (e.get('vedetto'), e.get('image', -1),
-                                                e.get('ligno', -1)))
-    if _man:
+    if _man and _man != '-':
         e['latina'] = [x.strip() for x in _man.split(';') if x.strip()]
     e['simbolo']= None
     # A NUMBER of sense in parentheses is not a domain: « romano. (I) Verko
@@ -1833,53 +1868,40 @@ def _code_not_symbol(e):
             e.setdefault('drapeli', []).append('sen-lingua')
 
 
-_LAT_WORD = r'(?!(?:e|o|ed|od)(?![a-z-]))[a-z][a-z-]*'
-_LAT_NAME = _LAT_WORD + r'(?:\s+' + _LAT_WORD + r'){0,3}'
-RE_LATIN_INLINE = re.compile(
-    r'(?<![A-Za-zÀ-ÿ])L\.\s*(' + _LAT_NAME + r')'
-    r'(?:\s*[,;]?\s*(?:[eo]d?)\s+(' + _LAT_NAME + r'))?')
-
-
-def latins_inline(e):
-    """The scientific name the SENTENCE keeps.
-
-    RE_LATINA takes the name the author lays apart -- « ... kompozaji". L.
-    artemisia absinthium » -- and takes it out of the text to carry it to the
-    field. But the name also slips INTO the sentence, where the syntax holds it:
-    « Familio de insekti di qui la tipo esas L. acarus, kun korpo... » no longer
-    reads if it is taken out. Thirteen articles are in that case, and their
-    field stayed empty -- the name could not be looked for, and neither edition
-    announced it.
-
-    We therefore COPY it, without touching the text. Two « L. » do not announce
-    a name: the one that opens an example -- « Kom ex. : L. que en neque » under
-    enklitiko -- and the one that names the language -- « ica vice ca, en L.
-    iscala vice scala » under prostezo. The one is recognised by its « ex. »,
-    the other by its « en ».
-
-    The binomials go in pairs -- « L. ostrea edulis e gryphea angulata » -- and
-    the conjunction is not a word of the name: without excluding it, the first
-    binomial bit into it and returned « ostrea edulis e gryphea ».
-    """
-    # We read the SENSES, not the structure: the latter is rebuilt at the end of
-    # the chain, and reading it here would make the pass depend on its rank.
-    new_ = []
-    for t in (e.get('senci') or []):
-            for m in RE_LATIN_INLINE.finditer(t):
-                ahead = t[max(0, m.start() - 14):m.start()]
-                if re.search(r'ex\.\s*:?\s*$', ahead):
-                    continue
-                if re.search(r'(?<![A-Za-zÀ-ÿ])en\s+$', ahead):
-                    continue
-                new_ += [g for g in (m.group(1), m.group(2)) if g]
-    if not new_:
-        return 0
-    already = [x.lower() for x in (e.get('latina') or [])]
-    added = [x for x in new_ if x.lower() not in already]
-    if not added:
-        return 0
-    e['latina'] = (e.get('latina') or []) + added
-    return len(added)
+# THE NAME THE SENTENCE HOLDS STAYS IN THE SENTENCE, AND ONLY THERE.
+#
+# RE_LATIN takes the name the author lays APART -- « ... kompozaji". L.
+# artemisia absinthium » -- out of the text and into `latina`, which every
+# edition prints on a line of its own after the senses. The name also slips
+# INTO the sentence, where the syntax holds it: « Familio de insekti di qui la
+# tipo esas L. acarus, kun korpo... » under akaro, « ... de varietato de L.
+# styrax benzoin » under benzoo, no longer read if it is taken out.
+#
+# latins_inline() used to COPY such a name into the field as well, leaving the
+# text as it stood, so that thirteen fields should not stay empty. Every
+# edition then printed the name TWICE -- in the sentence, and again on the
+# field's own line:
+#
+#     Substanco rezinoza ... de varietato de L. styrax benzoin
+#     L. styrax benzoin
+#
+# Raised on benzoo by Gilles-Philippe Morin, from the notes of a translator
+# who took the double for the book's: the typescript prints the name once. The
+# copy is withdrawn, and a name is printed where the author put it, once:
+#
+#   - NINE are held by the syntax and stay in the sentence alone -- akaro,
+#     benzoo, indigo, kasio, purpuro, quasio, sifiliso, tamarindo, tirozimazo.
+#     Their field is empty: the book lays no name apart for them;
+#   - FOUR were laid apart after all, in three shapes RE_LATIN did not know,
+#     and it now takes them -- mistelo, ostro, sodo, tinlauro. See RE_LATIN.
+#
+# The copy gave two reasons, and neither holds. The name « could not be looked
+# for »: the page's search reads the text of the definitions -- texto() in
+# export.py -- and never read `l` at all. « Neither edition announced it »:
+# the sentence does. What the field loses is a claim the book does not make --
+# that syphilis is called « treponema pallidum », the microbe its sentence
+# names as the cause, or tyrosinase « russula », the genus of fungi it is
+# found in.
 
 
 def split_off_symbol(e):
@@ -2805,7 +2827,9 @@ def build():
             u=capital_start(t)
             if u != t: S[k]=u; n_caps += 1
     if n_caps: print("senses given back their initial capital: %d"%n_caps)
-    n_lat=sum(latins_inline(e) for e in ent)
+    # The scientific name the sentence holds is no longer copied into the
+    # field: printed there as well, it came out twice. See the note above
+    # split_off_symbol().
     n_sym=sum(split_off_symbol(e) for e in ent)
     if n_sym: print("chemical symbols moved into the domain: %d"%n_sym)
     n_sub=sum(structure_(e) for e in ent)
