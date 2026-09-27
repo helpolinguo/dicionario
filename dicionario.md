@@ -28516,7 +28516,7 @@ Mantenar su, konservar su, sen interrupto.
 Pasar de ca a ta latero di parieto per trairar la pori di olca
 <!-- p. 434, l. 16 | Angla, Franca, Italiana, Hispana -->
 
-## permigar *(trans.) (ulo ad ulu)*
+## permisar *(trans.) (ulo ad ulu)*
 Grantar la darfo o la yuro (agor o facar ulo)
 <!-- p. 434, l. 19 | Angla, Franca, Italiana, Hispana -->
 
@@ -32630,7 +32630,7 @@ Dicesas pri havaji qui retroiras a la persono qua donacabis li a kunhomo, kaze k
 <!-- p. 496, l. 48 | Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## revizar *(trans.)*
-Submisar itere (texto, proceso, kodexo konto) ad exploro por reformar, korektigar, se necesa
+Submisar itere (texto, proceso, kodexo, konto) ad exploro por reformar, korektigar, se necesa
 <!-- p. 496, l. 52 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## revokar *(trans.) (pro)*

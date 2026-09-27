@@ -352,20 +352,24 @@ Two reports say what the edition could not settle, and both are
 regenerated from the published text:
 
 ```sh
-python3 tools/survey_rules.py   # 1444 underlines it could not place
+python3 tools/survey_rules.py   # 1445 underlines it could not place
 python3 tools/survey_order.py   # 55 headwords that break the alphabet
 ```
 
 A figure that moves without a reason is a defect, not a detail.
 
-**1444 is the figure without the scan, and 1525 with it.** The two roads
-do not read the same measurement of the rules. The facsimile has always
-preferred `redo_rules.py`'s recomputation, with the survey by eye over it
-(`generate.py`, « Recomputed rules »); the reading edition, when the cells
-are there, reads instead the detection stored in them. Without the cells
-it reads the recomputation too, and the fragments it cannot place fall
-differently: fewer of three letters or less (542 → 324), fewer function
-words alone (49 → 9), more cut in the middle of a word (920 → 1102).
+**1445 is the figure without the scan; with it, 1525 was measured when
+the figure without it was 1444**, before the headword « permigar » was
+corrected to « permisar » — which leaves its underline over from the
+headword, one fragment more, and has not been measured with the scan.
+The two roads do not read the same measurement of the rules. The
+facsimile has always preferred `redo_rules.py`'s recomputation, with the
+survey by eye over it (`generate.py`, « Recomputed rules »); the reading
+edition, when the cells are there, reads instead the detection stored in
+them. Without the cells it reads the recomputation too, and over the same
+text the fragments it cannot place fall differently: fewer of three
+letters or less (542 → 324), fewer function words alone (49 → 9), more
+cut in the middle of a word (920 → 1102).
 
 The two editions ought to read one measurement, and the recomputed one is
 the better — it is why `generate.py` prefers it. Making the scan's road

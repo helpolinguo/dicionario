@@ -1,6 +1,6 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
-## permigar *(trans.) (ulo ad ulu)*
+## permisar *(trans.) (ulo ad ulu)*
 Grantar la darfo o la yuro (agor o facar ulo)
 <!-- p. 434, l. 19 | Angla, Franca, Italiana, Hispana -->
 
@@ -10,4 +10,4 @@ Grantar la darfo o la yuro (agor o facar ulo)
 
 La defini esas en Ido. La lingui indikata esas ti en qui la radiko esas atestata — li ne esas tradukuri.
 
-Vortlisto : ../vortlisto.md · Kompleta libro : ../dicionario.md · Pagino : ../?q=permigar
+Vortlisto : ../vortlisto.md · Kompleta libro : ../dicionario.md · Pagino : ../?q=permisar

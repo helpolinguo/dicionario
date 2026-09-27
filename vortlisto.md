@@ -6585,7 +6585,7 @@ perlo — Globeto, maxim-multa-kaze arjento-blanka, kun reflekti ciel-arkea, qua
 perlomatro — Materio blanka, kun reflekti ciel-arkea, ye qua konsistas la latero interna di ula konki, ed uzesas por tabulifado
 permanar (netrans.) — Mantenar su, konservar su, sen interrupto.
 permear (trans.) (aludante liquido, gaso) — Pasar de ca a ta latero di parieto per trairar la pori di olca
-permigar (trans.) (ulo ad ulu) — Grantar la darfo o la yuro (agor o facar ulo)
+permisar (trans.) (ulo ad ulu) — Grantar la darfo o la yuro (agor o facar ulo)
 permutar (trans.) — Pozar ulo en la plaso di altra kozo, e reciproke
 perono (arkitekt.) — Eskalero de kelka gradi, konstruktita avan la fasado di domo, e qua finas per platformo a qua abutas la eniro-koridoro precipua
 peroneo (anat.) — Osto longa di la gambo, fixigita ye la latero extera di tibio
@@ -7521,7 +7521,7 @@ reverberar (trans.) — (fiziko) (aludante surfaco) Retrosendar la l
 reverencar (trans.) — Movar sua korpo por salutar ye maniero qua manifestas respekto profunda
 reverso — La facio, opozata a la facio quan, en kozo, onu regardas, o regardigas, prefere
 reversionar (yuro-cienco) — Dicesas pri havaji qui retroiras a la persono qua donacabis li a kunhomo, kaze ke ica mortas sen filii
-revizar (trans.) — Submisar itere (texto, proceso, kodexo konto) ad exploro por reformar, korektigar, se necesa
+revizar (trans.) — Submisar itere (texto, proceso, kodexo, konto) ad exploro por reformar, korektigar, se necesa
 revokar (trans.) (pro) — Retrotirar (lu) de lua ofico (pro nekapableso, pro kulpo profesionala, e c.)
 revoltar (netrans., kontre, pri, pro) — Refuzar la obedio di la imperi de la autoritatozi legitima, regnanta. – (anke metaf.)
 revolucionar (netrans.) (aludante la populo di stato) — Agar violente la chanjo di (sua) guvernistaro

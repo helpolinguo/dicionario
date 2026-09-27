@@ -1381,7 +1381,7 @@ perjurar — netransitiva
 perkutar — transitiva
 permanar — netransitiva
 permear — transitiva
-permigar — transitiva — ulo ad ulu
+permisar — transitiva — ulo ad ulu
 permutar — transitiva
 perquisitar — netransitiva — che ulu
 persekutar — transitiva
@@ -2119,7 +2119,7 @@ Qua verbi regas qua prepoziciono.
 **tra** (1) — vadar
 **tra, sub** (1) — transparar
 **ulo** (6) — akaparar, hungrar, incidar, odiar, purgar, satisfacar
-**ulo ad ulu** (2) — permigar, preskriptar
+**ulo ad ulu** (2) — permisar, preskriptar
 **ulo, ad** (1) — susurar
 **ulo, ad ulo, pri ulu od ulo** (1) — pensar
 **ulo, ad ulu** (4) — demandar, impozar, imputar, interdiktar

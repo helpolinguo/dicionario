@@ -7,7 +7,7 @@ them. Here are the ones it could not place: the fragment surveyed
 is not found as it stands in the text, or covers function words
 only.
 
-**1444 fragments**, over 9473 entries. The first family is
+**1445 fragments**, over 9473 entries. The first family is
 the only one that calls for a judgement: the others are artefacts of
 the survey of the rules, where the stroke runs over or stops short.
 
@@ -368,7 +368,7 @@ the survey of the rules, where the stroke runs over or stops short.
 | 538 | slango | `anke` |
 | 562 | suportar | `e lo` |
 
-## Cut in the middle of a word, or left over from the headword — 1102
+## Cut in the middle of a word, or left over from the headword — 1103
 
 | page | headword | underlined fragment |
 |---:|---|---|
@@ -1220,6 +1220,7 @@ the survey of the rules, where the stroke runs over or stops short.
 | 431 | pentekosto | `che la kr` |
 | 431 | pentekosto | `tani` |
 | 431 | peonio | `pecnio` |
+| 434 | permisar | `permigar` |
 | 434 | peroraciono | `peroracion` |
 | 434 | perpendikla | `perpendikl` |
 | 434 | perquisitar | `itar` |

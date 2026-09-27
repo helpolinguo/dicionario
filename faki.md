@@ -934,7 +934,7 @@ Transskribita de https://ido.help/dicionario/
 **treno** (1) — espreso
 **treponema pallidum** (1) — sifiliso
 **tri** (1) — tri-
-**ulo ad ulu** (1) — permigar
+**ulo ad ulu** (1) — permisar
 **ulo, ad ulo, pri ulu od ulo** (1) — pensar
 **ulo, ad ulu** (1) — pagar
 **ulu** (4) — adoptar, akaparar, dorlotar, odiar

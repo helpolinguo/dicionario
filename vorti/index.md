@@ -6615,7 +6615,7 @@ Transskribita de https://ido.help/dicionario/
 - [perlomatro](perlomatro.md)
 - [permanar](permanar.md)
 - [permear](permear.md)
-- [permigar](permigar.md)
+- [permisar](permisar.md)
 - [permutar](permutar.md)
 - [pero](pero.md)
 - [peroneo](peroneo.md)
