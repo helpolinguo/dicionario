@@ -504,12 +504,25 @@ def underlinings(e):
             t = t + pieces[i][0]
             cut = pieces[i][1]
         out.append(t); i += 1
-    # The headword is underlined like the rest: it teaches nothing here.
+    # The headword is underlined like the rest: it teaches nothing here --
+    # EXCEPT AS THE SECOND HALF OF A PHRASE THE LINE END BROKE. baseno sets
+    # three parallel compounds, each underlined and followed by its colon,
+    # and the third runs over the line end: « - IV. Geologio- » closes one
+    # line, « baseno : la teritorio... » opens the next, the rule under both.
+    # The hyphen is inside the rule, so the pieces are not joined above but
+    # by _reglue(), against the text -- and the half that IS the headword was
+    # dropped here first. « Mar-baseno » and « Fluvio-baseno » opened their
+    # sub-entries; « Geologio-baseno » stayed a plain sense and a doubtful
+    # « Geologio- ». Such a half is therefore kept when the piece before it
+    # ends on a hyphen, and structure_() drops it again if _reglue() joins it
+    # to nothing. MEASURED over the 9,473 articles: the book does this once.
     v=(e.get('vedetto') or '').lower().lstrip('*+')
     vu=set(); res=[]
     for t in out:
         u=re.sub(r'\s+',' ',t).strip()
-        if len(u) < 3 or u.lower().rstrip('.') == v: continue
+        if len(u) < 3: continue
+        if (u.lower().rstrip('.') == v
+                and not (res and res[-1].endswith('-'))): continue
         if u.lower() in vu: continue
         vu.add(u.lower()); res.append(u)
     return res
@@ -2181,6 +2194,10 @@ def structure_(e):
     find; we detach them, with their qualifier of domain.
     """
     sublines=_reglue(underlinings(e), e.get('senci') or [])
+    # A half kept for _reglue() that joined nothing is the headword's own rule
+    # after all, and goes where underlinings() sends the others.
+    _v=(e.get('vedetto') or '').lower().lstrip('*+')
+    sublines=[u for u in sublines if u.lower().rstrip('.') != _v]
     _for=rules_set_aside().get("%s@%d:%d" % (e.get('vedetto'),
                                               e.get('image', -1), e.get('ligno', -1)))
     if _for: sublines=[u for u in sublines if u not in _for]
