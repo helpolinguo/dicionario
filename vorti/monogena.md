@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## monogena *(biol.)*
-Qua agas ta sorto di genito en qua la enti vivanta su *reproduktas nemediate, e kun fazi inter-identa di su-developo, per ovo o per ovuli, opoze a la digeneso (genita alternanta)
+Qua agas ta sorto di genito en qua la enti vivanta su *reproduktas nemediate, e kun fazi inter-identa di su-developo, per ovo o per ovuli, opoze a la digeneso (genito alternanta)
 <!-- p. 381, l. 10 | Germana, Angla, Franca, Italiana, Hispana -->
 
 ---

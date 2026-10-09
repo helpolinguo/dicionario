@@ -24957,7 +24957,7 @@ Funciono monodroma, interne di areo donita. Funciono F(z) esas monodroma i
 <!-- p. 381, l. 7 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## monogena *(biol.)*
-Qua agas ta sorto di genito en qua la enti vivanta su *reproduktas nemediate, e kun fazi inter-identa di su-developo, per ovo o per ovuli, opoze a la digeneso (genita alternanta)
+Qua agas ta sorto di genito en qua la enti vivanta su *reproduktas nemediate, e kun fazi inter-identa di su-developo, per ovo o per ovuli, opoze a la digeneso (genito alternanta)
 <!-- p. 381, l. 10 | Germana, Angla, Franca, Italiana, Hispana -->
 
 ## monografio
