@@ -5766,7 +5766,7 @@ monitoro — Milito-navo, di tun-konteno mezvalora, basa sur la aquo-nivelo, kur
 mono- — Prefixo ciencala = un
 monodroma (matem.) — Funciono monodroma, interne di areo donita. Funciono F(z) esas monodroma interne di areo S, kande, la punto z variante interne di la areo, la funciono F(z) retroprenas sempre la sama valoro en sama punto
 monogama — Qua esas mariajita kun nur un spozo
-monogena (biol.) — Qua agas ta sorto di genito en qua la enti vivanta su *reproduktas nemediate, e kun fazi inter-identa di su-developo, per ovo o per ovuli, opoze a la digeneso (genita alternanta)
+monogena (biol.) — Qua agas ta sorto di genito en qua la enti vivanta su *reproduktas nemediate, e kun fazi inter-identa di su-developo, per ovo o per ovuli, opoze a la digeneso (genito alternanta)
 monografio — Studiuro pri punto specala di historio, cienco, e c.
 monogramo (skribarto) — Kombinuro ek plura literi, unionita tale ke un streko, un slingo, uzesas por du o tri literi interdiferanta
 monoika (bot.) — Qua portas, sur un stipo, floruli e florini
