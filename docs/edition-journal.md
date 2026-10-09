@@ -1806,3 +1806,30 @@ hazelnut, and the book writes the word with its *a* at `moskardino`,
 proofreading returned the line whole with it (image 58, line 15), and both
 surviving machine decodings read an *e* at the head of the word too. The
 facsimile keeps it; `work/latins.txt` puts it right in the reading edition.
+
+
+---
+
+## A remark on monogena (2026)
+
+### A slip of the typist's, which the machine misread into the right word
+
+*« Instead of "genita" we should read "genito" »* — Gilles-Philippe Morin,
+on the definition's last words: *opoze a la digeneso (genita alternanta)*.
+The parenthesis glosses the alternation of generations and wants the noun,
+the one the sentence opens with, *ta sorto di genito*; the definitions write
+*genito* nine times elsewhere and *genita* nowhere else.
+
+The typescript reads *a*, but it takes the order of the passes to see it.
+The word is cut at the line end, *(ge-* / *nita* (image 388, lines 12–13),
+and the machine read an *o* in cell 10: *nito* in both surviving decodings.
+The pairs pass made it an *a* on a count of the fragment alone, *nito* once
+against *nita* eleven times. That was not a good reason, and it is not what
+decides the cell. The direct proofreading was handed the line without the
+pairs pass — over the pass's cells on the lines it returned, it gives back
+the machine's reading 517 times in 763 where the old pass corrected and 69
+in 100 where only the new one does, and it gives back *kuh* and *konoernas*
+— so it saw *nito*, and wrote *nita* itself, scan in hand, correcting
+*DaFIS* to *DEFIS* on the same line. The facsimile keeps *genita*;
+`work/words.txt` puts it right in the reading edition. Rebuilt, one article
+of 9,473 moves, by one letter in its senses.
