@@ -15500,7 +15500,7 @@ To quon onu donas ad ulu por kompensar lua perdi, lua spensi
 <!-- p. 232, l. 4 | Germana, Angla, Franca, Italiana, Hispana -->
 
 ## indentar *(trans.) (imprim-arto)*
-Retropulsar (lineo tipografiala) aden la longeso-kadro, pozante avan olu « lakuno- »- tipi
+Retropulsar (lineo tipografiala) aden la longeso-kadro, pozante avan olu « lakuno »-tipi
 <!-- p. 232, l. 7 | sen-lingua -->
 
 ## indexo

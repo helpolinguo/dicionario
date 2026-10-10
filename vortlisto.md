@@ -3608,7 +3608,7 @@ incitar (trans., ulu ad ulo) — Konsilar, exhortar vivace ad agor ulo
 incizar (trans.) — Fendar butono-truatre, per instrumento sekiva
 -ind- — Sufixo qua signifikas « qua meritas esar… -ata »
 indemno (yuro-cienco) — To quon onu donas ad ulu por kompensar lua perdi, lua spensi
-indentar (trans.) (imprim-arto) — Retropulsar (lineo tipografiala) aden la longeso-kadro, pozante avan olu « lakuno- »- tipi
+indentar (trans.) (imprim-arto) — Retropulsar (lineo tipografiala) aden la longeso-kadro, pozante avan olu « lakuno »-tipi
 indexo — Tabelo alfabetala, fine di libro, en qua esas mencionita la vorti precipua e la propra nomi, uzita da la autoro, kun indiko pri la pagino ube esas singla de oli
 indico — Signo qua trovigas ulo
 indiciono (kronologio) — Determino di la yaro di la cikli di la periodo Julianala, por datizar la akti

@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## indentar *(trans.) (imprim-arto)*
-Retropulsar (lineo tipografiala) aden la longeso-kadro, pozante avan olu « lakuno- »- tipi
+Retropulsar (lineo tipografiala) aden la longeso-kadro, pozante avan olu « lakuno »-tipi
 <!-- p. 232, l. 7 | sen-lingua -->
 
 ---
