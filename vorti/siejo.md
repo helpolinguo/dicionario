@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## *siejo
-Loko ube ulu, ulo, esas establisita- ube eventas lua operaci komercala, industriala, financala
+Loko ube ulu, ulo, esas establisita – ube eventas lua operaci komercala, industriala, financala
 <!-- p. 526, l. 16 | Franca -->
 
 ---

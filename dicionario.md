@@ -948,7 +948,7 @@ Qua arivas (persono) precize ye la kloko konvencionita
 <!-- p. 15, l. 18 | Germana, Italiana, Rusa, Hispana -->
 
 ## akushar *(trans.)*
-Igar la feto homala ekirar- per ekpulso naturala, o per extrakto – de la organo en qua lu su developis
+Igar la feto homala ekirar – per ekpulso naturala, o per extrakto – de la organo en qua lu su developis
 <!-- p. 15, l. 21 | Germana, Angla, Franca, Rusa -->
 
 ## akustiko
@@ -4506,7 +4506,7 @@ Bloko pozita en la parto avana di la navo, e qua konsistas ye du montanti ed un 
 <!-- p. 66, l. 48 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## bitra
-Qua saporas repugnante. -(metaf.) Qua impresas penigante, chagrenigante
+Qua saporas repugnante. – (metaf.) Qua impresas penigante, chagrenigante
 <!-- p. 66, l. 52 | Germana, Angla -->
 
 ## bitumo
@@ -5246,7 +5246,7 @@ Grupo, asemblajo de arboreti (nefruktifera)
 <!-- p. 78, l. 21 | Germana, Angla, Franca, Italiana -->
 
 ## bushelo
-En Francia, olima mezurilo di kapaceso (cirkume 13 litri); nun, la bushelo kontenas -segun la regioni 1 o 2 dekalitri.
+En Francia, olima mezurilo di kapaceso (cirkume 13 litri); nun, la bushelo kontenas – segun la regioni 1 o 2 dekalitri.
 — En Usa, la kapaceso varias segun la stati
 <!-- p. 78, l. 23 | Angla, Franca, Rusa -->
 
@@ -8215,7 +8215,7 @@ Kopiuro, exemplero duesma di akto, kontrato-texto, quitigo-texto, epistolo, e c.
 <!-- p. 124, l. 49 | Angla, Franca, Latina -->
 
 ## durar *(trans. e netrans.)*
-Ne-cesar existar, permanar plu o min longe.- Ne-cesar (sua ago)
+Ne-cesar existar, permanar plu o min longe. – Ne-cesar (sua ago)
 <!-- p. 124, l. 52 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## duramatro *(anat.)*
@@ -10155,7 +10155,8 @@ Pri diskurso : komencar, preparante la atenco e la afableso-sentimenti
 
 ## expansar *(netrans.)*
 1. (cienco) Agar ta movo per qua gaso, vaporo dilatesas; agar ta movo per qua parto organa developesas, divenas plu voluminoza, o transformesas ad altra parto organa
-2. (metaf.) Agar ta movo per qua la kordio, vice konstriktar sua sentimenti, difuzas li adextere. -Movo per qua ula doktrini, ula idei, kreskas ed atraktas adheranti kontinue plu multa
+2. (metaf.) Agar ta movo per qua la kordio, vice konstriktar sua sentimenti, difuzas li adextere.
+— Movo per qua ula doktrini, ula idei, kreskas ed atraktas adheranti kontinue plu multa
 <!-- p. 154, l. 2 | Germana, Angla, Franca, Italiana, Hispana -->
 
 ## expediar *(trans.)*
@@ -13972,7 +13973,7 @@ Cent ari
 <!-- p. 209, l. 42 | Germana, Angla, Franca, Italiana, Hispana -->
 
 ## hektografar *(trans.)*
-Imprimar (per aparato) skriburo, desegnuro, muziko-noti quin onu preliminare trasis, per perforo, sur *stencilo ek vaxofolio o parafino-folio quan onu aplikas sur la inkizorolero di ta aparato; onu pasigas sub la rolero la paper-folii virga : la inko trairas la perforuro- e lasas la traco necesa
+Imprimar (per aparato) skriburo, desegnuro, muziko-noti quin onu preliminare trasis, per perforo, sur *stencilo ek vaxofolio o parafino-folio quan onu aplikas sur la inkizorolero di ta aparato; onu pasigas sub la rolero la paper-folii virga : la inko trairas la perforuro – e lasas la traco necesa
 <!-- p. 209, l. 45 | sen-lingua -->
 
 ## hektogramo
@@ -14826,7 +14827,7 @@ L. homarus vulgaris
 <!-- p. 221, l. 42 | Germana, Franca, Italiana -->
 
 ## homeopatio *(medic.)*
-Sistemo terapiala – da S. Hahnemann, 1755-1843 qua konsistas ye traktar la morbi per dozi medikamentala infinitezima, qui produktas, en la individuo sana, la simptomi di morbo analoga ad olta quan onu probas kombatar
+Sistemo terapiala – da S. Hahnemann, 1755–1843 qua konsistas ye traktar la morbi per dozi medikamentala infinitezima, qui produktas, en la individuo sana, la simptomi di morbo analoga ad olta quan onu probas kombatar
 <!-- p. 221, l. 46 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## homeosexuala *(patol.)*
@@ -16162,7 +16163,7 @@ Enirar nedarfante
 <!-- p. 241, l. 29 | Angla, Franca, Italiana, Hispana -->
 
 ## intuicar *(trans.) (filoz.)*
-Konocar nemediate, direte.- (metaf.) Komprenar la kozi rapide
+Konocar nemediate, direte. – (metaf.) Komprenar la kozi rapide
 <!-- p. 241, l. 31 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## intumecar *(netrans.) (patol.)*
@@ -16282,7 +16283,7 @@ Dezinenco di la infinitivo pasintala
 <!-- p. 243, l. 5 | sen-lingua -->
 
 ## irar *(netrans.)*
-1. (aludante vivanto) Movar su ad ula loko (opoze a « venar »- « irar » signifikas for-esko di la spaco-punto ube esas la persono qua parolas, ad qua onu parolas, pri qua onu parolas.)
+1. (aludante vivanto) Movar su ad ula loko (opoze a « venar » – « irar » signifikas for-esko di la spaco-punto ube esas la persono qua parolas, ad qua onu parolas, pri qua onu parolas.)
 2. (aludante nevivanto) Movar su (o movesar) ad ula skopo
 <!-- p. 243, l. 7 | Franca, Italiana, Hispana -->
 
@@ -19789,7 +19790,7 @@ Qua expresas ulo reala
 <!-- p. 297, l. 34 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## konkubo
-1. Singla de la du personi qui kun-vivas spozatre, -quankam ne intermariajita
+1. Singla de la du personi qui kun-vivas spozatre, – quankam ne intermariajita
 2. (che la Romani, antique) Singla de la personi qui interunionis per la konkubinato
 <!-- p. 297, l. 36 | Germana, Angla, Franca, Italiana, Hispana -->
 
@@ -19916,7 +19917,7 @@ Buliono qua, pro koqueso longa-tempa, absorbis la tota suko di la karno
 
 ## konsonancar *(netrans.)*
 1. (aludante foni muzikala) Interakordar plu o min komplete
-2. (aludante silabi, e precipue finali di qui la termino-foni esas sama) -Interproximesar
+2. (aludante silabi, e precipue finali di qui la termino-foni esas sama) – Interproximesar
 <!-- p. 299, l. 44 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## konsonanto
@@ -21798,7 +21799,7 @@ Tre extensita en la sinso opozata a longeso
 ## lasar *(trans.)*
 1. Igar ulo laxa per cesar retenar lu
 2. Igar (ulu od ulo) ube lu esas – ne prenar lu kun su
-3. Igar ulo, gardata,- ne deprenar lu de ulu
+3. Igar ulo, gardata, – ne deprenar lu de ulu
 4. Igar tale ke ulu posedeskas ulo quon onu cesas gardar
 <!-- p. 330, l. 47 | Germana, Franca, Italiana -->
 
@@ -23751,7 +23752,7 @@ Personego richa e socio-povoza, qua favoras pekuniale la literaturisti e la arti
 <!-- p. 362, l. 5 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## mecho
-Kordono, bendo, asembluro de kotono e kanabo, cirkumata da sebo o de vaxo, por facar kandeli, bujii, ceri, o -imbibite ye oleo, petrolo, e c. – por brular en lampo
+Kordono, bendo, asembluro de kotono e kanabo, cirkumata da sebo o de vaxo, por facar kandeli, bujii, ceri, o – imbibite ye oleo, petrolo, e c. – por brular en lampo
 <!-- p. 362, l. 8 | sen-lingua -->
 
 ## medalio
@@ -27408,7 +27409,7 @@ Diskurso publika laude di persono
 <!-- p. 418, l. 37 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## panelo
-1. (arkitekt.) Parto plu o min granda e grosa di muro.- Ensemblo de karpenturo di qua onu plenigas la vakui ye masonuro
+1. (arkitekt.) Parto plu o min granda e grosa di muro. – Ensemblo de karpenturo di qua onu plenigas la vakui ye masonuro
 2. Peco ek vesto, ek mantelo, ek robo, e c.
 <!-- p. 418, l. 39 | Germana, Angla, Franca, Rusa -->
 
@@ -27748,7 +27749,7 @@ Sacerdoto qua direktas distrikto ekleziala, che la katoliki
 <!-- p. 423, l. 25 | Franca, Italiana, Hispana -->
 
 ## paromo
-Batelo plata, uzata por transportar, sur rivero o lago o fluvio, de ca a ta rivo,-homi, animali, veturi, e quan onu glitigas alonge kablo tensita inter la du rivi, oblique ye la fluo
+Batelo plata, uzata por transportar, sur rivero o lago o fluvio, de ca a ta rivo, – homi, animali, veturi, e quan onu glitigas alonge kablo tensita inter la du rivi, oblique ye la fluo
 <!-- p. 423, l. 29 | Franca -->
 
 ## paronimo *(gram.)*
@@ -31658,7 +31659,7 @@ Dicesas pri korpo grasa (lardo, oleo, e c.) qua aquiris odoro kelke mala, e sapo
 
 ## rango
 1. Singla de la linei sur qui kozi, o personi, qui intersucedas esas situita
-2. (a) En serio de personi, de kozi, la plaso qua apartenas a singla de li, avan o dop la ceteri. -b La plaso quan ulu okupas en la estimo da la cetera homi
+2. (a) En serio de personi, de kozi, la plaso qua apartenas a singla de li, avan o dop la ceteri. – (b) La plaso quan ulu okupas en la estimo da la cetera homi
 <!-- p. 482, l. 2 | Germana, Angla, Franca, Rusa -->
 
 ## rankorar *(netrans., ad, pro, pri)*
@@ -31853,7 +31854,7 @@ Dicesas, pri la Mendel-lego (*leyo), por qualifikar la karakteri qui domin
 <!-- p. 484, l. 50 | Franca -->
 
 ## recevar *(trans., de)*
-Esar la sendario di sendajo, la donario di donajo, la donacario di donaco, e c.- esar la objekto di ago
+Esar la sendario di sendajo, la donario di donajo, la donacario di donaco, e c. – esar la objekto di ago
 <!-- p. 484, l. 55 | Angla, Franca, Italiana, Hispana -->
 
 ## recidivar *(netrans., pri)*
@@ -33978,7 +33979,7 @@ Prepoziciono qua indikas la absenteso, la manko, la indijo di persono, di kozo, 
 <!-- p. 518, l. 10 | Angla, Franca -->
 
 ## senco
-Maniero ye qua kozo esas komprenenda. La senco konsistas ye la idei diversa quin lu expresas od implikas- kontre ke lua signifiko konsistas ye la objekti diversa a qui lu esas aplikebla
+Maniero ye qua kozo esas komprenenda. La senco konsistas ye la idei diversa quin lu expresas od implikas – kontre ke lua signifiko konsistas ye la objekti diversa a qui lu esas aplikebla
 <!-- p. 518, l. 15 | Angla, Franca, Italiana, Hispana -->
 
 ## sendar *(trans., ad)*
@@ -34196,7 +34197,7 @@ Liquido aquatra, qua su separas de la parto koagulinta di la sango di animali di
 <!-- p. 521, l. 16 | Germana, Angla, Franca, Italiana, Hispana -->
 
 ## seruro *(tekn.)*
-Aparato qua, esence, konsistas ye buxo fera (« palastro ») quan onu aplikas ad-an pordo, e kovrilo di kofro, e c.- peco movebla interne di ta buxo (« lango ») e peco kava (« boko ») qua recevas la lango e fixigesis ube la klapo di la pordo o di la kofro retrovenas por klozo; fine, klefo, por apertar o klozar la pordo, la kovrilo, e c. per igar la lango enirar od ekirar la boko
+Aparato qua, esence, konsistas ye buxo fera (« palastro ») quan onu aplikas ad-an pordo, e kovrilo di kofro, e c. – peco movebla interne di ta buxo (« lango ») e peco kava (« boko ») qua recevas la lango e fixigesis ube la klapo di la pordo o di la kofro retrovenas por klozo; fine, klefo, por apertar o klozar la pordo, la kovrilo, e c. per igar la lango enirar od ekirar la boko
 <!-- p. 521, l. 20 | Franca, Italiana, Hispana -->
 
 ## servar *(trans.)*
@@ -34505,7 +34506,7 @@ Muliero pri qua onu asertis ke lu recevas de deo la talento dicar to quo esas ev
 <!-- p. 526, l. 12 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## *siejo
-Loko ube ulu, ulo, esas establisita- ube eventas lua operaci komercala, industriala, financala
+Loko ube ulu, ulo, esas establisita – ube eventas lua operaci komercala, industriala, financala
 <!-- p. 526, l. 16 | Franca -->
 
 ## siena-tero
@@ -35881,7 +35882,7 @@ Exercar su korpale, metodoze, por developar en su la bona qualesi di sua korpo e
 <!-- p. 548, l. 10 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## spoto *(fiziol.)*
-Mikra saliajo, o mikra makulo sur la pelo, qua igas -ulakaze – plu « spicoza » la fizionomio (di muliero)
+Mikra saliajo, o mikra makulo sur la pelo, qua igas – ulakaze – plu « spicoza » la fizionomio (di muliero)
 <!-- p. 548, l. 16 | Angla -->
 
 ## spozo
@@ -36183,7 +36184,7 @@ Apliko-geometrio qua havas kom temo la seciono di la korpi solida
 <!-- p. 552, l. 46 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## sterila
-1. Dicesas pri sulo-peco qua ne produktas (la frukti obtenebla normale de tero).- anke metaf
+1. Dicesas pri sulo-peco qua ne produktas (la frukti obtenebla normale de tero). – anke metaf
 2. Dicesas pri muliero o femino qua ne esas fekundigebla
 3. De qua nulo rezultas
 <!-- p. 552, l. 49 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
@@ -39846,7 +39847,8 @@ L. vicia
 <!-- p. 610, l. 32 | Angla, Franca, Italiana -->
 
 ## vedeto *(milit.)*
-Mikra milito-navo uzata kom observero. -Barkego movata per vaporo o petrolo, qua servas milito-navo
+Mikra milito-navo uzata kom observero.
+— Barkego movata per vaporo o petrolo, qua servas milito-navo
 <!-- p. 610, l. 37 | Germana, Angla, Franca, Italiana -->
 
 ## vegro *(navig.)*

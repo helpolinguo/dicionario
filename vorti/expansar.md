@@ -2,7 +2,8 @@
 
 ## expansar *(netrans.)*
 1. (cienco) Agar ta movo per qua gaso, vaporo dilatesas; agar ta movo per qua parto organa developesas, divenas plu voluminoza, o transformesas ad altra parto organa
-2. (metaf.) Agar ta movo per qua la kordio, vice konstriktar sua sentimenti, difuzas li adextere. -Movo per qua ula doktrini, ula idei, kreskas ed atraktas adheranti kontinue plu multa
+2. (metaf.) Agar ta movo per qua la kordio, vice konstriktar sua sentimenti, difuzas li adextere.
+— Movo per qua ula doktrini, ula idei, kreskas ed atraktas adheranti kontinue plu multa
 <!-- p. 154, l. 2 | Germana, Angla, Franca, Italiana, Hispana -->
 
 ---

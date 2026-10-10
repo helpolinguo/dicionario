@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## irar *(netrans.)*
-1. (aludante vivanto) Movar su ad ula loko (opoze a « venar »- « irar » signifikas for-esko di la spaco-punto ube esas la persono qua parolas, ad qua onu parolas, pri qua onu parolas.)
+1. (aludante vivanto) Movar su ad ula loko (opoze a « venar » – « irar » signifikas for-esko di la spaco-punto ube esas la persono qua parolas, ad qua onu parolas, pri qua onu parolas.)
 2. (aludante nevivanto) Movar su (o movesar) ad ula skopo
 <!-- p. 243, l. 7 | Franca, Italiana, Hispana -->
 

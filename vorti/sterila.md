@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## sterila
-1. Dicesas pri sulo-peco qua ne produktas (la frukti obtenebla normale de tero).- anke metaf
+1. Dicesas pri sulo-peco qua ne produktas (la frukti obtenebla normale de tero). – anke metaf
 2. Dicesas pri muliero o femino qua ne esas fekundigebla
 3. De qua nulo rezultas
 <!-- p. 552, l. 49 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->

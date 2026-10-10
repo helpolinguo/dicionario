@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## bitra
-Qua saporas repugnante. -(metaf.) Qua impresas penigante, chagrenigante
+Qua saporas repugnante. – (metaf.) Qua impresas penigante, chagrenigante
 <!-- p. 66, l. 52 | Germana, Angla -->
 
 ---

@@ -1,7 +1,8 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## vedeto *(milit.)*
-Mikra milito-navo uzata kom observero. -Barkego movata per vaporo o petrolo, qua servas milito-navo
+Mikra milito-navo uzata kom observero.
+— Barkego movata per vaporo o petrolo, qua servas milito-navo
 <!-- p. 610, l. 37 | Germana, Angla, Franca, Italiana -->
 
 ---

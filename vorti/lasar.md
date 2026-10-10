@@ -3,7 +3,7 @@
 ## lasar *(trans.)*
 1. Igar ulo laxa per cesar retenar lu
 2. Igar (ulu od ulo) ube lu esas – ne prenar lu kun su
-3. Igar ulo, gardata,- ne deprenar lu de ulu
+3. Igar ulo, gardata, – ne deprenar lu de ulu
 4. Igar tale ke ulu posedeskas ulo quon onu cesas gardar
 <!-- p. 330, l. 47 | Germana, Franca, Italiana -->
 

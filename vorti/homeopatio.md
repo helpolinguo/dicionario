@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## homeopatio *(medic.)*
-Sistemo terapiala – da S. Hahnemann, 1755-1843 qua konsistas ye traktar la morbi per dozi medikamentala infinitezima, qui produktas, en la individuo sana, la simptomi di morbo analoga ad olta quan onu probas kombatar
+Sistemo terapiala – da S. Hahnemann, 1755–1843 qua konsistas ye traktar la morbi per dozi medikamentala infinitezima, qui produktas, en la individuo sana, la simptomi di morbo analoga ad olta quan onu probas kombatar
 <!-- p. 221, l. 46 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ---

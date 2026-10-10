@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## recevar *(trans., de)*
-Esar la sendario di sendajo, la donario di donajo, la donacario di donaco, e c.- esar la objekto di ago
+Esar la sendario di sendajo, la donario di donajo, la donacario di donaco, e c. – esar la objekto di ago
 <!-- p. 484, l. 55 | Angla, Franca, Italiana, Hispana -->
 
 ---

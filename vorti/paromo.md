@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## paromo
-Batelo plata, uzata por transportar, sur rivero o lago o fluvio, de ca a ta rivo,-homi, animali, veturi, e quan onu glitigas alonge kablo tensita inter la du rivi, oblique ye la fluo
+Batelo plata, uzata por transportar, sur rivero o lago o fluvio, de ca a ta rivo, – homi, animali, veturi, e quan onu glitigas alonge kablo tensita inter la du rivi, oblique ye la fluo
 <!-- p. 423, l. 29 | Franca -->
 
 ---

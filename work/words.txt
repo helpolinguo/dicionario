@@ -124,3 +124,23 @@ machino	mashino	p228 -il- : « Sufixo qua signifikas "instrumento por..." (ne "m
 # fichier.
 velkas sukoza	velkas, sukoza	p408 oranjo : « Frukto de arbusto di qua la foliaro ne velkas (L. citrus aurantium) sukoza, parfumoza, di qua la shelo esas flava oree ». « sukoza » et « parfumoza » qualifient le FRUIT, non le fait de ne pas se faner : ils ouvrent l enumeration que « , parfumoza, » poursuit, et la virgule qui les en separait etait portee par la parenthese.
 arboro. di	arboro di	p266 kariofilo : le tapuscrit ecrit « di la floro di arboro.(L. caryophillus aromaticus) di Moluko », le point colle a la parenthese. Le nom retire, il reste « di arboro. di Moluko » — un point suivi d une minuscule, qui n ouvre aucune phrase. Scorie de frappe : le point est de trop, et c est une espace qu il faut.
+# --- Le tiret de la dactylo, colle a un mot d'un seul cote.
+# La machine n'avait qu'un trait ; la dactylo en fait un tiret en l'entourant
+# d'espaces, et l'edition le compose « – » (587 dans les definitions publiees,
+# 566 avant que ces tirets-ci ne le deviennent). Ici l'une des deux
+# espaces manque, et le trait ressemble au trait d'union d'un compose ou d'un
+# affixe : « radio- o televiziono » (megafono) et « -ajo = -(at)ajo » sont de
+# vrais traits d'union, et restent. Apres un point, une virgule, un
+# point-virgule ou deux-points, la regle les prend (stray_dashes() dans
+# tools/edition.py) ; ceux-ci, entre deux mots, se prennent un par un.
+ekirar- per	ekirar – per	p015 akushar : « Igar la feto homala ekirar – per ekpulso naturala, o per extrakto – de l... » ; le second tiret a ses deux espaces
+perforuro- e	perforuro – e	p209 hektografar : « la inko trairas la perforuro – e lasas la traco necesa »
+venar »- « irar	venar » – « irar	p243 irar : « (opoze a « venar » – « irar » signifikas for-esko di la spaco-punto...) »
+implikas- kontre	implikas – kontre	p518 senco : « la idei diversa quin lu expresas od implikas – kontre ke lua signifiko konsistas ye la objekti... »
+establisita- ube	establisita – ube	p526 *siejo : « Loko ube ulu, ulo, esas establisita – ube eventas lua operaci komercala, industriala... »
+kontenas -segun	kontenas – segun	p078 bushelo : « nun, la bushelo kontenas – segun la regioni 1 o 2 dekalitri »
+sama) -Interproximesar	sama) – Interproximesar	p299 konsonancar : « ...di qui la termino-foni esas sama) – Interproximesar » ; le tiret colle a son mot ouvre le sens suivant
+o -imbibite	o – imbibite	p362 mecho : « por facar kandeli, bujii, ceri, o – imbibite ye oleo, petrolo, e c. – por brular... »
+igas -ulakaze	igas – ulakaze	p548 spoto : une incise entre deux tirets, « qua igas – ulakaze – plu « spicoza » la fizionomio », dont le second a deja ses deux espaces
+1755-1843	1755–1843	p221 homeopatio : les dates de Hahnemann, « da S. Hahnemann, 1755–1843 » ; un intervalle se compose avec le tiret demi-cadratin. Non pas « 1-2-3 » (pirogalo), la numerotation d une formule chimique, ni « 2-4 » (skotisho), une mesure, 2/4
+ceteri. – b La plaso	ceteri. – (b) La plaso	p482 rango : le tapuscrit ecrit « - II. (a) En serio de personi... dop la ceteri. -b) La plaso quan ulu okupas... ». Le tiret colle au point, la regle le prend ; la parenthese fermante de « b) », restee seule, etait tombee avec les parentheses orphelines. Rendue, et ouverte comme celle de « (a) », pour que les deux membres de la sous-enumeration se repondent
