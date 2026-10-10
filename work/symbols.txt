@@ -25,3 +25,7 @@ palado@423:24	Pd	f.416 « Metalo blanka, tre maleebla, poke gisebla. - Simbolo k
 selenio@524:7	Se	f.517 « Korpo simpla, metaloido vicina ye sulfo... - Simb. kemiala : Se. - DEFIRS. »
 stano@557:8	Sn	f.550 « Korpo simpla, metalo grizatra... - Simbolo kemiala : Sn. - EFIS. »
 stroncio@563:47	Sr	f.556 « Korpo simpla, metala, di qua la atom-pezo esas 87,6. Simbolo kemiala : Sr. - DEFIRS. »
+#
+# Le symbole de l'azote, ecrit comme le livre l'ecrit lui-meme. Pas une lecture
+# sur la page cette fois, mais la graphie du livre opposee a une seule frappe.
+asparagino@51:46	C₈H₈Az₂O₆	f.44 « asparagino. (C8 H8 AZ2 O6). Substanco quan onu renkontras precipue en la yuna sprosi di asparago ». L azote s ecrit Az, la majuscule et la minuscule de tout symbole a deux lettres, et le livre l ecrit ainsi a son article meme, azoto : « Simbolo kemiala : Az (N) », et chez aquaforto : « Azot-acido (AzO3H) ». « AZ » ne s y lit qu ici. La relecture directe a rendu la ligne avec la majuscule (exceptions_proofreading.txt, image 51 l46) ; les deux decodages, brouilles, lisaient une minuscule a cette place, « Ag ». Le fac-simile garde « AZ2 » ; si le scan y montre un z minuscule, la correction revient au fac-simile par exceptions_manual.txt en 51 46 20, et cette ligne-ci, qui ne changerait plus rien, serait a retirer.
