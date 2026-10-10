@@ -92,7 +92,8 @@ laid in the margin of every page is drawn with `\pdfextension literal`
 (`preamble.tex`), a LuaTeX primitive with no XeTeX equivalent and no
 guard around it, so `xelatex main.tex` stops on the first page with
 `Undefined control sequence`. The pocket edition wants lualatex too, for
-its run-time hyphenation patterns.
+its run-time hyphenation patterns, and for `pocket/compounds.lua`, which
+lets those patterns into the parts of a compound.
 
 On a bare Debian or Ubuntu the whole of it is:
 
