@@ -1901,6 +1901,44 @@ and it is left as it is.
 
 ---
 
+## The pocket book's loose lines (2026)
+
+*« The PDF tends to have very uneven lines »* — Gilles-Philippe Morin, on
+ultramaro, whose first line set *Farbo* and *bele-* with a gap of a
+centimetre on each side.
+
+**Measured rather than eyed.** A LuaTeX hook recorded every line the pocket
+book sets — 29,126, the last lines of paragraphs left out — and the widest
+interword space in it over that space's natural width. 5,176 lines stretched
+a space to twice its width or more, 775 to four times; the worst, sistro's
+first line, to 17.8. Most were first lines: a bold headword, its field, a
+word or two, and one or two spaces to take all the slack of a 43 mm column.
+
+**Three causes.** The gaps between the parts of an entry were `\enspace`,
+kerns, rigid and unbreakable, so each part sat on the word before it as one
+block. The parts of a compound could not be hyphenated: LuaTeX hyphenates a
+word only after glue, and *instrumento* in *Muzik-instrumento* has none.
+And microtype's font expansion, though loaded, did nothing at its default
+setting. The gaps became a stretchable glue, `\intero`; a glue of no width
+now follows each hyphen inside a compound (`pocket/compounds.lua`); the
+letters may widen or narrow by 3 %. Lines at four times: 775 → 62; at
+twice: 5,176 → 1,737. Fewer lines end on a hyphen, and the book loses two
+pages, 446 → 444.
+
+**The language code** turned out to need a box — behind a glue it became a
+word, and the patterns cut *DE-FIRS* — and a decision. Let free to go to the
+next line, it left 1,590 articles ending on their code alone; forbidden, 157
+lines stayed at four times. Shown the pages, the owner chose the middle, a
+penalty: 461 such articles, 62 such lines.
+
+**Ragged right was measured too**, and set aside: no space past 1.8 times,
+but an edge short by 2.3 mm on average and 450 pages. What stays loose is
+mostly the first line of a short article. ultramaro's goes from 10.4 times
+to 4.9: *Farbo bele-azurea* cannot fill a justified line.
+
+
+---
+
 ## The field texto (2026)
 
 *« "teksto" should be "texto" »* — Gilles-Philippe Morin. The book agrees:

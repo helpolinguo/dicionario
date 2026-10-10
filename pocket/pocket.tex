@@ -8,7 +8,13 @@
 \usepackage{fontspec}
 \usepackage{multicol}
 \usepackage{fancyhdr}
-\usepackage{microtype}
+% FONT EXPANSION, up to 3 % either way. A column of 43 mm leaves the
+% interword spaces alone to absorb what a line lacks; letting the letters
+% widen or narrow a little shares it out. Measured over the whole book (see
+% « Even spacing » below): with expansion=true and nothing else, the build
+% is IDENTICAL line for line to the one without -- at microtype's default
+% stretch of 20 nothing acts, here; from 21 it does. 30 is set explicitly.
+\usepackage[expansion=true,stretch=30,shrink=30]{microtype}
 \usepackage{xcolor}
 \usepackage{needspace}
 % Hyphenation: see idopatterns.tex. Neither French nor Esperanto suits
@@ -18,6 +24,8 @@
 \language=\idolingvo
 \lefthyphenmin=2 \righthyphenmin=3
 \input{idopatterns}
+% The parts of a compound are hyphenated as well: see compounds.lua.
+\directlua{dofile("compounds.lua")}
 
 \setmainfont{Charis SIL}[Ligatures=TeX, Numbers=OldStyle]
 \newfontfamily\titra{Inter}[Ligatures=TeX]
@@ -48,6 +56,38 @@
 \setlength{\emergencystretch}{3em}
 \hyphenpenalty=200
 \tolerance=3000
+% --- Even spacing ---------------------------------------------------------
+% THE LINES WERE STRETCHED, AND MANY OF THEM BADLY. Measured over the whole
+% book, by recording in LuaTeX the widest interword space of each line set
+% (last lines of paragraphs left out) over its natural width: of 29,126
+% lines, 5,176 stretched a space to twice its width or more, 1,750 to three
+% times, 775 to four; the worst, sistro's first, to 17.8. Most were first
+% lines -- a wide bold headword, its field, then a word or two -- with one
+% or two spaces to take all the slack. Three causes, three remedies:
+%
+%   - the gaps between the parts of an entry were \enspace, a kern: rigid,
+%     and no break. The field, a sense number, the Latin name, the symbol,
+%     the remark and the language code each sat on the word before as one
+%     block. They are now \intero, a glue of the same width that stretches
+%     and shrinks -- and that breaks, except after the headword;
+%   - the parts of a compound could not be hyphenated (compounds.lua);
+%   - the letters could not widen (microtype, above).
+%
+% Together: 1,737 lines at twice or more, 290 at three times, 62 at four;
+% the worst 11.7. Fewer lines end on a hyphen, 8,526 where 10,357 did, and
+% the book goes from 446 pages to 444.
+%
+% Tried, and left as they were: \tolerance 1000 and 2000, \emergencystretch
+% 1.5em -- identical, line for line; the lines still loose are those no
+% setting makes feasible, and TeX keeps the least bad. \hyphenpenalty 100:
+% 4 fewer lines at three times, for 561 more lines ending on a hyphen.
+% Ragged right was measured as well -- no space past 1.8 times, but a
+% right edge short by 2.3 mm on average, and 450 pages -- and the edition
+% stays justified.
+%
+% What stays loose is mostly the first line of a short article: ultramaro,
+% « Farbo bele-azurea », cannot fill it, and a justified line must.
+\newcommand{\intero}{\hskip .5em plus .25em minus .1em\relax}
 
 % --- Running heads -------------------------------------------------------
 % LaTeX's own markers (\markboth, \leftmark, \rightmark) do NOT suit here:
@@ -93,19 +133,28 @@
   \hangindent=2.6mm\hangafter=1\relax}
 \makeatother
 \newcommand{\vorto}[1]{{\titra\bfseries\color{akcento}#1}}
-\newcommand{\fako}[1]{\enspace\textit{(#1)}}
-\newcommand{\senco}[2]{\enspace{\titra\bfseries\footnotesize #1.}~#2}
+% The field stays on the headword's line: the gap stretches, but does not
+% break.
+\newcommand{\fako}[1]{\nobreak\intero\textit{(#1)}}
+\newcommand{\senco}[2]{\intero{\titra\bfseries\footnotesize #1.}~#2}
 % The remark the book hangs after its senses, with no number of its own. It
 % keeps the author's dash, which is what sets it apart from a numbered sense:
 % here it must be an em dash and not the hyphen of the typescript, since the
 % edition renders the hyphens (see typography() in tools/edition.py).
-\newcommand{\noto}[1]{\enspace\textemdash~#1}
-\newcommand{\latina}[1]{\enspace\textit{L. #1}}
+\newcommand{\noto}[1]{\intero\textemdash~#1}
+\newcommand{\latina}[1]{\intero\textit{L. #1}}
 % The chemical symbol. The label takes the italic, like that of the Latin
 % name; the symbol stays UPRIGHT -- a sloped formula reads badly, and the
 % italic there means something other than plain emphasis.
-\newcommand{\simbolo}[1]{\enspace\textit{Simb. kem.}\,#1}
-\newcommand{\lingui}[1]{\enspace{\titra\scriptsize\color{grize}#1}}
+\newcommand{\simbolo}[1]{\intero\textit{Simb. kem.}\,#1}
+% The language code. Boxed: behind a glue it became a word, and the
+% patterns cut it -- « DE- » at the end of one line, « FIRS » alone on the
+% next, 396 times with the break before it forbidden. That break is now
+% allowed but discouraged, a
+% penalty of 1000. Free, 1,590 articles ended on a line holding their code
+% alone (7 before); forbidden, the code kept 157 lines at four times and
+% more. At 1000: 461 such articles, 62 such lines.
+\newcommand{\lingui}[1]{\penalty1000\intero\mbox{\titra\scriptsize\color{grize}#1}}
 
 % Sub-entry: a phrase the author underlined and which carries its own
 % definition -- « Proporciono geometriala: ... ». Drowned in the paragraph,
