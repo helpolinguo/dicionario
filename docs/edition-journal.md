@@ -2024,3 +2024,21 @@ left a space before *tipi*. The book writes the same kind of compound, a
 quoted first part, with one hyphen after the quotes, *"brokoli"-kaulo*, which
 the edition sets *« brokoli »-kaulo*; indentar now reads the same way. One
 line in `work/words.txt`; one article moves.
+
+
+---
+
+## Nitrogen's symbol (2026)
+
+*« For asparagino, it should not be C₈H₈AZ₂O₆ but C₈H₈Az₂O₆ »* — Gilles-Philippe
+Morin. *Az* is the old symbol of azote, nitrogen. A two-letter symbol is a
+capital and a small letter, and the book writes it so in its own article,
+azoto (*Simbolo kemiala : Az (N)*), and under aquaforto (*AzO₃H*).
+Asparagino's *AZ* is the only capital Z.
+
+What the typescript reads there is not settled. The proofreading by eye
+returned a capital; both garbled decodings read a small letter in that cell.
+So the facsimile keeps *AZ2*, and the reading edition writes the book's
+symbol through `work/symbols.txt`, which sets the formula field. If the scan
+shows a small z, the correction moves to the facsimile, and the line in
+`symbols.txt` comes out.
