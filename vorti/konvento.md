@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## konvento
-Asemblitaro, (maxim-multa-kaze sekreta) de framasoni. *generala
+Asemblitaro generala (maxim-multa-kaze sekreta) de framasoni
 <!-- p. 303, l. 31 | Germana, Angla, Franca, Italiana, Hispana -->
 
 ---

@@ -523,3 +523,17 @@
 # « agota ». A lookalike a/o that the lexicon alone cannot arbitrate; the eye
 # does, on the sense.
 310	29	5	o
+# p310 l31 c21 and l32 c21 : the two cells hold a SLASH, an insertion mark,
+# and not « , » and « + ». The typist left out « generala » after
+# « Asemblitaro », and typed it after the language code with a slash before
+# it, a slash also struck at its place in the sentence, one above the other in
+# column 21:
+#     konvento. Asemblitaro/(maxim-multa-kaze sekreta) de fra-
+#        masoni. - DEFIS.  /generala
+# Read on the scan, image 310 (raised by Gilles-Philippe Morin, crop in hand).
+# The machine took the first stroke, which runs below the line, for a comma,
+# and the second, which rises above it, for the « + » of an unofficial word.
+# The facsimile gives the two slashes back; work/words.txt carries the word
+# to its place in the reading edition.
+310	31	21	/
+310	32	21	/

@@ -20158,7 +20158,7 @@ Interkonkordar explicite (e, maxim-multa-kaze, skribe) pri punto determinita ek 
 <!-- p. 303, l. 27 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## konvento
-Asemblitaro, (maxim-multa-kaze sekreta) de framasoni. *generala
+Asemblitaro generala (maxim-multa-kaze sekreta) de framasoni
 <!-- p. 303, l. 31 | Germana, Angla, Franca, Italiana, Hispana -->
 
 ## konvergar *(netrans., ad)*

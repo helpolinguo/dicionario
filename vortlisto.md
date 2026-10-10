@@ -4682,7 +4682,7 @@ konvalecar (netrans.) — Esar en la stando di persono qua jus esis malada e kom
 konvektar (netrans.) (fiziko) — Dicesas pri la fenomeno qua eventas kande korpo varma plunjesas aden korpo liquida o gasa, determinante vera fluo en la fluido, konseque de la varmesko kontakte di la korpo varma
 konvenar (netrans., ad) — Esar exakte to quon postulas la cirkonstanci, la stando di ulu, di ulo
 konvencionar (netrans., pri) — Interkonkordar explicite (e, maxim-multa-kaze, skribe) pri punto determinita ek ulo agota o facota
-konvento — Asemblitaro, (maxim-multa-kaze sekreta) de framasoni. *generala
+konvento — Asemblitaro generala (maxim-multa-kaze sekreta) de framasoni
 konvergar (netrans., ad) — (fiziko) (aludante direcioni, o linei qui reprezentas li) Departante de punti diversa, irar ad un punto, interproximeskante
 konversar (netrans., kun, pri) (aludante personi qui esas kune) — Kambiar idei kun ulu
 konversionar (netrans.) (strategio) — Agar movo de cirkumiro per qua armeo-korpo prizentas altra facio
