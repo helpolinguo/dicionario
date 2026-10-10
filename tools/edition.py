@@ -662,7 +662,7 @@ def split_at(raw, lexicon=None, compounds=None):
     """Splits the entries that contain two. Returns the widened list."""
     out=[]
     for e in raw:
-        t = e.get('teksto_brut')
+        t = e.get('texto_brut')
         if t is None:
             t = re.sub(r'\s+',' ',reglue([s for _,s in e['lineoj']], lexicon, compounds)).strip()
             # The correction layer for the raw text must be applied BEFORE the
@@ -675,7 +675,7 @@ def split_at(raw, lexicon=None, compounds=None):
         _c = _split().get("%d:%d" % (e.get('image',-1), e.get('ligno',-1)))
         if _c and _c in t and t.index(_c) > 0:
             j=t.index(_c)
-            f=dict(e); f['teksto_brut']=t[:j].strip()
+            f=dict(e); f['texto_brut']=t[:j].strip()
             f['drapeli_pre']=['artiklo-dividita']
             out.append(f)
             t=t[j:].strip()
@@ -696,11 +696,11 @@ def split_at(raw, lexicon=None, compounds=None):
                 if _read_code(j):
                     cut=m; break
             if not cut: break
-            f=dict(e); f['teksto_brut']=t[:cut.end()].strip()
+            f=dict(e); f['texto_brut']=t[:cut.end()].strip()
             f['drapeli_pre']=['artiklo-dividita']
             out.append(f)
             t=t[cut.end():].strip()
-        f=dict(e); f['teksto_brut']=t
+        f=dict(e); f['texto_brut']=t
         if out and out[-1].get('image')==e.get('image') and out[-1].get('ligno')==e.get('ligno'):
             f['drapeli_pre']=['artiklo-dividita']
         out.append(f)
@@ -1043,7 +1043,7 @@ def _trim_end(s):
 
 
 def analyse_(e, lexicon=None, compounds=None):
-    t=e.get('teksto_brut')
+    t=e.get('texto_brut')
     if t is None:
         t=reglue([s for _,s in e['lineoj']], lexicon, compounds)
     t=re.sub(r'\s+',' ',t).strip()
@@ -1081,7 +1081,12 @@ def analyse_(e, lexicon=None, compounds=None):
     # for « sen-lingua ». A token carrying three hyphens in a row is no word of
     # the language; the book counts only five, all of them deletions.
     t=re.sub(r'[\s.,;:\-\u2013]*\S*-{3,}\S*[\s.,;:\-\u2013]*$', '', t)
-    e['teksto']=t
+    # The keys `texto`, `texto_brut` and `texto_k` were `teksto...` until
+    # October 2026. Ido writes the word with its x: the book has « texto » 47
+    # times, « raporto-texto », « sen-texta », and « teksto » never. Renamed in
+    # the published records on purpose, as a key is an address: see
+    # docs/edition-journal.md, « The field texto ».
+    e['texto']=t
     # The typescript marks the unofficial words with a superscript « + »; Ido
     # tradition writes an asterisk. We restore it here -- the facsimile keeps the
     # sign as struck.
@@ -1546,7 +1551,7 @@ def e_ok(e):
     if not v: return False
     # « p. 83, an-pos "cetato" : » is not an article but a cross-reference from
     # the errata, saying where to insert the article that follows.
-    if re.match(r'^p\.\s*\d', e.get('teksto') or ''): return False
+    if re.match(r'^p\.\s*\d', e.get('texto') or ''): return False
     # The running folio, read as text: « 110 » decodes « llO », « 111 » « lll ».
     # Such a token, with no definition, is not a word.
     if not (e.get('senci') or []) and re.fullmatch(r'[lI1O0]{2,4}', v): return False
@@ -2117,7 +2122,7 @@ def _rule_without_headword(spot, u, headword_):
 
 # A remark the book hangs on the END of an article, after its numbered senses,
 # set off by the same dash that separates them -- but with no number of its own.
-# \ue000 and \ue001 bound the italic in `teksto_k` (see START/END below), and
+# \ue000 and \ue001 bound the italic in `texto_k` (see START/END below), and
 # they fall BETWEEN the dash and the letter -- « horizonto. – \ue000Metaf\ue001. :
 # La komenco di ulo » under auroro. The look-ahead steps over them, or the
 # remark that opens on an italic word is not seen at all. They are stepped
@@ -2190,19 +2195,19 @@ def notes_(ent):
         B=e.get('strukt') or []
         if not B: continue
         b=B[-1]
-        body, segs = _cut(b.get('teksto_k') or b.get('teksto') or '')
+        body, segs = _cut(b.get('texto_k') or b.get('texto') or '')
         if not segs: continue
         # The italic must not be cut in half. If a run opens before the dash
         # and closes after it, body and remark each keep one bound and neither
         # can be set; such an article is left alone rather than repaired blind.
         if any(u.count('\ue000') != u.count('\ue001') for u in [body] + segs):
             continue
-        # teksto and teksto_k are the same text, one of them marked up; the cut
+        # texto and texto_k are the same text, one of them marked up; the cut
         # is computed on the one displayed and applied to the other by the same
         # rule, so that the two cannot come apart.
-        plain, _ = _cut(b.get('teksto') or '')
-        if b.get('teksto_k') is not None: b['teksto_k']=body
-        b['teksto']=plain
+        plain, _ = _cut(b.get('texto') or '')
+        if b.get('texto_k') is not None: b['texto_k']=body
+        b['texto']=plain
         e['noti']=(e.get('noti') or []) + segs
         n += len(segs)
     return n
@@ -2272,7 +2277,7 @@ def structure_(e):
             found.append((m.start(1), m.end(), spot, (m.start(), _close(t, m.start()))))
         found.sort()
         if not found:
-            struct_.append({"teksto": t, "sub": []}); continue
+            struct_.append({"texto": t, "sub": []}); continue
         # A phrase in parentheses begins at its OPENING parenthesis: the sign
         # belongs to the phrase, not to the text before it.
         beg=[x[3][0] if x[3] else x[0] for x in found]
@@ -2284,18 +2289,18 @@ def structure_(e):
                 # takes up the sentence of the sense -- « (en vehilo publika : ...) La
                 # komizo di qua la rolo... » -- and therefore goes back to the body.
                 run_on.append(t[kr[1]+1:end_]); end_=kr[1]
-            sub.append({"loko": spot, "fako": "", "teksto": t[after_:end_].strip()})
+            sub.append({"loko": spot, "fako": "", "texto": t[after_:end_].strip()})
         head=t[:beg[0]]
         # The qualifier goes with the phrase that follows, not with the sense before.
         for i in range(len(sub)):
-            src = head if i == 0 else sub[i-1]["teksto"]
+            src = head if i == 0 else sub[i-1]["texto"]
             m=RE_QUAL.search(src)
             if m:
                 q=m.group(0).strip(" -\u2013")
                 src=src[:m.start()]
                 sub[i]["fako"]=q
                 if i == 0: head=src
-                else: sub[i-1]["teksto"]=src.rstrip(" -\u2013,;")
+                else: sub[i-1]["texto"]=src.rstrip(" -\u2013,;")
         # An enumeration number left alone at the head: it opens the first
         # sub-entry rather than make an empty sense.
         head=head.strip(" -\u2013;,")
@@ -2310,21 +2315,21 @@ def structure_(e):
             head=space_out(re.sub(r'\s+', ' ',
                                 (head + " " + " ".join(run_on))).strip())
         n_sub += len(sub)
-        struct_.append({"teksto": head, "sub": sub})
+        struct_.append({"texto": head, "sub": sub})
     for b in struct_:
-        b['teksto']=capital_start(b['teksto'])
+        b['texto']=capital_start(b['texto'])
         for x in b['sub']:
             x['loko']=lowercase_phrase(x['loko'])
             # The hyphen that introduced the NEXT phrase is left at the end of the
             # body of the previous one -- « ... relate Suno. – ». It no longer
             # announces anything, the phrase having taken its own paragraph.
-            x['teksto']=x['teksto'].rstrip(" -–,;")
+            x['texto']=x['texto'].rstrip(" -–,;")
             if not x['fako']:
-                mk=RE_QUAL_HEAD.match(x['teksto'])
+                mk=RE_QUAL_HEAD.match(x['texto'])
                 if mk:
                     x['fako']=mk.group(0).strip()
-                    x['teksto']=x['teksto'][mk.end():].lstrip(' .,;:')
-            x['teksto']=capital_start(x['teksto'])
+                    x['texto']=x['texto'][mk.end():].lstrip(' .,;:')
+            x['texto']=capital_start(x['texto'])
             # The qualifier is kept BARE, like the article's `fako` field: it is the
             # editions that lay the parentheses. Without that a phrase's domain --
             # taken in parentheses in the text -- and that of an attached article --
@@ -2349,7 +2354,7 @@ def structure_(e):
     dom |= {(x.get('fako') or '').strip().strip('()').rstrip('.').lower()
             for b in struct_ for x in b['sub']}
     dom.discard('')
-    texts=[b["teksto"] for b in struct_] + [x["teksto"] for b in struct_ for x in b["sub"]]
+    texts=[b["texto"] for b in struct_] + [x["texto"] for b in struct_ for x in b["sub"]]
     run_=[]; dub=[]; vu=set()
     for u in sublines:
         if u.lower() in loc: continue
@@ -2407,9 +2412,9 @@ def structure_(e):
     _poz=rules_placed().get("%s@%d:%d" % (e.get('vedetto'),
                                             e.get('image', -1), e.get('ligno', -1)), ())
     for b in struct_:
-        b['teksto_k']=mark_(b['teksto'], run_, _poz)
+        b['texto_k']=mark_(b['texto'], run_, _poz)
         for x in b['sub']:
-            x['teksto_k']=mark_(x['teksto'], run_, _poz)
+            x['texto_k']=mark_(x['texto'], run_, _poz)
     # A fragment absent from the body is not doubtful if it has found its place
     # elsewhere: domain, Latin name, phrase -- even a PART of a phrase. The rule
     # of « radiko » breaks at the end of a line and returns « Extraktar radiko,
@@ -2582,14 +2587,14 @@ def reattach_subwords(ent, file_=f"{T}/subwords.txt"):
         if f is None or m is None:
             print("  attachment with no target: %s -> %s" % (key_, key_p)); continue
         blocks=f.get('strukt') or []
-        body_=" ".join(b['teksto'] for b in blocks if b['teksto']).strip()
-        body_k=" ".join(b.get('teksto_k') or b['teksto'] for b in blocks
-                         if b['teksto']).strip()
+        body_=" ".join(b['texto'] for b in blocks if b['texto']).strip()
+        body_k=" ".join(b.get('texto_k') or b['texto'] for b in blocks
+                         if b['texto']).strip()
         if not body_: continue
         target=(m.get('strukt') or [None])[-1]
         if target is None: continue
         target['sub'].append({"loko": f['vedetto'], "fako": f['fako'] or "",
-                             "teksto": body_, "teksto_k": body_k,
+                             "texto": body_, "texto_k": body_k,
                              "kodo": f.get('kodo') or "",
                              "lingui": f.get('lingui') or []})
         m['sublineita']=(m.get('sublineita') or []) + (f.get('sublineita') or [])

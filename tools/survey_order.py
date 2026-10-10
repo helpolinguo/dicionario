@@ -192,7 +192,7 @@ def write_(source=SOURCE, out_path=OUT_PATH):
                       % ", ".join("**%s**%s" % (v, " (word attested elsewhere)"
                                                 if v in lexicon else "")
                                   for v in var[:8]), ""]
-            L += ["```", (e.get('teksto_brut') or '')[:200], "```", ""]
+            L += ["```", (e.get('texto_brut') or '')[:200], "```", ""]
 
     open(out_path, "w", encoding='utf-8').write("\n".join(L) + "\n")
     print("%s : %d transpositions, %d headwords astray"

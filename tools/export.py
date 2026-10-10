@@ -435,9 +435,9 @@ addEventListener('keydown',function(ev){
 
 def html_edition(ent):
     D=[{"v":e['vedetto'],"f":e['fako'],"l":e['latina'],
-        "b":[{"t":b.get('teksto_k') or b.get('teksto') or '',
+        "b":[{"t":b.get('texto_k') or b.get('texto') or '',
               "u":[{"q":x.get('fako') or '',"k":x['loko'],
-                    "t":x.get('teksto_k') or x.get('teksto') or '',
+                    "t":x.get('texto_k') or x.get('texto') or '',
                     **({"n":x['lingui']} if x.get('lingui') else {})}
                    for x in (b.get('sub') or [])]}
              for b in (e.get('strukt') or [])],

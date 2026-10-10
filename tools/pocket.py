@@ -110,10 +110,10 @@ def entry(e):
     L = ["\\vorto{%s}" % esc(aff)]
     if e.get('fako'):
         L.append("\\fako{%s}" % esc(e['fako']))
-    B = e.get('strukt') or [{"teksto": t, "teksto_k": t, "sub": []}
+    B = e.get('strukt') or [{"texto": t, "texto_k": t, "sub": []}
                             for t in (e.get('senci') or [])]
     for i, b in enumerate(B):
-        t = _bound_to(esc(b.get('teksto_k') or b.get('teksto') or ''))
+        t = _bound_to(esc(b.get('texto_k') or b.get('texto') or ''))
         sub = b.get('sub') or []
         num = ""
         if len(B) > 1:
@@ -125,7 +125,7 @@ def entry(e):
             code_ = ''.join(ABBREV.get(y, '') for y in (x.get('lingui') or []))
             L.append("\\subvorto{%s}{%s}{%s}{%s}{%s}" % (
                 esc(x.get('fako') or ''), esc(x['loko']),
-                _bound_to(esc(x.get('teksto_k') or x.get('teksto') or '')),
+                _bound_to(esc(x.get('texto_k') or x.get('texto') or '')),
                 num if j == 0 else "", esc(code_)))
     # The remarks the book sets below its numbering: after the senses and their
     # sub-entries, before the labels (symbol, Latin name, language codes), and
