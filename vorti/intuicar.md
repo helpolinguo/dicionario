@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## intuicar *(trans.) (filoz.)*
-Konocar nemediate, direte.- (metaf.) Komprenar la kozi rapide
+Konocar nemediate, direte. – (metaf.) Komprenar la kozi rapide
 <!-- p. 241, l. 31 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ---

@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## spoto *(fiziol.)*
-Mikra saliajo, o mikra makulo sur la pelo, qua igas -ulakaze – plu « spicoza » la fizionomio (di muliero)
+Mikra saliajo, o mikra makulo sur la pelo, qua igas – ulakaze – plu « spicoza » la fizionomio (di muliero)
 <!-- p. 548, l. 16 | Angla -->
 
 ---

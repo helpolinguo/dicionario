@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## akushar *(trans.)*
-Igar la feto homala ekirar- per ekpulso naturala, o per extrakto – de la organo en qua lu su developis
+Igar la feto homala ekirar – per ekpulso naturala, o per extrakto – de la organo en qua lu su developis
 <!-- p. 15, l. 21 | Germana, Angla, Franca, Rusa -->
 
 ---

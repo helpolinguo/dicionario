@@ -2,7 +2,7 @@
 
 ## rango
 1. Singla de la linei sur qui kozi, o personi, qui intersucedas esas situita
-2. (a) En serio de personi, de kozi, la plaso qua apartenas a singla de li, avan o dop la ceteri. -b La plaso quan ulu okupas en la estimo da la cetera homi
+2. (a) En serio de personi, de kozi, la plaso qua apartenas a singla de li, avan o dop la ceteri. – (b) La plaso quan ulu okupas en la estimo da la cetera homi
 <!-- p. 482, l. 2 | Germana, Angla, Franca, Rusa -->
 
 ---

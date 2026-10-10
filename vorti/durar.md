@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## durar *(trans. e netrans.)*
-Ne-cesar existar, permanar plu o min longe.- Ne-cesar (sua ago)
+Ne-cesar existar, permanar plu o min longe. – Ne-cesar (sua ago)
 <!-- p. 124, l. 52 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ---

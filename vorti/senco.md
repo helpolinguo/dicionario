@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## senco
-Maniero ye qua kozo esas komprenenda. La senco konsistas ye la idei diversa quin lu expresas od implikas- kontre ke lua signifiko konsistas ye la objekti diversa a qui lu esas aplikebla
+Maniero ye qua kozo esas komprenenda. La senco konsistas ye la idei diversa quin lu expresas od implikas – kontre ke lua signifiko konsistas ye la objekti diversa a qui lu esas aplikebla
 <!-- p. 518, l. 15 | Angla, Franca, Italiana, Hispana -->
 
 ---

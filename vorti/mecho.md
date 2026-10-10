@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## mecho
-Kordono, bendo, asembluro de kotono e kanabo, cirkumata da sebo o de vaxo, por facar kandeli, bujii, ceri, o -imbibite ye oleo, petrolo, e c. – por brular en lampo
+Kordono, bendo, asembluro de kotono e kanabo, cirkumata da sebo o de vaxo, por facar kandeli, bujii, ceri, o – imbibite ye oleo, petrolo, e c. – por brular en lampo
 <!-- p. 362, l. 8 | sen-lingua -->
 
 ---

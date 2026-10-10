@@ -2,7 +2,7 @@
 
 ## konsonancar *(netrans.)*
 1. (aludante foni muzikala) Interakordar plu o min komplete
-2. (aludante silabi, e precipue finali di qui la termino-foni esas sama) -Interproximesar
+2. (aludante silabi, e precipue finali di qui la termino-foni esas sama) – Interproximesar
 <!-- p. 299, l. 44 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ---

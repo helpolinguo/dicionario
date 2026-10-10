@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## hektografar *(trans.)*
-Imprimar (per aparato) skriburo, desegnuro, muziko-noti quin onu preliminare trasis, per perforo, sur *stencilo ek vaxofolio o parafino-folio quan onu aplikas sur la inkizorolero di ta aparato; onu pasigas sub la rolero la paper-folii virga : la inko trairas la perforuro- e lasas la traco necesa
+Imprimar (per aparato) skriburo, desegnuro, muziko-noti quin onu preliminare trasis, per perforo, sur *stencilo ek vaxofolio o parafino-folio quan onu aplikas sur la inkizorolero di ta aparato; onu pasigas sub la rolero la paper-folii virga : la inko trairas la perforuro – e lasas la traco necesa
 <!-- p. 209, l. 45 | sen-lingua -->
 
 ---
