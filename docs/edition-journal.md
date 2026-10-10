@@ -1996,11 +1996,12 @@ What was left were the dashes the typist struck with one space missing. A
 survey of every hyphen beside punctuation, beside a single space, or between
 two digits gave 31. Twenty-three were dashes: *longe.- Ne-cesar*, *adextere.
 -Movo*, *ekirar- per*, *kontenas -segun*. Homeopatio's *1755-1843* is a range,
-set *1755–1843*. Seven stay as they are: megafono's *radio- o televiziono*,
+set *1755–1843*. Seven are not dashes: megafono's *radio- o televiziono*,
 a true suspended hyphen; the affix in *-ajo = -(at)ajo*, twice; pirogalo's
 *1-2-3*, the numbering of a formula, twice; skotisho's *2-4*, a time
 signature; and indentar's *"lakuno-"- tipi*, a compound broken at a line
-end rather than a dash.
+end rather than a dash. The first six stay as they are. Indentar's was
+set right afterwards, as *« lakuno »-tipi* (see below).
 
 A hyphen right after a full stop, a comma, a semicolon or a colon is never a
 word's, and a rule now sets it as a dash. The others sit beside true hyphens,
@@ -2014,3 +2015,12 @@ spacing pass.
 Twenty-four articles move. Two of them, expansar and vedeto, gain the remark
 their last dash introduces. verify_edition loses four reports that took these
 dashes for hyphens left over from a line end.
+
+Indentar's compound, set aside by the survey because it is not a dash, is set
+right in its turn: *pozante avan olu « lakuno »-tipi*, the compositor's
+spaces. The typescript strikes the compound's hyphen twice, inside the quotes
+and after them, *"lakuno-"-*, at the end of a line, and rejoining the line
+left a space before *tipi*. The book writes the same kind of compound, a
+quoted first part, with one hyphen after the quotes, *"brokoli"-kaulo*, which
+the edition sets *« brokoli »-kaulo*; indentar now reads the same way. One
+line in `work/words.txt`; one article moves.
