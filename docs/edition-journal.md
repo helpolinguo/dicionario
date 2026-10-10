@@ -1958,3 +1958,41 @@ and `survey_order.py` — and the page, the pocket book and the survey come
 back byte for byte.
 
 The passages above that named the keys are corrected where they stand.
+
+
+---
+
+## The dashes struck against a word (2026)
+
+*« Would it be more typographical to write – instead of -, and — instead
+of –? »* — Gilles-Philippe Morin. The first was done already, where it
+belongs: the typist's spaced *-* is set *–*, the doubled *--* is set *—*,
+and the hyphen of a compound or an affix stays a hyphen, 4,420 of them.
+The second is a convention, not a correction. The spaced en dash is the
+usage of French and German setting and much British; the em dash, usually
+closed up, the American. The edition keeps the en dash. Its em dash already
+stands for the typist's *--*, and in the pocket book's 43 mm column a dash
+twice as wide would open the gaps that were just closed.
+
+What was left were the dashes the typist struck with one space missing. A
+survey of every hyphen beside punctuation, beside a single space, or between
+two digits gave 31. Twenty-three were dashes: *longe.- Ne-cesar*, *adextere.
+-Movo*, *ekirar- per*, *kontenas -segun*. Homeopatio's *1755-1843* is a range,
+set *1755–1843*. Seven stay as they are: megafono's *radio- o televiziono*,
+a true suspended hyphen; the affix in *-ajo = -(at)ajo*, twice; pirogalo's
+*1-2-3*, the numbering of a formula, twice; skotisho's *2-4*, a time
+signature; and indentar's *"lakuno-"- tipi*, a compound broken at a line
+end rather than a dash.
+
+A hyphen right after a full stop, a comma, a semicolon or a colon is never a
+word's, and a rule now sets it as a dash. The others sit beside true hyphens,
+and `work/words.txt` takes them one by one. Rango's *-b)* gets its bracket
+back, *– (b)*, paired with its *(a)*. The survey also found why the old rule
+for the dash stuck to a domain's parenthesis — written for intuicar's
+*direte.- (metaf.)* — had never reached it: when it ran, the parenthesis was
+still glued to the next word. The dash rules now run again after the last
+spacing pass.
+
+Twenty-four articles move. Two of them, expansar and vedeto, gain the remark
+their last dash introduces. verify_edition loses four reports that took these
+dashes for hyphens left over from a line end.
