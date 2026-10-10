@@ -2673,9 +2673,9 @@ def build():
         for k,t in enumerate(S):
             # Orphaned punctuation at the head of a sense: it comes from a break in the
             # original, not from the text. « titrar » began with a full stop.
-            S[k]=multiplication(compound(ellipsis_(balance_brackets(point_abbrev(close_bracket(
+            S[k]=stray_dashes(multiplication(compound(ellipsis_(balance_brackets(point_abbrev(close_bracket(
                 close_qualifier(orphan_bracket(formulas(to_digits(point_senses(
-                    overload(space_out(tidy_punctuation(t)))))))))).lstrip('.,;:) ').strip()))))
+                    overload(space_out(tidy_punctuation(t)))))))))).lstrip('.,;:) ').strip())))))
     # (cifri and formuli come in here alone, once the proofreading is laid)
     # A second pass of the corrections by eye. A line of words.txt written from
     # the RENDERED text could not apply higher up: « de l til 10 litri » (bidono)
@@ -3437,6 +3437,55 @@ def star_(ent):
     return n
 
 
+def dashes(t):
+    """The typescript's dashes, struck with the hyphen key, set as dashes.
+
+    The typewriter had one stroke. The typist made a dash of it by spacing it,
+    « - », and a longer one by doubling it, « -- »: they become « – » and « — »,
+    587 and 12 in the published definitions. The hyphen of a compound or an
+    affix, which touches its word, stays a hyphen -- 4,420 of them."""
+    # The separating hyphen stuck to the domain's parenthesis:
+    # « granda. -(cinemo) » under « skreno », « direte.- (metaf.) » under
+    # « intuicar ». The book writes it with both its spaces eighty-five
+    # times; thirteen times one of the two is missing. An AFFIX's
+    # parenthesis is not one -- « = -(at)ajo », « equivalas -(ant)ajo »:
+    # there the word goes on after the closing mark, and the hyphen belongs
+    # to it.
+    t=re.sub(r'\s*-\s*(\([^()]*\))(?![A-Za-zà-ÿ])', r' - \1', t)
+    t=re.sub(r'(\w)- -(\w)', r'\1-\2', t)          # a doubled stroke from a break
+    t=re.sub(r'(?<![-\w])(?:- -|--)(?![-\w])', '—', t)
+    t=re.sub(r'(?<=\S) - (?=\S)', ' – ', t)
+    return t
+
+def stray_dashes(t):
+    """The dashes the typist struck touching a word, set as dashes too.
+
+    RUN AFTER THE LAST SPACING PASS, NOT ONLY IN typography(). The rule for
+    the hyphen stuck to a domain's parenthesis was written for « direte.-
+    (metaf.) » under intuicar, and the published text still read it so, and
+    « repugnante. -(metaf.) » under bitra: when typography() runs, the
+    parenthesis is still glued to the next word -- « -(metaf.)Qua » -- and
+    the rule, which spares an affix's « -(at)ajo », spares it too. The spacing
+    pass that follows opens « (metaf.) Qua »; dashes() is idempotent, and run
+    again behind it, the rule meets the form it was written for.
+
+    A HYPHEN RIGHT AFTER A FULL STOP, A COMMA, A SEMICOLON OR A COLON is never
+    a word's: the typist's dash, with one of its spaces missing -- « longe.-
+    Ne-cesar » (durar), « adextere. -Movo » (expansar), « rivo,-homi »
+    (paromo), « e c.- esar » (recevar). Surveyed over the 9,473 articles,
+    thirteen such hyphens, all dashes, and a fourteenth, rango's « -b) », a
+    dash before a lost bracket (work/words.txt gives it back). A digit after
+    it is left alone. The dashes struck touching a word on ONE side with no
+    punctuation -- « ekirar- per », « kontenas -segun » -- cannot be told
+    from the hyphen of « radio- o televiziono » or of the affix « -ajo » by
+    a rule; they are taken one by one in work/words.txt. Together, 24
+    articles; the definitions' « – » go from 566 to 587, and verify_edition's
+    « cesure-non-recollee » from 5 reports to 1 -- four of them were these
+    dashes, taken for a hyphen left over from a line end. The fifth is
+    megafono's « radio- o televiziono », a true suspended hyphen."""
+    t=re.sub(r'(?<=[.,;:])[ \u00a0]?-[ \u00a0]?(?=[^\s\d\-])', ' – ', t)
+    return dashes(t)
+
 def typography(ent):
     """Typography of the reading edition.
 
@@ -3464,17 +3513,7 @@ def typography(ent):
         s=e.get('senci') or []
         for k,t in enumerate(s):
             o=t
-            # The separating hyphen stuck to the domain's parenthesis:
-            # « granda. -(cinemo) » under « skreno », « direte.- (metaf.) » under
-            # « intuicar ». The book writes it with both its spaces eighty-five
-            # times; thirteen times one of the two is missing. An AFFIX's
-            # parenthesis is not one -- « = -(at)ajo », « equivalas -(ant)ajo »:
-            # there the word goes on after the closing mark, and the hyphen belongs
-            # to it.
-            t=re.sub(r'\s*-\s*(\([^()]*\))(?![A-Za-zà-ÿ])', r' - \1', t)
-            t=re.sub(r'(\w)- -(\w)', r'\1-\2', t)          # a doubled stroke from a break
-            t=re.sub(r'(?<![-\w])(?:- -|--)(?![-\w])', '—', t)
-            t=re.sub(r'(?<=\S) - (?=\S)', ' – ', t)
+            t=dashes(t)
             # The typescript's « + » marks the unofficial words; Ido tradition
             # writes an asterisk. 214 occurrences.
             # An unofficial word is an Ido word, hence in lower case: « +H₂O », in
