@@ -7952,7 +7952,7 @@ sibilo (en la epoki antiqua) — Muliero pri qua onu asertis ke lu recevas de de
 *siejo — Loko ube ulu, ulo, esas establisita – ube eventas lua operaci komercala, industriala, financala
 siena-tero — Okro bruna, redatra, uzata por facar ula farbi
 siestar (netrans.) — Dormar pos la repasto dimezala, dejuna
-sifiliso (patol.) — Morbo infektiva e kontagiala, transmisebla a la decedonti, e di qua la kauzo esas la mikrobo L. treponema pallidum – morbo qua afektas precipue la organi sexuala
+sifiliso (patol.) — Morbo infektiva e kontagiala, transmisebla a la decendonti, e di qua la kauzo esas la mikrobo L. treponema pallidum – morbo qua afektas precipue la organi sexuala
 siflar (trans. e netrans.) — Produktar bruiso akuta per igar aero eskapar per aperturo streta. (Kuglo sisas)
 sifono (tekn.) — Aparato U-forma, kun la U-branchi longa ne-inter-egale, uzata por transvarsar la liquido di vazo aden qua esas imersita la extremajo di la brancho kurta aden vazo ube abutas la brancho longa – la atmosferepreso esante plu granda sur la facio ube la kolono de liquido esas min alta kande la tubo esas amorcita
 sigaro — Mikra rulo-bloko ek tabako-folii, di qua onu acendas un ek la extremaji, e de qua onu aspiras la fumuro per la altra extremajo quan onu pozas en sua boko
