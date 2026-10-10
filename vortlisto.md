@@ -4535,7 +4535,7 @@ koncienco — Savo interna, da singlu, pri lo etiko-bona e lo etiko-mala
 koncilo (eklezio katol.) — Asemblitaro ek episkopi e teologio-doktori, por decidar pri ula problemi di doktrino, di diciplino ekleziala
 konciliar (trans.) — Adduktar ad interkonkordo pri litijo-punto
 konciza (pri stilo) — Sen to quo ne esas necesa por la senco
-kondamnar (trans.) — Deklarar kulpoza, per verdikto : 1. frapar (ulu) per judicio qua deklaras ke lu kulpis per kriminir, deliktir, detrimentir; 2. (metaf.)(pri libri, letri, e c.) Koaktar ad ulo puniso
+kondamnar (trans.) — Deklarar kulpoza, per verdikto : 1. frapar (ulu) per judicio qua deklaras ke lu kulpis per kriminir, deliktir, detrimentir; 2. (metaf.) (pri libri, letri, e c.) Koaktar ad ulo puniso
 kondensar (trans.) — Igar (gaso, vaporo) plu densa, per la pluproximigo di lua molekuli
 kondensatoro (elektro) — Aparato quan onu uzas por akumular, sur surfaco, elektro pozitiva o negativa
 kondicionar (trans., per) — Submisar a klauzo obliganta de qua dependas la valideso (di akto, e c.)
@@ -5086,7 +5086,7 @@ lego — Ago-regulo impozata da autoritatozo supera
 legacar (trans., ad) — Donacar (ad ulu) per testamento qua atribuas ad un od a plura personi parto di sua havaji o nur parto de olci
 legato — Delegito di la imperiestri Romana, qua havis kom tasko reprezentar ici en la provinci
 legendo — Serio de rakonti populala, qui havas maxim-multa-kaze fundo exakta, ma developita, transformita da la tradicioni
-legiono — (1)(epoki antiqua, en Roma) Armeo-korpo qua konsistis ye infantrio e kavalrio. (2) En Francia, lor la rejo Francisko I. (cirkum la yaro 1515) : armeo-korpo permananta
+legiono — (1) (epoki antiqua, en Roma) Armeo-korpo qua konsistis ye infantrio e kavalrio. (2) En Francia, lor la rejo Francisko I. (cirkum la yaro 1515) : armeo-korpo permananta
 legitima — Konsakrita da la lego
 legumo — Parto di planto koliita por uzesar kom nutrivo : lensi, fazeoli, pizi, asparagi, e c.
 leguminoso (bot.) — Di qua la frukto esas shelo qua kontenas maxim-multa-kaze legumo (pizo, fabo, fazeolo)
@@ -7269,7 +7269,7 @@ rabio (patol.) — Morbo virulenta qua aparas spontane che la hundo (plu rare ch
 rabino — Doktoro pri la lego religiala di la Judi
 raboto (tekn.) — Utensilo di menuzisto, cizelo ek stalo, muntita oblique interne di ligno-peco rektangula kavigita, qua lasas pasar la parto tranchiva; uzata por planigar, diminutar la areo di ligno-peco
 racemo — (biol.) Nomo ciencala di la grapo
-raciono — La povo dicernar la exaktaji : (a) la fakultato deskovrar lo exakta; (b)(filoz.) la fakultato konceptar la exaktaji absoluta
+raciono — La povo dicernar la exaktaji : (a) la fakultato deskovrar lo exakta; (b) (filoz.) la fakultato konceptar la exaktaji absoluta
 rado — Parto de maro, qua penetras aden la tero ferma, e formacas quaza doko naturala ube la navi povas shirmar su
 radiar (netrans.) — (aludante lumo-sprici rekta) Lansesar quale dardo, de centro lumoza, diverge, omna-sinse
 radiatoro (teknol.) — Organo di ensemblo mekanikala, destinita ad eventigar la koldesko di liquido o di gaso uzata, en la ensemblo, kom vehilo di kaloro
@@ -7465,7 +7465,7 @@ reperkutar (trans.) — Produktar retro-shoko. – (La korpo shokata, shokas sua
 repertorio — Sorto de tabelo, en qua la tituli, la nomi, e c. esas klasifikita segun ordino qua igas posibla trovar li facile
 repetar (trans.) — Dicar plura-foye, parole o skribe, to quon onu, od altru, ja dicis
 repleta (pri vivanto) — Di qua la formo esas kelke ronda, la karno ferma, la pelo pasable tensita
-replikar (trans., ad, pri) — (a) Respondar a to quon ulu respondis. (b)(yuro-cienco) Respondar a la respondo da la adverso
+replikar (trans., ad, pri) — (a) Respondar a to quon ulu respondis. (b) (yuro-cienco) Respondar a la respondo da la adverso
 reportar (trans.) (en borso) — Plulongigar la vendo-kontrato kun pago-tempo, quan agis spekulisto, de liquidaco-dato a la *nexta, po pagar a la kapitaliero qua satisfacas provizore la engaji financala, la difero-quanto, plus, en ula kazi, premio
 repozar (netrans.) — Jacar en stando tala ke onu cesas movar su, por desaparigar fatigeso
 represar (trans.) — Haltigar la ageso, la exekuteso (di to quo esas kondamninda)
@@ -7886,7 +7886,7 @@ sesgar (trans.) — Entamar per deprenar parto di la bordo
 *sesiono — Parto di la yaro, dum qua *seancas kontinue deliberantaro, tribunalo nepermananta
 setono (medic.) — Mecho de kotono quan onu pasigas tra la pelo e la celularo por durigar la funciono di la moyeno per qua onu ekfluigas ulo mala e liberigas su de lu
 severa (ad, pri) — Sen indulgo pri la kulpi
-seviciar (ad) — (netrans.)(yuro-cienco) Agar violentoze : spozo, a sua spozo; patro, a sua filio; mastro, a sua servisto
+seviciar (ad) — (netrans.) (yuro-cienco) Agar violentoze : spozo, a sua spozo; patro, a sua filio; mastro, a sua servisto
 sexa- — Prefixo ciencala : « qua havas sis… »
 sexagesimo (liturgio katol.) — La dio sisadekesma ante la oktavo di pasko
 sexto (muziko) — Intervalo qua kontenas sis noti – de « do » a « la »
@@ -7989,7 +7989,7 @@ simbolo — Objekto perceptebla, egardata kom la signo qua reprezentas kozo qua 
 simboliko — Cienco qua expozas ed interpretas la simboli qui koncernas ta o ca religio o populo
 simetra — Karakterizata da la korespondo segun-norma (pri grandeso, figuro, situeso) inter korpo o parti di korpo. (a) (anat.) Dispozeso di organi dua, situita, ica dextre, ita sinistre, di la lineo mediana (che la vertebrozi e la artropodi); (b) (geom.) (figuro) di qua la elementi reciproka inter-egala esas situita inverse
 simfizo (anat.) — Artiko ek du osti, fixa o poke-moviva, per fibro kartilago
-simfonio (muziko) — Muzikajo por plura voco-toni od instrumenti koncertala : (a)(olim) : Muzikajo orkestrala qua esas la uverturo di opero; (b)(de la yarcento 18-esma) Kompozajo muzikala por orkestro, segun la formulo di sonato, t.e. qua konsistas ye prefaco, adajio, skerco e finalo
+simfonio (muziko) — Muzikajo por plura voco-toni od instrumenti koncertala : (a) (olim) : Muzikajo orkestrala qua esas la uverturo di opero; (b) (de la yarcento 18-esma) Kompozajo muzikala por orkestro, segun la formulo di sonato, t.e. qua konsistas ye prefaco, adajio, skerco e finalo
 simio (zool.) — Mamifero quadrimanua
 simila — Di qua la eso-maniero diferas per nur tre poke de la eso-maniero di altra persono, di altra kozo
 simoniar (netrans.) — Komercachar pri la kozi religiala (sakramenti, tituli ekleziala, e c.) quin onu donas od aquiras po pekunio o po avantajo sekulara di altra sorto

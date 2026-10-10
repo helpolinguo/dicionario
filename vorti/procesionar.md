@@ -2,7 +2,7 @@
 
 ## procesionar *(netrans.)*
 1. (aludante la klerikaro od amaso de personi qui defilas ordinoze) Marchar kolone en la kirko od extere, kantante psalmi, himni, litanii, okazione di ula festi religiala
-2. (metaf.)(aludante longa serio de personi qui avancas ganso-marche) Marchar ica dop ita, unope
+2. (metaf.) (aludante longa serio de personi qui avancas ganso-marche) Marchar ica dop ita, unope
 <!-- p. 462, l. 2 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ---

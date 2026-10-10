@@ -2,7 +2,7 @@
 
 ## frizar *(trans.)*
 1. Volvar (hari, pili, e c.) cirkum li, preske lokle
-2. (netrans.)(aludante hari, pili, e c.) Ipse volvar cirkum su, preske lokle
+2. (netrans.) (aludante hari, pili, e c.) Ipse volvar cirkum su, preske lokle
 <!-- p. 180, l. 35 | Germana, Angla, Franca, Hispana -->
 
 ---
