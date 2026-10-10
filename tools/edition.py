@@ -488,8 +488,15 @@ def cut_up(pages, corrected, rules_=None):
         if len(u) < 8 or len(u.split()) < 2: continue
         e['lineoj'].extend(lines); n_run_on+=1
     if n_run_on: print("articles continued at the head of a page: %d"%n_run_on)
+    # The cells the correction layers touched in the entry: provenance, not a
+    # doubt. The key was « korektita » until October 2026, a participle of
+    # « korektar », a verb the book does not have -- its root korekt- is an
+    # adjective, « korekta », and it makes the verb with -ig-, « korektigar »,
+    # three times in its definitions. Renamed in the published records on
+    # purpose, as a key is an address: see docs/edition-journal.md, « The
+    # field korektigita ».
     for e in ent:
-        e['korektita'] = sum(1 for (k,_) in e['lineoj']
+        e['korektigita'] = sum(1 for (k,_) in e['lineoj']
                              for c in range(120) if (e['image'],k,c) in corrected)
         e['filetoj'] = rules_.get(e['image'], {})
     return ent
@@ -1345,10 +1352,12 @@ def analyse_(e, lexicon=None, compounds=None):
     if not v: e['drapeli'].append('sen-chefvorto')
     elif not _ending_ok(e): e['drapeli'].append('finalo-nekustumala')
     if not e['kodo']: e['drapeli'].append('sen-lingua')
-    # The flag « korektigita » said « at least one cell corrected automatically »
+    # The flag « korektita » said « at least one cell corrected automatically »
     # -- a piece of provenance, not a doubt. Every definition having been re-read
     # one by one, it no longer designated work remaining: it is withdrawn. The
-    # count stays in e['korektita'], for whoever wants to measure.
+    # count stays in e['korektigita'], for whoever wants to measure. (This
+    # comment named the flag « korektigita » after its passage into English;
+    # the flag was called « korektita », as work/log_edition.txt shows.)
 
     if e['image'] in (546,547): e['drapeli'].append('pagino-nefidinda')
     return e
