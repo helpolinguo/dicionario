@@ -3180,6 +3180,14 @@ def space_out(t):
             return m.group(0)
         return '%s(%s) ' % (draw_, inside)
     t = re.sub(r'(-?)\(([^()]*)\)(?=([A-Za-zÀ-ÿ]+))', _close_space, t)
+    # Two parentheses struck against each other take a space between them:
+    # « (1)(epoki antiqua, en Roma) » under legiono, « (metaf.)(a) » under
+    # abismo, « (b)(filoz.) » under raciono -- a sense number or a qualifier
+    # and the next one, thirteen times in twelve articles, and never otherwise.
+    # A chemical formula joins its groups so, « (CH₃)(CH₂) », but its group
+    # opens on an element's capital; the thirteen open on a lower-case letter
+    # or a digit, and only those take the space.
+    t = re.sub(r'\)\((?=[a-zà-ÿ0-9])', ') (', t)
     # « (olim).Vaporo-mashino »: the full stop that follows the closing
     # parenthesis sticks to the next word. 88 cases. We touch it only after a
     # parenthesis: elsewhere, « CH3CO.CH3 » is a chemical formula.
