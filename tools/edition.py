@@ -3162,7 +3162,9 @@ def space_out(t):
     # televizionorecevili » (megafono), where the hyphen hangs before the
     # conjunction, reglued into « radio-o ». The book's four other isolated hyphens
     # -- « ekirar- per », « perforuro- e », « implikas- kontre »,
-    # « establisita- ube » -- are no more hyphens of affixes than that one.
+    # « establisita- ube » -- are no more hyphens of affixes than that one: they
+    # are not hyphens at all, but the typist's dashes struck against the word,
+    # and work/words.txt sets them « – » (see stray_dashes()).
     t = RE_AFFIX_SPACE.sub(r'-\1', t)
     # The closing parenthesis stuck to the next word takes a space -- but not the
     # one that is PART of the word. The author notes the optional element that way:
