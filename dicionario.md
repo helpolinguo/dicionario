@@ -12273,7 +12273,7 @@ L. fuchsia
 
 ## fuxino *(kemio)*
 Farbo reda, preparita ek anilino
-*Simb. kem.* **C₂₀H₂₀N₃Cl, EH₂O**
+*Simb. kem.* **C₂₀H₂₀N₃Cl, e H₂O**
 <!-- p. 184, l. 39 | sen-lingua -->
 
 ## fuzar *(trans.)*

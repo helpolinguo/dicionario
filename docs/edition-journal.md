@@ -2058,3 +2058,17 @@ sentence wants the offspring to come. The book names descent with
 *decendanto* twice, *decendinti* once. *Decendonti* is their future,
 those who will be born. The typist dropped a letter. The facsimile keeps
 *decedonti*, and `work/words.txt` gives the reading edition *decendonti*.
+
+
+---
+
+## fuxino's water (2026)
+
+*« For fuxino, I think it is supposed to be C₂₀H₂₀N₃Cl, e H₂O instead of
+C₂₀H₂₀N₃Cl, EH₂O »* — Gilles-Philippe Morin. The typist struck the
+conjunction *e*, « and », in capitals in the middle of the formula: *C20 H20
+N3Cl, E H2 O*. Both decodings and the proofreading by eye read the capital,
+and the facsimile keeps it. The formula pass took it for an element and
+closed it up against the water. No element is written *E* alone, and the book
+joins two formulas with a small, spaced *e* elsewhere, under rusto: *Fe₂O₃ e
+Fe₃O₄*. `work/symbols.txt` now gives fuxino *C₂₀H₂₀N₃Cl, e H₂O*.
