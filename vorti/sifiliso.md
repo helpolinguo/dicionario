@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## sifiliso *(patol.)*
-Morbo infektiva e kontagiala, transmisebla a la decedonti, e di qua la kauzo esas la mikrobo L. treponema pallidum – morbo qua afektas precipue la organi sexuala
+Morbo infektiva e kontagiala, transmisebla a la decendonti, e di qua la kauzo esas la mikrobo L. treponema pallidum – morbo qua afektas precipue la organi sexuala
 <!-- p. 526, l. 24 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ---

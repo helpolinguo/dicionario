@@ -2042,3 +2042,19 @@ So the facsimile keeps *AZ2*, and the reading edition writes the book's
 symbol through `work/symbols.txt`, which sets the formula field. If the scan
 shows a small z, the correction moves to the facsimile, and the line in
 `symbols.txt` comes out.
+
+
+---
+
+## sifiliso's offspring (2026)
+
+*« In sifiliso I know it is written "decedonti" in the original, but that word
+does not make any sense; from the context I would replace it with
+"decendonti" »* — Gilles-Philippe Morin. *Decedonti* is a regular form, the
+future participle of *decedar*, to die. That is the trouble: the disease is
+*transmisebla a la decedonti*, transmissible to those who will die. The
+sentence wants the offspring to come. The book names descent with
+*decendar*, its headword, and its participles: *decendanti* four times,
+*decendanto* twice, *decendinti* once. *Decendonti* is their future,
+those who will be born. The typist dropped a letter. The facsimile keeps
+*decedonti*, and `work/words.txt` gives the reading edition *decendonti*.

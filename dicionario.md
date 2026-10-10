@@ -34518,7 +34518,7 @@ Dormar pos la repasto dimezala, dejuna
 <!-- p. 526, l. 21 | Germana, Angla, Franca, Italiana, Hispana -->
 
 ## sifiliso *(patol.)*
-Morbo infektiva e kontagiala, transmisebla a la decedonti, e di qua la kauzo esas la mikrobo L. treponema pallidum – morbo qua afektas precipue la organi sexuala
+Morbo infektiva e kontagiala, transmisebla a la decendonti, e di qua la kauzo esas la mikrobo L. treponema pallidum – morbo qua afektas precipue la organi sexuala
 <!-- p. 526, l. 24 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## siflar *(trans. e netrans.)*
