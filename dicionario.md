@@ -3003,7 +3003,7 @@ L. asparagus
 
 ## asparagino
 Substanco quan onu renkontras precipue en la yuna sprosi di asparago e qua uzesas medicine kom urinifiva
-*Simb. kem.* **C₈H₈AZ₂O₆**
+*Simb. kem.* **C₈H₈Az₂O₆**
 <!-- p. 44, l. 46 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## aspektar *(netrans.)*
