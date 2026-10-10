@@ -41,7 +41,7 @@ Transcription établie à partir du fac-similé fourni (639 pages photographiée
  "kodo":"EFIS", "pagino":92, "ligno":8, "image":99, "citita":false,
  "teksto":"cinocefalo. (zool.) Genero de simio, di qua la muzelo esas longa quale che la hundo. - L. cynocephalus. - EFIS.",
  "teksto_brut":"cinocefalo. (zool.) …",
- "korektita":0, "drapeli":[]}
+ "korektigita":0, "drapeli":[]}
 ```
 
 `pagino` est le numéro imprimé dans le livre ; `image` l'index dans le PDF
@@ -72,8 +72,9 @@ drapeau qui puisse les porter, et prennent l'espace que les éditions posent
 partout ailleurs : *« brokoli »-kaulo*. Le rangement, lui, ne compte ni chevron
 ni espace — le mot se cherche à *brokoli-kaulo*.
 
-`korektita` compte les cellules redressées dans l'entrée : une provenance, non
-un doute.
+`korektigita` compte les cellules redressées dans l'entrée : une provenance, non
+un doute. (La clé s'est appelée `korektita` jusqu'en octobre 2026 : voir
+« The field korektigita », à la fin.)
 
 ### Les sens et leurs sous-entrées (`strukt`)
 
@@ -1334,8 +1335,8 @@ dictionnaire. Plutôt que de masquer ce qui reste, la base le **signale** :
 `korektita` a cessé d'être un drapeau : il disait « au moins une cellule
 corrigée automatiquement », une provenance et non un doute, et toutes les
 définitions ayant été relues une à une il ne désignait plus de travail restant.
-Le compte reste dans le champ `korektita`, pour qui veut mesurer : 6 284 entrées
-en portent au moins une.
+Le compte reste dans le champ `korektigita` — `korektita` jusqu'en octobre
+2026 —, pour qui veut mesurer : 6 284 entrées en portent au moins une.
 
 Le drapeau d'ordre se lit sur la vedette **rangée**, sa marque de tête ôtée :
 l'astérisque du mot non officiel et le tiret de l'affixe ne sont pas des
@@ -1864,3 +1865,34 @@ was wrong, and the facsimile takes the correction too:
 *Asemblitaro generala (maxim-multa-kaze sekreta) de framasoni*, the general
 assembly of the freemasons. Rebuilt, one article of 9,473 moves, and one
 page of the facsimile by two cells.
+
+
+---
+
+## The field korektigita (2026)
+
+*« You wrote "korektita" but it should be "korektigita" »* — Gilles-Philippe
+Morin. The book agrees. Its root *korekt-* is an adjective, *korekta* (5 times
+in the definitions, *korekte* 3, *korekteso* 2), and it makes the verb with
+*-ig-*: *korektigar* 3 times, *korektigo* once, *korektar* never. *Korektita*
+was the participle of a verb the book does not have.
+
+The name was the field's, not just a word in a message: `tools/edition.py`
+wrote `korektita` into every record of `dicionario.jsonl` — the count of cells
+the correction layers touched in the entry. A key is an address, and this
+repository does not rename one along with the code around it. This one is
+renamed on purpose, in the published records too, because an Ido dictionary
+should not publish a malformed Ido word in its own data: `korektigita` from
+now on, the count unchanged. Nothing in the repository read the key back.
+
+The passages above that named the field are corrected where they stand. The
+flag of that name, withdrawn long ago, keeps the name it had: it was
+`korektita`, as `work/log_edition.txt` records — the comment in
+`edition.py` that called it *korektigita* had renamed it in passing when the
+tool went into English, and now says so.
+
+The pairs pass uses the same word in another sense, the corrected form of a
+word set against its faulty one (`fautiva`, `korektita`, `n_korektita` in
+`work/pairs.json`, `pairs_loose.json`, `pair_co.json` and the tools that write
+them). That is the pass's own working data, outside the published records,
+and it is left as it is.
