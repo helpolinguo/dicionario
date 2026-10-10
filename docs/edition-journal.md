@@ -1833,3 +1833,34 @@ in 100 where only the new one does, and it gives back *kuh* and *konoernas*
 *DaFIS* to *DEFIS* on the same line. The facsimile keeps *genita*;
 `work/words.txt` puts it right in the reading edition. Rebuilt, one article
 of 9,473 moves, by one letter in its senses.
+
+
+---
+
+## A remark on konvento (2026)
+
+### A word left out, and typed below behind a slash
+
+*« the word "generala" was forgotten right after "Asemblitaro", so that is
+why it is written underneath with a slash »* — Gilles-Philippe Morin, with a
+crop of the scan (image 310, lines 31–32):
+
+    konvento. Asemblitaro/(maxim-multa-kaze sekreta) de fra-
+       masoni. - DEFIS.  /generala
+
+The typist skipped the word, typed it behind the language code, and struck
+a slash before it and another at its place in the sentence, one above the
+other in column 21. The book does this once: no other article carries a word
+behind its code.
+
+The machine read neither stroke as a slash — the first, running below the
+line, as a comma; the second, rising above it, as the *+* of an unofficial
+word — and the reading edition printed *Asemblitaro, (maxim-multa-kaze
+sekreta) de framasoni. \*generala*, an asterisk on a word that is official
+and was never marked. Here, unlike *genita*, it is the transcription that
+was wrong, and the facsimile takes the correction too:
+`work/exceptions_manual.txt` gives back the two slashes, and
+`work/words.txt` carries the word to its place in the reading edition —
+*Asemblitaro generala (maxim-multa-kaze sekreta) de framasoni*, the general
+assembly of the freemasons. Rebuilt, one article of 9,473 moves, and one
+page of the facsimile by two cells.
