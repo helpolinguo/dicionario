@@ -32,15 +32,15 @@ Transcription établie à partir du fac-similé fourni (639 pages photographiée
 ```json
 {"vedetto":"cinocefalo", "fako":"zool.",
  "senci":["Genero de simio, di qua la muzelo esas longa quale che la hundo"],
- "strukt":[{"teksto":"Genero de simio, di qua la muzelo esas longa quale che la hundo",
-            "teksto_k":"Genero de simio, di qua la muzelo esas longa quale che la hundo",
+ "strukt":[{"texto":"Genero de simio, di qua la muzelo esas longa quale che la hundo",
+            "texto_k":"Genero de simio, di qua la muzelo esas longa quale che la hundo",
             "sub":[]}],
  "sublineita":["zool","cynocephalus"], "kursiva":[], "dubinda":[],
  "latina":["cynocephalus"], "simbolo":null,
  "lingui":["Angla","Franca","Italiana","Hispana"],
  "kodo":"EFIS", "pagino":92, "ligno":8, "image":99, "citita":false,
- "teksto":"cinocefalo. (zool.) Genero de simio, di qua la muzelo esas longa quale che la hundo. - L. cynocephalus. - EFIS.",
- "teksto_brut":"cinocefalo. (zool.) …",
+ "texto":"cinocefalo. (zool.) Genero de simio, di qua la muzelo esas longa quale che la hundo. - L. cynocephalus. - EFIS.",
+ "texto_brut":"cinocefalo. (zool.) …",
  "korektigita":0, "drapeli":[]}
 ```
 
@@ -57,8 +57,9 @@ livre saute deux numéros** : la page qui porte `fosfo` est numérotée
 `pagino - 2`**. `image` et `ligno`, eux, restent exacts de bout en bout : c'est
 sur eux que reposent les clés de `subvorti.txt` et de `simboli.txt`.
 
-`teksto_brut` est la ligne telle que le décodage l'a lue ; `teksto` la même
-après correction et typographie ; `senci` le découpage en sens numérotés, débarrassé
+`texto_brut` est la ligne telle que le décodage l'a lue ; `texto` la même
+après correction et typographie (les trois clés `texto…` se sont écrites
+`teksto…` jusqu'en octobre 2026 : voir « The field texto », à la fin) ; `senci` le découpage en sens numérotés, débarrassé
 des numéros de l'original. `citita` marque l'emprunt que l'auteur cite entre
 guillemets — *« amen »* —, que les éditions rendent en chevrons sans que la
 recherche ait à les taper. Encore faut-il que les guillemets tiennent **tout**
@@ -98,17 +99,17 @@ Tous ces cas donnent la même chose : coulées dans le paragraphe, ces locutions
 cherchent comme une vedette**.
 
 ```json
-"strukt":[{"teksto":"Eso mentala, anmala, psikala, od aferala di la individuo koncernata",
+"strukt":[{"texto":"Eso mentala, anmala, psikala, od aferala di la individuo koncernata",
            "sub":[{"loko":"estado civila", "fako":"",
-                   "teksto":"La situeso di persono kom filio legitima o ne-legitima, mariajita o celiba"}]}]
+                   "texto":"La situeso di persono kom filio legitima o ne-legitima, mariajita o celiba"}]}]
 ```
 
 | clé | ce que c'est |
 |---|---|
-| `teksto` | le corps du sens, la locution ôtée. Vide quand le sens n'a que ses locutions : son numéro passe alors sur la première |
+| `texto` | le corps du sens, la locution ôtée. Vide quand le sens n'a que ses locutions : son numéro passe alors sur la première |
 | `sub[].loko` | la locution, écrite en minuscule comme une vedette |
 | `sub[].fako` | son domaine propre, nu, sans les parenthèses — *geom.* |
-| `sub[].teksto` | sa définition |
+| `sub[].texto` | sa définition |
 | `sub[].kodo`, `sub[].lingui` | présents sur la seule sous-entrée qui vient d'un **rattachement** (voir plus bas) : l'article rattaché garde son code de langues |
 
 La **capitale** n'était qu'un indice. Ce qui annonce une locution, c'est le
@@ -1296,14 +1297,14 @@ Un souligné n'est ni `kursiva` ni `dubinda` quand il a trouvé sa place ailleur
 — dans `fako`, dans `latina`, dans `simbolo`, ou comme locution. C'est le cas de *cinocefalo*
 ci-dessus : ses deux soulignés sont devenus son domaine et son nom latin.
 
-`strukt` porte, à côté de chaque `teksto`, un `teksto_k` : le même texte avec
+`strukt` porte, à côté de chaque `texto`, un `texto_k` : le même texte avec
 deux bornes invisibles, `U+E000` et `U+E001`, autour de ce qui va en italique.
 Les éditions les traduisent, `<i>` pour le HTML et `\textit` pour le PDF ; qui
 lit la base peut les ignorer ou les ôter.
 
 ```
-teksto   : Pikanta ed atakema (metaf.)
-teksto_k : Pikanta ed atakema \ue000(metaf.)\ue001
+texto   : Pikanta ed atakema (metaf.)
+texto_k : Pikanta ed atakema \ue000(metaf.)\ue001
 ```
 
 `filets-dubinda.md` classe les 1 531 fragments non placés par famille, la plus
@@ -1934,3 +1935,26 @@ penalty: 461 such articles, 62 such lines.
 but an edge short by 2.3 mm on average and 450 pages. What stays loose is
 mostly the first line of a short article. ultramaro's goes from 10.4 times
 to 4.9: *Farbo bele-azurea* cannot fill a justified line.
+
+
+---
+
+## The field texto (2026)
+
+*« "teksto" should be "texto" »* — Gilles-Philippe Morin. The book agrees:
+Ido writes the word with its *x*. *Texto* stands 47 times in the definitions,
+with *raporto-texto*, *muziko-texto*, *sen-texta*, *pretextar*; *teksto*,
+never.
+
+Three keys carried the misspelling, and all three are published in every
+record of `dicionario.jsonl`: `texto`, the entry after correction and
+typography; `texto_brut`, the line as the decoding read it; and, in `strukt`,
+`texto` and `texto_k`, a sense with and without the marks of its italic.
+They are renamed on purpose, in the published records too, as `korektita`
+became `korektigita` and for the same reason: an Ido dictionary should not
+publish a misspelt Ido word in its own data. Nothing else moves. Four tools
+read the keys — `edition.py`, which writes them, `export.py`, `pocket.py`
+and `survey_order.py` — and the page, the pocket book and the survey come
+back byte for byte.
+
+The passages above that named the keys are corrected where they stand.
