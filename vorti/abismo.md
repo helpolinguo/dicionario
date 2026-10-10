@@ -2,7 +2,7 @@
 
 ## abismo
 1. Profundegajo qua ne esas mezurebla pro la grandeso di lua dimensioni
-2. (metaf.)(a) Profundegajo quan spirito ne povas mezurar konceptale. (b) Profundegajo en qua onu esas quaze nihiligata, su-egaranta
+2. (metaf.) (a) Profundegajo quan spirito ne povas mezurar konceptale. (b) Profundegajo en qua onu esas quaze nihiligata, su-egaranta
 <!-- p. 2, l. 29 | Angla, Franca, Italiana, Hispana -->
 
 ---

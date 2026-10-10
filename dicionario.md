@@ -94,7 +94,7 @@ Profundegajo submara
 
 ## abismo
 1. Profundegajo qua ne esas mezurebla pro la grandeso di lua dimensioni
-2. (metaf.)(a) Profundegajo quan spirito ne povas mezurar konceptale. (b) Profundegajo en qua onu esas quaze nihiligata, su-egaranta
+2. (metaf.) (a) Profundegajo quan spirito ne povas mezurar konceptale. (b) Profundegajo en qua onu esas quaze nihiligata, su-egaranta
 <!-- p. 2, l. 29 | Angla, Franca, Italiana, Hispana -->
 
 ## abjekta
@@ -557,7 +557,7 @@ La punto di la orbito di planeto, ube la planeto distas maxime de Suno
 
 ## afero
 1. To quon onu havas kom agenda (en maniero generala)
-2. (1) (politiko) To quo havas kom objekto la interesti di la stato. (2) To quo havas kom objekto la interesti privata. (3) komerco Vendo-kontrato. (4)(judicio) To quo esas la objekto di debato judiciala
+2. (1) (politiko) To quo havas kom objekto la interesti di la stato. (2) To quo havas kom objekto la interesti privata. (3) komerco Vendo-kontrato. (4) (judicio) To quo esas la objekto di debato judiciala
 <!-- p. 9, l. 9 | Germana, Angla, Franca, Italiana, Rusa -->
 
 ## afidio *(zool.)*
@@ -11997,7 +11997,7 @@ L. fritillus
 
 ## frizar *(trans.)*
 1. Volvar (hari, pili, e c.) cirkum li, preske lokle
-2. (netrans.)(aludante hari, pili, e c.) Ipse volvar cirkum su, preske lokle
+2. (netrans.) (aludante hari, pili, e c.) Ipse volvar cirkum su, preske lokle
 <!-- p. 180, l. 35 | Germana, Angla, Franca, Hispana -->
 
 ## frogo
@@ -19511,7 +19511,7 @@ Sen to quo ne esas necesa por la senco
 <!-- p. 293, l. 2 | Germana, Angla, Franca, Italiana, Hispana -->
 
 ## kondamnar *(trans.)*
-1. Deklarar kulpoza, per verdikto : 1. frapar (ulu) per judicio qua deklaras ke lu kulpis per kriminir, deliktir, detrimentir; 2. (metaf.)(pri libri, letri, e c.) Koaktar ad ulo puniso
+1. Deklarar kulpoza, per verdikto : 1. frapar (ulu) per judicio qua deklaras ke lu kulpis per kriminir, deliktir, detrimentir; 2. (metaf.) (pri libri, letri, e c.) Koaktar ad ulo puniso
 2. Deklarar ke (ulu) esas kulpoza, blaminda, reprimandinda
 3. Deklarar ke (ulo) ne plus esas uzebla
 4. Deklarar kom ne plus uzenda (pordo, fenestro, quan onu klozas tale ke lu ne plus esas apertebla.)
@@ -21970,7 +21970,7 @@ Serio de rakonti populala, qui havas maxim-multa-kaze fundo exakta, ma developit
 <!-- p. 333, l. 31 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## legiono
-1. (1)(epoki antiqua, en Roma) Armeo-korpo qua konsistis ye infantrio e kavalrio. (2) En Francia, lor la rejo Francisko I. (cirkum la yaro 1515) : armeo-korpo permananta
+1. (1) (epoki antiqua, en Roma) Armeo-korpo qua konsistis ye infantrio e kavalrio. (2) En Francia, lor la rejo Francisko I. (cirkum la yaro 1515) : armeo-korpo permananta
 2. (metaf.) Grupo de individui qui esforcas atingar la sama skopo
 3. (en Francia) Legiono di Honoro : meritordeno, civila e militala, institucita da Bonaparte, konsulo rang-unesma
 <!-- p. 333, l. 35 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
@@ -23808,7 +23808,7 @@ Persono qua mediacas en la operaci di spiritismo
 
 ## medulo
 1. (anat.) Substanco mola, oleoza, flavatra, qua plenigas la kavaji e la areoli di la substanco sponjatra di la osti
-2. (metaf.)(1) La parto maxim nutriva : (2) La parto maxim intima, di la substanco
+2. (metaf.) (1) La parto maxim nutriva : (2) La parto maxim intima, di la substanco
 <!-- p. 363, l. 8 | Angla, Franca, Italiana, Hispana -->
 
 ## meduzo
@@ -30381,7 +30381,7 @@ Persequar (ulu) en korto judiciala
 
 ## procesionar *(netrans.)*
 1. (aludante la klerikaro od amaso de personi qui defilas ordinoze) Marchar kolone en la kirko od extere, kantante psalmi, himni, litanii, okazione di ula festi religiala
-2. (metaf.)(aludante longa serio de personi qui avancas ganso-marche) Marchar ica dop ita, unope
+2. (metaf.) (aludante longa serio de personi qui avancas ganso-marche) Marchar ica dop ita, unope
 <!-- p. 462, l. 2 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## procidar *(netrans.) (teol.)*
@@ -31508,7 +31508,7 @@ Utensilo di menuzisto, cizelo ek stalo, muntita oblique interne di ligno-peco re
 <!-- p. 479, l. 30 | Germana, Angla, Franca, Italiana, Hispana -->
 
 ## raciono
-La povo dicernar la exaktaji : (a) la fakultato deskovrar lo exakta; (b)(filoz.) la fakultato konceptar la exaktaji absoluta
+La povo dicernar la exaktaji : (a) la fakultato deskovrar lo exakta; (b) (filoz.) la fakultato konceptar la exaktaji absoluta
 <!-- p. 479, l. 35 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## rado
@@ -32373,7 +32373,7 @@ Di qua la formo esas kelke ronda, la karno ferma, la pelo pasable tensita
 <!-- p. 492, l. 45 | Angla, Franca, Hispana -->
 
 ## replikar *(trans., ad, pri)*
-1. (a) Respondar a to quon ulu respondis. (b)(yuro-cienco) Respondar a la respondo da la adverso
+1. (a) Respondar a to quon ulu respondis. (b) (yuro-cienco) Respondar a la respondo da la adverso
 2. Respondar a to quo, aspekte, ne postulas respondo
 <!-- p. 492, l. 48 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
@@ -34236,7 +34236,7 @@ Mecho de kotono quan onu pasigas tra la pelo e la celularo por durigar la funcio
 <!-- p. 521, l. 50 | Angla, Franca, Italiana, Hispana -->
 
 ## seviciar *(ad)*
-(netrans.)(yuro-cienco) Agar violentoze : spozo, a sua spozo; patro, a sua filio; mastro, a sua servisto
+(netrans.) (yuro-cienco) Agar violentoze : spozo, a sua spozo; patro, a sua filio; mastro, a sua servisto
 <!-- p. 521, l. 53 | sen-lingua -->
 
 ## sexa-
@@ -34678,7 +34678,7 @@ Artiko ek du osti, fixa o poke-moviva, per fibro kartilago
 <!-- p. 529, l. 9 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## simfonio *(muziko)*
-Muzikajo por plura voco-toni od instrumenti koncertala : (a)(olim) : Muzikajo orkestrala qua esas la uverturo di opero; (b)(de la yarcento 18-esma) Kompozajo muzikala por orkestro, segun la formulo di sonato, t.e. qua konsistas ye prefaco, adajio, skerco e finalo
+Muzikajo por plura voco-toni od instrumenti koncertala : (a) (olim) : Muzikajo orkestrala qua esas la uverturo di opero; (b) (de la yarcento 18-esma) Kompozajo muzikala por orkestro, segun la formulo di sonato, t.e. qua konsistas ye prefaco, adajio, skerco e finalo
 <!-- p. 529, l. 12 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## simio *(zool.)*

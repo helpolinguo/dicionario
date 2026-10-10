@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## seviciar *(ad)*
-(netrans.)(yuro-cienco) Agar violentoze : spozo, a sua spozo; patro, a sua filio; mastro, a sua servisto
+(netrans.) (yuro-cienco) Agar violentoze : spozo, a sua spozo; patro, a sua filio; mastro, a sua servisto
 <!-- p. 521, l. 53 | sen-lingua -->
 
 ---

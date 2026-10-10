@@ -1962,6 +1962,24 @@ The passages above that named the keys are corrected where they stand.
 
 ---
 
+## Two parentheses struck against each other (2026)
+
+*« In legiono, I guess there should be a space between (1) and (epoki
+antiqua, en Roma) »* — Gilles-Philippe Morin. The typescript strikes them
+together, *I. (l)(epoki antiqua, en Roma)*, and the facsimile keeps it. The
+book does it thirteen times in twelve articles. Each time it is a sense
+number or a qualifier against the next one: *(metaf.)(a)* under abismo,
+*(b)(filoz.)* under raciono, *(a)(olim)* and *(b)(de la yarcento 18-esma)*
+under simfonio. No other *)(* is in the book.
+
+`space_out()` now gives them their space. A chemical formula joins its groups
+so, *(CH₃)(CH₂)*, but a formula's group opens on an element's capital. The
+thirteen open on a lower-case letter or a digit, and only those take the
+space. Twelve articles move, by one space each.
+
+
+---
+
 ## The dashes struck against a word (2026)
 
 *« Would it be more typographical to write – instead of -, and — instead

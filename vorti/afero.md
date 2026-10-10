@@ -2,7 +2,7 @@
 
 ## afero
 1. To quon onu havas kom agenda (en maniero generala)
-2. (1) (politiko) To quo havas kom objekto la interesti di la stato. (2) To quo havas kom objekto la interesti privata. (3) komerco Vendo-kontrato. (4)(judicio) To quo esas la objekto di debato judiciala
+2. (1) (politiko) To quo havas kom objekto la interesti di la stato. (2) To quo havas kom objekto la interesti privata. (3) komerco Vendo-kontrato. (4) (judicio) To quo esas la objekto di debato judiciala
 <!-- p. 9, l. 9 | Germana, Angla, Franca, Italiana, Rusa -->
 
 ---

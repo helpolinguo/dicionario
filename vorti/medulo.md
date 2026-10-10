@@ -2,7 +2,7 @@
 
 ## medulo
 1. (anat.) Substanco mola, oleoza, flavatra, qua plenigas la kavaji e la areoli di la substanco sponjatra di la osti
-2. (metaf.)(1) La parto maxim nutriva : (2) La parto maxim intima, di la substanco
+2. (metaf.) (1) La parto maxim nutriva : (2) La parto maxim intima, di la substanco
 <!-- p. 363, l. 8 | Angla, Franca, Italiana, Hispana -->
 
 ---

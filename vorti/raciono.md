@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## raciono
-La povo dicernar la exaktaji : (a) la fakultato deskovrar lo exakta; (b)(filoz.) la fakultato konceptar la exaktaji absoluta
+La povo dicernar la exaktaji : (a) la fakultato deskovrar lo exakta; (b) (filoz.) la fakultato konceptar la exaktaji absoluta
 <!-- p. 479, l. 35 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ---
