@@ -2092,6 +2092,23 @@ keeps the typist's two forms.
 
 ---
 
+## quadriliono's exponent (2026)
+
+*« At quadriliono I would expect the 1000 to have an exponent instead of
+"1000." »* — Gilles-Philippe Morin. The typist rolled the platen half a line
+up to strike the exponent, so the *5* stands on a line of its own above the
+article, at column 41 of image 482, and the proofreading read it. That line
+holds nothing else and belongs to no article; the edition dropped it, and in
+the parenthesis, at the same column, only a full stop was left: *(1000.)*.
+Miliono had the same fault, *(10.)* under a lone *6*, and `work/texts.txt`
+already restored it, as it did oktiliono's and noniliono's exponents. The
+article states the figure itself: *Mil bilioni*, and the book gives biliono as
+1.000.000², so a thousand of them is 10¹⁵, which is 1000⁵. `work/texts.txt`
+now gives *Mil bilioni. (1000⁵).* The facsimile keeps the line as typed.
+
+
+---
+
 ## sismografio (2026)
 
 *« I know it is written "sismografo" instead of "sismografio", but from the
