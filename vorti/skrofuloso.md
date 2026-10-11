@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## skrofuloso *(patol.)*
-Formo min grava di la tuberkloso ganglionala ed ostala, che la puerii
+Formo min grava di la tuberkloso ganglionala ed ostala, che la pueri
 <!-- p. 538, l. 6 | sen-lingua -->
 
 ---

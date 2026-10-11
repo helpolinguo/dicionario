@@ -81,11 +81,31 @@ def apply_(ent, folder=FOLDER):
         # the character, the correction was no longer found. We therefore make
         # the search indifferent to the spacing around the punctuation.
         word = _pattern(a)
-        seen = []
+        # A CORRECTION CAN CONTAIN WHAT IT CORRECTS, and then it finds itself.
+        # Three batches were cut from lines that work/extra_lines.txt gives
+        # back to their pages whole: the proofreader read « che la puer »
+        # (skrofuloso), « legi komu » (socio) and « kun best » (sodomiar), and
+        # completed the word. The page has read « pueri », « komuna » and
+        # « bestio » ever since, so the faulty string was still found -- inside
+        # its own correction -- and laid a second time: « puerii », « legi
+        # komunana », « kun bestioio ». « che la puer » being several words, it
+        # was laid wherever it was seen, and ortopedio's « (precipue che la
+        # pueri) » became « puerii » too. Of the 561 answers, seven contain
+        # their faulty string; these three did the damage, in four articles.
+        # An occurrence that sits inside the correction already is therefore
+        # passed over: the correction is there.
+        fixed = _pattern(b) if a in b else None
+        def _laid(m, t):
+            return fixed is not None and any(
+                o.start() <= m.start() and m.end() <= o.end() for o in fixed.finditer(t))
+        seen = []; there = 0
         for e in ent:
             for k, t in enumerate(e.get('senci') or []):
-                if word.search(t):
-                    seen.append((e, k))
+                m = next((m for m in word.finditer(t) if not _laid(m, t)), None)
+                if m:
+                    seen.append((e, k, m))
+                elif word.search(t):
+                    there += 1
             # The domain is a separate field: « (ariktekt) » is in no sense, and
             # the correction was refused for want of looking there.
             #
@@ -96,21 +116,24 @@ def apply_(ent, folder=FOLDER):
             # ignores case, on both sides.
             f = e.get('fako')
             if f and re.search(re.escape(a.strip('()')), f, re.I):
-                seen.append((e, 'fako'))
+                seen.append((e, 'fako', None))
         # The same slip is sometimes repeated identically -- « pseupodi » twice,
         # « di sapto » twice. To refuse it would be to lose a correct correction.
         # We therefore apply it everywhere, but ONLY if the string is
         # distinctive enough not to catch something else: at least six
         # characters, or several words. « lO », seen eleven times, stays refused.
+        if not seen and there:
+            continue
         if not seen or (len(seen) > 1 and len(a) < 6 and ' ' not in a):
             refused += 1
             print("  reread %s: «%s» seen %d times — refused" % (batch, a[:40], len(seen)))
             continue
-        for e, k in seen:
+        for e, k, m in seen:
             if k == 'fako':
                 e['fako'] = re.sub(re.escape(a.strip('()')),
                                    lambda _m: b.strip('()'), e['fako'], flags=re.I)
             else:
-                e['senci'][k] = word.sub(lambda _m: b, e['senci'][k], count=1)
+                t = e['senci'][k]
+                e['senci'][k] = t[:m.start()] + b + t[m.end():]
             laid += 1
     return laid, refused
