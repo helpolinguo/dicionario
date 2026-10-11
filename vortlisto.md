@@ -8041,7 +8041,7 @@ siropo — (farmac.) Liquido viskoza, ek sukro koquita, unionita a ca o ta
 sis — La cifro « 6 »
 sisar (netrans.) — Produktar la son-uno sss o fff, t.e. bruiso ne-muzikala qua esas, fonetike, konsonanto. (Kom exemplo : serpento sisas; lokomotivo siflas per sua siflilo, e sisas pro emisar vaporo ek la kaldiero o la cilindri, tra robineti, ma sen siflar)
 sismo (geol.) — Movo bruska di la Ter-kortico; sukuso qua shanceligas sulo sur plu o min granda areo, e qua esas apta eventigar deformuri permananta en la regiono koncernata
-sismografo — Cienco pri la sismi e pri la movi di sulo
+sismografio — Cienco pri la sismi e pri la movi di sulo
 sismometro — Sinonimo di sismografo
 sismoskopo — Sinonimo di sismografo
 sistemo — Ensemblo di qua la parti esas koordinita segun lego (aludante enti, institucuri, doktrini, e c.)

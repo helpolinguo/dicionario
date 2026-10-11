@@ -2088,3 +2088,25 @@ hyphen is the book's way everywhere else a figure meets Ido letters — *20-edra
 now gives a welded ordinal its hyphen, in the senses and in the qualifier.
 Six articles move; pavano's adjective becomes *16-esma-yarcenta*. The facsimile
 keeps the typist's two forms.
+
+
+---
+
+## sismografio (2026)
+
+*« I know it is written "sismografo" instead of "sismografio", but from the
+definition it doesn't make sense. The definition of sismografo is for
+"sismografio" »* — Gilles-Philippe Morin. *Cienco pri la sismi e pri la movi
+di sulo* defines a science, and the book names its sciences in *-grafio*:
+geografio, hidrografio, petrografio and hagiografio all open on *Cienco*. Its
+nineteen *-grafo* headwords are instruments (barografo, mareografo,
+termografo), persons (geografo, hidrografo, lexikografo) or writings, and
+sismografo was the only one to define a science. The book also uses
+*sismografo* for the instrument, on the next page: sismometro and sismoskopo
+are each *Sinonimo di sismografo*, and those two references stay as they are.
+Alphabetical order does not decide between the two forms, since sismografio
+falls between sismo and sismometro just as sismografo did. `work/headwords.txt`
+gives the reading edition *sismografio*, and the facsimile keeps *sismografo*.
+The typescript underlined *sismografo*, so that underline is now left over
+from the headword, as permigar's is, and the survey of underlines counts one
+fragment more, 1445. `README.md` and `CLAUDE.md` carry the new figure.

@@ -53,7 +53,7 @@ without a reason is a defect, not a detail:
 
     python3 tools/parentheticals.py # 2020 verbi (1386 / 587 / 17), 396 regas
                                     # prepoziciono; 952 faki, 88 of five or more
-    python3 tools/survey_rules.py   # 1444 fragments (8 / 324 / 9 / 1103)
+    python3 tools/survey_rules.py   # 1445 fragments (8 / 324 / 9 / 1104)
     python3 tools/survey_order.py   # 35 transpositions, 20 headwords astray
     python3 tools/verify_edition.py
 
