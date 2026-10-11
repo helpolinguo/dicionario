@@ -7254,7 +7254,7 @@ quintana (patol.) — Febro qua riaparas singla-kindie
 quintesenco — (a) (olim) Substanco eterala, egardata kom la elemento kinesma e maxim subtila. (b). (nun). La parto maxim subtila di substanco
 quinteto — Muzikajo de kin parti koncertala
 quintiko (matem.) — Kurvo di la klaso kinesma
-quintiliono (matem.) — Mil quadrilioni. (10³⁰)
+quintiliono (matem.) — Miliono de quadrilioni. (10³⁰)
 quiproquo — Eroro konseque de qua onu egardas kozo o persono kom altra
 quirito (che la Romani, antique) — Civitano Romana qua rezidis en Roma, kontraste kun ti qui esis servanta en la armei
 quirlar (trans.) — Batar (liquido, ovi, kremo) per vergo por mixar, igar augmentar volumine, spumifar, e c.
