@@ -8080,7 +8080,7 @@ Transskribita de https://ido.help/dicionario/
 - [sis](sis.md)
 - [sisar](sisar.md)
 - [sismo](sismo.md)
-- [sismografo](sismografo.md)
+- [sismografio](sismografio.md)
 - [sismometro](sismometro.md)
 - [sismoskopo](sismoskopo.md)
 - [sistematiko](sistematiko.md)

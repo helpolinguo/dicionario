@@ -353,18 +353,19 @@ Two reports say what the edition could not settle, and both are
 regenerated from the published text:
 
 ```sh
-python3 tools/survey_rules.py   # 1444 underlines it could not place
+python3 tools/survey_rules.py   # 1445 underlines it could not place
 python3 tools/survey_order.py   # 55 headwords that break the alphabet
 ```
 
 A figure that moves without a reason is a defect, not a detail.
 
-**1444 is the figure without the scan; with it, 1525 was measured when
-the figure without it was 1444 as well** — but not the same 1444. Since
-then the headword « permigar » was corrected to « permisar », which
-leaves its underline over from the headword, one fragment more; and
-baseno's « Geologio- » was joined to the « baseno » the line end had cut
-from it, one fragment fewer. Neither has been measured with the scan.
+**1445 is the figure without the scan; with it, 1525 was measured when
+the figure without it was 1444.** Since then the headwords « permigar »
+and « sismografo » were corrected to « permisar » and « sismografio »,
+which leaves each one's underline over from the headword, one fragment
+more apiece; and baseno's « Geologio- » was joined to the « baseno » the
+line end had cut from it, one fragment fewer. None has been measured
+with the scan.
 The two roads do not read the same measurement of the rules. The
 facsimile has always preferred `redo_rules.py`'s recomputation, with the
 survey by eye over it (`generate.py`, « Recomputed rules »); the reading

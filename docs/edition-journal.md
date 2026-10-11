@@ -2125,3 +2125,25 @@ it was seen, and ortopedio's *(precipue che la pueri)* became *puerii* as well.
 Of the 561 answers, seven contain their own faulty string, and these three did
 the damage, in four articles. `tools/proofread.py` now passes over an
 occurrence that already sits inside its correction.
+
+
+---
+
+## sismografio (2026)
+
+*« I know it is written "sismografo" instead of "sismografio", but from the
+definition it doesn't make sense. The definition of sismografo is for
+"sismografio" »* — Gilles-Philippe Morin. *Cienco pri la sismi e pri la movi
+di sulo* defines a science, and the book names its sciences in *-grafio*:
+geografio, hidrografio, petrografio and hagiografio all open on *Cienco*. Its
+nineteen *-grafo* headwords are instruments (barografo, mareografo,
+termografo), persons (geografo, hidrografo, lexikografo) or writings, and
+sismografo was the only one to define a science. The book also uses
+*sismografo* for the instrument, on the next page: sismometro and sismoskopo
+are each *Sinonimo di sismografo*, and those two references stay as they are.
+Alphabetical order does not decide between the two forms, since sismografio
+falls between sismo and sismometro just as sismografo did. `work/headwords.txt`
+gives the reading edition *sismografio*, and the facsimile keeps *sismografo*.
+The typescript underlined *sismografo*, so that underline is now left over
+from the headword, as permigar's is, and the survey of underlines counts one
+fragment more, 1445. `README.md` and `CLAUDE.md` carry the new figure.

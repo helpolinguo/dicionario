@@ -34917,7 +34917,7 @@ Produktar la son-uno sss o fff, t.e. bruiso ne-muzikala qua esas, fo
 Movo bruska di la Ter-kortico; sukuso qua shanceligas sulo sur plu o min granda areo, e qua esas apta eventigar deformuri permananta en la regiono koncernata
 <!-- p. 532, l. 51 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
-## sismografo
+## sismografio
 Cienco pri la sismi e pri la movi di sulo
 <!-- p. 532, l. 56 | sen-lingua -->
 
