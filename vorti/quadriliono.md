@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## quadriliono *(aritm.)*
-Mil bilioni. (1000⁵)
+Miliono de trilioni. (1.000.000⁴)
 <!-- p. 475, l. 5 | sen-lingua -->
 
 ---
