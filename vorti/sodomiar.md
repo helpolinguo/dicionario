@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## sodomiar *(netrans.)*
-Agar koito anusala, inter-vira, od inter viro e muliero, o kun bestioio
+Agar koito anusala, inter-vira, od inter viro e muliero, o kun bestio
 <!-- p. 539, l. 46 | Germana, Angla, Franca, Italiana, Hispana | pagino-nefidinda -->
 
 ---

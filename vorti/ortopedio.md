@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## ortopedio
-La arto preventar o pokope supresar la deformuri di la korpo (precipue che la puerii), per aparato o kuracado
+La arto preventar o pokope supresar la deformuri di la korpo (precipue che la pueri), per aparato o kuracado
 <!-- p. 411, l. 46 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ---
