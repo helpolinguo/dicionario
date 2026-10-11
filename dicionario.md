@@ -31225,7 +31225,7 @@ Areo di la grado duesma, t.e. reprezentata da equaciono di la grado duesma
 <!-- p. 474, l. 52 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## quadriliono *(aritm.)*
-Mil bilioni. (1000.)
+Mil bilioni. (1000⁵)
 <!-- p. 475, l. 5 | sen-lingua -->
 
 ## quadriremo *(navig.)*
