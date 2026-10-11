@@ -4040,7 +4040,7 @@ kanelo — Quaza sulko longesala, mi-cilindra, qua alternas kun mikra muluro ron
 kanetilio — Filo ek oro od arjento, spulita sur longa agulo de fero, ed uzata por la fabriko di la texuri brodita ye oro od arjento
 kanguruo (zool.) — Quadripedo ek Australia, ek la klaso « marsupiali », remarkinda pro la volumino di lua kaudo sur qua lu su apogas por saltar, e pro la tre granda longeso di lua membri dopa
 kanibalo — La homo qua su nutras ek karno homala
-kanikulo — La stelo di Sirius o di la Hundo, qua su levas e su kushas sama-kloke kam Suno, de la 24esma di julio til la 24esma di agosto
+kanikulo — La stelo di Sirius o di la Hundo, qua su levas e su kushas sama-kloke kam Suno, de la 24-esma di julio til la 24-esma di agosto
 kanina (anat.) — (dento) qua, che la homo, esas situita inter la incizivi e la molari
 kankro (zool.) — Krustaceo kun kin pari de gambi, di qua la gambi avana finas ye pinci, e qua marchas (egale-bone) avance o des-avance
 kankroido (patol.) — Kancero di la pelo e di la mukosi
@@ -4115,7 +4115,7 @@ karavanserayo — En la Oriento-landi : granda edifico en qua la voyajeri povas 
 karavelo — (olim) Che la Turki, grosa milito-navo
 karbo (kemio) — Korpo simpla, metaloida, qua existas pluraforme : karbono, grafito, diamanto, e c.
 karbono — Materio nigra, en qua dominacas la korpo simpla « karbo », e quan onu extraktas (ordinare) de subsulo per minar
-karbonaro — Membro di societo revolucionista sekreta, fondita en Italia, komence di la 19esma yarcento
+karbonaro — Membro di societo revolucionista sekreta, fondita en Italia, komence di la 19-esma yarcento
 karbonario (zool.) — Fisho ek la genero « gado »
 karborundo (kemio) — Siliko-karburo, preparita per submisar, a la kaloro de elektroforno, mixuro ek karbono e silicio : uzata por la fabriko di grindo-roti, e c.
 karbunklo — (patol.) Morbo qua desorganizas e nigrigas la tisui atakita
@@ -6232,7 +6232,7 @@ ortopedio — La arto preventar o pokope supresar la deformuri di la korpo (prec
 ortoptero (zool.) — Insekto qua havas quar ali, di qui la du infra esas faldita longeso-sinse
 ortoptika (matem.) (pri kurvo) — Loko geometriala di la punti de ube onu vidas kurvo plana donata ortangule
 orveto (zool.) — Mikra reptero sauria, ne-nociva, tipo di la familio « anguidi », qua vivas en Europa ed en Azia orientala
-orvietano — Elektuario (varianto nenociva di teriako) quan onu judikis, en la mezo di la 17esma yarcento, kom tre apta e tre efikiva
+orvietano — Elektuario (varianto nenociva di teriako) quan onu judikis, en la mezo di la 17-esma yarcento, kom tre apta e tre efikiva
 -os (gram.) — Che la verbi : dezinenco di indikativo, futuro
 osifrago (zool.) — Speco di raptucelo jornala, ek la familio « falkonidi », qua vivas en la nordo-regioni di Europa
 oskular (trans.) (geom.) — Efektigar kontakto supra-klasa kun kurvo, surfaco, en un punto di altra kurvo, surfaco
@@ -6478,7 +6478,7 @@ patrono — (en Roma, dum la epoki antiqua) Persono richa, potenta, cirkum
 pauperismo — La kalamitato « povreso », en stato
 pauzar (netrans.) — Interruptar la agado
 pavo — Singla de la bloki de greso, granito, e c., kubigita per talio, quin onu asemblas por igar plu rezistiva la sulo di choseo, di voyo, di strado, di voyeto
-pavano — Olima (16esma-yarcenta) danso, segun ritmo binara (du o quar tempi) di qua la karaktero esis grava
+pavano — Olima (16-esma-yarcenta) danso, segun ritmo binara (du o quar tempi) di qua la karaktero esis grava
 paviliono — Edifico qua superstacas la konstrukturi cetera per la alteso di la tekto-karpenturo
 pavono (zool.) — Ucelo, ek la klaso « galinacei », di qua la plumaro esas tre briloza, e la kaudo, ek longa plumi, qui havas, ye sua extremajo, makuli briloza okul-forma
 pavorar (netrans.) — Subisar ta emoco desagreabla maxime, angoriganta, quan produktas bruiso neexpektita, la aparo bruska di ento o di objekto timenda o nekonocata
@@ -7330,7 +7330,7 @@ ratono (zool.) — Genero de mamiferi karnavida, tipo di la familio « procionid
 rauka — Di qua la sono esas aspera, ruda, quale la voco di persono di qua la laringo esas inflamata
 raupo (zool.) — Larvo di papilioni, kun korpo longa, qua konsistas ye serio de ringi, e normale viloza
 rauto — Festo en salono, adube onu invitas mondumani
-ravelino (milit-arto) (en la yarcenti 15esma e 16-esma) — Fortifikajo pasable analoga a la nuna redani e mi-luni
+ravelino (milit-arto) (en la yarcenti 15-esma e 16-esma) — Fortifikajo pasable analoga a la nuna redani e mi-luni
 ravino — Voyo naturala, profunde exkavita da aquo qua fluis olim en ta loko
 ravisar (trans., per) — Exaltar, igar ne plus posedar su, per la impulso de entuziasmo
 rayo (zool.) — Mar-fisho, plata e kartilagoza

@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## pavano
-Olima (16esma-yarcenta) danso, segun ritmo binara (du o quar tempi) di qua la karaktero esis grava
+Olima (16-esma-yarcenta) danso, segun ritmo binara (du o quar tempi) di qua la karaktero esis grava
 <!-- p. 428, l. 2 | Germana, Angla, Franca, Italiana, Hispana -->
 
 ---

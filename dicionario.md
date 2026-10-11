@@ -17349,7 +17349,7 @@ L. halmaturus
 <!-- p. 259, l. 19 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## kanikulo
-1. La stelo di Sirius o di la Hundo, qua su levas e su kushas sama-kloke kam Suno, de la 24esma di julio til la 24esma di agosto
+1. La stelo di Sirius o di la Hundo, qua su levas e su kushas sama-kloke kam Suno, de la 24-esma di julio til la 24-esma di agosto
 2. Periodo dum qua la vetero esas tre varma, e quan produktas ta serio de dii
 <!-- p. 259, l. 23 | Angla, Franca, Italiana, Hispana -->
 
@@ -17565,7 +17565,7 @@ L. lonicera caprifolium
 
 ## kaprikorno
 1. (zool.) Insekto koleoptera, kun longa anteni artikoza, kurva quale korni
-2. Stelaro imaginata kom kaproforma, qua okupas ta parto di zodiako quan eniras Suno lor la solstico vintrala, e quan lu semblas transirar inter la 20esma di decembro e la 20esma di januaro
+2. Stelaro imaginata kom kaproforma, qua okupas ta parto di zodiako quan eniras Suno lor la solstico vintrala, e quan lu semblas transirar inter la 20-esma di decembro e la 20-esma di januaro
 L. cerembyx
 <!-- p. 262, l. 41 | Angla, Franca, Italiana, Hispana -->
 
@@ -17694,7 +17694,7 @@ Materio nigra, en qua dominacas la korpo simpla « karbo », e quan onu extrakta
 <!-- p. 264, l. 31 | Angla, Franca, Italiana, Hispana -->
 
 ## karbonaro
-Membro di societo revolucionista sekreta, fondita en Italia, komence di la 19esma yarcento
+Membro di societo revolucionista sekreta, fondita en Italia, komence di la 19-esma yarcento
 <!-- p. 264, l. 35 | Franca, Italiana -->
 
 ## karbonario *(zool.)*
@@ -26988,7 +26988,7 @@ L. anguis fragilis
 <!-- p. 412, l. 2 | Angla, Franca -->
 
 ## orvietano
-Elektuario (varianto nenociva di teriako) quan onu judikis, en la mezo di la 17esma yarcento, kom tre apta e tre efikiva
+Elektuario (varianto nenociva di teriako) quan onu judikis, en la mezo di la 17-esma yarcento, kom tre apta e tre efikiva
 <!-- p. 412, l. 6 | Germana, Angla, Franca, Italiana, Hispana -->
 
 ## -os *(gram.)*
@@ -28057,7 +28057,7 @@ Singla de la bloki de greso, granito, e c., kubigita per talio, quin onu asembla
 <!-- p. 427, l. 53 | Angla, Franca -->
 
 ## pavano
-Olima (16esma-yarcenta) danso, segun ritmo binara (du o quar tempi) di qua la karaktero esis grava
+Olima (16-esma-yarcenta) danso, segun ritmo binara (du o quar tempi) di qua la karaktero esis grava
 <!-- p. 428, l. 2 | Germana, Angla, Franca, Italiana, Hispana -->
 
 ## paviliono
@@ -31774,7 +31774,7 @@ Larvo di papilioni, kun korpo longa, qua konsistas ye serio de ringi, e normale 
 Festo en salono, adube onu invitas mondumani
 <!-- p. 483, l. 43 | Germana, Angla, Franca, Rusa -->
 
-## ravelino *(milit-arto) (en la yarcenti 15esma e 16-esma)*
+## ravelino *(milit-arto) (en la yarcenti 15-esma e 16-esma)*
 Fortifikajo pasable analoga a la nuna redani e mi-luni
 <!-- p. 483, l. 45 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 

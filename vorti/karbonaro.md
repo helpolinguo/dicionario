@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## karbonaro
-Membro di societo revolucionista sekreta, fondita en Italia, komence di la 19esma yarcento
+Membro di societo revolucionista sekreta, fondita en Italia, komence di la 19-esma yarcento
 <!-- p. 264, l. 35 | Franca, Italiana -->
 
 ---
