@@ -31280,7 +31280,7 @@ Sejorno quaradek-dia qua impozesas a la pasajinti, la vesti, la bagaji, la vari 
 
 ## quarco *(mineral.)*
 Silico pura
-*Simb. kem.* **SiO**
+*Simb. kem.* **SiO₂**
 <!-- p. 475, l. 48 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## quarto

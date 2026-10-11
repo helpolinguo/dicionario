@@ -33,3 +33,8 @@ asparagino@51:46	C₈H₈Az₂O₆	f.44 « asparagino. (C8 H8 AZ2 O6). Substanco
 # La conjonction « e » entre deux formules, frappee en capitale au milieu de la
 # formule.
 fuxino@191:39	C₂₀H₂₀N₃Cl, e H₂O	f.184 « fuxino. (kemio) Farbo reda, preparita ek anilino. - Simbolo kemiala : C20 H20 N3Cl, E H2 O. » Le « E » est la conjonction ido, « e », « et de l eau » : aucun corps ne s ecrit E seul (Er, Es, Eu prennent leur minuscule), et l edition, le prenant pour un symbole, l avait soude a l eau, « EH₂O ». Le livre ecrit ailleurs deux formules jointes par la conjonction, en minuscule et entre ses espaces : rusto, « Fe₂O₃ e Fe₃O₄ ». La dactylo l a frappee en capitale, et les deux decodages comme la relecture directe lisent « E » (image 191 l40) : le fac-simile le garde. Releve par Gilles-Philippe Morin.
+#
+# Un indice frappe a demi-ligne au-dessus, seul sur sa ligne, comme l exposant
+# de quadriliono sur la meme page : la ligne ne se rattache a rien, et sous lui,
+# a la meme colonne, il ne reste qu un point.
+quarco@482:48	SiO₂	f.475 « quarco. (mineral.) Silico pura. - Simbolo kemiala : SiO. DEFIRS » — releve par GPhMorin. Le « 2 » est sur la ligne du dessus (image 482, ligne 47, colonne 55), au-dessus du point qui suit « SiO ». La silice est SiO₂ ; le livre leve ses indices, comme chez fluorino (« Ca F² »).

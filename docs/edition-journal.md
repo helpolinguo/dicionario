@@ -2171,6 +2171,19 @@ in `tools/anki.py`, `README.md` and `CLAUDE.md`.
 
 ---
 
+## quarco's subscript (2026)
+
+*« Fix quarco to SiO₂ »* — Gilles-Philippe Morin. The fault is quadriliono's,
+on the same page. The typist struck the *2* half a line up, alone on the line
+above the article, at column 55 of image 482. Below it, at the same column,
+only a full stop is left after *SiO*. The book raises its subscripts this way
+elsewhere too: fluorino's formula is typed *Ca F²*. `work/symbols.txt`, which
+already holds fluorino's *CaF₂*, now gives quarco *SiO₂*. The facsimile
+keeps the line as typed.
+
+
+---
+
 ## A million quadrillions (2026)
 
 *« Quintiliono is 1.000.000⁵ »* — Gilles-Philippe Morin. The figure was
