@@ -6228,7 +6228,7 @@ ortografio (gram.) — Maniero skribar linguo korekte. Maniero skribar la vorti
 ortografika (matem.) — Qua reprezentas objekto sur plano, lua omna punti esante projektata perpendikle sur la plano
 ortokrona (fotogr.) (pri la plaki o filmi fotografala) — Di qua la sentiveso pri la kolori diversa di la spektro igesis, per la adjunto di korpi kemiala, harmoniar kun la sentiveso di la hom-okulo
 ortolano (zool.) — Mikra ucelo migranta, qua vivas en Mezeuropa, ed en Sudeuropa, di qua la karno (manjebla) esas delikata
-ortopedio — La arto preventar o pokope supresar la deformuri di la korpo (precipue che la puerii), per aparato o kuracado
+ortopedio — La arto preventar o pokope supresar la deformuri di la korpo (precipue che la pueri), per aparato o kuracado
 ortoptero (zool.) — Insekto qua havas quar ali, di qui la du infra esas faldita longeso-sinse
 ortoptika (matem.) (pri kurvo) — Loko geometriala di la punti de ube onu vidas kurvo plana donata ortangule
 orveto (zool.) — Mikra reptero sauria, ne-nociva, tipo di la familio « anguidi », qua vivas en Europa ed en Azia orientala
@@ -8110,7 +8110,7 @@ skreno — Framo metala, kun pedi, kovrita per treliso densa, quan onu lokizas a
 skribar (trans.) — Trasar la grupi de karakteri konvencionita por reprezentar vorti
 skriptar (netrans.) — Esar verkifisto di literaturaji
 skrofulo (patol.) — Morbo quan karakterizas la infleso di la ganglioni limfala (precipue olti di la kolo), formacante tumoro qua divenas ulcero
-skrofuloso (patol.) — Formo min grava di la tuberkloso ganglionala ed ostala, che la puerii
+skrofuloso (patol.) — Formo min grava di la tuberkloso ganglionala ed ostala, che la pueri
 skroto (anat.) — Envelopilo pela di la du testikli
 skrubo (tekn.) — Stangeto, cilindra o kona, ek metalo, ligno, kun heliko salianta (fileto) qua su fixigas en la korpo quan lu penetras per enirar en parto kun heliko kava a qua lu adheras forte
 skrupulo — Desquieteso di koncienco pri punto minucioza
@@ -8132,12 +8132,12 @@ snapar (trans.) — Sizar bruske, per un maxil-ago
 sniflar (trans.) — Aspirar ulo per sua nazo (tabako pulverigita, aquo, la humoro qua stagnas en la naztrui)
 snortar (netrans.) (dicesas precipue pri kavalo) — Sniflar tre bruisoze por manifestar sua repugneso; ekpulsar aero per sua naztrui tre bruisoze por manifestar sua pavoro, nepacienteso, e c.
 sobra — Qua su moderas pri manjo e drinko
-socio — Ensemblo, duroza, ek homi qui vivas obedie di legi komunana. (anke aludante ula sorti de animali qui vivas ensemble : abeli, formiki, e c.)
+socio — Ensemblo, duroza, ek homi qui vivas obedie di legi komuna. (anke aludante ula sorti de animali qui vivas ensemble : abeli, formiki, e c.)
 sociologo — Ciencisto qua su okupas pri sociologio
 sociologio — Cienco di qua la studiajo esas la cirkonstanci ed existo-kondicioni di la socio homara
 sociso — Peco de la intestino di porko, di mutono, quan onu plenigis ye karno de porko, o de bovo, tre spicizita, triturita e pistita, e tre presita
 sodo (bot.) — Planto ek la familio « kenopodiacei », propra ye la regioni klimato-moderata e subtropika; un-yar-dura; di qua la folii esas quaze pulpoza, lineala, e la flori mikra e verdatra; de qui onu extraktis olim natroxo. – (kemio) Salo alkalioza quan onu extraktas de ta planto ed anke ek la fuki
-sodomiar (netrans.) — Agar koito anusala, inter-vira, od inter viro e muliero, o kun bestioio
+sodomiar (netrans.) — Agar koito anusala, inter-vira, od inter viro e muliero, o kun bestio
 sofao — Sorto di repozo-lito, kun tri dors-apogili, uzata kom sidilo
 sofismo — Argumento trompera, seduktera
 sofisto — (en la epoki antiqua, en Grekia) Sorto de profesoro di filozofio, di retoriko, qua instruktis pri quale pledar « por » e « kontre » alterne, un tezo, sen egardo pri olua exakteso

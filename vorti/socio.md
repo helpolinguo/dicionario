@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## socio
-Ensemblo, duroza, ek homi qui vivas obedie di legi komunana. (anke aludante ula sorti de animali qui vivas ensemble : abeli, formiki, e c.)
+Ensemblo, duroza, ek homi qui vivas obedie di legi komuna. (anke aludante ula sorti de animali qui vivas ensemble : abeli, formiki, e c.)
 <!-- p. 539, l. 24 | Germana, Angla, Franca, Italiana, Rusa, Hispana | pagino-nefidinda -->
 
 ---

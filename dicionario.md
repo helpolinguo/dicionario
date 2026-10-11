@@ -26971,7 +26971,7 @@ L. emberiza hortulana
 <!-- p. 411, l. 42 | Germana, Angla, Franca, Italiana, Hispana -->
 
 ## ortopedio
-La arto preventar o pokope supresar la deformuri di la korpo (precipue che la puerii), per aparato o kuracado
+La arto preventar o pokope supresar la deformuri di la korpo (precipue che la pueri), per aparato o kuracado
 <!-- p. 411, l. 46 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 
 ## ortoptero *(zool.)*
@@ -35223,7 +35223,7 @@ Morbo quan karakterizas la infleso di la ganglioni limfala (precipue olti di la 
 <!-- p. 538, l. 2 | Germana, Angla, Franca, Italiana, Hispana -->
 
 ## skrofuloso *(patol.)*
-Formo min grava di la tuberkloso ganglionala ed ostala, che la puerii
+Formo min grava di la tuberkloso ganglionala ed ostala, che la pueri
 <!-- p. 538, l. 6 | sen-lingua -->
 
 ## skroto *(anat.)*
@@ -35314,7 +35314,7 @@ Sniflar tre bruisoze por manifestar sua repugneso; ekpulsar aero per sua naztrui
 <!-- p. 539, l. 20 | Angla, Franca, Italiana, Hispana | pagino-nefidinda -->
 
 ## socio
-Ensemblo, duroza, ek homi qui vivas obedie di legi komunana. (anke aludante ula sorti de animali qui vivas ensemble : abeli, formiki, e c.)
+Ensemblo, duroza, ek homi qui vivas obedie di legi komuna. (anke aludante ula sorti de animali qui vivas ensemble : abeli, formiki, e c.)
 <!-- p. 539, l. 24 | Germana, Angla, Franca, Italiana, Rusa, Hispana | pagino-nefidinda -->
 
 ## sociologo
@@ -35336,7 +35336,7 @@ L. salsola soda e salsola kali
 <!-- p. 539, l. 37 | Germana, Angla, Franca, Italiana, Rusa | pagino-nefidinda -->
 
 ## sodomiar *(netrans.)*
-Agar koito anusala, inter-vira, od inter viro e muliero, o kun bestioio
+Agar koito anusala, inter-vira, od inter viro e muliero, o kun bestio
 <!-- p. 539, l. 46 | Germana, Angla, Franca, Italiana, Hispana | pagino-nefidinda -->
 
 ## sofao

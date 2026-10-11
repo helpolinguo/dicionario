@@ -2088,3 +2088,23 @@ hyphen is the book's way everywhere else a figure meets Ido letters — *20-edra
 now gives a welded ordinal its hyphen, in the senses and in the qualifier.
 Six articles move; pavano's adjective becomes *16-esma-yarcenta*. The facsimile
 keeps the typist's two forms.
+
+
+---
+
+## A correction laid twice (2026)
+
+*« At skrofuloso, I would expect "pueri" instead of "puerii" »* —
+Gilles-Philippe Morin. The typescript reads *pueri*, and so does the facsimile.
+The second *i* was the proofreading layer's doing. Its batch had been cut from
+a line that `work/extra_lines.txt` has since given back to the page whole,
+and the proofreader saw *che la puer*, so completed the word as *che la
+pueri*. The page has read *pueri* ever since. The faulty string, which the
+layer looks for to lay its correction, was therefore still found, inside its
+own correction, and laid a second time. Two more batches did the same:
+*legi komu* under socio became *legi komunana*, and *kun best* under sodomiar
+became *kun bestioio*. *Che la puer* is several words, so it was laid wherever
+it was seen, and ortopedio's *(precipue che la pueri)* became *puerii* as well.
+Of the 561 answers, seven contain their own faulty string, and these three did
+the damage, in four articles. `tools/proofread.py` now passes over an
+occurrence that already sits inside its correction.
