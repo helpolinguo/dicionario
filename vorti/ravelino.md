@@ -1,6 +1,6 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
-## ravelino *(milit-arto) (en la yarcenti 15esma e 16-esma)*
+## ravelino *(milit-arto) (en la yarcenti 15-esma e 16-esma)*
 Fortifikajo pasable analoga a la nuna redani e mi-luni
 <!-- p. 483, l. 45 | Germana, Angla, Franca, Italiana, Rusa, Hispana -->
 

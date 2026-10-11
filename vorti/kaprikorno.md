@@ -2,7 +2,7 @@
 
 ## kaprikorno
 1. (zool.) Insekto koleoptera, kun longa anteni artikoza, kurva quale korni
-2. Stelaro imaginata kom kaproforma, qua okupas ta parto di zodiako quan eniras Suno lor la solstico vintrala, e quan lu semblas transirar inter la 20esma di decembro e la 20esma di januaro
+2. Stelaro imaginata kom kaproforma, qua okupas ta parto di zodiako quan eniras Suno lor la solstico vintrala, e quan lu semblas transirar inter la 20-esma di decembro e la 20-esma di januaro
 L. cerembyx
 <!-- p. 262, l. 41 | Angla, Franca, Italiana, Hispana -->
 

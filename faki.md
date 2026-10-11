@@ -523,7 +523,7 @@ Transskribita de https://ido.help/dicionario/
 **en la tribunalo kriminala** (1) — jurio
 **en la vortaro ordinara** (1) — kristalo
 **en la wisto-ludo** (1) — robro
-**en la yarcenti 15esma e 16-esma** (1) — ravelino
+**en la yarcenti 15-esma e 16-esma** (1) — ravelino
 **en la yuro-cienco di la Romani antiqua** (1) — uzukaptar
 **en lukto** (1) — adversa
 **en mashino elektrifala** (1) — induktoro

@@ -1,7 +1,7 @@
 <!-- Engendre par tools/machine_readable.py depuis index.html. Ne pas editer. -->
 
 ## orvietano
-Elektuario (varianto nenociva di teriako) quan onu judikis, en la mezo di la 17esma yarcento, kom tre apta e tre efikiva
+Elektuario (varianto nenociva di teriako) quan onu judikis, en la mezo di la 17-esma yarcento, kom tre apta e tre efikiva
 <!-- p. 412, l. 6 | Germana, Angla, Franca, Italiana, Hispana -->
 
 ---
