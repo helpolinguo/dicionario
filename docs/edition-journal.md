@@ -2072,3 +2072,19 @@ and the facsimile keeps it. The formula pass took it for an element and
 closed it up against the water. No element is written *E* alone, and the book
 joins two formulas with a small, spaced *e* elsewhere, under rusto: *Fe₂O₃ e
 Fe₃O₄*. `work/symbols.txt` now gives fuxino *C₂₀H₂₀N₃Cl, e H₂O*.
+
+
+---
+
+## The ordinal in figures (2026)
+
+*« At ravelino we see "15esma" and "16-esma", which makes the use of the
+hyphen inconsistent. I would like to make this consistent across the whole
+dictionary »* — Gilles-Philippe Morin. The book writes its ordinals in
+figures both ways, eight and eight: *la 24-esma parto* under kloko, *la 24esma
+di julio* under kanikulo, and both in the one parenthesis under ravelino. The
+hyphen is the book's way everywhere else a figure meets Ido letters — *20-edra*,
+*5-franka*, *100-grada* — and it is the form chosen. One rule in `compound()`
+now gives a welded ordinal its hyphen, in the senses and in the qualifier.
+Six articles move; pavano's adjective becomes *16-esma-yarcenta*. The facsimile
+keeps the typist's two forms.
