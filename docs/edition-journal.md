@@ -2167,3 +2167,16 @@ exponent the typist struck, and the facsimile keeps the line as typed.
 The longer sense, at 33 characters, passes the deck's floor of 25 for the
 reverse card: the deck now holds 17,842 cards, and the figures are corrected
 in `tools/anki.py`, `README.md` and `CLAUDE.md`.
+
+
+---
+
+## quarco's subscript (2026)
+
+*« Fix quarco to SiO₂ »* — Gilles-Philippe Morin. The fault is quadriliono's,
+on the same page. The typist struck the *2* half a line up, alone on the line
+above the article, at column 55 of image 482. Below it, at the same column,
+only a full stop is left after *SiO*. The book raises its subscripts this way
+elsewhere too: fluorino's formula is typed *Ca F²*. `work/symbols.txt`, which
+already holds fluorino's *CaF₂*, now gives quarco *SiO₂*. The facsimile
+keeps the line as typed.
