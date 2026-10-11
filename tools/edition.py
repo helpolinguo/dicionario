@@ -3344,7 +3344,16 @@ COMPOUND = (('yurocienco', 'yuro-cienco'),
 
 RE_COMPOUND = tuple(
     (re.compile(r'(?<![-A-Za-z\u00e0-\u00ff])%s(?![A-Za-z\u00e0-\u00ff])' % a), b)
-    for a, b in COMPOUND)
+    for a, b in COMPOUND) + (
+    # The ordinal written in figures takes the hyphen too: « 15esma » ->
+    # « 15-esma ». The book writes it both ways, eight and eight -- « la
+    # 24-esma parto » (kloko) but « la 24esma di julio » (kanikulo), and
+    # « en la yarcenti 15esma e 16-esma » in the same parenthesis under
+    # ravelino. The hyphen is the book's way everywhere else a figure meets
+    # Ido letters -- « 20-edra », « 5-franka », « 100-grada » -- and the form
+    # Gilles-Philippe Morin chose. pavano's compound adjective follows:
+    # « (16-esma-yarcenta) ». The facsimile keeps the typist's two forms.
+    (re.compile(r'(?<![\w.,])(\d+)esm(?=[a-z])'), r'\1-esm'),)
 
 
 def multiplication(t):
