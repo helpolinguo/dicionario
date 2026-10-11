@@ -2151,6 +2151,26 @@ fragment more, 1445. `README.md` and `CLAUDE.md` carry the new figure.
 
 ---
 
+## Quadriliono on the long scale (2026)
+
+*« Fix quadriliono to 1.000.000⁴ too »* — Gilles-Philippe Morin. The
+typescript reads *Mil bilioni. (1000⁵)*, a thousand billions, 10¹⁵. The sum
+is right, but it is not the book's count. The book counts on the long scale:
+miliono 10⁶, biliono 1.000.000², triliono 1.000.000³, sextiliono 10³⁶,
+oktiliono 10⁴⁸, deciliono 10⁶⁰. Each rank is a million times the one before,
+as the book itself says under noniliono: *od oktiliono x 1.000.000*. On that
+scale the quadrillion is 1.000.000⁴, 10²⁴, a million trillions, and 10¹⁵
+is the rank in between, a thousand billions. `work/words.txt` now gives the
+reading edition *Miliono de trilioni. (1.000.000⁴)*, with the figure written
+as biliono's and triliono's are. `work/texts.txt` still restores the
+exponent the typist struck, and the facsimile keeps the line as typed.
+The longer sense, at 33 characters, passes the deck's floor of 25 for the
+reverse card: the deck now holds 17,842 cards, and the figures are corrected
+in `tools/anki.py`, `README.md` and `CLAUDE.md`.
+
+
+---
+
 ## A million quadrillions (2026)
 
 *« Quintiliono is 1.000.000⁵ »* — Gilles-Philippe Morin. The figure was
@@ -2161,7 +2181,8 @@ deciliono 10⁶⁰), in which each rank is a million times the one before, and i
 says so itself under noniliono: *od oktiliono x 1.000.000*. A thousand
 quadrillions would be 10²⁷. `work/words.txt` now gives the reading edition
 *Miliono de quadrilioni. (10³⁰)*, and the facsimile keeps *Mil quadrilioni*.
-Quadriliono itself still reads *Mil bilioni. (1000⁵)*, which is 10¹⁵,
-as the typist struck it. The longer sense, at 30 characters, passes the
-deck's floor of 25 for the reverse card: the deck now holds 17,842 cards, and
-the figures are corrected in `tools/anki.py`, `README.md` and `CLAUDE.md`.
+Quadriliono, struck *Mil bilioni. (1000⁵)*, 10¹⁵, has been brought to the
+same scale: *Miliono de trilioni. (1.000.000⁴)*. The longer sense, at 30
+characters, passes the deck's floor of 25 for the reverse card: the deck now
+holds 17,843 cards, and the figures are corrected in `tools/anki.py`,
+`README.md` and `CLAUDE.md`.

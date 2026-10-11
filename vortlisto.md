@@ -7203,7 +7203,7 @@ quadri- (prefixo ciencala) — « Qua havas quar… -i »
 quadrigo (en la epoki antiqua) — Charo adqua onu jungis quar kavali sama-fronte
 quadriko (geom.) — Areo di la grado duesma, t.e. reprezentata da equaciono di la grado duesma
 quadrilo — (a) Trupo de kavalieri, dividita (ordinare) aden quar grupi, qua figurantesas en karuselo; (b) singla de ta grupi, distingita per kolori, per kostumi interdiferanta
-quadriliono (aritm.) — Mil bilioni. (1000⁵)
+quadriliono (aritm.) — Miliono de trilioni. (1.000.000⁴)
 quadriremo (navig.) — Navo kun quar rangi de remeri, o kun quar remeri ye un remilo
 quago (zool.) — Speco di zebro, nun desaparinta de la terglobo, qua vivis en la sud-regioni di Afrika : nur la duima parto (avana) di lua korpo esis blanke-strioza
 quak! — Son-uno ne-akordanta, quan lasas eskapar acidente persono qua kantas o qua pleas langet-instrumento muzikala
