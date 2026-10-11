@@ -2147,3 +2147,21 @@ gives the reading edition *sismografio*, and the facsimile keeps *sismografo*.
 The typescript underlined *sismografo*, so that underline is now left over
 from the headword, as permigar's is, and the survey of underlines counts one
 fragment more, 1445. `README.md` and `CLAUDE.md` carry the new figure.
+
+
+---
+
+## A million quadrillions (2026)
+
+*« Quintiliono is 1.000.000⁵ »* — Gilles-Philippe Morin. The figure was
+right: the typescript's *(1030)*, which the edition reads as 10³⁰, is
+1.000.000⁵. The words were not. The book counts on the long scale (biliono
+1.000.000², triliono 1.000.000³, sextiliono 10³⁶, oktiliono 10⁴⁸,
+deciliono 10⁶⁰), in which each rank is a million times the one before, and it
+says so itself under noniliono: *od oktiliono x 1.000.000*. A thousand
+quadrillions would be 10²⁷. `work/words.txt` now gives the reading edition
+*Miliono de quadrilioni. (10³⁰)*, and the facsimile keeps *Mil quadrilioni*.
+Quadriliono itself still reads *Mil bilioni. (1000⁵)*, which is 10¹⁵,
+as the typist struck it. The longer sense, at 30 characters, passes the
+deck's floor of 25 for the reverse card: the deck now holds 17,842 cards, and
+the figures are corrected in `tools/anki.py`, `README.md` and `CLAUDE.md`.

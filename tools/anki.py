@@ -57,15 +57,17 @@ WHAT THE DECK ASKS. Two cards, from one note:
   senco → vedetto   the article, and one recalls the headword
 
 The second is NOT made for every article. MEASURED, over the 9,473: 102 are
-affixes, which have no sense to recognise; 532 carry a body under 25
+affixes, which have no sense to recognise; 531 carry a body under 25
 characters, too short to be guessed at; and 471 PRINT THE HEADWORD'S OWN
 ROOT INSIDE THE DEFINITION -- « abako ... la kapitelo » is fair, but
-« abandonar. Lasar ... abandonita » hands the answer over. 8,368 articles
+« abandonar. Lasar ... abandonita » hands the answer over. 8,369 articles
 are left, and they alone carry the reverse card. sodo was among the 472
 until its « L. salsola soda », which the author lays apart, left the
 sentence for the Latin field, and the reverse card does not show that
-field. The gate is the field `Inversa`: Anki makes no card whose question
-side comes out empty, so an empty `Inversa` is the whole of it.
+field. quintiliono was among the 532 until its « Mil quadrilioni.
+(10³⁰) », 23 characters, became « Miliono de quadrilioni. (10³⁰) », 30.
+The gate is the field `Inversa`: Anki makes no card whose question side
+comes out empty, so an empty `Inversa` is the whole of it.
 
 THE TAGS ARE THE BOOK'S OWN MARKS. `tools/parentheticals.py` already knows
 how to read the bracketed group before the first sense -- transitivity,
@@ -77,8 +79,8 @@ the parenthetical in this repository, not two of them drifting apart.
 CHECKED WITH ANKI ITSELF, and not against this file's own idea of the
 format: the package was imported by the `anki` library, version 26.8,
 again by 26.09.3 once the remarks were set in it, and by 26.09.3 once more
-when sodo gained its reverse card, into an empty collection. 9,473 notes
-and 17,841 cards arrive, in the deck and under the note type named here;
+when sodo gained its reverse card, and when quintiliono gained its own,
+into an empty collection. 9,473 notes and 17,842 cards arrive, in the deck and under the note type named here;
 the note type comes back with its ten fields and its two templates, and
 with the `req` written below. THE SAME
 FILE IMPORTED A SECOND TIME ADDS NOTHING -- 9,473 notes still, which is

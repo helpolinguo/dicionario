@@ -31446,7 +31446,7 @@ Kurvo di la klaso kinesma
 <!-- p. 478, l. 23 | Angla, Franca, Italiana, Hispana -->
 
 ## quintiliono *(matem.)*
-Mil quadrilioni. (10³⁰)
+Miliono de quadrilioni. (10³⁰)
 <!-- p. 478, l. 25 | sen-lingua -->
 
 ## quiproquo
