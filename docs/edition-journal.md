@@ -2147,3 +2147,16 @@ gives the reading edition *sismografio*, and the facsimile keeps *sismografo*.
 The typescript underlined *sismografo*, so that underline is now left over
 from the headword, as permigar's is, and the survey of underlines counts one
 fragment more, 1445. `README.md` and `CLAUDE.md` carry the new figure.
+
+
+---
+
+## quarco's subscript (2026)
+
+*« Fix quarco to SiO₂ »* — Gilles-Philippe Morin. The fault is quadriliono's,
+on the same page. The typist struck the *2* half a line up, alone on the line
+above the article, at column 55 of image 482. Below it, at the same column,
+only a full stop is left after *SiO*. The book raises its subscripts this way
+elsewhere too: fluorino's formula is typed *Ca F²*. `work/symbols.txt`, which
+already holds fluorino's *CaF₂*, now gives quarco *SiO₂*. The facsimile
+keeps the line as typed.
